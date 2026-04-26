@@ -1,4 +1,22 @@
-import { c as createLucideIcon, r as reactExports, j as jsxRuntimeExports, K as createSlot, h as cn, i as useActor, k as useQuery, l as createActor } from "./index-DgNuRIli.js";
+import { c as createLucideIcon, r as reactExports, u as useComposedRefs, j as jsxRuntimeExports, z as createSlot, a as cn, b as useActor, e as useQuery, d as createActor } from "./index-BusfRT-8.js";
+import { d as useLayoutEffect2 } from "./index-BNgp4POB.js";
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$2 = [
+  ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
+  [
+    "path",
+    {
+      d: "M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326",
+      key: "11g9vi"
+    }
+  ]
+];
+const Bell = createLucideIcon("bell", __iconNode$2);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -28,6 +46,129 @@ const __iconNode = [
   ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }]
 ];
 const Users = createLucideIcon("users", __iconNode);
+function useStateMachine(initialState, machine) {
+  return reactExports.useReducer((state, event) => {
+    const nextState = machine[state][event];
+    return nextState ?? state;
+  }, initialState);
+}
+var Presence = (props) => {
+  const { present, children } = props;
+  const presence = usePresence(present);
+  const child = typeof children === "function" ? children({ present: presence.isPresent }) : reactExports.Children.only(children);
+  const ref = useComposedRefs(presence.ref, getElementRef(child));
+  const forceMount = typeof children === "function";
+  return forceMount || presence.isPresent ? reactExports.cloneElement(child, { ref }) : null;
+};
+Presence.displayName = "Presence";
+function usePresence(present) {
+  const [node, setNode] = reactExports.useState();
+  const stylesRef = reactExports.useRef(null);
+  const prevPresentRef = reactExports.useRef(present);
+  const prevAnimationNameRef = reactExports.useRef("none");
+  const initialState = present ? "mounted" : "unmounted";
+  const [state, send] = useStateMachine(initialState, {
+    mounted: {
+      UNMOUNT: "unmounted",
+      ANIMATION_OUT: "unmountSuspended"
+    },
+    unmountSuspended: {
+      MOUNT: "mounted",
+      ANIMATION_END: "unmounted"
+    },
+    unmounted: {
+      MOUNT: "mounted"
+    }
+  });
+  reactExports.useEffect(() => {
+    const currentAnimationName = getAnimationName(stylesRef.current);
+    prevAnimationNameRef.current = state === "mounted" ? currentAnimationName : "none";
+  }, [state]);
+  useLayoutEffect2(() => {
+    const styles = stylesRef.current;
+    const wasPresent = prevPresentRef.current;
+    const hasPresentChanged = wasPresent !== present;
+    if (hasPresentChanged) {
+      const prevAnimationName = prevAnimationNameRef.current;
+      const currentAnimationName = getAnimationName(styles);
+      if (present) {
+        send("MOUNT");
+      } else if (currentAnimationName === "none" || (styles == null ? void 0 : styles.display) === "none") {
+        send("UNMOUNT");
+      } else {
+        const isAnimating = prevAnimationName !== currentAnimationName;
+        if (wasPresent && isAnimating) {
+          send("ANIMATION_OUT");
+        } else {
+          send("UNMOUNT");
+        }
+      }
+      prevPresentRef.current = present;
+    }
+  }, [present, send]);
+  useLayoutEffect2(() => {
+    if (node) {
+      let timeoutId;
+      const ownerWindow = node.ownerDocument.defaultView ?? window;
+      const handleAnimationEnd = (event) => {
+        const currentAnimationName = getAnimationName(stylesRef.current);
+        const isCurrentAnimation = currentAnimationName.includes(CSS.escape(event.animationName));
+        if (event.target === node && isCurrentAnimation) {
+          send("ANIMATION_END");
+          if (!prevPresentRef.current) {
+            const currentFillMode = node.style.animationFillMode;
+            node.style.animationFillMode = "forwards";
+            timeoutId = ownerWindow.setTimeout(() => {
+              if (node.style.animationFillMode === "forwards") {
+                node.style.animationFillMode = currentFillMode;
+              }
+            });
+          }
+        }
+      };
+      const handleAnimationStart = (event) => {
+        if (event.target === node) {
+          prevAnimationNameRef.current = getAnimationName(stylesRef.current);
+        }
+      };
+      node.addEventListener("animationstart", handleAnimationStart);
+      node.addEventListener("animationcancel", handleAnimationEnd);
+      node.addEventListener("animationend", handleAnimationEnd);
+      return () => {
+        ownerWindow.clearTimeout(timeoutId);
+        node.removeEventListener("animationstart", handleAnimationStart);
+        node.removeEventListener("animationcancel", handleAnimationEnd);
+        node.removeEventListener("animationend", handleAnimationEnd);
+      };
+    } else {
+      send("ANIMATION_END");
+    }
+  }, [node, send]);
+  return {
+    isPresent: ["mounted", "unmountSuspended"].includes(state),
+    ref: reactExports.useCallback((node2) => {
+      stylesRef.current = node2 ? getComputedStyle(node2) : null;
+      setNode(node2);
+    }, [])
+  };
+}
+function getAnimationName(styles) {
+  return (styles == null ? void 0 : styles.animationName) || "none";
+}
+function getElementRef(element) {
+  var _a, _b;
+  let getter = (_a = Object.getOwnPropertyDescriptor(element.props, "ref")) == null ? void 0 : _a.get;
+  let mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+  if (mayWarn) {
+    return element.ref;
+  }
+  getter = (_b = Object.getOwnPropertyDescriptor(element, "ref")) == null ? void 0 : _b.get;
+  mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+  if (mayWarn) {
+    return element.props.ref;
+  }
+  return element.props.ref || element.ref;
+}
 var NODES = [
   "a",
   "button",
@@ -230,12 +371,27 @@ function useFaqs() {
     placeholderData: SEED_FAQS
   });
 }
+function useSignals() {
+  const { actor, isFetching } = useActor(createActor);
+  return useQuery({
+    queryKey: ["signals"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getSignals();
+    },
+    enabled: !!actor && !isFetching,
+    refetchInterval: 3e4
+  });
+}
 export {
+  Bell as B,
   Card as C,
   Flame as F,
   Label as L,
+  Presence as P,
   Users as U,
   useStats as a,
-  useFaqs as b,
+  useSignals as b,
+  useFaqs as c,
   useBinanceFeed as u
 };

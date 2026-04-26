@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useActor } from "@caffeineai/core-infrastructure";
+import { useNavigate } from "@tanstack/react-router";
 import {
   AlertTriangle,
   ArrowRight,
@@ -27,9 +28,10 @@ import {
   Users,
   Zap,
 } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SiBinance } from "react-icons/si";
 import { createActor } from "../backend";
+import { AdminPasscodeModal } from "../components/AdminPasscodeModal";
 import { BinanceSquareFeedSection } from "../components/BinanceSquareFeedSection";
 import { BlumDeepDiveSection } from "../components/BlumDeepDiveSection";
 import { BlumExplainerSection } from "../components/BlumExplainerSection";
@@ -46,7 +48,6 @@ import { HypeBarSection } from "../components/HypeBarSection";
 import { JoinMovementSection } from "../components/JoinMovementSection";
 import { LaunchCountdownSection } from "../components/LaunchCountdownSection";
 import { ManifestoSection } from "../components/ManifestoSection";
-import { MarketSentimentSection } from "../components/MarketSentimentSection";
 import { MilestonesSection } from "../components/MilestonesSection";
 import { QuoteRotatorSection } from "../components/QuoteRotatorSection";
 import { RoadmapSection } from "../components/RoadmapSection";
@@ -55,7 +56,6 @@ import { SignalAcademySection } from "../components/SignalAcademySection";
 import { SignalCard } from "../components/SignalCard";
 import { SignalDetailModal } from "../components/SignalDetailModal";
 import { SignalOfWeekSection } from "../components/SignalOfWeekSection";
-import { SignalSearchBar } from "../components/SignalSearchBar";
 import { SkeletonCard } from "../components/SkeletonCard";
 import { StatsBar } from "../components/StatsBar";
 import { TelegramMockupSection } from "../components/TelegramMockupSection";
@@ -64,6 +64,7 @@ import { TokenFaqChatbotSection } from "../components/TokenFaqChatbotSection";
 import { TokenUtilitySection } from "../components/TokenUtilitySection";
 import { WhitepaperSection } from "../components/WhitepaperSection";
 import { WhyDemonZenoSection } from "../components/WhyDemonZenoSection";
+import { useSession } from "../contexts/SessionContext";
 import { useFaqs } from "../hooks/useFaqs";
 import { useSignalOfTheDay } from "../hooks/useSignalOfTheDay";
 import { useSignals } from "../hooks/useSignals";
@@ -77,6 +78,31 @@ function scrollTo(id: string) {
 function HeroSection() {
   const { data: signalOfTheDay } = useSignalOfTheDay();
   const [sotdModalOpen, setSotdModalOpen] = useState(false);
+  const { setSessionToken } = useSession();
+  const navigate = useNavigate();
+
+  // Admin unlock via click counter
+  const [clickCount, setClickCount] = useState(0);
+  const [showPasscodeModal, setShowPasscodeModal] = useState(false);
+  const clickResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function handleDemonZenoClick() {
+    if (clickResetTimer.current) clearTimeout(clickResetTimer.current);
+    const newCount = clickCount + 1;
+    if (newCount > 5) {
+      setClickCount(0);
+      setShowPasscodeModal(true);
+    } else {
+      setClickCount(newCount);
+      clickResetTimer.current = setTimeout(() => setClickCount(0), 30000);
+    }
+  }
+
+  function handleAdminSuccess(token: string) {
+    setSessionToken(token);
+    setShowPasscodeModal(false);
+    navigate({ to: "/admin" });
+  }
 
   return (
     <section
@@ -96,6 +122,15 @@ function HeroSection() {
           onClose={() => setSotdModalOpen(false)}
         />
       )}
+
+      <AdminPasscodeModal
+        open={showPasscodeModal}
+        onSuccess={handleAdminSuccess}
+        onClose={() => {
+          setShowPasscodeModal(false);
+          setClickCount(0);
+        }}
+      />
 
       <div className="container mx-auto px-4 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
         <div className="flex flex-col gap-6 max-w-xl">
@@ -182,11 +217,20 @@ function HeroSection() {
         <div className="flex justify-center md:justify-end">
           <div className="relative">
             <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl scale-75 animate-pulse-glow" />
-            <img
-              src="/assets/demonzeno-character.png"
-              alt="DemonZeno — anime-style boy on an open highway"
-              className="relative z-10 w-64 md:w-80 lg:w-96 object-contain drop-shadow-2xl"
-            />
+            {/* DemonZeno character — clicking 6+ times unlocks admin (no visible hint) */}
+            <button
+              type="button"
+              onClick={handleDemonZenoClick}
+              className="relative z-10 p-0 bg-transparent border-0 cursor-default focus:outline-none"
+              tabIndex={-1}
+              aria-hidden="true"
+            >
+              <img
+                src="/assets/demonzeno-character.png"
+                alt="DemonZeno — anime-style boy on an open highway"
+                className="w-64 md:w-80 lg:w-96 object-contain drop-shadow-2xl pointer-events-none"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -299,7 +343,6 @@ function SignalFeedSection() {
   const { data: signals = [], isLoading, dataUpdatedAt } = useSignals();
   const [filter, setFilter] = useState<MarketFilter>("All");
   const [timeframe, setTimeframe] = useState<Timeframe | "All">("All");
-  const [search, setSearch] = useState("");
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [resultFilter, setResultFilter] = useState<string>("All");
   const [confidenceFilter, setConfidenceFilter] = useState<string>("All");
@@ -313,11 +356,6 @@ function SignalFeedSection() {
       if (filter === "Stocks" && s.marketType !== "Stock") return false;
     }
     if (timeframe !== "All" && s.timeframe !== timeframe) return false;
-    if (
-      search.trim() &&
-      !s.asset.toLowerCase().includes(search.trim().toLowerCase())
-    )
-      return false;
     if (resultFilter !== "All" && s.result !== resultFilter) return false;
     if (confidenceFilter !== "All" && s.confidence !== confidenceFilter)
       return false;
@@ -357,14 +395,6 @@ function SignalFeedSection() {
         </ScrollAnimation>
 
         <div className="flex flex-col items-center gap-4 mb-8">
-          <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-2xl">
-            <SignalSearchBar
-              value={search}
-              onChange={setSearch}
-              resultCount={filtered.length}
-            />
-          </div>
-
           <FilterBar
             active={filter}
             onChange={setFilter}
@@ -475,14 +505,11 @@ function SignalFeedSection() {
               <Zap className="w-8 h-8 text-primary" />
             </div>
             <p className="font-display font-semibold text-foreground text-xl">
-              {search
-                ? `No signals match "${search}"`
-                : "DemonZeno is preparing the next signal. Stay sharp."}
+              DemonZeno is preparing the next signal. Stay sharp.
             </p>
             <p className="text-muted-foreground text-sm max-w-sm">
-              {search
-                ? "Try a different asset name or clear your search."
-                : "Check back soon — signals drop daily across crypto, forex, and stocks on Binance."}
+              Check back soon — signals drop daily across crypto, forex, and
+              stocks on Binance.
             </p>
           </div>
         ) : (
@@ -989,115 +1016,6 @@ function CommunitySection() {
   );
 }
 
-// ─── Notify Me ────────────────────────────────────────────────────────────
-function NotifyMeSection() {
-  const [name, setName] = useState("");
-  const [contact, setContact] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const { actor } = useActor(createActor);
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!actor || !contact) return;
-    setLoading(true);
-    try {
-      await actor.submitNotifyMe(name.trim() || null, contact.trim());
-      setSubmitted(true);
-    } catch {
-      // silent fail
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <section
-      id="notify"
-      data-ocid="notify.section"
-      className="py-20 bg-background"
-    >
-      <div className="container mx-auto px-4 max-w-lg">
-        <ScrollAnimation>
-          <div className="flex flex-col gap-3 mb-10 text-center">
-            <span className="text-primary text-sm font-semibold uppercase tracking-widest">
-              Stay Informed
-            </span>
-            <h2 className="font-display font-bold text-4xl text-foreground">
-              Get Notified
-            </h2>
-            <p className="text-muted-foreground text-sm">
-              Be the first to know when DMNZ launches on April 2, 2028.
-            </p>
-          </div>
-        </ScrollAnimation>
-        <ScrollAnimation delay={100}>
-          <div className="bg-card border border-border rounded-2xl p-8 card-elevated">
-            {submitted ? (
-              <div
-                data-ocid="notify.success_state"
-                className="flex flex-col items-center gap-3 py-4 text-center"
-              >
-                <CheckCircle className="w-12 h-12 text-primary" />
-                <p className="font-display font-semibold text-foreground text-xl">
-                  You're on the list!
-                </p>
-                <p className="text-muted-foreground text-sm">
-                  We'll notify you when DemonZeno launches.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <Label
-                    htmlFor="notify2-name"
-                    className="text-muted-foreground text-xs"
-                  >
-                    Name (optional)
-                  </Label>
-                  <Input
-                    id="notify2-name"
-                    data-ocid="notify.name.input"
-                    placeholder="Your name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="bg-secondary border-input"
-                  />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <Label
-                    htmlFor="notify2-contact"
-                    className="text-muted-foreground text-xs"
-                  >
-                    Telegram or Email *
-                  </Label>
-                  <Input
-                    id="notify2-contact"
-                    data-ocid="notify.contact.input"
-                    placeholder="@username or email"
-                    required
-                    value={contact}
-                    onChange={(e) => setContact(e.target.value)}
-                    className="bg-secondary border-input"
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  data-ocid="notify.submit_button"
-                  disabled={loading || !contact}
-                  className="btn-primary w-full"
-                >
-                  {loading ? "Saving…" : "Notify Me at Launch"}
-                </Button>
-              </form>
-            )}
-          </div>
-        </ScrollAnimation>
-      </div>
-    </section>
-  );
-}
-
 // ─── Disclaimer ───────────────────────────────────────────────────────────
 function DisclaimerSection() {
   const [expanded, setExpanded] = useState(false);
@@ -1162,74 +1080,93 @@ function DisclaimerSection() {
 export function Home() {
   return (
     <>
+      {/* 1. Hero — DemonZeno character click-counter triggers admin unlock */}
       <HeroSection />
+
+      {/* 2. Stats Bar */}
       <StatsBarSection />
-      <AboutSection />
+
+      {/* 3. Signal Feed */}
       <SignalFeedSection />
+
+      {/* 4. How to Use Signals */}
       <HowToUseSection />
-      <MarketsSection />
 
-      {/* Community signal info */}
-      <QuoteRotatorSection />
-      <SignalOfWeekSection />
-      <MilestonesSection />
-
-      {/* Token sections */}
-      <TokenSection />
-      <HypeBarSection />
-      <TokenUtilitySection />
-      <HolderBenefitsSection />
-      <BondingCurveSection />
-
-      {/* Launch platform */}
-      <ScrollAnimation>
-        <TelegramMockupSection />
-      </ScrollAnimation>
-      <BlumDeepDiveSection />
-      <ScrollAnimation>
-        <BlumExplainerSection />
-      </ScrollAnimation>
-
-      {/* Countdown & burn */}
-      <BurnCountdownSection />
-      <BurnScheduleSection />
-
-      {/* Roadmap & launch */}
-      <RoadmapSection />
-      <LaunchCountdownSection />
-      <TokenBurnTrackerSection />
-
-      {/* Community & social */}
-      <CommunityCounterSection />
-      <BinanceSquareFeedSection />
-      <BlumPreviewSection />
-      <JoinMovementSection />
-
-      {/* Content & education */}
-      <TradingPhilosophySection />
+      {/* 5. Signal Academy */}
       <SignalAcademySection />
 
-      {/* Market data */}
-      <ScrollAnimation>
-        <MarketSentimentSection />
-      </ScrollAnimation>
+      {/* 6. Trading Philosophy, Psychology & Mistakes */}
+      <TradingPhilosophySection />
 
-      {/* Site info */}
+      {/* 9. Manifesto */}
       <ScrollAnimation>
         <ManifestoSection />
       </ScrollAnimation>
+
+      {/* 10. Why DemonZeno */}
       <ScrollAnimation>
         <WhyDemonZenoSection />
       </ScrollAnimation>
 
-      {/* Token FAQ bot & whitepaper */}
-      <TokenFaqChatbotSection />
+      {/* 11. About */}
+      <AboutSection />
+
+      {/* 12. Markets Covered */}
+      <MarketsSection />
+
+      {/* 13. Roadmap */}
+      <RoadmapSection />
+
+      {/* 12. Launch Countdown */}
+      <LaunchCountdownSection />
+
+      {/* 13. Hype Bar */}
+      <HypeBarSection />
+
+      {/* 14. Token sections */}
+      <TokenSection />
+      <TokenUtilitySection />
+      <HolderBenefitsSection />
+      <BondingCurveSection />
+
+      {/* 15. BLUM sections */}
+      <ScrollAnimation>
+        <TelegramMockupSection />
+      </ScrollAnimation>
+      <BlumPreviewSection />
+      <ScrollAnimation>
+        <BlumExplainerSection />
+      </ScrollAnimation>
+      <BlumDeepDiveSection />
+
+      {/* 16. Burn sections (ONE each) */}
+      <BurnCountdownSection />
+      <BurnScheduleSection />
+      <TokenBurnTrackerSection />
+
+      {/* 17. Whitepaper */}
       <WhitepaperSection />
 
-      {/* FAQ & Community */}
+      {/* 18. Community sections (ONE each) */}
+      <QuoteRotatorSection />
+      <SignalOfWeekSection />
+      <CommunityCounterSection />
+      <BinanceSquareFeedSection />
+      <MilestonesSection />
+
+      {/* 19. Join Movement */}
+      <JoinMovementSection />
+
+      {/* 20. Token FAQ Chatbot */}
+      <TokenFaqChatbotSection />
+
+      {/* 21. FAQ — backend-driven */}
       <FAQSection />
+
+      {/* 22. Community social links */}
       <CommunitySection />
-      <NotifyMeSection />
+
+      {/* 23. Disclaimer */}
       <DisclaimerSection />
     </>
   );

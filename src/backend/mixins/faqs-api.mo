@@ -23,23 +23,35 @@ mixin (
     let defaults : [(Text, Text)] = [
       (
         "What is DemonZeno?",
-        "DemonZeno is a free trading signals platform providing daily signals for crypto, forex, and stocks. All signals are for assets listed on Binance, delivered through the DemonZeno AI and posted publicly on Binance Square."
+        "DemonZeno is a free trading signals platform providing daily signals for crypto, forex, and stocks. All signals are delivered through the DemonZeno AI and posted publicly on Binance Square."
       ),
       (
-        "Where can I find DemonZeno daily free signals?",
-        "DemonZeno provides daily free trading signals on Binance Square. Follow @DemonZeno on Binance Square to get daily signals for crypto, forex, and stocks — all completely free."
+        "Where can I get DemonZeno's free trading signals?",
+        "DemonZeno provides daily free trading signals on Binance Square. Follow @DemonZeno on Binance Square to get signals for crypto, forex, and stocks every day — completely free."
+      ),
+      (
+        "Is DemonZeno free?",
+        "Yes. DemonZeno's trading signals are completely free. Daily signals are posted on Binance Square @DemonZeno at no cost."
       ),
       (
         "How do I use DemonZeno AI?",
-        "Visit the /ai page and enter the access code to unlock DemonZeno AI. Normal mode (code: 2420075112009) provides balanced market analysis for Binance-listed assets. Insane mode unlocks unrestricted signal generation for any asset on any exchange."
+        "Visit the AI section and enter the access code to unlock DemonZeno AI. Normal mode (code: 2420075112009) provides real-time trading signals for crypto, forex, and stocks. Insane mode unlocks unrestricted signal generation for any asset on any exchange."
       ),
       (
-        "What is the DMNZ token?",
-        "DMNZ is the DemonZeno meme token. It launches on April 2, 2028 via a Telegram Mini App on the BLUM platform. 100% fair launch — no presale, no allocation, no KYC required."
+        "What is DMNZ token?",
+        "DMNZ is the DemonZeno meme token launching April 2, 2028 via a Telegram Mini App on Blum. It is a 100% fair launch — no presale, no allocation, no vesting. The 2028 Buyback & Burn event will reduce supply, increase price, and trigger the bonding curve for listings on other exchanges."
+      ),
+      (
+        "When does DMNZ launch?",
+        "DMNZ launches on April 2, 2028 via a Telegram Mini App on the Blum platform."
       ),
       (
         "What is the DMNZ token roadmap?",
         "2026: Community building on Binance. 2027: DMNZ token launch via BLUM Mini App on Telegram. 2028: Massive Buyback & Burn to reduce supply, increase token price, and trigger the bonding curve for listings on other exchanges."
+      ),
+      (
+        "What exchanges will DMNZ list on?",
+        "After the 2028 Buyback & Burn event triggers the bonding curve, DMNZ will list on additional exchanges beyond Blum. The community building phase (2026) and fair launch (2027) precede this milestone."
       ),
       (
         "Is there a presale for DMNZ?",
@@ -47,11 +59,7 @@ mixin (
       ),
       (
         "Are the trading signals on Binance only?",
-        "Yes — all publicly posted signals are for assets listed on Binance (crypto, forex, and select stocks available on Binance). DemonZeno AI in Insane mode can generate signals for any asset on any exchange."
-      ),
-      (
-        "Is there a fee to use DemonZeno?",
-        "No. All trading signals and the DemonZeno AI are completely free. There is no subscription, no registration, and no payment required."
+        "DemonZeno AI provides real-time signals for any crypto token, Forex pairs (EURUSD, GBPUSD, USDJPY, etc.), and stocks (AAPL, TSLA, NVDA, etc.). Daily free signals are also posted on Binance Square @DemonZeno."
       ),
     ];
     var idCounter = faqIdCounter.value;

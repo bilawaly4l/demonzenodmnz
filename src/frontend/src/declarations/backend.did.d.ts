@@ -347,7 +347,6 @@ export interface _SERVICE {
   'askFaq' : ActorMethod<[string], string>,
   'backtestSignal' : ActorMethod<[string, string], Result>,
   'banEmail' : ActorMethod<[string, string], Result_2>,
-  'checkAdminUnlockPhrase' : ActorMethod<[string], [] | [string]>,
   'clearJournal' : ActorMethod<[string], Result_2>,
   'createAbTest' : ActorMethod<[string, string, string, string], Result>,
   'createAuditSnapshot' : ActorMethod<[string, string], Result>,

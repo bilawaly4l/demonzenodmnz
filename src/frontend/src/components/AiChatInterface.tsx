@@ -36,7 +36,6 @@ import { toast } from "sonner";
 import { createActor } from "../backend";
 import type { JournalEntry } from "../backend.d";
 import { useAiSession } from "../contexts/AiSessionContext";
-import { useSession } from "../contexts/SessionContext";
 import { useSignalAccuracy } from "../contexts/SignalAccuracyContext";
 import {
   AI_PROVIDERS,
@@ -47,16 +46,12 @@ import {
   useInvalidateAiSession,
   useSendAiMessage,
 } from "../hooks/useAiChat";
-import { AiAdminPanel } from "./AiAdminPanel";
 
 type AiMessageWithSignal = AiMessage & {
   signalId?: string;
   rating?: 1 | -1 | null;
   messageId?: string;
 };
-
-const ADMIN_TRIGGER =
-  "DemonZeno: Master the Chaos, Slay the Market, and Trade Like a God./BP2420075112009";
 
 const LANGUAGE_LABELS: Record<string, string> = {
   en: "🇬🇧 EN",
@@ -1232,71 +1227,6 @@ function EmptyState({
   );
 }
 
-// --- Admin Passcode Prompt ---
-function AdminPasscodePrompt({
-  onAuthenticated,
-}: {
-  onAuthenticated: (token: string) => void;
-}) {
-  const { actor } = useActor(createActor);
-  const [code, setCode] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState<string | null>(null);
-
-  async function handleSubmit() {
-    if (!actor || !code.trim()) return;
-    setLoading(true);
-    setErr(null);
-    try {
-      const result = await actor.validatePasscode(code.trim());
-      if (result.__kind__ === "ok") {
-        onAuthenticated(result.ok);
-      } else {
-        setErr("Invalid admin passcode.");
-      }
-    } catch {
-      setErr("Connection error.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <div className="flex flex-col items-center gap-3 py-6 px-4">
-      <Shield className="w-8 h-8 text-primary" />
-      <p className="text-sm font-semibold text-foreground">
-        Admin Authentication Required
-      </p>
-      <div className="flex gap-2 w-full max-w-xs">
-        <input
-          type="password"
-          value={code}
-          onChange={(e) => {
-            setCode(e.target.value);
-            setErr(null);
-          }}
-          placeholder="Admin passcode"
-          className="flex-1 h-8 rounded-lg px-3 text-xs bg-background border border-border text-foreground"
-          data-ocid="admin_panel.passcode.input"
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleSubmit();
-          }}
-        />
-        <Button
-          size="sm"
-          disabled={loading}
-          onClick={handleSubmit}
-          data-ocid="admin_panel.passcode.submit_button"
-          className="h-8 text-xs"
-        >
-          {loading ? "..." : "Enter"}
-        </Button>
-      </div>
-      {err && <p className="text-xs text-destructive">{err}</p>}
-    </div>
-  );
-}
-
 // ========== MAIN COMPONENT ==========
 export function AiChatInterface() {
   const {
@@ -1307,7 +1237,6 @@ export function AiChatInterface() {
     aiLanguage,
     setAiLanguage,
   } = useAiSession();
-  const { sessionToken } = useSession();
   const { invalidate } = useInvalidateAiSession();
   const { send, isLoading } = useSendAiMessage();
   const { actor } = useActor(createActor);
@@ -1322,12 +1251,6 @@ export function AiChatInterface() {
   const [showAccuracy, setShowAccuracy] = useState(false);
   const [showJournal, setShowJournal] = useState(false);
   const [showFaq, setShowFaq] = useState(false);
-  const [adminUnlocked, setAdminUnlocked] = useState(false);
-  const [adminPanelOpen, setAdminPanelOpen] = useState(false);
-  const [adminSessionToken, setAdminSessionToken] = useState<string | null>(
-    sessionToken,
-  );
-  const [showAdminPasscodePrompt, setShowAdminPasscodePrompt] = useState(false);
   const [mobileToolbarOpen, setMobileToolbarOpen] = useState(false);
   const [journalEntries, setJournalEntries] = useState<JournalEntry[]>([]);
   const [dailyBriefing, setDailyBriefing] = useState<string | null>(null);
@@ -1376,11 +1299,6 @@ export function AiChatInterface() {
       })
       .catch(() => {});
   }, [actor, aiSessionToken]);
-
-  // Sync admin session from main context
-  useEffect(() => {
-    if (sessionToken) setAdminSessionToken(sessionToken);
-  }, [sessionToken]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: scroll after messages/loading change
   useEffect(() => {
@@ -1513,52 +1431,6 @@ export function AiChatInterface() {
     const text = input.trim();
     if (!text || isLoading || !aiSessionToken) return;
 
-    // Check for secret admin unlock phrase
-    if (text === ADMIN_TRIGGER) {
-      setInput("");
-      if (adminSessionToken) {
-        setAdminUnlocked(true);
-        setAdminPanelOpen(true);
-      } else {
-        setAdminUnlocked(true);
-        setAdminPanelOpen(true);
-        setShowAdminPasscodePrompt(true);
-      }
-      const sysMsg: AiMessage = {
-        role: "assistant",
-        content:
-          "🔐 Admin access unlocked. The admin dashboard is now available for this session.",
-        timestamp: Date.now(),
-      };
-      setMessages((prev) => [...prev, sysMsg]);
-      return;
-    }
-
-    // Check via backend for admin unlock (additional check)
-    if (text.includes("/BP2420075112009")) {
-      if (actor) {
-        try {
-          const adminToken = await actor.checkAdminUnlockPhrase(text);
-          if (adminToken !== null) {
-            setInput("");
-            setAdminUnlocked(true);
-            setAdminPanelOpen(true);
-            if (adminToken) setAdminSessionToken(adminToken);
-            const sysMsg: AiMessage = {
-              role: "assistant",
-              content:
-                "🔐 Admin access granted. Dashboard is open for this session.",
-              timestamp: Date.now(),
-            };
-            setMessages((prev) => [...prev, sysMsg]);
-            return;
-          }
-        } catch {
-          /* continue to normal send */
-        }
-      }
-    }
-
     // Apply language instruction suffix
     const langSuffix = LANGUAGE_INSTRUCTION[aiLanguage] ?? "";
     const messageWithLang = langSuffix ? `${text}${langSuffix}` : text;
@@ -1617,8 +1489,6 @@ export function AiChatInterface() {
     messages,
     send,
     addAiSignal,
-    adminSessionToken,
-    actor,
   ]);
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
@@ -1784,17 +1654,6 @@ export function AiChatInterface() {
             >
               <BarChart3 className="w-3.5 h-3.5" />
             </Button>
-            {adminUnlocked && adminSessionToken && (
-              <Button
-                variant="ghost"
-                size="sm"
-                data-ocid="ai_chat.admin.open_modal_button"
-                onClick={() => setAdminPanelOpen((v) => !v)}
-                className="text-primary hover:text-primary h-8 px-2 gap-1 text-xs"
-              >
-                <Shield className="w-3.5 h-3.5" />
-              </Button>
-            )}
             <Button
               variant="ghost"
               size="sm"
@@ -1817,17 +1676,6 @@ export function AiChatInterface() {
 
           {/* Mobile hamburger */}
           <div className="md:hidden flex items-center gap-1 ml-auto shrink-0">
-            {adminUnlocked && adminSessionToken && (
-              <Button
-                variant="ghost"
-                size="sm"
-                data-ocid="ai_chat.admin.open_modal_button"
-                onClick={() => setAdminPanelOpen((v) => !v)}
-                className="text-primary h-8 w-8 p-0"
-              >
-                <Shield className="w-3.5 h-3.5" />
-              </Button>
-            )}
             <Button
               variant="ghost"
               size="sm"
@@ -1992,18 +1840,6 @@ export function AiChatInterface() {
         {/* Daily Briefing */}
         {dailyBriefing && <DailyBriefingBanner briefing={dailyBriefing} />}
 
-        {/* Admin passcode prompt */}
-        {adminUnlocked && showAdminPasscodePrompt && !adminSessionToken && (
-          <div className="mx-4 mt-2 rounded-xl border border-primary/30 bg-card">
-            <AdminPasscodePrompt
-              onAuthenticated={(token) => {
-                setAdminSessionToken(token);
-                setShowAdminPasscodePrompt(false);
-              }}
-            />
-          </div>
-        )}
-
         {/* Messages */}
         <div
           ref={scrollRef}
@@ -2067,17 +1903,6 @@ export function AiChatInterface() {
           </p>
         </div>
       </div>
-
-      {/* Admin panel overlay */}
-      {adminUnlocked &&
-        adminPanelOpen &&
-        adminSessionToken &&
-        !showAdminPasscodePrompt && (
-          <AiAdminPanel
-            sessionToken={adminSessionToken}
-            onClose={() => setAdminPanelOpen(false)}
-          />
-        )}
 
       {/* Log Trade Form */}
       {logTradeSignal && (

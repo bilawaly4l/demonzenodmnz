@@ -388,7 +388,6 @@ export const idlService = IDL.Service({
   'askFaq' : IDL.Func([IDL.Text], [IDL.Text], []),
   'backtestSignal' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
   'banEmail' : IDL.Func([IDL.Text, IDL.Text], [Result_2], []),
-  'checkAdminUnlockPhrase' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], []),
   'clearJournal' : IDL.Func([IDL.Text], [Result_2], []),
   'createAbTest' : IDL.Func(
       [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
@@ -950,7 +949,6 @@ export const idlFactory = ({ IDL }) => {
     'askFaq' : IDL.Func([IDL.Text], [IDL.Text], []),
     'backtestSignal' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
     'banEmail' : IDL.Func([IDL.Text, IDL.Text], [Result_2], []),
-    'checkAdminUnlockPhrase' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], []),
     'clearJournal' : IDL.Func([IDL.Text], [Result_2], []),
     'createAbTest' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text, IDL.Text],

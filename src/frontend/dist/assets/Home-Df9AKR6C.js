@@ -1,7 +1,7 @@
-import { c as createLucideIcon, r as reactExports, u as useControllableState, j as jsxRuntimeExports, P as Primitive, a as useId, b as composeEventHandlers, d as Presence, e as createContextScope, f as useComposedRefs, g as useLayoutEffect2, R as React, h as cn, S as SiBinance, E as ExternalLink, B as Button, Z as Zap, i as useActor, k as useQuery, l as createActor, T as Twitter, m as Timeframe$1, n as SentimentLevel, X, I as Input } from "./index-DgNuRIli.js";
-import { c as createCollection, u as useDirection, C as ChevronDown, B as Bell, a as Badge, D as Download, b as ChevronUp, T as TrendingUp, d as ue, G as Globe, e as ChartColumn, F as FileText, f as useSignals } from "./useSignals-Dc54QcCo.js";
-import { u as useBinanceFeed, U as Users, F as Flame, C as Card, a as useStats, L as Label, b as useFaqs } from "./useFaqs-Dsu5h1eo.js";
-import { E as Eye, S as Shield, A as Award, a as Send } from "./shield-CT_ZWU5J.js";
+import { c as createLucideIcon, r as reactExports, j as jsxRuntimeExports, u as useComposedRefs, R as React, a as cn, X, b as useActor, B as Button, Z as Zap, d as createActor, S as SiBinance, E as ExternalLink, e as useQuery, T as Twitter, f as Timeframe$1, g as useSession, h as useNavigate } from "./index-BusfRT-8.js";
+import { u as useControllableState, P as Primitive, a as useId, c as composeEventHandlers, b as createContextScope, d as useLayoutEffect2, e as createCollection, f as useDirection, C as ChevronDown, g as Portal$1, h as hideOthers, R as ReactRemoveScroll, i as useFocusGuards, F as FocusScope, D as DismissableLayer, j as createSlot, k as createContext2, I as Input, B as Badge, l as Download, T as TrendingUp, m as ue, G as Globe, n as ChartColumn, o as FileText, p as ChevronUp } from "./index-BNgp4POB.js";
+import { P as Presence, u as useBinanceFeed, U as Users, B as Bell, F as Flame, C as Card, a as useStats, b as useSignals, L as Label, c as useFaqs } from "./useSignals-pMorhrua.js";
+import { L as Lock, E as Eye, A as Award, S as Send } from "./send-D7junR57.js";
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -203,10 +203,15 @@ const Rocket = createLucideIcon("rocket", __iconNode$7);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$6 = [
-  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
-  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
+  [
+    "path",
+    {
+      d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
+      key: "oel41y"
+    }
+  ]
 ];
-const Search = createLucideIcon("search", __iconNode$6);
+const Shield = createLucideIcon("shield", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -319,7 +324,7 @@ var Collapsible = reactExports.forwardRef(
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Primitive.div,
           {
-            "data-state": getState$1(open),
+            "data-state": getState$2(open),
             "data-disabled": disabled ? "" : void 0,
             ...collapsibleProps,
             ref: forwardedRef
@@ -330,18 +335,18 @@ var Collapsible = reactExports.forwardRef(
   }
 );
 Collapsible.displayName = COLLAPSIBLE_NAME;
-var TRIGGER_NAME$1 = "CollapsibleTrigger";
+var TRIGGER_NAME$2 = "CollapsibleTrigger";
 var CollapsibleTrigger = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeCollapsible, ...triggerProps } = props;
-    const context = useCollapsibleContext(TRIGGER_NAME$1, __scopeCollapsible);
+    const context = useCollapsibleContext(TRIGGER_NAME$2, __scopeCollapsible);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
       Primitive.button,
       {
         type: "button",
         "aria-controls": context.contentId,
         "aria-expanded": context.open || false,
-        "data-state": getState$1(context.open),
+        "data-state": getState$2(context.open),
         "data-disabled": context.disabled ? "" : void 0,
         disabled: context.disabled,
         ...triggerProps,
@@ -351,19 +356,19 @@ var CollapsibleTrigger = reactExports.forwardRef(
     );
   }
 );
-CollapsibleTrigger.displayName = TRIGGER_NAME$1;
-var CONTENT_NAME$1 = "CollapsibleContent";
+CollapsibleTrigger.displayName = TRIGGER_NAME$2;
+var CONTENT_NAME$2 = "CollapsibleContent";
 var CollapsibleContent = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { forceMount, ...contentProps } = props;
-    const context = useCollapsibleContext(CONTENT_NAME$1, props.__scopeCollapsible);
+    const context = useCollapsibleContext(CONTENT_NAME$2, props.__scopeCollapsible);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: ({ present }) => /* @__PURE__ */ jsxRuntimeExports.jsx(CollapsibleContentImpl, { ...contentProps, ref: forwardedRef, present }) });
   }
 );
-CollapsibleContent.displayName = CONTENT_NAME$1;
+CollapsibleContent.displayName = CONTENT_NAME$2;
 var CollapsibleContentImpl = reactExports.forwardRef((props, forwardedRef) => {
   const { __scopeCollapsible, present, children, ...contentProps } = props;
-  const context = useCollapsibleContext(CONTENT_NAME$1, __scopeCollapsible);
+  const context = useCollapsibleContext(CONTENT_NAME$2, __scopeCollapsible);
   const [isPresent, setIsPresent] = reactExports.useState(present);
   const ref = reactExports.useRef(null);
   const composedRefs = useComposedRefs(forwardedRef, ref);
@@ -400,7 +405,7 @@ var CollapsibleContentImpl = reactExports.forwardRef((props, forwardedRef) => {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     Primitive.div,
     {
-      "data-state": getState$1(context.open),
+      "data-state": getState$2(context.open),
       "data-disabled": context.disabled ? "" : void 0,
       id: context.contentId,
       hidden: !isOpen,
@@ -415,12 +420,12 @@ var CollapsibleContentImpl = reactExports.forwardRef((props, forwardedRef) => {
     }
   );
 });
-function getState$1(open) {
+function getState$2(open) {
   return open ? "open" : "closed";
 }
-var Root = Collapsible;
+var Root$1 = Collapsible;
 var Trigger = CollapsibleTrigger;
-var Content = CollapsibleContent;
+var Content$1 = CollapsibleContent;
 var ACCORDION_NAME = "Accordion";
 var ACCORDION_KEYS = ["Home", "End", "ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight"];
 var [Collection, useCollection, createCollectionScope] = createCollection(ACCORDION_NAME);
@@ -618,10 +623,10 @@ var AccordionItem$1 = React.forwardRef(
         disabled,
         triggerId,
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Root,
+          Root$1,
           {
             "data-orientation": accordionContext.orientation,
-            "data-state": getState(open),
+            "data-state": getState$1(open),
             ...collapsibleScope,
             ...accordionItemProps,
             ref: forwardedRef,
@@ -651,7 +656,7 @@ var AccordionHeader = React.forwardRef(
       Primitive.h3,
       {
         "data-orientation": accordionContext.orientation,
-        "data-state": getState(itemContext.open),
+        "data-state": getState$1(itemContext.open),
         "data-disabled": itemContext.disabled ? "" : void 0,
         ...headerProps,
         ref: forwardedRef
@@ -660,13 +665,13 @@ var AccordionHeader = React.forwardRef(
   }
 );
 AccordionHeader.displayName = HEADER_NAME;
-var TRIGGER_NAME = "AccordionTrigger";
+var TRIGGER_NAME$1 = "AccordionTrigger";
 var AccordionTrigger$1 = React.forwardRef(
   (props, forwardedRef) => {
     const { __scopeAccordion, ...triggerProps } = props;
     const accordionContext = useAccordionContext(ACCORDION_NAME, __scopeAccordion);
-    const itemContext = useAccordionItemContext(TRIGGER_NAME, __scopeAccordion);
-    const collapsibleContext = useAccordionCollapsibleContext(TRIGGER_NAME, __scopeAccordion);
+    const itemContext = useAccordionItemContext(TRIGGER_NAME$1, __scopeAccordion);
+    const collapsibleContext = useAccordionCollapsibleContext(TRIGGER_NAME$1, __scopeAccordion);
     const collapsibleScope = useCollapsibleScope(__scopeAccordion);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Collection.ItemSlot, { scope: __scopeAccordion, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Trigger,
@@ -681,16 +686,16 @@ var AccordionTrigger$1 = React.forwardRef(
     ) });
   }
 );
-AccordionTrigger$1.displayName = TRIGGER_NAME;
-var CONTENT_NAME = "AccordionContent";
+AccordionTrigger$1.displayName = TRIGGER_NAME$1;
+var CONTENT_NAME$1 = "AccordionContent";
 var AccordionContent$1 = React.forwardRef(
   (props, forwardedRef) => {
     const { __scopeAccordion, ...contentProps } = props;
     const accordionContext = useAccordionContext(ACCORDION_NAME, __scopeAccordion);
-    const itemContext = useAccordionItemContext(CONTENT_NAME, __scopeAccordion);
+    const itemContext = useAccordionItemContext(CONTENT_NAME$1, __scopeAccordion);
     const collapsibleScope = useCollapsibleScope(__scopeAccordion);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Content,
+      Content$1,
       {
         role: "region",
         "aria-labelledby": itemContext.triggerId,
@@ -707,8 +712,8 @@ var AccordionContent$1 = React.forwardRef(
     );
   }
 );
-AccordionContent$1.displayName = CONTENT_NAME;
-function getState(open) {
+AccordionContent$1.displayName = CONTENT_NAME$1;
+function getState$1(open) {
   return open ? "open" : "closed";
 }
 var Root2 = Accordion$1;
@@ -767,6 +772,511 @@ function AccordionContent({
       className: "data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm",
       ...props,
       children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: cn("pt-0 pb-4", className), children })
+    }
+  );
+}
+var DIALOG_NAME = "Dialog";
+var [createDialogContext] = createContextScope(DIALOG_NAME);
+var [DialogProvider, useDialogContext] = createDialogContext(DIALOG_NAME);
+var Dialog$1 = (props) => {
+  const {
+    __scopeDialog,
+    children,
+    open: openProp,
+    defaultOpen,
+    onOpenChange,
+    modal = true
+  } = props;
+  const triggerRef = reactExports.useRef(null);
+  const contentRef = reactExports.useRef(null);
+  const [open, setOpen] = useControllableState({
+    prop: openProp,
+    defaultProp: defaultOpen ?? false,
+    onChange: onOpenChange,
+    caller: DIALOG_NAME
+  });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    DialogProvider,
+    {
+      scope: __scopeDialog,
+      triggerRef,
+      contentRef,
+      contentId: useId(),
+      titleId: useId(),
+      descriptionId: useId(),
+      open,
+      onOpenChange: setOpen,
+      onOpenToggle: reactExports.useCallback(() => setOpen((prevOpen) => !prevOpen), [setOpen]),
+      modal,
+      children
+    }
+  );
+};
+Dialog$1.displayName = DIALOG_NAME;
+var TRIGGER_NAME = "DialogTrigger";
+var DialogTrigger = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...triggerProps } = props;
+    const context = useDialogContext(TRIGGER_NAME, __scopeDialog);
+    const composedTriggerRef = useComposedRefs(forwardedRef, context.triggerRef);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive.button,
+      {
+        type: "button",
+        "aria-haspopup": "dialog",
+        "aria-expanded": context.open,
+        "aria-controls": context.contentId,
+        "data-state": getState(context.open),
+        ...triggerProps,
+        ref: composedTriggerRef,
+        onClick: composeEventHandlers(props.onClick, context.onOpenToggle)
+      }
+    );
+  }
+);
+DialogTrigger.displayName = TRIGGER_NAME;
+var PORTAL_NAME = "DialogPortal";
+var [PortalProvider, usePortalContext] = createDialogContext(PORTAL_NAME, {
+  forceMount: void 0
+});
+var DialogPortal$1 = (props) => {
+  const { __scopeDialog, forceMount, children, container } = props;
+  const context = useDialogContext(PORTAL_NAME, __scopeDialog);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider, { scope: __scopeDialog, forceMount, children: reactExports.Children.map(children, (child) => /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$1, { asChild: true, container, children: child }) })) });
+};
+DialogPortal$1.displayName = PORTAL_NAME;
+var OVERLAY_NAME = "DialogOverlay";
+var DialogOverlay$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const portalContext = usePortalContext(OVERLAY_NAME, props.__scopeDialog);
+    const { forceMount = portalContext.forceMount, ...overlayProps } = props;
+    const context = useDialogContext(OVERLAY_NAME, props.__scopeDialog);
+    return context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlayImpl, { ...overlayProps, ref: forwardedRef }) }) : null;
+  }
+);
+DialogOverlay$1.displayName = OVERLAY_NAME;
+var Slot = createSlot("DialogOverlay.RemoveScroll");
+var DialogOverlayImpl = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...overlayProps } = props;
+    const context = useDialogContext(OVERLAY_NAME, __scopeDialog);
+    return (
+      // Make sure `Content` is scrollable even when it doesn't live inside `RemoveScroll`
+      // ie. when `Overlay` and `Content` are siblings
+      /* @__PURE__ */ jsxRuntimeExports.jsx(ReactRemoveScroll, { as: Slot, allowPinchZoom: true, shards: [context.contentRef], children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Primitive.div,
+        {
+          "data-state": getState(context.open),
+          ...overlayProps,
+          ref: forwardedRef,
+          style: { pointerEvents: "auto", ...overlayProps.style }
+        }
+      ) })
+    );
+  }
+);
+var CONTENT_NAME = "DialogContent";
+var DialogContent$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const portalContext = usePortalContext(CONTENT_NAME, props.__scopeDialog);
+    const { forceMount = portalContext.forceMount, ...contentProps } = props;
+    const context = useDialogContext(CONTENT_NAME, props.__scopeDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(DialogContentModal, { ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsxRuntimeExports.jsx(DialogContentNonModal, { ...contentProps, ref: forwardedRef }) });
+  }
+);
+DialogContent$1.displayName = CONTENT_NAME;
+var DialogContentModal = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const context = useDialogContext(CONTENT_NAME, props.__scopeDialog);
+    const contentRef = reactExports.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, context.contentRef, contentRef);
+    reactExports.useEffect(() => {
+      const content = contentRef.current;
+      if (content) return hideOthers(content);
+    }, []);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      DialogContentImpl,
+      {
+        ...props,
+        ref: composedRefs,
+        trapFocus: context.open,
+        disableOutsidePointerEvents: true,
+        onCloseAutoFocus: composeEventHandlers(props.onCloseAutoFocus, (event) => {
+          var _a;
+          event.preventDefault();
+          (_a = context.triggerRef.current) == null ? void 0 : _a.focus();
+        }),
+        onPointerDownOutside: composeEventHandlers(props.onPointerDownOutside, (event) => {
+          const originalEvent = event.detail.originalEvent;
+          const ctrlLeftClick = originalEvent.button === 0 && originalEvent.ctrlKey === true;
+          const isRightClick = originalEvent.button === 2 || ctrlLeftClick;
+          if (isRightClick) event.preventDefault();
+        }),
+        onFocusOutside: composeEventHandlers(
+          props.onFocusOutside,
+          (event) => event.preventDefault()
+        )
+      }
+    );
+  }
+);
+var DialogContentNonModal = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const context = useDialogContext(CONTENT_NAME, props.__scopeDialog);
+    const hasInteractedOutsideRef = reactExports.useRef(false);
+    const hasPointerDownOutsideRef = reactExports.useRef(false);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      DialogContentImpl,
+      {
+        ...props,
+        ref: forwardedRef,
+        trapFocus: false,
+        disableOutsidePointerEvents: false,
+        onCloseAutoFocus: (event) => {
+          var _a, _b;
+          (_a = props.onCloseAutoFocus) == null ? void 0 : _a.call(props, event);
+          if (!event.defaultPrevented) {
+            if (!hasInteractedOutsideRef.current) (_b = context.triggerRef.current) == null ? void 0 : _b.focus();
+            event.preventDefault();
+          }
+          hasInteractedOutsideRef.current = false;
+          hasPointerDownOutsideRef.current = false;
+        },
+        onInteractOutside: (event) => {
+          var _a, _b;
+          (_a = props.onInteractOutside) == null ? void 0 : _a.call(props, event);
+          if (!event.defaultPrevented) {
+            hasInteractedOutsideRef.current = true;
+            if (event.detail.originalEvent.type === "pointerdown") {
+              hasPointerDownOutsideRef.current = true;
+            }
+          }
+          const target = event.target;
+          const targetIsTrigger = (_b = context.triggerRef.current) == null ? void 0 : _b.contains(target);
+          if (targetIsTrigger) event.preventDefault();
+          if (event.detail.originalEvent.type === "focusin" && hasPointerDownOutsideRef.current) {
+            event.preventDefault();
+          }
+        }
+      }
+    );
+  }
+);
+var DialogContentImpl = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, trapFocus, onOpenAutoFocus, onCloseAutoFocus, ...contentProps } = props;
+    const context = useDialogContext(CONTENT_NAME, __scopeDialog);
+    const contentRef = reactExports.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, contentRef);
+    useFocusGuards();
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        FocusScope,
+        {
+          asChild: true,
+          loop: true,
+          trapped: trapFocus,
+          onMountAutoFocus: onOpenAutoFocus,
+          onUnmountAutoFocus: onCloseAutoFocus,
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            DismissableLayer,
+            {
+              role: "dialog",
+              id: context.contentId,
+              "aria-describedby": context.descriptionId,
+              "aria-labelledby": context.titleId,
+              "data-state": getState(context.open),
+              ...contentProps,
+              ref: composedRefs,
+              onDismiss: () => context.onOpenChange(false)
+            }
+          )
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TitleWarning, { titleId: context.titleId }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DescriptionWarning, { contentRef, descriptionId: context.descriptionId })
+      ] })
+    ] });
+  }
+);
+var TITLE_NAME = "DialogTitle";
+var DialogTitle$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...titleProps } = props;
+    const context = useDialogContext(TITLE_NAME, __scopeDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.h2, { id: context.titleId, ...titleProps, ref: forwardedRef });
+  }
+);
+DialogTitle$1.displayName = TITLE_NAME;
+var DESCRIPTION_NAME = "DialogDescription";
+var DialogDescription = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...descriptionProps } = props;
+    const context = useDialogContext(DESCRIPTION_NAME, __scopeDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.p, { id: context.descriptionId, ...descriptionProps, ref: forwardedRef });
+  }
+);
+DialogDescription.displayName = DESCRIPTION_NAME;
+var CLOSE_NAME = "DialogClose";
+var DialogClose = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...closeProps } = props;
+    const context = useDialogContext(CLOSE_NAME, __scopeDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive.button,
+      {
+        type: "button",
+        ...closeProps,
+        ref: forwardedRef,
+        onClick: composeEventHandlers(props.onClick, () => context.onOpenChange(false))
+      }
+    );
+  }
+);
+DialogClose.displayName = CLOSE_NAME;
+function getState(open) {
+  return open ? "open" : "closed";
+}
+var TITLE_WARNING_NAME = "DialogTitleWarning";
+var [WarningProvider, useWarningContext] = createContext2(TITLE_WARNING_NAME, {
+  contentName: CONTENT_NAME,
+  titleName: TITLE_NAME,
+  docsSlug: "dialog"
+});
+var TitleWarning = ({ titleId }) => {
+  const titleWarningContext = useWarningContext(TITLE_WARNING_NAME);
+  const MESSAGE = `\`${titleWarningContext.contentName}\` requires a \`${titleWarningContext.titleName}\` for the component to be accessible for screen reader users.
+
+If you want to hide the \`${titleWarningContext.titleName}\`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/${titleWarningContext.docsSlug}`;
+  reactExports.useEffect(() => {
+    if (titleId) {
+      const hasTitle = document.getElementById(titleId);
+      if (!hasTitle) console.error(MESSAGE);
+    }
+  }, [MESSAGE, titleId]);
+  return null;
+};
+var DESCRIPTION_WARNING_NAME = "DialogDescriptionWarning";
+var DescriptionWarning = ({ contentRef, descriptionId }) => {
+  const descriptionWarningContext = useWarningContext(DESCRIPTION_WARNING_NAME);
+  const MESSAGE = `Warning: Missing \`Description\` or \`aria-describedby={undefined}\` for {${descriptionWarningContext.contentName}}.`;
+  reactExports.useEffect(() => {
+    var _a;
+    const describedById = (_a = contentRef.current) == null ? void 0 : _a.getAttribute("aria-describedby");
+    if (descriptionId && describedById) {
+      const hasDescription = document.getElementById(descriptionId);
+      if (!hasDescription) console.warn(MESSAGE);
+    }
+  }, [MESSAGE, contentRef, descriptionId]);
+  return null;
+};
+var Root = Dialog$1;
+var Portal = DialogPortal$1;
+var Overlay = DialogOverlay$1;
+var Content = DialogContent$1;
+var Title = DialogTitle$1;
+var Close = DialogClose;
+function Dialog({
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root, { "data-slot": "dialog", ...props });
+}
+function DialogPortal({
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal, { "data-slot": "dialog-portal", ...props });
+}
+function DialogOverlay({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Overlay,
+    {
+      "data-slot": "dialog-overlay",
+      className: cn(
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function DialogContent({
+  className,
+  children,
+  showCloseButton = true,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogPortal, { "data-slot": "dialog-portal", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlay, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      Content,
+      {
+        "data-slot": "dialog-content",
+        className: cn(
+          "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
+          className
+        ),
+        ...props,
+        children: [
+          children,
+          showCloseButton && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Close,
+            {
+              "data-slot": "dialog-close",
+              className: "ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(X, {}),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "sr-only", children: "Close" })
+              ]
+            }
+          )
+        ]
+      }
+    )
+  ] });
+}
+function DialogHeader({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      "data-slot": "dialog-header",
+      className: cn("flex flex-col gap-2 text-center sm:text-left", className),
+      ...props
+    }
+  );
+}
+function DialogTitle({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Title,
+    {
+      "data-slot": "dialog-title",
+      className: cn("text-lg leading-none font-semibold", className),
+      ...props
+    }
+  );
+}
+function AdminPasscodeModal({
+  open,
+  onSuccess,
+  onClose
+}) {
+  const [passcode, setPasscode] = reactExports.useState("");
+  const [error, setError] = reactExports.useState("");
+  const [loading, setLoading] = reactExports.useState(false);
+  const { actor } = useActor(createActor);
+  function handleClose() {
+    setPasscode("");
+    setError("");
+    onClose();
+  }
+  async function handlePasscodeSubmit(e) {
+    e.preventDefault();
+    if (!actor || !passcode) return;
+    setError("");
+    setLoading(true);
+    try {
+      const result = await actor.validatePasscode(passcode);
+      if (result.__kind__ === "ok") {
+        setPasscode("");
+        onSuccess(result.ok);
+      } else {
+        setError("Invalid code");
+        setPasscode("");
+      }
+    } catch {
+      setError("Something went wrong. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Dialog,
+    {
+      open,
+      onOpenChange: (isOpen) => {
+        if (!isOpen) handleClose();
+      },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        DialogContent,
+        {
+          "data-ocid": "admin.dialog",
+          className: "bg-card border-border max-w-sm",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2 font-display text-foreground", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Lock, { className: "w-5 h-5 text-primary" }),
+              "Admin Access"
+            ] }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "form",
+              {
+                onSubmit: handlePasscodeSubmit,
+                className: "flex flex-col gap-4 pt-2",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: "Enter your passcode to continue." }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        type: "password",
+                        placeholder: "Passcode",
+                        value: passcode,
+                        onChange: (e) => {
+                          setPasscode(e.target.value);
+                          setError("");
+                        },
+                        "data-ocid": "admin.passcode.input",
+                        autoFocus: true,
+                        className: "bg-secondary border-input font-mono"
+                      }
+                    ),
+                    error && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "p",
+                      {
+                        className: "text-destructive text-xs",
+                        "data-ocid": "admin.passcode.error_state",
+                        children: error
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 justify-end", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button,
+                      {
+                        type: "button",
+                        variant: "outline",
+                        "data-ocid": "admin.passcode.cancel_button",
+                        onClick: handleClose,
+                        children: "Cancel"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button,
+                      {
+                        type: "submit",
+                        "data-ocid": "admin.passcode.submit_button",
+                        disabled: loading || !passcode,
+                        className: "btn-primary",
+                        children: loading ? "Verifying…" : /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-1", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-3 h-3" }),
+                          " Enter"
+                        ] })
+                      }
+                    )
+                  ] })
+                ]
+              }
+            )
+          ]
+        }
+      )
     }
   );
 }
@@ -3100,382 +3610,6 @@ function ManifestoSection() {
     }
   );
 }
-function useMarketPrices() {
-  const { actor, isFetching } = useActor(createActor);
-  const query = useQuery({
-    queryKey: ["marketPrices"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getMarketPrices();
-    },
-    enabled: !!actor && !isFetching,
-    refetchInterval: 6e4,
-    staleTime: 3e4
-  });
-  return {
-    prices: query.data ?? [],
-    isLoading: query.isLoading,
-    lastUpdated: query.dataUpdatedAt ?? null
-  };
-}
-function useMarketSentiment() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["marketSentiment"],
-    queryFn: async () => {
-      if (!actor) return void 0;
-      return actor.getMarketSentiment();
-    },
-    enabled: !!actor && !isFetching,
-    refetchInterval: 6e4,
-    staleTime: 3e4
-  });
-}
-const SENTIMENT_CONFIG = {
-  [SentimentLevel.Bullish]: {
-    label: "Bullish",
-    color: "oklch(0.7 0.18 145)",
-    bg: "oklch(0.7 0.18 145 / 0.12)",
-    glow: "oklch(0.7 0.18 145 / 0.25)"
-  },
-  [SentimentLevel.Neutral]: {
-    label: "Neutral",
-    color: "oklch(0.75 0.15 70)",
-    bg: "oklch(0.75 0.15 70 / 0.12)",
-    glow: "oklch(0.75 0.15 70 / 0.2)"
-  },
-  [SentimentLevel.Bearish]: {
-    label: "Bearish",
-    color: "oklch(0.65 0.2 22)",
-    bg: "oklch(0.65 0.2 22 / 0.12)",
-    glow: "oklch(0.65 0.2 22 / 0.2)"
-  }
-};
-const ASSET_ICONS = {
-  BTC: "₿",
-  ETH: "Ξ",
-  BNB: "B",
-  SOL: "◎",
-  XRP: "✕",
-  DOGE: "Ð"
-};
-function SentimentBadge({ level }) {
-  const cfg = SENTIMENT_CONFIG[level];
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "span",
-    {
-      className: "inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider",
-      style: { background: cfg.bg, color: cfg.color },
-      children: cfg.label
-    }
-  );
-}
-function TrendArrow({ trend }) {
-  if (trend === "up")
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-green-400 font-bold", children: "↑" });
-  if (trend === "down")
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-400 font-bold", children: "↓" });
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-muted-foreground font-bold", children: "→" });
-}
-function PriceChangeLabel({ change }) {
-  const isPos = change >= 0;
-  const color = isPos ? "text-green-400" : "text-red-400";
-  const sign = isPos ? "+" : "";
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: `text-xs font-mono font-semibold ${color}`, children: [
-    sign,
-    change.toFixed(2),
-    "%"
-  ] });
-}
-function InlineSparkChart({
-  change,
-  color
-}) {
-  const canvasRef = reactExports.useRef(null);
-  reactExports.useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const W = canvas.width;
-    const H = canvas.height;
-    ctx.clearRect(0, 0, W, H);
-    const points = [];
-    const n = 20;
-    let val = 0.5;
-    for (let i = 0; i < n; i++) {
-      val += (Math.random() - 0.48) * 0.06 + (change > 0 ? 8e-3 : -8e-3);
-      val = Math.max(0.1, Math.min(0.9, val));
-      points.push(val);
-    }
-    const minV = Math.min(...points);
-    const maxV = Math.max(...points);
-    const range = maxV - minV || 0.1;
-    ctx.beginPath();
-    points.forEach((v, i) => {
-      const x = i / (n - 1) * W;
-      const y = H - (v - minV) / range * (H * 0.8) - H * 0.1;
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    });
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-    ctx.lineTo(W, H);
-    ctx.lineTo(0, H);
-    const grad = ctx.createLinearGradient(0, 0, 0, H);
-    grad.addColorStop(0, `${color}33`);
-    grad.addColorStop(1, "transparent");
-    ctx.fillStyle = grad;
-    ctx.closePath();
-  }, [change, color]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("canvas", { ref: canvasRef, width: 120, height: 40, className: "w-full" });
-}
-function AnimatedPrice({ value }) {
-  const [displayed, setDisplayed] = reactExports.useState(value);
-  const [highlight, setHighlight] = reactExports.useState(false);
-  const prev = reactExports.useRef(value);
-  reactExports.useEffect(() => {
-    if (value !== prev.current) {
-      setHighlight(true);
-      prev.current = value;
-      setTimeout(() => {
-        setDisplayed(value);
-        setTimeout(() => setHighlight(false), 400);
-      }, 50);
-    }
-  }, [value]);
-  const fmt = displayed >= 1e3 ? displayed.toLocaleString("en-US", { maximumFractionDigits: 0 }) : displayed.toFixed(displayed < 1 ? 5 : 2);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "p",
-    {
-      className: "font-mono font-bold text-lg transition-all duration-300",
-      style: {
-        color: highlight ? "oklch(0.92 0.2 155)" : "oklch(0.72 0.18 195)",
-        transform: highlight ? "scale(1.04)" : "scale(1)"
-      },
-      children: [
-        "$",
-        fmt
-      ]
-    }
-  );
-}
-function AssetCard({
-  asset,
-  priceData
-}) {
-  const cfg = SENTIMENT_CONFIG[asset.level];
-  const [expanded, setExpanded] = reactExports.useState(false);
-  const updatedTime = asset.updatedAt ? new Date(Number(asset.updatedAt) / 1e6).toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit"
-  }) : "";
-  const price = (priceData == null ? void 0 : priceData.price) ?? asset.price ?? 0;
-  const change24h = (priceData == null ? void 0 : priceData.priceChange24h) ?? asset.priceChange24h ?? 0;
-  const trend = (priceData == null ? void 0 : priceData.trend) ?? asset.trend ?? "flat";
-  const chartColor = change24h >= 0 ? "oklch(0.7 0.18 145)" : "oklch(0.65 0.22 25)";
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      className: "bg-card border rounded-2xl flex flex-col card-elevated transition-smooth hover:scale-[1.01]",
-      style: { borderColor: cfg.glow },
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-5 flex flex-col gap-3", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "div",
-              {
-                className: "w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-lg shrink-0",
-                style: { background: cfg.bg, color: cfg.color },
-                children: ASSET_ICONS[asset.asset] ?? asset.asset[0]
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "min-w-0 flex-1", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-1", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-foreground", children: asset.asset }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(SentimentBadge, { level: asset.level })
-            ] }) })
-          ] }),
-          price > 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatedPrice, { value: price }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(PriceChangeLabel, { change: change24h }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(TrendArrow, { trend })
-          ] }) : null,
-          asset.note && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs leading-relaxed line-clamp-2", children: asset.note }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              "data-ocid": `market_sentiment.${asset.asset.toLowerCase()}.chart_toggle`,
-              onClick: () => setExpanded((v) => !v),
-              className: "flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-smooth mt-1 w-fit",
-              children: [
-                expanded ? /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronUp, { className: "w-3.5 h-3.5" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronDown, { className: "w-3.5 h-3.5" }),
-                expanded ? "Hide" : "Show",
-                " chart"
-              ]
-            }
-          )
-        ] }),
-        expanded && price > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            className: "px-4 pb-4 pt-1 border-t",
-            style: { borderColor: `${cfg.glow}66` },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mb-2 font-semibold uppercase tracking-wider", children: "24h Price Movement (Simulated)" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(InlineSparkChart, { change: change24h, color: chartColor }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between text-xs text-muted-foreground mt-1", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "24h ago" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Now" })
-              ] })
-            ]
-          }
-        ),
-        updatedTime && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground/60 px-5 pb-3 mt-auto", children: [
-          "Updated ",
-          updatedTime
-        ] })
-      ]
-    }
-  );
-}
-function OverallSentimentBadge({ level }) {
-  const cfg = SENTIMENT_CONFIG[level];
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      className: "inline-flex items-center gap-3 rounded-full px-8 py-4 mx-auto",
-      style: {
-        background: cfg.bg,
-        boxShadow: `0 0 40px ${cfg.glow}`,
-        border: `1px solid ${cfg.glow}`
-      },
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "span",
-          {
-            className: "w-3 h-3 rounded-full animate-pulse",
-            style: { background: cfg.color }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "span",
-          {
-            className: "font-display font-bold text-2xl uppercase tracking-widest",
-            style: { color: cfg.color },
-            children: cfg.label
-          }
-        )
-      ]
-    }
-  );
-}
-function RefreshCountdown({ lastUpdated }) {
-  const [secs, setSecs] = reactExports.useState(60);
-  reactExports.useEffect(() => {
-    if (!lastUpdated) return;
-    const nextRefresh = lastUpdated + 6e4;
-    function tick() {
-      const remaining = Math.max(
-        0,
-        Math.ceil((nextRefresh - Date.now()) / 1e3)
-      );
-      setSecs(remaining);
-    }
-    tick();
-    const id = setInterval(tick, 1e3);
-    return () => clearInterval(id);
-  }, [lastUpdated]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-center text-xs text-muted-foreground mt-6", children: secs > 0 ? `Refreshing in ${secs}s` : "Refreshing…" });
-}
-function MarketSentimentSection() {
-  const { data: sentiment, isLoading: sentLoading } = useMarketSentiment();
-  const { prices, isLoading: pricesLoading, lastUpdated } = useMarketPrices();
-  const isLoading = sentLoading || pricesLoading;
-  const priceMap = {};
-  for (const p of prices) {
-    priceMap[p.asset] = p;
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "section",
-    {
-      id: "market-sentiment",
-      "data-ocid": "market_sentiment.section",
-      className: "py-24 bg-background relative overflow-hidden",
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            className: "absolute inset-0 pointer-events-none",
-            style: {
-              background: "radial-gradient(ellipse 80% 40% at 50% 0%, oklch(0.65 0.15 190 / 0.04), transparent)"
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto px-4 max-w-6xl relative z-10", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-12", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-semibold uppercase tracking-widest mb-3 block", children: "Sentiment" }) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { delay: 80, children: /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-bold text-4xl md:text-5xl text-foreground", children: "Live Market Sentiment" }) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { delay: 140, children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground mt-3 text-base", children: "Real-time prices and admin-updated sentiment indicators — click any asset to expand its chart." }) })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { delay: 180, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center mb-12", children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-16 w-56 rounded-full" }) : sentiment ? /* @__PURE__ */ jsxRuntimeExports.jsx(OverallSentimentBadge, { level: sentiment.overall }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              className: "inline-flex items-center gap-3 rounded-full px-8 py-4 border border-border",
-              "data-ocid": "market_sentiment.overall.empty_state",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-muted-foreground text-sm", children: "No sentiment data yet — admin will update soon." })
-            }
-          ) }) }),
-          isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              "data-ocid": "market_sentiment.loading_state",
-              className: "grid grid-cols-2 md:grid-cols-3 gap-4",
-              children: ["a", "b", "c", "d", "e", "f"].map((k) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "div",
-                {
-                  className: "bg-card border border-border rounded-2xl p-5 flex flex-col gap-3",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "w-10 h-10 rounded-full" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5 flex-1", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-4 w-16" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-3 w-12" })
-                      ] })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-5 w-24" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-3 w-2/3" })
-                  ]
-                },
-                k
-              ))
-            }
-          ) : sentiment && sentiment.assets.length > 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 md:grid-cols-3 gap-4", children: sentiment.assets.map((asset, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { delay: i * 70, children: /* @__PURE__ */ jsxRuntimeExports.jsx(AssetCard, { asset, priceData: priceMap[asset.asset] }) }, asset.asset)) }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              "data-ocid": "market_sentiment.assets.empty_state",
-              className: "flex flex-col items-center gap-4 py-16 text-center",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-4xl", children: "📊" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-semibold text-foreground text-xl", children: "Sentiment data loading…" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm max-w-sm", children: "The admin updates market sentiment indicators manually. Check back shortly." })
-              ]
-            }
-          ),
-          sentiment && /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { delay: 100, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-center text-xs text-muted-foreground mt-6", children: [
-            "Sentiment last updated:",
-            " ",
-            new Date(
-              Number(sentiment.updatedAt) / 1e6
-            ).toLocaleString()
-          ] }) }),
-          lastUpdated ? /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCountdown, { lastUpdated }) : null
-        ] })
-      ]
-    }
-  );
-}
 function useMilestones() {
   const { actor, isFetching } = useActor(createActor);
   return useQuery({
@@ -4795,65 +4929,6 @@ function SignalOfWeekSection() {
     }
   );
 }
-function SignalSearchBar({
-  value,
-  onChange,
-  resultCount
-}) {
-  const [local, setLocal] = reactExports.useState(value);
-  const timerRef = reactExports.useRef(null);
-  reactExports.useEffect(() => {
-    setLocal(value);
-  }, [value]);
-  function handleChange(e) {
-    const v = e.target.value;
-    setLocal(v);
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => onChange(v), 300);
-  }
-  function handleClear() {
-    setLocal("");
-    onChange("");
-  }
-  function handleKeyDown(e) {
-    if (e.key === "Escape") handleClear();
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5 w-full max-w-sm", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Search, { className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "input",
-        {
-          type: "text",
-          "data-ocid": "signals.search_input",
-          "aria-label": "Search signals by asset name",
-          placeholder: "Search asset… e.g. BTC, EUR/USD",
-          value: local,
-          onChange: handleChange,
-          onKeyDown: handleKeyDown,
-          className: "w-full h-10 pl-9 pr-9 bg-card border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 transition-smooth"
-        }
-      ),
-      local && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          "data-ocid": "signals.search_clear.button",
-          onClick: handleClear,
-          "aria-label": "Clear search",
-          className: "absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-smooth",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-4 h-4" })
-        }
-      )
-    ] }),
-    local && resultCount !== void 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground pl-1", children: [
-      resultCount,
-      " signal",
-      resultCount !== 1 ? "s" : "",
-      " found"
-    ] })
-  ] });
-}
 function SkeletonCard() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-card border-border p-5 flex flex-col gap-4 h-44", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-2", children: [
@@ -5845,6 +5920,27 @@ function scrollTo(id) {
 function HeroSection() {
   const { data: signalOfTheDay } = useSignalOfTheDay();
   const [sotdModalOpen, setSotdModalOpen] = reactExports.useState(false);
+  const { setSessionToken } = useSession();
+  const navigate = useNavigate();
+  const [clickCount, setClickCount] = reactExports.useState(0);
+  const [showPasscodeModal, setShowPasscodeModal] = reactExports.useState(false);
+  const clickResetTimer = reactExports.useRef(null);
+  function handleDemonZenoClick() {
+    if (clickResetTimer.current) clearTimeout(clickResetTimer.current);
+    const newCount = clickCount + 1;
+    if (newCount > 5) {
+      setClickCount(0);
+      setShowPasscodeModal(true);
+    } else {
+      setClickCount(newCount);
+      clickResetTimer.current = setTimeout(() => setClickCount(0), 3e4);
+    }
+  }
+  function handleAdminSuccess(token) {
+    setSessionToken(token);
+    setShowPasscodeModal(false);
+    navigate({ to: "/admin" });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "section",
     {
@@ -5862,6 +5958,17 @@ function HeroSection() {
           {
             signal: signalOfTheDay,
             onClose: () => setSotdModalOpen(false)
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          AdminPasscodeModal,
+          {
+            open: showPasscodeModal,
+            onSuccess: handleAdminSuccess,
+            onClose: () => {
+              setShowPasscodeModal(false);
+              setClickCount(0);
+            }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto px-4 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10", children: [
@@ -5944,11 +6051,21 @@ function HeroSection() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center md:justify-end", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-primary/10 rounded-full blur-3xl scale-75 animate-pulse-glow" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "img",
+              "button",
               {
-                src: "/assets/demonzeno-character.png",
-                alt: "DemonZeno — anime-style boy on an open highway",
-                className: "relative z-10 w-64 md:w-80 lg:w-96 object-contain drop-shadow-2xl"
+                type: "button",
+                onClick: handleDemonZenoClick,
+                className: "relative z-10 p-0 bg-transparent border-0 cursor-default focus:outline-none",
+                tabIndex: -1,
+                "aria-hidden": "true",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "img",
+                  {
+                    src: "/assets/demonzeno-character.png",
+                    alt: "DemonZeno — anime-style boy on an open highway",
+                    className: "w-64 md:w-80 lg:w-96 object-contain drop-shadow-2xl pointer-events-none"
+                  }
+                )
               }
             )
           ] }) })
@@ -6028,7 +6145,6 @@ function SignalFeedSection() {
   const { data: signals = [], isLoading, dataUpdatedAt } = useSignals();
   const [filter, setFilter] = reactExports.useState("All");
   const [timeframe, setTimeframe] = reactExports.useState("All");
-  const [search, setSearch] = reactExports.useState("");
   const [showAdvanced, setShowAdvanced] = reactExports.useState(false);
   const [resultFilter, setResultFilter] = reactExports.useState("All");
   const [confidenceFilter, setConfidenceFilter] = reactExports.useState("All");
@@ -6041,8 +6157,6 @@ function SignalFeedSection() {
       if (filter === "Stocks" && s.marketType !== "Stock") return false;
     }
     if (timeframe !== "All" && s.timeframe !== timeframe) return false;
-    if (search.trim() && !s.asset.toLowerCase().includes(search.trim().toLowerCase()))
-      return false;
     if (resultFilter !== "All" && s.result !== resultFilter) return false;
     if (confidenceFilter !== "All" && s.confidence !== confidenceFilter)
       return false;
@@ -6075,14 +6189,6 @@ function SignalFeedSection() {
             ] })
           ] }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-4 mb-8", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col sm:flex-row items-center gap-3 w-full max-w-2xl", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              SignalSearchBar,
-              {
-                value: search,
-                onChange: setSearch,
-                resultCount: filtered.length
-              }
-            ) }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               FilterBar,
               {
@@ -6190,8 +6296,8 @@ function SignalFeedSection() {
               className: "flex flex-col items-center gap-4 py-20 text-center",
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-8 h-8 text-primary" }) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-semibold text-foreground text-xl", children: search ? `No signals match "${search}"` : "DemonZeno is preparing the next signal. Stay sharp." }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm max-w-sm", children: search ? "Try a different asset name or clear your search." : "Check back soon — signals drop daily across crypto, forex, and stocks on Binance." })
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-semibold text-foreground text-xl", children: "DemonZeno is preparing the next signal. Stay sharp." }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm max-w-sm", children: "Check back soon — signals drop daily across crypto, forex, and stocks on Binance." })
               ]
             }
           ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4", children: filtered.map((signal, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -6593,106 +6699,6 @@ function CommunitySection() {
     }
   );
 }
-function NotifyMeSection() {
-  const [name, setName] = reactExports.useState("");
-  const [contact, setContact] = reactExports.useState("");
-  const [submitted, setSubmitted] = reactExports.useState(false);
-  const [loading, setLoading] = reactExports.useState(false);
-  const { actor } = useActor(createActor);
-  async function handleSubmit(e) {
-    e.preventDefault();
-    if (!actor || !contact) return;
-    setLoading(true);
-    try {
-      await actor.submitNotifyMe(name.trim() || null, contact.trim());
-      setSubmitted(true);
-    } catch {
-    } finally {
-      setLoading(false);
-    }
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "section",
-    {
-      id: "notify",
-      "data-ocid": "notify.section",
-      className: "py-20 bg-background",
-      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto px-4 max-w-lg", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3 mb-10 text-center", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-semibold uppercase tracking-widest", children: "Stay Informed" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-bold text-4xl text-foreground", children: "Get Notified" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm", children: "Be the first to know when DMNZ launches on April 2, 2028." })
-        ] }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { delay: 100, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-card border border-border rounded-2xl p-8 card-elevated", children: submitted ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            "data-ocid": "notify.success_state",
-            className: "flex flex-col items-center gap-3 py-4 text-center",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { className: "w-12 h-12 text-primary" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-semibold text-foreground text-xl", children: "You're on the list!" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm", children: "We'll notify you when DemonZeno launches." })
-            ]
-          }
-        ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "flex flex-col gap-4", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Label,
-              {
-                htmlFor: "notify2-name",
-                className: "text-muted-foreground text-xs",
-                children: "Name (optional)"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                id: "notify2-name",
-                "data-ocid": "notify.name.input",
-                placeholder: "Your name",
-                value: name,
-                onChange: (e) => setName(e.target.value),
-                className: "bg-secondary border-input"
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Label,
-              {
-                htmlFor: "notify2-contact",
-                className: "text-muted-foreground text-xs",
-                children: "Telegram or Email *"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                id: "notify2-contact",
-                "data-ocid": "notify.contact.input",
-                placeholder: "@username or email",
-                required: true,
-                value: contact,
-                onChange: (e) => setContact(e.target.value),
-                className: "bg-secondary border-input"
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Button,
-            {
-              type: "submit",
-              "data-ocid": "notify.submit_button",
-              disabled: loading || !contact,
-              className: "btn-primary w-full",
-              children: loading ? "Saving…" : "Notify Me at Launch"
-            }
-          )
-        ] }) }) })
-      ] })
-    }
-  );
-}
 function DisclaimerSection() {
   const [expanded, setExpanded] = reactExports.useState(false);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -6753,40 +6759,38 @@ function Home() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(HeroSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(StatsBarSection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(AboutSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(SignalFeedSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(HowToUseSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(SignalAcademySection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(TradingPhilosophySection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(ManifestoSection, {}) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(WhyDemonZenoSection, {}) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AboutSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(MarketsSection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(QuoteRotatorSection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(SignalOfWeekSection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(MilestonesSection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(TokenSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoadmapSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(LaunchCountdownSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(HypeBarSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(TokenSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(TokenUtilitySection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(HolderBenefitsSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(BondingCurveSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(TelegramMockupSection, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(BlumDeepDiveSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(BlumPreviewSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(BlumExplainerSection, {}) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(BlumDeepDiveSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(BurnCountdownSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(BurnScheduleSection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(RoadmapSection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(LaunchCountdownSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(TokenBurnTrackerSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(WhitepaperSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(QuoteRotatorSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(SignalOfWeekSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(CommunityCounterSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(BinanceSquareFeedSection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(BlumPreviewSection, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(MilestonesSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(JoinMovementSection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(TradingPhilosophySection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(SignalAcademySection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(MarketSentimentSection, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(ManifestoSection, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollAnimation, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(WhyDemonZenoSection, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(TokenFaqChatbotSection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(WhitepaperSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(FAQSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(CommunitySection, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(NotifyMeSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(DisclaimerSection, {})
   ] });
 }

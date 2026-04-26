@@ -454,7 +454,6 @@ service : {
   askFaq: (question: text) -> (text);
   backtestSignal: (signal: text, sessionToken: text) -> (Result);
   banEmail: (sessionToken: text, email: text) -> (Result_2);
-  checkAdminUnlockPhrase: (message: text) -> (opt text);
   clearJournal: (sessionToken: text) -> (Result_2);
   createAbTest: (name: text, variantA: text, variantB: text, sessionToken:
    text) -> (Result);

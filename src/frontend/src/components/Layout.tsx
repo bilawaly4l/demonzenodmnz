@@ -1,8 +1,6 @@
-import { Outlet, useNavigate } from "@tanstack/react-router";
+import { Outlet } from "@tanstack/react-router";
 import { Twitter, Zap } from "lucide-react";
 import { SiBinance } from "react-icons/si";
-import { useSession } from "../contexts/SessionContext";
-import { AdminPasscodeModal } from "./AdminPasscodeModal";
 import { AnnouncementBanner } from "./AnnouncementBanner";
 import { BackToTop } from "./BackToTop";
 import { Navbar } from "./Navbar";
@@ -32,8 +30,6 @@ const SOCIAL_LINKS = [
 ];
 
 function Footer() {
-  const { setSessionToken } = useSession();
-  const navigate = useNavigate();
   const year = new Date().getFullYear();
   const hostname = encodeURIComponent(window.location.hostname);
 
@@ -122,23 +118,8 @@ function Footer() {
               Built with love using caffeine.ai
             </a>
           </p>
-          {/* Hidden admin trigger */}
-          <label
-            htmlFor="admin-phrase-trigger"
-            className="text-muted-foreground/20 text-xs cursor-default select-none hover:text-muted-foreground/40 transition-smooth"
-            aria-hidden="true"
-          >
-            ·
-          </label>
         </div>
       </div>
-
-      <AdminPasscodeModal
-        onSuccess={(token) => {
-          setSessionToken(token);
-          navigate({ to: "/admin" });
-        }}
-      />
     </footer>
   );
 }

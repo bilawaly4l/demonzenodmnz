@@ -1,12 +1,12 @@
-import { c as createLucideIcon, r as reactExports, W as reactDomExports, j as jsxRuntimeExports, P as Primitive, g as useLayoutEffect2, f as useComposedRefs, e as createContextScope, N as useCallbackRef, u as useControllableState, a as useId, b as composeEventHandlers, Y as Portal$1, _ as hideOthers, $ as useFocusGuards, a0 as ReactRemoveScroll, a1 as FocusScope, a2 as DismissableLayer, a3 as createSlot, h as cn, d as Presence, i as useActor, k as useQuery, l as createActor } from "./index-DgNuRIli.js";
-import { u as useDirection, c as createCollection, C as ChevronDown, b as ChevronUp } from "./useSignals-Dc54QcCo.js";
+import { c as createLucideIcon, r as reactExports, H as reactDomExports, j as jsxRuntimeExports, u as useComposedRefs, a as cn } from "./index-BusfRT-8.js";
+import { P as Primitive, d as useLayoutEffect2, b as createContextScope, q as useCallbackRef, f as useDirection, u as useControllableState, a as useId, c as composeEventHandlers, g as Portal$1, e as createCollection, h as hideOthers, i as useFocusGuards, R as ReactRemoveScroll, F as FocusScope, D as DismissableLayer, j as createSlot, C as ChevronDown, p as ChevronUp } from "./index-BNgp4POB.js";
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$4 = [
+const __iconNode$2 = [
   ["path", { d: "M12 7v14", key: "1akyts" }],
   [
     "path",
@@ -16,38 +16,15 @@ const __iconNode$4 = [
     }
   ]
 ];
-const BookOpen = createLucideIcon("book-open", __iconNode$4);
+const BookOpen = createLucideIcon("book-open", __iconNode$2);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$3 = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$3);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$2 = [
-  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
-  ["path", { d: "M21 12H9", key: "dn1m92" }],
-  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
-];
-const LogOut = createLucideIcon("log-out", __iconNode$2);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$1 = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "M12 5v14", key: "s699le" }]
-];
-const Plus = createLucideIcon("plus", __iconNode$1);
+const __iconNode$1 = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$1);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -55,13 +32,11 @@ const Plus = createLucideIcon("plus", __iconNode$1);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode = [
-  ["path", { d: "M3 6h18", key: "d0wm0j" }],
-  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
-  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
-  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
-  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
+  ["path", { d: "M21 12H9", key: "dn1m92" }],
+  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
 ];
-const Trash2 = createLucideIcon("trash-2", __iconNode);
+const LogOut = createLucideIcon("log-out", __iconNode);
 function clamp$1(value, [min2, max2]) {
   return Math.min(max2, Math.max(min2, value));
 }
@@ -1997,7 +1972,7 @@ var Arrow$1 = reactExports.forwardRef((props, forwardedRef) => {
   );
 });
 Arrow$1.displayName = NAME$1;
-var Root$1 = Arrow$1;
+var Root = Arrow$1;
 function useSize(element) {
   const [size2, setSize] = reactExports.useState(void 0);
   useLayoutEffect2(() => {
@@ -2060,8 +2035,8 @@ var PopperAnchor = reactExports.forwardRef(
   }
 );
 PopperAnchor.displayName = ANCHOR_NAME;
-var CONTENT_NAME$2 = "PopperContent";
-var [PopperContentProvider, useContentContext] = createPopperContext(CONTENT_NAME$2);
+var CONTENT_NAME$1 = "PopperContent";
+var [PopperContentProvider, useContentContext] = createPopperContext(CONTENT_NAME$1);
 var PopperContent = reactExports.forwardRef(
   (props, forwardedRef) => {
     var _a, _b, _c, _d, _e, _f;
@@ -2081,7 +2056,7 @@ var PopperContent = reactExports.forwardRef(
       onPlaced,
       ...contentProps
     } = props;
-    const context = usePopperContext(CONTENT_NAME$2, __scopePopper);
+    const context = usePopperContext(CONTENT_NAME$1, __scopePopper);
     const [content, setContent] = reactExports.useState(null);
     const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
     const [arrow$12, setArrow] = reactExports.useState(null);
@@ -2204,7 +2179,7 @@ var PopperContent = reactExports.forwardRef(
     );
   }
 );
-PopperContent.displayName = CONTENT_NAME$2;
+PopperContent.displayName = CONTENT_NAME$1;
 var ARROW_NAME$1 = "PopperArrow";
 var OPPOSITE_SIDE = {
   top: "bottom",
@@ -2244,7 +2219,7 @@ var PopperArrow = reactExports.forwardRef(function PopperArrow2(props, forwarded
           visibility: contentContext.shouldHideArrow ? "hidden" : void 0
         },
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Root$1,
+          Root,
           {
             ...arrowProps,
             ref: forwardedRef,
@@ -2299,9 +2274,9 @@ function getSideAndAlignFromPlacement(placement) {
   const [side, align = "center"] = placement.split("-");
   return [side, align];
 }
-var Root2$2 = Popper;
+var Root2$1 = Popper;
 var Anchor = PopperAnchor;
-var Content$1 = PopperContent;
+var Content = PopperContent;
 var Arrow = PopperArrow;
 function usePrevious(value) {
   const ref = reactExports.useRef({ value, previous: value });
@@ -2343,9 +2318,9 @@ VisuallyHidden.displayName = NAME;
 var OPEN_KEYS = [" ", "Enter", "ArrowUp", "ArrowDown"];
 var SELECTION_KEYS = [" ", "Enter"];
 var SELECT_NAME = "Select";
-var [Collection$1, useCollection$1, createCollectionScope$1] = createCollection(SELECT_NAME);
+var [Collection, useCollection, createCollectionScope] = createCollection(SELECT_NAME);
 var [createSelectContext] = createContextScope(SELECT_NAME, [
-  createCollectionScope$1,
+  createCollectionScope,
   createPopperScope
 ]);
 var usePopperScope = createPopperScope();
@@ -2389,7 +2364,7 @@ var Select$1 = (props) => {
   const isFormControl = trigger ? form || !!trigger.closest("form") : true;
   const [nativeOptionsSet, setNativeOptionsSet] = reactExports.useState(/* @__PURE__ */ new Set());
   const nativeSelectKey = Array.from(nativeOptionsSet).map((option) => option.props.value).join(";");
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$2, { ...popperScope, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$1, { ...popperScope, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
     SelectProvider,
     {
       required,
@@ -2409,7 +2384,7 @@ var Select$1 = (props) => {
       triggerPointerDownPosRef,
       disabled,
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Provider, { scope: __scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Collection.Provider, { scope: __scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           SelectNativeOptionsProvider,
           {
             scope: props.__scopeSelect,
@@ -2450,15 +2425,15 @@ var Select$1 = (props) => {
   ) });
 };
 Select$1.displayName = SELECT_NAME;
-var TRIGGER_NAME$1 = "SelectTrigger";
+var TRIGGER_NAME = "SelectTrigger";
 var SelectTrigger$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeSelect, disabled = false, ...triggerProps } = props;
     const popperScope = usePopperScope(__scopeSelect);
-    const context = useSelectContext(TRIGGER_NAME$1, __scopeSelect);
+    const context = useSelectContext(TRIGGER_NAME, __scopeSelect);
     const isDisabled = context.disabled || disabled;
     const composedRefs = useComposedRefs(forwardedRef, context.onTriggerChange);
-    const getItems = useCollection$1(__scopeSelect);
+    const getItems = useCollection(__scopeSelect);
     const pointerTypeRef = reactExports.useRef("touch");
     const [searchRef, handleTypeaheadSearch, resetTypeahead] = useTypeaheadSearch((search) => {
       const enabledItems = getItems().filter((item) => !item.disabled);
@@ -2527,7 +2502,7 @@ var SelectTrigger$1 = reactExports.forwardRef(
     ) });
   }
 );
-SelectTrigger$1.displayName = TRIGGER_NAME$1;
+SelectTrigger$1.displayName = TRIGGER_NAME;
 var VALUE_NAME = "SelectValue";
 var SelectValue$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -2564,10 +2539,10 @@ var SelectPortal = (props) => {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$1, { asChild: true, ...props });
 };
 SelectPortal.displayName = PORTAL_NAME;
-var CONTENT_NAME$1 = "SelectContent";
+var CONTENT_NAME = "SelectContent";
 var SelectContent$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const context = useSelectContext(CONTENT_NAME$1, props.__scopeSelect);
+    const context = useSelectContext(CONTENT_NAME, props.__scopeSelect);
     const [fragment, setFragment] = reactExports.useState();
     useLayoutEffect2(() => {
       setFragment(new DocumentFragment());
@@ -2575,16 +2550,16 @@ var SelectContent$1 = reactExports.forwardRef(
     if (!context.open) {
       const frag = fragment;
       return frag ? reactDomExports.createPortal(
-        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContentProvider, { scope: props.__scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Slot, { scope: props.__scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: props.children }) }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContentProvider, { scope: props.__scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Collection.Slot, { scope: props.__scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: props.children }) }) }),
         frag
       ) : null;
     }
     return /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContentImpl, { ...props, ref: forwardedRef });
   }
 );
-SelectContent$1.displayName = CONTENT_NAME$1;
+SelectContent$1.displayName = CONTENT_NAME;
 var CONTENT_MARGIN = 10;
-var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME$1);
+var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME);
 var CONTENT_IMPL_NAME = "SelectContentImpl";
 var Slot = createSlot("SelectContent.RemoveScroll");
 var SelectContentImpl = reactExports.forwardRef(
@@ -2610,7 +2585,7 @@ var SelectContentImpl = reactExports.forwardRef(
       //
       ...contentProps
     } = props;
-    const context = useSelectContext(CONTENT_NAME$1, __scopeSelect);
+    const context = useSelectContext(CONTENT_NAME, __scopeSelect);
     const [content, setContent] = reactExports.useState(null);
     const [viewport, setViewport] = reactExports.useState(null);
     const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
@@ -2618,14 +2593,14 @@ var SelectContentImpl = reactExports.forwardRef(
     const [selectedItemText, setSelectedItemText] = reactExports.useState(
       null
     );
-    const getItems = useCollection$1(__scopeSelect);
+    const getItems = useCollection(__scopeSelect);
     const [isPositioned, setIsPositioned] = reactExports.useState(false);
     const firstValidItemFoundRef = reactExports.useRef(false);
     reactExports.useEffect(() => {
       if (content) return hideOthers(content);
     }, [content]);
     useFocusGuards();
-    const focusFirst2 = reactExports.useCallback(
+    const focusFirst = reactExports.useCallback(
       (candidates) => {
         const [firstItem, ...restItems] = getItems().map((item) => item.ref.current);
         const [lastItem] = restItems.slice(-1);
@@ -2642,8 +2617,8 @@ var SelectContentImpl = reactExports.forwardRef(
       [getItems, viewport]
     );
     const focusSelectedItem = reactExports.useCallback(
-      () => focusFirst2([selectedItem, content]),
-      [focusFirst2, selectedItem, content]
+      () => focusFirst([selectedItem, content]),
+      [focusFirst, selectedItem, content]
     );
     reactExports.useEffect(() => {
       if (isPositioned) {
@@ -2807,7 +2782,7 @@ var SelectContentImpl = reactExports.forwardRef(
                           const currentIndex = candidateNodes.indexOf(currentElement);
                           candidateNodes = candidateNodes.slice(currentIndex + 1);
                         }
-                        setTimeout(() => focusFirst2(candidateNodes));
+                        setTimeout(() => focusFirst(candidateNodes));
                         event.preventDefault();
                       }
                     })
@@ -2825,12 +2800,12 @@ SelectContentImpl.displayName = CONTENT_IMPL_NAME;
 var ITEM_ALIGNED_POSITION_NAME = "SelectItemAlignedPosition";
 var SelectItemAlignedPosition = reactExports.forwardRef((props, forwardedRef) => {
   const { __scopeSelect, onPlaced, ...popperProps } = props;
-  const context = useSelectContext(CONTENT_NAME$1, __scopeSelect);
-  const contentContext = useSelectContentContext(CONTENT_NAME$1, __scopeSelect);
+  const context = useSelectContext(CONTENT_NAME, __scopeSelect);
+  const contentContext = useSelectContentContext(CONTENT_NAME, __scopeSelect);
   const [contentWrapper, setContentWrapper] = reactExports.useState(null);
   const [content, setContent] = reactExports.useState(null);
   const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
-  const getItems = useCollection$1(__scopeSelect);
+  const getItems = useCollection(__scopeSelect);
   const shouldExpandOnScrollRef = reactExports.useRef(false);
   const shouldRepositionRef = reactExports.useRef(true);
   const { viewport, selectedItem, selectedItemText, focusSelectedItem } = contentContext;
@@ -2996,7 +2971,7 @@ var SelectPopperPosition = reactExports.forwardRef((props, forwardedRef) => {
   } = props;
   const popperScope = usePopperScope(__scopeSelect);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Content$1,
+    Content,
     {
       ...popperScope,
       ...popperProps,
@@ -3020,7 +2995,7 @@ var SelectPopperPosition = reactExports.forwardRef((props, forwardedRef) => {
   );
 });
 SelectPopperPosition.displayName = POPPER_POSITION_NAME;
-var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME$1, {});
+var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME, {});
 var VIEWPORT_NAME = "SelectViewport";
 var SelectViewport = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -3039,7 +3014,7 @@ var SelectViewport = reactExports.forwardRef(
           nonce
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Slot, { scope: __scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Collection.Slot, { scope: __scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         Primitive.div,
         {
           "data-radix-select-viewport": "",
@@ -3089,8 +3064,8 @@ var SelectViewport = reactExports.forwardRef(
   }
 );
 SelectViewport.displayName = VIEWPORT_NAME;
-var GROUP_NAME$1 = "SelectGroup";
-var [SelectGroupContextProvider, useSelectGroupContext] = createSelectContext(GROUP_NAME$1);
+var GROUP_NAME = "SelectGroup";
+var [SelectGroupContextProvider, useSelectGroupContext] = createSelectContext(GROUP_NAME);
 var SelectGroup = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeSelect, ...groupProps } = props;
@@ -3098,7 +3073,7 @@ var SelectGroup = reactExports.forwardRef(
     return /* @__PURE__ */ jsxRuntimeExports.jsx(SelectGroupContextProvider, { scope: __scopeSelect, id: groupId, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.div, { role: "group", "aria-labelledby": groupId, ...groupProps, ref: forwardedRef }) });
   }
 );
-SelectGroup.displayName = GROUP_NAME$1;
+SelectGroup.displayName = GROUP_NAME;
 var LABEL_NAME = "SelectLabel";
 var SelectLabel = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -3108,8 +3083,8 @@ var SelectLabel = reactExports.forwardRef(
   }
 );
 SelectLabel.displayName = LABEL_NAME;
-var ITEM_NAME$1 = "SelectItem";
-var [SelectItemContextProvider, useSelectItemContext] = createSelectContext(ITEM_NAME$1);
+var ITEM_NAME = "SelectItem";
+var [SelectItemContextProvider, useSelectItemContext] = createSelectContext(ITEM_NAME);
 var SelectItem$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const {
@@ -3119,8 +3094,8 @@ var SelectItem$1 = reactExports.forwardRef(
       textValue: textValueProp,
       ...itemProps
     } = props;
-    const context = useSelectContext(ITEM_NAME$1, __scopeSelect);
-    const contentContext = useSelectContentContext(ITEM_NAME$1, __scopeSelect);
+    const context = useSelectContext(ITEM_NAME, __scopeSelect);
+    const contentContext = useSelectContentContext(ITEM_NAME, __scopeSelect);
     const isSelected = context.value === value;
     const [textValue, setTextValue] = reactExports.useState(textValueProp ?? "");
     const [isFocused, setIsFocused] = reactExports.useState(false);
@@ -3156,7 +3131,7 @@ var SelectItem$1 = reactExports.forwardRef(
           setTextValue((prevTextValue) => prevTextValue || ((node == null ? void 0 : node.textContent) ?? "").trim());
         }, []),
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Collection$1.ItemSlot,
+          Collection.ItemSlot,
           {
             scope: __scopeSelect,
             value,
@@ -3216,7 +3191,7 @@ var SelectItem$1 = reactExports.forwardRef(
     );
   }
 );
-SelectItem$1.displayName = ITEM_NAME$1;
+SelectItem$1.displayName = ITEM_NAME;
 var ITEM_TEXT_NAME = "SelectItemText";
 var SelectItemText = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -3332,7 +3307,7 @@ var SelectScrollButtonImpl = reactExports.forwardRef((props, forwardedRef) => {
   const { __scopeSelect, onAutoScroll, ...scrollIndicatorProps } = props;
   const contentContext = useSelectContentContext("SelectScrollButton", __scopeSelect);
   const autoScrollTimerRef = reactExports.useRef(null);
-  const getItems = useCollection$1(__scopeSelect);
+  const getItems = useCollection(__scopeSelect);
   const clearAutoScrollTimer = reactExports.useCallback(() => {
     if (autoScrollTimerRef.current !== null) {
       window.clearInterval(autoScrollTimerRef.current);
@@ -3456,7 +3431,7 @@ function findNextItem(items, search, currentItem) {
   const isRepeated = search.length > 1 && Array.from(search).every((char) => char === search[0]);
   const normalizedSearch = isRepeated ? search[0] : search;
   const currentItemIndex = currentItem ? items.indexOf(currentItem) : -1;
-  let wrappedItems = wrapArray$1(items, Math.max(currentItemIndex, 0));
+  let wrappedItems = wrapArray(items, Math.max(currentItemIndex, 0));
   const excludeCurrentItem = normalizedSearch.length === 1;
   if (excludeCurrentItem) wrappedItems = wrappedItems.filter((v) => v !== currentItem);
   const nextItem = wrappedItems.find(
@@ -3464,17 +3439,17 @@ function findNextItem(items, search, currentItem) {
   );
   return nextItem !== currentItem ? nextItem : void 0;
 }
-function wrapArray$1(array, startIndex) {
+function wrapArray(array, startIndex) {
   return array.map((_, index2) => array[(startIndex + index2) % array.length]);
 }
-var Root2$1 = Select$1;
-var Trigger$1 = SelectTrigger$1;
+var Root2 = Select$1;
+var Trigger = SelectTrigger$1;
 var Value = SelectValue$1;
 var Icon = SelectIcon;
 var Portal = SelectPortal;
 var Content2 = SelectContent$1;
 var Viewport = SelectViewport;
-var Item$1 = SelectItem$1;
+var Item = SelectItem$1;
 var ItemText = SelectItemText;
 var ItemIndicator = SelectItemIndicator;
 var ScrollUpButton = SelectScrollUpButton$1;
@@ -3482,7 +3457,7 @@ var ScrollDownButton = SelectScrollDownButton$1;
 function Select({
   ...props
 }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$1, { "data-slot": "select", ...props });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2, { "data-slot": "select", ...props });
 }
 function SelectValue({
   ...props
@@ -3496,7 +3471,7 @@ function SelectTrigger({
   ...props
 }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    Trigger$1,
+    Trigger,
     {
       "data-slot": "select-trigger",
       "data-size": size2,
@@ -3552,7 +3527,7 @@ function SelectItem({
   ...props
 }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    Item$1,
+    Item,
     {
       "data-slot": "select-item",
       className: cn(
@@ -3601,447 +3576,6 @@ function SelectScrollDownButton({
     }
   );
 }
-var ENTRY_FOCUS = "rovingFocusGroup.onEntryFocus";
-var EVENT_OPTIONS = { bubbles: false, cancelable: true };
-var GROUP_NAME = "RovingFocusGroup";
-var [Collection, useCollection, createCollectionScope] = createCollection(GROUP_NAME);
-var [createRovingFocusGroupContext, createRovingFocusGroupScope] = createContextScope(
-  GROUP_NAME,
-  [createCollectionScope]
-);
-var [RovingFocusProvider, useRovingFocusContext] = createRovingFocusGroupContext(GROUP_NAME);
-var RovingFocusGroup = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Collection.Provider, { scope: props.__scopeRovingFocusGroup, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Collection.Slot, { scope: props.__scopeRovingFocusGroup, children: /* @__PURE__ */ jsxRuntimeExports.jsx(RovingFocusGroupImpl, { ...props, ref: forwardedRef }) }) });
-  }
-);
-RovingFocusGroup.displayName = GROUP_NAME;
-var RovingFocusGroupImpl = reactExports.forwardRef((props, forwardedRef) => {
-  const {
-    __scopeRovingFocusGroup,
-    orientation,
-    loop = false,
-    dir,
-    currentTabStopId: currentTabStopIdProp,
-    defaultCurrentTabStopId,
-    onCurrentTabStopIdChange,
-    onEntryFocus,
-    preventScrollOnEntryFocus = false,
-    ...groupProps
-  } = props;
-  const ref = reactExports.useRef(null);
-  const composedRefs = useComposedRefs(forwardedRef, ref);
-  const direction = useDirection(dir);
-  const [currentTabStopId, setCurrentTabStopId] = useControllableState({
-    prop: currentTabStopIdProp,
-    defaultProp: defaultCurrentTabStopId ?? null,
-    onChange: onCurrentTabStopIdChange,
-    caller: GROUP_NAME
-  });
-  const [isTabbingBackOut, setIsTabbingBackOut] = reactExports.useState(false);
-  const handleEntryFocus = useCallbackRef(onEntryFocus);
-  const getItems = useCollection(__scopeRovingFocusGroup);
-  const isClickFocusRef = reactExports.useRef(false);
-  const [focusableItemsCount, setFocusableItemsCount] = reactExports.useState(0);
-  reactExports.useEffect(() => {
-    const node = ref.current;
-    if (node) {
-      node.addEventListener(ENTRY_FOCUS, handleEntryFocus);
-      return () => node.removeEventListener(ENTRY_FOCUS, handleEntryFocus);
-    }
-  }, [handleEntryFocus]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    RovingFocusProvider,
-    {
-      scope: __scopeRovingFocusGroup,
-      orientation,
-      dir: direction,
-      loop,
-      currentTabStopId,
-      onItemFocus: reactExports.useCallback(
-        (tabStopId) => setCurrentTabStopId(tabStopId),
-        [setCurrentTabStopId]
-      ),
-      onItemShiftTab: reactExports.useCallback(() => setIsTabbingBackOut(true), []),
-      onFocusableItemAdd: reactExports.useCallback(
-        () => setFocusableItemsCount((prevCount) => prevCount + 1),
-        []
-      ),
-      onFocusableItemRemove: reactExports.useCallback(
-        () => setFocusableItemsCount((prevCount) => prevCount - 1),
-        []
-      ),
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Primitive.div,
-        {
-          tabIndex: isTabbingBackOut || focusableItemsCount === 0 ? -1 : 0,
-          "data-orientation": orientation,
-          ...groupProps,
-          ref: composedRefs,
-          style: { outline: "none", ...props.style },
-          onMouseDown: composeEventHandlers(props.onMouseDown, () => {
-            isClickFocusRef.current = true;
-          }),
-          onFocus: composeEventHandlers(props.onFocus, (event) => {
-            const isKeyboardFocus = !isClickFocusRef.current;
-            if (event.target === event.currentTarget && isKeyboardFocus && !isTabbingBackOut) {
-              const entryFocusEvent = new CustomEvent(ENTRY_FOCUS, EVENT_OPTIONS);
-              event.currentTarget.dispatchEvent(entryFocusEvent);
-              if (!entryFocusEvent.defaultPrevented) {
-                const items = getItems().filter((item) => item.focusable);
-                const activeItem = items.find((item) => item.active);
-                const currentItem = items.find((item) => item.id === currentTabStopId);
-                const candidateItems = [activeItem, currentItem, ...items].filter(
-                  Boolean
-                );
-                const candidateNodes = candidateItems.map((item) => item.ref.current);
-                focusFirst(candidateNodes, preventScrollOnEntryFocus);
-              }
-            }
-            isClickFocusRef.current = false;
-          }),
-          onBlur: composeEventHandlers(props.onBlur, () => setIsTabbingBackOut(false))
-        }
-      )
-    }
-  );
-});
-var ITEM_NAME = "RovingFocusGroupItem";
-var RovingFocusGroupItem = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    const {
-      __scopeRovingFocusGroup,
-      focusable = true,
-      active = false,
-      tabStopId,
-      children,
-      ...itemProps
-    } = props;
-    const autoId = useId();
-    const id = tabStopId || autoId;
-    const context = useRovingFocusContext(ITEM_NAME, __scopeRovingFocusGroup);
-    const isCurrentTabStop = context.currentTabStopId === id;
-    const getItems = useCollection(__scopeRovingFocusGroup);
-    const { onFocusableItemAdd, onFocusableItemRemove, currentTabStopId } = context;
-    reactExports.useEffect(() => {
-      if (focusable) {
-        onFocusableItemAdd();
-        return () => onFocusableItemRemove();
-      }
-    }, [focusable, onFocusableItemAdd, onFocusableItemRemove]);
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Collection.ItemSlot,
-      {
-        scope: __scopeRovingFocusGroup,
-        id,
-        focusable,
-        active,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive.span,
-          {
-            tabIndex: isCurrentTabStop ? 0 : -1,
-            "data-orientation": context.orientation,
-            ...itemProps,
-            ref: forwardedRef,
-            onMouseDown: composeEventHandlers(props.onMouseDown, (event) => {
-              if (!focusable) event.preventDefault();
-              else context.onItemFocus(id);
-            }),
-            onFocus: composeEventHandlers(props.onFocus, () => context.onItemFocus(id)),
-            onKeyDown: composeEventHandlers(props.onKeyDown, (event) => {
-              if (event.key === "Tab" && event.shiftKey) {
-                context.onItemShiftTab();
-                return;
-              }
-              if (event.target !== event.currentTarget) return;
-              const focusIntent = getFocusIntent(event, context.orientation, context.dir);
-              if (focusIntent !== void 0) {
-                if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
-                event.preventDefault();
-                const items = getItems().filter((item) => item.focusable);
-                let candidateNodes = items.map((item) => item.ref.current);
-                if (focusIntent === "last") candidateNodes.reverse();
-                else if (focusIntent === "prev" || focusIntent === "next") {
-                  if (focusIntent === "prev") candidateNodes.reverse();
-                  const currentIndex = candidateNodes.indexOf(event.currentTarget);
-                  candidateNodes = context.loop ? wrapArray(candidateNodes, currentIndex + 1) : candidateNodes.slice(currentIndex + 1);
-                }
-                setTimeout(() => focusFirst(candidateNodes));
-              }
-            }),
-            children: typeof children === "function" ? children({ isCurrentTabStop, hasTabStop: currentTabStopId != null }) : children
-          }
-        )
-      }
-    );
-  }
-);
-RovingFocusGroupItem.displayName = ITEM_NAME;
-var MAP_KEY_TO_FOCUS_INTENT = {
-  ArrowLeft: "prev",
-  ArrowUp: "prev",
-  ArrowRight: "next",
-  ArrowDown: "next",
-  PageUp: "first",
-  Home: "first",
-  PageDown: "last",
-  End: "last"
-};
-function getDirectionAwareKey(key, dir) {
-  if (dir !== "rtl") return key;
-  return key === "ArrowLeft" ? "ArrowRight" : key === "ArrowRight" ? "ArrowLeft" : key;
-}
-function getFocusIntent(event, orientation, dir) {
-  const key = getDirectionAwareKey(event.key, dir);
-  if (orientation === "vertical" && ["ArrowLeft", "ArrowRight"].includes(key)) return void 0;
-  if (orientation === "horizontal" && ["ArrowUp", "ArrowDown"].includes(key)) return void 0;
-  return MAP_KEY_TO_FOCUS_INTENT[key];
-}
-function focusFirst(candidates, preventScroll = false) {
-  const PREVIOUSLY_FOCUSED_ELEMENT = document.activeElement;
-  for (const candidate of candidates) {
-    if (candidate === PREVIOUSLY_FOCUSED_ELEMENT) return;
-    candidate.focus({ preventScroll });
-    if (document.activeElement !== PREVIOUSLY_FOCUSED_ELEMENT) return;
-  }
-}
-function wrapArray(array, startIndex) {
-  return array.map((_, index2) => array[(startIndex + index2) % array.length]);
-}
-var Root = RovingFocusGroup;
-var Item = RovingFocusGroupItem;
-var TABS_NAME = "Tabs";
-var [createTabsContext] = createContextScope(TABS_NAME, [
-  createRovingFocusGroupScope
-]);
-var useRovingFocusGroupScope = createRovingFocusGroupScope();
-var [TabsProvider, useTabsContext] = createTabsContext(TABS_NAME);
-var Tabs$1 = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    const {
-      __scopeTabs,
-      value: valueProp,
-      onValueChange,
-      defaultValue,
-      orientation = "horizontal",
-      dir,
-      activationMode = "automatic",
-      ...tabsProps
-    } = props;
-    const direction = useDirection(dir);
-    const [value, setValue] = useControllableState({
-      prop: valueProp,
-      onChange: onValueChange,
-      defaultProp: defaultValue ?? "",
-      caller: TABS_NAME
-    });
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      TabsProvider,
-      {
-        scope: __scopeTabs,
-        baseId: useId(),
-        value,
-        onValueChange: setValue,
-        orientation,
-        dir: direction,
-        activationMode,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive.div,
-          {
-            dir: direction,
-            "data-orientation": orientation,
-            ...tabsProps,
-            ref: forwardedRef
-          }
-        )
-      }
-    );
-  }
-);
-Tabs$1.displayName = TABS_NAME;
-var TAB_LIST_NAME = "TabsList";
-var TabsList$1 = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeTabs, loop = true, ...listProps } = props;
-    const context = useTabsContext(TAB_LIST_NAME, __scopeTabs);
-    const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Root,
-      {
-        asChild: true,
-        ...rovingFocusGroupScope,
-        orientation: context.orientation,
-        dir: context.dir,
-        loop,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive.div,
-          {
-            role: "tablist",
-            "aria-orientation": context.orientation,
-            ...listProps,
-            ref: forwardedRef
-          }
-        )
-      }
-    );
-  }
-);
-TabsList$1.displayName = TAB_LIST_NAME;
-var TRIGGER_NAME = "TabsTrigger";
-var TabsTrigger$1 = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeTabs, value, disabled = false, ...triggerProps } = props;
-    const context = useTabsContext(TRIGGER_NAME, __scopeTabs);
-    const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
-    const triggerId = makeTriggerId(context.baseId, value);
-    const contentId = makeContentId(context.baseId, value);
-    const isSelected = value === context.value;
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Item,
-      {
-        asChild: true,
-        ...rovingFocusGroupScope,
-        focusable: !disabled,
-        active: isSelected,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive.button,
-          {
-            type: "button",
-            role: "tab",
-            "aria-selected": isSelected,
-            "aria-controls": contentId,
-            "data-state": isSelected ? "active" : "inactive",
-            "data-disabled": disabled ? "" : void 0,
-            disabled,
-            id: triggerId,
-            ...triggerProps,
-            ref: forwardedRef,
-            onMouseDown: composeEventHandlers(props.onMouseDown, (event) => {
-              if (!disabled && event.button === 0 && event.ctrlKey === false) {
-                context.onValueChange(value);
-              } else {
-                event.preventDefault();
-              }
-            }),
-            onKeyDown: composeEventHandlers(props.onKeyDown, (event) => {
-              if ([" ", "Enter"].includes(event.key)) context.onValueChange(value);
-            }),
-            onFocus: composeEventHandlers(props.onFocus, () => {
-              const isAutomaticActivation = context.activationMode !== "manual";
-              if (!isSelected && !disabled && isAutomaticActivation) {
-                context.onValueChange(value);
-              }
-            })
-          }
-        )
-      }
-    );
-  }
-);
-TabsTrigger$1.displayName = TRIGGER_NAME;
-var CONTENT_NAME = "TabsContent";
-var TabsContent$1 = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeTabs, value, forceMount, children, ...contentProps } = props;
-    const context = useTabsContext(CONTENT_NAME, __scopeTabs);
-    const triggerId = makeTriggerId(context.baseId, value);
-    const contentId = makeContentId(context.baseId, value);
-    const isSelected = value === context.value;
-    const isMountAnimationPreventedRef = reactExports.useRef(isSelected);
-    reactExports.useEffect(() => {
-      const rAF = requestAnimationFrame(() => isMountAnimationPreventedRef.current = false);
-      return () => cancelAnimationFrame(rAF);
-    }, []);
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || isSelected, children: ({ present }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Primitive.div,
-      {
-        "data-state": isSelected ? "active" : "inactive",
-        "data-orientation": context.orientation,
-        role: "tabpanel",
-        "aria-labelledby": triggerId,
-        hidden: !present,
-        id: contentId,
-        tabIndex: 0,
-        ...contentProps,
-        ref: forwardedRef,
-        style: {
-          ...props.style,
-          animationDuration: isMountAnimationPreventedRef.current ? "0s" : void 0
-        },
-        children: present && children
-      }
-    ) });
-  }
-);
-TabsContent$1.displayName = CONTENT_NAME;
-function makeTriggerId(baseId, value) {
-  return `${baseId}-trigger-${value}`;
-}
-function makeContentId(baseId, value) {
-  return `${baseId}-content-${value}`;
-}
-var Root2 = Tabs$1;
-var List = TabsList$1;
-var Trigger = TabsTrigger$1;
-var Content = TabsContent$1;
-function Tabs({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Root2,
-    {
-      "data-slot": "tabs",
-      className: cn("flex flex-col gap-2", className),
-      ...props
-    }
-  );
-}
-function TabsList({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    List,
-    {
-      "data-slot": "tabs-list",
-      className: cn(
-        "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]",
-        className
-      ),
-      ...props
-    }
-  );
-}
-function TabsTrigger({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Trigger,
-    {
-      "data-slot": "tabs-trigger",
-      className: cn(
-        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className
-      ),
-      ...props
-    }
-  );
-}
-function TabsContent({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Content,
-    {
-      "data-slot": "tabs-content",
-      className: cn("flex-1 outline-none", className),
-      ...props
-    }
-  );
-}
 function Textarea({ className, ...props }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     "textarea",
@@ -4055,58 +3589,16 @@ function Textarea({ className, ...props }) {
     }
   );
 }
-function useAnalytics(sessionToken) {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["analytics", sessionToken],
-    queryFn: async () => {
-      const empty = {
-        signalsByMarket: [],
-        notifyMeByDate: [],
-        totalNotifyMe: BigInt(0)
-      };
-      if (!actor || !sessionToken) return empty;
-      const result = await actor.getAnalytics(sessionToken);
-      if (result.__kind__ === "ok") return result.ok;
-      return empty;
-    },
-    enabled: !!actor && !isFetching && !!sessionToken,
-    staleTime: 6e4
-  });
-}
-function useAuditLog(sessionToken) {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["auditLog", sessionToken],
-    queryFn: async () => {
-      if (!actor || !sessionToken) return [];
-      const result = await actor.getAuditLog(sessionToken);
-      if (result.__kind__ === "ok") return result.ok;
-      return [];
-    },
-    enabled: !!actor && !isFetching && !!sessionToken,
-    staleTime: 3e4
-  });
-}
 export {
   BookOpen as B,
   Check as C,
   LogOut as L,
-  Plus as P,
   Select as S,
-  Tabs as T,
+  Textarea as T,
   useSize as a,
   SelectTrigger as b,
   SelectValue as c,
   SelectContent as d,
   SelectItem as e,
-  TabsList as f,
-  TabsTrigger as g,
-  TabsContent as h,
-  Trash2 as i,
-  useAnalytics as j,
-  Textarea as k,
-  useAuditLog as l,
-  clamp$1 as m,
   usePrevious as u
 };

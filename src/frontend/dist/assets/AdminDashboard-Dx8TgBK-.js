@@ -7,10 +7,10 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _client, _currentResult, _currentMutation, _mutateOptions, _MutationObserver_instances, updateResult_fn, notify_fn, _a;
-import { o as Subscribable, s as shallowEqualObjects, p as hashKey, q as getDefaultState, t as notifyManager, v as useQueryClient, r as reactExports, w as noop$3, x as shouldThrowError, c as createLucideIcon, f as useComposedRefs, u as useControllableState, j as jsxRuntimeExports, P as Primitive, b as composeEventHandlers, e as createContextScope, h as cn, y as commonjsGlobal, z as getDefaultExportFromCjs, A as clsx, R as React, C as invariant, d as Presence, m as Timeframe, D as Confidence, F as Direction, M as MarketType, I as Input, B as Button, X, i as useActor, k as useQuery, l as createActor, G as useSession, H as useNavigate, Z as Zap, J as useAnnouncement, n as SentimentLevel } from "./index-DgNuRIli.js";
-import { d as ue, T as TrendingUp, e as ChartColumn, B as Bell, G as Globe, F as FileText, f as useSignals, a as Badge, D as Download, b as ChevronUp, C as ChevronDown } from "./useSignals-Dc54QcCo.js";
-import { L as Label$1, U as Users, F as Flame, C as Card, a as useStats, b as useFaqs, u as useBinanceFeed } from "./useFaqs-Dsu5h1eo.js";
-import { u as usePrevious, a as useSize, C as Check, S as Select, b as SelectTrigger, c as SelectValue, d as SelectContent, e as SelectItem, L as LogOut, T as Tabs, f as TabsList, g as TabsTrigger, h as TabsContent, P as Plus, i as Trash2, j as useAnalytics, k as Textarea, l as useAuditLog, B as BookOpen } from "./useAuditLog-CkdQrLoh.js";
+import { i as Subscribable, s as shallowEqualObjects, k as hashKey, l as getDefaultState, n as notifyManager, m as useQueryClient, r as reactExports, o as noop$3, p as shouldThrowError, c as createLucideIcon, u as useComposedRefs, j as jsxRuntimeExports, a as cn, q as commonjsGlobal, t as getDefaultExportFromCjs, v as clsx, R as React, w as invariant, f as Timeframe, C as Confidence, D as Direction, M as MarketType, B as Button, X, b as useActor, e as useQuery, d as createActor, g as useSession, h as useNavigate, Z as Zap, x as useAnnouncement, y as SentimentLevel } from "./index-BusfRT-8.js";
+import { u as useControllableState, P as Primitive, c as composeEventHandlers, b as createContextScope, a as useId, e as createCollection, f as useDirection, q as useCallbackRef, I as Input, m as ue, T as TrendingUp, n as ChartColumn, G as Globe, o as FileText, B as Badge, l as Download, p as ChevronUp, C as ChevronDown } from "./index-BNgp4POB.js";
+import { P as Presence, L as Label$1, U as Users, B as Bell, F as Flame, b as useSignals, C as Card, a as useStats, c as useFaqs, u as useBinanceFeed } from "./useSignals-pMorhrua.js";
+import { u as usePrevious, a as useSize, C as Check, S as Select, b as SelectTrigger, c as SelectValue, d as SelectContent, e as SelectItem, L as LogOut, T as Textarea, B as BookOpen } from "./textarea-BIQZlGpT.js";
 var MutationObserver = (_a = class extends Subscribable {
   constructor(client, options) {
     super();
@@ -187,7 +187,7 @@ function useMutation(options, queryClient) {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$f = [
+const __iconNode$h = [
   [
     "path",
     {
@@ -196,7 +196,33 @@ const __iconNode$f = [
     }
   ]
 ];
-const Activity = createLucideIcon("activity", __iconNode$f);
+const Activity = createLucideIcon("activity", __iconNode$h);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$g = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m4.9 4.9 14.2 14.2", key: "1m5liu" }]
+];
+const Ban = createLucideIcon("ban", __iconNode$g);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$f = [
+  ["path", { d: "M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5", key: "1osxxc" }],
+  ["path", { d: "M16 2v4", key: "4m81vk" }],
+  ["path", { d: "M8 2v4", key: "1cmpym" }],
+  ["path", { d: "M3 10h5", key: "r794hk" }],
+  ["path", { d: "M17.5 17.5 16 16.3V14", key: "akvzfd" }],
+  ["circle", { cx: "16", cy: "16", r: "6", key: "qoo3c4" }]
+];
+const CalendarClock = createLucideIcon("calendar-clock", __iconNode$f);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -205,9 +231,10 @@ const Activity = createLucideIcon("activity", __iconNode$f);
  */
 const __iconNode$e = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m4.9 4.9 14.2 14.2", key: "1m5liu" }]
+  ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
+  ["path", { d: "M12 17h.01", key: "p32p05" }]
 ];
-const Ban = createLucideIcon("ban", __iconNode$e);
+const CircleHelp = createLucideIcon("circle-help", __iconNode$e);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -215,33 +242,6 @@ const Ban = createLucideIcon("ban", __iconNode$e);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$d = [
-  ["path", { d: "M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5", key: "1osxxc" }],
-  ["path", { d: "M16 2v4", key: "4m81vk" }],
-  ["path", { d: "M8 2v4", key: "1cmpym" }],
-  ["path", { d: "M3 10h5", key: "r794hk" }],
-  ["path", { d: "M17.5 17.5 16 16.3V14", key: "akvzfd" }],
-  ["circle", { cx: "16", cy: "16", r: "6", key: "qoo3c4" }]
-];
-const CalendarClock = createLucideIcon("calendar-clock", __iconNode$d);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$c = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
-  ["path", { d: "M12 17h.01", key: "p32p05" }]
-];
-const CircleHelp = createLucideIcon("circle-help", __iconNode$c);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$b = [
   ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1", key: "tgr4d6" }],
   [
     "path",
@@ -255,7 +255,32 @@ const __iconNode$b = [
   ["path", { d: "M8 11h.01", key: "1dfujw" }],
   ["path", { d: "M8 16h.01", key: "18s6g9" }]
 ];
-const ClipboardList = createLucideIcon("clipboard-list", __iconNode$b);
+const ClipboardList = createLucideIcon("clipboard-list", __iconNode$d);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$c = [
+  ["path", { d: "m18 16 4-4-4-4", key: "1inbqp" }],
+  ["path", { d: "m6 8-4 4 4 4", key: "15zrgr" }],
+  ["path", { d: "m14.5 4-5 16", key: "e7oirm" }]
+];
+const CodeXml = createLucideIcon("code-xml", __iconNode$c);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$b = [
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M12 12v6", key: "3ahymv" }],
+  ["path", { d: "m15 15-3-3-3 3", key: "15xj92" }]
+];
+const FileUp = createLucideIcon("file-up", __iconNode$b);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -263,11 +288,9 @@ const ClipboardList = createLucideIcon("clipboard-list", __iconNode$b);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$a = [
-  ["path", { d: "m18 16 4-4-4-4", key: "1inbqp" }],
-  ["path", { d: "m6 8-4 4 4 4", key: "15zrgr" }],
-  ["path", { d: "m14.5 4-5 16", key: "e7oirm" }]
+  ["path", { d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z", key: "1lielz" }]
 ];
-const CodeXml = createLucideIcon("code-xml", __iconNode$a);
+const MessageSquare = createLucideIcon("message-square", __iconNode$a);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -275,29 +298,6 @@ const CodeXml = createLucideIcon("code-xml", __iconNode$a);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$9 = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M12 12v6", key: "3ahymv" }],
-  ["path", { d: "m15 15-3-3-3 3", key: "15xj92" }]
-];
-const FileUp = createLucideIcon("file-up", __iconNode$9);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$8 = [
-  ["path", { d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z", key: "1lielz" }]
-];
-const MessageSquare = createLucideIcon("message-square", __iconNode$8);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$7 = [
   [
     "path",
     {
@@ -306,7 +306,31 @@ const __iconNode$7 = [
     }
   ]
 ];
-const Pen = createLucideIcon("pen", __iconNode$7);
+const Pen = createLucideIcon("pen", __iconNode$9);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$8 = [
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "M12 5v14", key: "s699le" }]
+];
+const Plus = createLucideIcon("plus", __iconNode$8);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$7 = [
+  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
+  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
+  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
+  ["path", { d: "M8 16H3v5", key: "1cv678" }]
+];
+const RefreshCw = createLucideIcon("refresh-cw", __iconNode$7);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -314,19 +338,6 @@ const Pen = createLucideIcon("pen", __iconNode$7);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$6 = [
-  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
-  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
-  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
-  ["path", { d: "M8 16H3v5", key: "1cv678" }]
-];
-const RefreshCw = createLucideIcon("refresh-cw", __iconNode$6);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$5 = [
   [
     "path",
     {
@@ -337,14 +348,14 @@ const __iconNode$5 = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-const Save = createLucideIcon("save", __iconNode$5);
+const Save = createLucideIcon("save", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$4 = [
+const __iconNode$5 = [
   [
     "path",
     {
@@ -354,14 +365,14 @@ const __iconNode$4 = [
   ],
   ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const ShieldCheck = createLucideIcon("shield-check", __iconNode$4);
+const ShieldCheck = createLucideIcon("shield-check", __iconNode$5);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$3 = [
+const __iconNode$4 = [
   [
     "path",
     {
@@ -374,7 +385,23 @@ const __iconNode$3 = [
   ["path", { d: "M4 17v2", key: "vumght" }],
   ["path", { d: "M5 18H3", key: "zchphs" }]
 ];
-const Sparkles = createLucideIcon("sparkles", __iconNode$3);
+const Sparkles = createLucideIcon("sparkles", __iconNode$4);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$3 = [
+  [
+    "path",
+    {
+      d: "M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z",
+      key: "r04s7s"
+    }
+  ]
+];
+const Star = createLucideIcon("star", __iconNode$3);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -384,13 +411,12 @@ const Sparkles = createLucideIcon("sparkles", __iconNode$3);
 const __iconNode$2 = [
   [
     "path",
-    {
-      d: "M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z",
-      key: "r04s7s"
-    }
-  ]
+    { d: "M21 7 6.82 21.18a2.83 2.83 0 0 1-3.99-.01a2.83 2.83 0 0 1 0-4L17 3", key: "1ub6xw" }
+  ],
+  ["path", { d: "m16 2 6 6", key: "1gw87d" }],
+  ["path", { d: "M12 16H4", key: "1cjfip" }]
 ];
-const Star = createLucideIcon("star", __iconNode$2);
+const TestTubeDiagonal = createLucideIcon("test-tube-diagonal", __iconNode$2);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -398,14 +424,13 @@ const Star = createLucideIcon("star", __iconNode$2);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$1 = [
-  [
-    "path",
-    { d: "M21 7 6.82 21.18a2.83 2.83 0 0 1-3.99-.01a2.83 2.83 0 0 1 0-4L17 3", key: "1ub6xw" }
-  ],
-  ["path", { d: "m16 2 6 6", key: "1gw87d" }],
-  ["path", { d: "M12 16H4", key: "1cjfip" }]
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
+  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
+  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
+  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
 ];
-const TestTubeDiagonal = createLucideIcon("test-tube-diagonal", __iconNode$1);
+const Trash2 = createLucideIcon("trash-2", __iconNode$1);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -560,14 +585,14 @@ SwitchBubbleInput.displayName = BUBBLE_INPUT_NAME$1;
 function getState$1(checked) {
   return checked ? "checked" : "unchecked";
 }
-var Root = Switch$1;
+var Root$1 = Switch$1;
 var Thumb = SwitchThumb;
 function Switch({
   className,
   ...props
 }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Root,
+    Root$1,
     {
       "data-slot": "switch",
       className: cn(
@@ -584,6 +609,447 @@ function Switch({
           )
         }
       )
+    }
+  );
+}
+var ENTRY_FOCUS = "rovingFocusGroup.onEntryFocus";
+var EVENT_OPTIONS = { bubbles: false, cancelable: true };
+var GROUP_NAME = "RovingFocusGroup";
+var [Collection, useCollection, createCollectionScope] = createCollection(GROUP_NAME);
+var [createRovingFocusGroupContext, createRovingFocusGroupScope] = createContextScope(
+  GROUP_NAME,
+  [createCollectionScope]
+);
+var [RovingFocusProvider, useRovingFocusContext] = createRovingFocusGroupContext(GROUP_NAME);
+var RovingFocusGroup = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Collection.Provider, { scope: props.__scopeRovingFocusGroup, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Collection.Slot, { scope: props.__scopeRovingFocusGroup, children: /* @__PURE__ */ jsxRuntimeExports.jsx(RovingFocusGroupImpl, { ...props, ref: forwardedRef }) }) });
+  }
+);
+RovingFocusGroup.displayName = GROUP_NAME;
+var RovingFocusGroupImpl = reactExports.forwardRef((props, forwardedRef) => {
+  const {
+    __scopeRovingFocusGroup,
+    orientation,
+    loop = false,
+    dir,
+    currentTabStopId: currentTabStopIdProp,
+    defaultCurrentTabStopId,
+    onCurrentTabStopIdChange,
+    onEntryFocus,
+    preventScrollOnEntryFocus = false,
+    ...groupProps
+  } = props;
+  const ref = reactExports.useRef(null);
+  const composedRefs = useComposedRefs(forwardedRef, ref);
+  const direction = useDirection(dir);
+  const [currentTabStopId, setCurrentTabStopId] = useControllableState({
+    prop: currentTabStopIdProp,
+    defaultProp: defaultCurrentTabStopId ?? null,
+    onChange: onCurrentTabStopIdChange,
+    caller: GROUP_NAME
+  });
+  const [isTabbingBackOut, setIsTabbingBackOut] = reactExports.useState(false);
+  const handleEntryFocus = useCallbackRef(onEntryFocus);
+  const getItems = useCollection(__scopeRovingFocusGroup);
+  const isClickFocusRef = reactExports.useRef(false);
+  const [focusableItemsCount, setFocusableItemsCount] = reactExports.useState(0);
+  reactExports.useEffect(() => {
+    const node = ref.current;
+    if (node) {
+      node.addEventListener(ENTRY_FOCUS, handleEntryFocus);
+      return () => node.removeEventListener(ENTRY_FOCUS, handleEntryFocus);
+    }
+  }, [handleEntryFocus]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    RovingFocusProvider,
+    {
+      scope: __scopeRovingFocusGroup,
+      orientation,
+      dir: direction,
+      loop,
+      currentTabStopId,
+      onItemFocus: reactExports.useCallback(
+        (tabStopId) => setCurrentTabStopId(tabStopId),
+        [setCurrentTabStopId]
+      ),
+      onItemShiftTab: reactExports.useCallback(() => setIsTabbingBackOut(true), []),
+      onFocusableItemAdd: reactExports.useCallback(
+        () => setFocusableItemsCount((prevCount) => prevCount + 1),
+        []
+      ),
+      onFocusableItemRemove: reactExports.useCallback(
+        () => setFocusableItemsCount((prevCount) => prevCount - 1),
+        []
+      ),
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Primitive.div,
+        {
+          tabIndex: isTabbingBackOut || focusableItemsCount === 0 ? -1 : 0,
+          "data-orientation": orientation,
+          ...groupProps,
+          ref: composedRefs,
+          style: { outline: "none", ...props.style },
+          onMouseDown: composeEventHandlers(props.onMouseDown, () => {
+            isClickFocusRef.current = true;
+          }),
+          onFocus: composeEventHandlers(props.onFocus, (event) => {
+            const isKeyboardFocus = !isClickFocusRef.current;
+            if (event.target === event.currentTarget && isKeyboardFocus && !isTabbingBackOut) {
+              const entryFocusEvent = new CustomEvent(ENTRY_FOCUS, EVENT_OPTIONS);
+              event.currentTarget.dispatchEvent(entryFocusEvent);
+              if (!entryFocusEvent.defaultPrevented) {
+                const items = getItems().filter((item) => item.focusable);
+                const activeItem = items.find((item) => item.active);
+                const currentItem = items.find((item) => item.id === currentTabStopId);
+                const candidateItems = [activeItem, currentItem, ...items].filter(
+                  Boolean
+                );
+                const candidateNodes = candidateItems.map((item) => item.ref.current);
+                focusFirst(candidateNodes, preventScrollOnEntryFocus);
+              }
+            }
+            isClickFocusRef.current = false;
+          }),
+          onBlur: composeEventHandlers(props.onBlur, () => setIsTabbingBackOut(false))
+        }
+      )
+    }
+  );
+});
+var ITEM_NAME = "RovingFocusGroupItem";
+var RovingFocusGroupItem = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopeRovingFocusGroup,
+      focusable = true,
+      active = false,
+      tabStopId,
+      children,
+      ...itemProps
+    } = props;
+    const autoId = useId();
+    const id = tabStopId || autoId;
+    const context = useRovingFocusContext(ITEM_NAME, __scopeRovingFocusGroup);
+    const isCurrentTabStop = context.currentTabStopId === id;
+    const getItems = useCollection(__scopeRovingFocusGroup);
+    const { onFocusableItemAdd, onFocusableItemRemove, currentTabStopId } = context;
+    reactExports.useEffect(() => {
+      if (focusable) {
+        onFocusableItemAdd();
+        return () => onFocusableItemRemove();
+      }
+    }, [focusable, onFocusableItemAdd, onFocusableItemRemove]);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Collection.ItemSlot,
+      {
+        scope: __scopeRovingFocusGroup,
+        id,
+        focusable,
+        active,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Primitive.span,
+          {
+            tabIndex: isCurrentTabStop ? 0 : -1,
+            "data-orientation": context.orientation,
+            ...itemProps,
+            ref: forwardedRef,
+            onMouseDown: composeEventHandlers(props.onMouseDown, (event) => {
+              if (!focusable) event.preventDefault();
+              else context.onItemFocus(id);
+            }),
+            onFocus: composeEventHandlers(props.onFocus, () => context.onItemFocus(id)),
+            onKeyDown: composeEventHandlers(props.onKeyDown, (event) => {
+              if (event.key === "Tab" && event.shiftKey) {
+                context.onItemShiftTab();
+                return;
+              }
+              if (event.target !== event.currentTarget) return;
+              const focusIntent = getFocusIntent(event, context.orientation, context.dir);
+              if (focusIntent !== void 0) {
+                if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+                event.preventDefault();
+                const items = getItems().filter((item) => item.focusable);
+                let candidateNodes = items.map((item) => item.ref.current);
+                if (focusIntent === "last") candidateNodes.reverse();
+                else if (focusIntent === "prev" || focusIntent === "next") {
+                  if (focusIntent === "prev") candidateNodes.reverse();
+                  const currentIndex = candidateNodes.indexOf(event.currentTarget);
+                  candidateNodes = context.loop ? wrapArray(candidateNodes, currentIndex + 1) : candidateNodes.slice(currentIndex + 1);
+                }
+                setTimeout(() => focusFirst(candidateNodes));
+              }
+            }),
+            children: typeof children === "function" ? children({ isCurrentTabStop, hasTabStop: currentTabStopId != null }) : children
+          }
+        )
+      }
+    );
+  }
+);
+RovingFocusGroupItem.displayName = ITEM_NAME;
+var MAP_KEY_TO_FOCUS_INTENT = {
+  ArrowLeft: "prev",
+  ArrowUp: "prev",
+  ArrowRight: "next",
+  ArrowDown: "next",
+  PageUp: "first",
+  Home: "first",
+  PageDown: "last",
+  End: "last"
+};
+function getDirectionAwareKey(key, dir) {
+  if (dir !== "rtl") return key;
+  return key === "ArrowLeft" ? "ArrowRight" : key === "ArrowRight" ? "ArrowLeft" : key;
+}
+function getFocusIntent(event, orientation, dir) {
+  const key = getDirectionAwareKey(event.key, dir);
+  if (orientation === "vertical" && ["ArrowLeft", "ArrowRight"].includes(key)) return void 0;
+  if (orientation === "horizontal" && ["ArrowUp", "ArrowDown"].includes(key)) return void 0;
+  return MAP_KEY_TO_FOCUS_INTENT[key];
+}
+function focusFirst(candidates, preventScroll = false) {
+  const PREVIOUSLY_FOCUSED_ELEMENT = document.activeElement;
+  for (const candidate of candidates) {
+    if (candidate === PREVIOUSLY_FOCUSED_ELEMENT) return;
+    candidate.focus({ preventScroll });
+    if (document.activeElement !== PREVIOUSLY_FOCUSED_ELEMENT) return;
+  }
+}
+function wrapArray(array2, startIndex) {
+  return array2.map((_, index) => array2[(startIndex + index) % array2.length]);
+}
+var Root = RovingFocusGroup;
+var Item = RovingFocusGroupItem;
+var TABS_NAME = "Tabs";
+var [createTabsContext] = createContextScope(TABS_NAME, [
+  createRovingFocusGroupScope
+]);
+var useRovingFocusGroupScope = createRovingFocusGroupScope();
+var [TabsProvider, useTabsContext] = createTabsContext(TABS_NAME);
+var Tabs$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopeTabs,
+      value: valueProp,
+      onValueChange,
+      defaultValue,
+      orientation = "horizontal",
+      dir,
+      activationMode = "automatic",
+      ...tabsProps
+    } = props;
+    const direction = useDirection(dir);
+    const [value, setValue] = useControllableState({
+      prop: valueProp,
+      onChange: onValueChange,
+      defaultProp: defaultValue ?? "",
+      caller: TABS_NAME
+    });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      TabsProvider,
+      {
+        scope: __scopeTabs,
+        baseId: useId(),
+        value,
+        onValueChange: setValue,
+        orientation,
+        dir: direction,
+        activationMode,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Primitive.div,
+          {
+            dir: direction,
+            "data-orientation": orientation,
+            ...tabsProps,
+            ref: forwardedRef
+          }
+        )
+      }
+    );
+  }
+);
+Tabs$1.displayName = TABS_NAME;
+var TAB_LIST_NAME = "TabsList";
+var TabsList$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeTabs, loop = true, ...listProps } = props;
+    const context = useTabsContext(TAB_LIST_NAME, __scopeTabs);
+    const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Root,
+      {
+        asChild: true,
+        ...rovingFocusGroupScope,
+        orientation: context.orientation,
+        dir: context.dir,
+        loop,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Primitive.div,
+          {
+            role: "tablist",
+            "aria-orientation": context.orientation,
+            ...listProps,
+            ref: forwardedRef
+          }
+        )
+      }
+    );
+  }
+);
+TabsList$1.displayName = TAB_LIST_NAME;
+var TRIGGER_NAME$1 = "TabsTrigger";
+var TabsTrigger$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeTabs, value, disabled = false, ...triggerProps } = props;
+    const context = useTabsContext(TRIGGER_NAME$1, __scopeTabs);
+    const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
+    const triggerId = makeTriggerId(context.baseId, value);
+    const contentId = makeContentId(context.baseId, value);
+    const isSelected = value === context.value;
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Item,
+      {
+        asChild: true,
+        ...rovingFocusGroupScope,
+        focusable: !disabled,
+        active: isSelected,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Primitive.button,
+          {
+            type: "button",
+            role: "tab",
+            "aria-selected": isSelected,
+            "aria-controls": contentId,
+            "data-state": isSelected ? "active" : "inactive",
+            "data-disabled": disabled ? "" : void 0,
+            disabled,
+            id: triggerId,
+            ...triggerProps,
+            ref: forwardedRef,
+            onMouseDown: composeEventHandlers(props.onMouseDown, (event) => {
+              if (!disabled && event.button === 0 && event.ctrlKey === false) {
+                context.onValueChange(value);
+              } else {
+                event.preventDefault();
+              }
+            }),
+            onKeyDown: composeEventHandlers(props.onKeyDown, (event) => {
+              if ([" ", "Enter"].includes(event.key)) context.onValueChange(value);
+            }),
+            onFocus: composeEventHandlers(props.onFocus, () => {
+              const isAutomaticActivation = context.activationMode !== "manual";
+              if (!isSelected && !disabled && isAutomaticActivation) {
+                context.onValueChange(value);
+              }
+            })
+          }
+        )
+      }
+    );
+  }
+);
+TabsTrigger$1.displayName = TRIGGER_NAME$1;
+var CONTENT_NAME = "TabsContent";
+var TabsContent$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeTabs, value, forceMount, children, ...contentProps } = props;
+    const context = useTabsContext(CONTENT_NAME, __scopeTabs);
+    const triggerId = makeTriggerId(context.baseId, value);
+    const contentId = makeContentId(context.baseId, value);
+    const isSelected = value === context.value;
+    const isMountAnimationPreventedRef = reactExports.useRef(isSelected);
+    reactExports.useEffect(() => {
+      const rAF = requestAnimationFrame(() => isMountAnimationPreventedRef.current = false);
+      return () => cancelAnimationFrame(rAF);
+    }, []);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || isSelected, children: ({ present }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive.div,
+      {
+        "data-state": isSelected ? "active" : "inactive",
+        "data-orientation": context.orientation,
+        role: "tabpanel",
+        "aria-labelledby": triggerId,
+        hidden: !present,
+        id: contentId,
+        tabIndex: 0,
+        ...contentProps,
+        ref: forwardedRef,
+        style: {
+          ...props.style,
+          animationDuration: isMountAnimationPreventedRef.current ? "0s" : void 0
+        },
+        children: present && children
+      }
+    ) });
+  }
+);
+TabsContent$1.displayName = CONTENT_NAME;
+function makeTriggerId(baseId, value) {
+  return `${baseId}-trigger-${value}`;
+}
+function makeContentId(baseId, value) {
+  return `${baseId}-content-${value}`;
+}
+var Root2 = Tabs$1;
+var List = TabsList$1;
+var Trigger = TabsTrigger$1;
+var Content = TabsContent$1;
+function Tabs({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Root2,
+    {
+      "data-slot": "tabs",
+      className: cn("flex flex-col gap-2", className),
+      ...props
+    }
+  );
+}
+function TabsList({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    List,
+    {
+      "data-slot": "tabs-list",
+      className: cn(
+        "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function TabsTrigger({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Trigger,
+    {
+      "data-slot": "tabs-trigger",
+      className: cn(
+        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function TabsContent({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Content,
+    {
+      "data-slot": "tabs-content",
+      className: cn("flex-1 outline-none", className),
+      ...props
     }
   );
 }
@@ -23624,6 +24090,39 @@ function useAdminRole(sessionToken) {
     },
     enabled: !!actor && !isFetching && !!sessionToken,
     staleTime: 3e5
+  });
+}
+function useAnalytics(sessionToken) {
+  const { actor, isFetching } = useActor(createActor);
+  return useQuery({
+    queryKey: ["analytics", sessionToken],
+    queryFn: async () => {
+      const empty = {
+        signalsByMarket: [],
+        notifyMeByDate: [],
+        totalNotifyMe: BigInt(0)
+      };
+      if (!actor || !sessionToken) return empty;
+      const result = await actor.getAnalytics(sessionToken);
+      if (result.__kind__ === "ok") return result.ok;
+      return empty;
+    },
+    enabled: !!actor && !isFetching && !!sessionToken,
+    staleTime: 6e4
+  });
+}
+function useAuditLog(sessionToken) {
+  const { actor, isFetching } = useActor(createActor);
+  return useQuery({
+    queryKey: ["auditLog", sessionToken],
+    queryFn: async () => {
+      if (!actor || !sessionToken) return [];
+      const result = await actor.getAuditLog(sessionToken);
+      if (result.__kind__ === "ok") return result.ok;
+      return [];
+    },
+    enabled: !!actor && !isFetching && !!sessionToken,
+    staleTime: 3e4
   });
 }
 function datetimeLocalToBigInt(value) {

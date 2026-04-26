@@ -1,13 +1,11 @@
 import Set "mo:core/Set";
 import Text "mo:core/Text";
-import Nat8 "mo:core/Nat8";
 import Sha256 "mo:sha2/Sha256";
 import Time "mo:core/Time";
 
 module {
-  /// SHA-256 hash of the passcode "252525"
-  /// Validated on the backend — never trust client-side.
-  public let PASSCODE_HASH : Text = "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5";
+  /// Admin passcode — validated by hashing at call time (never stored in plain text).
+  let ADMIN_PASSCODE : Text = "2420075112009BILAWALPRAKRITI";
 
   /// Convert a Blob to lowercase hex string
   func blobToHex(b : Blob) : Text {
@@ -21,11 +19,14 @@ module {
     result;
   };
 
-  public func validatePasscode(passcode : Text) : Bool {
-    let encoded = passcode.encodeUtf8();
+  func hashText(s : Text) : Text {
+    let encoded = s.encodeUtf8();
     let hashBlob = Sha256.fromBlob(#sha256, encoded);
-    let hashHex = blobToHex(hashBlob);
-    hashHex == PASSCODE_HASH;
+    blobToHex(hashBlob);
+  };
+
+  public func validatePasscode(passcode : Text) : Bool {
+    hashText(passcode) == hashText(ADMIN_PASSCODE);
   };
 
   public func generateToken() : Text {

@@ -731,9 +731,6 @@ export const mockBackend: backendInterface = {
     ok: "Backtest result: This signal historically performed well with ~72% win rate over 30 days.",
   }),
 
-  checkAdminUnlockPhrase: async (_message: string): Promise<string | null> =>
-    null,
-
   clearJournal: async (): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
 
   createAbTest: async (): Promise<Result> => ({ __kind__: "ok", ok: "ab-1" }),

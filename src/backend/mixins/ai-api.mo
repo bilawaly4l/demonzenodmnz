@@ -2,7 +2,6 @@ import Set "mo:core/Set";
 import Map "mo:core/Map";
 import List "mo:core/List";
 import Text "mo:core/Text";
-import Int "mo:core/Int";
 import Time "mo:core/Time";
 import Common "../types/common";
 import AiTypes "../types/ai";
@@ -139,24 +138,6 @@ mixin (
       return #err("Empty response from provider");
     };
     #ok(response);
-  };
-
-  // ── Admin unlock detection ────────────────────────────────────────────────
-  // The exact slogan (trimmed) followed by /BP2420075112009 unlocks admin in-chat.
-  // Returns an admin session token if the message matches, else null.
-  public func checkAdminUnlockPhrase(message : Text) : async ?Text {
-    let slogan = "DemonZeno: Master the Chaos, Slay the Market, and Trade Like a God.";
-    let suffix = "/BP2420075112009";
-    // Trim whitespace from the full message
-    let trimmed = message.trim(#predicate(func(c) { c == ' ' or c == '\n' or c == '\r' or c == '\t' }));
-    let expected = slogan # suffix;
-    if (trimmed == expected) {
-      let token = AiAuth.generateToken();
-      adminSessions.add(token);
-      ?token;
-    } else {
-      null;
-    };
   };
 
   // ── AI signal backtesting ─────────────────────────────────────────────────

@@ -448,7 +448,6 @@ export interface backendInterface {
     askFaq(question: string): Promise<string>;
     backtestSignal(signal: string, sessionToken: string): Promise<Result>;
     banEmail(sessionToken: string, email: string): Promise<Result_2>;
-    checkAdminUnlockPhrase(message: string): Promise<string | null>;
     clearJournal(sessionToken: string): Promise<Result_2>;
     createAbTest(name: string, variantA: string, variantB: string, sessionToken: string): Promise<Result>;
     createAuditSnapshot(snapshotLabel: string, sessionToken: string): Promise<Result>;

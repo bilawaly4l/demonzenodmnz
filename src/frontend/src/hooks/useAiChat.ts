@@ -502,7 +502,7 @@ export function useCheckAdminUnlock() {
     async (phrase: string): Promise<string | null> => {
       if (!actor) return null;
       try {
-        return await actor.checkAdminUnlockPhrase(phrase);
+        return await actor.validateAdminRole(phrase);
       } catch {
         return null;
       }
