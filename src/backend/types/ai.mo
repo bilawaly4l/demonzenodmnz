@@ -1,0 +1,41 @@
+module {
+  public type AiMode = { #Normal; #Insane };
+
+  public type ChatMessage = {
+    role      : Text;
+    content   : Text;
+    provider  : ?Text;
+    timestamp : Int;
+  };
+
+  public type AiRequest = {
+    sessionToken : Text;
+    message      : Text;
+    provider     : Text;
+    mode         : Text;
+    history      : [ChatMessage];
+  };
+
+  public type AiProviderConfig = {
+    name   : Text;
+    hasKey : Bool;
+  };
+
+  /// Trade journal entry for tracking P&L per session
+  public type JournalEntry = {
+    id         : Text;
+    signal     : Text;
+    entryPrice : Float;
+    exitPrice  : ?Float;
+    notes      : Text;
+    timestamp  : Int;
+    pnl        : ?Float;
+  };
+
+  /// Response rating: 1 = thumbs up, -1 = thumbs down
+  public type ResponseRating = {
+    messageId : Text;
+    rating    : Int;
+    timestamp : Int;
+  };
+};
