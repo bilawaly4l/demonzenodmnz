@@ -1,7 +1,7 @@
-import { c as createLucideIcon, b as useActor, r as reactExports, d as createActor, A as useAiSession, F as useSignalAccuracy, j as jsxRuntimeExports, B as Button, X, G as Menu, Z as Zap } from "./index-CV8G2ked.js";
-import { m as ue, G as Globe, o as FileText, n as ChartColumn, p as ChevronUp, T as TrendingUp, C as ChevronDown, B as Badge, l as Download, I as Input } from "./index-s_cVKIHV.js";
-import { S as Select, b as SelectTrigger, c as SelectValue, d as SelectContent, e as SelectItem, L as LogOut, T as Textarea, B as BookOpen } from "./textarea-6b6UKDDH.js";
-import { A as Award, S as Send, E as Eye } from "./send-DzxIa9Dj.js";
+import { c as createLucideIcon, b as useActor, r as reactExports, d as createActor, A as useAiSession, F as useSignalAccuracy, j as jsxRuntimeExports, B as Button, X, G as Menu, Z as Zap } from "./index-BusfRT-8.js";
+import { m as ue, G as Globe, o as FileText, n as ChartColumn, p as ChevronUp, T as TrendingUp, C as ChevronDown, B as Badge, l as Download, I as Input } from "./index-BNgp4POB.js";
+import { S as Select, b as SelectTrigger, c as SelectValue, d as SelectContent, e as SelectItem, L as LogOut, T as Textarea, B as BookOpen } from "./textarea-BIQZlGpT.js";
+import { A as Award, S as Send, L as Lock, E as Eye } from "./send-D7junR57.js";
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -109,6 +109,33 @@ const __iconNode = [
   ]
 ];
 const ThumbsUp = createLucideIcon("thumbs-up", __iconNode);
+const AI_PROVIDERS = [
+  { provider: "default", label: "Default", available: true },
+  { provider: "gemini", label: "Gemini", available: true },
+  { provider: "grok", label: "Grok (xAI)", available: true },
+  { provider: "chatgpt", label: "ChatGPT", available: true },
+  { provider: "claude", label: "Claude", available: true },
+  { provider: "perplexity", label: "Perplexity", available: true },
+  { provider: "mistral", label: "Mistral", available: true },
+  { provider: "cohere", label: "Cohere", available: true },
+  { provider: "deepseek", label: "DeepSeek", available: true },
+  { provider: "groq", label: "Groq", available: true },
+  { provider: "together", label: "Together AI", available: true },
+  { provider: "fireworks", label: "Fireworks AI", available: true },
+  { provider: "openrouter", label: "OpenRouter", available: true },
+  { provider: "replicate", label: "Replicate", available: true },
+  { provider: "huggingface", label: "HuggingFace", available: true },
+  { provider: "ai21", label: "AI21 Labs", available: true },
+  { provider: "nlpcloud", label: "NLP Cloud", available: true },
+  { provider: "anyscale", label: "Anyscale", available: true },
+  { provider: "cerebras", label: "Cerebras", available: true },
+  { provider: "sambanova", label: "SambaNova", available: true },
+  { provider: "cloudflare", label: "Cloudflare AI", available: true },
+  { provider: "novita", label: "Novita AI", available: true },
+  { provider: "moonshot", label: "Moonshot", available: true },
+  { provider: "zhipu", label: "Zhipu AI", available: true },
+  { provider: "upstage", label: "Upstage", available: true }
+];
 function useValidateAiPasscode() {
   const { actor, isFetching } = useActor(createActor);
   const [isLoading, setIsLoading] = reactExports.useState(false);
@@ -125,9 +152,9 @@ function useValidateAiPasscode() {
         const result = await actor.validateAiPasscode(passcode);
         if (false) ;
         if (result.__kind__ === "ok") {
-          const raw = result.ok;
-          const token = Array.isArray(raw) ? raw[0] : raw;
-          return { token };
+          const [token, rawMode] = result.ok;
+          const mode = rawMode === "insane" ? "insane" : "normal";
+          return { token, mode };
         }
         setError(result.err ?? "Invalid passcode. Access denied.");
         return null;
@@ -162,7 +189,7 @@ function useSendAiMessage() {
   const [isLoading, setIsLoading] = reactExports.useState(false);
   const [error, setError] = reactExports.useState(null);
   const send = reactExports.useCallback(
-    async (token, message, messages) => {
+    async (token, message, provider, mode, messages) => {
       setIsLoading(true);
       setError(null);
       try {
@@ -170,27 +197,31 @@ function useSendAiMessage() {
           const chatHistory = messages.slice(-50).map((m) => ({
             role: m.role === "user" ? "user" : "assistant",
             content: m.content,
-            timestamp: BigInt(m.timestamp)
+            timestamp: BigInt(m.timestamp),
+            provider: m.provider
           }));
           const result = await actor.sendAiMessage(
             token,
             message,
-            "default",
+            provider,
+            mode,
             chatHistory
           );
           if (result.__kind__ === "ok" && result.ok) {
             return {
               role: "assistant",
               content: result.ok,
+              provider,
               timestamp: Date.now(),
               messageId: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`
             };
           }
         }
-        const responseText = getFallbackResponse(message);
+        const responseText = getFallbackResponse(message, mode, provider);
         return {
           role: "assistant",
           content: responseText,
+          provider,
           timestamp: Date.now(),
           messageId: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`
         };
@@ -205,34 +236,65 @@ function useSendAiMessage() {
   );
   return { send, isLoading, error, clearError: () => setError(null) };
 }
-function getFallbackResponse(message) {
+function getFallbackResponse(message, mode, provider) {
+  var _a;
   const lowerMsg = message.toLowerCase();
+  const providerLabel = ((_a = AI_PROVIDERS.find((p) => p.provider === provider)) == null ? void 0 : _a.label) ?? "DemonZeno";
   if (lowerMsg.includes("btc") || lowerMsg.includes("bitcoin") || lowerMsg.includes("signal") || lowerMsg.includes("trade")) {
-    return "**DemonZeno AI — Signal Analysis 📊**\n\n**BTC/USDT — LONG 🚀**\n• Entry Zone: $67,200 – $67,500\n• TP1: $69,800 (+3.9%)\n• TP2: $72,400 (+7.7%)\n• TP3: $75,000 (+11.5%)\n• Stop Loss: $65,900 (-2%)\n• Timeframe: 4H–1D\n• Confidence: HIGH\n\n_Always manage your risk. Not financial advice._";
+    if (mode === "insane") {
+      return `**${providerLabel} — INSANE MODE SIGNAL 🔥**
+
+**BTC/USDT — LONG 🚀**
+• Entry: $67,200 – $67,500
+• TP1: $69,800 (+3.9%)
+• TP2: $72,400 (+7.7%)
+• TP3: $75,000 (+11.5%)
+• Stop Loss: $65,900 (-2%)
+• Timeframe: 4H–1D
+• Confidence: HIGH
+• Leverage: 5–10x (manage risk)
+
+_This is aggressive analysis. Manage your position size. No financial advice._`;
+    }
+    return `**${providerLabel} — Trading Signal 📊**
+
+**BTC/USDT — LONG (Binance)**
+• Entry Zone: $67,200 – $67,500
+• TP1: $69,000 (+2.7%)
+• TP2: $71,500 (+6.4%)
+• TP3: $74,200 (+10.4%)
+• Stop Loss: $65,900 (-2%)
+• Timeframe: 4H
+• Confidence: Medium
+• Source: Technical Analysis
+
+_Always use proper risk management. This is not financial advice._`;
   }
   if (lowerMsg.includes("eth") || lowerMsg.includes("ethereum")) {
-    return "**DemonZeno AI — ETH/USDT Signal 📈**\n\n• Direction: LONG\n• Entry: $3,450 – $3,480\n• TP1: $3,600 (+4.3%)\n• TP2: $3,750 (+8.7%)\n• TP3: $4,000 (+15.9%)\n• Stop Loss: $3,320 (-3.8%)\n• Timeframe: 1D\n• Confidence: Medium\n\n_DYOR. Not financial advice._";
+    return `**${providerLabel} — ETH/USDT Signal 📈**
+
+• Direction: LONG
+• Entry: $3,450 – $3,480
+• TP1: $3,600 (+4.3%)
+• TP2: $3,750 (+8.7%)
+• TP3: $4,000 (+15.9%)
+• Stop Loss: $3,320 (-3.8%)
+• Timeframe: 1D
+• Confidence: Medium
+
+_Binance spot & futures. DYOR._`;
   }
-  if (lowerMsg.includes("forex") || lowerMsg.includes("eur") || lowerMsg.includes("usd")) {
-    return "**DemonZeno AI — Forex Signal 📈**\n\n**EUR/USD — LONG**\n• Entry: 1.0850 – 1.0860\n• TP1: 1.0920 (+0.65%)\n• TP2: 1.0980 (+1.20%)\n• TP3: 1.1050 (+1.84%)\n• Stop Loss: 1.0800 (-0.46%)\n• Timeframe: 4H\n• Confidence: Medium\n\n_Risk management is key. Not financial advice._";
-  }
-  if (lowerMsg.includes("code") || lowerMsg.includes("function") || lowerMsg.includes("script")) {
-    return "**DemonZeno AI — Code Assistant 💻**\n\nI can help you write code in JavaScript, TypeScript, Python, Rust, and more. What would you like me to build?\n\nJust describe the function, script, or component you need and I'll provide working code.\n\n_Powered by DemonZeno AI — Master the Chaos._";
-  }
-  return `**DemonZeno AI — Ready to Trade 🔥**
+  return `**DemonZeno AI — ${mode === "insane" ? "INSANE MODE 🔥" : "Normal Mode"}**
 
-I'm your all-in-one AI powered by 50+ providers, silently routing to the best model for your request.
+I'm analyzing your request: "${message}"
 
-I can handle:
-• Trading signals — crypto, forex, stocks (Entry · TP1 · TP2 · TP3 · Stop Loss)
-• Market analysis and trend breakdowns
-• Code writing in any language
-• General knowledge and Q&A
-• Signal backtesting and trade journaling
+For best results, ask me about:
+• Specific trading pairs (BTC/USDT, ETH/USDT, etc.)
+• Entry/exit signals with 3 targets and stop-loss
+• Market analysis and trends
+• Risk management strategies${mode === "insane" ? "\n• Any asset on any exchange — no restrictions" : "\n• Binance-listed assets"}
 
-Just ask me anything.
-
-_Master the Chaos, Slay the Market, Trade Like a God._`;
+_Powered by ${providerLabel}. Master the chaos, trade like a god._`;
 }
 const LANGUAGE_LABELS = {
   en: "🇬🇧 EN",
@@ -274,7 +336,8 @@ function extractSignalData(content) {
   if (!entry && !tp1) return null;
   return { asset, entry, tp1, tp2, tp3, sl, timeframe, confidence };
 }
-function exportAiSignalCard(content, signal) {
+function exportAiSignalCard(content, provider, mode, signal) {
+  var _a;
   const canvas = document.createElement("canvas");
   canvas.width = 640;
   canvas.height = 460;
@@ -283,21 +346,26 @@ function exportAiSignalCard(content, signal) {
   ctx.fillStyle = "#0e0f14";
   ctx.fillRect(0, 0, 640, 460);
   const grad = ctx.createLinearGradient(0, 0, 640, 0);
-  grad.addColorStop(0, "#2dd4bf");
-  grad.addColorStop(1, "#38bdf8");
+  grad.addColorStop(0, "oklch(0.65 0.15 190 / 1)");
+  grad.addColorStop(1, "oklch(0.5 0.18 210 / 1)");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 640, 7);
+  if (mode === "insane") {
+    ctx.fillStyle = "#7f1d1d";
+    ctx.fillRect(0, 453, 640, 7);
+  }
   ctx.font = "bold 24px 'Space Grotesk', sans-serif";
   ctx.fillStyle = "#38bdf8";
   ctx.fillText("Demon", 28, 50);
   ctx.fillStyle = "#2dd4bf";
   ctx.fillText("Zeno", 116, 50);
   ctx.font = "bold 11px 'DM Sans', sans-serif";
-  ctx.fillStyle = "#ef4444";
-  ctx.fillText("AI", 188, 46);
+  ctx.fillStyle = mode === "insane" ? "#ef4444" : "#2dd4bf";
+  ctx.fillText(mode.toUpperCase(), 190, 46);
+  const provLabel = ((_a = AI_PROVIDERS.find((p) => p.provider === provider)) == null ? void 0 : _a.label) ?? provider;
   ctx.font = "11px 'DM Sans', sans-serif";
   ctx.fillStyle = "#6b7280";
-  ctx.fillText("Powered by 50+ AI Providers", 28, 68);
+  ctx.fillText(`via ${provLabel}`, 28, 68);
   ctx.strokeStyle = "#1e2030";
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -395,7 +463,7 @@ function exportAiSignalCard(content, signal) {
   ctx.fillText("DZ·QR", 584, 402);
   ctx.textAlign = "left";
   ctx.save();
-  ctx.globalAlpha = 0.08;
+  ctx.globalAlpha = 0.1;
   ctx.font = "bold 52px 'Space Grotesk', sans-serif";
   ctx.fillStyle = "#2dd4bf";
   ctx.translate(320, 370);
@@ -502,9 +570,11 @@ function ConfidenceMeter({ pct }) {
 function InlineSignalCard({
   signal,
   index,
+  mode,
   onBacktest,
   onLogTrade
 }) {
+  const accentColor = mode === "insane" ? "oklch(0.7 0.2 22)" : "oklch(0.65 0.15 190)";
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
@@ -517,17 +587,10 @@ function InlineSignalCard({
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-2 mb-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "span",
-              {
-                className: "text-xs font-bold",
-                style: { color: "oklch(0.65 0.15 190)" },
-                children: [
-                  "📊 ",
-                  signal.asset || "SIGNAL"
-                ]
-              }
-            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs font-bold", style: { color: accentColor }, children: [
+              "📊 ",
+              signal.asset || "SIGNAL"
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "span",
               {
@@ -586,6 +649,19 @@ function InlineSignalCard({
     }
   );
 }
+function ModeBadge({ mode, onClick }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "button",
+    {
+      type: "button",
+      "data-ocid": "ai_chat.mode.toggle",
+      onClick,
+      className: mode === "insane" ? "badge-mode-insane cursor-pointer hover:opacity-80 transition-opacity" : "badge-mode-normal cursor-pointer hover:opacity-80 transition-opacity",
+      "aria-label": `Switch to ${mode === "normal" ? "Insane" : "Normal"} mode`,
+      children: mode === "normal" ? "NORMAL" : "INSANE 🔥"
+    }
+  );
+}
 function TypingIndicator() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-3", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-9 h-9 rounded-full overflow-hidden shrink-0 border border-border bg-card", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -603,6 +679,18 @@ function TypingIndicator() {
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "typing-dot" })
     ] }) })
   ] });
+}
+function StatusDot({ available }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "span",
+    {
+      className: "inline-block w-2 h-2 rounded-full shrink-0 mr-1.5",
+      style: {
+        background: available ? "oklch(0.7 0.18 145)" : "oklch(0.45 0.01 260)"
+      },
+      "aria-hidden": "true"
+    }
+  );
 }
 function AccuracyPanel({ onClose }) {
   const { stats, signals } = useSignalAccuracy();
@@ -1022,12 +1110,17 @@ function DailyBriefingBanner({ briefing }) {
 function MessageBubble({
   message,
   index,
+  mode,
   onRate,
   onBacktest,
   onLogTrade
 }) {
+  var _a;
   const isUser = message.role === "user";
   const { markWin, markLoss } = useSignalAccuracy();
+  const providerLabel = (_a = AI_PROVIDERS.find(
+    (p) => p.provider === message.provider
+  )) == null ? void 0 : _a.label;
   const signalData = !isUser ? extractSignalData(message.content) : null;
   const signalId = message.signalId;
   const msgId = message.messageId ?? `msg-${message.timestamp}`;
@@ -1036,7 +1129,12 @@ function MessageBubble({
     ue.success("Copied to clipboard");
   }
   function handleExport() {
-    exportAiSignalCard(message.content, signalData ?? void 0);
+    exportAiSignalCard(
+      message.content,
+      message.provider ?? "default",
+      mode,
+      signalData ?? void 0
+    );
     triggerConfetti();
     ue.success("Signal card exported! 🎉");
   }
@@ -1070,17 +1168,7 @@ function MessageBubble({
         ) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1 min-w-0 flex-1", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-wrap", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "span",
-              {
-                className: "text-xs font-semibold px-2 py-0.5 rounded",
-                style: {
-                  background: "oklch(0.65 0.15 190 / 0.12)",
-                  color: "oklch(0.72 0.14 190)"
-                },
-                children: "DemonZeno AI"
-              }
-            ),
+            providerLabel && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-semibold px-2 py-0.5 rounded self-start bg-primary/15 text-primary", children: providerLabel }),
             signalData && /* @__PURE__ */ jsxRuntimeExports.jsx(
               Badge,
               {
@@ -1116,6 +1204,7 @@ function MessageBubble({
             {
               signal: signalData,
               index,
+              mode,
               onBacktest,
               onLogTrade
             }
@@ -1187,45 +1276,42 @@ function MessageBubble({
     }
   );
 }
-function EmptyState({ onSuggestion }) {
-  const suggestions = [
-    "BTC/USDT signal with 3 TPs",
-    "ETH long or short analysis",
-    "EUR/USD forex signal",
-    "AAPL stock entry & exit",
-    "Write me a Python script",
-    "Top crypto plays today"
+function EmptyState({
+  isInsane,
+  onSuggestion
+}) {
+  const suggestions = isInsane ? [
+    "BTC 10x leverage signal",
+    "Best altcoins right now",
+    "Short TSLA setup",
+    "SOL entry for tonight"
+  ] : [
+    "BTC/USDT signal",
+    "ETH long or short?",
+    "Top Binance plays today",
+    "Scalp setup for SOL"
   ];
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
       "data-ocid": "ai_chat.empty_state",
-      className: "flex flex-col items-center justify-center py-14 gap-5 text-center",
+      className: "flex flex-col items-center justify-center py-16 gap-5 text-center",
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            className: "w-20 h-20 rounded-2xl flex items-center justify-center",
-            style: {
-              background: "oklch(0.65 0.15 190 / 0.10)",
-              border: "1px solid oklch(0.65 0.15 190 / 0.25)",
-              boxShadow: "0 0 30px oklch(0.65 0.15 190 / 0.15)"
-            },
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Zap,
-              {
-                className: "w-10 h-10",
-                style: { color: "oklch(0.65 0.15 190)" },
-                strokeWidth: 2
-              }
-            )
-          }
-        ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-bold text-xl text-foreground", children: "DemonZeno AI — Ready" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm mt-1.5 max-w-sm leading-relaxed", children: "Powered by 50+ AI providers silently working in the background. Ask for signals, analysis, code, or anything else." })
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-20 h-20 rounded-2xl flex items-center justify-center bg-primary/[0.12] border border-primary/30", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-10 h-10 text-primary", strokeWidth: 2 }) }),
+          isInsane && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute -top-1 -right-1 w-4 h-4 rounded-full animate-pulse bg-destructive",
+              "aria-hidden": "true"
+            }
+          )
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2 justify-center max-w-sm", children: suggestions.map((q) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-bold text-xl text-foreground", children: "DemonZeno AI is ready" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm mt-1 max-w-sm", children: isInsane ? "INSANE MODE — Unrestricted signals for any asset on any exchange." : "Ask for trading signals with 3 TPs, stop loss & entry. Binance-listed assets." })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2 justify-center", children: suggestions.map((q) => /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",
           {
             type: "button",
@@ -1236,22 +1322,30 @@ function EmptyState({ onSuggestion }) {
           q
         )) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground max-w-xs", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary/80 font-semibold", children: "Signals include:" }),
-          " ",
-          "Entry · TP1 · TP2 · TP3 · Stop Loss · Confidence meter"
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary/80 font-semibold", children: "Tip:" }),
+          " Signals include Entry · TP1 · TP2 · TP3 · Stop Loss with Confidence meter"
         ] })
       ]
     }
   );
 }
 function AiChatInterface() {
-  const { aiSessionToken, clearAiSession, aiLanguage, setAiLanguage } = useAiSession();
+  const {
+    aiSessionToken,
+    clearAiSession,
+    aiMode,
+    setAiMode,
+    aiLanguage,
+    setAiLanguage
+  } = useAiSession();
   const { invalidate } = useInvalidateAiSession();
   const { send, isLoading } = useSendAiMessage();
   const { actor } = useActor(createActor);
   const { addAiSignal } = useSignalAccuracy();
   const [messages, setMessages] = reactExports.useState([]);
   const [input, setInput] = reactExports.useState("");
+  const [provider, setProvider] = reactExports.useState("default");
+  const [providerStatuses, setProviderStatuses] = reactExports.useState(/* @__PURE__ */ new Map());
   const [showAccuracy, setShowAccuracy] = reactExports.useState(false);
   const [showJournal, setShowJournal] = reactExports.useState(false);
   const [showFaq, setShowFaq] = reactExports.useState(false);
@@ -1265,6 +1359,17 @@ function AiChatInterface() {
   const scrollRef = reactExports.useRef(null);
   const textareaRef = reactExports.useRef(null);
   const messageCount = messages.length;
+  reactExports.useEffect(() => {
+    if (!actor) return;
+    actor.getAiProviderStatus().then((statuses) => {
+      const map = /* @__PURE__ */ new Map();
+      for (const [prov, available] of statuses) {
+        map.set(prov, available);
+      }
+      setProviderStatuses(map);
+    }).catch(() => {
+    });
+  }, [actor]);
   reactExports.useEffect(() => {
     if (!actor) return;
     actor.getDailyBriefing().then((briefing) => {
@@ -1362,7 +1467,8 @@ ${result.ok}`,
       const history = messages.map((m) => ({
         role: m.role,
         content: m.content,
-        timestamp: BigInt(m.timestamp)
+        timestamp: BigInt(m.timestamp),
+        provider: m.provider
       }));
       const result = await actor.getSessionRecap(history, aiSessionToken);
       if (result.__kind__ === "ok") {
@@ -1397,6 +1503,7 @@ ${result.ok}`,
     const userMsg = {
       role: "user",
       content: text,
+      // Show original, not suffixed
       timestamp: Date.now()
     };
     setMessages((prev) => [...prev, userMsg]);
@@ -1405,7 +1512,13 @@ ${result.ok}`,
       ...messages,
       { ...userMsg, content: messageWithLang }
     ];
-    const reply = await send(aiSessionToken, messageWithLang, historyWithLang);
+    const reply = await send(
+      aiSessionToken,
+      messageWithLang,
+      provider,
+      aiMode ?? "normal",
+      historyWithLang
+    );
     if (reply) {
       const sigData = extractSignalData(reply.content);
       let signalId;
@@ -1419,7 +1532,7 @@ ${result.ok}`,
           sl: sigData.sl,
           timeframe: sigData.timeframe,
           confidence: `${sigData.confidence}%`,
-          provider: "DemonZeno AI"
+          provider: reply.provider ?? "default"
         });
       }
       const newMsg = {
@@ -1433,6 +1546,8 @@ ${result.ok}`,
     input,
     isLoading,
     aiSessionToken,
+    provider,
+    aiMode,
     aiLanguage,
     messages,
     send,
@@ -1455,13 +1570,24 @@ ${result.ok}`,
     setMessages([]);
     (_a = textareaRef.current) == null ? void 0 : _a.focus();
   }
+  function toggleMode() {
+    setAiMode(aiMode === "normal" ? "insane" : "normal");
+  }
+  const isInsane = aiMode === "insane";
+  const enrichedProviders = AI_PROVIDERS.map((p) => ({
+    ...p,
+    available: providerStatuses.has(p.provider) ? providerStatuses.get(p.provider) ?? false : p.available
+  }));
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
         "data-ocid": "ai_chat.panel",
         className: "flex flex-col",
-        style: { height: "100dvh", background: "oklch(0.145 0.01 260)" },
+        style: {
+          height: "100dvh",
+          background: isInsane ? "linear-gradient(180deg, oklch(0.145 0.01 260) 0%, oklch(0.16 0.02 22) 100%)" : "oklch(0.145 0.01 260)"
+        },
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "header",
@@ -1480,43 +1606,16 @@ ${result.ok}`,
                     }
                   ) }),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                      "h1",
-                      {
-                        className: "font-display font-bold text-sm leading-none truncate",
-                        style: { color: "oklch(0.97 0.005 260)" },
-                        children: [
-                          "Demon",
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.65 0.15 190)" }, children: "Zeno" }),
-                          " ",
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.65 0.15 190 / 0.7)" }, children: "AI" })
-                        ]
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground leading-none mt-0.5", children: "50+ providers · Auto-routing" })
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("h1", { className: "font-display font-bold text-sm leading-none text-foreground truncate", children: [
+                      "Demon",
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Zeno" }),
+                      " ",
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-muted-foreground font-normal", children: "AI" })
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground leading-none mt-0.5", children: "25+ AI providers" })
                   ] })
                 ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1.5 ml-1 shrink-0", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  "span",
-                  {
-                    className: "inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full font-medium",
-                    style: {
-                      background: "oklch(0.65 0.15 190 / 0.12)",
-                      color: "oklch(0.72 0.14 190)",
-                      border: "1px solid oklch(0.65 0.15 190 / 0.25)"
-                    },
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "span",
-                        {
-                          className: "w-1.5 h-1.5 rounded-full animate-pulse inline-block",
-                          style: { background: "oklch(0.65 0.15 190)" }
-                        }
-                      ),
-                      "LIVE"
-                    ]
-                  }
-                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1 ml-1 shrink-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ModeBadge, { mode: aiMode ?? "normal", onClick: toggleMode }) }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "hidden md:flex items-center gap-1.5 ml-auto shrink-0", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsxs(Select, { value: aiLanguage, onValueChange: handleLanguageChange, children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -1532,6 +1631,35 @@ ${result.ok}`,
                     ),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: Object.entries(LANGUAGE_LABELS).map(([code, label]) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: code, className: "text-xs", children: label }, code)) })
                   ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Select,
+                    {
+                      value: provider,
+                      onValueChange: (v) => setProvider(v),
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          SelectTrigger,
+                          {
+                            "data-ocid": "ai_chat.provider.select",
+                            className: "h-8 text-xs w-36 bg-background border-border",
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "AI Provider" })
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: enrichedProviders.map((p) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          SelectItem,
+                          {
+                            value: p.provider,
+                            className: "text-xs",
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(StatusDot, { available: p.available }),
+                              p.label
+                            ] })
+                          },
+                          p.provider
+                        )) })
+                      ]
+                    }
+                  ),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     Button,
                     {
@@ -1620,30 +1748,64 @@ ${result.ok}`,
             }
           ),
           mobileToolbarOpen && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "md:hidden flex flex-col gap-2 px-3 py-2.5 bg-card border-b border-border shrink-0", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Select,
-              {
-                value: aiLanguage,
-                onValueChange: (v) => {
-                  handleLanguageChange(v);
-                  setMobileToolbarOpen(false);
-                },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    SelectTrigger,
-                    {
-                      "data-ocid": "ai_chat.language.select.mobile",
-                      className: "h-8 text-xs flex-1 bg-background border-border",
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Globe, { className: "w-3 h-3 mr-1" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {})
-                      ]
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: Object.entries(LANGUAGE_LABELS).map(([code, label]) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: code, className: "text-xs", children: label }, code)) })
-                ]
-              }
-            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Select,
+                {
+                  value: aiLanguage,
+                  onValueChange: (v) => {
+                    handleLanguageChange(v);
+                    setMobileToolbarOpen(false);
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      SelectTrigger,
+                      {
+                        "data-ocid": "ai_chat.language.select",
+                        className: "h-8 text-xs flex-1 bg-background border-border",
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Globe, { className: "w-3 h-3 mr-1" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {})
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: Object.entries(LANGUAGE_LABELS).map(([code, label]) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: code, className: "text-xs", children: label }, code)) })
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Select,
+                {
+                  value: provider,
+                  onValueChange: (v) => {
+                    setProvider(v);
+                    setMobileToolbarOpen(false);
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      SelectTrigger,
+                      {
+                        "data-ocid": "ai_chat.provider.select",
+                        className: "h-8 text-xs flex-1 bg-background border-border",
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Provider" })
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: enrichedProviders.map((p) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      SelectItem,
+                      {
+                        value: p.provider,
+                        className: "text-xs",
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(StatusDot, { available: p.available }),
+                          p.label
+                        ] })
+                      },
+                      p.provider
+                    )) })
+                  ]
+                }
+              )
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1 flex-wrap", children: [
               {
                 icon: Award,
@@ -1652,7 +1814,7 @@ ${result.ok}`,
                   setShowAccuracy((v) => !v);
                   setMobileToolbarOpen(false);
                 },
-                ocid: "ai_chat.accuracy.toggle.mobile"
+                ocid: "ai_chat.accuracy.toggle"
               },
               {
                 icon: FileText,
@@ -1661,7 +1823,7 @@ ${result.ok}`,
                   setShowJournal((v) => !v);
                   setMobileToolbarOpen(false);
                 },
-                ocid: "ai_chat.journal.toggle.mobile"
+                ocid: "ai_chat.journal.toggle"
               },
               {
                 icon: Lightbulb,
@@ -1670,7 +1832,7 @@ ${result.ok}`,
                   setShowFaq((v) => !v);
                   setMobileToolbarOpen(false);
                 },
-                ocid: "ai_chat.faq.toggle.mobile"
+                ocid: "ai_chat.faq.toggle"
               },
               {
                 icon: ChartColumn,
@@ -1679,7 +1841,7 @@ ${result.ok}`,
                   handleSessionRecap();
                   setMobileToolbarOpen(false);
                 },
-                ocid: "ai_chat.recap.button.mobile"
+                ocid: "ai_chat.recap.button"
               },
               {
                 icon: RotateCcw,
@@ -1688,13 +1850,13 @@ ${result.ok}`,
                   clearChat();
                   setMobileToolbarOpen(false);
                 },
-                ocid: "ai_chat.clear_button.mobile"
+                ocid: "ai_chat.clear_button"
               },
               {
                 icon: LogOut,
                 label: "Logout",
                 action: handleLogout,
-                ocid: "ai_chat.logout_button.mobile"
+                ocid: "ai_chat.logout_button"
               }
             ].map(({ icon: Icon, label, action, ocid }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
               Button,
@@ -1729,12 +1891,19 @@ ${result.ok}`,
               ref: scrollRef,
               className: "flex-1 overflow-y-auto px-3 md:px-4 py-6",
               children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-3xl mx-auto flex flex-col gap-5", children: [
-                messages.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(EmptyState, { onSuggestion: (q) => setInput(q) }),
+                messages.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  EmptyState,
+                  {
+                    isInsane,
+                    onSuggestion: (q) => setInput(q)
+                  }
+                ),
                 messages.map((msg, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                   MessageBubble,
                   {
                     message: msg,
                     index: i + 1,
+                    mode: aiMode ?? "normal",
                     onRate: handleRate,
                     onBacktest: handleBacktest,
                     onLogTrade: (signal) => setLogTradeSignal(signal)
@@ -1755,7 +1924,7 @@ ${result.ok}`,
                   value: input,
                   onChange: (e) => setInput(e.target.value),
                   onKeyDown: handleKeyDown,
-                  placeholder: "Ask for a signal, market analysis, code, or anything… (Enter to send)",
+                  placeholder: isInsane ? "Ask anything — no restrictions…" : "Ask for a Binance signal… (Enter to send)",
                   rows: 1,
                   className: "resize-none min-h-[44px] max-h-32 bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary text-sm leading-relaxed"
                 }
@@ -1772,7 +1941,7 @@ ${result.ok}`,
                 }
               )
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs text-center mt-1.5", children: "DemonZeno AI may be wrong. Always do your own research. Not financial advice." })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs text-center mt-1.5", children: isInsane ? "⚡ INSANE MODE: Unrestricted AI — No financial advice. Trade at your own risk." : "DemonZeno AI may be wrong. Always do your own research. Not financial advice." })
           ] })
         ]
       }
@@ -1797,27 +1966,29 @@ ${result.ok}`,
 function AiPasswordEntry() {
   const [passcode, setPasscode] = reactExports.useState("");
   const [showPass, setShowPass] = reactExports.useState(false);
-  const [unlocked, setUnlocked] = reactExports.useState(false);
+  const [successMode, setSuccessMode] = reactExports.useState(null);
   const { validate, isLoading, error, clearError } = useValidateAiPasscode();
-  const { setAiSessionToken } = useAiSession();
+  const { setSession } = useAiSession();
   async function handleSubmit(e) {
     e.preventDefault();
     if (!passcode.trim()) return;
     const result = await validate(passcode.trim());
     if (result) {
-      setUnlocked(true);
+      setSuccessMode(result.mode);
       setTimeout(() => {
-        setAiSessionToken(result.token);
-      }, 700);
+        setSession(result.token, result.mode);
+      }, 600);
     }
   }
+  const isInsaneSuccess = successMode === "insane";
+  const glowColor = isInsaneSuccess ? "oklch(0.55 0.22 25 / 0.25)" : "oklch(0.65 0.15 190 / 0.18)";
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
       "data-ocid": "ai_password.panel",
-      className: "min-h-screen flex items-center justify-center px-4 relative overflow-hidden",
+      className: "min-h-screen flex items-center justify-center px-4",
       style: {
-        background: "linear-gradient(135deg, oklch(0.12 0.015 260) 0%, oklch(0.16 0.025 200) 50%, oklch(0.12 0.015 260) 100%)"
+        background: "linear-gradient(135deg, oklch(0.145 0.01 260) 0%, oklch(0.18 0.02 200) 50%, oklch(0.145 0.01 260) 100%)"
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -1825,30 +1996,20 @@ function AiPasswordEntry() {
           {
             className: "absolute inset-0 pointer-events-none",
             style: {
-              background: unlocked ? "radial-gradient(ellipse 70% 50% at 50% 50%, oklch(0.65 0.15 190 / 0.22), transparent)" : "radial-gradient(ellipse 60% 40% at 50% 50%, oklch(0.65 0.15 190 / 0.10), transparent)",
-              transition: "background 0.6s ease"
+              background: `radial-gradient(ellipse 60% 40% at 50% 50%, ${glowColor}, transparent)`,
+              transition: "background 0.5s ease"
             }
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            className: "absolute inset-0 pointer-events-none opacity-[0.04]",
-            style: {
-              backgroundImage: "linear-gradient(oklch(0.65 0.15 190) 1px, transparent 1px), linear-gradient(90deg, oklch(0.65 0.15 190) 1px, transparent 1px)",
-              backgroundSize: "48px 48px"
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative w-full max-w-md z-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-6", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative w-full max-w-md", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-6", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
-              className: "relative w-28 h-28 rounded-2xl overflow-hidden",
+              className: "relative w-32 h-32 overflow-hidden rounded-2xl shadow-elevated",
               style: {
-                border: unlocked ? "2px solid oklch(0.65 0.15 190 / 0.8)" : "2px solid oklch(0.65 0.15 190 / 0.35)",
-                boxShadow: unlocked ? "0 0 40px oklch(0.65 0.15 190 / 0.4), 0 0 80px oklch(0.65 0.15 190 / 0.15)" : "0 0 20px oklch(0.65 0.15 190 / 0.1)",
-                transition: "all 0.5s ease"
+                border: isInsaneSuccess ? "2px solid oklch(0.55 0.22 25 / 0.7)" : "2px solid oklch(0.65 0.15 190 / 0.4)",
+                boxShadow: successMode ? `0 0 32px ${glowColor}` : void 0,
+                transition: "border-color 0.4s ease, box-shadow 0.4s ease"
               },
               children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "img",
@@ -1856,7 +2017,7 @@ function AiPasswordEntry() {
                   src: "/assets/demonzeno-character.png",
                   alt: "DemonZeno AI",
                   className: "w-full object-cover object-top",
-                  style: { height: "115%" }
+                  style: { height: "115%", objectPosition: "top center" }
                 }
               )
             }
@@ -1865,11 +2026,8 @@ function AiPasswordEntry() {
             /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "h1",
               {
-                className: "font-display font-bold text-4xl tracking-tight",
-                style: {
-                  color: "oklch(0.97 0.005 260)",
-                  textShadow: "0 0 32px oklch(0.65 0.15 190 / 0.5)"
-                },
+                className: "font-display font-bold text-3xl text-glow",
+                style: { color: "oklch(0.95 0.005 260)" },
                 children: [
                   "Demon",
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.65 0.15 190)" }, children: "Zeno" }),
@@ -1881,53 +2039,61 @@ function AiPasswordEntry() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "p",
               {
-                className: "text-sm mt-2 font-medium",
-                style: { color: "oklch(0.55 0.08 190)" },
-                children: "Master the Market with AI Power"
+                style: { color: "oklch(0.55 0.01 260)" },
+                className: "text-sm mt-1",
+                children: "Password-protected. Authorized users only."
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2 justify-center", children: [
-            "Trading Signals",
-            "Forex & Stocks",
-            "Code Writing",
-            "Market Analysis",
-            "50+ AI Providers"
-          ].map((cap) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "span",
-            {
-              className: "text-xs px-2.5 py-1 rounded-full",
-              style: {
-                background: "oklch(0.65 0.15 190 / 0.08)",
-                border: "1px solid oklch(0.65 0.15 190 / 0.2)",
-                color: "oklch(0.65 0.15 190 / 0.85)"
-              },
-              children: cap
-            },
-            cap
-          )) }),
-          unlocked && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          successMode && /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
               className: "w-full rounded-xl px-4 py-3 text-center font-semibold text-sm animate-pulse",
               style: {
-                background: "oklch(0.65 0.15 190 / 0.15)",
-                border: "1px solid oklch(0.65 0.15 190 / 0.5)",
-                color: "oklch(0.75 0.15 190)"
+                background: isInsaneSuccess ? "oklch(0.55 0.22 25 / 0.2)" : "oklch(0.65 0.15 190 / 0.15)",
+                border: `1px solid ${isInsaneSuccess ? "oklch(0.55 0.22 25 / 0.5)" : "oklch(0.65 0.15 190 / 0.4)"}`,
+                color: isInsaneSuccess ? "oklch(0.7 0.2 25)" : "oklch(0.75 0.15 190)"
               },
-              children: "⚡ DemonZeno AI Unlocked — Entering…"
+              children: isInsaneSuccess ? "🔥 INSANE Mode Unlocked — Entering…" : "✅ Normal Mode Unlocked — Entering…"
             }
           ),
-          !unlocked && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          !successMode && /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "div",
             {
-              className: "w-full rounded-2xl p-7",
+              className: "w-full rounded-2xl p-8",
               style: {
-                background: "oklch(0.16 0.015 260)",
-                border: "1px solid oklch(0.26 0.015 260)",
-                boxShadow: "0 32px 80px oklch(0 0 0 / 0.5), inset 0 1px 0 oklch(1 0 0 / 0.03)"
+                background: "oklch(0.18 0.01 260)",
+                border: "1px solid oklch(0.28 0.01 260)",
+                boxShadow: "0 32px 64px oklch(0 0 0 / 0.4)"
               },
               children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-6", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      className: "w-8 h-8 rounded-lg flex items-center justify-center",
+                      style: {
+                        background: "oklch(0.65 0.15 190 / 0.15)",
+                        border: "1px solid oklch(0.65 0.15 190 / 0.3)"
+                      },
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Lock,
+                        {
+                          className: "w-4 h-4",
+                          style: { color: "oklch(0.65 0.15 190)" }
+                        }
+                      )
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      className: "font-display font-semibold",
+                      style: { color: "oklch(0.95 0.005 260)" },
+                      children: "Enter Access Code"
+                    }
+                  )
+                ] }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "flex flex-col gap-4", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -1940,11 +2106,11 @@ function AiPasswordEntry() {
                           setPasscode(e.target.value);
                           if (error) clearError();
                         },
-                        placeholder: "Enter passcode…",
-                        className: "pr-10 h-12 text-base",
+                        placeholder: "Enter access code…",
+                        className: "pr-10",
                         style: {
-                          background: "oklch(0.12 0.01 260)",
-                          border: "1px solid oklch(0.28 0.015 260)",
+                          background: "oklch(0.145 0.01 260)",
+                          border: "1px solid oklch(0.28 0.01 260)",
                           color: "oklch(0.95 0.005 260)"
                         },
                         autoFocus: true,
@@ -1957,7 +2123,7 @@ function AiPasswordEntry() {
                         type: "button",
                         onClick: () => setShowPass((v) => !v),
                         className: "absolute right-3 top-1/2 -translate-y-1/2 transition-colors",
-                        style: { color: "oklch(0.50 0.01 260)" },
+                        style: { color: "oklch(0.55 0.01 260)" },
                         "aria-label": showPass ? "Hide passcode" : "Show passcode",
                         children: showPass ? /* @__PURE__ */ jsxRuntimeExports.jsx(EyeOff, { className: "w-4 h-4" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Eye, { className: "w-4 h-4" })
                       }
@@ -1969,8 +2135,8 @@ function AiPasswordEntry() {
                       "data-ocid": "ai_password.error_state",
                       className: "text-sm font-medium px-3 py-2 rounded-lg",
                       style: {
-                        background: "oklch(0.55 0.22 25 / 0.12)",
-                        color: "oklch(0.72 0.18 25)",
+                        background: "oklch(0.55 0.22 25 / 0.15)",
+                        color: "oklch(0.7 0.2 25)",
                         border: "1px solid oklch(0.55 0.22 25 / 0.3)"
                       },
                       children: error
@@ -1982,20 +2148,13 @@ function AiPasswordEntry() {
                       "data-ocid": "ai_password.submit_button",
                       type: "submit",
                       disabled: isLoading || !passcode.trim(),
-                      className: "h-12 font-semibold text-base rounded-xl w-full",
-                      style: {
-                        background: isLoading ? "oklch(0.45 0.12 190)" : "linear-gradient(135deg, oklch(0.55 0.15 190) 0%, oklch(0.48 0.18 200) 100%)",
-                        color: "oklch(0.98 0.005 260)",
-                        border: "none",
-                        boxShadow: "0 4px 24px oklch(0.55 0.15 190 / 0.35)",
-                        transition: "all 0.2s ease"
-                      },
+                      className: "btn-primary w-full h-11 font-semibold",
                       children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
                         /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 mr-2 animate-spin" }),
                         "Authenticating…"
                       ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-5 h-5 mr-2" }),
-                        "Unlock DemonZeno AI"
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-4 h-4 mr-2" }),
+                        "Access DemonZeno AI"
                       ] })
                     }
                   )
@@ -2004,21 +2163,14 @@ function AiPasswordEntry() {
                   "p",
                   {
                     className: "text-xs text-center mt-4",
-                    style: { color: "oklch(0.42 0.01 260)" },
-                    children: "Session expires when you close this tab · No data stored"
+                    style: { color: "oklch(0.45 0.01 260)" },
+                    children: "Session expires when you close this tab. No data stored."
                   }
                 )
               ]
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "p",
-            {
-              className: "text-xs text-center",
-              style: { color: "oklch(0.40 0.01 260)" },
-              children: "Powered by 50+ AI providers · Gemini · Grok · ChatGPT · Claude · and more"
-            }
-          )
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs", style: { color: "oklch(0.45 0.01 260)" }, children: "Powered by 25+ AI providers · Gemini · Grok · ChatGPT · and more" })
         ] }) })
       ]
     }

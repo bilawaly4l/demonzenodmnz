@@ -3,9 +3,39 @@ import { useCallback, useState } from "react";
 import { createActor } from "../backend";
 import type { AiLanguage, JournalEntry } from "../types";
 
+export type AiMode = "normal" | "insane";
+
+export type AiProvider =
+  | "default"
+  | "gemini"
+  | "grok"
+  | "chatgpt"
+  | "claude"
+  | "perplexity"
+  | "mistral"
+  | "cohere"
+  | "deepseek"
+  | "groq"
+  | "together"
+  | "fireworks"
+  | "openrouter"
+  | "replicate"
+  | "huggingface"
+  | "ai21"
+  | "nlpcloud"
+  | "anyscale"
+  | "cerebras"
+  | "sambanova"
+  | "cloudflare"
+  | "novita"
+  | "moonshot"
+  | "zhipu"
+  | "upstage";
+
 export interface AiMessage {
   role: "user" | "assistant";
   content: string;
+  provider?: AiProvider;
   timestamp: number;
   signalId?: string;
   messageId?: string;
@@ -18,9 +48,45 @@ export interface ChatMessage {
   provider?: string;
 }
 
+export interface AiProviderStatus {
+  provider: AiProvider;
+  label: string;
+  available: boolean;
+}
+
 export interface AiValidateResult {
   token: string;
+  mode: AiMode;
 }
+
+// 25 supported providers with display labels
+export const AI_PROVIDERS: AiProviderStatus[] = [
+  { provider: "default", label: "Default", available: true },
+  { provider: "gemini", label: "Gemini", available: true },
+  { provider: "grok", label: "Grok (xAI)", available: true },
+  { provider: "chatgpt", label: "ChatGPT", available: true },
+  { provider: "claude", label: "Claude", available: true },
+  { provider: "perplexity", label: "Perplexity", available: true },
+  { provider: "mistral", label: "Mistral", available: true },
+  { provider: "cohere", label: "Cohere", available: true },
+  { provider: "deepseek", label: "DeepSeek", available: true },
+  { provider: "groq", label: "Groq", available: true },
+  { provider: "together", label: "Together AI", available: true },
+  { provider: "fireworks", label: "Fireworks AI", available: true },
+  { provider: "openrouter", label: "OpenRouter", available: true },
+  { provider: "replicate", label: "Replicate", available: true },
+  { provider: "huggingface", label: "HuggingFace", available: true },
+  { provider: "ai21", label: "AI21 Labs", available: true },
+  { provider: "nlpcloud", label: "NLP Cloud", available: true },
+  { provider: "anyscale", label: "Anyscale", available: true },
+  { provider: "cerebras", label: "Cerebras", available: true },
+  { provider: "sambanova", label: "SambaNova", available: true },
+  { provider: "cloudflare", label: "Cloudflare AI", available: true },
+  { provider: "novita", label: "Novita AI", available: true },
+  { provider: "moonshot", label: "Moonshot", available: true },
+  { provider: "zhipu", label: "Zhipu AI", available: true },
+  { provider: "upstage", label: "Upstage", available: true },
+];
 
 // ─── Validate AI Passcode ──────────────────────────────────────────────────
 export function useValidateAiPasscode() {
@@ -42,12 +108,10 @@ export function useValidateAiPasscode() {
           console.log("[useValidateAiPasscode] raw result:", result);
         }
         if (result.__kind__ === "ok") {
-          // Backend may return tuple [token, mode] or just token — handle both
-          const raw = result.ok;
-          const token = Array.isArray(raw)
-            ? (raw[0] as string)
-            : (raw as string);
-          return { token };
+          // ok is [token, mode] tuple
+          const [token, rawMode] = result.ok;
+          const mode: AiMode = rawMode === "insane" ? "insane" : "normal";
+          return { token, mode };
         }
         setError(result.err ?? "Invalid passcode. Access denied.");
         return null;
@@ -113,6 +177,8 @@ export function useSendAiMessage() {
     async (
       token: string,
       message: string,
+      provider: AiProvider,
+      mode: AiMode,
       messages: AiMessage[],
     ): Promise<AiMessage | null> => {
       setIsLoading(true);
@@ -124,13 +190,14 @@ export function useSendAiMessage() {
             role: m.role === "user" ? "user" : "assistant",
             content: m.content,
             timestamp: BigInt(m.timestamp),
+            provider: m.provider,
           }));
 
-          // Backend auto-routes to best provider — provider param kept for compatibility
           const result = await actor.sendAiMessage(
             token,
             message,
-            "default",
+            provider,
+            mode,
             chatHistory,
           );
 
@@ -138,6 +205,7 @@ export function useSendAiMessage() {
             return {
               role: "assistant",
               content: result.ok,
+              provider,
               timestamp: Date.now(),
               messageId: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
             };
@@ -145,10 +213,11 @@ export function useSendAiMessage() {
         }
 
         // Client-side fallback (dev/mock or when backend AI not configured)
-        const responseText = getFallbackResponse(message);
+        const responseText = getFallbackResponse(message, mode, provider);
         return {
           role: "assistant",
           content: responseText,
+          provider,
           timestamp: Date.now(),
           messageId: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
         };
@@ -384,6 +453,7 @@ export function useSessionRecap() {
           role: m.role === "user" ? "user" : "assistant",
           content: m.content,
           timestamp: BigInt(m.timestamp),
+          provider: m.provider,
         }));
         const result = await actor.getSessionRecap(chatHistory, sessionToken);
         if (result.__kind__ === "ok") return result.ok;
@@ -444,8 +514,14 @@ export function useCheckAdminUnlock() {
 }
 
 // ─── Fallback Response (dev/offline) ──────────────────────────────────────
-function getFallbackResponse(message: string): string {
+function getFallbackResponse(
+  message: string,
+  mode: AiMode,
+  provider: AiProvider,
+): string {
   const lowerMsg = message.toLowerCase();
+  const providerLabel =
+    AI_PROVIDERS.find((p) => p.provider === provider)?.label ?? "DemonZeno";
 
   if (
     lowerMsg.includes("btc") ||
@@ -453,28 +529,15 @@ function getFallbackResponse(message: string): string {
     lowerMsg.includes("signal") ||
     lowerMsg.includes("trade")
   ) {
-    return "**DemonZeno AI — Signal Analysis 📊**\n\n**BTC/USDT — LONG 🚀**\n• Entry Zone: $67,200 – $67,500\n• TP1: $69,800 (+3.9%)\n• TP2: $72,400 (+7.7%)\n• TP3: $75,000 (+11.5%)\n• Stop Loss: $65,900 (-2%)\n• Timeframe: 4H–1D\n• Confidence: HIGH\n\n_Always manage your risk. Not financial advice._";
+    if (mode === "insane") {
+      return `**${providerLabel} — INSANE MODE SIGNAL 🔥**\n\n**BTC/USDT — LONG 🚀**\n• Entry: $67,200 – $67,500\n• TP1: $69,800 (+3.9%)\n• TP2: $72,400 (+7.7%)\n• TP3: $75,000 (+11.5%)\n• Stop Loss: $65,900 (-2%)\n• Timeframe: 4H–1D\n• Confidence: HIGH\n• Leverage: 5–10x (manage risk)\n\n_This is aggressive analysis. Manage your position size. No financial advice._`;
+    }
+    return `**${providerLabel} — Trading Signal 📊**\n\n**BTC/USDT — LONG (Binance)**\n• Entry Zone: $67,200 – $67,500\n• TP1: $69,000 (+2.7%)\n• TP2: $71,500 (+6.4%)\n• TP3: $74,200 (+10.4%)\n• Stop Loss: $65,900 (-2%)\n• Timeframe: 4H\n• Confidence: Medium\n• Source: Technical Analysis\n\n_Always use proper risk management. This is not financial advice._`;
   }
 
   if (lowerMsg.includes("eth") || lowerMsg.includes("ethereum")) {
-    return "**DemonZeno AI — ETH/USDT Signal 📈**\n\n• Direction: LONG\n• Entry: $3,450 – $3,480\n• TP1: $3,600 (+4.3%)\n• TP2: $3,750 (+8.7%)\n• TP3: $4,000 (+15.9%)\n• Stop Loss: $3,320 (-3.8%)\n• Timeframe: 1D\n• Confidence: Medium\n\n_DYOR. Not financial advice._";
+    return `**${providerLabel} — ETH/USDT Signal 📈**\n\n• Direction: LONG\n• Entry: $3,450 – $3,480\n• TP1: $3,600 (+4.3%)\n• TP2: $3,750 (+8.7%)\n• TP3: $4,000 (+15.9%)\n• Stop Loss: $3,320 (-3.8%)\n• Timeframe: 1D\n• Confidence: Medium\n\n_Binance spot & futures. DYOR._`;
   }
 
-  if (
-    lowerMsg.includes("forex") ||
-    lowerMsg.includes("eur") ||
-    lowerMsg.includes("usd")
-  ) {
-    return "**DemonZeno AI — Forex Signal 📈**\n\n**EUR/USD — LONG**\n• Entry: 1.0850 – 1.0860\n• TP1: 1.0920 (+0.65%)\n• TP2: 1.0980 (+1.20%)\n• TP3: 1.1050 (+1.84%)\n• Stop Loss: 1.0800 (-0.46%)\n• Timeframe: 4H\n• Confidence: Medium\n\n_Risk management is key. Not financial advice._";
-  }
-
-  if (
-    lowerMsg.includes("code") ||
-    lowerMsg.includes("function") ||
-    lowerMsg.includes("script")
-  ) {
-    return "**DemonZeno AI — Code Assistant 💻**\n\nI can help you write code in JavaScript, TypeScript, Python, Rust, and more. What would you like me to build?\n\nJust describe the function, script, or component you need and I'll provide working code.\n\n_Powered by DemonZeno AI — Master the Chaos._";
-  }
-
-  return `**DemonZeno AI — Ready to Trade 🔥**\n\nI'm your all-in-one AI powered by 50+ providers, silently routing to the best model for your request.\n\nI can handle:\n• Trading signals — crypto, forex, stocks (Entry · TP1 · TP2 · TP3 · Stop Loss)\n• Market analysis and trend breakdowns\n• Code writing in any language\n• General knowledge and Q&A\n• Signal backtesting and trade journaling\n\nJust ask me anything.\n\n_Master the Chaos, Slay the Market, Trade Like a God._`;
+  return `**DemonZeno AI — ${mode === "insane" ? "INSANE MODE 🔥" : "Normal Mode"}**\n\nI'm analyzing your request: "${message}"\n\nFor best results, ask me about:\n• Specific trading pairs (BTC/USDT, ETH/USDT, etc.)\n• Entry/exit signals with 3 targets and stop-loss\n• Market analysis and trends\n• Risk management strategies${mode === "insane" ? "\n• Any asset on any exchange — no restrictions" : "\n• Binance-listed assets"}\n\n_Powered by ${providerLabel}. Master the chaos, trade like a god._`;
 }

@@ -107,92 +107,100 @@ type RoadmapMilestone =
 type Result_9 = 
  variant {
    err: text;
-   ok: StatsConfig;
+   ok: vec Signal;
  };
 type Result_8 = 
  variant {
    err: text;
-   ok: vec Signal;
+   ok: vec AuditSnapshot;
  };
 type Result_7 = 
  variant {
    err: text;
-   ok: vec AuditSnapshot;
+   ok: Announcement;
  };
 type Result_6 = 
  variant {
    err: text;
-   ok: Announcement;
+   ok: bool;
  };
 type Result_5 = 
  variant {
    err: text;
-   ok: bool;
+   ok: BinancePost;
  };
 type Result_4 = 
  variant {
    err: text;
-   ok: BinancePost;
+   ok: FAQ;
  };
 type Result_3 = 
  variant {
    err: text;
-   ok: FAQ;
+   ok: Signal;
  };
 type Result_2 = 
  variant {
    err: text;
-   ok: Signal;
+   ok;
  };
-type Result_18 = 
+type Result_19 = 
  variant {
    err: text;
    ok: vec AbTest;
  };
-type Result_17 = 
+type Result_18 = 
  variant {
    err: text;
    ok: vec ActivityEntry;
  };
-type Result_16 = 
+type Result_17 = 
  variant {
    err: text;
    ok: Analytics;
  };
-type Result_15 = 
+type Result_16 = 
  variant {
    err: text;
    ok: vec AuditEntry;
  };
-type Result_14 = 
+type Result_15 = 
  variant {
    err: text;
    ok: vec text;
  };
-type Result_13 = 
+type Result_14 = 
  variant {
    err: text;
    ok: vec JournalEntry;
  };
-type Result_12 = 
+type Result_13 = 
  variant {
    err: text;
    ok: vec NotifyMe;
  };
-type Result_11 = 
+type Result_12 = 
  variant {
    err: text;
    ok: vec ResponseRating;
  };
-type Result_10 = 
+type Result_11 = 
  variant {
    err: text;
    ok: SignalPerformanceStats;
  };
+type Result_10 = 
+ variant {
+   err: text;
+   ok: StatsConfig;
+ };
 type Result_1 = 
  variant {
    err: text;
-   ok;
+   ok: record {
+         text;
+         text;
+       };
  };
 type ResultStatus = 
  variant {
@@ -428,10 +436,10 @@ type AbTest =
  };
 service : {
   addBinancePost: (adminToken: text, title: text, snippet: text, url: 
-   text, date: text) -> (Result_4);
+   text, date: text) -> (Result_5);
   addBurnEntry: (date: text, amount: text, reason: text, sessionToken:
    text) -> (Result);
-  addFaq: (sessionToken: text, question: text, answer: text) -> (Result_3);
+  addFaq: (sessionToken: text, question: text, answer: text) -> (Result_4);
   addJournalEntry: (entry: JournalEntry, sessionToken: text) -> (Result);
   addMilestone: (title: text, description: text, sessionToken: text) ->
    (Result);
@@ -440,40 +448,40 @@ service : {
    direction: Direction, entryPrice: text, targetPrice: text, stopLoss: 
    text, notes: text, confidence: Confidence, sourceLabel: text, expiry:
    opt int, timeframe: Timeframe, isDraft: bool, publishAt: opt int) ->
-   (Result_2);
+   (Result_3);
   addTestimonial: (name: text, content: text, winAmount: opt text, asset:
    opt text, sessionToken: text) -> (Result);
   askFaq: (question: text) -> (text);
   backtestSignal: (signal: text, sessionToken: text) -> (Result);
-  banEmail: (sessionToken: text, email: text) -> (Result_1);
-  clearJournal: (sessionToken: text) -> (Result_1);
+  banEmail: (sessionToken: text, email: text) -> (Result_2);
+  clearJournal: (sessionToken: text) -> (Result_2);
   createAbTest: (name: text, variantA: text, variantB: text, sessionToken:
    text) -> (Result);
   createAuditSnapshot: (snapshotLabel: text, sessionToken: text) -> (Result);
   createPushNotification: (title: text, body: text, sessionToken: text) ->
    (Result);
-  deleteBinancePost: (adminToken: text, id: text) -> (Result_1);
-  deleteFaq: (sessionToken: text, id: text) -> (Result_1);
-  deleteQuote: (id: text, sessionToken: text) -> (Result_1);
-  deleteSignal: (sessionToken: text, id: text) -> (Result_1);
-  deleteTestimonial: (id: text, sessionToken: text) -> (Result_1);
+  deleteBinancePost: (adminToken: text, id: text) -> (Result_2);
+  deleteFaq: (sessionToken: text, id: text) -> (Result_2);
+  deleteQuote: (id: text, sessionToken: text) -> (Result_2);
+  deleteSignal: (sessionToken: text, id: text) -> (Result_2);
+  deleteTestimonial: (id: text, sessionToken: text) -> (Result_2);
   dismissPushNotification: (id: text) -> ();
   generateDailyBriefing: (sessionToken: text) -> (Result);
-  getAbTests: (sessionToken: text) -> (Result_18);
+  getAbTests: (sessionToken: text) -> (Result_19);
   getAbVariant: (testId: text) -> (text) query;
   getActivePushNotifications: () -> (vec PushNotification) query;
-  getAdminActivityHeatmap: (sessionToken: text) -> (Result_17);
+  getAdminActivityHeatmap: (sessionToken: text) -> (Result_18);
   getAdminConfig: (adminToken: text) -> (Result);
   getAiLanguage: (sessionToken: text) -> (Result) query;
   getAiProviderStatus: () -> (vec record {
                                     text;
                                     bool;
                                   }) query;
-  getAnalytics: (sessionToken: text) -> (Result_16);
+  getAnalytics: (sessionToken: text) -> (Result_17);
   getAnalyticsCsv: (sessionToken: text) -> (Result);
   getAnnouncement: () -> (opt Announcement) query;
-  getAuditLog: (sessionToken: text) -> (Result_15);
-  getBannedEmails: (sessionToken: text) -> (Result_14);
+  getAuditLog: (sessionToken: text) -> (Result_16);
+  getBannedEmails: (sessionToken: text) -> (Result_15);
   getBinanceFeed: () -> (vec BinancePost) query;
   getBurnSchedule: () -> (vec BurnScheduleEntry) query;
   getBurnTracker: () -> (BurnTracker) query;
@@ -481,90 +489,91 @@ service : {
   getDailyBriefing: () -> (text) query;
   getFaqs: () -> (vec FAQ) query;
   getHolderBenefits: () -> (vec HolderBenefit) query;
-  getJournalEntries: (sessionToken: text) -> (Result_13) query;
+  getJournalEntries: (sessionToken: text) -> (Result_14) query;
   getMaintenanceMode: () -> (MaintenanceMode) query;
   getMarketMoodBanner: () -> (opt MarketMoodBanner) query;
   getMarketPrices: () -> (vec PriceData) query;
   getMarketSentiment: () -> (MarketSentiment) query;
   getMilestones: () -> (vec CommunityMilestone) query;
-  getNotifyMeList: (sessionToken: text) -> (Result_12);
+  getNotifyMeList: (sessionToken: text) -> (Result_13);
   getPublicBurnSchedule: () -> (vec BurnScheduleEntry) query;
   getQuotes: () -> (vec DemonZenoQuote) query;
   getRoadmap: () -> (vec RoadmapMilestone) query;
-  getScheduledSignals: (sessionToken: text) -> (Result_8);
-  getSessionRatings: (sessionToken: text) -> (Result_11) query;
+  getScheduledSignals: (sessionToken: text) -> (Result_9);
+  getSessionRatings: (sessionToken: text) -> (Result_12) query;
   getSessionRecap: (history: vec ChatMessage, sessionToken: text) -> (Result);
   getSignalArchive: () -> (vec Signal) query;
   getSignalOfTheDay: () -> (opt Signal) query;
   getSignalOfWeek: () -> (opt SignalOfWeekFull) query;
-  getSignalPerformanceStats: (sessionToken: text) -> (Result_10);
+  getSignalPerformanceStats: (sessionToken: text) -> (Result_11);
   getSignals: () -> (vec Signal) query;
   getStats: () -> (Stats) query;
-  getStatsConfig: (sessionToken: text) -> (Result_9);
+  getStatsConfig: (sessionToken: text) -> (Result_10);
   getTestimonials: () -> (vec Testimonial) query;
   getWhitepaper: () -> (WhitepaperContent) query;
-  importSignals: (sessionToken: text, inputs: vec SignalInput) -> (Result_8);
+  importSignals: (sessionToken: text, inputs: vec SignalInput) -> (Result_9);
   initFaqs: () -> ();
   invalidateAiSession: (token: text) -> ();
   invalidateSession: (token: text) -> ();
-  listAuditSnapshots: (sessionToken: text) -> (Result_7);
+  listAuditSnapshots: (sessionToken: text) -> (Result_8);
   markMilestoneReached: (id: text, celebrateDays: nat, sessionToken: 
-   text) -> (Result_1);
+   text) -> (Result_2);
   publishScheduledSignals: () -> (nat);
   rateAiResponse: (messageId: text, rating: int, sessionToken: text) ->
-   (Result_1);
+   (Result_2);
   recordAbImpression: (testId: text, "variant": text) -> ();
-  recordAdminActivity: (action: text, sessionToken: text) -> (Result_1);
+  recordAdminActivity: (action: text, sessionToken: text) -> (Result_2);
   refreshMarketPrices: () -> (vec PriceData);
-  reorderFaqs: (sessionToken: text, orderedIds: vec text) -> (Result_1);
+  reorderFaqs: (sessionToken: text, orderedIds: vec text) -> (Result_2);
   scheduleSignal: (signalId: text, publishAt: int, sessionToken: text) ->
-   (Result_1);
-  sendAiMessage: (sessionToken: text, message: text, provider: text, history:
-   vec ChatMessage) -> (Result);
-  setAiApiKey: (adminToken: text, provider: text, key: text) -> (Result_1);
-  setAiLanguage: (lang: text, sessionToken: text) -> (Result_1);
+   (Result_2);
+  sendAiMessage: (sessionToken: text, message: text, provider: text, mode:
+   text, history: vec ChatMessage) -> (Result);
+  setAiApiKey: (adminToken: text, provider: text, key: text) -> (Result_2);
+  setAiLanguage: (lang: text, sessionToken: text) -> (Result_2);
   setAnnouncement: (sessionToken: text, "text": text, link: opt text,
-   publishAt: opt int) -> (Result_6);
-  setBurnTracker: (adminToken: text, data: BurnTracker) -> (Result_1);
+   publishAt: opt int) -> (Result_7);
+  setBurnTracker: (adminToken: text, data: BurnTracker) -> (Result_2);
   setCommunityCounter: (adminToken: text, data: CommunityCounter) ->
-   (Result_1);
+   (Result_2);
   setMaintenanceMode: (enabled: bool, message: text, sessionToken: text) ->
-   (Result_1);
+   (Result_2);
   setMarketMoodBanner: (mood: text, message: text, sessionToken: text) ->
-   (Result_1);
+   (Result_2);
   setRoadmapMilestone: (adminToken: text, year: text, title: text,
-   description: text, completed: bool) -> (Result_1);
-  setSignalOfTheDay: (sessionToken: text, signalId: opt text) -> (Result_1);
+   description: text, completed: bool) -> (Result_2);
+  setSignalOfTheDay: (sessionToken: text, signalId: opt text) -> (Result_2);
   setSignalOfWeek: (signalId: text, comment: text, sessionToken: text) ->
-   (Result_1);
+   (Result_2);
   setSignalOfWeekWithDate: (signalId: text, comment: text, weekOf: text,
-   sessionToken: text) -> (Result_1);
-  setStatsConfig: (sessionToken: text, config: StatsConfig) -> (Result_1);
-  submitNotifyMe: (name: opt text, contact: text) -> (Result_1);
-  toggleAnnouncement: (sessionToken: text) -> (Result_5);
-  unbanEmail: (sessionToken: text, email: text) -> (Result_1);
+   sessionToken: text) -> (Result_2);
+  setStatsConfig: (sessionToken: text, config: StatsConfig) -> (Result_2);
+  submitNotifyMe: (name: opt text, contact: text) -> (Result_2);
+  toggleAnnouncement: (sessionToken: text) -> (Result_6);
+  unbanEmail: (sessionToken: text, email: text) -> (Result_2);
   updateBinancePost: (adminToken: text, id: text, title: text, snippet: 
-   text, url: text, date: text) -> (Result_4);
+   text, url: text, date: text) -> (Result_5);
   updateBurnEntryStatus: (id: text, status: text, txHash: opt text,
-   sessionToken: text) -> (Result_1);
+   sessionToken: text) -> (Result_2);
   updateFaq: (sessionToken: text, id: text, question: text, answer: text) ->
-   (Result_3);
+   (Result_4);
   updateMarketSentiment: (token: text, sentiment: MarketSentiment) ->
-   (Result_1);
+   (Result_2);
   updateSignal: (sessionToken: text, id: text, asset: text, marketType:
    MarketType, direction: Direction, entryPrice: text, targetPrice: text,
    stopLoss: text, notes: text, confidence: Confidence, sourceLabel: 
    text, expiry: opt int, timeframe: Timeframe, isDraft: bool, publishAt:
-   opt int) -> (Result_2);
+   opt int) -> (Result_3);
   updateSignalResult: (sessionToken: text, id: text, result: ResultStatus) ->
-   (Result_2);
+   (Result_3);
   updateSignalSchedule: (sessionToken: text, id: text, isDraft: bool,
-   publishAt: opt int) -> (Result_2);
+   publishAt: opt int) -> (Result_3);
   updateWhitepaper: (content: WhitepaperContent, sessionToken: text) ->
-   (Result_1);
+   (Result_2);
   validateAdminRole: (passcode: text) -> (opt text);
-  validateAiPasscode: (passcode: text) -> (Result);
+  validateAiPasscode: (passcode: text) -> (Result_1);
   validateAiSession: (token: text) -> (bool) query;
+  validateInsaneSession: (token: text) -> (bool) query;
   validatePasscode: (passcode: text) -> (Result);
   validateSession: (token: text) -> (bool) query;
 }

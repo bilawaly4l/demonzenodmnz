@@ -19,14 +19,11 @@ import type {
   Result_8,
   Result_9,
   Result_10,
-  Result_11,
-  Result_12,
   Result_13,
   Result_14,
   Result_15,
   Result_16,
   Result_17,
-  Result_18,
   RoadmapMilestone,
   Signal,
   Stats,
@@ -346,14 +343,12 @@ export const mockBackend: backendInterface = {
 
   refreshMarketPrices: async (): Promise<PriceData[]> => [],
 
-  // Result_9 = { ok: StatsConfig } | { err: string }
-  getStatsConfig: async (_token: string): Promise<Result_9> => ({
+  getStatsConfig: async (_token: string): Promise<Result_10> => ({
     __kind__: "ok",
     ok: { useManual: false } as StatsConfig,
   }),
 
-  // Result_12 = { ok: Array<NotifyMe> } | { err: string }
-  getNotifyMeList: async (_token: string): Promise<Result_12> => ({
+  getNotifyMeList: async (_token: string): Promise<Result_13> => ({
     __kind__: "ok",
     ok: [] as NotifyMe[],
   }),
@@ -366,7 +361,6 @@ export const mockBackend: backendInterface = {
   validateSession: async (_token: string) => true,
   invalidateSession: async (_token: string) => undefined,
 
-  // Result_2 = { ok: Signal } | { err: string }
   addSignal: async (
     _token: string,
     asset: string,
@@ -382,7 +376,7 @@ export const mockBackend: backendInterface = {
     timeframe: Timeframe,
     _isDraft: boolean,
     _publishAt: bigint | null,
-  ): Promise<Result_2> => ({
+  ): Promise<Result_3> => ({
     __kind__: "ok",
     ok: mockSignal({
       id: "new-1",
@@ -415,7 +409,7 @@ export const mockBackend: backendInterface = {
     timeframe: Timeframe,
     _isDraft: boolean,
     _publishAt: bigint | null,
-  ): Promise<Result_2> => ({
+  ): Promise<Result_3> => ({
     __kind__: "ok",
     ok: mockSignal({
       id,
@@ -436,7 +430,7 @@ export const mockBackend: backendInterface = {
     _token: string,
     id: string,
     result: ResultStatus,
-  ): Promise<Result_2> => ({
+  ): Promise<Result_3> => ({
     __kind__: "ok",
     ok: mockSignal({
       id,
@@ -451,18 +445,16 @@ export const mockBackend: backendInterface = {
     }),
   }),
 
-  // Result_1 = { ok: null } | { err: string }
-  deleteSignal: async (_token: string, _id: string): Promise<Result_1> => ({
+  deleteSignal: async (_token: string, _id: string): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  // Result_3 = { ok: FAQ } | { err: string }
   addFaq: async (
     _token: string,
     question: string,
     answer: string,
-  ): Promise<Result_3> => ({
+  ): Promise<Result_4> => ({
     __kind__: "ok",
     ok: { id: "new-faq", question, answer, order: BigInt(99) },
   }),
@@ -472,12 +464,12 @@ export const mockBackend: backendInterface = {
     id: string,
     question: string,
     answer: string,
-  ): Promise<Result_3> => ({
+  ): Promise<Result_4> => ({
     __kind__: "ok",
     ok: { id, question, answer, order: BigInt(1) },
   }),
 
-  deleteFaq: async (_token: string, _id: string): Promise<Result_1> => ({
+  deleteFaq: async (_token: string, _id: string): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
@@ -485,21 +477,19 @@ export const mockBackend: backendInterface = {
   reorderFaqs: async (
     _token: string,
     _orderedIds: string[],
-  ): Promise<Result_1> => ({ __kind__: "ok", ok: null }),
+  ): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
 
-  // Result_6 = { ok: Announcement } | { err: string }
   setAnnouncement: async (
     _token: string,
     text: string,
     link: string | null,
     _publishAt: bigint | null,
-  ): Promise<Result_6> => ({
+  ): Promise<Result_7> => ({
     __kind__: "ok",
     ok: { id: "ann-1", text, link: link ?? undefined, isActive: true },
   }),
 
-  // Result_5 = { ok: boolean } | { err: string }
-  toggleAnnouncement: async (_token: string): Promise<Result_5> => ({
+  toggleAnnouncement: async (_token: string): Promise<Result_6> => ({
     __kind__: "ok",
     ok: true,
   }),
@@ -507,20 +497,19 @@ export const mockBackend: backendInterface = {
   submitNotifyMe: async (
     _name: string | null,
     _contact: string,
-  ): Promise<Result_1> => ({ __kind__: "ok", ok: null }),
+  ): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
 
   setStatsConfig: async (
     _token: string,
     _config: StatsConfig,
-  ): Promise<Result_1> => ({ __kind__: "ok", ok: null }),
+  ): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
 
-  // Result_8 = { ok: Array<Signal> } | { err: string }
-  getScheduledSignals: async (_token: string): Promise<Result_8> => ({
+  getScheduledSignals: async (_token: string): Promise<Result_9> => ({
     __kind__: "ok" as const,
     ok: sampleSignals,
   }),
 
-  importSignals: async (_token: string, _inputs): Promise<Result_8> => ({
+  importSignals: async (_token: string, _inputs): Promise<Result_9> => ({
     __kind__: "ok" as const,
     ok: sampleSignals,
   }),
@@ -530,7 +519,7 @@ export const mockBackend: backendInterface = {
     id: string,
     _isDraft: boolean,
     _publishAt: bigint | null,
-  ): Promise<Result_2> => ({
+  ): Promise<Result_3> => ({
     __kind__: "ok",
     ok: mockSignal({
       id,
@@ -544,14 +533,12 @@ export const mockBackend: backendInterface = {
     }),
   }),
 
-  // Result_15 = { ok: Array<AuditEntry> } | { err: string }
-  getAuditLog: async (_token: string): Promise<Result_15> => ({
+  getAuditLog: async (_token: string): Promise<Result_16> => ({
     __kind__: "ok",
     ok: [],
   }),
 
-  // Result_16 = { ok: Analytics } | { err: string }
-  getAnalytics: async (_token: string): Promise<Result_16> => ({
+  getAnalytics: async (_token: string): Promise<Result_17> => ({
     __kind__: "ok",
     ok: {
       signalsByMarket: [],
@@ -560,18 +547,17 @@ export const mockBackend: backendInterface = {
     },
   }),
 
-  banEmail: async (_token: string, _email: string): Promise<Result_1> => ({
+  banEmail: async (_token: string, _email: string): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  unbanEmail: async (_token: string, _email: string): Promise<Result_1> => ({
+  unbanEmail: async (_token: string, _email: string): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  // Result_14 = { ok: Array<string> } | { err: string }
-  getBannedEmails: async (_token: string): Promise<Result_14> => ({
+  getBannedEmails: async (_token: string): Promise<Result_15> => ({
     __kind__: "ok",
     ok: [],
   }),
@@ -579,7 +565,7 @@ export const mockBackend: backendInterface = {
   setSignalOfTheDay: async (
     _token: string,
     _signalId: string | null,
-  ): Promise<Result_1> => ({ __kind__: "ok", ok: null }),
+  ): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
 
   getSignalOfTheDay: async (): Promise<Signal | null> => sampleSignals[0],
 
@@ -623,43 +609,43 @@ export const mockBackend: backendInterface = {
 
   invalidateAiSession: async (_token: string): Promise<void> => undefined,
 
-  // sendAiMessage(sessionToken, message, provider, history) — 4 args
   sendAiMessage: async (
     _sessionToken: string,
     _message: string,
     _provider: string,
+    _mode: string,
     _history: ChatMessage[],
   ): Promise<Result> => ({
     __kind__: "err",
     err: "Not implemented in mock",
   }),
 
-  // Result_1 = { ok: null } | { err: string }
   setAiApiKey: async (
     _adminToken: string,
     _provider: string,
     _key: string,
-  ): Promise<Result_1> => ({
+  ): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  // validateAiPasscode returns Result = { ok: string } | { err: string }
-  validateAiPasscode: async (_passcode: string): Promise<Result> => ({
+  validateAiPasscode: async (_passcode: string): Promise<Result_1> => ({
     __kind__: "ok",
-    ok: "mock-ai-session-token-12345",
+    ok: ["mock-ai-session-token-12345", "normal"],
   }),
 
   validateAiSession: async (_token: string): Promise<boolean> => true,
 
-  // Binance Feed — Result_4 = { ok: BinancePost } | { err: string }
+  validateInsaneSession: async (_token: string): Promise<boolean> => true,
+
+  // Binance Feed
   addBinancePost: async (
     _adminToken: string,
     title: string,
     snippet: string,
     url: string,
     date: string,
-  ): Promise<Result_4> => ({
+  ): Promise<Result_5> => ({
     __kind__: "ok",
     ok: { id: "bp-new", title, snippet, url, date },
   }),
@@ -671,7 +657,7 @@ export const mockBackend: backendInterface = {
     snippet: string,
     url: string,
     date: string,
-  ): Promise<Result_4> => ({
+  ): Promise<Result_5> => ({
     __kind__: "ok",
     ok: { id, title, snippet, url, date },
   }),
@@ -679,7 +665,7 @@ export const mockBackend: backendInterface = {
   deleteBinancePost: async (
     _adminToken: string,
     _id: string,
-  ): Promise<Result_1> => ({
+  ): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
@@ -688,7 +674,7 @@ export const mockBackend: backendInterface = {
   setBurnTracker: async (
     _adminToken: string,
     _data: BurnTracker,
-  ): Promise<Result_1> => ({
+  ): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
@@ -696,7 +682,7 @@ export const mockBackend: backendInterface = {
   setCommunityCounter: async (
     _adminToken: string,
     _data: CommunityCounter,
-  ): Promise<Result_1> => ({
+  ): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
@@ -708,7 +694,7 @@ export const mockBackend: backendInterface = {
     _title: string,
     _description: string,
     _completed: boolean,
-  ): Promise<Result_1> => ({
+  ): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
@@ -745,8 +731,7 @@ export const mockBackend: backendInterface = {
     ok: "Backtest result: This signal historically performed well with ~72% win rate over 30 days.",
   }),
 
-  // Result_1 = { ok: null } | { err: string }
-  clearJournal: async (): Promise<Result_1> => ({ __kind__: "ok", ok: null }),
+  clearJournal: async (): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
 
   createAbTest: async (): Promise<Result> => ({ __kind__: "ok", ok: "ab-1" }),
 
@@ -760,9 +745,9 @@ export const mockBackend: backendInterface = {
     ok: "notif-1",
   }),
 
-  deleteQuote: async (): Promise<Result_1> => ({ __kind__: "ok", ok: null }),
+  deleteQuote: async (): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
 
-  deleteTestimonial: async (): Promise<Result_1> => ({
+  deleteTestimonial: async (): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
@@ -774,8 +759,7 @@ export const mockBackend: backendInterface = {
     ok: "📊 **DemonZeno Daily Briefing** — Markets are showing mixed signals today. BTC consolidating at key support. ETH showing bullish divergence. Stay patient and wait for clean setups.",
   }),
 
-  // Result_18 = { ok: Array<AbTest> } | { err: string }
-  getAbTests: async (): Promise<Result_18> => ({
+  getAbTests: async (): Promise<{ __kind__: "ok"; ok: never[] }> => ({
     __kind__: "ok",
     ok: [],
   }),
@@ -784,8 +768,7 @@ export const mockBackend: backendInterface = {
 
   getActivePushNotifications: async () => [],
 
-  // Result_17 = { ok: Array<ActivityEntry> } | { err: string }
-  getAdminActivityHeatmap: async (): Promise<Result_17> => ({
+  getAdminActivityHeatmap: async (): Promise<{ __kind__: "ok"; ok: never[] }> => ({
     __kind__: "ok",
     ok: [],
   }),
@@ -802,8 +785,7 @@ export const mockBackend: backendInterface = {
 
   getHolderBenefits: async () => [],
 
-  // Result_13 = { ok: Array<JournalEntry> } | { err: string }
-  getJournalEntries: async (): Promise<Result_13> => ({
+  getJournalEntries: async (): Promise<Result_14> => ({
     __kind__: "ok",
     ok: [],
   }),
@@ -822,8 +804,7 @@ export const mockBackend: backendInterface = {
 
   getQuotes: async () => [],
 
-  // Result_11 = { ok: Array<ResponseRating> } | { err: string }
-  getSessionRatings: async (): Promise<Result_11> => ({
+  getSessionRatings: async (): Promise<{ __kind__: "ok"; ok: never[] }> => ({
     __kind__: "ok",
     ok: [],
   }),
@@ -835,8 +816,18 @@ export const mockBackend: backendInterface = {
 
   getSignalOfWeek: async () => null,
 
-  // Result_10 = { ok: SignalPerformanceStats } | { err: string }
-  getSignalPerformanceStats: async (): Promise<Result_10> => ({
+  getSignalPerformanceStats: async (): Promise<{
+    __kind__: "ok";
+    ok: {
+      totalSignals: bigint;
+      wins: bigint;
+      losses: bigint;
+      pending: bigint;
+      winRate: number;
+      topAssets: never[];
+      weeklyTrend: never[];
+    };
+  }> => ({
     __kind__: "ok",
     ok: {
       totalSignals: BigInt(100),
@@ -857,61 +848,57 @@ export const mockBackend: backendInterface = {
     sections: [],
   }),
 
-  // Result_7 = { ok: Array<AuditSnapshot> } | { err: string }
-  listAuditSnapshots: async (): Promise<Result_7> => ({
+  listAuditSnapshots: async (): Promise<{ __kind__: "ok"; ok: never[] }> => ({
     __kind__: "ok",
     ok: [],
   }),
 
-  markMilestoneReached: async (): Promise<Result_1> => ({
+  markMilestoneReached: async (): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  rateAiResponse: async (): Promise<Result_1> => ({
-    __kind__: "ok",
-    ok: null,
-  }),
+  rateAiResponse: async (): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
 
   recordAbImpression: async (): Promise<void> => undefined,
 
-  recordAdminActivity: async (): Promise<Result_1> => ({
+  recordAdminActivity: async (): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
 
   publishScheduledSignals: async (): Promise<bigint> => BigInt(0),
 
-  scheduleSignal: async (): Promise<Result_1> => ({ __kind__: "ok", ok: null }),
+  scheduleSignal: async (): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
 
-  setAiLanguage: async (): Promise<Result_1> => ({ __kind__: "ok", ok: null }),
+  setAiLanguage: async (): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
 
-  setMaintenanceMode: async (): Promise<Result_1> => ({
+  setMaintenanceMode: async (): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  setMarketMoodBanner: async (): Promise<Result_1> => ({
+  setMarketMoodBanner: async (): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  setSignalOfWeek: async (): Promise<Result_1> => ({
+  setSignalOfWeek: async (): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  setSignalOfWeekWithDate: async (): Promise<Result_1> => ({
+  setSignalOfWeekWithDate: async (): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  updateBurnEntryStatus: async (): Promise<Result_1> => ({
+  updateBurnEntryStatus: async (): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  updateWhitepaper: async (): Promise<Result_1> => ({
+  updateWhitepaper: async (): Promise<Result_2> => ({
     __kind__: "ok",
     ok: null,
   }),

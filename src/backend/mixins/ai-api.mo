@@ -10,6 +10,7 @@ import AiProviders "../lib/ai-providers";
 
 mixin (
   aiSessions : Set.Set<Text>,
+  insaneSessions : Set.Set<Text>,
   adminSessions : Set.Set<Text>,
   // API keys stored per provider
   geminiKey : { var value : Text },
@@ -41,74 +42,54 @@ mixin (
 ) {
 
   // ── Per-session supplementary state ──────────────────────────────────────
+  // Trade journals keyed by sessionToken
   let journalMap = Map.empty<Text, List.List<AiTypes.JournalEntry>>();
+  // Response ratings keyed by sessionToken
   let ratingMap = Map.empty<Text, List.List<AiTypes.ResponseRating>>();
+  // Language preference keyed by sessionToken
   let langMap = Map.empty<Text, Text>();
+  // Cached daily briefing
   let dailyBriefingRef = { var value : Text = "" };
   let dailyBriefingDate = { var value : Int = 0 };
 
-  // ── Build provider keys record for smart routing ──────────────────────────
-
-  func providerKeys() : {
-    openrouter : Text; gemini : Text; groq : Text; deepseek : Text;
-    grok : Text; mistral : Text; openai : Text; cohere : Text;
-    together : Text; fireworks : Text; perplexity : Text; cerebras : Text;
-    ai21 : Text; huggingface : Text; nlpcloud : Text; cloudflare : Text;
-    novita : Text; moonshot : Text; zhipu : Text; upstage : Text;
-    sambanova : Text; anyscale : Text; replicate : Text; ollama : Text;
-    claude : Text;
-  } {
-    {
-      openrouter  = openrouterKey.value;
-      gemini      = geminiKey.value;
-      groq        = groqKey.value;
-      deepseek    = deepseekKey.value;
-      grok        = grokKey.value;
-      mistral     = mistralKey.value;
-      openai      = openaiKey.value;
-      cohere      = cohereKey.value;
-      together    = togetherKey.value;
-      fireworks   = fireworksKey.value;
-      perplexity  = perplexityKey.value;
-      cerebras    = cerebrasKey.value;
-      ai21        = ai21Key.value;
-      huggingface = huggingfaceKey.value;
-      nlpcloud    = nlpcloudKey.value;
-      cloudflare  = cloudflareKey.value;
-      novita      = novitaKey.value;
-      moonshot    = moonshotKey.value;
-      zhipu       = zhipuKey.value;
-      upstage     = upstageKey.value;
-      sambanova   = sambanovaKey.value;
-      anyscale    = anyscaleKey.value;
-      replicate   = replicateKey.value;
-      ollama      = ollamaKey.value;
-      claude      = claudeKey.value;
-    };
-  };
-
   // ── AI Session Management ─────────────────────────────────────────────────
 
-  /// Validate the unified DemonZeno AI passcode and return a session token.
+  /// Validate passcode, return (sessionToken, mode) on success.
+  /// "normal" or "insane" mode is returned so the frontend knows which was unlocked.
   public func validateAiPasscode(
     passcode : Text,
-  ) : async Common.Result<Text, Text> {
-    if (AiAuth.validatePasscode(passcode)) {
-      let token = AiAuth.generateToken();
-      aiSessions.add(token);
-      #ok(token);
-    } else {
-      #err("Invalid passcode");
+  ) : async Common.Result<(Text, Text), Text> {
+    switch (AiAuth.validatePasscodeWithMode(passcode)) {
+      case (?#Normal) {
+        let token = AiAuth.generateToken();
+        aiSessions.add(token);
+        #ok((token, "normal"));
+      };
+      case (?#Insane) {
+        let token = AiAuth.generateToken();
+        insaneSessions.add(token);
+        aiSessions.add(token); // also valid for general AI session checks
+        #ok((token, "insane"));
+      };
+      case null {
+        #err("Invalid passcode");
+      };
     };
   };
 
-  /// Check if a session token is valid.
+  /// Check if a session token is valid (Normal or Insane).
   public query func validateAiSession(token : Text) : async Bool {
     AiAuth.validateSession(aiSessions, token);
   };
 
+  /// Check if a session token is an Insane-tier session.
+  public query func validateInsaneSession(token : Text) : async Bool {
+    AiAuth.validateSession(insaneSessions, token);
+  };
+
   public func invalidateAiSession(token : Text) : async () {
     AiAuth.invalidateSession(aiSessions, token);
+    AiAuth.invalidateSession(insaneSessions, token);
     journalMap.remove(token);
     ratingMap.remove(token);
     langMap.remove(token);
@@ -116,28 +97,43 @@ mixin (
 
   // ── AI Message Routing ────────────────────────────────────────────────────
 
-  /// Send a message through DemonZeno AI — auto-routes to best provider.
-  /// The provider parameter is accepted but ignored; backend auto-selects.
+  /// Send a message to an AI provider with full conversation history.
+  /// The mode is validated server-side: Insane mode requires an insane session token.
   public func sendAiMessage(
     sessionToken : Text,
     message : Text,
     provider : Text,
+    mode : Text,
     history : [AiTypes.ChatMessage],
   ) : async Common.Result<Text, Text> {
+    // Validate AI session
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
       return #err("Invalid or expired AI session");
     };
+    // Insane mode requires an insane-tier session token; downgrade if not authorized
+    let effectiveMode = if (mode == "insane") {
+      if (AiAuth.validateSession(insaneSessions, sessionToken)) "insane" else "normal"
+    } else {
+      "normal"
+    };
+    // Get language preference for this session
     let lang = switch (langMap.get(sessionToken)) {
       case (?l) l;
       case null "en";
     };
-    // Convert ChatMessage history to plain {role; content} for provider calls
-    let plainHistory = history.map(
-      func(m : AiTypes.ChatMessage) : { role : Text; content : Text } { { role = m.role; content = m.content } }
-    );
-    let response = await AiProviders.routeAndSendMessage(
-      providerKeys(), lang, plainHistory, message,
-    );
+    // Look up API key for the requested provider — fall back to openrouter if empty
+    let apiKey = getProviderKey(provider);
+    let (finalProvider, finalKey) = if (apiKey == "") {
+      let fallbackKey = openrouterKey.value;
+      if (fallbackKey == "") {
+        return #err("No API key configured for provider '" # provider # "'. Please configure at least the OpenRouter key.");
+      };
+      ("openrouter", fallbackKey);
+    } else {
+      (provider, apiKey);
+    };
+    // Make the HTTP outcall with full history and language
+    let response = await AiProviders.callProvider(finalProvider, finalKey, effectiveMode, lang, history, message);
     if (response == "") {
       return #err("Empty response from provider");
     };
@@ -150,12 +146,15 @@ mixin (
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
       return #err("Invalid or expired AI session");
     };
-    let keys = providerKeys();
+    if (hasNoProvider()) {
+      return #err("No AI provider configured. Please set at least one API key.");
+    };
+    let (prov, key) = getBestAvailableKey();
     let prompt = "Perform a detailed backtesting analysis of the following trading signal. " #
       "Analyze how this signal would have performed historically based on typical market conditions for this asset. " #
       "Include: approximate win rate for similar setups, average R:R achieved, market regime when this works best, " #
       "and any historical precedents. Be specific and data-driven.\n\nSignal to backtest:\n" # signal;
-    let response = await AiProviders.routeAndSendMessage(keys, "en", [], prompt);
+    let response = await AiProviders.callProvider(prov, key, "normal", "en", [], prompt);
     if (response == "") return #err("Empty response from provider");
     #ok(response);
   };
@@ -170,12 +169,15 @@ mixin (
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
       return #err("Invalid or expired AI session");
     };
-    let keys = providerKeys();
+    if (hasNoProvider()) {
+      return #err("No AI provider configured.");
+    };
+    let (prov, key) = getBestAvailableKey();
     let prompt = "Generate a concise daily market briefing for crypto traders. " #
       "Cover: overall market sentiment (bullish/bearish/neutral), top 3 coins to watch today with brief reason, " #
       "key support/resistance levels for BTC and ETH, and one high-probability trade setup with entry/TP/SL. " #
       "Format it cleanly with emoji headers. Be professional and specific.";
-    let response = await AiProviders.routeAndSendMessage(keys, "en", [], prompt);
+    let response = await AiProviders.callProvider(prov, key, "normal", "en", [], prompt);
     if (response == "") return #err("Empty response from provider");
     dailyBriefingRef.value := response;
     dailyBriefingDate.value := Time.now();
@@ -224,14 +226,18 @@ mixin (
   };
 
   // ── AI-powered FAQ ────────────────────────────────────────────────────────
+  // No auth required — publicly accessible
 
   public func askFaq(question : Text) : async Text {
-    let keys = providerKeys();
+    if (hasNoProvider()) {
+      return "DemonZeno AI is not yet configured. Please ask the admin to set up an API key.";
+    };
+    let (prov, key) = getBestAvailableKey();
     let systemContext = "You are a helpful assistant for the DemonZeno platform. " #
       "Answer questions about DemonZeno using only the following knowledge base:\n\n" #
       "- DemonZeno is an anime-inspired crypto trading signals platform.\n" #
       "- DemonZeno provides FREE daily trading signals on Binance Square @DemonZeno.\n" #
-      "- DemonZeno AI is a single unified AI that handles all requests: trading signals, Q&A, code, and more.\n" #
+      "- The AI has two modes: Normal (for Binance assets) and Insane (for any asset/exchange).\n" #
       "- DMNZ is the platform's meme token launching via Telegram Mini App on Blum in 2027.\n" #
       "- 2026: Community building on Binance.\n" #
       "- 2027: DMNZ token launch via Blum on Telegram.\n" #
@@ -239,9 +245,10 @@ mixin (
       "- 100% fair launch, no presale, no allocation, no vesting.\n" #
       "- Official social links: Binance Square @DemonZeno and Twitter @ZenoDemon.\n" #
       "- Slogan: 'DemonZeno: Master the Chaos, Slay the Market, and Trade Like a God.'\n" #
+      "- Admin passcode is required to access the admin dashboard (256-bit SHA validated).\n" #
       "Answer concisely and in DemonZeno's confident, anime-inspired voice. " #
       "If the question is not covered by the knowledge base, say so politely.";
-    await AiProviders.routeAndSendMessage(keys, "en", [], systemContext # "\n\nQuestion: " # question);
+    await AiProviders.callProvider(prov, key, "normal", "en", [], systemContext # "\n\nQuestion: " # question);
   };
 
   // ── Session recap ─────────────────────────────────────────────────────────
@@ -256,7 +263,11 @@ mixin (
     if (history.size() == 0) {
       return #ok("No signals or insights discussed yet in this session.");
     };
-    let keys = providerKeys();
+    if (hasNoProvider()) {
+      return #err("No AI provider configured.");
+    };
+    let (prov, key) = getBestAvailableKey();
+    // Build a compact transcript from history
     var transcript = "";
     for (msg in history.values()) {
       if (msg.role == "user") {
@@ -268,7 +279,7 @@ mixin (
     let prompt = "Summarize this trading session. List all signals discussed with their key details " #
       "(asset, entry, TP1/TP2/TP3, SL, timeframe), any market insights shared, and overall session theme. " #
       "Be concise and well-structured with emoji headers.\n\nSession transcript:\n" # transcript;
-    let response = await AiProviders.routeAndSendMessage(keys, "en", [], prompt);
+    let response = await AiProviders.callProvider(prov, key, "normal", "en", [], prompt);
     if (response == "") return #err("Empty response from provider");
     #ok(response);
   };
@@ -325,6 +336,7 @@ mixin (
       rating;
       timestamp = Time.now();
     };
+    // Update if exists, otherwise add
     var found = false;
     ratings.mapInPlace(func(r) {
       if (r.messageId == messageId) {
@@ -422,8 +434,42 @@ mixin (
     ];
   };
 
-  // ── Private helper: best available key for non-routed calls ──────────────
+  // ── Private helpers ───────────────────────────────────────────────────────
 
+  func getProviderKey(provider : Text) : Text {
+    switch (provider) {
+      case "gemini"      { geminiKey.value };
+      case "openai"      { openaiKey.value };
+      case "gpt4o"       { openaiKey.value };
+      case "grok"        { grokKey.value };
+      case "claude"      { claudeKey.value };
+      case "perplexity"  { perplexityKey.value };
+      case "mistral"     { mistralKey.value };
+      case "cohere"      { cohereKey.value };
+      case "deepseek"    { deepseekKey.value };
+      case "groq"        { groqKey.value };
+      case "together"    { togetherKey.value };
+      case "fireworks"   { fireworksKey.value };
+      case "openrouter"  { openrouterKey.value };
+      case "huggingface" { huggingfaceKey.value };
+      case "replicate"   { replicateKey.value };
+      case "ollama"      { ollamaKey.value };
+      case "ai21"        { ai21Key.value };
+      case "nlpcloud"    { nlpcloudKey.value };
+      case "anyscale"    { anyscaleKey.value };
+      case "cerebras"    { cerebrasKey.value };
+      case "sambanova"   { sambanovaKey.value };
+      case "cloudflare"  { cloudflareKey.value };
+      case "novita"      { novitaKey.value };
+      case "moonshot"    { moonshotKey.value };
+      case "zhipu"       { zhipuKey.value };
+      case "upstage"     { upstageKey.value };
+      case _             { "" };
+    };
+  };
+
+  /// Returns (provider, apiKey) for the best available provider (priority order).
+  /// Returns ("", "") when no provider has a key configured.
   func getBestAvailableKey() : (Text, Text) {
     let priority = [
       ("openrouter",  openrouterKey.value),
@@ -433,9 +479,10 @@ mixin (
       ("deepseek",    deepseekKey.value),
       ("together",    togetherKey.value),
       ("openai",      openaiKey.value),
-      ("grok",        grokKey.value),
+      ("claude",      claudeKey.value),
       ("perplexity",  perplexityKey.value),
       ("cohere",      cohereKey.value),
+      ("grok",        grokKey.value),
       ("fireworks",   fireworksKey.value),
       ("cerebras",    cerebrasKey.value),
       ("ai21",        ai21Key.value),
@@ -444,5 +491,10 @@ mixin (
       if (key != "") return (prov, key);
     };
     ("", "");
+  };
+
+  func hasNoProvider() : Bool {
+    let (_, key) = getBestAvailableKey();
+    key == "";
   };
 };
