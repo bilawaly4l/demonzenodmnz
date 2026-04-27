@@ -186,43 +186,41 @@ export type ResultStatus = { 'Win' : null } |
   { 'Loss' : null } |
   { 'Active' : null } |
   { 'Expired' : null };
-export type Result_1 = { 'ok' : [string, string] } |
+export type Result_1 = { 'ok' : null } |
   { 'err' : string };
-export type Result_10 = { 'ok' : StatsConfig } |
+export type Result_10 = { 'ok' : SignalPerformanceStats } |
   { 'err' : string };
-export type Result_11 = { 'ok' : SignalPerformanceStats } |
+export type Result_11 = { 'ok' : Array<ResponseRating> } |
   { 'err' : string };
-export type Result_12 = { 'ok' : Array<ResponseRating> } |
+export type Result_12 = { 'ok' : Array<NotifyMe> } |
   { 'err' : string };
-export type Result_13 = { 'ok' : Array<NotifyMe> } |
+export type Result_13 = { 'ok' : Array<JournalEntry> } |
   { 'err' : string };
-export type Result_14 = { 'ok' : Array<JournalEntry> } |
+export type Result_14 = { 'ok' : Array<string> } |
   { 'err' : string };
-export type Result_15 = { 'ok' : Array<string> } |
+export type Result_15 = { 'ok' : Array<AuditEntry> } |
   { 'err' : string };
-export type Result_16 = { 'ok' : Array<AuditEntry> } |
+export type Result_16 = { 'ok' : Analytics } |
   { 'err' : string };
-export type Result_17 = { 'ok' : Analytics } |
+export type Result_17 = { 'ok' : Array<ActivityEntry> } |
   { 'err' : string };
-export type Result_18 = { 'ok' : Array<ActivityEntry> } |
+export type Result_18 = { 'ok' : Array<AbTest> } |
   { 'err' : string };
-export type Result_19 = { 'ok' : Array<AbTest> } |
+export type Result_2 = { 'ok' : Signal } |
   { 'err' : string };
-export type Result_2 = { 'ok' : null } |
+export type Result_3 = { 'ok' : FAQ } |
   { 'err' : string };
-export type Result_3 = { 'ok' : Signal } |
+export type Result_4 = { 'ok' : BinancePost } |
   { 'err' : string };
-export type Result_4 = { 'ok' : FAQ } |
+export type Result_5 = { 'ok' : boolean } |
   { 'err' : string };
-export type Result_5 = { 'ok' : BinancePost } |
+export type Result_6 = { 'ok' : Announcement } |
   { 'err' : string };
-export type Result_6 = { 'ok' : boolean } |
+export type Result_7 = { 'ok' : Array<AuditSnapshot> } |
   { 'err' : string };
-export type Result_7 = { 'ok' : Announcement } |
+export type Result_8 = { 'ok' : Array<Signal> } |
   { 'err' : string };
-export type Result_8 = { 'ok' : Array<AuditSnapshot> } |
-  { 'err' : string };
-export type Result_9 = { 'ok' : Array<Signal> } |
+export type Result_9 = { 'ok' : StatsConfig } |
   { 'err' : string };
 export interface RoadmapMilestone {
   'title' : string,
@@ -314,10 +312,10 @@ export interface WhitepaperSection { 'title' : string, 'content' : string }
 export interface _SERVICE {
   'addBinancePost' : ActorMethod<
     [string, string, string, string, string],
-    Result_5
+    Result_4
   >,
   'addBurnEntry' : ActorMethod<[string, string, string, string], Result>,
-  'addFaq' : ActorMethod<[string, string, string], Result_4>,
+  'addFaq' : ActorMethod<[string, string, string], Result_3>,
   'addJournalEntry' : ActorMethod<[JournalEntry, string], Result>,
   'addMilestone' : ActorMethod<[string, string, string], Result>,
   'addQuote' : ActorMethod<[string, string, string], Result>,
@@ -338,7 +336,7 @@ export interface _SERVICE {
       boolean,
       [] | [bigint],
     ],
-    Result_3
+    Result_2
   >,
   'addTestimonial' : ActorMethod<
     [string, string, [] | [string], [] | [string], string],
@@ -346,30 +344,30 @@ export interface _SERVICE {
   >,
   'askFaq' : ActorMethod<[string], string>,
   'backtestSignal' : ActorMethod<[string, string], Result>,
-  'banEmail' : ActorMethod<[string, string], Result_2>,
-  'clearJournal' : ActorMethod<[string], Result_2>,
+  'banEmail' : ActorMethod<[string, string], Result_1>,
+  'clearJournal' : ActorMethod<[string], Result_1>,
   'createAbTest' : ActorMethod<[string, string, string, string], Result>,
   'createAuditSnapshot' : ActorMethod<[string, string], Result>,
   'createPushNotification' : ActorMethod<[string, string, string], Result>,
-  'deleteBinancePost' : ActorMethod<[string, string], Result_2>,
-  'deleteFaq' : ActorMethod<[string, string], Result_2>,
-  'deleteQuote' : ActorMethod<[string, string], Result_2>,
-  'deleteSignal' : ActorMethod<[string, string], Result_2>,
-  'deleteTestimonial' : ActorMethod<[string, string], Result_2>,
+  'deleteBinancePost' : ActorMethod<[string, string], Result_1>,
+  'deleteFaq' : ActorMethod<[string, string], Result_1>,
+  'deleteQuote' : ActorMethod<[string, string], Result_1>,
+  'deleteSignal' : ActorMethod<[string, string], Result_1>,
+  'deleteTestimonial' : ActorMethod<[string, string], Result_1>,
   'dismissPushNotification' : ActorMethod<[string], undefined>,
   'generateDailyBriefing' : ActorMethod<[string], Result>,
-  'getAbTests' : ActorMethod<[string], Result_19>,
+  'getAbTests' : ActorMethod<[string], Result_18>,
   'getAbVariant' : ActorMethod<[string], string>,
   'getActivePushNotifications' : ActorMethod<[], Array<PushNotification>>,
-  'getAdminActivityHeatmap' : ActorMethod<[string], Result_18>,
+  'getAdminActivityHeatmap' : ActorMethod<[string], Result_17>,
   'getAdminConfig' : ActorMethod<[string], Result>,
   'getAiLanguage' : ActorMethod<[string], Result>,
   'getAiProviderStatus' : ActorMethod<[], Array<[string, boolean]>>,
-  'getAnalytics' : ActorMethod<[string], Result_17>,
+  'getAnalytics' : ActorMethod<[string], Result_16>,
   'getAnalyticsCsv' : ActorMethod<[string], Result>,
   'getAnnouncement' : ActorMethod<[], [] | [Announcement]>,
-  'getAuditLog' : ActorMethod<[string], Result_16>,
-  'getBannedEmails' : ActorMethod<[string], Result_15>,
+  'getAuditLog' : ActorMethod<[string], Result_15>,
+  'getBannedEmails' : ActorMethod<[string], Result_14>,
   'getBinanceFeed' : ActorMethod<[], Array<BinancePost>>,
   'getBurnSchedule' : ActorMethod<[], Array<BurnScheduleEntry>>,
   'getBurnTracker' : ActorMethod<[], BurnTracker>,
@@ -377,79 +375,79 @@ export interface _SERVICE {
   'getDailyBriefing' : ActorMethod<[], string>,
   'getFaqs' : ActorMethod<[], Array<FAQ>>,
   'getHolderBenefits' : ActorMethod<[], Array<HolderBenefit>>,
-  'getJournalEntries' : ActorMethod<[string], Result_14>,
+  'getJournalEntries' : ActorMethod<[string], Result_13>,
   'getMaintenanceMode' : ActorMethod<[], MaintenanceMode>,
   'getMarketMoodBanner' : ActorMethod<[], [] | [MarketMoodBanner]>,
   'getMarketPrices' : ActorMethod<[], Array<PriceData>>,
   'getMarketSentiment' : ActorMethod<[], MarketSentiment>,
   'getMilestones' : ActorMethod<[], Array<CommunityMilestone>>,
-  'getNotifyMeList' : ActorMethod<[string], Result_13>,
+  'getNotifyMeList' : ActorMethod<[string], Result_12>,
   'getPublicBurnSchedule' : ActorMethod<[], Array<BurnScheduleEntry>>,
   'getQuotes' : ActorMethod<[], Array<DemonZenoQuote>>,
   'getRoadmap' : ActorMethod<[], Array<RoadmapMilestone>>,
-  'getScheduledSignals' : ActorMethod<[string], Result_9>,
-  'getSessionRatings' : ActorMethod<[string], Result_12>,
+  'getScheduledSignals' : ActorMethod<[string], Result_8>,
+  'getSessionRatings' : ActorMethod<[string], Result_11>,
   'getSessionRecap' : ActorMethod<[Array<ChatMessage>, string], Result>,
   'getSignalArchive' : ActorMethod<[], Array<Signal>>,
   'getSignalOfTheDay' : ActorMethod<[], [] | [Signal]>,
   'getSignalOfWeek' : ActorMethod<[], [] | [SignalOfWeekFull]>,
-  'getSignalPerformanceStats' : ActorMethod<[string], Result_11>,
+  'getSignalPerformanceStats' : ActorMethod<[string], Result_10>,
   'getSignals' : ActorMethod<[], Array<Signal>>,
   'getStats' : ActorMethod<[], Stats>,
-  'getStatsConfig' : ActorMethod<[string], Result_10>,
+  'getStatsConfig' : ActorMethod<[string], Result_9>,
   'getTestimonials' : ActorMethod<[], Array<Testimonial>>,
   'getWhitepaper' : ActorMethod<[], WhitepaperContent>,
-  'importSignals' : ActorMethod<[string, Array<SignalInput>], Result_9>,
+  'importSignals' : ActorMethod<[string, Array<SignalInput>], Result_8>,
   'initFaqs' : ActorMethod<[], undefined>,
   'invalidateAiSession' : ActorMethod<[string], undefined>,
   'invalidateSession' : ActorMethod<[string], undefined>,
-  'listAuditSnapshots' : ActorMethod<[string], Result_8>,
-  'markMilestoneReached' : ActorMethod<[string, bigint, string], Result_2>,
+  'listAuditSnapshots' : ActorMethod<[string], Result_7>,
+  'markMilestoneReached' : ActorMethod<[string, bigint, string], Result_1>,
   'publishScheduledSignals' : ActorMethod<[], bigint>,
-  'rateAiResponse' : ActorMethod<[string, bigint, string], Result_2>,
+  'rateAiResponse' : ActorMethod<[string, bigint, string], Result_1>,
   'recordAbImpression' : ActorMethod<[string, string], undefined>,
-  'recordAdminActivity' : ActorMethod<[string, string], Result_2>,
+  'recordAdminActivity' : ActorMethod<[string, string], Result_1>,
   'refreshMarketPrices' : ActorMethod<[], Array<PriceData>>,
-  'reorderFaqs' : ActorMethod<[string, Array<string>], Result_2>,
-  'scheduleSignal' : ActorMethod<[string, bigint, string], Result_2>,
+  'reorderFaqs' : ActorMethod<[string, Array<string>], Result_1>,
+  'scheduleSignal' : ActorMethod<[string, bigint, string], Result_1>,
   'sendAiMessage' : ActorMethod<
-    [string, string, string, string, Array<ChatMessage>],
+    [string, string, string, Array<ChatMessage>],
     Result
   >,
-  'setAiApiKey' : ActorMethod<[string, string, string], Result_2>,
-  'setAiLanguage' : ActorMethod<[string, string], Result_2>,
+  'setAiApiKey' : ActorMethod<[string, string, string], Result_1>,
+  'setAiLanguage' : ActorMethod<[string, string], Result_1>,
   'setAnnouncement' : ActorMethod<
     [string, string, [] | [string], [] | [bigint]],
-    Result_7
+    Result_6
   >,
-  'setBurnTracker' : ActorMethod<[string, BurnTracker], Result_2>,
-  'setCommunityCounter' : ActorMethod<[string, CommunityCounter], Result_2>,
-  'setMaintenanceMode' : ActorMethod<[boolean, string, string], Result_2>,
-  'setMarketMoodBanner' : ActorMethod<[string, string, string], Result_2>,
+  'setBurnTracker' : ActorMethod<[string, BurnTracker], Result_1>,
+  'setCommunityCounter' : ActorMethod<[string, CommunityCounter], Result_1>,
+  'setMaintenanceMode' : ActorMethod<[boolean, string, string], Result_1>,
+  'setMarketMoodBanner' : ActorMethod<[string, string, string], Result_1>,
   'setRoadmapMilestone' : ActorMethod<
     [string, string, string, string, boolean],
-    Result_2
+    Result_1
   >,
-  'setSignalOfTheDay' : ActorMethod<[string, [] | [string]], Result_2>,
-  'setSignalOfWeek' : ActorMethod<[string, string, string], Result_2>,
+  'setSignalOfTheDay' : ActorMethod<[string, [] | [string]], Result_1>,
+  'setSignalOfWeek' : ActorMethod<[string, string, string], Result_1>,
   'setSignalOfWeekWithDate' : ActorMethod<
     [string, string, string, string],
-    Result_2
+    Result_1
   >,
-  'setStatsConfig' : ActorMethod<[string, StatsConfig], Result_2>,
-  'submitNotifyMe' : ActorMethod<[[] | [string], string], Result_2>,
-  'toggleAnnouncement' : ActorMethod<[string], Result_6>,
-  'unbanEmail' : ActorMethod<[string, string], Result_2>,
+  'setStatsConfig' : ActorMethod<[string, StatsConfig], Result_1>,
+  'submitNotifyMe' : ActorMethod<[[] | [string], string], Result_1>,
+  'toggleAnnouncement' : ActorMethod<[string], Result_5>,
+  'unbanEmail' : ActorMethod<[string, string], Result_1>,
   'updateBinancePost' : ActorMethod<
     [string, string, string, string, string, string],
-    Result_5
+    Result_4
   >,
   'updateBurnEntryStatus' : ActorMethod<
     [string, string, [] | [string], string],
-    Result_2
+    Result_1
   >,
-  'updateFaq' : ActorMethod<[string, string, string, string], Result_4>,
-  'updateMarketSentiment' : ActorMethod<[string, MarketSentiment], Result_2>,
+  'updateFaq' : ActorMethod<[string, string, string, string], Result_3>,
+  'updateMarketSentiment' : ActorMethod<[string, MarketSentiment], Result_1>,
   'updateSignal' : ActorMethod<
     [
       string,
@@ -468,18 +466,17 @@ export interface _SERVICE {
       boolean,
       [] | [bigint],
     ],
-    Result_3
+    Result_2
   >,
-  'updateSignalResult' : ActorMethod<[string, string, ResultStatus], Result_3>,
+  'updateSignalResult' : ActorMethod<[string, string, ResultStatus], Result_2>,
   'updateSignalSchedule' : ActorMethod<
     [string, string, boolean, [] | [bigint]],
-    Result_3
+    Result_2
   >,
-  'updateWhitepaper' : ActorMethod<[WhitepaperContent, string], Result_2>,
+  'updateWhitepaper' : ActorMethod<[WhitepaperContent, string], Result_1>,
   'validateAdminRole' : ActorMethod<[string], [] | [string]>,
-  'validateAiPasscode' : ActorMethod<[string], Result_1>,
+  'validateAiPasscode' : ActorMethod<[string], Result>,
   'validateAiSession' : ActorMethod<[string], boolean>,
-  'validateInsaneSession' : ActorMethod<[string], boolean>,
   'validatePasscode' : ActorMethod<[string], Result>,
   'validateSession' : ActorMethod<[string], boolean>,
 }

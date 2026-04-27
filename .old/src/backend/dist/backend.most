@@ -1,4 +1,4 @@
-// Version: 1.0.0
+// Version: 3.0.0
 type AbTestInternal__454385794 =
   {
     active : Bool;
@@ -126,6 +126,9 @@ type ResultStatus__597470066 = {#Active; #Expired; #Loss; #Win};
 type RoadmapMilestone__956576536 =
   {completed : Bool; description : Text; title : Text; year : Text};
 type SentimentLevel__842529189 = {#Bearish; #Bullish; #Neutral};
+type Set__532252804<T> = Set__710576254<T>;
+type Set__710576254<T> =
+  {var root : Node__92254746<T>; var size : Nat__490723111};
 type SignalOfWeek__144594512 =
   {comment : Text; featuredAt : Int; signalId : Text; weekOf : Text};
 type Signal__610467288 =
@@ -172,7 +175,7 @@ type Timeframe__904537512 = {#LongTerm; #Scalp; #Swing};
 type WhitepaperContent__996840349 =
   {sections : [WhitepaperSection__92786351]; title : Text; updatedAt : Int};
 type WhitepaperSection__92786351 = {content : Text; title : Text};
-actor {
+actor ({
   stable CACHE_TTL_NS : Int;
   stable abTestIdCounter : {var value : Nat};
   stable abTests :
@@ -248,8 +251,7 @@ actor {
       var elementIndex : Nat__490723111
     };
   stable huggingfaceKey : {var value : Text};
-  stable insaneSessions :
-    {var root : Node__92254746<Text>; var size : Nat__490723111};
+  in insaneSessions : Set__532252804<Text>;
   stable journalMap :
     {
       var root :
@@ -338,4 +340,168 @@ actor {
   stable upstageKey : {var value : Text};
   stable whitepaperRef : {var value : WhitepaperContent__996840349};
   stable zhipuKey : {var value : Text}
-};
+}, {
+  stable CACHE_TTL_NS : Int;
+  stable abTestIdCounter : {var value : Nat};
+  stable abTests :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?AbTestInternal__454385794]];
+      var elementIndex : Nat__490723111
+    };
+  stable activityMap :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable ai21Key : {var value : Text};
+  stable aiSessions :
+    {var root : Node__92254746<Text>; var size : Nat__490723111};
+  stable annIdCounter : {var value : Nat};
+  stable announcementRef : {var value : ?Announcement__160704614};
+  stable anyscaleKey : {var value : Text};
+  stable auditIdCounter : {var value : Nat};
+  stable auditLog :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?AuditEntry__60967837]];
+      var elementIndex : Nat__490723111
+    };
+  stable auditSnapshots :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?AuditSnapshot__841379358]];
+      var elementIndex : Nat__490723111
+    };
+  stable bannedEmails :
+    {var root : Node__92254746<Text>; var size : Nat__490723111};
+  stable benefitsSeeded : {var value : Bool};
+  stable binancePostIdCounter : {var value : Nat};
+  stable binancePosts :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?BinancePost__458040416]];
+      var elementIndex : Nat__490723111
+    };
+  stable burnIdCounter : {var value : Nat};
+  stable burnRef : {var value : BurnTracker__1013935739};
+  stable burnSchedule :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?BurnScheduleEntry__177580255]];
+      var elementIndex : Nat__490723111
+    };
+  stable burnScheduleSeeded : {var value : Bool};
+  stable cerebrasKey : {var value : Text};
+  stable claudeKey : {var value : Text};
+  stable cloudflareKey : {var value : Text};
+  stable cohereKey : {var value : Text};
+  stable communityRef : {var value : CommunityCounter__290298233};
+  stable dailyBriefingDate : {var value : Int};
+  stable dailyBriefingRef : {var value : Text};
+  stable deepseekKey : {var value : Text};
+  stable faqIdCounter : {var value : Nat};
+  stable faqs :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?FAQ__807772090]];
+      var elementIndex : Nat__490723111
+    };
+  stable faqsSeeded : {var value : Bool};
+  stable fireworksKey : {var value : Text};
+  stable geminiKey : {var value : Text};
+  stable grokKey : {var value : Text};
+  stable groqKey : {var value : Text};
+  stable holderBenefits :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?HolderBenefit__552934038]];
+      var elementIndex : Nat__490723111
+    };
+  stable huggingfaceKey : {var value : Text};
+  stable journalMap :
+    {
+      var root :
+        Node__46230540<Text, List__415060402<JournalEntry__385836424>>;
+      var size : Nat__490723111
+    };
+  stable langMap :
+    {var root : Node__46230540<Text, Text>; var size : Nat__490723111};
+  stable maintenanceRef : {var value : MaintenanceMode__46874065};
+  stable marketBannerRef : {var value : ?MarketMoodBanner__107428641};
+  stable milestoneIdCounter : {var value : Nat};
+  stable milestones :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CommunityMilestone__803380763]];
+      var elementIndex : Nat__490723111
+    };
+  stable mistralKey : {var value : Text};
+  stable moonshotKey : {var value : Text};
+  stable nlpcloudKey : {var value : Text};
+  stable notifyEntries :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?NotifyMe__200450200]];
+      var elementIndex : Nat__490723111
+    };
+  stable notifyIdCounter : {var value : Nat};
+  stable novitaKey : {var value : Text};
+  stable ollamaKey : {var value : Text};
+  stable openaiKey : {var value : Text};
+  stable openrouterKey : {var value : Text};
+  stable perplexityKey : {var value : Text};
+  stable priceCache : {var value : [PriceData__994197416]};
+  stable priceCacheTime : {var value : Int};
+  stable pushNotifIdCounter : {var value : Nat};
+  stable pushNotifications :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?PushNotification__738116908]];
+      var elementIndex : Nat__490723111
+    };
+  stable quoteIdCounter : {var value : Nat};
+  stable quotes :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?DemonZenoQuote__955648744]];
+      var elementIndex : Nat__490723111
+    };
+  stable quotesSeeded : {var value : Bool};
+  stable ratingMap :
+    {
+      var root :
+        Node__46230540<Text, List__415060402<ResponseRating__246714755>>;
+      var size : Nat__490723111
+    };
+  stable replicateKey : {var value : Text};
+  stable roadmapMilestones :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?RoadmapMilestone__956576536]];
+      var elementIndex : Nat__490723111
+    };
+  stable sambanovaKey : {var value : Text};
+  stable sentimentRef : {var value : MarketSentiment__204313550};
+  stable sessions :
+    {var root : Node__92254746<Text>; var size : Nat__490723111};
+  stable signalIdCounter : {var value : Nat};
+  stable signalOfTheDayRef : {var value : ?Text};
+  stable signalOfWeekRef : {var value : ?SignalOfWeek__144594512};
+  stable signals :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Signal__610467288]];
+      var elementIndex : Nat__490723111
+    };
+  stable snapshotIdCounter : {var value : Nat};
+  stable statsConfigRef : {var value : StatsConfig__858051016};
+  stable testimonialIdCounter : {var value : Nat};
+  stable testimonials :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Testimonial__428069909]];
+      var elementIndex : Nat__490723111
+    };
+  stable togetherKey : {var value : Text};
+  stable upstageKey : {var value : Text};
+  stable whitepaperRef : {var value : WhitepaperContent__996840349};
+  stable zhipuKey : {var value : Text}
+}) ;

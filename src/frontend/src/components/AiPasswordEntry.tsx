@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Eye, EyeOff, Loader2, Lock, Zap } from "lucide-react";
+import { Eye, EyeOff, Loader2, Zap } from "lucide-react";
 import { type FormEvent, useState } from "react";
 import { useAiSession } from "../contexts/AiSessionContext";
 import { useValidateAiPasscode } from "../hooks/useAiChat";
@@ -8,135 +8,144 @@ import { useValidateAiPasscode } from "../hooks/useAiChat";
 export function AiPasswordEntry() {
   const [passcode, setPasscode] = useState("");
   const [showPass, setShowPass] = useState(false);
-  const [successMode, setSuccessMode] = useState<string | null>(null);
+  const [unlocked, setUnlocked] = useState(false);
   const { validate, isLoading, error, clearError } = useValidateAiPasscode();
-  const { setSession } = useAiSession();
+  const { setAiSessionToken } = useAiSession();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!passcode.trim()) return;
     const result = await validate(passcode.trim());
     if (result) {
-      setSuccessMode(result.mode);
-      // Show success state briefly, then set session to trigger guard re-render
+      setUnlocked(true);
+      // Brief success animation, then enter chat
       setTimeout(() => {
-        setSession(result.token, result.mode);
-      }, 600);
+        setAiSessionToken(result.token);
+      }, 700);
     }
   }
-
-  const isInsaneSuccess = successMode === "insane";
-  const glowColor = isInsaneSuccess
-    ? "oklch(0.55 0.22 25 / 0.25)"
-    : "oklch(0.65 0.15 190 / 0.18)";
 
   return (
     <div
       data-ocid="ai_password.panel"
-      className="min-h-screen flex items-center justify-center px-4"
+      className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden"
       style={{
         background:
-          "linear-gradient(135deg, oklch(0.145 0.01 260) 0%, oklch(0.18 0.02 200) 50%, oklch(0.145 0.01 260) 100%)",
+          "linear-gradient(135deg, oklch(0.12 0.015 260) 0%, oklch(0.16 0.025 200) 50%, oklch(0.12 0.015 260) 100%)",
       }}
     >
-      {/* Ambient glow */}
+      {/* Ambient teal glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `radial-gradient(ellipse 60% 40% at 50% 50%, ${glowColor}, transparent)`,
-          transition: "background 0.5s ease",
+          background: unlocked
+            ? "radial-gradient(ellipse 70% 50% at 50% 50%, oklch(0.65 0.15 190 / 0.22), transparent)"
+            : "radial-gradient(ellipse 60% 40% at 50% 50%, oklch(0.65 0.15 190 / 0.10), transparent)",
+          transition: "background 0.6s ease",
         }}
       />
 
-      <div className="relative w-full max-w-md">
+      {/* Subtle grid lines */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "linear-gradient(oklch(0.65 0.15 190) 1px, transparent 1px), linear-gradient(90deg, oklch(0.65 0.15 190) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+      />
+
+      <div className="relative w-full max-w-md z-10">
         <div className="flex flex-col items-center gap-6">
-          {/* DemonZeno character — cropped to remove bottom watermark */}
+          {/* Character image */}
           <div
-            className="relative w-32 h-32 overflow-hidden rounded-2xl shadow-elevated"
+            className="relative w-28 h-28 rounded-2xl overflow-hidden"
             style={{
-              border: isInsaneSuccess
-                ? "2px solid oklch(0.55 0.22 25 / 0.7)"
-                : "2px solid oklch(0.65 0.15 190 / 0.4)",
-              boxShadow: successMode ? `0 0 32px ${glowColor}` : undefined,
-              transition: "border-color 0.4s ease, box-shadow 0.4s ease",
+              border: unlocked
+                ? "2px solid oklch(0.65 0.15 190 / 0.8)"
+                : "2px solid oklch(0.65 0.15 190 / 0.35)",
+              boxShadow: unlocked
+                ? "0 0 40px oklch(0.65 0.15 190 / 0.4), 0 0 80px oklch(0.65 0.15 190 / 0.15)"
+                : "0 0 20px oklch(0.65 0.15 190 / 0.1)",
+              transition: "all 0.5s ease",
             }}
           >
             <img
               src="/assets/demonzeno-character.png"
               alt="DemonZeno AI"
               className="w-full object-cover object-top"
-              style={{ height: "115%", objectPosition: "top center" }}
+              style={{ height: "115%" }}
             />
           </div>
 
-          {/* Title */}
+          {/* Title block */}
           <div className="text-center">
             <h1
-              className="font-display font-bold text-3xl text-glow"
-              style={{ color: "oklch(0.95 0.005 260)" }}
+              className="font-display font-bold text-4xl tracking-tight"
+              style={{
+                color: "oklch(0.97 0.005 260)",
+                textShadow: "0 0 32px oklch(0.65 0.15 190 / 0.5)",
+              }}
             >
               Demon<span style={{ color: "oklch(0.65 0.15 190)" }}>Zeno</span>{" "}
               AI
             </h1>
             <p
-              style={{ color: "oklch(0.55 0.01 260)" }}
-              className="text-sm mt-1"
+              className="text-sm mt-2 font-medium"
+              style={{ color: "oklch(0.55 0.08 190)" }}
             >
-              Password-protected. Authorized users only.
+              Master the Market with AI Power
             </p>
           </div>
 
+          {/* Capability pills */}
+          <div className="flex flex-wrap gap-2 justify-center">
+            {[
+              "Trading Signals",
+              "Forex & Stocks",
+              "Code Writing",
+              "Market Analysis",
+              "50+ AI Providers",
+            ].map((cap) => (
+              <span
+                key={cap}
+                className="text-xs px-2.5 py-1 rounded-full"
+                style={{
+                  background: "oklch(0.65 0.15 190 / 0.08)",
+                  border: "1px solid oklch(0.65 0.15 190 / 0.2)",
+                  color: "oklch(0.65 0.15 190 / 0.85)",
+                }}
+              >
+                {cap}
+              </span>
+            ))}
+          </div>
+
           {/* Success flash */}
-          {successMode && (
+          {unlocked && (
             <div
               className="w-full rounded-xl px-4 py-3 text-center font-semibold text-sm animate-pulse"
               style={{
-                background: isInsaneSuccess
-                  ? "oklch(0.55 0.22 25 / 0.2)"
-                  : "oklch(0.65 0.15 190 / 0.15)",
-                border: `1px solid ${isInsaneSuccess ? "oklch(0.55 0.22 25 / 0.5)" : "oklch(0.65 0.15 190 / 0.4)"}`,
-                color: isInsaneSuccess
-                  ? "oklch(0.7 0.2 25)"
-                  : "oklch(0.75 0.15 190)",
+                background: "oklch(0.65 0.15 190 / 0.15)",
+                border: "1px solid oklch(0.65 0.15 190 / 0.5)",
+                color: "oklch(0.75 0.15 190)",
               }}
             >
-              {isInsaneSuccess
-                ? "🔥 INSANE Mode Unlocked — Entering…"
-                : "✅ Normal Mode Unlocked — Entering…"}
+              ⚡ DemonZeno AI Unlocked — Entering…
             </div>
           )}
 
           {/* Card */}
-          {!successMode && (
+          {!unlocked && (
             <div
-              className="w-full rounded-2xl p-8"
+              className="w-full rounded-2xl p-7"
               style={{
-                background: "oklch(0.18 0.01 260)",
-                border: "1px solid oklch(0.28 0.01 260)",
-                boxShadow: "0 32px 64px oklch(0 0 0 / 0.4)",
+                background: "oklch(0.16 0.015 260)",
+                border: "1px solid oklch(0.26 0.015 260)",
+                boxShadow:
+                  "0 32px 80px oklch(0 0 0 / 0.5), inset 0 1px 0 oklch(1 0 0 / 0.03)",
               }}
             >
-              <div className="flex items-center gap-2 mb-6">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
-                  style={{
-                    background: "oklch(0.65 0.15 190 / 0.15)",
-                    border: "1px solid oklch(0.65 0.15 190 / 0.3)",
-                  }}
-                >
-                  <Lock
-                    className="w-4 h-4"
-                    style={{ color: "oklch(0.65 0.15 190)" }}
-                  />
-                </div>
-                <span
-                  className="font-display font-semibold"
-                  style={{ color: "oklch(0.95 0.005 260)" }}
-                >
-                  Enter Access Code
-                </span>
-              </div>
-
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="relative">
                   <Input
@@ -147,11 +156,11 @@ export function AiPasswordEntry() {
                       setPasscode(e.target.value);
                       if (error) clearError();
                     }}
-                    placeholder="Enter access code…"
-                    className="pr-10"
+                    placeholder="Enter passcode…"
+                    className="pr-10 h-12 text-base"
                     style={{
-                      background: "oklch(0.145 0.01 260)",
-                      border: "1px solid oklch(0.28 0.01 260)",
+                      background: "oklch(0.12 0.01 260)",
+                      border: "1px solid oklch(0.28 0.015 260)",
                       color: "oklch(0.95 0.005 260)",
                     }}
                     autoFocus
@@ -161,7 +170,7 @@ export function AiPasswordEntry() {
                     type="button"
                     onClick={() => setShowPass((v) => !v)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 transition-colors"
-                    style={{ color: "oklch(0.55 0.01 260)" }}
+                    style={{ color: "oklch(0.50 0.01 260)" }}
                     aria-label={showPass ? "Hide passcode" : "Show passcode"}
                   >
                     {showPass ? (
@@ -177,8 +186,8 @@ export function AiPasswordEntry() {
                     data-ocid="ai_password.error_state"
                     className="text-sm font-medium px-3 py-2 rounded-lg"
                     style={{
-                      background: "oklch(0.55 0.22 25 / 0.15)",
-                      color: "oklch(0.7 0.2 25)",
+                      background: "oklch(0.55 0.22 25 / 0.12)",
+                      color: "oklch(0.72 0.18 25)",
                       border: "1px solid oklch(0.55 0.22 25 / 0.3)",
                     }}
                   >
@@ -190,7 +199,16 @@ export function AiPasswordEntry() {
                   data-ocid="ai_password.submit_button"
                   type="submit"
                   disabled={isLoading || !passcode.trim()}
-                  className="btn-primary w-full h-11 font-semibold"
+                  className="h-12 font-semibold text-base rounded-xl w-full"
+                  style={{
+                    background: isLoading
+                      ? "oklch(0.45 0.12 190)"
+                      : "linear-gradient(135deg, oklch(0.55 0.15 190) 0%, oklch(0.48 0.18 200) 100%)",
+                    color: "oklch(0.98 0.005 260)",
+                    border: "none",
+                    boxShadow: "0 4px 24px oklch(0.55 0.15 190 / 0.35)",
+                    transition: "all 0.2s ease",
+                  }}
                 >
                   {isLoading ? (
                     <>
@@ -199,8 +217,8 @@ export function AiPasswordEntry() {
                     </>
                   ) : (
                     <>
-                      <Zap className="w-4 h-4 mr-2" />
-                      Access DemonZeno AI
+                      <Zap className="w-5 h-5 mr-2" />
+                      Unlock DemonZeno AI
                     </>
                   )}
                 </Button>
@@ -208,16 +226,20 @@ export function AiPasswordEntry() {
 
               <p
                 className="text-xs text-center mt-4"
-                style={{ color: "oklch(0.45 0.01 260)" }}
+                style={{ color: "oklch(0.42 0.01 260)" }}
               >
-                Session expires when you close this tab. No data stored.
+                Session expires when you close this tab · No data stored
               </p>
             </div>
           )}
 
-          {/* Powered by */}
-          <p className="text-xs" style={{ color: "oklch(0.45 0.01 260)" }}>
-            Powered by 25+ AI providers · Gemini · Grok · ChatGPT · and more
+          {/* Footer note */}
+          <p
+            className="text-xs text-center"
+            style={{ color: "oklch(0.40 0.01 260)" }}
+          >
+            Powered by 50+ AI providers · Gemini · Grok · ChatGPT · Claude · and
+            more
           </p>
         </div>
       </div>

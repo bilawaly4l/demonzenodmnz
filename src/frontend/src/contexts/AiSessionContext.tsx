@@ -5,33 +5,33 @@ import {
   useEffect,
   useState,
 } from "react";
-import type { AiMode } from "../types";
 
 export type AiLanguage = "en" | "ar" | "es" | "zh";
 
 export interface AiSessionContextValue {
   aiSessionToken: string | null;
-  aiMode: AiMode | null;
-  isAdminSession: boolean;
   aiLanguage: AiLanguage;
-  setSession: (token: string, mode: AiMode) => void;
-  setAdminSession: (isAdmin: boolean) => void;
   setAiSessionToken: (token: string | null) => void;
-  setAiMode: (mode: AiMode) => void;
   setAiLanguage: (lang: AiLanguage) => void;
   clearAiSession: () => void;
 }
 
 const LANGUAGE_KEY = "dz_ai_language";
+const SESSION_KEY = "dz_ai_session_token";
 
 const AiSessionContext = createContext<AiSessionContextValue | null>(null);
 
 export function AiSessionProvider({ children }: { children: ReactNode }) {
   const [aiSessionToken, setAiSessionTokenState] = useState<string | null>(
-    null,
+    () => {
+      try {
+        return sessionStorage.getItem(SESSION_KEY) ?? null;
+      } catch {
+        return null;
+      }
+    },
   );
-  const [aiMode, setAiModeState] = useState<AiMode | null>(null);
-  const [isAdminSession, setIsAdminSession] = useState(false);
+
   const [aiLanguage, setAiLanguageState] = useState<AiLanguage>(() => {
     try {
       const stored = localStorage.getItem(LANGUAGE_KEY);
@@ -42,6 +42,19 @@ export function AiSessionProvider({ children }: { children: ReactNode }) {
     return "en";
   });
 
+  // Persist session token to sessionStorage (clears on tab close)
+  useEffect(() => {
+    try {
+      if (aiSessionToken) {
+        sessionStorage.setItem(SESSION_KEY, aiSessionToken);
+      } else {
+        sessionStorage.removeItem(SESSION_KEY);
+      }
+    } catch {
+      /* ignore */
+    }
+  }, [aiSessionToken]);
+
   // Persist language preference
   useEffect(() => {
     try {
@@ -51,21 +64,8 @@ export function AiSessionProvider({ children }: { children: ReactNode }) {
     }
   }, [aiLanguage]);
 
-  function setSession(token: string, mode: AiMode) {
-    setAiSessionTokenState(token);
-    setAiModeState(mode);
-  }
-
-  function setAdminSession(isAdmin: boolean) {
-    setIsAdminSession(isAdmin);
-  }
-
   function setAiSessionToken(token: string | null) {
     setAiSessionTokenState(token);
-  }
-
-  function setAiMode(mode: AiMode) {
-    setAiModeState(mode);
   }
 
   function setAiLanguage(lang: AiLanguage) {
@@ -74,8 +74,6 @@ export function AiSessionProvider({ children }: { children: ReactNode }) {
 
   function clearAiSession() {
     setAiSessionTokenState(null);
-    setAiModeState(null);
-    setIsAdminSession(false);
     // Language persists across sessions
   }
 
@@ -83,13 +81,8 @@ export function AiSessionProvider({ children }: { children: ReactNode }) {
     <AiSessionContext.Provider
       value={{
         aiSessionToken,
-        aiMode,
-        isAdminSession,
         aiLanguage,
-        setSession,
-        setAdminSession,
         setAiSessionToken,
-        setAiMode,
         setAiLanguage,
         clearAiSession,
       }}

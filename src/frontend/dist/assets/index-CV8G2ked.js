@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Home-Df9AKR6C.js","assets/index-BNgp4POB.js","assets/useSignals-pMorhrua.js","assets/send-D7junR57.js","assets/AdminDashboard-Dx8TgBK-.js","assets/textarea-BIQZlGpT.js","assets/AiChat-Dp6vmHjq.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Home-3Pa19snS.js","assets/index-s_cVKIHV.js","assets/useSignals-CWUhTHMI.js","assets/send-DzxIa9Dj.js","assets/AdminDashboard-CtowpQ0c.js","assets/textarea-6b6UKDDH.js","assets/AiChat-Bh9aITIl.js"])))=>i.map(i=>d[i]);
 var __defProp = Object.defineProperty;
 var __typeError = (msg) => {
   throw TypeError(msg);
@@ -32810,7 +32810,7 @@ const BinancePost = Record({
   "date": Text,
   "snippet": Text
 });
-const Result_5 = Variant({ "ok": BinancePost, "err": Text });
+const Result_4 = Variant({ "ok": BinancePost, "err": Text });
 const Result = Variant({ "ok": Text, "err": Text });
 const FAQ = Record({
   "id": Text,
@@ -32818,7 +32818,7 @@ const FAQ = Record({
   "order": Nat,
   "answer": Text
 });
-const Result_4 = Variant({ "ok": FAQ, "err": Text });
+const Result_3 = Variant({ "ok": FAQ, "err": Text });
 const JournalEntry = Record({
   "id": Text,
   "pnl": Opt(Float64),
@@ -32868,8 +32868,8 @@ const Signal = Record({
   "expiry": Opt(Int),
   "confidence": Confidence$1
 });
-const Result_3 = Variant({ "ok": Signal, "err": Text });
-const Result_2 = Variant({ "ok": Null, "err": Text });
+const Result_2 = Variant({ "ok": Signal, "err": Text });
+const Result_1 = Variant({ "ok": Null, "err": Text });
 const AbTest = Record({
   "id": Text,
   "active": Bool,
@@ -32879,7 +32879,7 @@ const AbTest = Record({
   "impressionsA": Nat,
   "impressionsB": Nat
 });
-const Result_19 = Variant({
+const Result_18 = Variant({
   "ok": Vec(AbTest),
   "err": Text
 });
@@ -32896,7 +32896,7 @@ const ActivityEntry = Record({
   "hour": Nat,
   "count": Nat
 });
-const Result_18 = Variant({
+const Result_17 = Variant({
   "ok": Vec(ActivityEntry),
   "err": Text
 });
@@ -32910,7 +32910,7 @@ const Analytics = Record({
   "notifyMeByDate": Vec(DateCount),
   "totalNotifyMe": Nat
 });
-const Result_17 = Variant({ "ok": Analytics, "err": Text });
+const Result_16 = Variant({ "ok": Analytics, "err": Text });
 const Announcement = Record({
   "id": Text,
   "link": Opt(Text),
@@ -32924,11 +32924,11 @@ const AuditEntry = Record({
   "timestamp": Int,
   "details": Text
 });
-const Result_16 = Variant({
+const Result_15 = Variant({
   "ok": Vec(AuditEntry),
   "err": Text
 });
-const Result_15 = Variant({
+const Result_14 = Variant({
   "ok": Vec(Text),
   "err": Text
 });
@@ -32956,7 +32956,7 @@ const HolderBenefit = Record({
   "icon": Text,
   "description": Text
 });
-const Result_14 = Variant({
+const Result_13 = Variant({
   "ok": Vec(JournalEntry),
   "err": Text
 });
@@ -33013,7 +33013,7 @@ const NotifyMe = Record({
   "dateSubmitted": Text,
   "name": Opt(Text)
 });
-const Result_13 = Variant({
+const Result_12 = Variant({
   "ok": Vec(NotifyMe),
   "err": Text
 });
@@ -33029,7 +33029,7 @@ const RoadmapMilestone = Record({
   "year": Text,
   "description": Text
 });
-const Result_9 = Variant({
+const Result_8 = Variant({
   "ok": Vec(Signal),
   "err": Text
 });
@@ -33038,7 +33038,7 @@ const ResponseRating = Record({
   "timestamp": Int,
   "rating": Int
 });
-const Result_12 = Variant({
+const Result_11 = Variant({
   "ok": Vec(ResponseRating),
   "err": Text
 });
@@ -33073,7 +33073,7 @@ const SignalPerformanceStats = Record({
   "winRate": Float64,
   "totalSignals": Nat
 });
-const Result_11 = Variant({
+const Result_10 = Variant({
   "ok": SignalPerformanceStats,
   "err": Text
 });
@@ -33089,7 +33089,7 @@ const StatsConfig = Record({
   "useManual": Bool,
   "manualStats": Opt(Stats)
 });
-const Result_10 = Variant({ "ok": StatsConfig, "err": Text });
+const Result_9 = Variant({ "ok": StatsConfig, "err": Text });
 const Testimonial = Record({
   "id": Text,
   "active": Bool,
@@ -33129,20 +33129,16 @@ const AuditSnapshot = Record({
   "dataHash": Text,
   "snapshotLabel": Text
 });
-const Result_8 = Variant({
+const Result_7 = Variant({
   "ok": Vec(AuditSnapshot),
   "err": Text
 });
-const Result_7 = Variant({ "ok": Announcement, "err": Text });
-const Result_6 = Variant({ "ok": Bool, "err": Text });
-const Result_1 = Variant({
-  "ok": Tuple(Text, Text),
-  "err": Text
-});
+const Result_6 = Variant({ "ok": Announcement, "err": Text });
+const Result_5 = Variant({ "ok": Bool, "err": Text });
 Service({
   "addBinancePost": Func(
     [Text, Text, Text, Text, Text],
-    [Result_5],
+    [Result_4],
     []
   ),
   "addBurnEntry": Func(
@@ -33150,7 +33146,7 @@ Service({
     [Result],
     []
   ),
-  "addFaq": Func([Text, Text, Text], [Result_4], []),
+  "addFaq": Func([Text, Text, Text], [Result_3], []),
   "addJournalEntry": Func([JournalEntry, Text], [Result], []),
   "addMilestone": Func([Text, Text, Text], [Result], []),
   "addQuote": Func([Text, Text, Text], [Result], []),
@@ -33171,7 +33167,7 @@ Service({
       Bool,
       Opt(Int)
     ],
-    [Result_3],
+    [Result_2],
     []
   ),
   "addTestimonial": Func(
@@ -33181,8 +33177,8 @@ Service({
   ),
   "askFaq": Func([Text], [Text], []),
   "backtestSignal": Func([Text, Text], [Result], []),
-  "banEmail": Func([Text, Text], [Result_2], []),
-  "clearJournal": Func([Text], [Result_2], []),
+  "banEmail": Func([Text, Text], [Result_1], []),
+  "clearJournal": Func([Text], [Result_1], []),
   "createAbTest": Func(
     [Text, Text, Text, Text],
     [Result],
@@ -33194,21 +33190,21 @@ Service({
     [Result],
     []
   ),
-  "deleteBinancePost": Func([Text, Text], [Result_2], []),
-  "deleteFaq": Func([Text, Text], [Result_2], []),
-  "deleteQuote": Func([Text, Text], [Result_2], []),
-  "deleteSignal": Func([Text, Text], [Result_2], []),
-  "deleteTestimonial": Func([Text, Text], [Result_2], []),
+  "deleteBinancePost": Func([Text, Text], [Result_1], []),
+  "deleteFaq": Func([Text, Text], [Result_1], []),
+  "deleteQuote": Func([Text, Text], [Result_1], []),
+  "deleteSignal": Func([Text, Text], [Result_1], []),
+  "deleteTestimonial": Func([Text, Text], [Result_1], []),
   "dismissPushNotification": Func([Text], [], []),
   "generateDailyBriefing": Func([Text], [Result], []),
-  "getAbTests": Func([Text], [Result_19], []),
+  "getAbTests": Func([Text], [Result_18], []),
   "getAbVariant": Func([Text], [Text], ["query"]),
   "getActivePushNotifications": Func(
     [],
     [Vec(PushNotification)],
     ["query"]
   ),
-  "getAdminActivityHeatmap": Func([Text], [Result_18], []),
+  "getAdminActivityHeatmap": Func([Text], [Result_17], []),
   "getAdminConfig": Func([Text], [Result], []),
   "getAiLanguage": Func([Text], [Result], ["query"]),
   "getAiProviderStatus": Func(
@@ -33216,11 +33212,11 @@ Service({
     [Vec(Tuple(Text, Bool))],
     ["query"]
   ),
-  "getAnalytics": Func([Text], [Result_17], []),
+  "getAnalytics": Func([Text], [Result_16], []),
   "getAnalyticsCsv": Func([Text], [Result], []),
   "getAnnouncement": Func([], [Opt(Announcement)], ["query"]),
-  "getAuditLog": Func([Text], [Result_16], []),
-  "getBannedEmails": Func([Text], [Result_15], []),
+  "getAuditLog": Func([Text], [Result_15], []),
+  "getBannedEmails": Func([Text], [Result_14], []),
   "getBinanceFeed": Func([], [Vec(BinancePost)], ["query"]),
   "getBurnSchedule": Func([], [Vec(BurnScheduleEntry)], ["query"]),
   "getBurnTracker": Func([], [BurnTracker], ["query"]),
@@ -33228,13 +33224,13 @@ Service({
   "getDailyBriefing": Func([], [Text], ["query"]),
   "getFaqs": Func([], [Vec(FAQ)], ["query"]),
   "getHolderBenefits": Func([], [Vec(HolderBenefit)], ["query"]),
-  "getJournalEntries": Func([Text], [Result_14], ["query"]),
+  "getJournalEntries": Func([Text], [Result_13], ["query"]),
   "getMaintenanceMode": Func([], [MaintenanceMode], ["query"]),
   "getMarketMoodBanner": Func([], [Opt(MarketMoodBanner)], ["query"]),
   "getMarketPrices": Func([], [Vec(PriceData)], ["query"]),
   "getMarketSentiment": Func([], [MarketSentiment], ["query"]),
   "getMilestones": Func([], [Vec(CommunityMilestone)], ["query"]),
-  "getNotifyMeList": Func([Text], [Result_13], []),
+  "getNotifyMeList": Func([Text], [Result_12], []),
   "getPublicBurnSchedule": Func(
     [],
     [Vec(BurnScheduleEntry)],
@@ -33242,97 +33238,97 @@ Service({
   ),
   "getQuotes": Func([], [Vec(DemonZenoQuote)], ["query"]),
   "getRoadmap": Func([], [Vec(RoadmapMilestone)], ["query"]),
-  "getScheduledSignals": Func([Text], [Result_9], []),
-  "getSessionRatings": Func([Text], [Result_12], ["query"]),
+  "getScheduledSignals": Func([Text], [Result_8], []),
+  "getSessionRatings": Func([Text], [Result_11], ["query"]),
   "getSessionRecap": Func([Vec(ChatMessage), Text], [Result], []),
   "getSignalArchive": Func([], [Vec(Signal)], ["query"]),
   "getSignalOfTheDay": Func([], [Opt(Signal)], ["query"]),
   "getSignalOfWeek": Func([], [Opt(SignalOfWeekFull)], ["query"]),
-  "getSignalPerformanceStats": Func([Text], [Result_11], []),
+  "getSignalPerformanceStats": Func([Text], [Result_10], []),
   "getSignals": Func([], [Vec(Signal)], ["query"]),
   "getStats": Func([], [Stats], ["query"]),
-  "getStatsConfig": Func([Text], [Result_10], []),
+  "getStatsConfig": Func([Text], [Result_9], []),
   "getTestimonials": Func([], [Vec(Testimonial)], ["query"]),
   "getWhitepaper": Func([], [WhitepaperContent], ["query"]),
-  "importSignals": Func([Text, Vec(SignalInput)], [Result_9], []),
+  "importSignals": Func([Text, Vec(SignalInput)], [Result_8], []),
   "initFaqs": Func([], [], []),
   "invalidateAiSession": Func([Text], [], []),
   "invalidateSession": Func([Text], [], []),
-  "listAuditSnapshots": Func([Text], [Result_8], []),
+  "listAuditSnapshots": Func([Text], [Result_7], []),
   "markMilestoneReached": Func(
     [Text, Nat, Text],
-    [Result_2],
+    [Result_1],
     []
   ),
   "publishScheduledSignals": Func([], [Nat], []),
-  "rateAiResponse": Func([Text, Int, Text], [Result_2], []),
+  "rateAiResponse": Func([Text, Int, Text], [Result_1], []),
   "recordAbImpression": Func([Text, Text], [], []),
-  "recordAdminActivity": Func([Text, Text], [Result_2], []),
+  "recordAdminActivity": Func([Text, Text], [Result_1], []),
   "refreshMarketPrices": Func([], [Vec(PriceData)], []),
-  "reorderFaqs": Func([Text, Vec(Text)], [Result_2], []),
-  "scheduleSignal": Func([Text, Int, Text], [Result_2], []),
+  "reorderFaqs": Func([Text, Vec(Text)], [Result_1], []),
+  "scheduleSignal": Func([Text, Int, Text], [Result_1], []),
   "sendAiMessage": Func(
-    [Text, Text, Text, Text, Vec(ChatMessage)],
+    [Text, Text, Text, Vec(ChatMessage)],
     [Result],
     []
   ),
-  "setAiApiKey": Func([Text, Text, Text], [Result_2], []),
-  "setAiLanguage": Func([Text, Text], [Result_2], []),
+  "setAiApiKey": Func([Text, Text, Text], [Result_1], []),
+  "setAiLanguage": Func([Text, Text], [Result_1], []),
   "setAnnouncement": Func(
     [Text, Text, Opt(Text), Opt(Int)],
-    [Result_7],
+    [Result_6],
     []
   ),
-  "setBurnTracker": Func([Text, BurnTracker], [Result_2], []),
+  "setBurnTracker": Func([Text, BurnTracker], [Result_1], []),
   "setCommunityCounter": Func(
     [Text, CommunityCounter],
-    [Result_2],
+    [Result_1],
     []
   ),
   "setMaintenanceMode": Func(
     [Bool, Text, Text],
-    [Result_2],
+    [Result_1],
     []
   ),
   "setMarketMoodBanner": Func(
     [Text, Text, Text],
-    [Result_2],
+    [Result_1],
     []
   ),
   "setRoadmapMilestone": Func(
     [Text, Text, Text, Text, Bool],
-    [Result_2],
+    [Result_1],
     []
   ),
-  "setSignalOfTheDay": Func([Text, Opt(Text)], [Result_2], []),
-  "setSignalOfWeek": Func([Text, Text, Text], [Result_2], []),
+  "setSignalOfTheDay": Func([Text, Opt(Text)], [Result_1], []),
+  "setSignalOfWeek": Func([Text, Text, Text], [Result_1], []),
   "setSignalOfWeekWithDate": Func(
     [Text, Text, Text, Text],
-    [Result_2],
+    [Result_1],
     []
   ),
-  "setStatsConfig": Func([Text, StatsConfig], [Result_2], []),
-  "submitNotifyMe": Func([Opt(Text), Text], [Result_2], []),
-  "toggleAnnouncement": Func([Text], [Result_6], []),
-  "unbanEmail": Func([Text, Text], [Result_2], []),
+  "setStatsConfig": Func([Text, StatsConfig], [Result_1], []),
+  "submitNotifyMe": Func([Opt(Text), Text], [Result_1], []),
+  "toggleAnnouncement": Func([Text], [Result_5], []),
+  "unbanEmail": Func([Text, Text], [Result_1], []),
   "updateBinancePost": Func(
     [Text, Text, Text, Text, Text, Text],
-    [Result_5],
+    [Result_4],
     []
   ),
   "updateBurnEntryStatus": Func(
     [Text, Text, Opt(Text), Text],
-    [Result_2],
+    [Result_1],
     []
   ),
   "updateFaq": Func(
     [Text, Text, Text, Text],
-    [Result_4],
+    [Result_3],
     []
   ),
   "updateMarketSentiment": Func(
     [Text, MarketSentiment],
-    [Result_2],
+    [Result_1],
     []
   ),
   "updateSignal": Func(
@@ -33353,24 +33349,23 @@ Service({
       Bool,
       Opt(Int)
     ],
-    [Result_3],
+    [Result_2],
     []
   ),
   "updateSignalResult": Func(
     [Text, Text, ResultStatus],
-    [Result_3],
+    [Result_2],
     []
   ),
   "updateSignalSchedule": Func(
     [Text, Text, Bool, Opt(Int)],
-    [Result_3],
+    [Result_2],
     []
   ),
-  "updateWhitepaper": Func([WhitepaperContent, Text], [Result_2], []),
+  "updateWhitepaper": Func([WhitepaperContent, Text], [Result_1], []),
   "validateAdminRole": Func([Text], [Opt(Text)], []),
-  "validateAiPasscode": Func([Text], [Result_1], []),
+  "validateAiPasscode": Func([Text], [Result], []),
   "validateAiSession": Func([Text], [Bool], ["query"]),
-  "validateInsaneSession": Func([Text], [Bool], ["query"]),
   "validatePasscode": Func([Text], [Result], []),
   "validateSession": Func([Text], [Bool], ["query"])
 });
@@ -33382,7 +33377,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "date": IDL2.Text,
     "snippet": IDL2.Text
   });
-  const Result_52 = IDL2.Variant({ "ok": BinancePost2, "err": IDL2.Text });
+  const Result_42 = IDL2.Variant({ "ok": BinancePost2, "err": IDL2.Text });
   const Result2 = IDL2.Variant({ "ok": IDL2.Text, "err": IDL2.Text });
   const FAQ2 = IDL2.Record({
     "id": IDL2.Text,
@@ -33390,7 +33385,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "order": IDL2.Nat,
     "answer": IDL2.Text
   });
-  const Result_42 = IDL2.Variant({ "ok": FAQ2, "err": IDL2.Text });
+  const Result_32 = IDL2.Variant({ "ok": FAQ2, "err": IDL2.Text });
   const JournalEntry2 = IDL2.Record({
     "id": IDL2.Text,
     "pnl": IDL2.Opt(IDL2.Float64),
@@ -33440,8 +33435,8 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "expiry": IDL2.Opt(IDL2.Int),
     "confidence": Confidence2
   });
-  const Result_32 = IDL2.Variant({ "ok": Signal2, "err": IDL2.Text });
-  const Result_22 = IDL2.Variant({ "ok": IDL2.Null, "err": IDL2.Text });
+  const Result_22 = IDL2.Variant({ "ok": Signal2, "err": IDL2.Text });
+  const Result_19 = IDL2.Variant({ "ok": IDL2.Null, "err": IDL2.Text });
   const AbTest2 = IDL2.Record({
     "id": IDL2.Text,
     "active": IDL2.Bool,
@@ -33451,7 +33446,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "impressionsA": IDL2.Nat,
     "impressionsB": IDL2.Nat
   });
-  const Result_192 = IDL2.Variant({ "ok": IDL2.Vec(AbTest2), "err": IDL2.Text });
+  const Result_182 = IDL2.Variant({ "ok": IDL2.Vec(AbTest2), "err": IDL2.Text });
   const PushNotification2 = IDL2.Record({
     "id": IDL2.Text,
     "title": IDL2.Text,
@@ -33465,7 +33460,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "hour": IDL2.Nat,
     "count": IDL2.Nat
   });
-  const Result_182 = IDL2.Variant({
+  const Result_172 = IDL2.Variant({
     "ok": IDL2.Vec(ActivityEntry2),
     "err": IDL2.Text
   });
@@ -33476,7 +33471,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "notifyMeByDate": IDL2.Vec(DateCount2),
     "totalNotifyMe": IDL2.Nat
   });
-  const Result_172 = IDL2.Variant({ "ok": Analytics2, "err": IDL2.Text });
+  const Result_162 = IDL2.Variant({ "ok": Analytics2, "err": IDL2.Text });
   const Announcement2 = IDL2.Record({
     "id": IDL2.Text,
     "link": IDL2.Opt(IDL2.Text),
@@ -33490,11 +33485,11 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "timestamp": IDL2.Int,
     "details": IDL2.Text
   });
-  const Result_162 = IDL2.Variant({
+  const Result_152 = IDL2.Variant({
     "ok": IDL2.Vec(AuditEntry2),
     "err": IDL2.Text
   });
-  const Result_152 = IDL2.Variant({ "ok": IDL2.Vec(IDL2.Text), "err": IDL2.Text });
+  const Result_142 = IDL2.Variant({ "ok": IDL2.Vec(IDL2.Text), "err": IDL2.Text });
   const BurnScheduleEntry2 = IDL2.Record({
     "id": IDL2.Text,
     "status": IDL2.Text,
@@ -33519,7 +33514,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "icon": IDL2.Text,
     "description": IDL2.Text
   });
-  const Result_142 = IDL2.Variant({
+  const Result_132 = IDL2.Variant({
     "ok": IDL2.Vec(JournalEntry2),
     "err": IDL2.Text
   });
@@ -33576,7 +33571,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "dateSubmitted": IDL2.Text,
     "name": IDL2.Opt(IDL2.Text)
   });
-  const Result_132 = IDL2.Variant({ "ok": IDL2.Vec(NotifyMe2), "err": IDL2.Text });
+  const Result_122 = IDL2.Variant({ "ok": IDL2.Vec(NotifyMe2), "err": IDL2.Text });
   const DemonZenoQuote2 = IDL2.Record({
     "id": IDL2.Text,
     "active": IDL2.Bool,
@@ -33589,13 +33584,13 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "year": IDL2.Text,
     "description": IDL2.Text
   });
-  const Result_92 = IDL2.Variant({ "ok": IDL2.Vec(Signal2), "err": IDL2.Text });
+  const Result_82 = IDL2.Variant({ "ok": IDL2.Vec(Signal2), "err": IDL2.Text });
   const ResponseRating2 = IDL2.Record({
     "messageId": IDL2.Text,
     "timestamp": IDL2.Int,
     "rating": IDL2.Int
   });
-  const Result_122 = IDL2.Variant({
+  const Result_112 = IDL2.Variant({
     "ok": IDL2.Vec(ResponseRating2),
     "err": IDL2.Text
   });
@@ -33630,7 +33625,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "winRate": IDL2.Float64,
     "totalSignals": IDL2.Nat
   });
-  const Result_112 = IDL2.Variant({
+  const Result_102 = IDL2.Variant({
     "ok": SignalPerformanceStats2,
     "err": IDL2.Text
   });
@@ -33646,7 +33641,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "useManual": IDL2.Bool,
     "manualStats": IDL2.Opt(Stats2)
   });
-  const Result_102 = IDL2.Variant({ "ok": StatsConfig2, "err": IDL2.Text });
+  const Result_92 = IDL2.Variant({ "ok": StatsConfig2, "err": IDL2.Text });
   const Testimonial2 = IDL2.Record({
     "id": IDL2.Text,
     "active": IDL2.Bool,
@@ -33686,20 +33681,16 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "dataHash": IDL2.Text,
     "snapshotLabel": IDL2.Text
   });
-  const Result_82 = IDL2.Variant({
+  const Result_72 = IDL2.Variant({
     "ok": IDL2.Vec(AuditSnapshot2),
     "err": IDL2.Text
   });
-  const Result_72 = IDL2.Variant({ "ok": Announcement2, "err": IDL2.Text });
-  const Result_62 = IDL2.Variant({ "ok": IDL2.Bool, "err": IDL2.Text });
-  const Result_110 = IDL2.Variant({
-    "ok": IDL2.Tuple(IDL2.Text, IDL2.Text),
-    "err": IDL2.Text
-  });
+  const Result_62 = IDL2.Variant({ "ok": Announcement2, "err": IDL2.Text });
+  const Result_52 = IDL2.Variant({ "ok": IDL2.Bool, "err": IDL2.Text });
   return IDL2.Service({
     "addBinancePost": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_52],
+      [Result_42],
       []
     ),
     "addBurnEntry": IDL2.Func(
@@ -33707,7 +33698,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
       [Result2],
       []
     ),
-    "addFaq": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result_42], []),
+    "addFaq": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result_32], []),
     "addJournalEntry": IDL2.Func([JournalEntry2, IDL2.Text], [Result2], []),
     "addMilestone": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result2], []),
     "addQuote": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result2], []),
@@ -33728,7 +33719,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
         IDL2.Bool,
         IDL2.Opt(IDL2.Int)
       ],
-      [Result_32],
+      [Result_22],
       []
     ),
     "addTestimonial": IDL2.Func(
@@ -33738,8 +33729,8 @@ const idlFactory = ({ IDL: IDL2 }) => {
     ),
     "askFaq": IDL2.Func([IDL2.Text], [IDL2.Text], []),
     "backtestSignal": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
-    "banEmail": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "clearJournal": IDL2.Func([IDL2.Text], [Result_22], []),
+    "banEmail": IDL2.Func([IDL2.Text, IDL2.Text], [Result_19], []),
+    "clearJournal": IDL2.Func([IDL2.Text], [Result_19], []),
     "createAbTest": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
       [Result2],
@@ -33751,21 +33742,21 @@ const idlFactory = ({ IDL: IDL2 }) => {
       [Result2],
       []
     ),
-    "deleteBinancePost": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "deleteFaq": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "deleteQuote": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "deleteSignal": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "deleteTestimonial": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
+    "deleteBinancePost": IDL2.Func([IDL2.Text, IDL2.Text], [Result_19], []),
+    "deleteFaq": IDL2.Func([IDL2.Text, IDL2.Text], [Result_19], []),
+    "deleteQuote": IDL2.Func([IDL2.Text, IDL2.Text], [Result_19], []),
+    "deleteSignal": IDL2.Func([IDL2.Text, IDL2.Text], [Result_19], []),
+    "deleteTestimonial": IDL2.Func([IDL2.Text, IDL2.Text], [Result_19], []),
     "dismissPushNotification": IDL2.Func([IDL2.Text], [], []),
     "generateDailyBriefing": IDL2.Func([IDL2.Text], [Result2], []),
-    "getAbTests": IDL2.Func([IDL2.Text], [Result_192], []),
+    "getAbTests": IDL2.Func([IDL2.Text], [Result_182], []),
     "getAbVariant": IDL2.Func([IDL2.Text], [IDL2.Text], ["query"]),
     "getActivePushNotifications": IDL2.Func(
       [],
       [IDL2.Vec(PushNotification2)],
       ["query"]
     ),
-    "getAdminActivityHeatmap": IDL2.Func([IDL2.Text], [Result_182], []),
+    "getAdminActivityHeatmap": IDL2.Func([IDL2.Text], [Result_172], []),
     "getAdminConfig": IDL2.Func([IDL2.Text], [Result2], []),
     "getAiLanguage": IDL2.Func([IDL2.Text], [Result2], ["query"]),
     "getAiProviderStatus": IDL2.Func(
@@ -33773,11 +33764,11 @@ const idlFactory = ({ IDL: IDL2 }) => {
       [IDL2.Vec(IDL2.Tuple(IDL2.Text, IDL2.Bool))],
       ["query"]
     ),
-    "getAnalytics": IDL2.Func([IDL2.Text], [Result_172], []),
+    "getAnalytics": IDL2.Func([IDL2.Text], [Result_162], []),
     "getAnalyticsCsv": IDL2.Func([IDL2.Text], [Result2], []),
     "getAnnouncement": IDL2.Func([], [IDL2.Opt(Announcement2)], ["query"]),
-    "getAuditLog": IDL2.Func([IDL2.Text], [Result_162], []),
-    "getBannedEmails": IDL2.Func([IDL2.Text], [Result_152], []),
+    "getAuditLog": IDL2.Func([IDL2.Text], [Result_152], []),
+    "getBannedEmails": IDL2.Func([IDL2.Text], [Result_142], []),
     "getBinanceFeed": IDL2.Func([], [IDL2.Vec(BinancePost2)], ["query"]),
     "getBurnSchedule": IDL2.Func([], [IDL2.Vec(BurnScheduleEntry2)], ["query"]),
     "getBurnTracker": IDL2.Func([], [BurnTracker2], ["query"]),
@@ -33785,7 +33776,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "getDailyBriefing": IDL2.Func([], [IDL2.Text], ["query"]),
     "getFaqs": IDL2.Func([], [IDL2.Vec(FAQ2)], ["query"]),
     "getHolderBenefits": IDL2.Func([], [IDL2.Vec(HolderBenefit2)], ["query"]),
-    "getJournalEntries": IDL2.Func([IDL2.Text], [Result_142], ["query"]),
+    "getJournalEntries": IDL2.Func([IDL2.Text], [Result_132], ["query"]),
     "getMaintenanceMode": IDL2.Func([], [MaintenanceMode2], ["query"]),
     "getMarketMoodBanner": IDL2.Func(
       [],
@@ -33795,7 +33786,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "getMarketPrices": IDL2.Func([], [IDL2.Vec(PriceData2)], ["query"]),
     "getMarketSentiment": IDL2.Func([], [MarketSentiment2], ["query"]),
     "getMilestones": IDL2.Func([], [IDL2.Vec(CommunityMilestone2)], ["query"]),
-    "getNotifyMeList": IDL2.Func([IDL2.Text], [Result_132], []),
+    "getNotifyMeList": IDL2.Func([IDL2.Text], [Result_122], []),
     "getPublicBurnSchedule": IDL2.Func(
       [],
       [IDL2.Vec(BurnScheduleEntry2)],
@@ -33803,8 +33794,8 @@ const idlFactory = ({ IDL: IDL2 }) => {
     ),
     "getQuotes": IDL2.Func([], [IDL2.Vec(DemonZenoQuote2)], ["query"]),
     "getRoadmap": IDL2.Func([], [IDL2.Vec(RoadmapMilestone2)], ["query"]),
-    "getScheduledSignals": IDL2.Func([IDL2.Text], [Result_92], []),
-    "getSessionRatings": IDL2.Func([IDL2.Text], [Result_122], ["query"]),
+    "getScheduledSignals": IDL2.Func([IDL2.Text], [Result_82], []),
+    "getSessionRatings": IDL2.Func([IDL2.Text], [Result_112], ["query"]),
     "getSessionRecap": IDL2.Func(
       [IDL2.Vec(ChatMessage2), IDL2.Text],
       [Result2],
@@ -33813,103 +33804,103 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "getSignalArchive": IDL2.Func([], [IDL2.Vec(Signal2)], ["query"]),
     "getSignalOfTheDay": IDL2.Func([], [IDL2.Opt(Signal2)], ["query"]),
     "getSignalOfWeek": IDL2.Func([], [IDL2.Opt(SignalOfWeekFull2)], ["query"]),
-    "getSignalPerformanceStats": IDL2.Func([IDL2.Text], [Result_112], []),
+    "getSignalPerformanceStats": IDL2.Func([IDL2.Text], [Result_102], []),
     "getSignals": IDL2.Func([], [IDL2.Vec(Signal2)], ["query"]),
     "getStats": IDL2.Func([], [Stats2], ["query"]),
-    "getStatsConfig": IDL2.Func([IDL2.Text], [Result_102], []),
+    "getStatsConfig": IDL2.Func([IDL2.Text], [Result_92], []),
     "getTestimonials": IDL2.Func([], [IDL2.Vec(Testimonial2)], ["query"]),
     "getWhitepaper": IDL2.Func([], [WhitepaperContent2], ["query"]),
     "importSignals": IDL2.Func(
       [IDL2.Text, IDL2.Vec(SignalInput2)],
-      [Result_92],
+      [Result_82],
       []
     ),
     "initFaqs": IDL2.Func([], [], []),
     "invalidateAiSession": IDL2.Func([IDL2.Text], [], []),
     "invalidateSession": IDL2.Func([IDL2.Text], [], []),
-    "listAuditSnapshots": IDL2.Func([IDL2.Text], [Result_82], []),
+    "listAuditSnapshots": IDL2.Func([IDL2.Text], [Result_72], []),
     "markMilestoneReached": IDL2.Func(
       [IDL2.Text, IDL2.Nat, IDL2.Text],
-      [Result_22],
+      [Result_19],
       []
     ),
     "publishScheduledSignals": IDL2.Func([], [IDL2.Nat], []),
-    "rateAiResponse": IDL2.Func([IDL2.Text, IDL2.Int, IDL2.Text], [Result_22], []),
+    "rateAiResponse": IDL2.Func([IDL2.Text, IDL2.Int, IDL2.Text], [Result_19], []),
     "recordAbImpression": IDL2.Func([IDL2.Text, IDL2.Text], [], []),
-    "recordAdminActivity": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
+    "recordAdminActivity": IDL2.Func([IDL2.Text, IDL2.Text], [Result_19], []),
     "refreshMarketPrices": IDL2.Func([], [IDL2.Vec(PriceData2)], []),
-    "reorderFaqs": IDL2.Func([IDL2.Text, IDL2.Vec(IDL2.Text)], [Result_22], []),
-    "scheduleSignal": IDL2.Func([IDL2.Text, IDL2.Int, IDL2.Text], [Result_22], []),
+    "reorderFaqs": IDL2.Func([IDL2.Text, IDL2.Vec(IDL2.Text)], [Result_19], []),
+    "scheduleSignal": IDL2.Func([IDL2.Text, IDL2.Int, IDL2.Text], [Result_19], []),
     "sendAiMessage": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Vec(ChatMessage2)],
+      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Vec(ChatMessage2)],
       [Result2],
       []
     ),
-    "setAiApiKey": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result_22], []),
-    "setAiLanguage": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
+    "setAiApiKey": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result_19], []),
+    "setAiLanguage": IDL2.Func([IDL2.Text, IDL2.Text], [Result_19], []),
     "setAnnouncement": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Opt(IDL2.Text), IDL2.Opt(IDL2.Int)],
-      [Result_72],
+      [Result_62],
       []
     ),
-    "setBurnTracker": IDL2.Func([IDL2.Text, BurnTracker2], [Result_22], []),
+    "setBurnTracker": IDL2.Func([IDL2.Text, BurnTracker2], [Result_19], []),
     "setCommunityCounter": IDL2.Func(
       [IDL2.Text, CommunityCounter2],
-      [Result_22],
+      [Result_19],
       []
     ),
     "setMaintenanceMode": IDL2.Func(
       [IDL2.Bool, IDL2.Text, IDL2.Text],
-      [Result_22],
+      [Result_19],
       []
     ),
     "setMarketMoodBanner": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_22],
+      [Result_19],
       []
     ),
     "setRoadmapMilestone": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Bool],
-      [Result_22],
+      [Result_19],
       []
     ),
     "setSignalOfTheDay": IDL2.Func(
       [IDL2.Text, IDL2.Opt(IDL2.Text)],
-      [Result_22],
+      [Result_19],
       []
     ),
     "setSignalOfWeek": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_22],
+      [Result_19],
       []
     ),
     "setSignalOfWeekWithDate": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_22],
+      [Result_19],
       []
     ),
-    "setStatsConfig": IDL2.Func([IDL2.Text, StatsConfig2], [Result_22], []),
-    "submitNotifyMe": IDL2.Func([IDL2.Opt(IDL2.Text), IDL2.Text], [Result_22], []),
-    "toggleAnnouncement": IDL2.Func([IDL2.Text], [Result_62], []),
-    "unbanEmail": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
+    "setStatsConfig": IDL2.Func([IDL2.Text, StatsConfig2], [Result_19], []),
+    "submitNotifyMe": IDL2.Func([IDL2.Opt(IDL2.Text), IDL2.Text], [Result_19], []),
+    "toggleAnnouncement": IDL2.Func([IDL2.Text], [Result_52], []),
+    "unbanEmail": IDL2.Func([IDL2.Text, IDL2.Text], [Result_19], []),
     "updateBinancePost": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_52],
+      [Result_42],
       []
     ),
     "updateBurnEntryStatus": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Opt(IDL2.Text), IDL2.Text],
-      [Result_22],
+      [Result_19],
       []
     ),
     "updateFaq": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_42],
+      [Result_32],
       []
     ),
     "updateMarketSentiment": IDL2.Func(
       [IDL2.Text, MarketSentiment2],
-      [Result_22],
+      [Result_19],
       []
     ),
     "updateSignal": IDL2.Func(
@@ -33930,28 +33921,27 @@ const idlFactory = ({ IDL: IDL2 }) => {
         IDL2.Bool,
         IDL2.Opt(IDL2.Int)
       ],
-      [Result_32],
+      [Result_22],
       []
     ),
     "updateSignalResult": IDL2.Func(
       [IDL2.Text, IDL2.Text, ResultStatus2],
-      [Result_32],
+      [Result_22],
       []
     ),
     "updateSignalSchedule": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Bool, IDL2.Opt(IDL2.Int)],
-      [Result_32],
+      [Result_22],
       []
     ),
     "updateWhitepaper": IDL2.Func(
       [WhitepaperContent2, IDL2.Text],
-      [Result_22],
+      [Result_19],
       []
     ),
     "validateAdminRole": IDL2.Func([IDL2.Text], [IDL2.Opt(IDL2.Text)], []),
-    "validateAiPasscode": IDL2.Func([IDL2.Text], [Result_110], []),
+    "validateAiPasscode": IDL2.Func([IDL2.Text], [Result2], []),
     "validateAiSession": IDL2.Func([IDL2.Text], [IDL2.Bool], ["query"]),
-    "validateInsaneSession": IDL2.Func([IDL2.Text], [IDL2.Bool], ["query"]),
     "validatePasscode": IDL2.Func([IDL2.Text], [Result2], []),
     "validateSession": IDL2.Func([IDL2.Text], [IDL2.Bool], ["query"])
   });
@@ -34007,14 +33997,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.addBinancePost(arg0, arg1, arg2, arg3, arg4);
-        return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_4_n1(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.addBinancePost(arg0, arg1, arg2, arg3, arg4);
-      return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_4_n1(this._uploadFile, this._downloadFile, result);
     }
   }
   async addBurnEntry(arg0, arg1, arg2, arg3) {
@@ -34035,14 +34025,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.addFaq(arg0, arg1, arg2);
-        return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_3_n5(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.addFaq(arg0, arg1, arg2);
-      return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_3_n5(this._uploadFile, this._downloadFile, result);
     }
   }
   async addJournalEntry(arg0, arg1) {
@@ -34091,14 +34081,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.addSignal(arg0, arg1, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg2), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg3), arg4, arg5, arg6, arg7, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg8), arg9, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg10), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg11), arg12, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg13));
-        return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.addSignal(arg0, arg1, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg2), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg3), arg4, arg5, arg6, arg7, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg8), arg9, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg10), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg11), arg12, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg13));
-      return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
     }
   }
   async addTestimonial(arg0, arg1, arg2, arg3, arg4) {
@@ -34147,28 +34137,28 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.banEmail(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.banEmail(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async clearJournal(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.clearJournal(arg0);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.clearJournal(arg0);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async createAbTest(arg0, arg1, arg2, arg3) {
@@ -34217,70 +34207,70 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.deleteBinancePost(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.deleteBinancePost(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async deleteFaq(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.deleteFaq(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.deleteFaq(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async deleteQuote(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.deleteQuote(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.deleteQuote(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async deleteSignal(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.deleteSignal(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.deleteSignal(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async deleteTestimonial(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.deleteTestimonial(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.deleteTestimonial(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async dismissPushNotification(arg0) {
@@ -34315,14 +34305,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getAbTests(arg0);
-        return from_candid_Result_19_n36(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_18_n36(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getAbTests(arg0);
-      return from_candid_Result_19_n36(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_18_n36(this._uploadFile, this._downloadFile, result);
     }
   }
   async getAbVariant(arg0) {
@@ -34357,14 +34347,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getAdminActivityHeatmap(arg0);
-        return from_candid_Result_18_n41(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_17_n41(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getAdminActivityHeatmap(arg0);
-      return from_candid_Result_18_n41(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_17_n41(this._uploadFile, this._downloadFile, result);
     }
   }
   async getAdminConfig(arg0) {
@@ -34413,14 +34403,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getAnalytics(arg0);
-        return from_candid_Result_17_n43(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_16_n43(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getAnalytics(arg0);
-      return from_candid_Result_17_n43(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_16_n43(this._uploadFile, this._downloadFile, result);
     }
   }
   async getAnalyticsCsv(arg0) {
@@ -34455,28 +34445,28 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getAuditLog(arg0);
-        return from_candid_Result_16_n49(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_15_n49(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getAuditLog(arg0);
-      return from_candid_Result_16_n49(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_15_n49(this._uploadFile, this._downloadFile, result);
     }
   }
   async getBannedEmails(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getBannedEmails(arg0);
-        return from_candid_Result_15_n51(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_14_n51(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getBannedEmails(arg0);
-      return from_candid_Result_15_n51(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_14_n51(this._uploadFile, this._downloadFile, result);
     }
   }
   async getBinanceFeed() {
@@ -34581,14 +34571,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getJournalEntries(arg0);
-        return from_candid_Result_14_n56(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_13_n56(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getJournalEntries(arg0);
-      return from_candid_Result_14_n56(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_13_n56(this._uploadFile, this._downloadFile, result);
     }
   }
   async getMaintenanceMode() {
@@ -34665,14 +34655,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getNotifyMeList(arg0);
-        return from_candid_Result_13_n73(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_12_n73(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getNotifyMeList(arg0);
-      return from_candid_Result_13_n73(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_12_n73(this._uploadFile, this._downloadFile, result);
     }
   }
   async getPublicBurnSchedule() {
@@ -34721,28 +34711,28 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getScheduledSignals(arg0);
-        return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_8_n78(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getScheduledSignals(arg0);
-      return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_8_n78(this._uploadFile, this._downloadFile, result);
     }
   }
   async getSessionRatings(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getSessionRatings(arg0);
-        return from_candid_Result_12_n81(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_11_n81(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getSessionRatings(arg0);
-      return from_candid_Result_12_n81(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_11_n81(this._uploadFile, this._downloadFile, result);
     }
   }
   async getSessionRecap(arg0, arg1) {
@@ -34805,14 +34795,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getSignalPerformanceStats(arg0);
-        return from_candid_Result_11_n90(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_10_n90(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getSignalPerformanceStats(arg0);
-      return from_candid_Result_11_n90(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_10_n90(this._uploadFile, this._downloadFile, result);
     }
   }
   async getSignals() {
@@ -34847,14 +34837,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getStatsConfig(arg0);
-        return from_candid_Result_10_n92(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_9_n92(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getStatsConfig(arg0);
-      return from_candid_Result_10_n92(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_9_n92(this._uploadFile, this._downloadFile, result);
     }
   }
   async getTestimonials() {
@@ -34889,14 +34879,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.importSignals(arg0, to_candid_vec_n100(this._uploadFile, this._downloadFile, arg1));
-        return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_8_n78(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.importSignals(arg0, to_candid_vec_n100(this._uploadFile, this._downloadFile, arg1));
-      return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_8_n78(this._uploadFile, this._downloadFile, result);
     }
   }
   async initFaqs() {
@@ -34945,28 +34935,28 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.listAuditSnapshots(arg0);
-        return from_candid_Result_8_n103(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_7_n103(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.listAuditSnapshots(arg0);
-      return from_candid_Result_8_n103(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_7_n103(this._uploadFile, this._downloadFile, result);
     }
   }
   async markMilestoneReached(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.markMilestoneReached(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.markMilestoneReached(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async publishScheduledSignals() {
@@ -34987,14 +34977,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.rateAiResponse(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.rateAiResponse(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async recordAbImpression(arg0, arg1) {
@@ -35015,14 +35005,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.recordAdminActivity(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.recordAdminActivity(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async refreshMarketPrices() {
@@ -35043,41 +35033,41 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.reorderFaqs(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.reorderFaqs(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async scheduleSignal(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.scheduleSignal(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.scheduleSignal(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
-  async sendAiMessage(arg0, arg1, arg2, arg3, arg4) {
+  async sendAiMessage(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
-        const result = await this.actor.sendAiMessage(arg0, arg1, arg2, arg3, to_candid_vec_n83(this._uploadFile, this._downloadFile, arg4));
+        const result = await this.actor.sendAiMessage(arg0, arg1, arg2, to_candid_vec_n83(this._uploadFile, this._downloadFile, arg3));
         return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.sendAiMessage(arg0, arg1, arg2, arg3, to_candid_vec_n83(this._uploadFile, this._downloadFile, arg4));
+      const result = await this.actor.sendAiMessage(arg0, arg1, arg2, to_candid_vec_n83(this._uploadFile, this._downloadFile, arg3));
       return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
     }
   }
@@ -35085,322 +35075,322 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.setAiApiKey(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setAiApiKey(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async setAiLanguage(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.setAiLanguage(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setAiLanguage(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async setAnnouncement(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
         const result = await this.actor.setAnnouncement(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-        return from_candid_Result_7_n105(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_6_n105(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setAnnouncement(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-      return from_candid_Result_7_n105(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_6_n105(this._uploadFile, this._downloadFile, result);
     }
   }
   async setBurnTracker(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.setBurnTracker(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setBurnTracker(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async setCommunityCounter(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.setCommunityCounter(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setCommunityCounter(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async setMaintenanceMode(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.setMaintenanceMode(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setMaintenanceMode(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async setMarketMoodBanner(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.setMarketMoodBanner(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setMarketMoodBanner(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async setRoadmapMilestone(arg0, arg1, arg2, arg3, arg4) {
     if (this.processError) {
       try {
         const result = await this.actor.setRoadmapMilestone(arg0, arg1, arg2, arg3, arg4);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setRoadmapMilestone(arg0, arg1, arg2, arg3, arg4);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async setSignalOfTheDay(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.setSignalOfTheDay(arg0, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg1));
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setSignalOfTheDay(arg0, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg1));
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async setSignalOfWeek(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.setSignalOfWeek(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setSignalOfWeek(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async setSignalOfWeekWithDate(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
         const result = await this.actor.setSignalOfWeekWithDate(arg0, arg1, arg2, arg3);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setSignalOfWeekWithDate(arg0, arg1, arg2, arg3);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async setStatsConfig(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.setStatsConfig(arg0, to_candid_StatsConfig_n107(this._uploadFile, this._downloadFile, arg1));
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setStatsConfig(arg0, to_candid_StatsConfig_n107(this._uploadFile, this._downloadFile, arg1));
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async submitNotifyMe(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.submitNotifyMe(to_candid_opt_n33(this._uploadFile, this._downloadFile, arg0), arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.submitNotifyMe(to_candid_opt_n33(this._uploadFile, this._downloadFile, arg0), arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async toggleAnnouncement(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.toggleAnnouncement(arg0);
-        return from_candid_Result_6_n109(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_5_n109(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.toggleAnnouncement(arg0);
-      return from_candid_Result_6_n109(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_5_n109(this._uploadFile, this._downloadFile, result);
     }
   }
   async unbanEmail(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.unbanEmail(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.unbanEmail(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateBinancePost(arg0, arg1, arg2, arg3, arg4, arg5) {
     if (this.processError) {
       try {
         const result = await this.actor.updateBinancePost(arg0, arg1, arg2, arg3, arg4, arg5);
-        return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_4_n1(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.updateBinancePost(arg0, arg1, arg2, arg3, arg4, arg5);
-      return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_4_n1(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateBurnEntryStatus(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
         const result = await this.actor.updateBurnEntryStatus(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), arg3);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.updateBurnEntryStatus(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), arg3);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateFaq(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
         const result = await this.actor.updateFaq(arg0, arg1, arg2, arg3);
-        return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_3_n5(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.updateFaq(arg0, arg1, arg2, arg3);
-      return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_3_n5(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateMarketSentiment(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.updateMarketSentiment(arg0, to_candid_MarketSentiment_n111(this._uploadFile, this._downloadFile, arg1));
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.updateMarketSentiment(arg0, to_candid_MarketSentiment_n111(this._uploadFile, this._downloadFile, arg1));
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateSignal(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14) {
     if (this.processError) {
       try {
         const result = await this.actor.updateSignal(arg0, arg1, arg2, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg3), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg4), arg5, arg6, arg7, arg8, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg9), arg10, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg11), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg12), arg13, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg14));
-        return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.updateSignal(arg0, arg1, arg2, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg3), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg4), arg5, arg6, arg7, arg8, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg9), arg10, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg11), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg12), arg13, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg14));
-      return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateSignalResult(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.updateSignalResult(arg0, arg1, to_candid_ResultStatus_n118(this._uploadFile, this._downloadFile, arg2));
-        return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.updateSignalResult(arg0, arg1, to_candid_ResultStatus_n118(this._uploadFile, this._downloadFile, arg2));
-      return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateSignalSchedule(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
         const result = await this.actor.updateSignalSchedule(arg0, arg1, arg2, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-        return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.updateSignalSchedule(arg0, arg1, arg2, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-      return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateWhitepaper(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.updateWhitepaper(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.updateWhitepaper(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
     }
   }
   async validateAdminRole(arg0) {
@@ -35421,14 +35411,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.validateAiPasscode(arg0);
-        return from_candid_Result_1_n120(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.validateAiPasscode(arg0);
-      return from_candid_Result_1_n120(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
     }
   }
   async validateAiSession(arg0) {
@@ -35442,20 +35432,6 @@ class Backend {
       }
     } else {
       const result = await this.actor.validateAiSession(arg0);
-      return result;
-    }
-  }
-  async validateInsaneSession(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.validateInsaneSession(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.validateInsaneSession(arg0);
       return result;
     }
   }
@@ -35524,62 +35500,59 @@ function from_candid_PushNotification_n39(_uploadFile, _downloadFile, value) {
 function from_candid_ResultStatus_n22(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n23(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_10_n92(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n93(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_11_n90(_uploadFile, _downloadFile, value) {
+function from_candid_Result_10_n90(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n91(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_12_n81(_uploadFile, _downloadFile, value) {
+function from_candid_Result_11_n81(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n82(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_13_n73(_uploadFile, _downloadFile, value) {
+function from_candid_Result_12_n73(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n74(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_14_n56(_uploadFile, _downloadFile, value) {
+function from_candid_Result_13_n56(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n57(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_15_n51(_uploadFile, _downloadFile, value) {
+function from_candid_Result_14_n51(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n52(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_16_n49(_uploadFile, _downloadFile, value) {
+function from_candid_Result_15_n49(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n50(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_17_n43(_uploadFile, _downloadFile, value) {
+function from_candid_Result_16_n43(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n44(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_18_n41(_uploadFile, _downloadFile, value) {
+function from_candid_Result_17_n41(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n42(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_19_n36(_uploadFile, _downloadFile, value) {
+function from_candid_Result_18_n36(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n37(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_1_n120(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n121(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_2_n34(_uploadFile, _downloadFile, value) {
+function from_candid_Result_1_n34(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n35(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_3_n18(_uploadFile, _downloadFile, value) {
+function from_candid_Result_2_n18(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n19(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_4_n5(_uploadFile, _downloadFile, value) {
+function from_candid_Result_3_n5(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n6(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_5_n1(_uploadFile, _downloadFile, value) {
+function from_candid_Result_4_n1(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n2(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_6_n109(_uploadFile, _downloadFile, value) {
+function from_candid_Result_5_n109(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n110(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_7_n105(_uploadFile, _downloadFile, value) {
+function from_candid_Result_6_n105(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n106(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_8_n103(_uploadFile, _downloadFile, value) {
+function from_candid_Result_7_n103(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n104(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_9_n78(_uploadFile, _downloadFile, value) {
+function from_candid_Result_8_n78(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n79(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_9_n92(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n93(_uploadFile, _downloadFile, value);
 }
 function from_candid_Result_n3(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n4(_uploadFile, _downloadFile, value);
@@ -35768,15 +35741,6 @@ function from_candid_variant_n106(_uploadFile, _downloadFile, value) {
   } : value;
 }
 function from_candid_variant_n110(_uploadFile, _downloadFile, value) {
-  return "ok" in value ? {
-    __kind__: "ok",
-    ok: value.ok
-  } : "err" in value ? {
-    __kind__: "err",
-    err: value.err
-  } : value;
-}
-function from_candid_variant_n121(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
     ok: value.ok
@@ -39923,13 +39887,18 @@ function NotificationCard({ notification, onDismiss }) {
   );
 }
 const LANGUAGE_KEY = "dz_ai_language";
+const SESSION_KEY = "dz_ai_session_token";
 const AiSessionContext = reactExports.createContext(null);
 function AiSessionProvider({ children }) {
   const [aiSessionToken, setAiSessionTokenState] = reactExports.useState(
-    null
+    () => {
+      try {
+        return sessionStorage.getItem(SESSION_KEY) ?? null;
+      } catch {
+        return null;
+      }
+    }
   );
-  const [aiMode, setAiModeState] = reactExports.useState(null);
-  const [isAdminSession, setIsAdminSession] = reactExports.useState(false);
   const [aiLanguage, setAiLanguageState] = reactExports.useState(() => {
     try {
       const stored = localStorage.getItem(LANGUAGE_KEY);
@@ -39940,43 +39909,36 @@ function AiSessionProvider({ children }) {
   });
   reactExports.useEffect(() => {
     try {
+      if (aiSessionToken) {
+        sessionStorage.setItem(SESSION_KEY, aiSessionToken);
+      } else {
+        sessionStorage.removeItem(SESSION_KEY);
+      }
+    } catch {
+    }
+  }, [aiSessionToken]);
+  reactExports.useEffect(() => {
+    try {
       localStorage.setItem(LANGUAGE_KEY, aiLanguage);
     } catch {
     }
   }, [aiLanguage]);
-  function setSession(token, mode) {
-    setAiSessionTokenState(token);
-    setAiModeState(mode);
-  }
-  function setAdminSession(isAdmin) {
-    setIsAdminSession(isAdmin);
-  }
   function setAiSessionToken(token) {
     setAiSessionTokenState(token);
-  }
-  function setAiMode(mode) {
-    setAiModeState(mode);
   }
   function setAiLanguage(lang) {
     setAiLanguageState(lang);
   }
   function clearAiSession() {
     setAiSessionTokenState(null);
-    setAiModeState(null);
-    setIsAdminSession(false);
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     AiSessionContext.Provider,
     {
       value: {
         aiSessionToken,
-        aiMode,
-        isAdminSession,
         aiLanguage,
-        setSession,
-        setAdminSession,
         setAiSessionToken,
-        setAiMode,
         setAiLanguage,
         clearAiSession
       },
@@ -40051,16 +40013,16 @@ function useSignalAccuracy() {
   return ctx;
 }
 const Home = reactExports.lazy(
-  () => __vitePreload(() => import("./Home-Df9AKR6C.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0).then((m2) => ({ default: m2.Home }))
+  () => __vitePreload(() => import("./Home-3Pa19snS.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0).then((m2) => ({ default: m2.Home }))
 );
 const AdminDashboard = reactExports.lazy(
-  () => __vitePreload(() => import("./AdminDashboard-Dx8TgBK-.js"), true ? __vite__mapDeps([4,1,2,5]) : void 0).then((m2) => ({ default: m2.AdminDashboard }))
+  () => __vitePreload(() => import("./AdminDashboard-CtowpQ0c.js"), true ? __vite__mapDeps([4,1,2,5]) : void 0).then((m2) => ({ default: m2.AdminDashboard }))
 );
 const NotFound = reactExports.lazy(
-  () => __vitePreload(() => import("./NotFound-1hfp0P0J.js"), true ? [] : void 0).then((m2) => ({ default: m2.NotFound }))
+  () => __vitePreload(() => import("./NotFound-OD7kHvPi.js"), true ? [] : void 0).then((m2) => ({ default: m2.NotFound }))
 );
 const AiChat = reactExports.lazy(
-  () => __vitePreload(() => import("./AiChat-Dp6vmHjq.js"), true ? __vite__mapDeps([6,1,5,3]) : void 0).then((m2) => ({ default: m2.AiChat }))
+  () => __vitePreload(() => import("./AiChat-Bh9aITIl.js"), true ? __vite__mapDeps([6,1,5,3]) : void 0).then((m2) => ({ default: m2.AiChat }))
 );
 function PageLoader() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "min-h-screen bg-background flex flex-col items-center justify-center gap-6", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-4", children: [

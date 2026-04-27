@@ -115,7 +115,7 @@ export interface FAQ {
 }
 export type Result_2 = {
     __kind__: "ok";
-    ok: null;
+    ok: Signal;
 } | {
     __kind__: "err";
     err: string;
@@ -158,7 +158,7 @@ export interface AuditEntry {
 }
 export type Result_5 = {
     __kind__: "ok";
-    ok: BinancePost;
+    ok: boolean;
 } | {
     __kind__: "err";
     err: string;
@@ -172,7 +172,7 @@ export interface BinancePost {
 }
 export type Result_4 = {
     __kind__: "ok";
-    ok: FAQ;
+    ok: BinancePost;
 } | {
     __kind__: "err";
     err: string;
@@ -192,7 +192,7 @@ export interface CommunityMilestone {
 }
 export type Result_7 = {
     __kind__: "ok";
-    ok: Announcement;
+    ok: Array<AuditSnapshot>;
 } | {
     __kind__: "err";
     err: string;
@@ -226,7 +226,7 @@ export interface StatsConfig {
 }
 export type Result_6 = {
     __kind__: "ok";
-    ok: boolean;
+    ok: Announcement;
 } | {
     __kind__: "err";
     err: string;
@@ -253,14 +253,14 @@ export interface ResponseRating {
 }
 export type Result_12 = {
     __kind__: "ok";
-    ok: Array<ResponseRating>;
+    ok: Array<NotifyMe>;
 } | {
     __kind__: "err";
     err: string;
 };
 export type Result_9 = {
     __kind__: "ok";
-    ok: Array<Signal>;
+    ok: StatsConfig;
 } | {
     __kind__: "err";
     err: string;
@@ -302,7 +302,7 @@ export type Result = {
 };
 export type Result_10 = {
     __kind__: "ok";
-    ok: StatsConfig;
+    ok: SignalPerformanceStats;
 } | {
     __kind__: "err";
     err: string;
@@ -314,7 +314,7 @@ export interface DayStats {
 }
 export type Result_8 = {
     __kind__: "ok";
-    ok: Array<AuditSnapshot>;
+    ok: Array<Signal>;
 } | {
     __kind__: "err";
     err: string;
@@ -343,14 +343,14 @@ export interface DemonZenoQuote {
 }
 export type Result_17 = {
     __kind__: "ok";
-    ok: Analytics;
+    ok: Array<ActivityEntry>;
 } | {
     __kind__: "err";
     err: string;
 };
 export type Result_13 = {
     __kind__: "ok";
-    ok: Array<NotifyMe>;
+    ok: Array<JournalEntry>;
 } | {
     __kind__: "err";
     err: string;
@@ -363,14 +363,14 @@ export interface MarketMoodBanner {
 }
 export type Result_16 = {
     __kind__: "ok";
-    ok: Array<AuditEntry>;
+    ok: Analytics;
 } | {
     __kind__: "err";
     err: string;
 };
 export type Result_1 = {
     __kind__: "ok";
-    ok: [string, string];
+    ok: null;
 } | {
     __kind__: "err";
     err: string;
@@ -388,7 +388,7 @@ export interface AssetSentiment {
 }
 export type Result_11 = {
     __kind__: "ok";
-    ok: SignalPerformanceStats;
+    ok: Array<ResponseRating>;
 } | {
     __kind__: "err";
     err: string;
@@ -399,13 +399,6 @@ export interface SignalOfWeekFull {
     signal: Signal;
     weekOf: string;
 }
-export type Result_19 = {
-    __kind__: "ok";
-    ok: Array<AbTest>;
-} | {
-    __kind__: "err";
-    err: string;
-};
 export interface SignalPerformanceStats {
     topAssets: Array<AssetStats>;
     pending: bigint;
@@ -424,7 +417,7 @@ export interface Announcement {
 }
 export type Result_14 = {
     __kind__: "ok";
-    ok: Array<JournalEntry>;
+    ok: Array<string>;
 } | {
     __kind__: "err";
     err: string;
@@ -437,14 +430,14 @@ export interface RoadmapMilestone {
 }
 export type Result_18 = {
     __kind__: "ok";
-    ok: Array<ActivityEntry>;
+    ok: Array<AbTest>;
 } | {
     __kind__: "err";
     err: string;
 };
 export type Result_3 = {
     __kind__: "ok";
-    ok: Signal;
+    ok: FAQ;
 } | {
     __kind__: "err";
     err: string;
@@ -460,7 +453,7 @@ export interface JournalEntry {
 }
 export type Result_15 = {
     __kind__: "ok";
-    ok: Array<string>;
+    ok: Array<AuditEntry>;
 } | {
     __kind__: "err";
     err: string;
@@ -519,40 +512,40 @@ export enum Timeframe {
     LongTerm = "LongTerm"
 }
 export interface backendInterface {
-    addBinancePost(adminToken: string, title: string, snippet: string, url: string, date: string): Promise<Result_5>;
+    addBinancePost(adminToken: string, title: string, snippet: string, url: string, date: string): Promise<Result_4>;
     addBurnEntry(date: string, amount: string, reason: string, sessionToken: string): Promise<Result>;
-    addFaq(sessionToken: string, question: string, answer: string): Promise<Result_4>;
+    addFaq(sessionToken: string, question: string, answer: string): Promise<Result_3>;
     addJournalEntry(entry: JournalEntry, sessionToken: string): Promise<Result>;
     addMilestone(title: string, description: string, sessionToken: string): Promise<Result>;
     addQuote(quote: string, author: string, sessionToken: string): Promise<Result>;
-    addSignal(sessionToken: string, asset: string, marketType: MarketType, direction: Direction, entryPrice: string, targetPrice: string, stopLoss: string, notes: string, confidence: Confidence, sourceLabel: string, expiry: bigint | null, timeframe: Timeframe, isDraft: boolean, publishAt: bigint | null): Promise<Result_3>;
+    addSignal(sessionToken: string, asset: string, marketType: MarketType, direction: Direction, entryPrice: string, targetPrice: string, stopLoss: string, notes: string, confidence: Confidence, sourceLabel: string, expiry: bigint | null, timeframe: Timeframe, isDraft: boolean, publishAt: bigint | null): Promise<Result_2>;
     addTestimonial(name: string, content: string, winAmount: string | null, asset: string | null, sessionToken: string): Promise<Result>;
     askFaq(question: string): Promise<string>;
     backtestSignal(signal: string, sessionToken: string): Promise<Result>;
-    banEmail(sessionToken: string, email: string): Promise<Result_2>;
-    clearJournal(sessionToken: string): Promise<Result_2>;
+    banEmail(sessionToken: string, email: string): Promise<Result_1>;
+    clearJournal(sessionToken: string): Promise<Result_1>;
     createAbTest(name: string, variantA: string, variantB: string, sessionToken: string): Promise<Result>;
     createAuditSnapshot(snapshotLabel: string, sessionToken: string): Promise<Result>;
     createPushNotification(title: string, body: string, sessionToken: string): Promise<Result>;
-    deleteBinancePost(adminToken: string, id: string): Promise<Result_2>;
-    deleteFaq(sessionToken: string, id: string): Promise<Result_2>;
-    deleteQuote(id: string, sessionToken: string): Promise<Result_2>;
-    deleteSignal(sessionToken: string, id: string): Promise<Result_2>;
-    deleteTestimonial(id: string, sessionToken: string): Promise<Result_2>;
+    deleteBinancePost(adminToken: string, id: string): Promise<Result_1>;
+    deleteFaq(sessionToken: string, id: string): Promise<Result_1>;
+    deleteQuote(id: string, sessionToken: string): Promise<Result_1>;
+    deleteSignal(sessionToken: string, id: string): Promise<Result_1>;
+    deleteTestimonial(id: string, sessionToken: string): Promise<Result_1>;
     dismissPushNotification(id: string): Promise<void>;
     generateDailyBriefing(sessionToken: string): Promise<Result>;
-    getAbTests(sessionToken: string): Promise<Result_19>;
+    getAbTests(sessionToken: string): Promise<Result_18>;
     getAbVariant(testId: string): Promise<string>;
     getActivePushNotifications(): Promise<Array<PushNotification>>;
-    getAdminActivityHeatmap(sessionToken: string): Promise<Result_18>;
+    getAdminActivityHeatmap(sessionToken: string): Promise<Result_17>;
     getAdminConfig(adminToken: string): Promise<Result>;
     getAiLanguage(sessionToken: string): Promise<Result>;
     getAiProviderStatus(): Promise<Array<[string, boolean]>>;
-    getAnalytics(sessionToken: string): Promise<Result_17>;
+    getAnalytics(sessionToken: string): Promise<Result_16>;
     getAnalyticsCsv(sessionToken: string): Promise<Result>;
     getAnnouncement(): Promise<Announcement | null>;
-    getAuditLog(sessionToken: string): Promise<Result_16>;
-    getBannedEmails(sessionToken: string): Promise<Result_15>;
+    getAuditLog(sessionToken: string): Promise<Result_15>;
+    getBannedEmails(sessionToken: string): Promise<Result_14>;
     getBinanceFeed(): Promise<Array<BinancePost>>;
     getBurnSchedule(): Promise<Array<BurnScheduleEntry>>;
     getBurnTracker(): Promise<BurnTracker>;
@@ -560,87 +553,86 @@ export interface backendInterface {
     getDailyBriefing(): Promise<string>;
     getFaqs(): Promise<Array<FAQ>>;
     getHolderBenefits(): Promise<Array<HolderBenefit>>;
-    getJournalEntries(sessionToken: string): Promise<Result_14>;
+    getJournalEntries(sessionToken: string): Promise<Result_13>;
     getMaintenanceMode(): Promise<MaintenanceMode>;
     getMarketMoodBanner(): Promise<MarketMoodBanner | null>;
     getMarketPrices(): Promise<Array<PriceData>>;
     getMarketSentiment(): Promise<MarketSentiment>;
     getMilestones(): Promise<Array<CommunityMilestone>>;
-    getNotifyMeList(sessionToken: string): Promise<Result_13>;
+    getNotifyMeList(sessionToken: string): Promise<Result_12>;
     getPublicBurnSchedule(): Promise<Array<BurnScheduleEntry>>;
     getQuotes(): Promise<Array<DemonZenoQuote>>;
     getRoadmap(): Promise<Array<RoadmapMilestone>>;
-    getScheduledSignals(sessionToken: string): Promise<Result_9>;
-    getSessionRatings(sessionToken: string): Promise<Result_12>;
+    getScheduledSignals(sessionToken: string): Promise<Result_8>;
+    getSessionRatings(sessionToken: string): Promise<Result_11>;
     getSessionRecap(history: Array<ChatMessage>, sessionToken: string): Promise<Result>;
     getSignalArchive(): Promise<Array<Signal>>;
     getSignalOfTheDay(): Promise<Signal | null>;
     getSignalOfWeek(): Promise<SignalOfWeekFull | null>;
-    getSignalPerformanceStats(sessionToken: string): Promise<Result_11>;
+    getSignalPerformanceStats(sessionToken: string): Promise<Result_10>;
     getSignals(): Promise<Array<Signal>>;
     getStats(): Promise<Stats>;
-    getStatsConfig(sessionToken: string): Promise<Result_10>;
+    getStatsConfig(sessionToken: string): Promise<Result_9>;
     getTestimonials(): Promise<Array<Testimonial>>;
     getWhitepaper(): Promise<WhitepaperContent>;
-    importSignals(sessionToken: string, inputs: Array<SignalInput>): Promise<Result_9>;
+    importSignals(sessionToken: string, inputs: Array<SignalInput>): Promise<Result_8>;
     initFaqs(): Promise<void>;
     invalidateAiSession(token: string): Promise<void>;
     invalidateSession(token: string): Promise<void>;
-    listAuditSnapshots(sessionToken: string): Promise<Result_8>;
-    markMilestoneReached(id: string, celebrateDays: bigint, sessionToken: string): Promise<Result_2>;
+    listAuditSnapshots(sessionToken: string): Promise<Result_7>;
+    markMilestoneReached(id: string, celebrateDays: bigint, sessionToken: string): Promise<Result_1>;
     publishScheduledSignals(): Promise<bigint>;
-    rateAiResponse(messageId: string, rating: bigint, sessionToken: string): Promise<Result_2>;
+    rateAiResponse(messageId: string, rating: bigint, sessionToken: string): Promise<Result_1>;
     recordAbImpression(testId: string, variant: string): Promise<void>;
-    recordAdminActivity(action: string, sessionToken: string): Promise<Result_2>;
+    recordAdminActivity(action: string, sessionToken: string): Promise<Result_1>;
     refreshMarketPrices(): Promise<Array<PriceData>>;
-    reorderFaqs(sessionToken: string, orderedIds: Array<string>): Promise<Result_2>;
-    scheduleSignal(signalId: string, publishAt: bigint, sessionToken: string): Promise<Result_2>;
-    sendAiMessage(sessionToken: string, message: string, provider: string, mode: string, history: Array<ChatMessage>): Promise<Result>;
-    setAiApiKey(adminToken: string, provider: string, key: string): Promise<Result_2>;
-    setAiLanguage(lang: string, sessionToken: string): Promise<Result_2>;
-    setAnnouncement(sessionToken: string, text: string, link: string | null, publishAt: bigint | null): Promise<Result_7>;
-    setBurnTracker(adminToken: string, data: BurnTracker): Promise<Result_2>;
-    setCommunityCounter(adminToken: string, data: CommunityCounter): Promise<Result_2>;
-    setMaintenanceMode(enabled: boolean, message: string, sessionToken: string): Promise<Result_2>;
-    setMarketMoodBanner(mood: string, message: string, sessionToken: string): Promise<Result_2>;
-    setRoadmapMilestone(adminToken: string, year: string, title: string, description: string, completed: boolean): Promise<Result_2>;
-    setSignalOfTheDay(sessionToken: string, signalId: string | null): Promise<Result_2>;
-    setSignalOfWeek(signalId: string, comment: string, sessionToken: string): Promise<Result_2>;
-    setSignalOfWeekWithDate(signalId: string, comment: string, weekOf: string, sessionToken: string): Promise<Result_2>;
-    setStatsConfig(sessionToken: string, config: StatsConfig): Promise<Result_2>;
-    submitNotifyMe(name: string | null, contact: string): Promise<Result_2>;
-    toggleAnnouncement(sessionToken: string): Promise<Result_6>;
-    unbanEmail(sessionToken: string, email: string): Promise<Result_2>;
-    updateBinancePost(adminToken: string, id: string, title: string, snippet: string, url: string, date: string): Promise<Result_5>;
-    updateBurnEntryStatus(id: string, status: string, txHash: string | null, sessionToken: string): Promise<Result_2>;
-    updateFaq(sessionToken: string, id: string, question: string, answer: string): Promise<Result_4>;
-    updateMarketSentiment(token: string, sentiment: MarketSentiment): Promise<Result_2>;
-    updateSignal(sessionToken: string, id: string, asset: string, marketType: MarketType, direction: Direction, entryPrice: string, targetPrice: string, stopLoss: string, notes: string, confidence: Confidence, sourceLabel: string, expiry: bigint | null, timeframe: Timeframe, isDraft: boolean, publishAt: bigint | null): Promise<Result_3>;
-    updateSignalResult(sessionToken: string, id: string, result: ResultStatus): Promise<Result_3>;
-    updateSignalSchedule(sessionToken: string, id: string, isDraft: boolean, publishAt: bigint | null): Promise<Result_3>;
-    updateWhitepaper(content: WhitepaperContent, sessionToken: string): Promise<Result_2>;
+    reorderFaqs(sessionToken: string, orderedIds: Array<string>): Promise<Result_1>;
+    scheduleSignal(signalId: string, publishAt: bigint, sessionToken: string): Promise<Result_1>;
+    sendAiMessage(sessionToken: string, message: string, provider: string, history: Array<ChatMessage>): Promise<Result>;
+    setAiApiKey(adminToken: string, provider: string, key: string): Promise<Result_1>;
+    setAiLanguage(lang: string, sessionToken: string): Promise<Result_1>;
+    setAnnouncement(sessionToken: string, text: string, link: string | null, publishAt: bigint | null): Promise<Result_6>;
+    setBurnTracker(adminToken: string, data: BurnTracker): Promise<Result_1>;
+    setCommunityCounter(adminToken: string, data: CommunityCounter): Promise<Result_1>;
+    setMaintenanceMode(enabled: boolean, message: string, sessionToken: string): Promise<Result_1>;
+    setMarketMoodBanner(mood: string, message: string, sessionToken: string): Promise<Result_1>;
+    setRoadmapMilestone(adminToken: string, year: string, title: string, description: string, completed: boolean): Promise<Result_1>;
+    setSignalOfTheDay(sessionToken: string, signalId: string | null): Promise<Result_1>;
+    setSignalOfWeek(signalId: string, comment: string, sessionToken: string): Promise<Result_1>;
+    setSignalOfWeekWithDate(signalId: string, comment: string, weekOf: string, sessionToken: string): Promise<Result_1>;
+    setStatsConfig(sessionToken: string, config: StatsConfig): Promise<Result_1>;
+    submitNotifyMe(name: string | null, contact: string): Promise<Result_1>;
+    toggleAnnouncement(sessionToken: string): Promise<Result_5>;
+    unbanEmail(sessionToken: string, email: string): Promise<Result_1>;
+    updateBinancePost(adminToken: string, id: string, title: string, snippet: string, url: string, date: string): Promise<Result_4>;
+    updateBurnEntryStatus(id: string, status: string, txHash: string | null, sessionToken: string): Promise<Result_1>;
+    updateFaq(sessionToken: string, id: string, question: string, answer: string): Promise<Result_3>;
+    updateMarketSentiment(token: string, sentiment: MarketSentiment): Promise<Result_1>;
+    updateSignal(sessionToken: string, id: string, asset: string, marketType: MarketType, direction: Direction, entryPrice: string, targetPrice: string, stopLoss: string, notes: string, confidence: Confidence, sourceLabel: string, expiry: bigint | null, timeframe: Timeframe, isDraft: boolean, publishAt: bigint | null): Promise<Result_2>;
+    updateSignalResult(sessionToken: string, id: string, result: ResultStatus): Promise<Result_2>;
+    updateSignalSchedule(sessionToken: string, id: string, isDraft: boolean, publishAt: bigint | null): Promise<Result_2>;
+    updateWhitepaper(content: WhitepaperContent, sessionToken: string): Promise<Result_1>;
     validateAdminRole(passcode: string): Promise<string | null>;
-    validateAiPasscode(passcode: string): Promise<Result_1>;
+    validateAiPasscode(passcode: string): Promise<Result>;
     validateAiSession(token: string): Promise<boolean>;
-    validateInsaneSession(token: string): Promise<boolean>;
     validatePasscode(passcode: string): Promise<Result>;
     validateSession(token: string): Promise<boolean>;
 }
-import type { AbTest as _AbTest, ActivityEntry as _ActivityEntry, Analytics as _Analytics, Announcement as _Announcement, AssetSentiment as _AssetSentiment, AuditEntry as _AuditEntry, AuditSnapshot as _AuditSnapshot, BinancePost as _BinancePost, BurnScheduleEntry as _BurnScheduleEntry, ChatMessage as _ChatMessage, CommunityMilestone as _CommunityMilestone, Confidence as _Confidence, Direction as _Direction, FAQ as _FAQ, JournalEntry as _JournalEntry, MarketMoodBanner as _MarketMoodBanner, MarketSentiment as _MarketSentiment, MarketType as _MarketType, NotifyMe as _NotifyMe, PushNotification as _PushNotification, ResponseRating as _ResponseRating, Result as _Result, ResultStatus as _ResultStatus, Result_1 as _Result_1, Result_10 as _Result_10, Result_11 as _Result_11, Result_12 as _Result_12, Result_13 as _Result_13, Result_14 as _Result_14, Result_15 as _Result_15, Result_16 as _Result_16, Result_17 as _Result_17, Result_18 as _Result_18, Result_19 as _Result_19, Result_2 as _Result_2, Result_3 as _Result_3, Result_4 as _Result_4, Result_5 as _Result_5, Result_6 as _Result_6, Result_7 as _Result_7, Result_8 as _Result_8, Result_9 as _Result_9, SentimentLevel as _SentimentLevel, Signal as _Signal, SignalInput as _SignalInput, SignalOfWeekFull as _SignalOfWeekFull, SignalPerformanceStats as _SignalPerformanceStats, Stats as _Stats, StatsConfig as _StatsConfig, Testimonial as _Testimonial, Timeframe as _Timeframe } from "./declarations/backend.did.d.ts";
+import type { AbTest as _AbTest, ActivityEntry as _ActivityEntry, Analytics as _Analytics, Announcement as _Announcement, AssetSentiment as _AssetSentiment, AuditEntry as _AuditEntry, AuditSnapshot as _AuditSnapshot, BinancePost as _BinancePost, BurnScheduleEntry as _BurnScheduleEntry, ChatMessage as _ChatMessage, CommunityMilestone as _CommunityMilestone, Confidence as _Confidence, Direction as _Direction, FAQ as _FAQ, JournalEntry as _JournalEntry, MarketMoodBanner as _MarketMoodBanner, MarketSentiment as _MarketSentiment, MarketType as _MarketType, NotifyMe as _NotifyMe, PushNotification as _PushNotification, ResponseRating as _ResponseRating, Result as _Result, ResultStatus as _ResultStatus, Result_1 as _Result_1, Result_10 as _Result_10, Result_11 as _Result_11, Result_12 as _Result_12, Result_13 as _Result_13, Result_14 as _Result_14, Result_15 as _Result_15, Result_16 as _Result_16, Result_17 as _Result_17, Result_18 as _Result_18, Result_2 as _Result_2, Result_3 as _Result_3, Result_4 as _Result_4, Result_5 as _Result_5, Result_6 as _Result_6, Result_7 as _Result_7, Result_8 as _Result_8, Result_9 as _Result_9, SentimentLevel as _SentimentLevel, Signal as _Signal, SignalInput as _SignalInput, SignalOfWeekFull as _SignalOfWeekFull, SignalPerformanceStats as _SignalPerformanceStats, Stats as _Stats, StatsConfig as _StatsConfig, Testimonial as _Testimonial, Timeframe as _Timeframe } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
-    async addBinancePost(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string): Promise<Result_5> {
+    async addBinancePost(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string): Promise<Result_4> {
         if (this.processError) {
             try {
                 const result = await this.actor.addBinancePost(arg0, arg1, arg2, arg3, arg4);
-                return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_4_n1(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.addBinancePost(arg0, arg1, arg2, arg3, arg4);
-            return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_4_n1(this._uploadFile, this._downloadFile, result);
         }
     }
     async addBurnEntry(arg0: string, arg1: string, arg2: string, arg3: string): Promise<Result> {
@@ -657,18 +649,18 @@ export class Backend implements backendInterface {
             return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
         }
     }
-    async addFaq(arg0: string, arg1: string, arg2: string): Promise<Result_4> {
+    async addFaq(arg0: string, arg1: string, arg2: string): Promise<Result_3> {
         if (this.processError) {
             try {
                 const result = await this.actor.addFaq(arg0, arg1, arg2);
-                return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_3_n5(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.addFaq(arg0, arg1, arg2);
-            return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_3_n5(this._uploadFile, this._downloadFile, result);
         }
     }
     async addJournalEntry(arg0: JournalEntry, arg1: string): Promise<Result> {
@@ -713,18 +705,18 @@ export class Backend implements backendInterface {
             return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
         }
     }
-    async addSignal(arg0: string, arg1: string, arg2: MarketType, arg3: Direction, arg4: string, arg5: string, arg6: string, arg7: string, arg8: Confidence, arg9: string, arg10: bigint | null, arg11: Timeframe, arg12: boolean, arg13: bigint | null): Promise<Result_3> {
+    async addSignal(arg0: string, arg1: string, arg2: MarketType, arg3: Direction, arg4: string, arg5: string, arg6: string, arg7: string, arg8: Confidence, arg9: string, arg10: bigint | null, arg11: Timeframe, arg12: boolean, arg13: bigint | null): Promise<Result_2> {
         if (this.processError) {
             try {
                 const result = await this.actor.addSignal(arg0, arg1, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg2), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg3), arg4, arg5, arg6, arg7, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg8), arg9, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg10), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg11), arg12, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg13));
-                return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.addSignal(arg0, arg1, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg2), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg3), arg4, arg5, arg6, arg7, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg8), arg9, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg10), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg11), arg12, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg13));
-            return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
         }
     }
     async addTestimonial(arg0: string, arg1: string, arg2: string | null, arg3: string | null, arg4: string): Promise<Result> {
@@ -769,32 +761,32 @@ export class Backend implements backendInterface {
             return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
         }
     }
-    async banEmail(arg0: string, arg1: string): Promise<Result_2> {
+    async banEmail(arg0: string, arg1: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.banEmail(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.banEmail(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async clearJournal(arg0: string): Promise<Result_2> {
+    async clearJournal(arg0: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.clearJournal(arg0);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.clearJournal(arg0);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
     async createAbTest(arg0: string, arg1: string, arg2: string, arg3: string): Promise<Result> {
@@ -839,74 +831,74 @@ export class Backend implements backendInterface {
             return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
         }
     }
-    async deleteBinancePost(arg0: string, arg1: string): Promise<Result_2> {
+    async deleteBinancePost(arg0: string, arg1: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.deleteBinancePost(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.deleteBinancePost(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async deleteFaq(arg0: string, arg1: string): Promise<Result_2> {
+    async deleteFaq(arg0: string, arg1: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.deleteFaq(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.deleteFaq(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async deleteQuote(arg0: string, arg1: string): Promise<Result_2> {
+    async deleteQuote(arg0: string, arg1: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.deleteQuote(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.deleteQuote(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async deleteSignal(arg0: string, arg1: string): Promise<Result_2> {
+    async deleteSignal(arg0: string, arg1: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.deleteSignal(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.deleteSignal(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async deleteTestimonial(arg0: string, arg1: string): Promise<Result_2> {
+    async deleteTestimonial(arg0: string, arg1: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.deleteTestimonial(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.deleteTestimonial(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
     async dismissPushNotification(arg0: string): Promise<void> {
@@ -937,18 +929,18 @@ export class Backend implements backendInterface {
             return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getAbTests(arg0: string): Promise<Result_19> {
+    async getAbTests(arg0: string): Promise<Result_18> {
         if (this.processError) {
             try {
                 const result = await this.actor.getAbTests(arg0);
-                return from_candid_Result_19_n36(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_18_n36(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getAbTests(arg0);
-            return from_candid_Result_19_n36(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_18_n36(this._uploadFile, this._downloadFile, result);
         }
     }
     async getAbVariant(arg0: string): Promise<string> {
@@ -979,18 +971,18 @@ export class Backend implements backendInterface {
             return from_candid_vec_n38(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getAdminActivityHeatmap(arg0: string): Promise<Result_18> {
+    async getAdminActivityHeatmap(arg0: string): Promise<Result_17> {
         if (this.processError) {
             try {
                 const result = await this.actor.getAdminActivityHeatmap(arg0);
-                return from_candid_Result_18_n41(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_17_n41(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getAdminActivityHeatmap(arg0);
-            return from_candid_Result_18_n41(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_17_n41(this._uploadFile, this._downloadFile, result);
         }
     }
     async getAdminConfig(arg0: string): Promise<Result> {
@@ -1035,18 +1027,18 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async getAnalytics(arg0: string): Promise<Result_17> {
+    async getAnalytics(arg0: string): Promise<Result_16> {
         if (this.processError) {
             try {
                 const result = await this.actor.getAnalytics(arg0);
-                return from_candid_Result_17_n43(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_16_n43(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getAnalytics(arg0);
-            return from_candid_Result_17_n43(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_16_n43(this._uploadFile, this._downloadFile, result);
         }
     }
     async getAnalyticsCsv(arg0: string): Promise<Result> {
@@ -1077,32 +1069,32 @@ export class Backend implements backendInterface {
             return from_candid_opt_n45(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getAuditLog(arg0: string): Promise<Result_16> {
+    async getAuditLog(arg0: string): Promise<Result_15> {
         if (this.processError) {
             try {
                 const result = await this.actor.getAuditLog(arg0);
-                return from_candid_Result_16_n49(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_15_n49(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getAuditLog(arg0);
-            return from_candid_Result_16_n49(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_15_n49(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getBannedEmails(arg0: string): Promise<Result_15> {
+    async getBannedEmails(arg0: string): Promise<Result_14> {
         if (this.processError) {
             try {
                 const result = await this.actor.getBannedEmails(arg0);
-                return from_candid_Result_15_n51(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_14_n51(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getBannedEmails(arg0);
-            return from_candid_Result_15_n51(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_14_n51(this._uploadFile, this._downloadFile, result);
         }
     }
     async getBinanceFeed(): Promise<Array<BinancePost>> {
@@ -1203,18 +1195,18 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async getJournalEntries(arg0: string): Promise<Result_14> {
+    async getJournalEntries(arg0: string): Promise<Result_13> {
         if (this.processError) {
             try {
                 const result = await this.actor.getJournalEntries(arg0);
-                return from_candid_Result_14_n56(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_13_n56(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getJournalEntries(arg0);
-            return from_candid_Result_14_n56(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_13_n56(this._uploadFile, this._downloadFile, result);
         }
     }
     async getMaintenanceMode(): Promise<MaintenanceMode> {
@@ -1287,18 +1279,18 @@ export class Backend implements backendInterface {
             return from_candid_vec_n70(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getNotifyMeList(arg0: string): Promise<Result_13> {
+    async getNotifyMeList(arg0: string): Promise<Result_12> {
         if (this.processError) {
             try {
                 const result = await this.actor.getNotifyMeList(arg0);
-                return from_candid_Result_13_n73(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_12_n73(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getNotifyMeList(arg0);
-            return from_candid_Result_13_n73(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_12_n73(this._uploadFile, this._downloadFile, result);
         }
     }
     async getPublicBurnSchedule(): Promise<Array<BurnScheduleEntry>> {
@@ -1343,32 +1335,32 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async getScheduledSignals(arg0: string): Promise<Result_9> {
+    async getScheduledSignals(arg0: string): Promise<Result_8> {
         if (this.processError) {
             try {
                 const result = await this.actor.getScheduledSignals(arg0);
-                return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_8_n78(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getScheduledSignals(arg0);
-            return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_8_n78(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getSessionRatings(arg0: string): Promise<Result_12> {
+    async getSessionRatings(arg0: string): Promise<Result_11> {
         if (this.processError) {
             try {
                 const result = await this.actor.getSessionRatings(arg0);
-                return from_candid_Result_12_n81(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_11_n81(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getSessionRatings(arg0);
-            return from_candid_Result_12_n81(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_11_n81(this._uploadFile, this._downloadFile, result);
         }
     }
     async getSessionRecap(arg0: Array<ChatMessage>, arg1: string): Promise<Result> {
@@ -1427,18 +1419,18 @@ export class Backend implements backendInterface {
             return from_candid_opt_n87(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getSignalPerformanceStats(arg0: string): Promise<Result_11> {
+    async getSignalPerformanceStats(arg0: string): Promise<Result_10> {
         if (this.processError) {
             try {
                 const result = await this.actor.getSignalPerformanceStats(arg0);
-                return from_candid_Result_11_n90(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_10_n90(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getSignalPerformanceStats(arg0);
-            return from_candid_Result_11_n90(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_10_n90(this._uploadFile, this._downloadFile, result);
         }
     }
     async getSignals(): Promise<Array<Signal>> {
@@ -1469,18 +1461,18 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async getStatsConfig(arg0: string): Promise<Result_10> {
+    async getStatsConfig(arg0: string): Promise<Result_9> {
         if (this.processError) {
             try {
                 const result = await this.actor.getStatsConfig(arg0);
-                return from_candid_Result_10_n92(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_9_n92(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getStatsConfig(arg0);
-            return from_candid_Result_10_n92(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_9_n92(this._uploadFile, this._downloadFile, result);
         }
     }
     async getTestimonials(): Promise<Array<Testimonial>> {
@@ -1511,18 +1503,18 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async importSignals(arg0: string, arg1: Array<SignalInput>): Promise<Result_9> {
+    async importSignals(arg0: string, arg1: Array<SignalInput>): Promise<Result_8> {
         if (this.processError) {
             try {
                 const result = await this.actor.importSignals(arg0, to_candid_vec_n100(this._uploadFile, this._downloadFile, arg1));
-                return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_8_n78(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.importSignals(arg0, to_candid_vec_n100(this._uploadFile, this._downloadFile, arg1));
-            return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_8_n78(this._uploadFile, this._downloadFile, result);
         }
     }
     async initFaqs(): Promise<void> {
@@ -1567,32 +1559,32 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async listAuditSnapshots(arg0: string): Promise<Result_8> {
+    async listAuditSnapshots(arg0: string): Promise<Result_7> {
         if (this.processError) {
             try {
                 const result = await this.actor.listAuditSnapshots(arg0);
-                return from_candid_Result_8_n103(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_7_n103(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.listAuditSnapshots(arg0);
-            return from_candid_Result_8_n103(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_7_n103(this._uploadFile, this._downloadFile, result);
         }
     }
-    async markMilestoneReached(arg0: string, arg1: bigint, arg2: string): Promise<Result_2> {
+    async markMilestoneReached(arg0: string, arg1: bigint, arg2: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.markMilestoneReached(arg0, arg1, arg2);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.markMilestoneReached(arg0, arg1, arg2);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
     async publishScheduledSignals(): Promise<bigint> {
@@ -1609,18 +1601,18 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async rateAiResponse(arg0: string, arg1: bigint, arg2: string): Promise<Result_2> {
+    async rateAiResponse(arg0: string, arg1: bigint, arg2: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.rateAiResponse(arg0, arg1, arg2);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.rateAiResponse(arg0, arg1, arg2);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
     async recordAbImpression(arg0: string, arg1: string): Promise<void> {
@@ -1637,18 +1629,18 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async recordAdminActivity(arg0: string, arg1: string): Promise<Result_2> {
+    async recordAdminActivity(arg0: string, arg1: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.recordAdminActivity(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.recordAdminActivity(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
     async refreshMarketPrices(): Promise<Array<PriceData>> {
@@ -1665,368 +1657,368 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async reorderFaqs(arg0: string, arg1: Array<string>): Promise<Result_2> {
+    async reorderFaqs(arg0: string, arg1: Array<string>): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.reorderFaqs(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.reorderFaqs(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async scheduleSignal(arg0: string, arg1: bigint, arg2: string): Promise<Result_2> {
+    async scheduleSignal(arg0: string, arg1: bigint, arg2: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.scheduleSignal(arg0, arg1, arg2);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.scheduleSignal(arg0, arg1, arg2);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async sendAiMessage(arg0: string, arg1: string, arg2: string, arg3: string, arg4: Array<ChatMessage>): Promise<Result> {
+    async sendAiMessage(arg0: string, arg1: string, arg2: string, arg3: Array<ChatMessage>): Promise<Result> {
         if (this.processError) {
             try {
-                const result = await this.actor.sendAiMessage(arg0, arg1, arg2, arg3, to_candid_vec_n83(this._uploadFile, this._downloadFile, arg4));
+                const result = await this.actor.sendAiMessage(arg0, arg1, arg2, to_candid_vec_n83(this._uploadFile, this._downloadFile, arg3));
                 return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.sendAiMessage(arg0, arg1, arg2, arg3, to_candid_vec_n83(this._uploadFile, this._downloadFile, arg4));
+            const result = await this.actor.sendAiMessage(arg0, arg1, arg2, to_candid_vec_n83(this._uploadFile, this._downloadFile, arg3));
             return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setAiApiKey(arg0: string, arg1: string, arg2: string): Promise<Result_2> {
+    async setAiApiKey(arg0: string, arg1: string, arg2: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.setAiApiKey(arg0, arg1, arg2);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setAiApiKey(arg0, arg1, arg2);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setAiLanguage(arg0: string, arg1: string): Promise<Result_2> {
+    async setAiLanguage(arg0: string, arg1: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.setAiLanguage(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setAiLanguage(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setAnnouncement(arg0: string, arg1: string, arg2: string | null, arg3: bigint | null): Promise<Result_7> {
+    async setAnnouncement(arg0: string, arg1: string, arg2: string | null, arg3: bigint | null): Promise<Result_6> {
         if (this.processError) {
             try {
                 const result = await this.actor.setAnnouncement(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-                return from_candid_Result_7_n105(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_6_n105(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setAnnouncement(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-            return from_candid_Result_7_n105(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_6_n105(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setBurnTracker(arg0: string, arg1: BurnTracker): Promise<Result_2> {
+    async setBurnTracker(arg0: string, arg1: BurnTracker): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.setBurnTracker(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setBurnTracker(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setCommunityCounter(arg0: string, arg1: CommunityCounter): Promise<Result_2> {
+    async setCommunityCounter(arg0: string, arg1: CommunityCounter): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.setCommunityCounter(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setCommunityCounter(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setMaintenanceMode(arg0: boolean, arg1: string, arg2: string): Promise<Result_2> {
+    async setMaintenanceMode(arg0: boolean, arg1: string, arg2: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.setMaintenanceMode(arg0, arg1, arg2);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setMaintenanceMode(arg0, arg1, arg2);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setMarketMoodBanner(arg0: string, arg1: string, arg2: string): Promise<Result_2> {
+    async setMarketMoodBanner(arg0: string, arg1: string, arg2: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.setMarketMoodBanner(arg0, arg1, arg2);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setMarketMoodBanner(arg0, arg1, arg2);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setRoadmapMilestone(arg0: string, arg1: string, arg2: string, arg3: string, arg4: boolean): Promise<Result_2> {
+    async setRoadmapMilestone(arg0: string, arg1: string, arg2: string, arg3: string, arg4: boolean): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.setRoadmapMilestone(arg0, arg1, arg2, arg3, arg4);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setRoadmapMilestone(arg0, arg1, arg2, arg3, arg4);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setSignalOfTheDay(arg0: string, arg1: string | null): Promise<Result_2> {
+    async setSignalOfTheDay(arg0: string, arg1: string | null): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.setSignalOfTheDay(arg0, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg1));
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setSignalOfTheDay(arg0, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg1));
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setSignalOfWeek(arg0: string, arg1: string, arg2: string): Promise<Result_2> {
+    async setSignalOfWeek(arg0: string, arg1: string, arg2: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.setSignalOfWeek(arg0, arg1, arg2);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setSignalOfWeek(arg0, arg1, arg2);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setSignalOfWeekWithDate(arg0: string, arg1: string, arg2: string, arg3: string): Promise<Result_2> {
+    async setSignalOfWeekWithDate(arg0: string, arg1: string, arg2: string, arg3: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.setSignalOfWeekWithDate(arg0, arg1, arg2, arg3);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setSignalOfWeekWithDate(arg0, arg1, arg2, arg3);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async setStatsConfig(arg0: string, arg1: StatsConfig): Promise<Result_2> {
+    async setStatsConfig(arg0: string, arg1: StatsConfig): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.setStatsConfig(arg0, to_candid_StatsConfig_n107(this._uploadFile, this._downloadFile, arg1));
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.setStatsConfig(arg0, to_candid_StatsConfig_n107(this._uploadFile, this._downloadFile, arg1));
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async submitNotifyMe(arg0: string | null, arg1: string): Promise<Result_2> {
+    async submitNotifyMe(arg0: string | null, arg1: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.submitNotifyMe(to_candid_opt_n33(this._uploadFile, this._downloadFile, arg0), arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.submitNotifyMe(to_candid_opt_n33(this._uploadFile, this._downloadFile, arg0), arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async toggleAnnouncement(arg0: string): Promise<Result_6> {
+    async toggleAnnouncement(arg0: string): Promise<Result_5> {
         if (this.processError) {
             try {
                 const result = await this.actor.toggleAnnouncement(arg0);
-                return from_candid_Result_6_n109(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_5_n109(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.toggleAnnouncement(arg0);
-            return from_candid_Result_6_n109(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_5_n109(this._uploadFile, this._downloadFile, result);
         }
     }
-    async unbanEmail(arg0: string, arg1: string): Promise<Result_2> {
+    async unbanEmail(arg0: string, arg1: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.unbanEmail(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.unbanEmail(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async updateBinancePost(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string): Promise<Result_5> {
+    async updateBinancePost(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string): Promise<Result_4> {
         if (this.processError) {
             try {
                 const result = await this.actor.updateBinancePost(arg0, arg1, arg2, arg3, arg4, arg5);
-                return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_4_n1(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.updateBinancePost(arg0, arg1, arg2, arg3, arg4, arg5);
-            return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_4_n1(this._uploadFile, this._downloadFile, result);
         }
     }
-    async updateBurnEntryStatus(arg0: string, arg1: string, arg2: string | null, arg3: string): Promise<Result_2> {
+    async updateBurnEntryStatus(arg0: string, arg1: string, arg2: string | null, arg3: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.updateBurnEntryStatus(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), arg3);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.updateBurnEntryStatus(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), arg3);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async updateFaq(arg0: string, arg1: string, arg2: string, arg3: string): Promise<Result_4> {
+    async updateFaq(arg0: string, arg1: string, arg2: string, arg3: string): Promise<Result_3> {
         if (this.processError) {
             try {
                 const result = await this.actor.updateFaq(arg0, arg1, arg2, arg3);
-                return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_3_n5(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.updateFaq(arg0, arg1, arg2, arg3);
-            return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_3_n5(this._uploadFile, this._downloadFile, result);
         }
     }
-    async updateMarketSentiment(arg0: string, arg1: MarketSentiment): Promise<Result_2> {
+    async updateMarketSentiment(arg0: string, arg1: MarketSentiment): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.updateMarketSentiment(arg0, to_candid_MarketSentiment_n111(this._uploadFile, this._downloadFile, arg1));
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.updateMarketSentiment(arg0, to_candid_MarketSentiment_n111(this._uploadFile, this._downloadFile, arg1));
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
-    async updateSignal(arg0: string, arg1: string, arg2: string, arg3: MarketType, arg4: Direction, arg5: string, arg6: string, arg7: string, arg8: string, arg9: Confidence, arg10: string, arg11: bigint | null, arg12: Timeframe, arg13: boolean, arg14: bigint | null): Promise<Result_3> {
+    async updateSignal(arg0: string, arg1: string, arg2: string, arg3: MarketType, arg4: Direction, arg5: string, arg6: string, arg7: string, arg8: string, arg9: Confidence, arg10: string, arg11: bigint | null, arg12: Timeframe, arg13: boolean, arg14: bigint | null): Promise<Result_2> {
         if (this.processError) {
             try {
                 const result = await this.actor.updateSignal(arg0, arg1, arg2, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg3), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg4), arg5, arg6, arg7, arg8, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg9), arg10, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg11), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg12), arg13, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg14));
-                return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.updateSignal(arg0, arg1, arg2, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg3), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg4), arg5, arg6, arg7, arg8, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg9), arg10, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg11), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg12), arg13, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg14));
-            return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
         }
     }
-    async updateSignalResult(arg0: string, arg1: string, arg2: ResultStatus): Promise<Result_3> {
+    async updateSignalResult(arg0: string, arg1: string, arg2: ResultStatus): Promise<Result_2> {
         if (this.processError) {
             try {
                 const result = await this.actor.updateSignalResult(arg0, arg1, to_candid_ResultStatus_n118(this._uploadFile, this._downloadFile, arg2));
-                return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.updateSignalResult(arg0, arg1, to_candid_ResultStatus_n118(this._uploadFile, this._downloadFile, arg2));
-            return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
         }
     }
-    async updateSignalSchedule(arg0: string, arg1: string, arg2: boolean, arg3: bigint | null): Promise<Result_3> {
+    async updateSignalSchedule(arg0: string, arg1: string, arg2: boolean, arg3: bigint | null): Promise<Result_2> {
         if (this.processError) {
             try {
                 const result = await this.actor.updateSignalSchedule(arg0, arg1, arg2, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-                return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.updateSignalSchedule(arg0, arg1, arg2, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-            return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_2_n18(this._uploadFile, this._downloadFile, result);
         }
     }
-    async updateWhitepaper(arg0: WhitepaperContent, arg1: string): Promise<Result_2> {
+    async updateWhitepaper(arg0: WhitepaperContent, arg1: string): Promise<Result_1> {
         if (this.processError) {
             try {
                 const result = await this.actor.updateWhitepaper(arg0, arg1);
-                return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.updateWhitepaper(arg0, arg1);
-            return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_1_n34(this._uploadFile, this._downloadFile, result);
         }
     }
     async validateAdminRole(arg0: string): Promise<string | null> {
@@ -2043,18 +2035,18 @@ export class Backend implements backendInterface {
             return from_candid_opt_n48(this._uploadFile, this._downloadFile, result);
         }
     }
-    async validateAiPasscode(arg0: string): Promise<Result_1> {
+    async validateAiPasscode(arg0: string): Promise<Result> {
         if (this.processError) {
             try {
                 const result = await this.actor.validateAiPasscode(arg0);
-                return from_candid_Result_1_n120(this._uploadFile, this._downloadFile, result);
+                return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.validateAiPasscode(arg0);
-            return from_candid_Result_1_n120(this._uploadFile, this._downloadFile, result);
+            return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
         }
     }
     async validateAiSession(arg0: string): Promise<boolean> {
@@ -2068,20 +2060,6 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.validateAiSession(arg0);
-            return result;
-        }
-    }
-    async validateInsaneSession(arg0: string): Promise<boolean> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.validateInsaneSession(arg0);
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.validateInsaneSession(arg0);
             return result;
         }
     }
@@ -2150,62 +2128,59 @@ function from_candid_PushNotification_n39(_uploadFile: (file: ExternalBlob) => P
 function from_candid_ResultStatus_n22(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _ResultStatus): ResultStatus {
     return from_candid_variant_n23(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_10_n92(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_10): Result_10 {
-    return from_candid_variant_n93(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_11_n90(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_11): Result_11 {
+function from_candid_Result_10_n90(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_10): Result_10 {
     return from_candid_variant_n91(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_12_n81(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_12): Result_12 {
+function from_candid_Result_11_n81(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_11): Result_11 {
     return from_candid_variant_n82(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_13_n73(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_13): Result_13 {
+function from_candid_Result_12_n73(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_12): Result_12 {
     return from_candid_variant_n74(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_14_n56(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_14): Result_14 {
+function from_candid_Result_13_n56(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_13): Result_13 {
     return from_candid_variant_n57(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_15_n51(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_15): Result_15 {
+function from_candid_Result_14_n51(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_14): Result_14 {
     return from_candid_variant_n52(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_16_n49(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_16): Result_16 {
+function from_candid_Result_15_n49(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_15): Result_15 {
     return from_candid_variant_n50(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_17_n43(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_17): Result_17 {
+function from_candid_Result_16_n43(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_16): Result_16 {
     return from_candid_variant_n44(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_18_n41(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_18): Result_18 {
+function from_candid_Result_17_n41(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_17): Result_17 {
     return from_candid_variant_n42(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_19_n36(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_19): Result_19 {
+function from_candid_Result_18_n36(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_18): Result_18 {
     return from_candid_variant_n37(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_1_n120(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_1): Result_1 {
-    return from_candid_variant_n121(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_2_n34(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_2): Result_2 {
+function from_candid_Result_1_n34(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_1): Result_1 {
     return from_candid_variant_n35(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_3_n18(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_3): Result_3 {
+function from_candid_Result_2_n18(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_2): Result_2 {
     return from_candid_variant_n19(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_4_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_4): Result_4 {
+function from_candid_Result_3_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_3): Result_3 {
     return from_candid_variant_n6(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_5_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_5): Result_5 {
+function from_candid_Result_4_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_4): Result_4 {
     return from_candid_variant_n2(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_6_n109(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_6): Result_6 {
+function from_candid_Result_5_n109(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_5): Result_5 {
     return from_candid_variant_n110(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_7_n105(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_7): Result_7 {
+function from_candid_Result_6_n105(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_6): Result_6 {
     return from_candid_variant_n106(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_8_n103(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_8): Result_8 {
+function from_candid_Result_7_n103(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_7): Result_7 {
     return from_candid_variant_n104(_uploadFile, _downloadFile, value);
 }
-function from_candid_Result_9_n78(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_9): Result_9 {
+function from_candid_Result_8_n78(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_8): Result_8 {
     return from_candid_variant_n79(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_9_n92(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_9): Result_9 {
+    return from_candid_variant_n93(_uploadFile, _downloadFile, value);
 }
 function from_candid_Result_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result): Result {
     return from_candid_variant_n4(_uploadFile, _downloadFile, value);
@@ -2594,25 +2569,6 @@ function from_candid_variant_n110(_uploadFile: (file: ExternalBlob) => Promise<U
 }): {
     __kind__: "ok";
     ok: boolean;
-} | {
-    __kind__: "err";
-    err: string;
-} {
-    return "ok" in value ? {
-        __kind__: "ok",
-        ok: value.ok
-    } : "err" in value ? {
-        __kind__: "err",
-        err: value.err
-    } : value;
-}
-function from_candid_variant_n121(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
-    ok: [string, string];
-} | {
-    err: string;
-}): {
-    __kind__: "ok";
-    ok: [string, string];
 } | {
     __kind__: "err";
     err: string;

@@ -1,5 +1,5 @@
 module {
-  public type AiMode = { #Normal; #Insane };
+  // AiMode removed — unified DemonZeno AI uses a single session store
 
   public type ChatMessage = {
     role      : Text;
@@ -11,8 +11,6 @@ module {
   public type AiRequest = {
     sessionToken : Text;
     message      : Text;
-    provider     : Text;
-    mode         : Text;
     history      : [ChatMessage];
   };
 

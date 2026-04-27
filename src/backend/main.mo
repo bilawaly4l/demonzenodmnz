@@ -38,8 +38,9 @@ import SentimentLib "lib/sentiment";
 import RoadmapLib "lib/roadmap";
 import TokenLaunchLib "lib/token-launch";
 import Time "mo:core/Time";
+import Migration "migration";
 
-
+(with migration = Migration.run)
 actor {
   // Session tokens (cleared on canister restart; frontend clears on tab close)
   let sessions = Set.empty<Text>();
@@ -112,10 +113,8 @@ actor {
   // Roadmap milestones (seeded with defaults)
   let roadmapMilestones = List.fromArray<RoadmapTypes.RoadmapMilestone>(RoadmapLib.defaultMilestones());
 
-  // AI sessions: Normal-tier (any authenticated user)
+  // Unified DemonZeno AI sessions
   let aiSessions = Set.empty<Text>();
-  // AI sessions: Insane-tier (unlocked with Insane passcode only)
-  let insaneSessions = Set.empty<Text>();
 
   // AI provider API keys (empty by default; set via admin dashboard)
   let geminiKey      = { var value : Text = "" };
@@ -199,7 +198,6 @@ actor {
   );
   include AiApi(
     aiSessions,
-    insaneSessions,
     sessions,       // adminSessions — reuse the same admin sessions set
     geminiKey,
     openaiKey,

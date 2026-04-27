@@ -24,7 +24,6 @@ import {
   Menu,
   RotateCcw,
   Send,
-  Shield,
   ThumbsDown,
   ThumbsUp,
   TrendingUp,
@@ -38,16 +37,12 @@ import type { JournalEntry } from "../backend.d";
 import { useAiSession } from "../contexts/AiSessionContext";
 import { useSignalAccuracy } from "../contexts/SignalAccuracyContext";
 import {
-  AI_PROVIDERS,
   type AiMessage,
-  type AiMode,
-  type AiProvider,
-  type AiProviderStatus,
   useInvalidateAiSession,
   useSendAiMessage,
 } from "../hooks/useAiChat";
 
-type AiMessageWithSignal = AiMessage & {
+type AiMessageWithMeta = AiMessage & {
   signalId?: string;
   rating?: 1 | -1 | null;
   messageId?: string;
@@ -113,12 +108,7 @@ function extractSignalData(content: string) {
 type SignalData = NonNullable<ReturnType<typeof extractSignalData>>;
 
 // --- Export AI signal as branded PNG ---
-function exportAiSignalCard(
-  content: string,
-  provider: string,
-  mode: AiMode,
-  signal?: SignalData,
-) {
+function exportAiSignalCard(content: string, signal?: SignalData) {
   const canvas = document.createElement("canvas");
   canvas.width = 640;
   canvas.height = 460;
@@ -130,15 +120,10 @@ function exportAiSignalCard(
 
   // Top gradient bar
   const grad = ctx.createLinearGradient(0, 0, 640, 0);
-  grad.addColorStop(0, "oklch(0.65 0.15 190 / 1)");
-  grad.addColorStop(1, "oklch(0.5 0.18 210 / 1)");
+  grad.addColorStop(0, "#2dd4bf");
+  grad.addColorStop(1, "#38bdf8");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 640, 7);
-
-  if (mode === "insane") {
-    ctx.fillStyle = "#7f1d1d";
-    ctx.fillRect(0, 453, 640, 7);
-  }
 
   // Brand
   ctx.font = "bold 24px 'Space Grotesk', sans-serif";
@@ -147,14 +132,12 @@ function exportAiSignalCard(
   ctx.fillStyle = "#2dd4bf";
   ctx.fillText("Zeno", 116, 50);
   ctx.font = "bold 11px 'DM Sans', sans-serif";
-  ctx.fillStyle = mode === "insane" ? "#ef4444" : "#2dd4bf";
-  ctx.fillText(mode.toUpperCase(), 190, 46);
+  ctx.fillStyle = "#ef4444";
+  ctx.fillText("AI", 188, 46);
 
-  const provLabel =
-    AI_PROVIDERS.find((p) => p.provider === provider)?.label ?? provider;
   ctx.font = "11px 'DM Sans', sans-serif";
   ctx.fillStyle = "#6b7280";
-  ctx.fillText(`via ${provLabel}`, 28, 68);
+  ctx.fillText("Powered by 50+ AI Providers", 28, 68);
 
   // Divider
   ctx.strokeStyle = "#1e2030";
@@ -273,7 +256,7 @@ function exportAiSignalCard(
 
   // Watermark
   ctx.save();
-  ctx.globalAlpha = 0.1;
+  ctx.globalAlpha = 0.08;
   ctx.font = "bold 52px 'Space Grotesk', sans-serif";
   ctx.fillStyle = "#2dd4bf";
   ctx.translate(320, 370);
@@ -389,18 +372,14 @@ function ConfidenceMeter({ pct }: { pct: number }) {
 function InlineSignalCard({
   signal,
   index,
-  mode,
   onBacktest,
   onLogTrade,
 }: {
   signal: SignalData;
   index: number;
-  mode: AiMode;
   onBacktest: (s: SignalData) => void;
   onLogTrade: (s: SignalData) => void;
 }) {
-  const accentColor =
-    mode === "insane" ? "oklch(0.7 0.2 22)" : "oklch(0.65 0.15 190)";
   return (
     <div
       data-ocid={`ai_chat.signal_card.${index}`}
@@ -412,7 +391,10 @@ function InlineSignalCard({
     >
       <div className="flex items-start justify-between gap-2 mb-2">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-bold" style={{ color: accentColor }}>
+          <span
+            className="text-xs font-bold"
+            style={{ color: "oklch(0.65 0.15 190)" }}
+          >
             📊 {signal.asset || "SIGNAL"}
           </span>
           <span
@@ -471,25 +453,6 @@ function InlineSignalCard({
   );
 }
 
-// --- Mode Badge ---
-function ModeBadge({ mode, onClick }: { mode: AiMode; onClick: () => void }) {
-  return (
-    <button
-      type="button"
-      data-ocid="ai_chat.mode.toggle"
-      onClick={onClick}
-      className={
-        mode === "insane"
-          ? "badge-mode-insane cursor-pointer hover:opacity-80 transition-opacity"
-          : "badge-mode-normal cursor-pointer hover:opacity-80 transition-opacity"
-      }
-      aria-label={`Switch to ${mode === "normal" ? "Insane" : "Normal"} mode`}
-    >
-      {mode === "normal" ? "NORMAL" : "INSANE 🔥"}
-    </button>
-  );
-}
-
 // --- Typing Indicator ---
 function TypingIndicator() {
   return (
@@ -510,19 +473,6 @@ function TypingIndicator() {
         </div>
       </div>
     </div>
-  );
-}
-
-// --- Provider Status Dot ---
-function StatusDot({ available }: { available: boolean }) {
-  return (
-    <span
-      className="inline-block w-2 h-2 rounded-full shrink-0 mr-1.5"
-      style={{
-        background: available ? "oklch(0.7 0.18 145)" : "oklch(0.45 0.01 260)",
-      }}
-      aria-hidden="true"
-    />
   );
 }
 
@@ -975,23 +925,18 @@ function DailyBriefingBanner({ briefing }: { briefing: string }) {
 function MessageBubble({
   message,
   index,
-  mode,
   onRate,
   onBacktest,
   onLogTrade,
 }: {
-  message: AiMessageWithSignal;
+  message: AiMessageWithMeta;
   index: number;
-  mode: AiMode;
   onRate: (msgId: string, rating: 1 | -1) => void;
   onBacktest: (signal: SignalData) => void;
   onLogTrade: (signal: SignalData) => void;
 }) {
   const isUser = message.role === "user";
   const { markWin, markLoss } = useSignalAccuracy();
-  const providerLabel = AI_PROVIDERS.find(
-    (p) => p.provider === message.provider,
-  )?.label;
   const signalData = !isUser ? extractSignalData(message.content) : null;
   const signalId = message.signalId;
   const msgId = message.messageId ?? `msg-${message.timestamp}`;
@@ -1002,12 +947,7 @@ function MessageBubble({
   }
 
   function handleExport() {
-    exportAiSignalCard(
-      message.content,
-      message.provider ?? "default",
-      mode,
-      signalData ?? undefined,
-    );
+    exportAiSignalCard(message.content, signalData ?? undefined);
     triggerConfetti();
     toast.success("Signal card exported! 🎉");
   }
@@ -1044,13 +984,17 @@ function MessageBubble({
         />
       </div>
       <div className="flex flex-col gap-1 min-w-0 flex-1">
-        {/* Provider + time */}
+        {/* Header row */}
         <div className="flex items-center gap-2 flex-wrap">
-          {providerLabel && (
-            <span className="text-xs font-semibold px-2 py-0.5 rounded self-start bg-primary/15 text-primary">
-              {providerLabel}
-            </span>
-          )}
+          <span
+            className="text-xs font-semibold px-2 py-0.5 rounded"
+            style={{
+              background: "oklch(0.65 0.15 190 / 0.12)",
+              color: "oklch(0.72 0.14 190)",
+            }}
+          >
+            DemonZeno AI
+          </span>
           {signalData && (
             <Badge
               variant="outline"
@@ -1091,7 +1035,6 @@ function MessageBubble({
           <InlineSignalCard
             signal={signalData}
             index={index}
-            mode={mode}
             onBacktest={onBacktest}
             onLogTrade={onLogTrade}
           />
@@ -1160,54 +1103,47 @@ function MessageBubble({
 }
 
 // --- Empty State ---
-function EmptyState({
-  isInsane,
-  onSuggestion,
-}: {
-  isInsane: boolean;
-  onSuggestion: (q: string) => void;
-}) {
-  const suggestions = isInsane
-    ? [
-        "BTC 10x leverage signal",
-        "Best altcoins right now",
-        "Short TSLA setup",
-        "SOL entry for tonight",
-      ]
-    : [
-        "BTC/USDT signal",
-        "ETH long or short?",
-        "Top Binance plays today",
-        "Scalp setup for SOL",
-      ];
+function EmptyState({ onSuggestion }: { onSuggestion: (q: string) => void }) {
+  const suggestions = [
+    "BTC/USDT signal with 3 TPs",
+    "ETH long or short analysis",
+    "EUR/USD forex signal",
+    "AAPL stock entry & exit",
+    "Write me a Python script",
+    "Top crypto plays today",
+  ];
 
   return (
     <div
       data-ocid="ai_chat.empty_state"
-      className="flex flex-col items-center justify-center py-16 gap-5 text-center"
+      className="flex flex-col items-center justify-center py-14 gap-5 text-center"
     >
       <div className="relative">
-        <div className="w-20 h-20 rounded-2xl flex items-center justify-center bg-primary/[0.12] border border-primary/30">
-          <Zap className="w-10 h-10 text-primary" strokeWidth={2} />
-        </div>
-        {isInsane && (
-          <div
-            className="absolute -top-1 -right-1 w-4 h-4 rounded-full animate-pulse bg-destructive"
-            aria-hidden="true"
+        <div
+          className="w-20 h-20 rounded-2xl flex items-center justify-center"
+          style={{
+            background: "oklch(0.65 0.15 190 / 0.10)",
+            border: "1px solid oklch(0.65 0.15 190 / 0.25)",
+            boxShadow: "0 0 30px oklch(0.65 0.15 190 / 0.15)",
+          }}
+        >
+          <Zap
+            className="w-10 h-10"
+            style={{ color: "oklch(0.65 0.15 190)" }}
+            strokeWidth={2}
           />
-        )}
+        </div>
       </div>
       <div>
         <h2 className="font-display font-bold text-xl text-foreground">
-          DemonZeno AI is ready
+          DemonZeno AI — Ready
         </h2>
-        <p className="text-muted-foreground text-sm mt-1 max-w-sm">
-          {isInsane
-            ? "INSANE MODE — Unrestricted signals for any asset on any exchange."
-            : "Ask for trading signals with 3 TPs, stop loss & entry. Binance-listed assets."}
+        <p className="text-muted-foreground text-sm mt-1.5 max-w-sm leading-relaxed">
+          Powered by 50+ AI providers silently working in the background. Ask
+          for signals, analysis, code, or anything else.
         </p>
       </div>
-      <div className="flex flex-wrap gap-2 justify-center">
+      <div className="flex flex-wrap gap-2 justify-center max-w-sm">
         {suggestions.map((q) => (
           <button
             key={q}
@@ -1220,8 +1156,8 @@ function EmptyState({
         ))}
       </div>
       <p className="text-xs text-muted-foreground max-w-xs">
-        <span className="text-primary/80 font-semibold">Tip:</span> Signals
-        include Entry · TP1 · TP2 · TP3 · Stop Loss with Confidence meter
+        <span className="text-primary/80 font-semibold">Signals include:</span>{" "}
+        Entry · TP1 · TP2 · TP3 · Stop Loss · Confidence meter
       </p>
     </div>
   );
@@ -1229,25 +1165,15 @@ function EmptyState({
 
 // ========== MAIN COMPONENT ==========
 export function AiChatInterface() {
-  const {
-    aiSessionToken,
-    clearAiSession,
-    aiMode,
-    setAiMode,
-    aiLanguage,
-    setAiLanguage,
-  } = useAiSession();
+  const { aiSessionToken, clearAiSession, aiLanguage, setAiLanguage } =
+    useAiSession();
   const { invalidate } = useInvalidateAiSession();
   const { send, isLoading } = useSendAiMessage();
   const { actor } = useActor(createActor);
   const { addAiSignal } = useSignalAccuracy();
 
-  const [messages, setMessages] = useState<AiMessageWithSignal[]>([]);
+  const [messages, setMessages] = useState<AiMessageWithMeta[]>([]);
   const [input, setInput] = useState("");
-  const [provider, setProvider] = useState<AiProvider>("default");
-  const [providerStatuses, setProviderStatuses] = useState<
-    Map<AiProvider, boolean>
-  >(new Map());
   const [showAccuracy, setShowAccuracy] = useState(false);
   const [showJournal, setShowJournal] = useState(false);
   const [showFaq, setShowFaq] = useState(false);
@@ -1262,21 +1188,6 @@ export function AiChatInterface() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messageCount = messages.length;
-
-  // Fetch provider status on mount
-  useEffect(() => {
-    if (!actor) return;
-    actor
-      .getAiProviderStatus()
-      .then((statuses) => {
-        const map = new Map<AiProvider, boolean>();
-        for (const [prov, available] of statuses) {
-          map.set(prov as AiProvider, available);
-        }
-        setProviderStatuses(map);
-      })
-      .catch(() => {});
-  }, [actor]);
 
   // Fetch daily briefing on mount
   useEffect(() => {
@@ -1336,7 +1247,7 @@ export function AiChatInterface() {
       try {
         const result = await actor.backtestSignal(signalText, aiSessionToken);
         if (result.__kind__ === "ok") {
-          const backtestMsg: AiMessageWithSignal = {
+          const backtestMsg: AiMessageWithMeta = {
             role: "assistant",
             content: `📊 **Backtest Result**\n\n${result.ok}`,
             timestamp: Date.now(),
@@ -1396,7 +1307,6 @@ export function AiChatInterface() {
         role: m.role,
         content: m.content,
         timestamp: BigInt(m.timestamp),
-        provider: m.provider,
       }));
       const result = await actor.getSessionRecap(history, aiSessionToken);
       if (result.__kind__ === "ok") {
@@ -1411,7 +1321,7 @@ export function AiChatInterface() {
     }
   }, [actor, aiSessionToken, messages, isLoadingRecap]);
 
-  // Language change — persist and optionally notify backend
+  // Language change
   const handleLanguageChange = useCallback(
     async (lang: string) => {
       setAiLanguage(lang as "en" | "ar" | "es" | "zh");
@@ -1431,30 +1341,24 @@ export function AiChatInterface() {
     const text = input.trim();
     if (!text || isLoading || !aiSessionToken) return;
 
-    // Apply language instruction suffix
     const langSuffix = LANGUAGE_INSTRUCTION[aiLanguage] ?? "";
     const messageWithLang = langSuffix ? `${text}${langSuffix}` : text;
 
     const userMsg: AiMessage = {
       role: "user",
-      content: text, // Show original, not suffixed
+      content: text,
       timestamp: Date.now(),
     };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
 
-    // Pass full history with language instruction
     const historyWithLang = [
       ...messages,
       { ...userMsg, content: messageWithLang },
     ];
-    const reply = await send(
-      aiSessionToken,
-      messageWithLang,
-      provider,
-      aiMode ?? "normal",
-      historyWithLang,
-    );
+
+    // Backend auto-routes — no provider or mode from frontend
+    const reply = await send(aiSessionToken, messageWithLang, historyWithLang);
 
     if (reply) {
       const sigData = extractSignalData(reply.content);
@@ -1469,10 +1373,10 @@ export function AiChatInterface() {
           sl: sigData.sl,
           timeframe: sigData.timeframe,
           confidence: `${sigData.confidence}%`,
-          provider: reply.provider ?? "default",
+          provider: "DemonZeno AI",
         });
       }
-      const newMsg: AiMessageWithSignal = {
+      const newMsg: AiMessageWithMeta = {
         ...reply,
         signalId,
         messageId: `msg-${reply.timestamp}`,
@@ -1483,8 +1387,6 @@ export function AiChatInterface() {
     input,
     isLoading,
     aiSessionToken,
-    provider,
-    aiMode,
     aiLanguage,
     messages,
     send,
@@ -1510,30 +1412,12 @@ export function AiChatInterface() {
     textareaRef.current?.focus();
   }
 
-  function toggleMode() {
-    setAiMode(aiMode === "normal" ? "insane" : "normal");
-  }
-
-  const isInsane = aiMode === "insane";
-
-  const enrichedProviders: AiProviderStatus[] = AI_PROVIDERS.map((p) => ({
-    ...p,
-    available: providerStatuses.has(p.provider)
-      ? (providerStatuses.get(p.provider) ?? false)
-      : p.available,
-  }));
-
   return (
     <>
       <div
         data-ocid="ai_chat.panel"
         className="flex flex-col"
-        style={{
-          height: "100dvh",
-          background: isInsane
-            ? "linear-gradient(180deg, oklch(0.145 0.01 260) 0%, oklch(0.16 0.02 22) 100%)"
-            : "oklch(0.145 0.01 260)",
-        }}
+        style={{ height: "100dvh", background: "oklch(0.145 0.01 260)" }}
       >
         {/* Header */}
         <header
@@ -1551,19 +1435,35 @@ export function AiChatInterface() {
               />
             </div>
             <div className="min-w-0">
-              <h1 className="font-display font-bold text-sm leading-none text-foreground truncate">
-                Demon<span className="text-primary">Zeno</span>{" "}
-                <span className="text-muted-foreground font-normal">AI</span>
+              <h1
+                className="font-display font-bold text-sm leading-none truncate"
+                style={{ color: "oklch(0.97 0.005 260)" }}
+              >
+                Demon<span style={{ color: "oklch(0.65 0.15 190)" }}>Zeno</span>{" "}
+                <span style={{ color: "oklch(0.65 0.15 190 / 0.7)" }}>AI</span>
               </h1>
               <p className="text-xs text-muted-foreground leading-none mt-0.5">
-                25+ AI providers
+                50+ providers · Auto-routing
               </p>
             </div>
           </div>
 
-          {/* Mode badge */}
-          <div className="flex items-center gap-1 ml-1 shrink-0">
-            <ModeBadge mode={aiMode ?? "normal"} onClick={toggleMode} />
+          {/* Live indicator */}
+          <div className="flex items-center gap-1.5 ml-1 shrink-0">
+            <span
+              className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full font-medium"
+              style={{
+                background: "oklch(0.65 0.15 190 / 0.12)",
+                color: "oklch(0.72 0.14 190)",
+                border: "1px solid oklch(0.65 0.15 190 / 0.25)",
+              }}
+            >
+              <span
+                className="w-1.5 h-1.5 rounded-full animate-pulse inline-block"
+                style={{ background: "oklch(0.65 0.15 190)" }}
+              />
+              LIVE
+            </span>
           </div>
 
           {/* Desktop toolbar */}
@@ -1581,33 +1481,6 @@ export function AiChatInterface() {
                 {Object.entries(LANGUAGE_LABELS).map(([code, label]) => (
                   <SelectItem key={code} value={code} className="text-xs">
                     {label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            {/* Provider selector */}
-            <Select
-              value={provider}
-              onValueChange={(v) => setProvider(v as AiProvider)}
-            >
-              <SelectTrigger
-                data-ocid="ai_chat.provider.select"
-                className="h-8 text-xs w-36 bg-background border-border"
-              >
-                <SelectValue placeholder="AI Provider" />
-              </SelectTrigger>
-              <SelectContent>
-                {enrichedProviders.map((p) => (
-                  <SelectItem
-                    key={p.provider}
-                    value={p.provider}
-                    className="text-xs"
-                  >
-                    <span className="flex items-center">
-                      <StatusDot available={p.available} />
-                      {p.label}
-                    </span>
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -1705,7 +1578,7 @@ export function AiChatInterface() {
                 }}
               >
                 <SelectTrigger
-                  data-ocid="ai_chat.language.select"
+                  data-ocid="ai_chat.language.select.mobile"
                   className="h-8 text-xs flex-1 bg-background border-border"
                 >
                   <Globe className="w-3 h-3 mr-1" />
@@ -1715,34 +1588,6 @@ export function AiChatInterface() {
                   {Object.entries(LANGUAGE_LABELS).map(([code, label]) => (
                     <SelectItem key={code} value={code} className="text-xs">
                       {label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select
-                value={provider}
-                onValueChange={(v) => {
-                  setProvider(v as AiProvider);
-                  setMobileToolbarOpen(false);
-                }}
-              >
-                <SelectTrigger
-                  data-ocid="ai_chat.provider.select"
-                  className="h-8 text-xs flex-1 bg-background border-border"
-                >
-                  <SelectValue placeholder="Provider" />
-                </SelectTrigger>
-                <SelectContent>
-                  {enrichedProviders.map((p) => (
-                    <SelectItem
-                      key={p.provider}
-                      value={p.provider}
-                      className="text-xs"
-                    >
-                      <span className="flex items-center">
-                        <StatusDot available={p.available} />
-                        {p.label}
-                      </span>
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -1757,7 +1602,7 @@ export function AiChatInterface() {
                     setShowAccuracy((v) => !v);
                     setMobileToolbarOpen(false);
                   },
-                  ocid: "ai_chat.accuracy.toggle",
+                  ocid: "ai_chat.accuracy.toggle.mobile",
                 },
                 {
                   icon: FileText,
@@ -1766,7 +1611,7 @@ export function AiChatInterface() {
                     setShowJournal((v) => !v);
                     setMobileToolbarOpen(false);
                   },
-                  ocid: "ai_chat.journal.toggle",
+                  ocid: "ai_chat.journal.toggle.mobile",
                 },
                 {
                   icon: Lightbulb,
@@ -1775,7 +1620,7 @@ export function AiChatInterface() {
                     setShowFaq((v) => !v);
                     setMobileToolbarOpen(false);
                   },
-                  ocid: "ai_chat.faq.toggle",
+                  ocid: "ai_chat.faq.toggle.mobile",
                 },
                 {
                   icon: BarChart3,
@@ -1784,7 +1629,7 @@ export function AiChatInterface() {
                     handleSessionRecap();
                     setMobileToolbarOpen(false);
                   },
-                  ocid: "ai_chat.recap.button",
+                  ocid: "ai_chat.recap.button.mobile",
                 },
                 {
                   icon: RotateCcw,
@@ -1793,13 +1638,13 @@ export function AiChatInterface() {
                     clearChat();
                     setMobileToolbarOpen(false);
                   },
-                  ocid: "ai_chat.clear_button",
+                  ocid: "ai_chat.clear_button.mobile",
                 },
                 {
                   icon: LogOut,
                   label: "Logout",
                   action: handleLogout,
-                  ocid: "ai_chat.logout_button",
+                  ocid: "ai_chat.logout_button.mobile",
                 },
               ].map(({ icon: Icon, label, action, ocid }) => (
                 <Button
@@ -1847,10 +1692,7 @@ export function AiChatInterface() {
         >
           <div className="max-w-3xl mx-auto flex flex-col gap-5">
             {messages.length === 0 && (
-              <EmptyState
-                isInsane={isInsane}
-                onSuggestion={(q) => setInput(q)}
-              />
+              <EmptyState onSuggestion={(q) => setInput(q)} />
             )}
 
             {messages.map((msg, i) => (
@@ -1858,7 +1700,6 @@ export function AiChatInterface() {
                 key={msg.timestamp}
                 message={msg}
                 index={i + 1}
-                mode={aiMode ?? "normal"}
                 onRate={handleRate}
                 onBacktest={handleBacktest}
                 onLogTrade={(signal) => setLogTradeSignal(signal)}
@@ -1878,11 +1719,7 @@ export function AiChatInterface() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder={
-                isInsane
-                  ? "Ask anything — no restrictions…"
-                  : "Ask for a Binance signal… (Enter to send)"
-              }
+              placeholder="Ask for a signal, market analysis, code, or anything… (Enter to send)"
               rows={1}
               className="resize-none min-h-[44px] max-h-32 bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary text-sm leading-relaxed"
             />
@@ -1897,9 +1734,8 @@ export function AiChatInterface() {
             </Button>
           </div>
           <p className="text-muted-foreground text-xs text-center mt-1.5">
-            {isInsane
-              ? "⚡ INSANE MODE: Unrestricted AI — No financial advice. Trade at your own risk."
-              : "DemonZeno AI may be wrong. Always do your own research. Not financial advice."}
+            DemonZeno AI may be wrong. Always do your own research. Not
+            financial advice.
           </p>
         </div>
       </div>
