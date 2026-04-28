@@ -17,14 +17,12 @@ export function AiPasswordGuard({ children }: AiPasswordGuardProps) {
   const lastValidatedToken = useRef<string | null>(null);
 
   useEffect(() => {
-    // No token → show password entry immediately
     if (!aiSessionToken) {
       setValidationState("invalid");
       lastValidatedToken.current = null;
       return;
     }
 
-    // Same token already validated → skip re-validation
     if (
       lastValidatedToken.current === aiSessionToken &&
       validationState === "valid"
@@ -32,12 +30,10 @@ export function AiPasswordGuard({ children }: AiPasswordGuardProps) {
       return;
     }
 
-    // Actor not ready yet → wait
     if (!actor || isFetching) {
       return;
     }
 
-    // Validate with backend
     setValidationState("pending");
     actor
       .validateAiSession(aiSessionToken)
@@ -52,18 +48,16 @@ export function AiPasswordGuard({ children }: AiPasswordGuardProps) {
         }
       })
       .catch(() => {
-        // On error, trust the token (backend may be slow) and allow through
+        // On error, trust the token and allow through
         lastValidatedToken.current = aiSessionToken;
         setValidationState("valid");
       });
   }, [aiSessionToken, actor, isFetching, clearAiSession, validationState]);
 
-  // If no token, show password entry
   if (!aiSessionToken) {
     return <AiPasswordEntry />;
   }
 
-  // Waiting for actor to be ready — show subtle loader
   if (validationState === "pending") {
     return (
       <div
@@ -75,7 +69,7 @@ export function AiPasswordGuard({ children }: AiPasswordGuardProps) {
       >
         <div className="flex flex-col items-center gap-4">
           <div
-            className="w-12 h-12 rounded-full border-2 border-t-transparent animate-spin"
+            className="w-12 h-12 rounded-full border-2 animate-spin"
             style={{
               borderColor: "oklch(0.65 0.15 190 / 0.6)",
               borderTopColor: "transparent",
@@ -92,11 +86,9 @@ export function AiPasswordGuard({ children }: AiPasswordGuardProps) {
     );
   }
 
-  // Token validated invalid
   if (validationState === "invalid") {
     return <AiPasswordEntry />;
   }
 
-  // Valid session — render children
   return <>{children}</>;
 }

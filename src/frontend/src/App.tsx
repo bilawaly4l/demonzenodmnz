@@ -11,12 +11,18 @@ import { Zap } from "lucide-react";
 import { Suspense, lazy, useEffect, useState } from "react";
 import { createActor } from "./backend";
 import { AdminGuard } from "./components/AdminGuard";
+import { BackToTop } from "./components/BackToTop";
+import { CustomCursor } from "./components/CustomCursor";
 import { Layout } from "./components/Layout";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { MaintenanceBanner } from "./components/MaintenanceBanner";
 import { PushNotificationDisplay } from "./components/PushNotificationDisplay";
+import { ScrollProgress } from "./components/ScrollProgress";
 import { AiSessionProvider } from "./contexts/AiSessionContext";
-import { SessionProvider } from "./contexts/SessionContext";
+import {
+  AdminSessionProvider,
+  SessionProvider,
+} from "./contexts/SessionContext";
 import { SignalAccuracyProvider } from "./contexts/SignalAccuracyContext";
 
 const Home = lazy(() =>
@@ -108,8 +114,11 @@ function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <MaintenanceCheck>
+      <ScrollProgress />
       {children}
+      <BackToTop />
       <PushNotificationDisplay />
+      <CustomCursor />
     </MaintenanceCheck>
   );
 }
@@ -117,15 +126,17 @@ function AppShell({ children }: { children: React.ReactNode }) {
 const rootRoute = createRootRoute({
   component: () => (
     <SessionProvider>
-      <AiSessionProvider>
-        <SignalAccuracyProvider>
-          <AppShell>
-            <Suspense fallback={<PageLoader />}>
-              <Outlet />
-            </Suspense>
-          </AppShell>
-        </SignalAccuracyProvider>
-      </AiSessionProvider>
+      <AdminSessionProvider>
+        <AiSessionProvider>
+          <SignalAccuracyProvider>
+            <AppShell>
+              <Suspense fallback={<PageLoader />}>
+                <Outlet />
+              </Suspense>
+            </AppShell>
+          </SignalAccuracyProvider>
+        </AiSessionProvider>
+      </AdminSessionProvider>
     </SessionProvider>
   ),
 });

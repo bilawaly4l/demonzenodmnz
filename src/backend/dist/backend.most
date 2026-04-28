@@ -1,4 +1,4 @@
-// Version: 1.0.0
+// Version: 3.0.0
 type AbTestInternal__454385794 =
   {
     active : Bool;
@@ -9,8 +9,20 @@ type AbTestInternal__454385794 =
     variantA : Text;
     variantB : Text
   };
+type AnnouncementCategory__281416559 =
+  {#Admin; #Alert; #General; #Signal; #Token};
 type Announcement__160704614 =
-  {id : Text; isActive : Bool; link : ?Text; publishAt : ?Int; text : Text};
+  {
+    body : Text;
+    category : AnnouncementCategory__281416559;
+    id : Text;
+    isActive : Bool;
+    isPinned : Bool;
+    link : ?Text;
+    publishAt : ?Int;
+    timestamp : Int;
+    title : Text
+  };
 type AssetSentiment__1055415983 =
   {
     asset : Text;
@@ -24,11 +36,27 @@ type AssetSentiment__1055415983 =
     updatedAt : Int
   };
 type AuditEntry__60967837 =
-  {action : Text; details : Text; id : Text; timestamp : Int};
+  {
+    action : Text;
+    adminToken : Text;
+    details : Text;
+    id : Text;
+    rollbackData : ?Text;
+    timestamp : Int
+  };
 type AuditSnapshot__841379358 =
   {createdAt : Int; dataHash : Text; id : Text; snapshotLabel : Text};
 type BinancePost__458040416 =
   {date : Text; id : Text; snippet : Text; title : Text; url : Text};
+type BurnEvent__802790158 =
+  {
+    amount : Text;
+    createdAt : Int;
+    date : Text;
+    executed : Bool;
+    id : Text;
+    reason : Text
+  };
 type BurnScheduleEntry__177580255 =
   {
     amount : Text;
@@ -50,6 +78,16 @@ type CommunityMilestone__803380763 =
     reachedAt : ?Int;
     title : Text
   };
+type CommunityQuestion__841886212 =
+  {
+    answer : ?Text;
+    id : Text;
+    isActive : Bool;
+    isPinned : Bool;
+    question : Text;
+    timestamp : Int;
+    votes : Nat
+  };
 type Confidence__568567158 = {#High; #Low; #Medium};
 type Data__159895909<T> = {var count : Nat__490723111; elements : [var ?T]};
 type Data__791452850<K, V> =
@@ -58,21 +96,43 @@ type DemonZenoQuote__955648744 =
   {active : Bool; author : Text; id : Text; quote : Text};
 type Direction__858092445 = {#Buy; #Sell};
 type FAQ__807772090 =
-  {answer : Text; id : Text; order : Nat; question : Text};
+  {
+    answer : Text;
+    category : FaqCategory__486857548;
+    helpfulCount : Nat;
+    id : Text;
+    notHelpfulCount : Nat;
+    order : Nat;
+    question : Text;
+    timestamp : Int
+  };
+type FaqCategory__486857548 =
+  {#DmnzToken; #GeneralTrading; #Platform; #Signals};
 type HolderBenefit__552934038 =
   {active : Bool; description : Text; icon : Text; id : Text; title : Text};
+type HypeMilestone__647220683 =
+  {
+    achieved : Bool;
+    achievedAt : ?Int;
+    id : Text;
+    order : Nat;
+    targetCount : Nat;
+    title : Text
+  };
 type Internal__667636161<T> =
   {children : [var ?Node__92254746<T>]; data : Data__159895909<T>};
 type Internal__8484328<K, V> =
   {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
 type JournalEntry__385836424 =
   {
+    asset : Text;
+    direction : Text;
     entryPrice : Float;
     exitPrice : ?Float;
     id : Text;
+    lots : Float;
     notes : Text;
     pnl : ?Float;
-    signal : Text;
     timestamp : Int
   };
 type Leaf__520550824<T> = {data : Data__159895909<T>};
@@ -86,6 +146,10 @@ type List__790383201<T> =
   };
 type MaintenanceMode__46874065 =
   {enabled : Bool; message : Text; updatedAt : Int};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
 type MarketMoodBanner__107428641 =
   {active : Bool; message : Text; mood : Text; updatedAt : Int};
 type MarketSentiment__204313550 =
@@ -103,6 +167,46 @@ type Node__92254746<T> =
   {#internal : Internal__667636161<T>; #leaf : Leaf__520550824<T>};
 type NotifyMe__200450200 =
   {contact : Text; dateSubmitted : Text; id : Text; name : ?Text};
+type OldAnnouncement__738661299 =
+  {id : Text; isActive : Bool; link : ?Text; publishAt : ?Int; text : Text};
+type OldAuditEntry__810594348 =
+  {action : Text; details : Text; id : Text; timestamp : Int};
+type OldConfidence__594148138 = {#High; #Low; #Medium};
+type OldDirection__612364928 = {#Buy; #Sell};
+type OldFAQ__1026730439 =
+  {answer : Text; id : Text; order : Nat; question : Text};
+type OldJournalEntry__991056319 =
+  {
+    entryPrice : Float;
+    exitPrice : ?Float;
+    id : Text;
+    notes : Text;
+    pnl : ?Float;
+    signal : Text;
+    timestamp : Int
+  };
+type OldMarketType__145620876 = {#Crypto; #Forex; #Stock};
+type OldResultStatus__364939288 = {#Active; #Expired; #Loss; #Win};
+type OldSignal__382537385 =
+  {
+    asset : Text;
+    confidence : OldConfidence__594148138;
+    datePosted : Text;
+    direction : OldDirection__612364928;
+    entryPrice : Text;
+    expiry : ?Int;
+    id : Text;
+    isDraft : Bool;
+    marketType : OldMarketType__145620876;
+    notes : Text;
+    publishAt : ?Int;
+    result : OldResultStatus__364939288;
+    sourceLabel : Text;
+    stopLoss : Text;
+    targetPrice : Text;
+    timeframe : OldTimeframe__996707546
+  };
+type OldTimeframe__996707546 = {#LongTerm; #Scalp; #Swing};
 type PriceData__994197416 =
   {
     asset : Text;
@@ -128,6 +232,18 @@ type RoadmapMilestone__956576536 =
 type SentimentLevel__842529189 = {#Bearish; #Bullish; #Neutral};
 type SignalOfWeek__144594512 =
   {comment : Text; featuredAt : Int; signalId : Text; weekOf : Text};
+type SignalTemplate__705345838 =
+  {
+    asset : Text;
+    confidence : Confidence__568567158;
+    createdAt : Int;
+    direction : Direction__858092445;
+    id : Text;
+    marketType : MarketType__1055215155;
+    name : Text;
+    notes : Text;
+    timeframe : Timeframe__904537512
+  };
 type Signal__610467288 =
   {
     asset : Text;
@@ -140,12 +256,20 @@ type Signal__610467288 =
     isDraft : Bool;
     marketType : MarketType__1055215155;
     notes : Text;
+    providerLabel : Text;
     publishAt : ?Int;
     result : ResultStatus__597470066;
     sourceLabel : Text;
     stopLoss : Text;
+    tags : [Text];
     targetPrice : Text;
-    timeframe : Timeframe__904537512
+    templateId : ?Text;
+    timeframe : Timeframe__904537512;
+    tp1 : Text;
+    tp2 : Text;
+    tp3 : Text;
+    voteDown : Nat;
+    voteUp : Nat
   };
 type StatsConfig__858051016 =
   {manualStats : ?Stats__451867852; useManual : Bool};
@@ -169,10 +293,20 @@ type Testimonial__428069909 =
     winAmount : ?Text
   };
 type Timeframe__904537512 = {#LongTerm; #Scalp; #Swing};
+type TopTrader__903961570 =
+  {
+    achievement : Text;
+    bio : Text;
+    createdAt : Int;
+    id : Text;
+    isActive : Bool;
+    name : Text;
+    week : Text
+  };
 type WhitepaperContent__996840349 =
   {sections : [WhitepaperSection__92786351]; title : Text; updatedAt : Int};
 type WhitepaperSection__92786351 = {content : Text; title : Text};
-actor {
+actor ({
   stable CACHE_TTL_NS : Int;
   stable abTestIdCounter : {var value : Nat};
   stable abTests :
@@ -186,16 +320,11 @@ actor {
   stable ai21Key : {var value : Text};
   stable aiSessions :
     {var root : Node__92254746<Text>; var size : Nat__490723111};
-  stable annIdCounter : {var value : Nat};
-  stable announcementRef : {var value : ?Announcement__160704614};
+  in annIdCounter : {var value : Nat};
+  in announcementRef : {var value : ?OldAnnouncement__738661299};
   stable anyscaleKey : {var value : Text};
   stable auditIdCounter : {var value : Nat};
-  stable auditLog :
-    {
-      var blockIndex : Nat__490723111;
-      var blocks : [var [var ?AuditEntry__60967837]];
-      var elementIndex : Nat__490723111
-    };
+  in auditLog : List__415060402<OldAuditEntry__810594348>;
   stable auditSnapshots :
     {
       var blockIndex : Nat__490723111;
@@ -212,6 +341,13 @@ actor {
       var blocks : [var [var ?BinancePost__458040416]];
       var elementIndex : Nat__490723111
     };
+  stable burnEventIdCounter : {var value : Nat};
+  stable burnEvents :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?BurnEvent__802790158]];
+      var elementIndex : Nat__490723111
+    };
   stable burnIdCounter : {var value : Nat};
   stable burnRef : {var value : BurnTracker__1013935739};
   stable burnSchedule :
@@ -225,17 +361,18 @@ actor {
   stable claudeKey : {var value : Text};
   stable cloudflareKey : {var value : Text};
   stable cohereKey : {var value : Text};
+  stable communityQuestions :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CommunityQuestion__841886212]];
+      var elementIndex : Nat__490723111
+    };
   stable communityRef : {var value : CommunityCounter__290298233};
   stable dailyBriefingDate : {var value : Int};
   stable dailyBriefingRef : {var value : Text};
   stable deepseekKey : {var value : Text};
   stable faqIdCounter : {var value : Nat};
-  stable faqs :
-    {
-      var blockIndex : Nat__490723111;
-      var blocks : [var [var ?FAQ__807772090]];
-      var elementIndex : Nat__490723111
-    };
+  in faqs : List__415060402<OldFAQ__1026730439>;
   stable faqsSeeded : {var value : Bool};
   stable fireworksKey : {var value : Text};
   stable geminiKey : {var value : Text};
@@ -248,9 +385,17 @@ actor {
       var elementIndex : Nat__490723111
     };
   stable huggingfaceKey : {var value : Text};
-  stable insaneSessions :
-    {var root : Node__92254746<Text>; var size : Nat__490723111};
-  stable journalMap :
+  stable hypeMilestoneIdCounter : {var value : Nat};
+  stable hypeMilestones :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?HypeMilestone__647220683]];
+      var elementIndex : Nat__490723111
+    };
+  stable hypeMilestonesSeeded : {var value : Bool};
+  in journalMap :
+    Map__605269027<Text, List__415060402<OldJournalEntry__991056319>>;
+  stable journalMapV2 :
     {
       var root :
         Node__46230540<Text, List__415060402<JournalEntry__385836424>>;
@@ -291,6 +436,7 @@ actor {
       var blocks : [var [var ?PushNotification__738116908]];
       var elementIndex : Nat__490723111
     };
+  stable questionIdCounter : {var value : Nat};
   stable quoteIdCounter : {var value : Nat};
   stable quotes :
     {
@@ -319,14 +465,16 @@ actor {
   stable signalIdCounter : {var value : Nat};
   stable signalOfTheDayRef : {var value : ?Text};
   stable signalOfWeekRef : {var value : ?SignalOfWeek__144594512};
-  stable signals :
+  stable signalTemplates :
     {
       var blockIndex : Nat__490723111;
-      var blocks : [var [var ?Signal__610467288]];
+      var blocks : [var [var ?SignalTemplate__705345838]];
       var elementIndex : Nat__490723111
     };
+  in signals : List__415060402<OldSignal__382537385>;
   stable snapshotIdCounter : {var value : Nat};
   stable statsConfigRef : {var value : StatsConfig__858051016};
+  stable templateIdCounter : {var value : Nat};
   stable testimonialIdCounter : {var value : Nat};
   stable testimonials :
     {
@@ -335,7 +483,221 @@ actor {
       var elementIndex : Nat__490723111
     };
   stable togetherKey : {var value : Text};
+  stable topTraderIdCounter : {var value : Nat};
+  stable topTraders :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?TopTrader__903961570]];
+      var elementIndex : Nat__490723111
+    };
   stable upstageKey : {var value : Text};
   stable whitepaperRef : {var value : WhitepaperContent__996840349};
+  stable whitepaperUrlRef : {var value : ?Text};
   stable zhipuKey : {var value : Text}
-};
+}, {
+  stable CACHE_TTL_NS : Int;
+  stable abTestIdCounter : {var value : Nat};
+  stable abTests :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?AbTestInternal__454385794]];
+      var elementIndex : Nat__490723111
+    };
+  stable activityMap :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable ai21Key : {var value : Text};
+  stable aiSessions :
+    {var root : Node__92254746<Text>; var size : Nat__490723111};
+  stable annIdCounter : {var value : Nat};
+  stable announcements :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Announcement__160704614]];
+      var elementIndex : Nat__490723111
+    };
+  stable anyscaleKey : {var value : Text};
+  stable auditIdCounter : {var value : Nat};
+  stable auditLog :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?AuditEntry__60967837]];
+      var elementIndex : Nat__490723111
+    };
+  stable auditSnapshots :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?AuditSnapshot__841379358]];
+      var elementIndex : Nat__490723111
+    };
+  stable bannedEmails :
+    {var root : Node__92254746<Text>; var size : Nat__490723111};
+  stable benefitsSeeded : {var value : Bool};
+  stable binancePostIdCounter : {var value : Nat};
+  stable binancePosts :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?BinancePost__458040416]];
+      var elementIndex : Nat__490723111
+    };
+  stable burnEventIdCounter : {var value : Nat};
+  stable burnEvents :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?BurnEvent__802790158]];
+      var elementIndex : Nat__490723111
+    };
+  stable burnIdCounter : {var value : Nat};
+  stable burnRef : {var value : BurnTracker__1013935739};
+  stable burnSchedule :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?BurnScheduleEntry__177580255]];
+      var elementIndex : Nat__490723111
+    };
+  stable burnScheduleSeeded : {var value : Bool};
+  stable cerebrasKey : {var value : Text};
+  stable claudeKey : {var value : Text};
+  stable cloudflareKey : {var value : Text};
+  stable cohereKey : {var value : Text};
+  stable communityQuestions :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CommunityQuestion__841886212]];
+      var elementIndex : Nat__490723111
+    };
+  stable communityRef : {var value : CommunityCounter__290298233};
+  stable dailyBriefingDate : {var value : Int};
+  stable dailyBriefingRef : {var value : Text};
+  stable deepseekKey : {var value : Text};
+  stable faqIdCounter : {var value : Nat};
+  stable faqs :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?FAQ__807772090]];
+      var elementIndex : Nat__490723111
+    };
+  stable faqsSeeded : {var value : Bool};
+  stable fireworksKey : {var value : Text};
+  stable geminiKey : {var value : Text};
+  stable grokKey : {var value : Text};
+  stable groqKey : {var value : Text};
+  stable holderBenefits :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?HolderBenefit__552934038]];
+      var elementIndex : Nat__490723111
+    };
+  stable huggingfaceKey : {var value : Text};
+  stable hypeMilestoneIdCounter : {var value : Nat};
+  stable hypeMilestones :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?HypeMilestone__647220683]];
+      var elementIndex : Nat__490723111
+    };
+  stable hypeMilestonesSeeded : {var value : Bool};
+  stable journalMapV2 :
+    {
+      var root :
+        Node__46230540<Text, List__415060402<JournalEntry__385836424>>;
+      var size : Nat__490723111
+    };
+  stable langMap :
+    {var root : Node__46230540<Text, Text>; var size : Nat__490723111};
+  stable maintenanceRef : {var value : MaintenanceMode__46874065};
+  stable marketBannerRef : {var value : ?MarketMoodBanner__107428641};
+  stable milestoneIdCounter : {var value : Nat};
+  stable milestones :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CommunityMilestone__803380763]];
+      var elementIndex : Nat__490723111
+    };
+  stable mistralKey : {var value : Text};
+  stable moonshotKey : {var value : Text};
+  stable nlpcloudKey : {var value : Text};
+  stable notifyEntries :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?NotifyMe__200450200]];
+      var elementIndex : Nat__490723111
+    };
+  stable notifyIdCounter : {var value : Nat};
+  stable novitaKey : {var value : Text};
+  stable ollamaKey : {var value : Text};
+  stable openaiKey : {var value : Text};
+  stable openrouterKey : {var value : Text};
+  stable perplexityKey : {var value : Text};
+  stable priceCache : {var value : [PriceData__994197416]};
+  stable priceCacheTime : {var value : Int};
+  stable pushNotifIdCounter : {var value : Nat};
+  stable pushNotifications :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?PushNotification__738116908]];
+      var elementIndex : Nat__490723111
+    };
+  stable questionIdCounter : {var value : Nat};
+  stable quoteIdCounter : {var value : Nat};
+  stable quotes :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?DemonZenoQuote__955648744]];
+      var elementIndex : Nat__490723111
+    };
+  stable quotesSeeded : {var value : Bool};
+  stable ratingMap :
+    {
+      var root :
+        Node__46230540<Text, List__415060402<ResponseRating__246714755>>;
+      var size : Nat__490723111
+    };
+  stable replicateKey : {var value : Text};
+  stable roadmapMilestones :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?RoadmapMilestone__956576536]];
+      var elementIndex : Nat__490723111
+    };
+  stable sambanovaKey : {var value : Text};
+  stable sentimentRef : {var value : MarketSentiment__204313550};
+  stable sessions :
+    {var root : Node__92254746<Text>; var size : Nat__490723111};
+  stable signalIdCounter : {var value : Nat};
+  stable signalOfTheDayRef : {var value : ?Text};
+  stable signalOfWeekRef : {var value : ?SignalOfWeek__144594512};
+  stable signalTemplates :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?SignalTemplate__705345838]];
+      var elementIndex : Nat__490723111
+    };
+  stable signals :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Signal__610467288]];
+      var elementIndex : Nat__490723111
+    };
+  stable snapshotIdCounter : {var value : Nat};
+  stable statsConfigRef : {var value : StatsConfig__858051016};
+  stable templateIdCounter : {var value : Nat};
+  stable testimonialIdCounter : {var value : Nat};
+  stable testimonials :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Testimonial__428069909]];
+      var elementIndex : Nat__490723111
+    };
+  stable togetherKey : {var value : Text};
+  stable topTraderIdCounter : {var value : Nat};
+  stable topTraders :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?TopTrader__903961570]];
+      var elementIndex : Nat__490723111
+    };
+  stable upstageKey : {var value : Text};
+  stable whitepaperRef : {var value : WhitepaperContent__996840349};
+  stable whitepaperUrlRef : {var value : ?Text};
+  stable zhipuKey : {var value : Text}
+}) ;

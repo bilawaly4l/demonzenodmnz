@@ -1,15 +1,20 @@
 import { Card } from "@/components/ui/card";
+import { useActor } from "@caffeineai/core-infrastructure";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Calendar,
   Download,
   Maximize2,
   Shield,
   Target,
+  ThumbsDown,
+  ThumbsUp,
   TrendingDown,
   TrendingUp,
 } from "lucide-react";
 import { useCallback, useState } from "react";
 import { toast } from "sonner";
+import { createActor } from "../backend";
 import { Confidence, ResultStatus, Timeframe } from "../backend.d";
 import type { Direction, MarketType, Signal } from "../types";
 import { SignalDetailModal } from "./SignalDetailModal";
@@ -152,30 +157,25 @@ function ConfidenceGauge({ confidence }: { confidence: Confidence }) {
   );
 }
 
-// Export signal as branded PNG with confetti burst
+// Export signal as branded PNG with confetti
 function exportSignalCard(signal: Signal) {
   const canvas = document.createElement("canvas");
   canvas.width = 640;
-  canvas.height = 440;
+  canvas.height = 480;
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
-  // Background
   ctx.fillStyle = "#0e0f14";
-  ctx.fillRect(0, 0, 640, 440);
+  ctx.fillRect(0, 0, 640, 480);
 
-  // Gradient top bar
   const grad = ctx.createLinearGradient(0, 0, 640, 0);
-  grad.addColorStop(0, "oklch(0.65 0.15 190 / 1)");
-  grad.addColorStop(1, "oklch(0.5 0.18 210 / 1)");
+  grad.addColorStop(0, "#2dd4bf");
+  grad.addColorStop(1, "#38bdf8");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 640, 7);
-
-  // Red bottom bar accent
   ctx.fillStyle = "#7f1d1d";
-  ctx.fillRect(0, 433, 640, 7);
+  ctx.fillRect(0, 473, 640, 7);
 
-  // Brand
   ctx.font = "bold 26px 'Space Grotesk', sans-serif";
   ctx.fillStyle = "#38bdf8";
   ctx.fillText("Demon", 28, 50);
@@ -185,17 +185,14 @@ function exportSignalCard(signal: Signal) {
   ctx.fillStyle = "#6b7280";
   ctx.fillText("Trading Signal", 28, 68);
 
-  // Direction badge
   ctx.font = "bold 13px 'DM Sans', sans-serif";
   ctx.fillStyle = signal.direction === "Buy" ? "#22c55e" : "#ef4444";
   ctx.fillText(signal.direction === "Buy" ? "▲ BUY" : "▼ SELL", 560, 50);
 
-  // Asset
   ctx.font = "bold 32px 'Space Grotesk', sans-serif";
   ctx.fillStyle = "#e2e8f0";
   ctx.fillText(signal.asset, 28, 115);
 
-  // Confidence %
   const confPct = CONFIDENCE_PCT[signal.confidence];
   ctx.font = "bold 14px 'DM Sans', sans-serif";
   ctx.fillStyle =
@@ -206,7 +203,12 @@ function exportSignalCard(signal: Signal) {
         : "#94a3b8";
   ctx.fillText(`Confidence: ${confPct}%`, 28, 140);
 
-  // Divider
+  if (signal.providerLabel) {
+    ctx.font = "11px 'DM Sans', sans-serif";
+    ctx.fillStyle = "#4b5563";
+    ctx.fillText(`Provider: ${signal.providerLabel}`, 400, 140);
+  }
+
   ctx.strokeStyle = "#1e2030";
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -214,24 +216,27 @@ function exportSignalCard(signal: Signal) {
   ctx.lineTo(612, 156);
   ctx.stroke();
 
-  // Price data
+  // Price data: Entry, SL, TP1, TP2, TP3
   const priceItems = [
     { label: "Entry", value: signal.entryPrice, color: "#e2e8f0" },
-    { label: "TP1", value: signal.targetPrice, color: "#2dd4bf" },
+    { label: "TP1", value: signal.tp1 || signal.targetPrice, color: "#2dd4bf" },
+    { label: "TP2", value: signal.tp2, color: "#4ade80" },
+    { label: "TP3", value: signal.tp3, color: "#86efac" },
     { label: "Stop Loss", value: signal.stopLoss, color: "#ef4444" },
   ];
-  let px = 28;
+  let py = 185;
+  let col = 0;
   for (const item of priceItems) {
+    const px = 28 + col * 124;
     ctx.font = "11px 'DM Sans', sans-serif";
     ctx.fillStyle = "#6b7280";
-    ctx.fillText(item.label, px, 185);
-    ctx.font = "bold 18px 'JetBrains Mono', monospace";
+    ctx.fillText(item.label, px, py);
+    ctx.font = "bold 15px 'JetBrains Mono', monospace";
     ctx.fillStyle = item.color;
-    ctx.fillText(item.value, px, 210);
-    px += 200;
+    ctx.fillText(item.value || "—", px, py + 20);
+    col++;
   }
 
-  // Timeframe + Market
   ctx.font = "12px 'DM Sans', sans-serif";
   ctx.fillStyle = "#94a3b8";
   ctx.fillText(
@@ -240,44 +245,33 @@ function exportSignalCard(signal: Signal) {
     248,
   );
 
-  // Notes
   if (signal.notes) {
     ctx.font = "13px 'DM Sans', sans-serif";
     ctx.fillStyle = "#64748b";
-    const noteText =
+    const note =
       signal.notes.length > 80 ? `${signal.notes.slice(0, 80)}…` : signal.notes;
-    ctx.fillText(noteText, 28, 280);
+    ctx.fillText(note, 28, 280);
   }
 
-  // QR placeholder (decorative)
-  ctx.strokeStyle = "#1e2030";
-  ctx.lineWidth = 1.5;
-  ctx.strokeRect(544, 280, 68, 68);
-  ctx.font = "8px monospace";
-  ctx.fillStyle = "#374151";
-  ctx.fillText("DZ·QR", 556, 318);
-
-  // Watermark
   ctx.save();
   ctx.globalAlpha = 0.12;
   ctx.font = "bold 48px 'Space Grotesk', sans-serif";
   ctx.fillStyle = "#2dd4bf";
-  ctx.translate(320, 360);
+  ctx.translate(320, 380);
   ctx.rotate(-0.18);
   ctx.fillText("DemonZeno", -120, 0);
   ctx.restore();
 
-  // Bottom brand text
   ctx.font = "italic bold 12px 'Space Grotesk', sans-serif";
   ctx.fillStyle = "#ef4444";
   ctx.globalAlpha = 0.9;
   ctx.textAlign = "right";
-  ctx.fillText("DemonZeno · Master the Chaos", 612, 422);
+  ctx.fillText("DemonZeno · Master the Chaos", 612, 462);
   ctx.globalAlpha = 1;
   ctx.textAlign = "left";
   ctx.font = "11px monospace";
   ctx.fillStyle = "#374151";
-  ctx.fillText(new Date().toLocaleString(), 28, 422);
+  ctx.fillText(new Date().toLocaleString(), 28, 462);
 
   canvas.toBlob((blob) => {
     if (!blob) return;
@@ -290,7 +284,6 @@ function exportSignalCard(signal: Signal) {
   });
 }
 
-// Confetti burst on export
 function triggerConfetti() {
   const container = document.createElement("div");
   container.style.cssText =
@@ -303,7 +296,7 @@ function triggerConfetti() {
     const size = Math.random() * 8 + 4;
     const x = Math.random() * 100;
     const duration = Math.random() * 1.5 + 1;
-    dot.style.cssText = `position:absolute;width:${size}px;height:${size}px;background:${color};border-radius:${Math.random() > 0.5 ? "50%" : "2px"};left:${x}%;top:-10px;transform:rotate(${Math.random() * 360}deg);animation:confettiFall ${duration}s ease-in forwards;animation-delay:${Math.random() * 0.5}s`;
+    dot.style.cssText = `position:absolute;width:${size}px;height:${size}px;background:${color};border-radius:${Math.random() > 0.5 ? "50%" : "2px"};left:${x}%;top:-10px;animation:confettiFall ${duration}s ease-in forwards;animation-delay:${Math.random() * 0.5}s`;
     container.appendChild(dot);
   }
   const style = document.createElement("style");
@@ -316,6 +309,24 @@ function triggerConfetti() {
   }, 3000);
 }
 
+// Voting
+function useVoteSignal() {
+  const { actor } = useActor(createActor);
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      id,
+      direction,
+    }: { id: string; direction: "up" | "down" }) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.voteOnSignal(id, direction === "up" ? "Up" : "Down");
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["signals"] });
+    },
+  });
+}
+
 export function SignalCard({
   signal,
   index,
@@ -324,13 +335,16 @@ export function SignalCard({
 }: SignalCardProps) {
   const isExpired = signal.result === ResultStatus.Expired;
   const [detailOpen, setDetailOpen] = useState(false);
+  const voteSignal = useVoteSignal();
 
   const handleExport = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
       exportSignalCard(signal);
       triggerConfetti();
-      toast.success("Signal card exported with DemonZeno watermark! 🎉");
+      toast.success("Signal exported with DemonZeno watermark! 🎉");
+      // Haptic feedback on mobile
+      if (navigator.vibrate) navigator.vibrate(50);
     },
     [signal],
   );
@@ -339,6 +353,12 @@ export function SignalCard({
     e.stopPropagation();
     setDetailOpen(true);
   }, []);
+
+  function handleVote(e: React.MouseEvent, direction: "up" | "down") {
+    e.stopPropagation();
+    voteSignal.mutate({ id: signal.id, direction });
+    if (navigator.vibrate) navigator.vibrate(30);
+  }
 
   return (
     <>
@@ -358,7 +378,6 @@ export function SignalCard({
         aria-label={`Open signal detail for ${signal.asset}`}
         className={`group bg-card border-border hover:border-primary/50 transition-smooth card-elevated p-5 flex flex-col gap-4 cursor-pointer relative overflow-hidden ${isExpired ? "opacity-70" : ""}`}
       >
-        {/* Hover shimmer */}
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
           style={{
@@ -375,11 +394,6 @@ export function SignalCard({
             <span className="font-display font-bold text-foreground text-lg leading-tight">
               {signal.asset}
             </span>
-            {isExpired && (
-              <span className="badge-expired text-xs line-through opacity-70">
-                expired
-              </span>
-            )}
           </div>
           <div className="flex items-center gap-2 shrink-0">
             {directionBadge(signal.direction)}
@@ -389,8 +403,7 @@ export function SignalCard({
 
         {/* Main content: price grid + confidence gauge */}
         <div className="flex items-start gap-3">
-          {/* Price grid */}
-          <div className="grid grid-cols-3 gap-3 flex-1">
+          <div className="grid grid-cols-3 gap-2 flex-1">
             <div className="flex flex-col gap-0.5">
               <span className="text-muted-foreground text-xs flex items-center gap-1">
                 <TrendingUp className="w-3 h-3" /> Entry
@@ -401,25 +414,49 @@ export function SignalCard({
             </div>
             <div className="flex flex-col gap-0.5">
               <span className="text-muted-foreground text-xs flex items-center gap-1">
-                <Target className="w-3 h-3" /> Target
+                <Target className="w-3 h-3" /> TP1
               </span>
               <span className="font-mono font-semibold text-primary text-sm">
-                {signal.targetPrice}
+                {signal.tp1 || signal.targetPrice}
               </span>
             </div>
             <div className="flex flex-col gap-0.5">
               <span className="text-muted-foreground text-xs flex items-center gap-1">
-                <Shield className="w-3 h-3" /> Stop Loss
+                <Shield className="w-3 h-3" /> SL
               </span>
               <span className="font-mono font-semibold text-destructive text-sm">
                 {signal.stopLoss}
               </span>
             </div>
           </div>
-
-          {/* Confidence gauge */}
           <ConfidenceGauge confidence={signal.confidence} />
         </div>
+
+        {/* TP2 + TP3 row */}
+        {(signal.tp2 || signal.tp3) && (
+          <div className="grid grid-cols-2 gap-2">
+            {signal.tp2 && (
+              <div className="flex flex-col gap-0.5">
+                <span className="text-muted-foreground text-[10px] uppercase tracking-wider">
+                  TP2
+                </span>
+                <span className="font-mono font-semibold text-primary/80 text-sm">
+                  {signal.tp2}
+                </span>
+              </div>
+            )}
+            {signal.tp3 && (
+              <div className="flex flex-col gap-0.5">
+                <span className="text-muted-foreground text-[10px] uppercase tracking-wider">
+                  TP3
+                </span>
+                <span className="font-mono font-semibold text-primary/60 text-sm">
+                  {signal.tp3}
+                </span>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Badges row */}
         <div className="flex flex-wrap gap-1.5">
@@ -429,19 +466,40 @@ export function SignalCard({
           <span className={TIMEFRAME_CLASS[signal.timeframe]}>
             {TIMEFRAME_LABEL[signal.timeframe]}
           </span>
-          {signal.sourceLabel && (
-            <span className="label-source bg-muted/40 border border-border px-2 py-0.5 rounded-md text-xs text-muted-foreground">
-              {signal.sourceLabel}
+          {signal.providerLabel && (
+            <span className="label-source bg-primary/5 border border-primary/15 px-2 py-0.5 rounded-md text-[10px] text-primary/70 font-medium">
+              {signal.providerLabel}
             </span>
           )}
         </div>
 
-        {/* Footer */}
+        {/* Footer: date + votes + actions */}
         <div className="flex items-center justify-between gap-2 pt-1 border-t border-border/50">
           <span className="text-muted-foreground text-xs flex items-center gap-1">
             <Calendar className="w-3 h-3" /> {relativeTime(signal.datePosted)}
           </span>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
+            {/* Vote buttons */}
+            <button
+              type="button"
+              data-ocid={`signals.vote_up.${index}`}
+              onClick={(e) => handleVote(e, "up")}
+              className="flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs text-muted-foreground hover:text-emerald-400 hover:bg-emerald-400/10 transition-colors"
+              aria-label="Vote up"
+            >
+              <ThumbsUp className="w-3 h-3" />
+              <span>{Number(signal.voteUp)}</span>
+            </button>
+            <button
+              type="button"
+              data-ocid={`signals.vote_down.${index}`}
+              onClick={(e) => handleVote(e, "down")}
+              className="flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+              aria-label="Vote down"
+            >
+              <ThumbsDown className="w-3 h-3" />
+              <span>{Number(signal.voteDown)}</span>
+            </button>
             {showExport && (
               <button
                 type="button"
@@ -464,14 +522,10 @@ export function SignalCard({
             >
               <Maximize2 className="w-3.5 h-3.5" />
             </button>
-            <span className="text-primary text-xs font-medium flex items-center gap-1 ml-1">
-              View →
-            </span>
           </div>
         </div>
       </Card>
 
-      {/* Full-screen detail modal */}
       {detailOpen && (
         <SignalDetailModal
           signal={signal}

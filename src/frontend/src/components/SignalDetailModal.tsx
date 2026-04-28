@@ -1,51 +1,28 @@
 import { Button } from "@/components/ui/button";
+import { useActor } from "@caffeineai/core-infrastructure";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Calendar,
   Clock,
+  Download,
   ExternalLink,
   Shield,
   Target,
+  ThumbsDown,
+  ThumbsUp,
   TrendingDown,
   TrendingUp,
   X,
 } from "lucide-react";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { toast } from "sonner";
+import { createActor } from "../backend";
 import { Confidence, ResultStatus, Timeframe } from "../backend.d";
 import type { Signal } from "../types";
 
 interface SignalDetailModalProps {
   signal: Signal;
   onClose: () => void;
-}
-
-function formatDate(dateStr: string): string {
-  try {
-    const d = new Date(dateStr);
-    return d.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  } catch {
-    return dateStr;
-  }
-}
-
-function formatExpiry(expiry: bigint | undefined): string {
-  if (expiry == null) return "No expiry";
-  try {
-    const ms = Number(expiry) / 1_000_000;
-    const d = new Date(ms);
-    return d.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  } catch {
-    return "—";
-  }
 }
 
 const CONFIDENCE_CLASSES: Record<Confidence, string> = {
@@ -65,6 +42,40 @@ const TIMEFRAME_CLASSES: Record<Timeframe, string> = {
   [Timeframe.Swing]: "badge-timeframe-swing",
   [Timeframe.LongTerm]: "badge-timeframe-longterm",
 };
+
+const CONFIDENCE_PCT: Record<Confidence, number> = {
+  [Confidence.Low]: 35,
+  [Confidence.Medium]: 65,
+  [Confidence.High]: 88,
+};
+
+function formatDate(dateStr: string): string {
+  try {
+    return new Date(dateStr).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  } catch {
+    return dateStr;
+  }
+}
+
+function formatExpiry(expiry: bigint | undefined): string {
+  if (expiry == null) return "No expiry";
+  try {
+    const ms = Number(expiry) / 1_000_000;
+    return new Date(ms).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } catch {
+    return "—";
+  }
+}
 
 function resultBadge(result: ResultStatus) {
   if (result === ResultStatus.Win)
@@ -92,7 +103,50 @@ function resultBadge(result: ResultStatus) {
   );
 }
 
+function useVoteSignal() {
+  const { actor } = useActor(createActor);
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      id,
+      direction,
+    }: { id: string; direction: "up" | "down" }) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.voteOnSignal(id, direction === "up" ? "Up" : "Down");
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["signals"] }),
+  });
+}
+
+function ConfidenceBar({ confidence }: { confidence: Confidence }) {
+  const pct = CONFIDENCE_PCT[confidence];
+  const color =
+    confidence === Confidence.High
+      ? "oklch(0.7 0.18 145)"
+      : confidence === Confidence.Medium
+        ? "oklch(0.65 0.14 70)"
+        : "oklch(0.55 0.05 260)";
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center justify-between text-xs">
+        <span className="text-muted-foreground">AI Confidence</span>
+        <span className="font-bold" style={{ color }}>
+          {pct}%
+        </span>
+      </div>
+      <div className="h-2 bg-muted rounded-full overflow-hidden">
+        <div
+          className="h-full rounded-full transition-all duration-700"
+          style={{ width: `${pct}%`, background: color }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function SignalDetailModal({ signal, onClose }: SignalDetailModalProps) {
+  const voteSignal = useVoteSignal();
+
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -105,12 +159,54 @@ export function SignalDetailModal({ signal, onClose }: SignalDetailModalProps) {
     };
   }, [onClose]);
 
+  const handleVote = useCallback(
+    (direction: "up" | "down") => {
+      voteSignal.mutate({ id: signal.id, direction });
+      toast.success(direction === "up" ? "Voted up! 👍" : "Voted down! 👎");
+      if (navigator.vibrate) navigator.vibrate(30);
+    },
+    [signal.id, voteSignal],
+  );
+
   const tweetText = encodeURIComponent(
-    `🚀 ${signal.direction.toUpperCase()} Signal: ${signal.asset} | Entry: ${signal.entryPrice} | Target: ${signal.targetPrice} via @DemonZeno #Binance #Trading`,
+    `🚀 ${signal.direction.toUpperCase()} Signal: ${signal.asset} | Entry: ${signal.entryPrice} | TP1: ${signal.tp1 || signal.targetPrice} | SL: ${signal.stopLoss} via @DemonZeno #Binance #Trading`,
   );
   const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
-
   const isExpired = signal.result === ResultStatus.Expired;
+
+  // Build price levels list
+  const priceLevels = [
+    {
+      icon: <TrendingUp className="w-4 h-4" />,
+      label: "Entry",
+      value: signal.entryPrice,
+      cls: "text-foreground",
+    },
+    {
+      icon: <Target className="w-4 h-4" />,
+      label: "TP1",
+      value: signal.tp1 || signal.targetPrice,
+      cls: "text-primary",
+    },
+    {
+      icon: <Target className="w-4 h-4" />,
+      label: "TP2",
+      value: signal.tp2,
+      cls: "text-primary/80",
+    },
+    {
+      icon: <Target className="w-4 h-4" />,
+      label: "TP3",
+      value: signal.tp3,
+      cls: "text-primary/60",
+    },
+    {
+      icon: <Shield className="w-4 h-4" />,
+      label: "Stop Loss",
+      value: signal.stopLoss,
+      cls: "text-destructive",
+    },
+  ].filter((p) => p.value);
 
   return (
     <dialog
@@ -119,7 +215,6 @@ export function SignalDetailModal({ signal, onClose }: SignalDetailModalProps) {
       data-ocid="signal_detail.dialog"
       open
     >
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-background/80 backdrop-blur-sm"
         onClick={onClose}
@@ -131,11 +226,8 @@ export function SignalDetailModal({ signal, onClose }: SignalDetailModalProps) {
         aria-label="Close modal"
       />
 
-      {/* Modal panel */}
       <div
-        className={`relative bg-card border border-border rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto flex flex-col transition-smooth ${
-          isExpired ? "opacity-80" : ""
-        }`}
+        className={`relative bg-card border border-border rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto flex flex-col ${isExpired ? "opacity-80" : ""}`}
       >
         {/* Header */}
         <div className="flex items-start justify-between gap-3 p-6 border-b border-border sticky top-0 bg-card z-10">
@@ -152,7 +244,11 @@ export function SignalDetailModal({ signal, onClose }: SignalDetailModalProps) {
               >
                 {signal.marketType.toUpperCase()}
               </span>
-              {isExpired && <span className="badge-expired">EXPIRED</span>}
+              {signal.providerLabel && (
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary/5 border border-primary/15 text-primary/70">
+                  {signal.providerLabel}
+                </span>
+              )}
             </div>
             <h2 className="font-display font-bold text-2xl text-foreground">
               {signal.asset}
@@ -171,7 +267,7 @@ export function SignalDetailModal({ signal, onClose }: SignalDetailModalProps) {
 
         {/* Body */}
         <div className="p-6 flex flex-col gap-6">
-          {/* Direction + Result row */}
+          {/* Direction + Result */}
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <div className="flex items-center gap-2">
               {signal.direction === "Buy" ? (
@@ -193,37 +289,18 @@ export function SignalDetailModal({ signal, onClose }: SignalDetailModalProps) {
             {resultBadge(signal.result)}
           </div>
 
-          {/* Price grid */}
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              {
-                icon: <TrendingUp className="w-4 h-4" />,
-                label: "Entry",
-                value: signal.entryPrice,
-                cls: "text-foreground",
-              },
-              {
-                icon: <Target className="w-4 h-4" />,
-                label: "Target",
-                value: signal.targetPrice,
-                cls: "text-primary",
-              },
-              {
-                icon: <Shield className="w-4 h-4" />,
-                label: "Stop Loss",
-                value: signal.stopLoss,
-                cls: "text-destructive",
-              },
-            ].map(({ icon, label, value, cls }) => (
+          {/* Price levels grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {priceLevels.map(({ icon, label, value, cls }) => (
               <div
                 key={label}
-                className="bg-muted/40 border border-border rounded-xl p-4 flex flex-col gap-1.5"
+                className="bg-muted/40 border border-border rounded-xl p-3 flex flex-col gap-1.5"
               >
                 <span className="text-muted-foreground text-xs flex items-center gap-1">
                   {icon} {label}
                 </span>
                 <span
-                  className={`font-mono font-bold text-base break-all ${cls}`}
+                  className={`font-mono font-bold text-sm break-all ${cls}`}
                 >
                   {value}
                 </span>
@@ -231,7 +308,10 @@ export function SignalDetailModal({ signal, onClose }: SignalDetailModalProps) {
             ))}
           </div>
 
-          {/* Badges row */}
+          {/* Confidence bar */}
+          <ConfidenceBar confidence={signal.confidence} />
+
+          {/* Badges */}
           <div className="flex flex-wrap gap-2">
             <span className={CONFIDENCE_CLASSES[signal.confidence]}>
               {signal.confidence} Confidence
@@ -240,7 +320,7 @@ export function SignalDetailModal({ signal, onClose }: SignalDetailModalProps) {
               {TIMEFRAME_LABEL[signal.timeframe]}
             </span>
             {signal.sourceLabel && (
-              <span className="label-source bg-muted/40 border border-border px-2 py-1 rounded-md">
+              <span className="label-source bg-muted/40 border border-border px-2 py-1 rounded-md text-xs">
                 {signal.sourceLabel}
               </span>
             )}
@@ -275,6 +355,31 @@ export function SignalDetailModal({ signal, onClose }: SignalDetailModalProps) {
               </p>
             </div>
           )}
+
+          {/* Voting */}
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-muted-foreground">
+              Rate this signal:
+            </span>
+            <button
+              type="button"
+              data-ocid="signal_detail.vote_up.button"
+              onClick={() => handleVote("up")}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 hover:bg-emerald-400/20 transition-smooth"
+            >
+              <ThumbsUp className="w-3.5 h-3.5" />
+              {Number(signal.voteUp)}
+            </button>
+            <button
+              type="button"
+              data-ocid="signal_detail.vote_down.button"
+              onClick={() => handleVote("down")}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold text-destructive bg-destructive/10 border border-destructive/20 hover:bg-destructive/20 transition-smooth"
+            >
+              <ThumbsDown className="w-3.5 h-3.5" />
+              {Number(signal.voteDown)}
+            </button>
+          </div>
         </div>
 
         {/* Footer */}

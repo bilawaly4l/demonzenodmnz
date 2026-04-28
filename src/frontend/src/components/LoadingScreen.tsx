@@ -9,7 +9,6 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [phase, setPhase] = useState<"loading" | "fading">("loading");
 
   useEffect(() => {
-    // Animate progress bar over 2.2s
     const start = Date.now();
     const duration = 2200;
 
@@ -20,7 +19,6 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
       if (pct < 100) {
         requestAnimationFrame(frame);
       } else {
-        // Begin fade-out
         setTimeout(() => {
           setPhase("fading");
           setTimeout(onComplete, 500);
@@ -73,7 +71,6 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             justifyContent: "center",
           }}
         >
-          {/* Animated lightning icon */}
           <svg
             width="60"
             height="60"
@@ -82,12 +79,14 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             aria-hidden="true"
             style={{ filter: "drop-shadow(0 0 12px oklch(0.65 0.15 190))" }}
           >
+            {/* Shuriken / star */}
             <path
-              d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z"
+              d="M12 2L14 9L21 12L14 15L12 22L10 15L3 12L10 9L12 2Z"
               fill="oklch(0.65 0.15 190)"
               stroke="oklch(0.75 0.12 190)"
               strokeWidth="0.5"
             />
+            <circle cx="12" cy="12" r="3" fill="oklch(0.90 0.10 200)" />
           </svg>
         </div>
 
@@ -101,6 +100,16 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             animation: "spin 3s linear infinite",
           }}
         />
+        {/* Second ring, opposite */}
+        <div
+          style={{
+            position: "absolute",
+            inset: -16,
+            borderRadius: "50%",
+            border: "1px solid oklch(0.65 0.15 190 / 0.15)",
+            animation: "spin 5s linear infinite reverse",
+          }}
+        />
       </div>
 
       {/* Brand name */}
@@ -110,7 +119,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
       >
         <div
           style={{
-            fontSize: "2rem",
+            fontSize: "2.25rem",
             fontWeight: 800,
             letterSpacing: "-0.02em",
             color: "oklch(0.95 0.005 260)",
@@ -121,15 +130,15 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
         </div>
         <div
           style={{
-            fontSize: "0.75rem",
-            letterSpacing: "0.2em",
+            fontSize: "0.7rem",
+            letterSpacing: "0.25em",
             textTransform: "uppercase",
             color: "oklch(0.65 0.15 190)",
-            marginTop: "0.25rem",
+            marginTop: "0.35rem",
             fontFamily: "var(--font-mono, 'JetBrains Mono', monospace)",
           }}
         >
-          DMNZ · Loading
+          DMNZ · Initializing
         </div>
       </div>
 
@@ -150,7 +159,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           maxWidth: 320,
           lineHeight: 1.6,
           letterSpacing: "0.05em",
-          fontFamily: "var(--font-body, 'Satoshi', sans-serif)",
+          fontFamily: "var(--font-body, 'DM Sans', sans-serif)",
           animation: "fadeInUp 1s ease-out 0.8s both",
           padding: "0 1rem",
         }}
@@ -158,7 +167,6 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
         Master the Chaos, Slay the Market, and Trade Like a God.
       </p>
 
-      {/* Inline keyframes for spin */}
       <style>{`
         @keyframes spin {
           from { transform: rotate(0deg); }

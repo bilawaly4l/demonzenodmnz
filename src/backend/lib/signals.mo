@@ -7,6 +7,7 @@ import Common "../types/common";
 module {
   public type Signal = Types.Signal;
   public type SignalInput = Types.SignalInput;
+  public type SignalTemplate = Types.SignalTemplate;
   public type MarketType = Types.MarketType;
   public type Direction = Types.Direction;
   public type ResultStatus = Types.ResultStatus;
@@ -23,13 +24,19 @@ module {
     entryPrice : Text,
     targetPrice : Text,
     stopLoss : Text,
+    tp1 : Text,
+    tp2 : Text,
+    tp3 : Text,
     notes : Text,
     confidence : Confidence,
     sourceLabel : Text,
+    providerLabel : Text,
     expiry : ?Int,
     timeframe : Timeframe,
     isDraft : Bool,
     publishAt : ?Int,
+    templateId : ?Text,
+    tags : [Text],
   ) : (Signal, Nat) {
     let now = Time.now();
     let datePosted = now.toText();
@@ -41,15 +48,23 @@ module {
       entryPrice;
       targetPrice;
       stopLoss;
+      tp1;
+      tp2;
+      tp3;
       datePosted;
       result = #Active;
       notes;
       confidence;
       sourceLabel;
+      providerLabel;
       expiry;
       timeframe;
       isDraft;
       publishAt;
+      templateId;
+      voteUp = 0;
+      voteDown = 0;
+      tags;
     };
     signals.add(signal);
     (signal, nextId + 1);
@@ -64,33 +79,22 @@ module {
     entryPrice : Text,
     targetPrice : Text,
     stopLoss : Text,
+    tp1 : Text,
+    tp2 : Text,
+    tp3 : Text,
     notes : Text,
     confidence : Confidence,
     sourceLabel : Text,
+    providerLabel : Text,
     expiry : ?Int,
     timeframe : Timeframe,
     isDraft : Bool,
     publishAt : ?Int,
+    templateId : ?Text,
+    tags : [Text],
   ) : Result<Signal, Text> {
     var found = false;
-    var updated : Signal = {
-      id = "";
-      asset = "";
-      marketType = #Crypto;
-      direction = #Buy;
-      entryPrice = "";
-      targetPrice = "";
-      stopLoss = "";
-      datePosted = "";
-      result = #Active;
-      notes = "";
-      confidence = #Medium;
-      sourceLabel = "";
-      expiry = null;
-      timeframe = #Swing;
-      isDraft = false;
-      publishAt = null;
-    };
+    var updated : Signal = blankSignal();
     signals.mapInPlace(func(s) {
       if (s.id == id) {
         found := true;
@@ -102,13 +106,19 @@ module {
           entryPrice;
           targetPrice;
           stopLoss;
+          tp1;
+          tp2;
+          tp3;
           notes;
           confidence;
           sourceLabel;
+          providerLabel;
           expiry;
           timeframe;
           isDraft;
           publishAt;
+          templateId;
+          tags;
         };
         updated := u;
         u;
@@ -134,24 +144,7 @@ module {
     result : ResultStatus,
   ) : Result<Signal, Text> {
     var found = false;
-    var updated : Signal = {
-      id = "";
-      asset = "";
-      marketType = #Crypto;
-      direction = #Buy;
-      entryPrice = "";
-      targetPrice = "";
-      stopLoss = "";
-      datePosted = "";
-      result = #Active;
-      notes = "";
-      confidence = #Medium;
-      sourceLabel = "";
-      expiry = null;
-      timeframe = #Swing;
-      isDraft = false;
-      publishAt = null;
-    };
+    var updated : Signal = blankSignal();
     signals.mapInPlace(func(s) {
       if (s.id == id) {
         found := true;
@@ -161,6 +154,41 @@ module {
       } else { s };
     });
     if (found) { #ok(updated) } else { #err("Signal not found: " # id) };
+  };
+
+  public func voteOnSignal(
+    signals : List.List<Signal>,
+    id : Text,
+    direction : Text,
+  ) : Result<(), Text> {
+    var found = false;
+    signals.mapInPlace(func(s) {
+      if (s.id == id) {
+        found := true;
+        if (direction == "up") {
+          { s with voteUp = s.voteUp + 1 };
+        } else if (direction == "down") {
+          { s with voteDown = s.voteDown + 1 };
+        } else { s };
+      } else { s };
+    });
+    if (found) { #ok(()) } else { #err("Signal not found: " # id) };
+  };
+
+  public func addSignalNote(
+    signals : List.List<Signal>,
+    id : Text,
+    note : Text,
+  ) : Result<(), Text> {
+    var found = false;
+    signals.mapInPlace(func(s) {
+      if (s.id == id) {
+        found := true;
+        let combined = if (s.notes == "") { note } else { s.notes # "\n" # note };
+        { s with notes = combined };
+      } else { s };
+    });
+    if (found) { #ok(()) } else { #err("Signal not found: " # id) };
   };
 
   /// Returns only published signals for public API.
@@ -198,24 +226,7 @@ module {
     publishAt : ?Int,
   ) : Result<Signal, Text> {
     var found = false;
-    var updated : Signal = {
-      id = "";
-      asset = "";
-      marketType = #Crypto;
-      direction = #Buy;
-      entryPrice = "";
-      targetPrice = "";
-      stopLoss = "";
-      datePosted = "";
-      result = #Active;
-      notes = "";
-      confidence = #Medium;
-      sourceLabel = "";
-      expiry = null;
-      timeframe = #Swing;
-      isDraft = false;
-      publishAt = null;
-    };
+    var updated : Signal = blankSignal();
     signals.mapInPlace(func(s) {
       if (s.id == id) {
         found := true;
@@ -245,20 +256,100 @@ module {
         entryPrice = inp.entryPrice;
         targetPrice = inp.targetPrice;
         stopLoss = inp.stopLoss;
+        tp1 = inp.tp1;
+        tp2 = inp.tp2;
+        tp3 = inp.tp3;
         datePosted = now.toText();
         result = #Active;
         notes = inp.notes;
         confidence = inp.confidence;
         sourceLabel = inp.sourceLabel;
+        providerLabel = inp.providerLabel;
         expiry = inp.expiry;
         timeframe = inp.timeframe;
         isDraft = inp.isDraft;
         publishAt = inp.publishAt;
+        templateId = inp.templateId;
+        voteUp = 0;
+        voteDown = 0;
+        tags = inp.tags;
       };
       signals.add(s);
       created.add(s);
       currentId += 1;
     };
     (created.toArray(), currentId);
+  };
+
+  // ── Signal Templates ─────────────────────────────────────────────────────
+
+  public func addSignalTemplate(
+    templates : List.List<SignalTemplate>,
+    nextId : Nat,
+    name : Text,
+    asset : Text,
+    marketType : MarketType,
+    direction : Direction,
+    timeframe : Timeframe,
+    confidence : Confidence,
+    notes : Text,
+  ) : (SignalTemplate, Nat) {
+    let id = "tmpl-" # nextId.toText();
+    let tmpl : SignalTemplate = {
+      id;
+      name;
+      asset;
+      marketType;
+      direction;
+      timeframe;
+      confidence;
+      notes;
+      createdAt = Time.now();
+    };
+    templates.add(tmpl);
+    (tmpl, nextId + 1);
+  };
+
+  public func getSignalTemplates(templates : List.List<SignalTemplate>) : [SignalTemplate] {
+    templates.toArray();
+  };
+
+  public func deleteSignalTemplate(templates : List.List<SignalTemplate>, id : Text) : Result<(), Text> {
+    let before = templates.size();
+    let kept = templates.filter(func(t) { t.id != id });
+    templates.clear();
+    templates.addAll(kept.values());
+    if (templates.size() < before) { #ok(()) } else { #err("Template not found: " # id) };
+  };
+
+  // ── Internal helpers ──────────────────────────────────────────────────────
+
+  func blankSignal() : Signal {
+    {
+      id = "";
+      asset = "";
+      marketType = #Crypto;
+      direction = #Buy;
+      entryPrice = "";
+      targetPrice = "";
+      stopLoss = "";
+      tp1 = "";
+      tp2 = "";
+      tp3 = "";
+      datePosted = "";
+      result = #Active;
+      notes = "";
+      confidence = #Medium;
+      sourceLabel = "";
+      providerLabel = "";
+      expiry = null;
+      timeframe = #Swing;
+      isDraft = false;
+      publishAt = null;
+      templateId = null;
+      voteUp = 0;
+      voteDown = 0;
+      tags = [];
+    };
   };
 };

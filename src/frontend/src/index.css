@@ -5,9 +5,13 @@
 @layer base {
   :root {
     --font-display: "Space Grotesk";
-    --font-body: "Satoshi";
+    --font-body: "DM Sans";
     --font-mono: "JetBrains Mono";
     --radius: 0.625rem;
+
+    /* Anime Open-Road Accent — Sky Blue for Hero/Atmosphere */
+    --sky-blue: 0.62 0.18 260;
+    --sky-blue-light: 0.75 0.12 265;
 
     /* Light mode tokens */
     --background: 0.95 0.005 260;
@@ -121,6 +125,10 @@
 
     --destructive: 0.65 0.2 22;
     --destructive-foreground: 0.95 0.005 25;
+
+    /* Anime Sky Blue Glow in Dark Mode */
+    --sky-blue: 0.58 0.16 258;
+    --sky-blue-light: 0.65 0.14 260;
 
     --border: 0.28 0.01 260;
     --input: 0.28 0.01 260;

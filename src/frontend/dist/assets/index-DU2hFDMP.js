@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Home-Df9AKR6C.js","assets/index-BNgp4POB.js","assets/useSignals-pMorhrua.js","assets/send-D7junR57.js","assets/AdminDashboard-Dx8TgBK-.js","assets/textarea-BIQZlGpT.js","assets/AiChat-Dp6vmHjq.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Home-lfOARwU_.js","assets/useSignals-CwN6K5Wx.js","assets/index-CjIyOQEo.js","assets/thumbs-up-Bga2oUKg.js","assets/AdminDashboard-I_0ekoBw.js","assets/textarea-SknAc1Vk.js","assets/AiChat-B3YKkoP7.js"])))=>i.map(i=>d[i]);
 var __defProp = Object.defineProperty;
 var __typeError = (msg) => {
   throw TypeError(msg);
@@ -32664,18 +32664,18 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$9 = [
+const __iconNode$b = [
   ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
   ["path", { d: "M12 19V5", key: "x0mq9r" }]
 ];
-const ArrowUp = createLucideIcon("arrow-up", __iconNode$9);
+const ArrowUp = createLucideIcon("arrow-up", __iconNode$b);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$8 = [
+const __iconNode$a = [
   [
     "path",
     {
@@ -32696,7 +32696,36 @@ const __iconNode$8 = [
   ["circle", { cx: "20", cy: "21", r: ".5", key: "yhc1fs" }],
   ["circle", { cx: "20", cy: "8", r: ".5", key: "1e43v0" }]
 ];
-const BrainCircuit = createLucideIcon("brain-circuit", __iconNode$8);
+const BrainCircuit = createLucideIcon("brain-circuit", __iconNode$a);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$9 = [
+  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
+  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
+  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+];
+const ExternalLink = createLucideIcon("external-link", __iconNode$9);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$8 = [
+  ["path", { d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8", key: "5wwlr5" }],
+  [
+    "path",
+    {
+      d: "M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
+      key: "1d0kgt"
+    }
+  ]
+];
+const House = createLucideIcon("house", __iconNode$8);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -32704,11 +32733,10 @@ const BrainCircuit = createLucideIcon("brain-circuit", __iconNode$8);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$7 = [
-  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
-  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
-  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+  ["path", { d: "m3 11 18-5v12L3 14v-3z", key: "n962bs" }],
+  ["path", { d: "M11.6 16.8a3 3 0 1 1-5.8-1.6", key: "1yl0tm" }]
 ];
-const ExternalLink = createLucideIcon("external-link", __iconNode$7);
+const Megaphone = createLucideIcon("megaphone", __iconNode$7);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -32716,10 +32744,11 @@ const ExternalLink = createLucideIcon("external-link", __iconNode$7);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$6 = [
-  ["path", { d: "m3 11 18-5v12L3 14v-3z", key: "n962bs" }],
-  ["path", { d: "M11.6 16.8a3 3 0 1 1-5.8-1.6", key: "1yl0tm" }]
+  ["path", { d: "M4 12h16", key: "1lakjw" }],
+  ["path", { d: "M4 18h16", key: "19g7jn" }],
+  ["path", { d: "M4 6h16", key: "1o0s65" }]
 ];
-const Megaphone = createLucideIcon("megaphone", __iconNode$6);
+const Menu = createLucideIcon("menu", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -32727,11 +32756,9 @@ const Megaphone = createLucideIcon("megaphone", __iconNode$6);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$5 = [
-  ["path", { d: "M4 12h16", key: "1lakjw" }],
-  ["path", { d: "M4 18h16", key: "19g7jn" }],
-  ["path", { d: "M4 6h16", key: "1o0s65" }]
+  ["path", { d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z", key: "a7tn18" }]
 ];
-const Menu = createLucideIcon("menu", __iconNode$5);
+const Moon = createLucideIcon("moon", __iconNode$5);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -32739,9 +32766,13 @@ const Menu = createLucideIcon("menu", __iconNode$5);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$4 = [
-  ["path", { d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z", key: "a7tn18" }]
+  ["path", { d: "M2 20h.01", key: "4haj6o" }],
+  ["path", { d: "M7 20v-4", key: "j294jx" }],
+  ["path", { d: "M12 20v-8", key: "i3yub9" }],
+  ["path", { d: "M17 20V8", key: "1tkaf5" }],
+  ["path", { d: "M22 4v16", key: "sih9yq" }]
 ];
-const Moon = createLucideIcon("moon", __iconNode$4);
+const Signal$1 = createLucideIcon("signal", __iconNode$4);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -32803,6 +32834,25 @@ const __iconNode = [
   ]
 ];
 const Zap = createLucideIcon("zap", __iconNode);
+const AnnouncementCategory$1 = Variant({
+  "General": Null,
+  "Token": Null,
+  "Admin": Null,
+  "Alert": Null,
+  "Signal": Null
+});
+const Announcement = Record({
+  "id": Text,
+  "title": Text,
+  "body": Text,
+  "link": Opt(Text),
+  "publishAt": Opt(Int),
+  "isActive": Bool,
+  "timestamp": Int,
+  "category": AnnouncementCategory$1,
+  "isPinned": Bool
+});
+const Result_5 = Variant({ "ok": Announcement, "err": Text });
 const BinancePost = Record({
   "id": Text,
   "url": Text,
@@ -32810,22 +32860,55 @@ const BinancePost = Record({
   "date": Text,
   "snippet": Text
 });
-const Result_5 = Variant({ "ok": BinancePost, "err": Text });
-const Result = Variant({ "ok": Text, "err": Text });
+const Result_4 = Variant({ "ok": BinancePost, "err": Text });
+const Result_1 = Variant({ "ok": Text, "err": Text });
+const BurnEvent = Record({
+  "id": Text,
+  "date": Text,
+  "createdAt": Int,
+  "executed": Bool,
+  "amount": Text,
+  "reason": Text
+});
+const Result_22 = Variant({ "ok": BurnEvent, "err": Text });
+const FaqCategory$1 = Variant({
+  "Signals": Null,
+  "Platform": Null,
+  "GeneralTrading": Null,
+  "DmnzToken": Null
+});
 const FAQ = Record({
   "id": Text,
   "question": Text,
   "order": Nat,
-  "answer": Text
+  "answer": Text,
+  "notHelpfulCount": Nat,
+  "timestamp": Int,
+  "category": FaqCategory$1,
+  "helpfulCount": Nat
 });
-const Result_4 = Variant({ "ok": FAQ, "err": Text });
+const Result_3 = Variant({ "ok": FAQ, "err": Text });
+const HypeMilestone = Record({
+  "id": Text,
+  "achieved": Bool,
+  "title": Text,
+  "order": Nat,
+  "achievedAt": Opt(Int),
+  "targetCount": Nat
+});
+const Result_21 = Variant({
+  "ok": HypeMilestone,
+  "err": Text
+});
 const JournalEntry = Record({
   "id": Text,
   "pnl": Opt(Float64),
+  "direction": Text,
+  "asset": Text,
+  "lots": Float64,
   "notes": Text,
   "timestamp": Int,
   "entryPrice": Float64,
-  "signal": Text,
   "exitPrice": Opt(Float64)
 });
 const MarketType$1 = Variant({
@@ -32852,13 +32935,21 @@ const ResultStatus = Variant({
 });
 const Signal = Record({
   "id": Text,
+  "tp1": Text,
+  "tp2": Text,
+  "tp3": Text,
   "result": ResultStatus,
   "marketType": MarketType$1,
   "direction": Direction$1,
+  "voteDown": Nat,
   "asset": Text,
   "timeframe": Timeframe$1,
+  "providerLabel": Text,
+  "templateId": Opt(Text),
   "publishAt": Opt(Int),
+  "tags": Vec(Text),
   "targetPrice": Text,
+  "voteUp": Nat,
   "isDraft": Bool,
   "datePosted": Text,
   "stopLoss": Text,
@@ -32868,8 +32959,23 @@ const Signal = Record({
   "expiry": Opt(Int),
   "confidence": Confidence$1
 });
-const Result_3 = Variant({ "ok": Signal, "err": Text });
-const Result_2 = Variant({ "ok": Null, "err": Text });
+const Result_2 = Variant({ "ok": Signal, "err": Text });
+const Result = Variant({ "ok": Null, "err": Text });
+const SignalTemplate = Record({
+  "id": Text,
+  "marketType": MarketType$1,
+  "direction": Direction$1,
+  "asset": Text,
+  "timeframe": Timeframe$1,
+  "name": Text,
+  "createdAt": Int,
+  "notes": Text,
+  "confidence": Confidence$1
+});
+const Result_20 = Variant({
+  "ok": SignalTemplate,
+  "err": Text
+});
 const AbTest = Record({
   "id": Text,
   "active": Bool,
@@ -32900,6 +33006,10 @@ const Result_18 = Variant({
   "ok": Vec(ActivityEntry),
   "err": Text
 });
+const Result_17 = Variant({
+  "ok": Vec(Announcement),
+  "err": Text
+});
 const MarketCount = Record({
   "count": Nat,
   "market": Text
@@ -32910,25 +33020,20 @@ const Analytics = Record({
   "notifyMeByDate": Vec(DateCount),
   "totalNotifyMe": Nat
 });
-const Result_17 = Variant({ "ok": Analytics, "err": Text });
-const Announcement = Record({
-  "id": Text,
-  "link": Opt(Text),
-  "publishAt": Opt(Int),
-  "text": Text,
-  "isActive": Bool
-});
+const Result_16 = Variant({ "ok": Analytics, "err": Text });
 const AuditEntry = Record({
   "id": Text,
   "action": Text,
+  "rollbackData": Opt(Text),
+  "adminToken": Text,
   "timestamp": Int,
   "details": Text
 });
-const Result_16 = Variant({
+const Result_15 = Variant({
   "ok": Vec(AuditEntry),
   "err": Text
 });
-const Result_15 = Variant({
+const Result_14 = Variant({
   "ok": Vec(Text),
   "err": Text
 });
@@ -32949,6 +33054,15 @@ const CommunityCounter = Record({
   "binanceCount": Nat,
   "twitterCount": Nat
 });
+const CommunityQuestion = Record({
+  "id": Text,
+  "question": Text,
+  "votes": Nat,
+  "answer": Opt(Text),
+  "isActive": Bool,
+  "timestamp": Int,
+  "isPinned": Bool
+});
 const HolderBenefit = Record({
   "id": Text,
   "title": Text,
@@ -32956,7 +33070,7 @@ const HolderBenefit = Record({
   "icon": Text,
   "description": Text
 });
-const Result_14 = Variant({
+const Result_13 = Variant({
   "ok": Vec(JournalEntry),
   "err": Text
 });
@@ -33013,7 +33127,7 @@ const NotifyMe = Record({
   "dateSubmitted": Text,
   "name": Opt(Text)
 });
-const Result_13 = Variant({
+const Result_12 = Variant({
   "ok": Vec(NotifyMe),
   "err": Text
 });
@@ -33029,7 +33143,7 @@ const RoadmapMilestone = Record({
   "year": Text,
   "description": Text
 });
-const Result_9 = Variant({
+const Result_7 = Variant({
   "ok": Vec(Signal),
   "err": Text
 });
@@ -33038,7 +33152,7 @@ const ResponseRating = Record({
   "timestamp": Int,
   "rating": Int
 });
-const Result_12 = Variant({
+const Result_11 = Variant({
   "ok": Vec(ResponseRating),
   "err": Text
 });
@@ -33073,8 +33187,12 @@ const SignalPerformanceStats = Record({
   "winRate": Float64,
   "totalSignals": Nat
 });
-const Result_11 = Variant({
+const Result_10 = Variant({
   "ok": SignalPerformanceStats,
+  "err": Text
+});
+const Result_9 = Variant({
+  "ok": Vec(SignalTemplate),
   "err": Text
 });
 const Stats = Record({
@@ -33089,7 +33207,7 @@ const StatsConfig = Record({
   "useManual": Bool,
   "manualStats": Opt(Stats)
 });
-const Result_10 = Variant({ "ok": StatsConfig, "err": Text });
+const Result_8 = Variant({ "ok": StatsConfig, "err": Text });
 const Testimonial = Record({
   "id": Text,
   "active": Bool,
@@ -33098,6 +33216,23 @@ const Testimonial = Record({
   "name": Text,
   "createdAt": Int,
   "winAmount": Opt(Text)
+});
+const TokenData = Record({
+  "ticker": Text,
+  "burnedAmount": Text,
+  "name": Text,
+  "launchPlatform": Text,
+  "supply": Text,
+  "launchDate": Text
+});
+const TopTrader = Record({
+  "id": Text,
+  "bio": Text,
+  "name": Text,
+  "createdAt": Int,
+  "week": Text,
+  "achievement": Text,
+  "isActive": Bool
 });
 const WhitepaperSection = Record({
   "title": Text,
@@ -33109,11 +33244,17 @@ const WhitepaperContent = Record({
   "sections": Vec(WhitepaperSection)
 });
 const SignalInput = Record({
+  "tp1": Text,
+  "tp2": Text,
+  "tp3": Text,
   "marketType": MarketType$1,
   "direction": Direction$1,
   "asset": Text,
   "timeframe": Timeframe$1,
+  "providerLabel": Text,
+  "templateId": Opt(Text),
   "publishAt": Opt(Int),
+  "tags": Vec(Text),
   "targetPrice": Text,
   "isDraft": Bool,
   "stopLoss": Text,
@@ -33129,31 +33270,48 @@ const AuditSnapshot = Record({
   "dataHash": Text,
   "snapshotLabel": Text
 });
-const Result_8 = Variant({
+const Result_6 = Variant({
   "ok": Vec(AuditSnapshot),
   "err": Text
 });
-const Result_7 = Variant({ "ok": Announcement, "err": Text });
-const Result_6 = Variant({ "ok": Bool, "err": Text });
-const Result_1 = Variant({
-  "ok": Tuple(Text, Text),
-  "err": Text
-});
 Service({
+  "addAnnouncement": Func(
+    [
+      Text,
+      Text,
+      Text,
+      AnnouncementCategory$1,
+      Opt(Text),
+      Bool,
+      Opt(Int)
+    ],
+    [Result_5],
+    []
+  ),
   "addBinancePost": Func(
     [Text, Text, Text, Text, Text],
-    [Result_5],
+    [Result_4],
     []
   ),
   "addBurnEntry": Func(
     [Text, Text, Text, Text],
-    [Result],
+    [Result_1],
     []
   ),
-  "addFaq": Func([Text, Text, Text], [Result_4], []),
-  "addJournalEntry": Func([JournalEntry, Text], [Result], []),
-  "addMilestone": Func([Text, Text, Text], [Result], []),
-  "addQuote": Func([Text, Text, Text], [Result], []),
+  "addBurnEvent": Func(
+    [Text, Text, Text, Text],
+    [Result_22],
+    []
+  ),
+  "addFaq": Func(
+    [Text, Text, Text, FaqCategory$1],
+    [Result_3],
+    []
+  ),
+  "addHypeMilestone": Func([Text, Nat, Text], [Result_21], []),
+  "addJournalEntry": Func([JournalEntry, Text], [Result_1], []),
+  "addMilestone": Func([Text, Text, Text], [Result_1], []),
+  "addQuote": Func([Text, Text, Text], [Result_1], []),
   "addSignal": Func(
     [
       Text,
@@ -33164,43 +33322,84 @@ Service({
       Text,
       Text,
       Text,
+      Text,
+      Text,
+      Text,
       Confidence$1,
+      Text,
       Text,
       Opt(Int),
       Timeframe$1,
       Bool,
-      Opt(Int)
+      Opt(Int),
+      Opt(Text),
+      Vec(Text)
     ],
-    [Result_3],
+    [Result_2],
+    []
+  ),
+  "addSignalNote": Func([Text, Text, Text], [Result], []),
+  "addSignalTemplate": Func(
+    [
+      Text,
+      Text,
+      Text,
+      MarketType$1,
+      Direction$1,
+      Timeframe$1,
+      Confidence$1,
+      Text
+    ],
+    [Result_20],
     []
   ),
   "addTestimonial": Func(
     [Text, Text, Opt(Text), Opt(Text), Text],
-    [Result],
+    [Result_1],
     []
   ),
+  "addTopTrader": Func(
+    [Text, Text, Text, Text, Text],
+    [Result_1],
+    []
+  ),
+  "analyzeNewsImpact": Func([Text, Text], [Result_1], []),
   "askFaq": Func([Text], [Text], []),
-  "backtestSignal": Func([Text, Text], [Result], []),
-  "banEmail": Func([Text, Text], [Result_2], []),
-  "clearJournal": Func([Text], [Result_2], []),
+  "askTokenFaq": Func([Text], [Text], []),
+  "backtestSignal": Func([Text, Text], [Result_1], []),
+  "banEmail": Func([Text, Text], [Result], []),
+  "clearJournal": Func([Text], [Result], []),
+  "compareSignals": Func([Text, Text, Text], [Result_1], []),
   "createAbTest": Func(
     [Text, Text, Text, Text],
-    [Result],
+    [Result_1],
     []
   ),
-  "createAuditSnapshot": Func([Text, Text], [Result], []),
+  "createAuditSnapshot": Func([Text, Text], [Result_1], []),
   "createPushNotification": Func(
     [Text, Text, Text],
-    [Result],
+    [Result_1],
     []
   ),
-  "deleteBinancePost": Func([Text, Text], [Result_2], []),
-  "deleteFaq": Func([Text, Text], [Result_2], []),
-  "deleteQuote": Func([Text, Text], [Result_2], []),
-  "deleteSignal": Func([Text, Text], [Result_2], []),
-  "deleteTestimonial": Func([Text, Text], [Result_2], []),
+  "deleteAnnouncement": Func([Text, Text], [Result], []),
+  "deleteBinancePost": Func([Text, Text], [Result], []),
+  "deleteCommunityQuestion": Func([Text, Text], [Result], []),
+  "deleteFaq": Func([Text, Text], [Result], []),
+  "deleteQuote": Func([Text, Text], [Result], []),
+  "deleteSignal": Func([Text, Text], [Result], []),
+  "deleteSignalTemplate": Func([Text, Text], [Result], []),
+  "deleteTestimonial": Func([Text, Text], [Result], []),
+  "deleteTopTrader": Func([Text, Text], [Result], []),
   "dismissPushNotification": Func([Text], [], []),
-  "generateDailyBriefing": Func([Text], [Result], []),
+  "executeAdminCommand": Func([Text, Text], [Result_1], []),
+  "generateDailyBriefing": Func([Text], [Result_1], []),
+  "generatePostTradeAnalysis": Func(
+    [Text, Text, Text],
+    [Result_1],
+    []
+  ),
+  "generatePricePrediction": Func([Text, Text], [Result_1], []),
+  "generateSignalChain": Func([Text, Text], [Result_1], []),
   "getAbTests": Func([Text], [Result_19], []),
   "getAbVariant": Func([Text], [Text], ["query"]),
   "getActivePushNotifications": Func(
@@ -33209,32 +33408,40 @@ Service({
     ["query"]
   ),
   "getAdminActivityHeatmap": Func([Text], [Result_18], []),
-  "getAdminConfig": Func([Text], [Result], []),
-  "getAiLanguage": Func([Text], [Result], ["query"]),
+  "getAdminConfig": Func([Text], [Result_1], []),
+  "getAiLanguage": Func([Text], [Result_1], ["query"]),
   "getAiProviderStatus": Func(
     [],
     [Vec(Tuple(Text, Bool))],
     ["query"]
   ),
-  "getAnalytics": Func([Text], [Result_17], []),
-  "getAnalyticsCsv": Func([Text], [Result], []),
-  "getAnnouncement": Func([], [Opt(Announcement)], ["query"]),
-  "getAuditLog": Func([Text], [Result_16], []),
-  "getBannedEmails": Func([Text], [Result_15], []),
+  "getAllAnnouncements": Func([Text], [Result_17], []),
+  "getAnalytics": Func([Text], [Result_16], []),
+  "getAnalyticsCsv": Func([Text], [Result_1], []),
+  "getAnnouncements": Func([], [Vec(Announcement)], ["query"]),
+  "getAuditLog": Func([Text], [Result_15], []),
+  "getBannedEmails": Func([Text], [Result_14], []),
   "getBinanceFeed": Func([], [Vec(BinancePost)], ["query"]),
   "getBurnSchedule": Func([], [Vec(BurnScheduleEntry)], ["query"]),
   "getBurnTracker": Func([], [BurnTracker], ["query"]),
   "getCommunityCounter": Func([], [CommunityCounter], ["query"]),
+  "getCommunityQuestions": Func(
+    [],
+    [Vec(CommunityQuestion)],
+    ["query"]
+  ),
   "getDailyBriefing": Func([], [Text], ["query"]),
   "getFaqs": Func([], [Vec(FAQ)], ["query"]),
+  "getFaqsByCategory": Func([FaqCategory$1], [Vec(FAQ)], ["query"]),
   "getHolderBenefits": Func([], [Vec(HolderBenefit)], ["query"]),
-  "getJournalEntries": Func([Text], [Result_14], ["query"]),
+  "getHypeMilestones": Func([], [Vec(HypeMilestone)], ["query"]),
+  "getJournalEntries": Func([Text], [Result_13], ["query"]),
   "getMaintenanceMode": Func([], [MaintenanceMode], ["query"]),
   "getMarketMoodBanner": Func([], [Opt(MarketMoodBanner)], ["query"]),
   "getMarketPrices": Func([], [Vec(PriceData)], ["query"]),
   "getMarketSentiment": Func([], [MarketSentiment], ["query"]),
   "getMilestones": Func([], [Vec(CommunityMilestone)], ["query"]),
-  "getNotifyMeList": Func([Text], [Result_13], []),
+  "getNotifyMeList": Func([Text], [Result_12], []),
   "getPublicBurnSchedule": Func(
     [],
     [Vec(BurnScheduleEntry)],
@@ -33242,99 +33449,117 @@ Service({
   ),
   "getQuotes": Func([], [Vec(DemonZenoQuote)], ["query"]),
   "getRoadmap": Func([], [Vec(RoadmapMilestone)], ["query"]),
-  "getScheduledSignals": Func([Text], [Result_9], []),
-  "getSessionRatings": Func([Text], [Result_12], ["query"]),
-  "getSessionRecap": Func([Vec(ChatMessage), Text], [Result], []),
+  "getScheduledSignals": Func([Text], [Result_7], []),
+  "getSessionRatings": Func([Text], [Result_11], ["query"]),
+  "getSessionRecap": Func(
+    [Vec(ChatMessage), Text],
+    [Result_1],
+    []
+  ),
   "getSignalArchive": Func([], [Vec(Signal)], ["query"]),
   "getSignalOfTheDay": Func([], [Opt(Signal)], ["query"]),
   "getSignalOfWeek": Func([], [Opt(SignalOfWeekFull)], ["query"]),
-  "getSignalPerformanceStats": Func([Text], [Result_11], []),
+  "getSignalPerformanceStats": Func([Text], [Result_10], []),
+  "getSignalTemplates": Func([Text], [Result_9], []),
   "getSignals": Func([], [Vec(Signal)], ["query"]),
   "getStats": Func([], [Stats], ["query"]),
-  "getStatsConfig": Func([Text], [Result_10], []),
+  "getStatsConfig": Func([Text], [Result_8], []),
   "getTestimonials": Func([], [Vec(Testimonial)], ["query"]),
+  "getTokenBurnSchedule": Func([], [Vec(BurnEvent)], ["query"]),
+  "getTokenData": Func([], [TokenData], ["query"]),
+  "getTopTraders": Func([], [Vec(TopTrader)], ["query"]),
   "getWhitepaper": Func([], [WhitepaperContent], ["query"]),
-  "importSignals": Func([Text, Vec(SignalInput)], [Result_9], []),
+  "getWhitepaperUrl": Func([], [Opt(Text)], ["query"]),
+  "importSignals": Func([Text, Vec(SignalInput)], [Result_7], []),
   "initFaqs": Func([], [], []),
   "invalidateAiSession": Func([Text], [], []),
   "invalidateSession": Func([Text], [], []),
-  "listAuditSnapshots": Func([Text], [Result_8], []),
+  "listAuditSnapshots": Func([Text], [Result_6], []),
+  "markBurnEventExecuted": Func([Text, Text], [Result], []),
+  "markHypeMilestoneAchieved": Func([Text, Text], [Result], []),
   "markMilestoneReached": Func(
     [Text, Nat, Text],
-    [Result_2],
-    []
-  ),
-  "publishScheduledSignals": Func([], [Nat], []),
-  "rateAiResponse": Func([Text, Int, Text], [Result_2], []),
-  "recordAbImpression": Func([Text, Text], [], []),
-  "recordAdminActivity": Func([Text, Text], [Result_2], []),
-  "refreshMarketPrices": Func([], [Vec(PriceData)], []),
-  "reorderFaqs": Func([Text, Vec(Text)], [Result_2], []),
-  "scheduleSignal": Func([Text, Int, Text], [Result_2], []),
-  "sendAiMessage": Func(
-    [Text, Text, Text, Text, Vec(ChatMessage)],
     [Result],
     []
   ),
-  "setAiApiKey": Func([Text, Text, Text], [Result_2], []),
-  "setAiLanguage": Func([Text, Text], [Result_2], []),
-  "setAnnouncement": Func(
-    [Text, Text, Opt(Text), Opt(Int)],
-    [Result_7],
+  "pinAnnouncement": Func([Text, Text, Bool], [Result], []),
+  "pinCommunityQuestion": Func(
+    [Text, Text, Text],
+    [Result],
     []
   ),
-  "setBurnTracker": Func([Text, BurnTracker], [Result_2], []),
-  "setCommunityCounter": Func(
-    [Text, CommunityCounter],
-    [Result_2],
+  "publishScheduledSignals": Func([], [Nat], []),
+  "rateAiResponse": Func([Text, Int, Text], [Result], []),
+  "rateFaq": Func([Text, Bool], [Result], []),
+  "recordAbImpression": Func([Text, Text], [], []),
+  "recordAdminActivity": Func([Text, Text], [Result], []),
+  "refreshMarketPrices": Func([], [Vec(PriceData)], []),
+  "reorderFaqs": Func([Text, Vec(Text)], [Result], []),
+  "rollbackAdminAction": Func([Text, Text], [Result_1], []),
+  "scheduleSignal": Func([Text, Int, Text], [Result], []),
+  "sendAiMessage": Func(
+    [Text, Text, Text, Vec(ChatMessage)],
+    [Result_1],
     []
   ),
-  "setMaintenanceMode": Func(
-    [Bool, Text, Text],
-    [Result_2],
-    []
-  ),
+  "setAiApiKey": Func([Text, Text, Text], [Result], []),
+  "setAiLanguage": Func([Text, Text], [Result], []),
+  "setBurnTracker": Func([Text, BurnTracker], [Result], []),
+  "setCommunityCounter": Func([Text, CommunityCounter], [Result], []),
+  "setMaintenanceMode": Func([Bool, Text, Text], [Result], []),
   "setMarketMoodBanner": Func(
     [Text, Text, Text],
-    [Result_2],
+    [Result],
     []
   ),
   "setRoadmapMilestone": Func(
     [Text, Text, Text, Text, Bool],
-    [Result_2],
+    [Result],
     []
   ),
-  "setSignalOfTheDay": Func([Text, Opt(Text)], [Result_2], []),
-  "setSignalOfWeek": Func([Text, Text, Text], [Result_2], []),
+  "setSignalOfTheDay": Func([Text, Opt(Text)], [Result], []),
+  "setSignalOfWeek": Func([Text, Text, Text], [Result], []),
   "setSignalOfWeekWithDate": Func(
     [Text, Text, Text, Text],
-    [Result_2],
+    [Result],
     []
   ),
-  "setStatsConfig": Func([Text, StatsConfig], [Result_2], []),
-  "submitNotifyMe": Func([Opt(Text), Text], [Result_2], []),
-  "toggleAnnouncement": Func([Text], [Result_6], []),
-  "unbanEmail": Func([Text, Text], [Result_2], []),
+  "setStatsConfig": Func([Text, StatsConfig], [Result], []),
+  "setWhitepaperUrl": Func([Text, Text], [Result], []),
+  "submitCommunityQuestion": Func([Text], [Result_1], []),
+  "submitNotifyMe": Func([Opt(Text), Text], [Result], []),
+  "unbanEmail": Func([Text, Text], [Result], []),
+  "updateAnnouncement": Func(
+    [
+      Text,
+      Text,
+      Text,
+      Text,
+      AnnouncementCategory$1,
+      Opt(Text),
+      Bool,
+      Bool,
+      Opt(Int)
+    ],
+    [Result_5],
+    []
+  ),
   "updateBinancePost": Func(
     [Text, Text, Text, Text, Text, Text],
-    [Result_5],
+    [Result_4],
     []
   ),
   "updateBurnEntryStatus": Func(
     [Text, Text, Opt(Text), Text],
-    [Result_2],
+    [Result],
     []
   ),
   "updateFaq": Func(
-    [Text, Text, Text, Text],
-    [Result_4],
+    [Text, Text, Text, Text, FaqCategory$1],
+    [Result_3],
     []
   ),
-  "updateMarketSentiment": Func(
-    [Text, MarketSentiment],
-    [Result_2],
-    []
-  ),
+  "updateMarketSentiment": Func([Text, MarketSentiment], [Result], []),
   "updateSignal": Func(
     [
       Text,
@@ -33346,35 +33571,61 @@ Service({
       Text,
       Text,
       Text,
+      Text,
+      Text,
+      Text,
       Confidence$1,
+      Text,
       Text,
       Opt(Int),
       Timeframe$1,
       Bool,
-      Opt(Int)
+      Opt(Int),
+      Opt(Text),
+      Vec(Text)
     ],
-    [Result_3],
+    [Result_2],
     []
   ),
   "updateSignalResult": Func(
     [Text, Text, ResultStatus],
-    [Result_3],
+    [Result_2],
     []
   ),
   "updateSignalSchedule": Func(
     [Text, Text, Bool, Opt(Int)],
-    [Result_3],
+    [Result_2],
     []
   ),
-  "updateWhitepaper": Func([WhitepaperContent, Text], [Result_2], []),
+  "updateWhitepaper": Func([WhitepaperContent, Text], [Result], []),
   "validateAdminRole": Func([Text], [Opt(Text)], []),
   "validateAiPasscode": Func([Text], [Result_1], []),
   "validateAiSession": Func([Text], [Bool], ["query"]),
-  "validateInsaneSession": Func([Text], [Bool], ["query"]),
-  "validatePasscode": Func([Text], [Result], []),
-  "validateSession": Func([Text], [Bool], ["query"])
+  "validatePasscode": Func([Text], [Result_1], []),
+  "validateSession": Func([Text], [Bool], ["query"]),
+  "voteCommunityQuestion": Func([Text], [Result], []),
+  "voteOnSignal": Func([Text, Text], [Result], [])
 });
 const idlFactory = ({ IDL: IDL2 }) => {
+  const AnnouncementCategory2 = IDL2.Variant({
+    "General": IDL2.Null,
+    "Token": IDL2.Null,
+    "Admin": IDL2.Null,
+    "Alert": IDL2.Null,
+    "Signal": IDL2.Null
+  });
+  const Announcement2 = IDL2.Record({
+    "id": IDL2.Text,
+    "title": IDL2.Text,
+    "body": IDL2.Text,
+    "link": IDL2.Opt(IDL2.Text),
+    "publishAt": IDL2.Opt(IDL2.Int),
+    "isActive": IDL2.Bool,
+    "timestamp": IDL2.Int,
+    "category": AnnouncementCategory2,
+    "isPinned": IDL2.Bool
+  });
+  const Result_52 = IDL2.Variant({ "ok": Announcement2, "err": IDL2.Text });
   const BinancePost2 = IDL2.Record({
     "id": IDL2.Text,
     "url": IDL2.Text,
@@ -33382,22 +33633,52 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "date": IDL2.Text,
     "snippet": IDL2.Text
   });
-  const Result_52 = IDL2.Variant({ "ok": BinancePost2, "err": IDL2.Text });
-  const Result2 = IDL2.Variant({ "ok": IDL2.Text, "err": IDL2.Text });
+  const Result_42 = IDL2.Variant({ "ok": BinancePost2, "err": IDL2.Text });
+  const Result_110 = IDL2.Variant({ "ok": IDL2.Text, "err": IDL2.Text });
+  const BurnEvent2 = IDL2.Record({
+    "id": IDL2.Text,
+    "date": IDL2.Text,
+    "createdAt": IDL2.Int,
+    "executed": IDL2.Bool,
+    "amount": IDL2.Text,
+    "reason": IDL2.Text
+  });
+  const Result_222 = IDL2.Variant({ "ok": BurnEvent2, "err": IDL2.Text });
+  const FaqCategory2 = IDL2.Variant({
+    "Signals": IDL2.Null,
+    "Platform": IDL2.Null,
+    "GeneralTrading": IDL2.Null,
+    "DmnzToken": IDL2.Null
+  });
   const FAQ2 = IDL2.Record({
     "id": IDL2.Text,
     "question": IDL2.Text,
     "order": IDL2.Nat,
-    "answer": IDL2.Text
+    "answer": IDL2.Text,
+    "notHelpfulCount": IDL2.Nat,
+    "timestamp": IDL2.Int,
+    "category": FaqCategory2,
+    "helpfulCount": IDL2.Nat
   });
-  const Result_42 = IDL2.Variant({ "ok": FAQ2, "err": IDL2.Text });
+  const Result_32 = IDL2.Variant({ "ok": FAQ2, "err": IDL2.Text });
+  const HypeMilestone2 = IDL2.Record({
+    "id": IDL2.Text,
+    "achieved": IDL2.Bool,
+    "title": IDL2.Text,
+    "order": IDL2.Nat,
+    "achievedAt": IDL2.Opt(IDL2.Int),
+    "targetCount": IDL2.Nat
+  });
+  const Result_212 = IDL2.Variant({ "ok": HypeMilestone2, "err": IDL2.Text });
   const JournalEntry2 = IDL2.Record({
     "id": IDL2.Text,
     "pnl": IDL2.Opt(IDL2.Float64),
+    "direction": IDL2.Text,
+    "asset": IDL2.Text,
+    "lots": IDL2.Float64,
     "notes": IDL2.Text,
     "timestamp": IDL2.Int,
     "entryPrice": IDL2.Float64,
-    "signal": IDL2.Text,
     "exitPrice": IDL2.Opt(IDL2.Float64)
   });
   const MarketType2 = IDL2.Variant({
@@ -33424,13 +33705,21 @@ const idlFactory = ({ IDL: IDL2 }) => {
   });
   const Signal2 = IDL2.Record({
     "id": IDL2.Text,
+    "tp1": IDL2.Text,
+    "tp2": IDL2.Text,
+    "tp3": IDL2.Text,
     "result": ResultStatus2,
     "marketType": MarketType2,
     "direction": Direction2,
+    "voteDown": IDL2.Nat,
     "asset": IDL2.Text,
     "timeframe": Timeframe2,
+    "providerLabel": IDL2.Text,
+    "templateId": IDL2.Opt(IDL2.Text),
     "publishAt": IDL2.Opt(IDL2.Int),
+    "tags": IDL2.Vec(IDL2.Text),
     "targetPrice": IDL2.Text,
+    "voteUp": IDL2.Nat,
     "isDraft": IDL2.Bool,
     "datePosted": IDL2.Text,
     "stopLoss": IDL2.Text,
@@ -33440,8 +33729,20 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "expiry": IDL2.Opt(IDL2.Int),
     "confidence": Confidence2
   });
-  const Result_32 = IDL2.Variant({ "ok": Signal2, "err": IDL2.Text });
-  const Result_22 = IDL2.Variant({ "ok": IDL2.Null, "err": IDL2.Text });
+  const Result_23 = IDL2.Variant({ "ok": Signal2, "err": IDL2.Text });
+  const Result2 = IDL2.Variant({ "ok": IDL2.Null, "err": IDL2.Text });
+  const SignalTemplate2 = IDL2.Record({
+    "id": IDL2.Text,
+    "marketType": MarketType2,
+    "direction": Direction2,
+    "asset": IDL2.Text,
+    "timeframe": Timeframe2,
+    "name": IDL2.Text,
+    "createdAt": IDL2.Int,
+    "notes": IDL2.Text,
+    "confidence": Confidence2
+  });
+  const Result_202 = IDL2.Variant({ "ok": SignalTemplate2, "err": IDL2.Text });
   const AbTest2 = IDL2.Record({
     "id": IDL2.Text,
     "active": IDL2.Bool,
@@ -33469,6 +33770,10 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "ok": IDL2.Vec(ActivityEntry2),
     "err": IDL2.Text
   });
+  const Result_172 = IDL2.Variant({
+    "ok": IDL2.Vec(Announcement2),
+    "err": IDL2.Text
+  });
   const MarketCount2 = IDL2.Record({ "count": IDL2.Nat, "market": IDL2.Text });
   const DateCount2 = IDL2.Record({ "date": IDL2.Text, "count": IDL2.Nat });
   const Analytics2 = IDL2.Record({
@@ -33476,25 +33781,20 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "notifyMeByDate": IDL2.Vec(DateCount2),
     "totalNotifyMe": IDL2.Nat
   });
-  const Result_172 = IDL2.Variant({ "ok": Analytics2, "err": IDL2.Text });
-  const Announcement2 = IDL2.Record({
-    "id": IDL2.Text,
-    "link": IDL2.Opt(IDL2.Text),
-    "publishAt": IDL2.Opt(IDL2.Int),
-    "text": IDL2.Text,
-    "isActive": IDL2.Bool
-  });
+  const Result_162 = IDL2.Variant({ "ok": Analytics2, "err": IDL2.Text });
   const AuditEntry2 = IDL2.Record({
     "id": IDL2.Text,
     "action": IDL2.Text,
+    "rollbackData": IDL2.Opt(IDL2.Text),
+    "adminToken": IDL2.Text,
     "timestamp": IDL2.Int,
     "details": IDL2.Text
   });
-  const Result_162 = IDL2.Variant({
+  const Result_152 = IDL2.Variant({
     "ok": IDL2.Vec(AuditEntry2),
     "err": IDL2.Text
   });
-  const Result_152 = IDL2.Variant({ "ok": IDL2.Vec(IDL2.Text), "err": IDL2.Text });
+  const Result_142 = IDL2.Variant({ "ok": IDL2.Vec(IDL2.Text), "err": IDL2.Text });
   const BurnScheduleEntry2 = IDL2.Record({
     "id": IDL2.Text,
     "status": IDL2.Text,
@@ -33512,6 +33812,15 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "binanceCount": IDL2.Nat,
     "twitterCount": IDL2.Nat
   });
+  const CommunityQuestion2 = IDL2.Record({
+    "id": IDL2.Text,
+    "question": IDL2.Text,
+    "votes": IDL2.Nat,
+    "answer": IDL2.Opt(IDL2.Text),
+    "isActive": IDL2.Bool,
+    "timestamp": IDL2.Int,
+    "isPinned": IDL2.Bool
+  });
   const HolderBenefit2 = IDL2.Record({
     "id": IDL2.Text,
     "title": IDL2.Text,
@@ -33519,7 +33828,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "icon": IDL2.Text,
     "description": IDL2.Text
   });
-  const Result_142 = IDL2.Variant({
+  const Result_132 = IDL2.Variant({
     "ok": IDL2.Vec(JournalEntry2),
     "err": IDL2.Text
   });
@@ -33576,7 +33885,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "dateSubmitted": IDL2.Text,
     "name": IDL2.Opt(IDL2.Text)
   });
-  const Result_132 = IDL2.Variant({ "ok": IDL2.Vec(NotifyMe2), "err": IDL2.Text });
+  const Result_122 = IDL2.Variant({ "ok": IDL2.Vec(NotifyMe2), "err": IDL2.Text });
   const DemonZenoQuote2 = IDL2.Record({
     "id": IDL2.Text,
     "active": IDL2.Bool,
@@ -33589,13 +33898,13 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "year": IDL2.Text,
     "description": IDL2.Text
   });
-  const Result_92 = IDL2.Variant({ "ok": IDL2.Vec(Signal2), "err": IDL2.Text });
+  const Result_72 = IDL2.Variant({ "ok": IDL2.Vec(Signal2), "err": IDL2.Text });
   const ResponseRating2 = IDL2.Record({
     "messageId": IDL2.Text,
     "timestamp": IDL2.Int,
     "rating": IDL2.Int
   });
-  const Result_122 = IDL2.Variant({
+  const Result_112 = IDL2.Variant({
     "ok": IDL2.Vec(ResponseRating2),
     "err": IDL2.Text
   });
@@ -33630,8 +33939,12 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "winRate": IDL2.Float64,
     "totalSignals": IDL2.Nat
   });
-  const Result_112 = IDL2.Variant({
+  const Result_102 = IDL2.Variant({
     "ok": SignalPerformanceStats2,
+    "err": IDL2.Text
+  });
+  const Result_92 = IDL2.Variant({
+    "ok": IDL2.Vec(SignalTemplate2),
     "err": IDL2.Text
   });
   const Stats2 = IDL2.Record({
@@ -33646,7 +33959,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "useManual": IDL2.Bool,
     "manualStats": IDL2.Opt(Stats2)
   });
-  const Result_102 = IDL2.Variant({ "ok": StatsConfig2, "err": IDL2.Text });
+  const Result_82 = IDL2.Variant({ "ok": StatsConfig2, "err": IDL2.Text });
   const Testimonial2 = IDL2.Record({
     "id": IDL2.Text,
     "active": IDL2.Bool,
@@ -33655,6 +33968,23 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "name": IDL2.Text,
     "createdAt": IDL2.Int,
     "winAmount": IDL2.Opt(IDL2.Text)
+  });
+  const TokenData2 = IDL2.Record({
+    "ticker": IDL2.Text,
+    "burnedAmount": IDL2.Text,
+    "name": IDL2.Text,
+    "launchPlatform": IDL2.Text,
+    "supply": IDL2.Text,
+    "launchDate": IDL2.Text
+  });
+  const TopTrader2 = IDL2.Record({
+    "id": IDL2.Text,
+    "bio": IDL2.Text,
+    "name": IDL2.Text,
+    "createdAt": IDL2.Int,
+    "week": IDL2.Text,
+    "achievement": IDL2.Text,
+    "isActive": IDL2.Bool
   });
   const WhitepaperSection2 = IDL2.Record({
     "title": IDL2.Text,
@@ -33666,11 +33996,17 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "sections": IDL2.Vec(WhitepaperSection2)
   });
   const SignalInput2 = IDL2.Record({
+    "tp1": IDL2.Text,
+    "tp2": IDL2.Text,
+    "tp3": IDL2.Text,
     "marketType": MarketType2,
     "direction": Direction2,
     "asset": IDL2.Text,
     "timeframe": Timeframe2,
+    "providerLabel": IDL2.Text,
+    "templateId": IDL2.Opt(IDL2.Text),
     "publishAt": IDL2.Opt(IDL2.Int),
+    "tags": IDL2.Vec(IDL2.Text),
     "targetPrice": IDL2.Text,
     "isDraft": IDL2.Bool,
     "stopLoss": IDL2.Text,
@@ -33686,31 +34022,52 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "dataHash": IDL2.Text,
     "snapshotLabel": IDL2.Text
   });
-  const Result_82 = IDL2.Variant({
+  const Result_62 = IDL2.Variant({
     "ok": IDL2.Vec(AuditSnapshot2),
     "err": IDL2.Text
   });
-  const Result_72 = IDL2.Variant({ "ok": Announcement2, "err": IDL2.Text });
-  const Result_62 = IDL2.Variant({ "ok": IDL2.Bool, "err": IDL2.Text });
-  const Result_110 = IDL2.Variant({
-    "ok": IDL2.Tuple(IDL2.Text, IDL2.Text),
-    "err": IDL2.Text
-  });
   return IDL2.Service({
+    "addAnnouncement": IDL2.Func(
+      [
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        AnnouncementCategory2,
+        IDL2.Opt(IDL2.Text),
+        IDL2.Bool,
+        IDL2.Opt(IDL2.Int)
+      ],
+      [Result_52],
+      []
+    ),
     "addBinancePost": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_52],
+      [Result_42],
       []
     ),
     "addBurnEntry": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result2],
+      [Result_110],
       []
     ),
-    "addFaq": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result_42], []),
-    "addJournalEntry": IDL2.Func([JournalEntry2, IDL2.Text], [Result2], []),
-    "addMilestone": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result2], []),
-    "addQuote": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result2], []),
+    "addBurnEvent": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
+      [Result_222],
+      []
+    ),
+    "addFaq": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Text, FaqCategory2],
+      [Result_32],
+      []
+    ),
+    "addHypeMilestone": IDL2.Func(
+      [IDL2.Text, IDL2.Nat, IDL2.Text],
+      [Result_212],
+      []
+    ),
+    "addJournalEntry": IDL2.Func([JournalEntry2, IDL2.Text], [Result_110], []),
+    "addMilestone": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result_110], []),
+    "addQuote": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result_110], []),
     "addSignal": IDL2.Func(
       [
         IDL2.Text,
@@ -33721,43 +34078,84 @@ const idlFactory = ({ IDL: IDL2 }) => {
         IDL2.Text,
         IDL2.Text,
         IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
         Confidence2,
+        IDL2.Text,
         IDL2.Text,
         IDL2.Opt(IDL2.Int),
         Timeframe2,
         IDL2.Bool,
-        IDL2.Opt(IDL2.Int)
+        IDL2.Opt(IDL2.Int),
+        IDL2.Opt(IDL2.Text),
+        IDL2.Vec(IDL2.Text)
       ],
-      [Result_32],
+      [Result_23],
+      []
+    ),
+    "addSignalNote": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result2], []),
+    "addSignalTemplate": IDL2.Func(
+      [
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        MarketType2,
+        Direction2,
+        Timeframe2,
+        Confidence2,
+        IDL2.Text
+      ],
+      [Result_202],
       []
     ),
     "addTestimonial": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Opt(IDL2.Text), IDL2.Opt(IDL2.Text), IDL2.Text],
-      [Result2],
+      [Result_110],
       []
     ),
+    "addTopTrader": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
+      [Result_110],
+      []
+    ),
+    "analyzeNewsImpact": IDL2.Func([IDL2.Text, IDL2.Text], [Result_110], []),
     "askFaq": IDL2.Func([IDL2.Text], [IDL2.Text], []),
-    "backtestSignal": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
-    "banEmail": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "clearJournal": IDL2.Func([IDL2.Text], [Result_22], []),
+    "askTokenFaq": IDL2.Func([IDL2.Text], [IDL2.Text], []),
+    "backtestSignal": IDL2.Func([IDL2.Text, IDL2.Text], [Result_110], []),
+    "banEmail": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "clearJournal": IDL2.Func([IDL2.Text], [Result2], []),
+    "compareSignals": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result_110], []),
     "createAbTest": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result2],
+      [Result_110],
       []
     ),
-    "createAuditSnapshot": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "createAuditSnapshot": IDL2.Func([IDL2.Text, IDL2.Text], [Result_110], []),
     "createPushNotification": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result2],
+      [Result_110],
       []
     ),
-    "deleteBinancePost": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "deleteFaq": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "deleteQuote": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "deleteSignal": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "deleteTestimonial": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
+    "deleteAnnouncement": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "deleteBinancePost": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "deleteCommunityQuestion": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "deleteFaq": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "deleteQuote": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "deleteSignal": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "deleteSignalTemplate": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "deleteTestimonial": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "deleteTopTrader": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
     "dismissPushNotification": IDL2.Func([IDL2.Text], [], []),
-    "generateDailyBriefing": IDL2.Func([IDL2.Text], [Result2], []),
+    "executeAdminCommand": IDL2.Func([IDL2.Text, IDL2.Text], [Result_110], []),
+    "generateDailyBriefing": IDL2.Func([IDL2.Text], [Result_110], []),
+    "generatePostTradeAnalysis": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Text],
+      [Result_110],
+      []
+    ),
+    "generatePricePrediction": IDL2.Func([IDL2.Text, IDL2.Text], [Result_110], []),
+    "generateSignalChain": IDL2.Func([IDL2.Text, IDL2.Text], [Result_110], []),
     "getAbTests": IDL2.Func([IDL2.Text], [Result_192], []),
     "getAbVariant": IDL2.Func([IDL2.Text], [IDL2.Text], ["query"]),
     "getActivePushNotifications": IDL2.Func(
@@ -33766,26 +34164,34 @@ const idlFactory = ({ IDL: IDL2 }) => {
       ["query"]
     ),
     "getAdminActivityHeatmap": IDL2.Func([IDL2.Text], [Result_182], []),
-    "getAdminConfig": IDL2.Func([IDL2.Text], [Result2], []),
-    "getAiLanguage": IDL2.Func([IDL2.Text], [Result2], ["query"]),
+    "getAdminConfig": IDL2.Func([IDL2.Text], [Result_110], []),
+    "getAiLanguage": IDL2.Func([IDL2.Text], [Result_110], ["query"]),
     "getAiProviderStatus": IDL2.Func(
       [],
       [IDL2.Vec(IDL2.Tuple(IDL2.Text, IDL2.Bool))],
       ["query"]
     ),
-    "getAnalytics": IDL2.Func([IDL2.Text], [Result_172], []),
-    "getAnalyticsCsv": IDL2.Func([IDL2.Text], [Result2], []),
-    "getAnnouncement": IDL2.Func([], [IDL2.Opt(Announcement2)], ["query"]),
-    "getAuditLog": IDL2.Func([IDL2.Text], [Result_162], []),
-    "getBannedEmails": IDL2.Func([IDL2.Text], [Result_152], []),
+    "getAllAnnouncements": IDL2.Func([IDL2.Text], [Result_172], []),
+    "getAnalytics": IDL2.Func([IDL2.Text], [Result_162], []),
+    "getAnalyticsCsv": IDL2.Func([IDL2.Text], [Result_110], []),
+    "getAnnouncements": IDL2.Func([], [IDL2.Vec(Announcement2)], ["query"]),
+    "getAuditLog": IDL2.Func([IDL2.Text], [Result_152], []),
+    "getBannedEmails": IDL2.Func([IDL2.Text], [Result_142], []),
     "getBinanceFeed": IDL2.Func([], [IDL2.Vec(BinancePost2)], ["query"]),
     "getBurnSchedule": IDL2.Func([], [IDL2.Vec(BurnScheduleEntry2)], ["query"]),
     "getBurnTracker": IDL2.Func([], [BurnTracker2], ["query"]),
     "getCommunityCounter": IDL2.Func([], [CommunityCounter2], ["query"]),
+    "getCommunityQuestions": IDL2.Func(
+      [],
+      [IDL2.Vec(CommunityQuestion2)],
+      ["query"]
+    ),
     "getDailyBriefing": IDL2.Func([], [IDL2.Text], ["query"]),
     "getFaqs": IDL2.Func([], [IDL2.Vec(FAQ2)], ["query"]),
+    "getFaqsByCategory": IDL2.Func([FaqCategory2], [IDL2.Vec(FAQ2)], ["query"]),
     "getHolderBenefits": IDL2.Func([], [IDL2.Vec(HolderBenefit2)], ["query"]),
-    "getJournalEntries": IDL2.Func([IDL2.Text], [Result_142], ["query"]),
+    "getHypeMilestones": IDL2.Func([], [IDL2.Vec(HypeMilestone2)], ["query"]),
+    "getJournalEntries": IDL2.Func([IDL2.Text], [Result_132], ["query"]),
     "getMaintenanceMode": IDL2.Func([], [MaintenanceMode2], ["query"]),
     "getMarketMoodBanner": IDL2.Func(
       [],
@@ -33795,7 +34201,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "getMarketPrices": IDL2.Func([], [IDL2.Vec(PriceData2)], ["query"]),
     "getMarketSentiment": IDL2.Func([], [MarketSentiment2], ["query"]),
     "getMilestones": IDL2.Func([], [IDL2.Vec(CommunityMilestone2)], ["query"]),
-    "getNotifyMeList": IDL2.Func([IDL2.Text], [Result_132], []),
+    "getNotifyMeList": IDL2.Func([IDL2.Text], [Result_122], []),
     "getPublicBurnSchedule": IDL2.Func(
       [],
       [IDL2.Vec(BurnScheduleEntry2)],
@@ -33803,113 +34209,131 @@ const idlFactory = ({ IDL: IDL2 }) => {
     ),
     "getQuotes": IDL2.Func([], [IDL2.Vec(DemonZenoQuote2)], ["query"]),
     "getRoadmap": IDL2.Func([], [IDL2.Vec(RoadmapMilestone2)], ["query"]),
-    "getScheduledSignals": IDL2.Func([IDL2.Text], [Result_92], []),
-    "getSessionRatings": IDL2.Func([IDL2.Text], [Result_122], ["query"]),
+    "getScheduledSignals": IDL2.Func([IDL2.Text], [Result_72], []),
+    "getSessionRatings": IDL2.Func([IDL2.Text], [Result_112], ["query"]),
     "getSessionRecap": IDL2.Func(
       [IDL2.Vec(ChatMessage2), IDL2.Text],
-      [Result2],
+      [Result_110],
       []
     ),
     "getSignalArchive": IDL2.Func([], [IDL2.Vec(Signal2)], ["query"]),
     "getSignalOfTheDay": IDL2.Func([], [IDL2.Opt(Signal2)], ["query"]),
     "getSignalOfWeek": IDL2.Func([], [IDL2.Opt(SignalOfWeekFull2)], ["query"]),
-    "getSignalPerformanceStats": IDL2.Func([IDL2.Text], [Result_112], []),
+    "getSignalPerformanceStats": IDL2.Func([IDL2.Text], [Result_102], []),
+    "getSignalTemplates": IDL2.Func([IDL2.Text], [Result_92], []),
     "getSignals": IDL2.Func([], [IDL2.Vec(Signal2)], ["query"]),
     "getStats": IDL2.Func([], [Stats2], ["query"]),
-    "getStatsConfig": IDL2.Func([IDL2.Text], [Result_102], []),
+    "getStatsConfig": IDL2.Func([IDL2.Text], [Result_82], []),
     "getTestimonials": IDL2.Func([], [IDL2.Vec(Testimonial2)], ["query"]),
+    "getTokenBurnSchedule": IDL2.Func([], [IDL2.Vec(BurnEvent2)], ["query"]),
+    "getTokenData": IDL2.Func([], [TokenData2], ["query"]),
+    "getTopTraders": IDL2.Func([], [IDL2.Vec(TopTrader2)], ["query"]),
     "getWhitepaper": IDL2.Func([], [WhitepaperContent2], ["query"]),
+    "getWhitepaperUrl": IDL2.Func([], [IDL2.Opt(IDL2.Text)], ["query"]),
     "importSignals": IDL2.Func(
       [IDL2.Text, IDL2.Vec(SignalInput2)],
-      [Result_92],
+      [Result_72],
       []
     ),
     "initFaqs": IDL2.Func([], [], []),
     "invalidateAiSession": IDL2.Func([IDL2.Text], [], []),
     "invalidateSession": IDL2.Func([IDL2.Text], [], []),
-    "listAuditSnapshots": IDL2.Func([IDL2.Text], [Result_82], []),
+    "listAuditSnapshots": IDL2.Func([IDL2.Text], [Result_62], []),
+    "markBurnEventExecuted": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "markHypeMilestoneAchieved": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
     "markMilestoneReached": IDL2.Func(
       [IDL2.Text, IDL2.Nat, IDL2.Text],
-      [Result_22],
-      []
-    ),
-    "publishScheduledSignals": IDL2.Func([], [IDL2.Nat], []),
-    "rateAiResponse": IDL2.Func([IDL2.Text, IDL2.Int, IDL2.Text], [Result_22], []),
-    "recordAbImpression": IDL2.Func([IDL2.Text, IDL2.Text], [], []),
-    "recordAdminActivity": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "refreshMarketPrices": IDL2.Func([], [IDL2.Vec(PriceData2)], []),
-    "reorderFaqs": IDL2.Func([IDL2.Text, IDL2.Vec(IDL2.Text)], [Result_22], []),
-    "scheduleSignal": IDL2.Func([IDL2.Text, IDL2.Int, IDL2.Text], [Result_22], []),
-    "sendAiMessage": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Vec(ChatMessage2)],
       [Result2],
       []
     ),
-    "setAiApiKey": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result_22], []),
-    "setAiLanguage": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
-    "setAnnouncement": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Opt(IDL2.Text), IDL2.Opt(IDL2.Int)],
-      [Result_72],
+    "pinAnnouncement": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Bool], [Result2], []),
+    "pinCommunityQuestion": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Text],
+      [Result2],
       []
     ),
-    "setBurnTracker": IDL2.Func([IDL2.Text, BurnTracker2], [Result_22], []),
+    "publishScheduledSignals": IDL2.Func([], [IDL2.Nat], []),
+    "rateAiResponse": IDL2.Func([IDL2.Text, IDL2.Int, IDL2.Text], [Result2], []),
+    "rateFaq": IDL2.Func([IDL2.Text, IDL2.Bool], [Result2], []),
+    "recordAbImpression": IDL2.Func([IDL2.Text, IDL2.Text], [], []),
+    "recordAdminActivity": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "refreshMarketPrices": IDL2.Func([], [IDL2.Vec(PriceData2)], []),
+    "reorderFaqs": IDL2.Func([IDL2.Text, IDL2.Vec(IDL2.Text)], [Result2], []),
+    "rollbackAdminAction": IDL2.Func([IDL2.Text, IDL2.Text], [Result_110], []),
+    "scheduleSignal": IDL2.Func([IDL2.Text, IDL2.Int, IDL2.Text], [Result2], []),
+    "sendAiMessage": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Vec(ChatMessage2)],
+      [Result_110],
+      []
+    ),
+    "setAiApiKey": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result2], []),
+    "setAiLanguage": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "setBurnTracker": IDL2.Func([IDL2.Text, BurnTracker2], [Result2], []),
     "setCommunityCounter": IDL2.Func(
       [IDL2.Text, CommunityCounter2],
-      [Result_22],
+      [Result2],
       []
     ),
     "setMaintenanceMode": IDL2.Func(
       [IDL2.Bool, IDL2.Text, IDL2.Text],
-      [Result_22],
+      [Result2],
       []
     ),
     "setMarketMoodBanner": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_22],
+      [Result2],
       []
     ),
     "setRoadmapMilestone": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Bool],
-      [Result_22],
+      [Result2],
       []
     ),
-    "setSignalOfTheDay": IDL2.Func(
-      [IDL2.Text, IDL2.Opt(IDL2.Text)],
-      [Result_22],
-      []
-    ),
-    "setSignalOfWeek": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_22],
-      []
-    ),
+    "setSignalOfTheDay": IDL2.Func([IDL2.Text, IDL2.Opt(IDL2.Text)], [Result2], []),
+    "setSignalOfWeek": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [Result2], []),
     "setSignalOfWeekWithDate": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_22],
+      [Result2],
       []
     ),
-    "setStatsConfig": IDL2.Func([IDL2.Text, StatsConfig2], [Result_22], []),
-    "submitNotifyMe": IDL2.Func([IDL2.Opt(IDL2.Text), IDL2.Text], [Result_22], []),
-    "toggleAnnouncement": IDL2.Func([IDL2.Text], [Result_62], []),
-    "unbanEmail": IDL2.Func([IDL2.Text, IDL2.Text], [Result_22], []),
+    "setStatsConfig": IDL2.Func([IDL2.Text, StatsConfig2], [Result2], []),
+    "setWhitepaperUrl": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "submitCommunityQuestion": IDL2.Func([IDL2.Text], [Result_110], []),
+    "submitNotifyMe": IDL2.Func([IDL2.Opt(IDL2.Text), IDL2.Text], [Result2], []),
+    "unbanEmail": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], []),
+    "updateAnnouncement": IDL2.Func(
+      [
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        AnnouncementCategory2,
+        IDL2.Opt(IDL2.Text),
+        IDL2.Bool,
+        IDL2.Bool,
+        IDL2.Opt(IDL2.Int)
+      ],
+      [Result_52],
+      []
+    ),
     "updateBinancePost": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_52],
+      [Result_42],
       []
     ),
     "updateBurnEntryStatus": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Opt(IDL2.Text), IDL2.Text],
-      [Result_22],
+      [Result2],
       []
     ),
     "updateFaq": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [Result_42],
+      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text, FaqCategory2],
+      [Result_32],
       []
     ),
     "updateMarketSentiment": IDL2.Func(
       [IDL2.Text, MarketSentiment2],
-      [Result_22],
+      [Result2],
       []
     ),
     "updateSignal": IDL2.Func(
@@ -33923,37 +34347,40 @@ const idlFactory = ({ IDL: IDL2 }) => {
         IDL2.Text,
         IDL2.Text,
         IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
         Confidence2,
+        IDL2.Text,
         IDL2.Text,
         IDL2.Opt(IDL2.Int),
         Timeframe2,
         IDL2.Bool,
-        IDL2.Opt(IDL2.Int)
+        IDL2.Opt(IDL2.Int),
+        IDL2.Opt(IDL2.Text),
+        IDL2.Vec(IDL2.Text)
       ],
-      [Result_32],
+      [Result_23],
       []
     ),
     "updateSignalResult": IDL2.Func(
       [IDL2.Text, IDL2.Text, ResultStatus2],
-      [Result_32],
+      [Result_23],
       []
     ),
     "updateSignalSchedule": IDL2.Func(
       [IDL2.Text, IDL2.Text, IDL2.Bool, IDL2.Opt(IDL2.Int)],
-      [Result_32],
+      [Result_23],
       []
     ),
-    "updateWhitepaper": IDL2.Func(
-      [WhitepaperContent2, IDL2.Text],
-      [Result_22],
-      []
-    ),
+    "updateWhitepaper": IDL2.Func([WhitepaperContent2, IDL2.Text], [Result2], []),
     "validateAdminRole": IDL2.Func([IDL2.Text], [IDL2.Opt(IDL2.Text)], []),
     "validateAiPasscode": IDL2.Func([IDL2.Text], [Result_110], []),
     "validateAiSession": IDL2.Func([IDL2.Text], [IDL2.Bool], ["query"]),
-    "validateInsaneSession": IDL2.Func([IDL2.Text], [IDL2.Bool], ["query"]),
-    "validatePasscode": IDL2.Func([IDL2.Text], [Result2], []),
-    "validateSession": IDL2.Func([IDL2.Text], [IDL2.Bool], ["query"])
+    "validatePasscode": IDL2.Func([IDL2.Text], [Result_110], []),
+    "validateSession": IDL2.Func([IDL2.Text], [IDL2.Bool], ["query"]),
+    "voteCommunityQuestion": IDL2.Func([IDL2.Text], [Result2], []),
+    "voteOnSignal": IDL2.Func([IDL2.Text, IDL2.Text], [Result2], [])
   });
 };
 function candid_some(value) {
@@ -33967,6 +34394,14 @@ function candid_none() {
 function record_opt_to_undefined(arg) {
   return arg == null ? void 0 : arg;
 }
+var AnnouncementCategory = /* @__PURE__ */ ((AnnouncementCategory2) => {
+  AnnouncementCategory2["General"] = "General";
+  AnnouncementCategory2["Token"] = "Token";
+  AnnouncementCategory2["Admin"] = "Admin";
+  AnnouncementCategory2["Alert"] = "Alert";
+  AnnouncementCategory2["Signal"] = "Signal";
+  return AnnouncementCategory2;
+})(AnnouncementCategory || {});
 var Confidence = /* @__PURE__ */ ((Confidence2) => {
   Confidence2["Low"] = "Low";
   Confidence2["High"] = "High";
@@ -33978,6 +34413,13 @@ var Direction = /* @__PURE__ */ ((Direction2) => {
   Direction2["Sell"] = "Sell";
   return Direction2;
 })(Direction || {});
+var FaqCategory = /* @__PURE__ */ ((FaqCategory2) => {
+  FaqCategory2["Signals"] = "Signals";
+  FaqCategory2["Platform"] = "Platform";
+  FaqCategory2["GeneralTrading"] = "GeneralTrading";
+  FaqCategory2["DmnzToken"] = "DmnzToken";
+  return FaqCategory2;
+})(FaqCategory || {});
 var MarketType = /* @__PURE__ */ ((MarketType2) => {
   MarketType2["Stock"] = "Stock";
   MarketType2["Forex"] = "Forex";
@@ -34003,116 +34445,214 @@ class Backend {
     this._downloadFile = _downloadFile;
     this.processError = processError2;
   }
+  async addAnnouncement(arg0, arg1, arg2, arg3, arg4, arg5, arg6) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.addAnnouncement(arg0, arg1, arg2, to_candid_AnnouncementCategory_n1(this._uploadFile, this._downloadFile, arg3), to_candid_opt_n3(this._uploadFile, this._downloadFile, arg4), arg5, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg6));
+        return from_candid_Result_5_n5(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.addAnnouncement(arg0, arg1, arg2, to_candid_AnnouncementCategory_n1(this._uploadFile, this._downloadFile, arg3), to_candid_opt_n3(this._uploadFile, this._downloadFile, arg4), arg5, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg6));
+      return from_candid_Result_5_n5(this._uploadFile, this._downloadFile, result);
+    }
+  }
   async addBinancePost(arg0, arg1, arg2, arg3, arg4) {
     if (this.processError) {
       try {
         const result = await this.actor.addBinancePost(arg0, arg1, arg2, arg3, arg4);
-        return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_4_n13(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.addBinancePost(arg0, arg1, arg2, arg3, arg4);
-      return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_4_n13(this._uploadFile, this._downloadFile, result);
     }
   }
   async addBurnEntry(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
         const result = await this.actor.addBurnEntry(arg0, arg1, arg2, arg3);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.addBurnEntry(arg0, arg1, arg2, arg3);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
-  async addFaq(arg0, arg1, arg2) {
+  async addBurnEvent(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
-        const result = await this.actor.addFaq(arg0, arg1, arg2);
-        return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.addBurnEvent(arg0, arg1, arg2, arg3);
+        return from_candid_Result_22_n17(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.addFaq(arg0, arg1, arg2);
-      return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.addBurnEvent(arg0, arg1, arg2, arg3);
+      return from_candid_Result_22_n17(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async addFaq(arg0, arg1, arg2, arg3) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.addFaq(arg0, arg1, arg2, to_candid_FaqCategory_n19(this._uploadFile, this._downloadFile, arg3));
+        return from_candid_Result_3_n21(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.addFaq(arg0, arg1, arg2, to_candid_FaqCategory_n19(this._uploadFile, this._downloadFile, arg3));
+      return from_candid_Result_3_n21(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async addHypeMilestone(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.addHypeMilestone(arg0, arg1, arg2);
+        return from_candid_Result_21_n27(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.addHypeMilestone(arg0, arg1, arg2);
+      return from_candid_Result_21_n27(this._uploadFile, this._downloadFile, result);
     }
   }
   async addJournalEntry(arg0, arg1) {
     if (this.processError) {
       try {
-        const result = await this.actor.addJournalEntry(to_candid_JournalEntry_n7(this._uploadFile, this._downloadFile, arg0), arg1);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.addJournalEntry(to_candid_JournalEntry_n31(this._uploadFile, this._downloadFile, arg0), arg1);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.addJournalEntry(to_candid_JournalEntry_n7(this._uploadFile, this._downloadFile, arg0), arg1);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.addJournalEntry(to_candid_JournalEntry_n31(this._uploadFile, this._downloadFile, arg0), arg1);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async addMilestone(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.addMilestone(arg0, arg1, arg2);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.addMilestone(arg0, arg1, arg2);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async addQuote(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.addQuote(arg0, arg1, arg2);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.addQuote(arg0, arg1, arg2);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
-  async addSignal(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13) {
+  async addSignal(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19) {
     if (this.processError) {
       try {
-        const result = await this.actor.addSignal(arg0, arg1, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg2), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg3), arg4, arg5, arg6, arg7, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg8), arg9, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg10), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg11), arg12, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg13));
-        return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.addSignal(arg0, arg1, to_candid_MarketType_n33(this._uploadFile, this._downloadFile, arg2), to_candid_Direction_n35(this._uploadFile, this._downloadFile, arg3), arg4, arg5, arg6, arg7, arg8, arg9, arg10, to_candid_Confidence_n37(this._uploadFile, this._downloadFile, arg11), arg12, arg13, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg14), to_candid_Timeframe_n39(this._uploadFile, this._downloadFile, arg15), arg16, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg17), to_candid_opt_n3(this._uploadFile, this._downloadFile, arg18), arg19);
+        return from_candid_Result_2_n41(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.addSignal(arg0, arg1, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg2), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg3), arg4, arg5, arg6, arg7, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg8), arg9, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg10), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg11), arg12, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg13));
-      return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.addSignal(arg0, arg1, to_candid_MarketType_n33(this._uploadFile, this._downloadFile, arg2), to_candid_Direction_n35(this._uploadFile, this._downloadFile, arg3), arg4, arg5, arg6, arg7, arg8, arg9, arg10, to_candid_Confidence_n37(this._uploadFile, this._downloadFile, arg11), arg12, arg13, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg14), to_candid_Timeframe_n39(this._uploadFile, this._downloadFile, arg15), arg16, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg17), to_candid_opt_n3(this._uploadFile, this._downloadFile, arg18), arg19);
+      return from_candid_Result_2_n41(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async addSignalNote(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.addSignalNote(arg0, arg1, arg2);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.addSignalNote(arg0, arg1, arg2);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async addSignalTemplate(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.addSignalTemplate(arg0, arg1, arg2, to_candid_MarketType_n33(this._uploadFile, this._downloadFile, arg3), to_candid_Direction_n35(this._uploadFile, this._downloadFile, arg4), to_candid_Timeframe_n39(this._uploadFile, this._downloadFile, arg5), to_candid_Confidence_n37(this._uploadFile, this._downloadFile, arg6), arg7);
+        return from_candid_Result_20_n57(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.addSignalTemplate(arg0, arg1, arg2, to_candid_MarketType_n33(this._uploadFile, this._downloadFile, arg3), to_candid_Direction_n35(this._uploadFile, this._downloadFile, arg4), to_candid_Timeframe_n39(this._uploadFile, this._downloadFile, arg5), to_candid_Confidence_n37(this._uploadFile, this._downloadFile, arg6), arg7);
+      return from_candid_Result_20_n57(this._uploadFile, this._downloadFile, result);
     }
   }
   async addTestimonial(arg0, arg1, arg2, arg3, arg4) {
     if (this.processError) {
       try {
-        const result = await this.actor.addTestimonial(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), to_candid_opt_n33(this._uploadFile, this._downloadFile, arg3), arg4);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.addTestimonial(arg0, arg1, to_candid_opt_n3(this._uploadFile, this._downloadFile, arg2), to_candid_opt_n3(this._uploadFile, this._downloadFile, arg3), arg4);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.addTestimonial(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), to_candid_opt_n33(this._uploadFile, this._downloadFile, arg3), arg4);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.addTestimonial(arg0, arg1, to_candid_opt_n3(this._uploadFile, this._downloadFile, arg2), to_candid_opt_n3(this._uploadFile, this._downloadFile, arg3), arg4);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async addTopTrader(arg0, arg1, arg2, arg3, arg4) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.addTopTrader(arg0, arg1, arg2, arg3, arg4);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.addTopTrader(arg0, arg1, arg2, arg3, arg4);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async analyzeNewsImpact(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.analyzeNewsImpact(arg0, arg1);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.analyzeNewsImpact(arg0, arg1);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async askFaq(arg0) {
@@ -34129,158 +34669,242 @@ class Backend {
       return result;
     }
   }
+  async askTokenFaq(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.askTokenFaq(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.askTokenFaq(arg0);
+      return result;
+    }
+  }
   async backtestSignal(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.backtestSignal(arg0, arg1);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.backtestSignal(arg0, arg1);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async banEmail(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.banEmail(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.banEmail(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async clearJournal(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.clearJournal(arg0);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.clearJournal(arg0);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async compareSignals(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.compareSignals(arg0, arg1, arg2);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.compareSignals(arg0, arg1, arg2);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async createAbTest(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
         const result = await this.actor.createAbTest(arg0, arg1, arg2, arg3);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.createAbTest(arg0, arg1, arg2, arg3);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async createAuditSnapshot(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.createAuditSnapshot(arg0, arg1);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.createAuditSnapshot(arg0, arg1);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async createPushNotification(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.createPushNotification(arg0, arg1, arg2);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.createPushNotification(arg0, arg1, arg2);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async deleteAnnouncement(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteAnnouncement(arg0, arg1);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteAnnouncement(arg0, arg1);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async deleteBinancePost(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.deleteBinancePost(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.deleteBinancePost(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async deleteCommunityQuestion(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteCommunityQuestion(arg0, arg1);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteCommunityQuestion(arg0, arg1);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async deleteFaq(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.deleteFaq(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.deleteFaq(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async deleteQuote(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.deleteQuote(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.deleteQuote(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async deleteSignal(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.deleteSignal(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.deleteSignal(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async deleteSignalTemplate(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteSignalTemplate(arg0, arg1);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteSignalTemplate(arg0, arg1);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async deleteTestimonial(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.deleteTestimonial(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.deleteTestimonial(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async deleteTopTrader(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteTopTrader(arg0, arg1);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteTopTrader(arg0, arg1);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async dismissPushNotification(arg0) {
@@ -34297,32 +34921,88 @@ class Backend {
       return result;
     }
   }
+  async executeAdminCommand(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.executeAdminCommand(arg0, arg1);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.executeAdminCommand(arg0, arg1);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+    }
+  }
   async generateDailyBriefing(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.generateDailyBriefing(arg0);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.generateDailyBriefing(arg0);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async generatePostTradeAnalysis(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.generatePostTradeAnalysis(arg0, arg1, arg2);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.generatePostTradeAnalysis(arg0, arg1, arg2);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async generatePricePrediction(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.generatePricePrediction(arg0, arg1);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.generatePricePrediction(arg0, arg1);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async generateSignalChain(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.generateSignalChain(arg0, arg1);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.generateSignalChain(arg0, arg1);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async getAbTests(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getAbTests(arg0);
-        return from_candid_Result_19_n36(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_19_n61(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getAbTests(arg0);
-      return from_candid_Result_19_n36(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_19_n61(this._uploadFile, this._downloadFile, result);
     }
   }
   async getAbVariant(arg0) {
@@ -34343,56 +35023,56 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getActivePushNotifications();
-        return from_candid_vec_n38(this._uploadFile, this._downloadFile, result);
+        return from_candid_vec_n63(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getActivePushNotifications();
-      return from_candid_vec_n38(this._uploadFile, this._downloadFile, result);
+      return from_candid_vec_n63(this._uploadFile, this._downloadFile, result);
     }
   }
   async getAdminActivityHeatmap(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getAdminActivityHeatmap(arg0);
-        return from_candid_Result_18_n41(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_18_n66(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getAdminActivityHeatmap(arg0);
-      return from_candid_Result_18_n41(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_18_n66(this._uploadFile, this._downloadFile, result);
     }
   }
   async getAdminConfig(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getAdminConfig(arg0);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getAdminConfig(arg0);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async getAiLanguage(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getAiLanguage(arg0);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getAiLanguage(arg0);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async getAiProviderStatus() {
@@ -34409,74 +35089,88 @@ class Backend {
       return result;
     }
   }
+  async getAllAnnouncements(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllAnnouncements(arg0);
+        return from_candid_Result_17_n68(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllAnnouncements(arg0);
+      return from_candid_Result_17_n68(this._uploadFile, this._downloadFile, result);
+    }
+  }
   async getAnalytics(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getAnalytics(arg0);
-        return from_candid_Result_17_n43(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_16_n71(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getAnalytics(arg0);
-      return from_candid_Result_17_n43(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_16_n71(this._uploadFile, this._downloadFile, result);
     }
   }
   async getAnalyticsCsv(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getAnalyticsCsv(arg0);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getAnalyticsCsv(arg0);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
-  async getAnnouncement() {
+  async getAnnouncements() {
     if (this.processError) {
       try {
-        const result = await this.actor.getAnnouncement();
-        return from_candid_opt_n45(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.getAnnouncements();
+        return from_candid_vec_n70(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.getAnnouncement();
-      return from_candid_opt_n45(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.getAnnouncements();
+      return from_candid_vec_n70(this._uploadFile, this._downloadFile, result);
     }
   }
   async getAuditLog(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getAuditLog(arg0);
-        return from_candid_Result_16_n49(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_15_n73(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getAuditLog(arg0);
-      return from_candid_Result_16_n49(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_15_n73(this._uploadFile, this._downloadFile, result);
     }
   }
   async getBannedEmails(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getBannedEmails(arg0);
-        return from_candid_Result_15_n51(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_14_n78(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getBannedEmails(arg0);
-      return from_candid_Result_15_n51(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_14_n78(this._uploadFile, this._downloadFile, result);
     }
   }
   async getBinanceFeed() {
@@ -34497,14 +35191,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getBurnSchedule();
-        return from_candid_vec_n53(this._uploadFile, this._downloadFile, result);
+        return from_candid_vec_n80(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getBurnSchedule();
-      return from_candid_vec_n53(this._uploadFile, this._downloadFile, result);
+      return from_candid_vec_n80(this._uploadFile, this._downloadFile, result);
     }
   }
   async getBurnTracker() {
@@ -34535,6 +35229,20 @@ class Backend {
       return result;
     }
   }
+  async getCommunityQuestions() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getCommunityQuestions();
+        return from_candid_vec_n83(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getCommunityQuestions();
+      return from_candid_vec_n83(this._uploadFile, this._downloadFile, result);
+    }
+  }
   async getDailyBriefing() {
     if (this.processError) {
       try {
@@ -34553,14 +35261,28 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getFaqs();
-        return result;
+        return from_candid_vec_n86(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getFaqs();
-      return result;
+      return from_candid_vec_n86(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getFaqsByCategory(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getFaqsByCategory(to_candid_FaqCategory_n19(this._uploadFile, this._downloadFile, arg0));
+        return from_candid_vec_n86(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getFaqsByCategory(to_candid_FaqCategory_n19(this._uploadFile, this._downloadFile, arg0));
+      return from_candid_vec_n86(this._uploadFile, this._downloadFile, result);
     }
   }
   async getHolderBenefits() {
@@ -34577,18 +35299,32 @@ class Backend {
       return result;
     }
   }
+  async getHypeMilestones() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getHypeMilestones();
+        return from_candid_vec_n87(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getHypeMilestones();
+      return from_candid_vec_n87(this._uploadFile, this._downloadFile, result);
+    }
+  }
   async getJournalEntries(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getJournalEntries(arg0);
-        return from_candid_Result_14_n56(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_13_n88(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getJournalEntries(arg0);
-      return from_candid_Result_14_n56(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_13_n88(this._uploadFile, this._downloadFile, result);
     }
   }
   async getMaintenanceMode() {
@@ -34609,14 +35345,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getMarketMoodBanner();
-        return from_candid_opt_n62(this._uploadFile, this._downloadFile, result);
+        return from_candid_opt_n94(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getMarketMoodBanner();
-      return from_candid_opt_n62(this._uploadFile, this._downloadFile, result);
+      return from_candid_opt_n94(this._uploadFile, this._downloadFile, result);
     }
   }
   async getMarketPrices() {
@@ -34637,56 +35373,56 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getMarketSentiment();
-        return from_candid_MarketSentiment_n63(this._uploadFile, this._downloadFile, result);
+        return from_candid_MarketSentiment_n95(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getMarketSentiment();
-      return from_candid_MarketSentiment_n63(this._uploadFile, this._downloadFile, result);
+      return from_candid_MarketSentiment_n95(this._uploadFile, this._downloadFile, result);
     }
   }
   async getMilestones() {
     if (this.processError) {
       try {
         const result = await this.actor.getMilestones();
-        return from_candid_vec_n70(this._uploadFile, this._downloadFile, result);
+        return from_candid_vec_n102(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getMilestones();
-      return from_candid_vec_n70(this._uploadFile, this._downloadFile, result);
+      return from_candid_vec_n102(this._uploadFile, this._downloadFile, result);
     }
   }
   async getNotifyMeList(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getNotifyMeList(arg0);
-        return from_candid_Result_13_n73(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_12_n105(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getNotifyMeList(arg0);
-      return from_candid_Result_13_n73(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_12_n105(this._uploadFile, this._downloadFile, result);
     }
   }
   async getPublicBurnSchedule() {
     if (this.processError) {
       try {
         const result = await this.actor.getPublicBurnSchedule();
-        return from_candid_vec_n53(this._uploadFile, this._downloadFile, result);
+        return from_candid_vec_n80(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getPublicBurnSchedule();
-      return from_candid_vec_n53(this._uploadFile, this._downloadFile, result);
+      return from_candid_vec_n80(this._uploadFile, this._downloadFile, result);
     }
   }
   async getQuotes() {
@@ -34721,112 +35457,126 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getScheduledSignals(arg0);
-        return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_7_n110(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getScheduledSignals(arg0);
-      return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_7_n110(this._uploadFile, this._downloadFile, result);
     }
   }
   async getSessionRatings(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getSessionRatings(arg0);
-        return from_candid_Result_12_n81(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_11_n113(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getSessionRatings(arg0);
-      return from_candid_Result_12_n81(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_11_n113(this._uploadFile, this._downloadFile, result);
     }
   }
   async getSessionRecap(arg0, arg1) {
     if (this.processError) {
       try {
-        const result = await this.actor.getSessionRecap(to_candid_vec_n83(this._uploadFile, this._downloadFile, arg0), arg1);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.getSessionRecap(to_candid_vec_n115(this._uploadFile, this._downloadFile, arg0), arg1);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.getSessionRecap(to_candid_vec_n83(this._uploadFile, this._downloadFile, arg0), arg1);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.getSessionRecap(to_candid_vec_n115(this._uploadFile, this._downloadFile, arg0), arg1);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async getSignalArchive() {
     if (this.processError) {
       try {
         const result = await this.actor.getSignalArchive();
-        return from_candid_vec_n80(this._uploadFile, this._downloadFile, result);
+        return from_candid_vec_n112(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getSignalArchive();
-      return from_candid_vec_n80(this._uploadFile, this._downloadFile, result);
+      return from_candid_vec_n112(this._uploadFile, this._downloadFile, result);
     }
   }
   async getSignalOfTheDay() {
     if (this.processError) {
       try {
         const result = await this.actor.getSignalOfTheDay();
-        return from_candid_opt_n86(this._uploadFile, this._downloadFile, result);
+        return from_candid_opt_n118(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getSignalOfTheDay();
-      return from_candid_opt_n86(this._uploadFile, this._downloadFile, result);
+      return from_candid_opt_n118(this._uploadFile, this._downloadFile, result);
     }
   }
   async getSignalOfWeek() {
     if (this.processError) {
       try {
         const result = await this.actor.getSignalOfWeek();
-        return from_candid_opt_n87(this._uploadFile, this._downloadFile, result);
+        return from_candid_opt_n119(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getSignalOfWeek();
-      return from_candid_opt_n87(this._uploadFile, this._downloadFile, result);
+      return from_candid_opt_n119(this._uploadFile, this._downloadFile, result);
     }
   }
   async getSignalPerformanceStats(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.getSignalPerformanceStats(arg0);
-        return from_candid_Result_11_n90(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_10_n122(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getSignalPerformanceStats(arg0);
-      return from_candid_Result_11_n90(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_10_n122(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getSignalTemplates(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getSignalTemplates(arg0);
+        return from_candid_Result_9_n124(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getSignalTemplates(arg0);
+      return from_candid_Result_9_n124(this._uploadFile, this._downloadFile, result);
     }
   }
   async getSignals() {
     if (this.processError) {
       try {
         const result = await this.actor.getSignals();
-        return from_candid_vec_n80(this._uploadFile, this._downloadFile, result);
+        return from_candid_vec_n112(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getSignals();
-      return from_candid_vec_n80(this._uploadFile, this._downloadFile, result);
+      return from_candid_vec_n112(this._uploadFile, this._downloadFile, result);
     }
   }
   async getStats() {
@@ -34847,28 +35597,70 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getStatsConfig(arg0);
-        return from_candid_Result_10_n92(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_8_n127(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getStatsConfig(arg0);
-      return from_candid_Result_10_n92(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_8_n127(this._uploadFile, this._downloadFile, result);
     }
   }
   async getTestimonials() {
     if (this.processError) {
       try {
         const result = await this.actor.getTestimonials();
-        return from_candid_vec_n97(this._uploadFile, this._downloadFile, result);
+        return from_candid_vec_n132(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getTestimonials();
-      return from_candid_vec_n97(this._uploadFile, this._downloadFile, result);
+      return from_candid_vec_n132(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getTokenBurnSchedule() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getTokenBurnSchedule();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getTokenBurnSchedule();
+      return result;
+    }
+  }
+  async getTokenData() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getTokenData();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getTokenData();
+      return result;
+    }
+  }
+  async getTopTraders() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getTopTraders();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getTopTraders();
+      return result;
     }
   }
   async getWhitepaper() {
@@ -34885,18 +35677,32 @@ class Backend {
       return result;
     }
   }
-  async importSignals(arg0, arg1) {
+  async getWhitepaperUrl() {
     if (this.processError) {
       try {
-        const result = await this.actor.importSignals(arg0, to_candid_vec_n100(this._uploadFile, this._downloadFile, arg1));
-        return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.getWhitepaperUrl();
+        return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.importSignals(arg0, to_candid_vec_n100(this._uploadFile, this._downloadFile, arg1));
-      return from_candid_Result_9_n78(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.getWhitepaperUrl();
+      return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async importSignals(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.importSignals(arg0, to_candid_vec_n135(this._uploadFile, this._downloadFile, arg1));
+        return from_candid_Result_7_n110(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.importSignals(arg0, to_candid_vec_n135(this._uploadFile, this._downloadFile, arg1));
+      return from_candid_Result_7_n110(this._uploadFile, this._downloadFile, result);
     }
   }
   async initFaqs() {
@@ -34945,28 +35751,84 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.listAuditSnapshots(arg0);
-        return from_candid_Result_8_n103(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_6_n138(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.listAuditSnapshots(arg0);
-      return from_candid_Result_8_n103(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_6_n138(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async markBurnEventExecuted(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.markBurnEventExecuted(arg0, arg1);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.markBurnEventExecuted(arg0, arg1);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async markHypeMilestoneAchieved(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.markHypeMilestoneAchieved(arg0, arg1);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.markHypeMilestoneAchieved(arg0, arg1);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async markMilestoneReached(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.markMilestoneReached(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.markMilestoneReached(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async pinAnnouncement(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.pinAnnouncement(arg0, arg1, arg2);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.pinAnnouncement(arg0, arg1, arg2);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async pinCommunityQuestion(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.pinCommunityQuestion(arg0, arg1, arg2);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.pinCommunityQuestion(arg0, arg1, arg2);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async publishScheduledSignals() {
@@ -34987,14 +35849,28 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.rateAiResponse(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.rateAiResponse(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async rateFaq(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.rateFaq(arg0, arg1);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.rateFaq(arg0, arg1);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async recordAbImpression(arg0, arg1) {
@@ -35015,14 +35891,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.recordAdminActivity(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.recordAdminActivity(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async refreshMarketPrices() {
@@ -35043,392 +35919,420 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.reorderFaqs(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.reorderFaqs(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async rollbackAdminAction(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.rollbackAdminAction(arg0, arg1);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.rollbackAdminAction(arg0, arg1);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async scheduleSignal(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.scheduleSignal(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.scheduleSignal(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
-  async sendAiMessage(arg0, arg1, arg2, arg3, arg4) {
+  async sendAiMessage(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
-        const result = await this.actor.sendAiMessage(arg0, arg1, arg2, arg3, to_candid_vec_n83(this._uploadFile, this._downloadFile, arg4));
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.sendAiMessage(arg0, arg1, arg2, to_candid_vec_n115(this._uploadFile, this._downloadFile, arg3));
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.sendAiMessage(arg0, arg1, arg2, arg3, to_candid_vec_n83(this._uploadFile, this._downloadFile, arg4));
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.sendAiMessage(arg0, arg1, arg2, to_candid_vec_n115(this._uploadFile, this._downloadFile, arg3));
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async setAiApiKey(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.setAiApiKey(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setAiApiKey(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async setAiLanguage(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.setAiLanguage(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setAiLanguage(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async setAnnouncement(arg0, arg1, arg2, arg3) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.setAnnouncement(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-        return from_candid_Result_7_n105(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.setAnnouncement(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-      return from_candid_Result_7_n105(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async setBurnTracker(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.setBurnTracker(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setBurnTracker(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async setCommunityCounter(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.setCommunityCounter(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setCommunityCounter(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async setMaintenanceMode(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.setMaintenanceMode(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setMaintenanceMode(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async setMarketMoodBanner(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.setMarketMoodBanner(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setMarketMoodBanner(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async setRoadmapMilestone(arg0, arg1, arg2, arg3, arg4) {
     if (this.processError) {
       try {
         const result = await this.actor.setRoadmapMilestone(arg0, arg1, arg2, arg3, arg4);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setRoadmapMilestone(arg0, arg1, arg2, arg3, arg4);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async setSignalOfTheDay(arg0, arg1) {
     if (this.processError) {
       try {
-        const result = await this.actor.setSignalOfTheDay(arg0, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg1));
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.setSignalOfTheDay(arg0, to_candid_opt_n3(this._uploadFile, this._downloadFile, arg1));
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.setSignalOfTheDay(arg0, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg1));
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.setSignalOfTheDay(arg0, to_candid_opt_n3(this._uploadFile, this._downloadFile, arg1));
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async setSignalOfWeek(arg0, arg1, arg2) {
     if (this.processError) {
       try {
         const result = await this.actor.setSignalOfWeek(arg0, arg1, arg2);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setSignalOfWeek(arg0, arg1, arg2);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async setSignalOfWeekWithDate(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
         const result = await this.actor.setSignalOfWeekWithDate(arg0, arg1, arg2, arg3);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.setSignalOfWeekWithDate(arg0, arg1, arg2, arg3);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async setStatsConfig(arg0, arg1) {
     if (this.processError) {
       try {
-        const result = await this.actor.setStatsConfig(arg0, to_candid_StatsConfig_n107(this._uploadFile, this._downloadFile, arg1));
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.setStatsConfig(arg0, to_candid_StatsConfig_n140(this._uploadFile, this._downloadFile, arg1));
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.setStatsConfig(arg0, to_candid_StatsConfig_n107(this._uploadFile, this._downloadFile, arg1));
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.setStatsConfig(arg0, to_candid_StatsConfig_n140(this._uploadFile, this._downloadFile, arg1));
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async setWhitepaperUrl(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.setWhitepaperUrl(arg0, arg1);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.setWhitepaperUrl(arg0, arg1);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async submitCommunityQuestion(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.submitCommunityQuestion(arg0);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.submitCommunityQuestion(arg0);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async submitNotifyMe(arg0, arg1) {
     if (this.processError) {
       try {
-        const result = await this.actor.submitNotifyMe(to_candid_opt_n33(this._uploadFile, this._downloadFile, arg0), arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.submitNotifyMe(to_candid_opt_n3(this._uploadFile, this._downloadFile, arg0), arg1);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.submitNotifyMe(to_candid_opt_n33(this._uploadFile, this._downloadFile, arg0), arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async toggleAnnouncement(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.toggleAnnouncement(arg0);
-        return from_candid_Result_6_n109(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.toggleAnnouncement(arg0);
-      return from_candid_Result_6_n109(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.submitNotifyMe(to_candid_opt_n3(this._uploadFile, this._downloadFile, arg0), arg1);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async unbanEmail(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.unbanEmail(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.unbanEmail(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async updateAnnouncement(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.updateAnnouncement(arg0, arg1, arg2, arg3, to_candid_AnnouncementCategory_n1(this._uploadFile, this._downloadFile, arg4), to_candid_opt_n3(this._uploadFile, this._downloadFile, arg5), arg6, arg7, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg8));
+        return from_candid_Result_5_n5(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.updateAnnouncement(arg0, arg1, arg2, arg3, to_candid_AnnouncementCategory_n1(this._uploadFile, this._downloadFile, arg4), to_candid_opt_n3(this._uploadFile, this._downloadFile, arg5), arg6, arg7, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg8));
+      return from_candid_Result_5_n5(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateBinancePost(arg0, arg1, arg2, arg3, arg4, arg5) {
     if (this.processError) {
       try {
         const result = await this.actor.updateBinancePost(arg0, arg1, arg2, arg3, arg4, arg5);
-        return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_4_n13(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.updateBinancePost(arg0, arg1, arg2, arg3, arg4, arg5);
-      return from_candid_Result_5_n1(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_4_n13(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateBurnEntryStatus(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
-        const result = await this.actor.updateBurnEntryStatus(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), arg3);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.updateBurnEntryStatus(arg0, arg1, to_candid_opt_n3(this._uploadFile, this._downloadFile, arg2), arg3);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.updateBurnEntryStatus(arg0, arg1, to_candid_opt_n33(this._uploadFile, this._downloadFile, arg2), arg3);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.updateBurnEntryStatus(arg0, arg1, to_candid_opt_n3(this._uploadFile, this._downloadFile, arg2), arg3);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
-  async updateFaq(arg0, arg1, arg2, arg3) {
+  async updateFaq(arg0, arg1, arg2, arg3, arg4) {
     if (this.processError) {
       try {
-        const result = await this.actor.updateFaq(arg0, arg1, arg2, arg3);
-        return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.updateFaq(arg0, arg1, arg2, arg3, to_candid_FaqCategory_n19(this._uploadFile, this._downloadFile, arg4));
+        return from_candid_Result_3_n21(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.updateFaq(arg0, arg1, arg2, arg3);
-      return from_candid_Result_4_n5(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.updateFaq(arg0, arg1, arg2, arg3, to_candid_FaqCategory_n19(this._uploadFile, this._downloadFile, arg4));
+      return from_candid_Result_3_n21(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateMarketSentiment(arg0, arg1) {
     if (this.processError) {
       try {
-        const result = await this.actor.updateMarketSentiment(arg0, to_candid_MarketSentiment_n111(this._uploadFile, this._downloadFile, arg1));
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.updateMarketSentiment(arg0, to_candid_MarketSentiment_n142(this._uploadFile, this._downloadFile, arg1));
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.updateMarketSentiment(arg0, to_candid_MarketSentiment_n111(this._uploadFile, this._downloadFile, arg1));
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.updateMarketSentiment(arg0, to_candid_MarketSentiment_n142(this._uploadFile, this._downloadFile, arg1));
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
-  async updateSignal(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14) {
+  async updateSignal(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19, arg20) {
     if (this.processError) {
       try {
-        const result = await this.actor.updateSignal(arg0, arg1, arg2, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg3), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg4), arg5, arg6, arg7, arg8, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg9), arg10, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg11), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg12), arg13, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg14));
-        return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.updateSignal(arg0, arg1, arg2, to_candid_MarketType_n33(this._uploadFile, this._downloadFile, arg3), to_candid_Direction_n35(this._uploadFile, this._downloadFile, arg4), arg5, arg6, arg7, arg8, arg9, arg10, arg11, to_candid_Confidence_n37(this._uploadFile, this._downloadFile, arg12), arg13, arg14, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg15), to_candid_Timeframe_n39(this._uploadFile, this._downloadFile, arg16), arg17, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg18), to_candid_opt_n3(this._uploadFile, this._downloadFile, arg19), arg20);
+        return from_candid_Result_2_n41(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.updateSignal(arg0, arg1, arg2, to_candid_MarketType_n9(this._uploadFile, this._downloadFile, arg3), to_candid_Direction_n11(this._uploadFile, this._downloadFile, arg4), arg5, arg6, arg7, arg8, to_candid_Confidence_n13(this._uploadFile, this._downloadFile, arg9), arg10, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg11), to_candid_Timeframe_n16(this._uploadFile, this._downloadFile, arg12), arg13, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg14));
-      return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.updateSignal(arg0, arg1, arg2, to_candid_MarketType_n33(this._uploadFile, this._downloadFile, arg3), to_candid_Direction_n35(this._uploadFile, this._downloadFile, arg4), arg5, arg6, arg7, arg8, arg9, arg10, arg11, to_candid_Confidence_n37(this._uploadFile, this._downloadFile, arg12), arg13, arg14, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg15), to_candid_Timeframe_n39(this._uploadFile, this._downloadFile, arg16), arg17, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg18), to_candid_opt_n3(this._uploadFile, this._downloadFile, arg19), arg20);
+      return from_candid_Result_2_n41(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateSignalResult(arg0, arg1, arg2) {
     if (this.processError) {
       try {
-        const result = await this.actor.updateSignalResult(arg0, arg1, to_candid_ResultStatus_n118(this._uploadFile, this._downloadFile, arg2));
-        return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.updateSignalResult(arg0, arg1, to_candid_ResultStatus_n149(this._uploadFile, this._downloadFile, arg2));
+        return from_candid_Result_2_n41(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.updateSignalResult(arg0, arg1, to_candid_ResultStatus_n118(this._uploadFile, this._downloadFile, arg2));
-      return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.updateSignalResult(arg0, arg1, to_candid_ResultStatus_n149(this._uploadFile, this._downloadFile, arg2));
+      return from_candid_Result_2_n41(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateSignalSchedule(arg0, arg1, arg2, arg3) {
     if (this.processError) {
       try {
-        const result = await this.actor.updateSignalSchedule(arg0, arg1, arg2, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-        return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+        const result = await this.actor.updateSignalSchedule(arg0, arg1, arg2, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg3));
+        return from_candid_Result_2_n41(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
-      const result = await this.actor.updateSignalSchedule(arg0, arg1, arg2, to_candid_opt_n15(this._uploadFile, this._downloadFile, arg3));
-      return from_candid_Result_3_n18(this._uploadFile, this._downloadFile, result);
+      const result = await this.actor.updateSignalSchedule(arg0, arg1, arg2, to_candid_opt_n4(this._uploadFile, this._downloadFile, arg3));
+      return from_candid_Result_2_n41(this._uploadFile, this._downloadFile, result);
     }
   }
   async updateWhitepaper(arg0, arg1) {
     if (this.processError) {
       try {
         const result = await this.actor.updateWhitepaper(arg0, arg1);
-        return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.updateWhitepaper(arg0, arg1);
-      return from_candid_Result_2_n34(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
     }
   }
   async validateAdminRole(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.validateAdminRole(arg0);
-        return from_candid_opt_n48(this._uploadFile, this._downloadFile, result);
+        return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.validateAdminRole(arg0);
-      return from_candid_opt_n48(this._uploadFile, this._downloadFile, result);
+      return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
     }
   }
   async validateAiPasscode(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.validateAiPasscode(arg0);
-        return from_candid_Result_1_n120(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.validateAiPasscode(arg0);
-      return from_candid_Result_1_n120(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async validateAiSession(arg0) {
@@ -35445,32 +36349,18 @@ class Backend {
       return result;
     }
   }
-  async validateInsaneSession(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.validateInsaneSession(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.validateInsaneSession(arg0);
-      return result;
-    }
-  }
   async validatePasscode(arg0) {
     if (this.processError) {
       try {
         const result = await this.actor.validatePasscode(arg0);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+        return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.validatePasscode(arg0);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
+      return from_candid_Result_1_n15(this._uploadFile, this._downloadFile, result);
     }
   }
   async validateSession(arg0) {
@@ -35487,287 +36377,415 @@ class Backend {
       return result;
     }
   }
+  async voteCommunityQuestion(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.voteCommunityQuestion(arg0);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.voteCommunityQuestion(arg0);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async voteOnSignal(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.voteOnSignal(arg0, arg1);
+        return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.voteOnSignal(arg0, arg1);
+      return from_candid_Result_n55(this._uploadFile, this._downloadFile, result);
+    }
+  }
 }
-function from_candid_Announcement_n46(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n47(_uploadFile, _downloadFile, value);
+function from_candid_AnnouncementCategory_n11(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n12(_uploadFile, _downloadFile, value);
 }
-function from_candid_AssetSentiment_n66(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n67(_uploadFile, _downloadFile, value);
+function from_candid_Announcement_n7(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n8(_uploadFile, _downloadFile, value);
 }
-function from_candid_BurnScheduleEntry_n54(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n55(_uploadFile, _downloadFile, value);
-}
-function from_candid_CommunityMilestone_n71(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n72(_uploadFile, _downloadFile, value);
-}
-function from_candid_Confidence_n31(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n32(_uploadFile, _downloadFile, value);
-}
-function from_candid_Direction_n26(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n27(_uploadFile, _downloadFile, value);
-}
-function from_candid_JournalEntry_n59(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n60(_uploadFile, _downloadFile, value);
-}
-function from_candid_MarketSentiment_n63(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n64(_uploadFile, _downloadFile, value);
-}
-function from_candid_MarketType_n24(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n25(_uploadFile, _downloadFile, value);
-}
-function from_candid_NotifyMe_n76(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n77(_uploadFile, _downloadFile, value);
-}
-function from_candid_PushNotification_n39(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n40(_uploadFile, _downloadFile, value);
-}
-function from_candid_ResultStatus_n22(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n23(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_10_n92(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n93(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_11_n90(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n91(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_12_n81(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n82(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_13_n73(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n74(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_14_n56(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n57(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_15_n51(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n52(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_16_n49(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n50(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_17_n43(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n44(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_18_n41(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n42(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_19_n36(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n37(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_1_n120(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n121(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_2_n34(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n35(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_3_n18(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n19(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_4_n5(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n6(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_5_n1(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n2(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_6_n109(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n110(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_7_n105(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n106(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_8_n103(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n104(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_9_n78(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n79(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_n3(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n4(_uploadFile, _downloadFile, value);
-}
-function from_candid_SentimentLevel_n68(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n69(_uploadFile, _downloadFile, value);
-}
-function from_candid_SignalOfWeekFull_n88(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n89(_uploadFile, _downloadFile, value);
-}
-function from_candid_Signal_n20(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n21(_uploadFile, _downloadFile, value);
-}
-function from_candid_StatsConfig_n94(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n95(_uploadFile, _downloadFile, value);
-}
-function from_candid_Testimonial_n98(_uploadFile, _downloadFile, value) {
+function from_candid_AssetSentiment_n98(_uploadFile, _downloadFile, value) {
   return from_candid_record_n99(_uploadFile, _downloadFile, value);
 }
-function from_candid_Timeframe_n28(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n29(_uploadFile, _downloadFile, value);
+function from_candid_AuditEntry_n76(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n77(_uploadFile, _downloadFile, value);
 }
-function from_candid_opt_n30(_uploadFile, _downloadFile, value) {
+function from_candid_BurnScheduleEntry_n81(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n82(_uploadFile, _downloadFile, value);
+}
+function from_candid_CommunityMilestone_n103(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n104(_uploadFile, _downloadFile, value);
+}
+function from_candid_CommunityQuestion_n84(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n85(_uploadFile, _downloadFile, value);
+}
+function from_candid_Confidence_n53(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n54(_uploadFile, _downloadFile, value);
+}
+function from_candid_Direction_n49(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n50(_uploadFile, _downloadFile, value);
+}
+function from_candid_FAQ_n23(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n24(_uploadFile, _downloadFile, value);
+}
+function from_candid_FaqCategory_n25(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n26(_uploadFile, _downloadFile, value);
+}
+function from_candid_HypeMilestone_n29(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n30(_uploadFile, _downloadFile, value);
+}
+function from_candid_JournalEntry_n91(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n92(_uploadFile, _downloadFile, value);
+}
+function from_candid_MarketSentiment_n95(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n96(_uploadFile, _downloadFile, value);
+}
+function from_candid_MarketType_n47(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n48(_uploadFile, _downloadFile, value);
+}
+function from_candid_NotifyMe_n108(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n109(_uploadFile, _downloadFile, value);
+}
+function from_candid_PushNotification_n64(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n65(_uploadFile, _downloadFile, value);
+}
+function from_candid_ResultStatus_n45(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n46(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_10_n122(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n123(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_11_n113(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n114(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_12_n105(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n106(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_13_n88(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n89(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_14_n78(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n79(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_15_n73(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n74(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_16_n71(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n72(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_17_n68(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n69(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_18_n66(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n67(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_19_n61(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n62(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_1_n15(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n16(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_20_n57(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n58(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_21_n27(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n28(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_22_n17(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n18(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_2_n41(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n42(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_3_n21(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n22(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_4_n13(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n14(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_5_n5(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n6(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_6_n138(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n139(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_7_n110(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n111(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_8_n127(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n128(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_9_n124(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n125(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_n55(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n56(_uploadFile, _downloadFile, value);
+}
+function from_candid_SentimentLevel_n100(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n101(_uploadFile, _downloadFile, value);
+}
+function from_candid_SignalOfWeekFull_n120(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n121(_uploadFile, _downloadFile, value);
+}
+function from_candid_SignalTemplate_n59(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n60(_uploadFile, _downloadFile, value);
+}
+function from_candid_Signal_n43(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n44(_uploadFile, _downloadFile, value);
+}
+function from_candid_StatsConfig_n129(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n130(_uploadFile, _downloadFile, value);
+}
+function from_candid_Testimonial_n133(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n134(_uploadFile, _downloadFile, value);
+}
+function from_candid_Timeframe_n51(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n52(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n10(_uploadFile, _downloadFile, value) {
   return value.length === 0 ? null : value[0];
 }
-function from_candid_opt_n45(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : from_candid_Announcement_n46(_uploadFile, _downloadFile, value[0]);
+function from_candid_opt_n118(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : from_candid_Signal_n43(_uploadFile, _downloadFile, value[0]);
 }
-function from_candid_opt_n48(_uploadFile, _downloadFile, value) {
+function from_candid_opt_n119(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : from_candid_SignalOfWeekFull_n120(_uploadFile, _downloadFile, value[0]);
+}
+function from_candid_opt_n131(_uploadFile, _downloadFile, value) {
   return value.length === 0 ? null : value[0];
 }
-function from_candid_opt_n61(_uploadFile, _downloadFile, value) {
+function from_candid_opt_n9(_uploadFile, _downloadFile, value) {
   return value.length === 0 ? null : value[0];
 }
-function from_candid_opt_n62(_uploadFile, _downloadFile, value) {
+function from_candid_opt_n93(_uploadFile, _downloadFile, value) {
   return value.length === 0 ? null : value[0];
 }
-function from_candid_opt_n86(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : from_candid_Signal_n20(_uploadFile, _downloadFile, value[0]);
-}
-function from_candid_opt_n87(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : from_candid_SignalOfWeekFull_n88(_uploadFile, _downloadFile, value[0]);
-}
-function from_candid_opt_n96(_uploadFile, _downloadFile, value) {
+function from_candid_opt_n94(_uploadFile, _downloadFile, value) {
   return value.length === 0 ? null : value[0];
 }
-function from_candid_record_n21(_uploadFile, _downloadFile, value) {
+function from_candid_record_n104(_uploadFile, _downloadFile, value) {
   return {
     id: value.id,
-    result: from_candid_ResultStatus_n22(_uploadFile, _downloadFile, value.result),
-    marketType: from_candid_MarketType_n24(_uploadFile, _downloadFile, value.marketType),
-    direction: from_candid_Direction_n26(_uploadFile, _downloadFile, value.direction),
+    reached: value.reached,
+    celebrateUntil: record_opt_to_undefined(from_candid_opt_n10(_uploadFile, _downloadFile, value.celebrateUntil)),
+    title: value.title,
+    description: value.description,
+    reachedAt: record_opt_to_undefined(from_candid_opt_n10(_uploadFile, _downloadFile, value.reachedAt))
+  };
+}
+function from_candid_record_n109(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    contact: value.contact,
+    dateSubmitted: value.dateSubmitted,
+    name: record_opt_to_undefined(from_candid_opt_n9(_uploadFile, _downloadFile, value.name))
+  };
+}
+function from_candid_record_n121(_uploadFile, _downloadFile, value) {
+  return {
+    featuredAt: value.featuredAt,
+    comment: value.comment,
+    signal: from_candid_Signal_n43(_uploadFile, _downloadFile, value.signal),
+    weekOf: value.weekOf
+  };
+}
+function from_candid_record_n130(_uploadFile, _downloadFile, value) {
+  return {
+    useManual: value.useManual,
+    manualStats: record_opt_to_undefined(from_candid_opt_n131(_uploadFile, _downloadFile, value.manualStats))
+  };
+}
+function from_candid_record_n134(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    active: value.active,
+    content: value.content,
+    asset: record_opt_to_undefined(from_candid_opt_n9(_uploadFile, _downloadFile, value.asset)),
+    name: value.name,
+    createdAt: value.createdAt,
+    winAmount: record_opt_to_undefined(from_candid_opt_n9(_uploadFile, _downloadFile, value.winAmount))
+  };
+}
+function from_candid_record_n24(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    question: value.question,
+    order: value.order,
+    answer: value.answer,
+    notHelpfulCount: value.notHelpfulCount,
+    timestamp: value.timestamp,
+    category: from_candid_FaqCategory_n25(_uploadFile, _downloadFile, value.category),
+    helpfulCount: value.helpfulCount
+  };
+}
+function from_candid_record_n30(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    achieved: value.achieved,
+    title: value.title,
+    order: value.order,
+    achievedAt: record_opt_to_undefined(from_candid_opt_n10(_uploadFile, _downloadFile, value.achievedAt)),
+    targetCount: value.targetCount
+  };
+}
+function from_candid_record_n44(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    tp1: value.tp1,
+    tp2: value.tp2,
+    tp3: value.tp3,
+    result: from_candid_ResultStatus_n45(_uploadFile, _downloadFile, value.result),
+    marketType: from_candid_MarketType_n47(_uploadFile, _downloadFile, value.marketType),
+    direction: from_candid_Direction_n49(_uploadFile, _downloadFile, value.direction),
+    voteDown: value.voteDown,
     asset: value.asset,
-    timeframe: from_candid_Timeframe_n28(_uploadFile, _downloadFile, value.timeframe),
-    publishAt: record_opt_to_undefined(from_candid_opt_n30(_uploadFile, _downloadFile, value.publishAt)),
+    timeframe: from_candid_Timeframe_n51(_uploadFile, _downloadFile, value.timeframe),
+    providerLabel: value.providerLabel,
+    templateId: record_opt_to_undefined(from_candid_opt_n9(_uploadFile, _downloadFile, value.templateId)),
+    publishAt: record_opt_to_undefined(from_candid_opt_n10(_uploadFile, _downloadFile, value.publishAt)),
+    tags: value.tags,
     targetPrice: value.targetPrice,
+    voteUp: value.voteUp,
     isDraft: value.isDraft,
     datePosted: value.datePosted,
     stopLoss: value.stopLoss,
     sourceLabel: value.sourceLabel,
     notes: value.notes,
     entryPrice: value.entryPrice,
-    expiry: record_opt_to_undefined(from_candid_opt_n30(_uploadFile, _downloadFile, value.expiry)),
-    confidence: from_candid_Confidence_n31(_uploadFile, _downloadFile, value.confidence)
-  };
-}
-function from_candid_record_n40(_uploadFile, _downloadFile, value) {
-  return {
-    id: value.id,
-    title: value.title,
-    active: value.active,
-    expiresAt: record_opt_to_undefined(from_candid_opt_n30(_uploadFile, _downloadFile, value.expiresAt)),
-    body: value.body,
-    createdAt: value.createdAt
-  };
-}
-function from_candid_record_n47(_uploadFile, _downloadFile, value) {
-  return {
-    id: value.id,
-    link: record_opt_to_undefined(from_candid_opt_n48(_uploadFile, _downloadFile, value.link)),
-    publishAt: record_opt_to_undefined(from_candid_opt_n30(_uploadFile, _downloadFile, value.publishAt)),
-    text: value.text,
-    isActive: value.isActive
-  };
-}
-function from_candid_record_n55(_uploadFile, _downloadFile, value) {
-  return {
-    id: value.id,
-    status: value.status,
-    date: value.date,
-    txHash: record_opt_to_undefined(from_candid_opt_n48(_uploadFile, _downloadFile, value.txHash)),
-    amount: value.amount,
-    reason: value.reason
+    expiry: record_opt_to_undefined(from_candid_opt_n10(_uploadFile, _downloadFile, value.expiry)),
+    confidence: from_candid_Confidence_n53(_uploadFile, _downloadFile, value.confidence)
   };
 }
 function from_candid_record_n60(_uploadFile, _downloadFile, value) {
   return {
     id: value.id,
-    pnl: record_opt_to_undefined(from_candid_opt_n61(_uploadFile, _downloadFile, value.pnl)),
+    marketType: from_candid_MarketType_n47(_uploadFile, _downloadFile, value.marketType),
+    direction: from_candid_Direction_n49(_uploadFile, _downloadFile, value.direction),
+    asset: value.asset,
+    timeframe: from_candid_Timeframe_n51(_uploadFile, _downloadFile, value.timeframe),
+    name: value.name,
+    createdAt: value.createdAt,
+    notes: value.notes,
+    confidence: from_candid_Confidence_n53(_uploadFile, _downloadFile, value.confidence)
+  };
+}
+function from_candid_record_n65(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    title: value.title,
+    active: value.active,
+    expiresAt: record_opt_to_undefined(from_candid_opt_n10(_uploadFile, _downloadFile, value.expiresAt)),
+    body: value.body,
+    createdAt: value.createdAt
+  };
+}
+function from_candid_record_n77(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    action: value.action,
+    rollbackData: record_opt_to_undefined(from_candid_opt_n9(_uploadFile, _downloadFile, value.rollbackData)),
+    adminToken: value.adminToken,
+    timestamp: value.timestamp,
+    details: value.details
+  };
+}
+function from_candid_record_n8(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    title: value.title,
+    body: value.body,
+    link: record_opt_to_undefined(from_candid_opt_n9(_uploadFile, _downloadFile, value.link)),
+    publishAt: record_opt_to_undefined(from_candid_opt_n10(_uploadFile, _downloadFile, value.publishAt)),
+    isActive: value.isActive,
+    timestamp: value.timestamp,
+    category: from_candid_AnnouncementCategory_n11(_uploadFile, _downloadFile, value.category),
+    isPinned: value.isPinned
+  };
+}
+function from_candid_record_n82(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    status: value.status,
+    date: value.date,
+    txHash: record_opt_to_undefined(from_candid_opt_n9(_uploadFile, _downloadFile, value.txHash)),
+    amount: value.amount,
+    reason: value.reason
+  };
+}
+function from_candid_record_n85(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    question: value.question,
+    votes: value.votes,
+    answer: record_opt_to_undefined(from_candid_opt_n9(_uploadFile, _downloadFile, value.answer)),
+    isActive: value.isActive,
+    timestamp: value.timestamp,
+    isPinned: value.isPinned
+  };
+}
+function from_candid_record_n92(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    pnl: record_opt_to_undefined(from_candid_opt_n93(_uploadFile, _downloadFile, value.pnl)),
+    direction: value.direction,
+    asset: value.asset,
+    lots: value.lots,
     notes: value.notes,
     timestamp: value.timestamp,
     entryPrice: value.entryPrice,
-    signal: value.signal,
-    exitPrice: record_opt_to_undefined(from_candid_opt_n61(_uploadFile, _downloadFile, value.exitPrice))
+    exitPrice: record_opt_to_undefined(from_candid_opt_n93(_uploadFile, _downloadFile, value.exitPrice))
   };
 }
-function from_candid_record_n64(_uploadFile, _downloadFile, value) {
+function from_candid_record_n96(_uploadFile, _downloadFile, value) {
   return {
-    assets: from_candid_vec_n65(_uploadFile, _downloadFile, value.assets),
+    assets: from_candid_vec_n97(_uploadFile, _downloadFile, value.assets),
     updatedAt: value.updatedAt,
-    overall: from_candid_SentimentLevel_n68(_uploadFile, _downloadFile, value.overall)
+    overall: from_candid_SentimentLevel_n100(_uploadFile, _downloadFile, value.overall)
   };
 }
-function from_candid_record_n67(_uploadFile, _downloadFile, value) {
+function from_candid_record_n99(_uploadFile, _downloadFile, value) {
   return {
     trend: value.trend,
     asset: value.asset,
     note: value.note,
     lastPriceUpdate: value.lastPriceUpdate,
-    level: from_candid_SentimentLevel_n68(_uploadFile, _downloadFile, value.level),
+    level: from_candid_SentimentLevel_n100(_uploadFile, _downloadFile, value.level),
     updatedAt: value.updatedAt,
     priceChange24h: value.priceChange24h,
     market: value.market,
     price: value.price
   };
 }
-function from_candid_record_n72(_uploadFile, _downloadFile, value) {
-  return {
-    id: value.id,
-    reached: value.reached,
-    celebrateUntil: record_opt_to_undefined(from_candid_opt_n30(_uploadFile, _downloadFile, value.celebrateUntil)),
-    title: value.title,
-    description: value.description,
-    reachedAt: record_opt_to_undefined(from_candid_opt_n30(_uploadFile, _downloadFile, value.reachedAt))
-  };
-}
-function from_candid_record_n77(_uploadFile, _downloadFile, value) {
-  return {
-    id: value.id,
-    contact: value.contact,
-    dateSubmitted: value.dateSubmitted,
-    name: record_opt_to_undefined(from_candid_opt_n48(_uploadFile, _downloadFile, value.name))
-  };
-}
-function from_candid_record_n89(_uploadFile, _downloadFile, value) {
-  return {
-    featuredAt: value.featuredAt,
-    comment: value.comment,
-    signal: from_candid_Signal_n20(_uploadFile, _downloadFile, value.signal),
-    weekOf: value.weekOf
-  };
-}
-function from_candid_record_n95(_uploadFile, _downloadFile, value) {
-  return {
-    useManual: value.useManual,
-    manualStats: record_opt_to_undefined(from_candid_opt_n96(_uploadFile, _downloadFile, value.manualStats))
-  };
-}
-function from_candid_record_n99(_uploadFile, _downloadFile, value) {
-  return {
-    id: value.id,
-    active: value.active,
-    content: value.content,
-    asset: record_opt_to_undefined(from_candid_opt_n48(_uploadFile, _downloadFile, value.asset)),
-    name: value.name,
-    createdAt: value.createdAt,
-    winAmount: record_opt_to_undefined(from_candid_opt_n48(_uploadFile, _downloadFile, value.winAmount))
-  };
-}
-function from_candid_variant_n104(_uploadFile, _downloadFile, value) {
-  return "ok" in value ? {
-    __kind__: "ok",
-    ok: value.ok
-  } : "err" in value ? {
-    __kind__: "err",
-    err: value.err
-  } : value;
+function from_candid_variant_n101(_uploadFile, _downloadFile, value) {
+  return "Bearish" in value ? "Bearish" : "Neutral" in value ? "Neutral" : "Bullish" in value ? "Bullish" : value;
 }
 function from_candid_variant_n106(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
-    ok: from_candid_Announcement_n46(_uploadFile, _downloadFile, value.ok)
+    ok: from_candid_vec_n107(_uploadFile, _downloadFile, value.ok)
   } : "err" in value ? {
     __kind__: "err",
     err: value.err
   } : value;
 }
-function from_candid_variant_n110(_uploadFile, _downloadFile, value) {
+function from_candid_variant_n111(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: from_candid_vec_n112(_uploadFile, _downloadFile, value.ok)
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
+}
+function from_candid_variant_n114(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
     ok: value.ok
@@ -35776,7 +36794,10 @@ function from_candid_variant_n110(_uploadFile, _downloadFile, value) {
     err: value.err
   } : value;
 }
-function from_candid_variant_n121(_uploadFile, _downloadFile, value) {
+function from_candid_variant_n12(_uploadFile, _downloadFile, value) {
+  return "General" in value ? "General" : "Token" in value ? "Token" : "Admin" in value ? "Admin" : "Alert" in value ? "Alert" : "Signal" in value ? "Signal" : value;
+}
+function from_candid_variant_n123(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
     ok: value.ok
@@ -35785,16 +36806,25 @@ function from_candid_variant_n121(_uploadFile, _downloadFile, value) {
     err: value.err
   } : value;
 }
-function from_candid_variant_n19(_uploadFile, _downloadFile, value) {
+function from_candid_variant_n125(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
-    ok: from_candid_Signal_n20(_uploadFile, _downloadFile, value.ok)
+    ok: from_candid_vec_n126(_uploadFile, _downloadFile, value.ok)
   } : "err" in value ? {
     __kind__: "err",
     err: value.err
   } : value;
 }
-function from_candid_variant_n2(_uploadFile, _downloadFile, value) {
+function from_candid_variant_n128(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: from_candid_StatsConfig_n129(_uploadFile, _downloadFile, value.ok)
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
+}
+function from_candid_variant_n139(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
     ok: value.ok
@@ -35803,22 +36833,7 @@ function from_candid_variant_n2(_uploadFile, _downloadFile, value) {
     err: value.err
   } : value;
 }
-function from_candid_variant_n23(_uploadFile, _downloadFile, value) {
-  return "Win" in value ? "Win" : "Loss" in value ? "Loss" : "Active" in value ? "Active" : "Expired" in value ? "Expired" : value;
-}
-function from_candid_variant_n25(_uploadFile, _downloadFile, value) {
-  return "Stock" in value ? "Stock" : "Forex" in value ? "Forex" : "Crypto" in value ? "Crypto" : value;
-}
-function from_candid_variant_n27(_uploadFile, _downloadFile, value) {
-  return "Buy" in value ? "Buy" : "Sell" in value ? "Sell" : value;
-}
-function from_candid_variant_n29(_uploadFile, _downloadFile, value) {
-  return "Scalp" in value ? "Scalp" : "Swing" in value ? "Swing" : "LongTerm" in value ? "LongTerm" : value;
-}
-function from_candid_variant_n32(_uploadFile, _downloadFile, value) {
-  return "Low" in value ? "Low" : "High" in value ? "High" : "Medium" in value ? "Medium" : value;
-}
-function from_candid_variant_n35(_uploadFile, _downloadFile, value) {
+function from_candid_variant_n14(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
     ok: value.ok
@@ -35827,7 +36842,7 @@ function from_candid_variant_n35(_uploadFile, _downloadFile, value) {
     err: value.err
   } : value;
 }
-function from_candid_variant_n37(_uploadFile, _downloadFile, value) {
+function from_candid_variant_n16(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
     ok: value.ok
@@ -35836,10 +36851,31 @@ function from_candid_variant_n37(_uploadFile, _downloadFile, value) {
     err: value.err
   } : value;
 }
-function from_candid_variant_n4(_uploadFile, _downloadFile, value) {
+function from_candid_variant_n18(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
     ok: value.ok
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
+}
+function from_candid_variant_n22(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: from_candid_FAQ_n23(_uploadFile, _downloadFile, value.ok)
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
+}
+function from_candid_variant_n26(_uploadFile, _downloadFile, value) {
+  return "Signals" in value ? "Signals" : "Platform" in value ? "Platform" : "GeneralTrading" in value ? "GeneralTrading" : "DmnzToken" in value ? "DmnzToken" : value;
+}
+function from_candid_variant_n28(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: from_candid_HypeMilestone_n29(_uploadFile, _downloadFile, value.ok)
   } : "err" in value ? {
     __kind__: "err",
     err: value.err
@@ -35848,31 +36884,28 @@ function from_candid_variant_n4(_uploadFile, _downloadFile, value) {
 function from_candid_variant_n42(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
-    ok: value.ok
+    ok: from_candid_Signal_n43(_uploadFile, _downloadFile, value.ok)
   } : "err" in value ? {
     __kind__: "err",
     err: value.err
   } : value;
 }
-function from_candid_variant_n44(_uploadFile, _downloadFile, value) {
-  return "ok" in value ? {
-    __kind__: "ok",
-    ok: value.ok
-  } : "err" in value ? {
-    __kind__: "err",
-    err: value.err
-  } : value;
+function from_candid_variant_n46(_uploadFile, _downloadFile, value) {
+  return "Win" in value ? "Win" : "Loss" in value ? "Loss" : "Active" in value ? "Active" : "Expired" in value ? "Expired" : value;
+}
+function from_candid_variant_n48(_uploadFile, _downloadFile, value) {
+  return "Stock" in value ? "Stock" : "Forex" in value ? "Forex" : "Crypto" in value ? "Crypto" : value;
 }
 function from_candid_variant_n50(_uploadFile, _downloadFile, value) {
-  return "ok" in value ? {
-    __kind__: "ok",
-    ok: value.ok
-  } : "err" in value ? {
-    __kind__: "err",
-    err: value.err
-  } : value;
+  return "Buy" in value ? "Buy" : "Sell" in value ? "Sell" : value;
 }
 function from_candid_variant_n52(_uploadFile, _downloadFile, value) {
+  return "Scalp" in value ? "Scalp" : "Swing" in value ? "Swing" : "LongTerm" in value ? "LongTerm" : value;
+}
+function from_candid_variant_n54(_uploadFile, _downloadFile, value) {
+  return "Low" in value ? "Low" : "High" in value ? "High" : "Medium" in value ? "Medium" : value;
+}
+function from_candid_variant_n56(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
     ok: value.ok
@@ -35881,16 +36914,34 @@ function from_candid_variant_n52(_uploadFile, _downloadFile, value) {
     err: value.err
   } : value;
 }
-function from_candid_variant_n57(_uploadFile, _downloadFile, value) {
+function from_candid_variant_n58(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
-    ok: from_candid_vec_n58(_uploadFile, _downloadFile, value.ok)
+    ok: from_candid_SignalTemplate_n59(_uploadFile, _downloadFile, value.ok)
   } : "err" in value ? {
     __kind__: "err",
     err: value.err
   } : value;
 }
 function from_candid_variant_n6(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: from_candid_Announcement_n7(_uploadFile, _downloadFile, value.ok)
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
+}
+function from_candid_variant_n62(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: value.ok
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
+}
+function from_candid_variant_n67(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
     ok: value.ok
@@ -35900,7 +36951,22 @@ function from_candid_variant_n6(_uploadFile, _downloadFile, value) {
   } : value;
 }
 function from_candid_variant_n69(_uploadFile, _downloadFile, value) {
-  return "Bearish" in value ? "Bearish" : "Neutral" in value ? "Neutral" : "Bullish" in value ? "Bullish" : value;
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: from_candid_vec_n70(_uploadFile, _downloadFile, value.ok)
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
+}
+function from_candid_variant_n72(_uploadFile, _downloadFile, value) {
+  return "ok" in value ? {
+    __kind__: "ok",
+    ok: value.ok
+  } : "err" in value ? {
+    __kind__: "err",
+    err: value.err
+  } : value;
 }
 function from_candid_variant_n74(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
@@ -35914,160 +36980,112 @@ function from_candid_variant_n74(_uploadFile, _downloadFile, value) {
 function from_candid_variant_n79(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
-    ok: from_candid_vec_n80(_uploadFile, _downloadFile, value.ok)
-  } : "err" in value ? {
-    __kind__: "err",
-    err: value.err
-  } : value;
-}
-function from_candid_variant_n82(_uploadFile, _downloadFile, value) {
-  return "ok" in value ? {
-    __kind__: "ok",
     ok: value.ok
   } : "err" in value ? {
     __kind__: "err",
     err: value.err
   } : value;
 }
-function from_candid_variant_n91(_uploadFile, _downloadFile, value) {
+function from_candid_variant_n89(_uploadFile, _downloadFile, value) {
   return "ok" in value ? {
     __kind__: "ok",
-    ok: value.ok
+    ok: from_candid_vec_n90(_uploadFile, _downloadFile, value.ok)
   } : "err" in value ? {
     __kind__: "err",
     err: value.err
   } : value;
 }
-function from_candid_variant_n93(_uploadFile, _downloadFile, value) {
-  return "ok" in value ? {
-    __kind__: "ok",
-    ok: from_candid_StatsConfig_n94(_uploadFile, _downloadFile, value.ok)
-  } : "err" in value ? {
-    __kind__: "err",
-    err: value.err
-  } : value;
+function from_candid_vec_n102(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => from_candid_CommunityMilestone_n103(_uploadFile, _downloadFile, x2));
 }
-function from_candid_vec_n38(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => from_candid_PushNotification_n39(_uploadFile, _downloadFile, x2));
+function from_candid_vec_n107(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => from_candid_NotifyMe_n108(_uploadFile, _downloadFile, x2));
 }
-function from_candid_vec_n53(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => from_candid_BurnScheduleEntry_n54(_uploadFile, _downloadFile, x2));
+function from_candid_vec_n112(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => from_candid_Signal_n43(_uploadFile, _downloadFile, x2));
 }
-function from_candid_vec_n58(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => from_candid_JournalEntry_n59(_uploadFile, _downloadFile, x2));
+function from_candid_vec_n126(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => from_candid_SignalTemplate_n59(_uploadFile, _downloadFile, x2));
 }
-function from_candid_vec_n65(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => from_candid_AssetSentiment_n66(_uploadFile, _downloadFile, x2));
+function from_candid_vec_n132(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => from_candid_Testimonial_n133(_uploadFile, _downloadFile, x2));
+}
+function from_candid_vec_n63(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => from_candid_PushNotification_n64(_uploadFile, _downloadFile, x2));
 }
 function from_candid_vec_n70(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => from_candid_CommunityMilestone_n71(_uploadFile, _downloadFile, x2));
+  return value.map((x2) => from_candid_Announcement_n7(_uploadFile, _downloadFile, x2));
 }
 function from_candid_vec_n75(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => from_candid_NotifyMe_n76(_uploadFile, _downloadFile, x2));
+  return value.map((x2) => from_candid_AuditEntry_n76(_uploadFile, _downloadFile, x2));
 }
 function from_candid_vec_n80(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => from_candid_Signal_n20(_uploadFile, _downloadFile, x2));
+  return value.map((x2) => from_candid_BurnScheduleEntry_n81(_uploadFile, _downloadFile, x2));
+}
+function from_candid_vec_n83(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => from_candid_CommunityQuestion_n84(_uploadFile, _downloadFile, x2));
+}
+function from_candid_vec_n86(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => from_candid_FAQ_n23(_uploadFile, _downloadFile, x2));
+}
+function from_candid_vec_n87(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => from_candid_HypeMilestone_n29(_uploadFile, _downloadFile, x2));
+}
+function from_candid_vec_n90(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => from_candid_JournalEntry_n91(_uploadFile, _downloadFile, x2));
 }
 function from_candid_vec_n97(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => from_candid_Testimonial_n98(_uploadFile, _downloadFile, x2));
+  return value.map((x2) => from_candid_AssetSentiment_n98(_uploadFile, _downloadFile, x2));
 }
-function to_candid_AssetSentiment_n114(_uploadFile, _downloadFile, value) {
-  return to_candid_record_n115(_uploadFile, _downloadFile, value);
+function to_candid_AnnouncementCategory_n1(_uploadFile, _downloadFile, value) {
+  return to_candid_variant_n2(_uploadFile, _downloadFile, value);
 }
-function to_candid_ChatMessage_n84(_uploadFile, _downloadFile, value) {
-  return to_candid_record_n85(_uploadFile, _downloadFile, value);
+function to_candid_AssetSentiment_n145(_uploadFile, _downloadFile, value) {
+  return to_candid_record_n146(_uploadFile, _downloadFile, value);
 }
-function to_candid_Confidence_n13(_uploadFile, _downloadFile, value) {
-  return to_candid_variant_n14(_uploadFile, _downloadFile, value);
+function to_candid_ChatMessage_n116(_uploadFile, _downloadFile, value) {
+  return to_candid_record_n117(_uploadFile, _downloadFile, value);
 }
-function to_candid_Direction_n11(_uploadFile, _downloadFile, value) {
-  return to_candid_variant_n12(_uploadFile, _downloadFile, value);
+function to_candid_Confidence_n37(_uploadFile, _downloadFile, value) {
+  return to_candid_variant_n38(_uploadFile, _downloadFile, value);
 }
-function to_candid_JournalEntry_n7(_uploadFile, _downloadFile, value) {
-  return to_candid_record_n8(_uploadFile, _downloadFile, value);
+function to_candid_Direction_n35(_uploadFile, _downloadFile, value) {
+  return to_candid_variant_n36(_uploadFile, _downloadFile, value);
 }
-function to_candid_MarketSentiment_n111(_uploadFile, _downloadFile, value) {
-  return to_candid_record_n112(_uploadFile, _downloadFile, value);
+function to_candid_FaqCategory_n19(_uploadFile, _downloadFile, value) {
+  return to_candid_variant_n20(_uploadFile, _downloadFile, value);
 }
-function to_candid_MarketType_n9(_uploadFile, _downloadFile, value) {
-  return to_candid_variant_n10(_uploadFile, _downloadFile, value);
+function to_candid_JournalEntry_n31(_uploadFile, _downloadFile, value) {
+  return to_candid_record_n32(_uploadFile, _downloadFile, value);
 }
-function to_candid_ResultStatus_n118(_uploadFile, _downloadFile, value) {
-  return to_candid_variant_n119(_uploadFile, _downloadFile, value);
+function to_candid_MarketSentiment_n142(_uploadFile, _downloadFile, value) {
+  return to_candid_record_n143(_uploadFile, _downloadFile, value);
 }
-function to_candid_SentimentLevel_n116(_uploadFile, _downloadFile, value) {
-  return to_candid_variant_n117(_uploadFile, _downloadFile, value);
+function to_candid_MarketType_n33(_uploadFile, _downloadFile, value) {
+  return to_candid_variant_n34(_uploadFile, _downloadFile, value);
 }
-function to_candid_SignalInput_n101(_uploadFile, _downloadFile, value) {
-  return to_candid_record_n102(_uploadFile, _downloadFile, value);
+function to_candid_ResultStatus_n149(_uploadFile, _downloadFile, value) {
+  return to_candid_variant_n150(_uploadFile, _downloadFile, value);
 }
-function to_candid_StatsConfig_n107(_uploadFile, _downloadFile, value) {
-  return to_candid_record_n108(_uploadFile, _downloadFile, value);
+function to_candid_SentimentLevel_n147(_uploadFile, _downloadFile, value) {
+  return to_candid_variant_n148(_uploadFile, _downloadFile, value);
 }
-function to_candid_Timeframe_n16(_uploadFile, _downloadFile, value) {
-  return to_candid_variant_n17(_uploadFile, _downloadFile, value);
+function to_candid_SignalInput_n136(_uploadFile, _downloadFile, value) {
+  return to_candid_record_n137(_uploadFile, _downloadFile, value);
 }
-function to_candid_opt_n15(_uploadFile, _downloadFile, value) {
+function to_candid_StatsConfig_n140(_uploadFile, _downloadFile, value) {
+  return to_candid_record_n141(_uploadFile, _downloadFile, value);
+}
+function to_candid_Timeframe_n39(_uploadFile, _downloadFile, value) {
+  return to_candid_variant_n40(_uploadFile, _downloadFile, value);
+}
+function to_candid_opt_n3(_uploadFile, _downloadFile, value) {
   return value === null ? candid_none() : candid_some(value);
 }
-function to_candid_opt_n33(_uploadFile, _downloadFile, value) {
+function to_candid_opt_n4(_uploadFile, _downloadFile, value) {
   return value === null ? candid_none() : candid_some(value);
 }
-function to_candid_record_n102(_uploadFile, _downloadFile, value) {
-  return {
-    marketType: to_candid_MarketType_n9(_uploadFile, _downloadFile, value.marketType),
-    direction: to_candid_Direction_n11(_uploadFile, _downloadFile, value.direction),
-    asset: value.asset,
-    timeframe: to_candid_Timeframe_n16(_uploadFile, _downloadFile, value.timeframe),
-    publishAt: value.publishAt ? candid_some(value.publishAt) : candid_none(),
-    targetPrice: value.targetPrice,
-    isDraft: value.isDraft,
-    stopLoss: value.stopLoss,
-    sourceLabel: value.sourceLabel,
-    notes: value.notes,
-    entryPrice: value.entryPrice,
-    expiry: value.expiry ? candid_some(value.expiry) : candid_none(),
-    confidence: to_candid_Confidence_n13(_uploadFile, _downloadFile, value.confidence)
-  };
-}
-function to_candid_record_n108(_uploadFile, _downloadFile, value) {
-  return {
-    useManual: value.useManual,
-    manualStats: value.manualStats ? candid_some(value.manualStats) : candid_none()
-  };
-}
-function to_candid_record_n112(_uploadFile, _downloadFile, value) {
-  return {
-    assets: to_candid_vec_n113(_uploadFile, _downloadFile, value.assets),
-    updatedAt: value.updatedAt,
-    overall: to_candid_SentimentLevel_n116(_uploadFile, _downloadFile, value.overall)
-  };
-}
-function to_candid_record_n115(_uploadFile, _downloadFile, value) {
-  return {
-    trend: value.trend,
-    asset: value.asset,
-    note: value.note,
-    lastPriceUpdate: value.lastPriceUpdate,
-    level: to_candid_SentimentLevel_n116(_uploadFile, _downloadFile, value.level),
-    updatedAt: value.updatedAt,
-    priceChange24h: value.priceChange24h,
-    market: value.market,
-    price: value.price
-  };
-}
-function to_candid_record_n8(_uploadFile, _downloadFile, value) {
-  return {
-    id: value.id,
-    pnl: value.pnl ? candid_some(value.pnl) : candid_none(),
-    notes: value.notes,
-    timestamp: value.timestamp,
-    entryPrice: value.entryPrice,
-    signal: value.signal,
-    exitPrice: value.exitPrice ? candid_some(value.exitPrice) : candid_none()
-  };
-}
-function to_candid_record_n85(_uploadFile, _downloadFile, value) {
+function to_candid_record_n117(_uploadFile, _downloadFile, value) {
   return {
     content: value.content,
     provider: value.provider ? candid_some(value.provider) : candid_none(),
@@ -36075,16 +37093,69 @@ function to_candid_record_n85(_uploadFile, _downloadFile, value) {
     timestamp: value.timestamp
   };
 }
-function to_candid_variant_n10(_uploadFile, _downloadFile, value) {
-  return value == "Stock" ? {
-    Stock: null
-  } : value == "Forex" ? {
-    Forex: null
-  } : value == "Crypto" ? {
-    Crypto: null
-  } : value;
+function to_candid_record_n137(_uploadFile, _downloadFile, value) {
+  return {
+    tp1: value.tp1,
+    tp2: value.tp2,
+    tp3: value.tp3,
+    marketType: to_candid_MarketType_n33(_uploadFile, _downloadFile, value.marketType),
+    direction: to_candid_Direction_n35(_uploadFile, _downloadFile, value.direction),
+    asset: value.asset,
+    timeframe: to_candid_Timeframe_n39(_uploadFile, _downloadFile, value.timeframe),
+    providerLabel: value.providerLabel,
+    templateId: value.templateId ? candid_some(value.templateId) : candid_none(),
+    publishAt: value.publishAt ? candid_some(value.publishAt) : candid_none(),
+    tags: value.tags,
+    targetPrice: value.targetPrice,
+    isDraft: value.isDraft,
+    stopLoss: value.stopLoss,
+    sourceLabel: value.sourceLabel,
+    notes: value.notes,
+    entryPrice: value.entryPrice,
+    expiry: value.expiry ? candid_some(value.expiry) : candid_none(),
+    confidence: to_candid_Confidence_n37(_uploadFile, _downloadFile, value.confidence)
+  };
 }
-function to_candid_variant_n117(_uploadFile, _downloadFile, value) {
+function to_candid_record_n141(_uploadFile, _downloadFile, value) {
+  return {
+    useManual: value.useManual,
+    manualStats: value.manualStats ? candid_some(value.manualStats) : candid_none()
+  };
+}
+function to_candid_record_n143(_uploadFile, _downloadFile, value) {
+  return {
+    assets: to_candid_vec_n144(_uploadFile, _downloadFile, value.assets),
+    updatedAt: value.updatedAt,
+    overall: to_candid_SentimentLevel_n147(_uploadFile, _downloadFile, value.overall)
+  };
+}
+function to_candid_record_n146(_uploadFile, _downloadFile, value) {
+  return {
+    trend: value.trend,
+    asset: value.asset,
+    note: value.note,
+    lastPriceUpdate: value.lastPriceUpdate,
+    level: to_candid_SentimentLevel_n147(_uploadFile, _downloadFile, value.level),
+    updatedAt: value.updatedAt,
+    priceChange24h: value.priceChange24h,
+    market: value.market,
+    price: value.price
+  };
+}
+function to_candid_record_n32(_uploadFile, _downloadFile, value) {
+  return {
+    id: value.id,
+    pnl: value.pnl ? candid_some(value.pnl) : candid_none(),
+    direction: value.direction,
+    asset: value.asset,
+    lots: value.lots,
+    notes: value.notes,
+    timestamp: value.timestamp,
+    entryPrice: value.entryPrice,
+    exitPrice: value.exitPrice ? candid_some(value.exitPrice) : candid_none()
+  };
+}
+function to_candid_variant_n148(_uploadFile, _downloadFile, value) {
   return value == "Bearish" ? {
     Bearish: null
   } : value == "Neutral" ? {
@@ -36093,7 +37164,7 @@ function to_candid_variant_n117(_uploadFile, _downloadFile, value) {
     Bullish: null
   } : value;
 }
-function to_candid_variant_n119(_uploadFile, _downloadFile, value) {
+function to_candid_variant_n150(_uploadFile, _downloadFile, value) {
   return value == "Win" ? {
     Win: null
   } : value == "Loss" ? {
@@ -36104,14 +37175,47 @@ function to_candid_variant_n119(_uploadFile, _downloadFile, value) {
     Expired: null
   } : value;
 }
-function to_candid_variant_n12(_uploadFile, _downloadFile, value) {
+function to_candid_variant_n2(_uploadFile, _downloadFile, value) {
+  return value == "General" ? {
+    General: null
+  } : value == "Token" ? {
+    Token: null
+  } : value == "Admin" ? {
+    Admin: null
+  } : value == "Alert" ? {
+    Alert: null
+  } : value == "Signal" ? {
+    Signal: null
+  } : value;
+}
+function to_candid_variant_n20(_uploadFile, _downloadFile, value) {
+  return value == "Signals" ? {
+    Signals: null
+  } : value == "Platform" ? {
+    Platform: null
+  } : value == "GeneralTrading" ? {
+    GeneralTrading: null
+  } : value == "DmnzToken" ? {
+    DmnzToken: null
+  } : value;
+}
+function to_candid_variant_n34(_uploadFile, _downloadFile, value) {
+  return value == "Stock" ? {
+    Stock: null
+  } : value == "Forex" ? {
+    Forex: null
+  } : value == "Crypto" ? {
+    Crypto: null
+  } : value;
+}
+function to_candid_variant_n36(_uploadFile, _downloadFile, value) {
   return value == "Buy" ? {
     Buy: null
   } : value == "Sell" ? {
     Sell: null
   } : value;
 }
-function to_candid_variant_n14(_uploadFile, _downloadFile, value) {
+function to_candid_variant_n38(_uploadFile, _downloadFile, value) {
   return value == "Low" ? {
     Low: null
   } : value == "High" ? {
@@ -36120,7 +37224,7 @@ function to_candid_variant_n14(_uploadFile, _downloadFile, value) {
     Medium: null
   } : value;
 }
-function to_candid_variant_n17(_uploadFile, _downloadFile, value) {
+function to_candid_variant_n40(_uploadFile, _downloadFile, value) {
   return value == "Scalp" ? {
     Scalp: null
   } : value == "Swing" ? {
@@ -36129,14 +37233,14 @@ function to_candid_variant_n17(_uploadFile, _downloadFile, value) {
     LongTerm: null
   } : value;
 }
-function to_candid_vec_n100(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => to_candid_SignalInput_n101(_uploadFile, _downloadFile, x2));
+function to_candid_vec_n115(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => to_candid_ChatMessage_n116(_uploadFile, _downloadFile, x2));
 }
-function to_candid_vec_n113(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => to_candid_AssetSentiment_n114(_uploadFile, _downloadFile, x2));
+function to_candid_vec_n135(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => to_candid_SignalInput_n136(_uploadFile, _downloadFile, x2));
 }
-function to_candid_vec_n83(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => to_candid_ChatMessage_n84(_uploadFile, _downloadFile, x2));
+function to_candid_vec_n144(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => to_candid_AssetSentiment_n145(_uploadFile, _downloadFile, x2));
 }
 function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
   const agent = options.agent || HttpAgent.createSync({
@@ -36151,6 +37255,54 @@ function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
     ...options.actorOptions
   });
   return new Backend(actor, _uploadFile, _downloadFile, options.processError);
+}
+const AdminSessionContext = reactExports.createContext(
+  null
+);
+function AdminSessionProvider({ children }) {
+  const [adminToken, setAdminTokenState] = reactExports.useState(() => {
+    try {
+      return sessionStorage.getItem("dz_admin_token") ?? null;
+    } catch {
+      return null;
+    }
+  });
+  const [clickCount, setClickCount] = reactExports.useState(0);
+  function setAdminToken(token) {
+    setAdminTokenState(token);
+    try {
+      if (token) {
+        sessionStorage.setItem("dz_admin_token", token);
+      } else {
+        sessionStorage.removeItem("dz_admin_token");
+      }
+    } catch {
+    }
+  }
+  function clearAdminSession() {
+    setAdminTokenState(null);
+    setClickCount(0);
+    try {
+      sessionStorage.removeItem("dz_admin_token");
+    } catch {
+    }
+  }
+  function incrementClickCount() {
+    setClickCount((c2) => c2 + 1);
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    AdminSessionContext.Provider,
+    {
+      value: {
+        adminToken,
+        setAdminToken,
+        clearAdminSession,
+        clickCount,
+        incrementClickCount
+      },
+      children
+    }
+  );
 }
 const SessionContext = reactExports.createContext(null);
 function SessionProvider({ children }) {
@@ -36184,6 +37336,138 @@ function AdminGuard({ children }) {
   }, [sessionToken, navigate]);
   if (!sessionToken) return null;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children });
+}
+function BackToTop() {
+  const [visible, setVisible] = reactExports.useState(false);
+  reactExports.useEffect(() => {
+    function onScroll() {
+      setVisible(window.scrollY > 300);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  if (!visible) return null;
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "button",
+    {
+      type: "button",
+      "data-ocid": "back_to_top.button",
+      onClick: scrollToTop,
+      "aria-label": "Back to top",
+      className: "btn-back-to-top",
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUp, { className: "w-5 h-5" })
+    }
+  );
+}
+function isTouchDevice() {
+  if (typeof window === "undefined") return false;
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+}
+function CustomCursor() {
+  const cursorRef = reactExports.useRef(null);
+  const trailRef = reactExports.useRef(null);
+  const [visible, setVisible] = reactExports.useState(false);
+  const pos = reactExports.useRef({ x: 0, y: 0 });
+  const trail = reactExports.useRef({ x: 0, y: 0 });
+  const raf = reactExports.useRef(0);
+  reactExports.useEffect(() => {
+    if (isTouchDevice()) return;
+    function onMouseMove(e) {
+      pos.current = { x: e.clientX, y: e.clientY };
+      if (!visible) setVisible(true);
+    }
+    function onMouseLeave() {
+      setVisible(false);
+    }
+    function animate() {
+      trail.current.x += (pos.current.x - trail.current.x) * 0.15;
+      trail.current.y += (pos.current.y - trail.current.y) * 0.15;
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate(${pos.current.x - 8}px, ${pos.current.y - 8}px)`;
+      }
+      if (trailRef.current) {
+        trailRef.current.style.transform = `translate(${trail.current.x - 16}px, ${trail.current.y - 16}px)`;
+      }
+      raf.current = requestAnimationFrame(animate);
+    }
+    window.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseleave", onMouseLeave);
+    raf.current = requestAnimationFrame(animate);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseleave", onMouseLeave);
+      cancelAnimationFrame(raf.current);
+    };
+  }, [visible]);
+  if (typeof window !== "undefined" && isTouchDevice()) return null;
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        ref: cursorRef,
+        "aria-hidden": "true",
+        style: {
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: 16,
+          height: 16,
+          pointerEvents: "none",
+          zIndex: 99999,
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.2s",
+          willChange: "transform"
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "svg",
+          {
+            width: "16",
+            height: "16",
+            viewBox: "0 0 16 16",
+            fill: "none",
+            xmlns: "http://www.w3.org/2000/svg",
+            role: "img",
+            "aria-label": "cursor",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "path",
+                {
+                  d: "M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5L8 0Z",
+                  fill: "oklch(0.65 0.18 190)",
+                  opacity: "0.95"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "8", cy: "8", r: "2", fill: "oklch(0.90 0.10 200)" })
+            ]
+          }
+        )
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        ref: trailRef,
+        "aria-hidden": "true",
+        style: {
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: 32,
+          height: 32,
+          borderRadius: "50%",
+          border: "1.5px solid oklch(0.65 0.18 190 / 0.4)",
+          pointerEvents: "none",
+          zIndex: 99998,
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.2s",
+          willChange: "transform"
+        }
+      }
+    )
+  ] });
 }
 var DefaultContext = {
   color: void 0,
@@ -36305,7 +37589,11 @@ function useAnnouncement() {
     queryKey: ["announcement"],
     queryFn: async () => {
       if (!actor) return null;
-      return actor.getAnnouncement();
+      const announcements = await actor.getAnnouncements();
+      const pinned = announcements.find((a2) => a2.isActive && a2.isPinned);
+      if (pinned) return pinned;
+      const active = announcements.find((a2) => a2.isActive);
+      return active ?? null;
     },
     enabled: !!actor && !isFetching,
     refetchInterval: 6e4
@@ -36324,7 +37612,10 @@ function AnnouncementBanner() {
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 min-w-0", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Megaphone, { className: "w-4 h-4 shrink-0" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-medium truncate", children: announcement.text }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm font-medium truncate", children: [
+            announcement.title,
+            announcement.body ? ` — ${announcement.body}` : ""
+          ] }),
           announcement.link && /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "a",
             {
@@ -36351,31 +37642,6 @@ function AnnouncementBanner() {
           }
         )
       ]
-    }
-  );
-}
-function BackToTop() {
-  const [visible, setVisible] = reactExports.useState(false);
-  reactExports.useEffect(() => {
-    function onScroll() {
-      setVisible(window.scrollY > 300);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-  if (!visible) return null;
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "button",
-    {
-      type: "button",
-      "data-ocid": "back_to_top.button",
-      onClick: scrollToTop,
-      "aria-label": "Back to top",
-      className: "btn-back-to-top",
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUp, { className: "w-5 h-5" })
     }
   );
 }
@@ -39100,10 +40366,37 @@ function ThemeToggle() {
 }
 const NAV_LINKS$1 = [
   { label: "Signals", href: "#signals", section: "signals" },
-  { label: "Markets", href: "#markets", section: "markets" },
   { label: "DMNZ Token", href: "#token", section: "token" },
   { label: "Roadmap", href: "#roadmap", section: "roadmap" },
+  { label: "Community", href: "#community", section: "community" },
   { label: "FAQ", href: "#faq", section: "faq" }
+];
+const MOBILE_NAV = [
+  {
+    label: "Home",
+    href: "#hero",
+    section: "hero",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(House, { className: "w-5 h-5" })
+  },
+  {
+    label: "Signals",
+    href: "#signals",
+    section: "signals",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Signal$1, { className: "w-5 h-5" })
+  },
+  {
+    label: "AI",
+    href: "/ai",
+    section: "",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(BrainCircuit, { className: "w-5 h-5" }),
+    isExternal: true
+  },
+  {
+    label: "Token",
+    href: "#token",
+    section: "token",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-5 h-5" })
+  }
 ];
 function scrollTo(href) {
   const el = document.querySelector(href);
@@ -39121,178 +40414,186 @@ function Navbar() {
     observerRef.current = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
         }
       },
       { threshold: 0.3, rootMargin: "-60px 0px -40% 0px" }
     );
-    for (const s2 of sections) {
-      (_a3 = observerRef.current) == null ? void 0 : _a3.observe(s2);
-    }
+    for (const s2 of sections) (_a3 = observerRef.current) == null ? void 0 : _a3.observe(s2);
     return () => {
       var _a4;
       return (_a4 = observerRef.current) == null ? void 0 : _a4.disconnect();
     };
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "header",
-    {
-      "data-ocid": "navbar.panel",
-      className: "sticky top-0 z-40 w-full bg-card/95 backdrop-blur-md border-b border-border shadow-subtle",
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "container mx-auto px-4 h-16 flex items-center justify-between", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              "data-ocid": "navbar.home.link",
-              onClick: () => scrollTo("#hero"),
-              className: "flex items-center gap-2 group",
-              "aria-label": "DemonZeno home",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-lg bg-primary flex items-center justify-center group-hover:scale-105 transition-smooth", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Zap,
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "header",
+      {
+        "data-ocid": "navbar.panel",
+        className: "sticky top-0 z-40 w-full bg-card/95 backdrop-blur-md border-b border-border shadow-subtle",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "container mx-auto px-4 h-16 flex items-center justify-between", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                "data-ocid": "navbar.home.link",
+                onClick: () => scrollTo("#hero"),
+                className: "flex items-center gap-2 group",
+                "aria-label": "DemonZeno home",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-lg bg-primary flex items-center justify-center group-hover:scale-105 transition-smooth", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Zap,
+                    {
+                      className: "w-4 h-4 text-primary-foreground",
+                      strokeWidth: 2.5
+                    }
+                  ) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display font-bold text-lg text-foreground tracking-tight", children: [
+                    "Demon",
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Zeno" })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border hidden sm:inline", children: "DMNZ" })
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "hidden md:flex items-center gap-1", children: [
+              NAV_LINKS$1.map((link) => {
+                const isActive = activeSection === link.section;
+                return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
                   {
-                    className: "w-4 h-4 text-primary-foreground",
-                    strokeWidth: 2.5
+                    type: "button",
+                    "data-ocid": `navbar.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
+                    onClick: () => scrollTo(link.href),
+                    className: `px-3 py-2 rounded-md text-sm font-medium transition-smooth ${isActive ? "nav-link-active" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`,
+                    children: link.label
                   }
-                ) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display font-bold text-lg text-foreground tracking-tight", children: [
-                  "Demon",
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Zeno" })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border hidden sm:inline", children: "DMNZ" })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "hidden md:flex items-center gap-1", children: [
+                ) }, link.href);
+              }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "a",
+                {
+                  href: "/ai",
+                  "data-ocid": "navbar.ai.link",
+                  className: "flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium transition-smooth text-primary hover:bg-primary/10",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(BrainCircuit, { className: "w-3.5 h-3.5" }),
+                    "AI"
+                  ]
+                }
+              ) })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "hidden md:flex items-center gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeToggle, {}),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  size: "sm",
+                  "data-ocid": "navbar.get_signals.primary_button",
+                  onClick: () => scrollTo("#signals"),
+                  className: "btn-primary",
+                  children: "Get Free Signals"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "md:hidden flex items-center gap-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeToggle, {}),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  "data-ocid": "navbar.mobile_menu.toggle",
+                  className: "p-2 rounded-md hover:bg-muted transition-smooth",
+                  onClick: () => setMobileOpen((v2) => !v2),
+                  "aria-label": mobileOpen ? "Close menu" : "Open menu",
+                  "aria-expanded": mobileOpen,
+                  children: mobileOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-5 h-5" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, { className: "w-5 h-5" })
+                }
+              )
+            ] })
+          ] }),
+          mobileOpen && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "md:hidden border-t border-border bg-card", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "container mx-auto px-4 py-4 flex flex-col gap-1", children: [
             NAV_LINKS$1.map((link) => {
               const isActive = activeSection === link.section;
               return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "button",
                 {
                   type: "button",
-                  "data-ocid": `navbar.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
-                  onClick: () => scrollTo(link.href),
-                  className: `px-3 py-2 rounded-md text-sm font-medium transition-smooth ${isActive ? "nav-link-active" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`,
+                  "data-ocid": `navbar.mobile.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
+                  onClick: () => {
+                    scrollTo(link.href);
+                    setMobileOpen(false);
+                  },
+                  className: `block w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-smooth ${isActive ? "nav-link-active" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`,
                   children: link.label
                 }
               ) }, link.href);
             }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Link,
+              "a",
               {
-                to: "/ai",
-                "data-ocid": "navbar.ai.link",
-                className: "flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium transition-smooth text-primary hover:bg-primary/10",
+                href: "/ai",
+                "data-ocid": "navbar.mobile.ai.link",
+                onClick: () => setMobileOpen(false),
+                className: "flex items-center gap-2 w-full px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-primary hover:bg-primary/10",
                 children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(BrainCircuit, { className: "w-3.5 h-3.5" }),
-                  "AI"
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(BrainCircuit, { className: "w-4 h-4" }),
+                  "DemonZeno AI"
                 ]
               }
-            ) })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "hidden md:flex items-center gap-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeToggle, {}),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "pt-2", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               Button,
               {
-                size: "sm",
-                "data-ocid": "navbar.get_signals.primary_button",
-                onClick: () => scrollTo("#signals"),
-                className: "btn-primary",
-                children: "Get Free Signals"
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "md:hidden flex items-center gap-1", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeToggle, {}),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                "data-ocid": "navbar.mobile_menu.toggle",
-                className: "p-2 rounded-md hover:bg-muted transition-smooth",
-                onClick: () => setMobileOpen((v2) => !v2),
-                "aria-label": mobileOpen ? "Close menu" : "Open menu",
-                "aria-expanded": mobileOpen,
-                children: mobileOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-5 h-5" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, { className: "w-5 h-5" })
-              }
-            )
-          ] })
-        ] }),
-        mobileOpen && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "md:hidden border-t border-border bg-card", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "container mx-auto px-4 py-4 flex flex-col gap-1", children: [
-          NAV_LINKS$1.map((link) => {
-            const isActive = activeSection === link.section;
-            return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                "data-ocid": `navbar.mobile.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
+                "data-ocid": "navbar.mobile.get_signals.primary_button",
                 onClick: () => {
-                  scrollTo(link.href);
+                  scrollTo("#signals");
                   setMobileOpen(false);
                 },
-                className: `block w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-smooth ${isActive ? "nav-link-active" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`,
-                children: link.label
+                className: "btn-primary w-full",
+                children: "Get Free Signals"
               }
-            ) }, link.href);
-          }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Link,
-            {
-              to: "/ai",
-              "data-ocid": "navbar.mobile.ai.link",
-              onClick: () => setMobileOpen(false),
-              className: "flex items-center gap-2 w-full px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-primary hover:bg-primary/10",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(BrainCircuit, { className: "w-4 h-4" }),
-                "DemonZeno AI"
-              ]
-            }
-          ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "pt-2", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Button,
-            {
-              "data-ocid": "navbar.mobile.get_signals.primary_button",
-              onClick: () => {
-                scrollTo("#signals");
-                setMobileOpen(false);
-              },
-              className: "btn-primary w-full",
-              children: "Get Free Signals"
-            }
-          ) })
-        ] }) })
-      ]
-    }
-  );
-}
-function ScrollProgress() {
-  const barRef = reactExports.useRef(null);
-  reactExports.useEffect(() => {
-    function onScroll() {
-      const el = barRef.current;
-      if (!el) return;
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? scrollTop / docHeight * 100 : 0;
-      el.style.width = `${pct}%`;
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      ref: barRef,
-      "data-ocid": "scroll_progress.panel",
-      className: "progress-bar",
-      "aria-hidden": "true"
-    }
-  );
+            ) })
+          ] }) })
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "nav",
+      {
+        className: "md:hidden fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-t border-border",
+        "aria-label": "Mobile bottom navigation",
+        "data-ocid": "navbar.mobile_bottom.panel",
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-around py-2 px-2", children: MOBILE_NAV.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: item.isExternal ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "a",
+          {
+            href: item.href,
+            "data-ocid": `navbar.mobile_bottom.${item.label.toLowerCase()}.link`,
+            className: "flex flex-col items-center gap-0.5 px-3 py-2 rounded-xl text-primary hover:bg-primary/10 transition-smooth min-w-[44px]",
+            "aria-label": item.label,
+            children: [
+              item.icon,
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] font-semibold text-primary", children: item.label })
+            ]
+          }
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "button",
+          {
+            type: "button",
+            "data-ocid": `navbar.mobile_bottom.${item.label.toLowerCase()}.link`,
+            onClick: () => scrollTo(item.href),
+            className: `flex flex-col items-center gap-0.5 px-3 py-2 rounded-xl transition-smooth min-w-[44px] ${activeSection === item.section ? "text-primary" : "text-muted-foreground"}`,
+            "aria-label": item.label,
+            children: [
+              item.icon,
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] font-semibold", children: item.label })
+            ]
+          }
+        ) }, item.label)) })
+      }
+    )
+  ] });
 }
 const NAV_LINKS = [
   ["Signals", "#signals"],
@@ -39394,12 +40695,10 @@ function Footer() {
 }
 function Layout() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen flex flex-col bg-background", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollProgress, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(AnnouncementBanner, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(BackToTop, {})
+    /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1 pb-16 md:pb-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {})
   ] });
 }
 function LoadingScreen({ onComplete }) {
@@ -39466,7 +40765,7 @@ function LoadingScreen({ onComplete }) {
                     alignItems: "center",
                     justifyContent: "center"
                   },
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
                     "svg",
                     {
                       width: "60",
@@ -39475,15 +40774,18 @@ function LoadingScreen({ onComplete }) {
                       fill: "none",
                       "aria-hidden": "true",
                       style: { filter: "drop-shadow(0 0 12px oklch(0.65 0.15 190))" },
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "path",
-                        {
-                          d: "M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z",
-                          fill: "oklch(0.65 0.15 190)",
-                          stroke: "oklch(0.75 0.12 190)",
-                          strokeWidth: "0.5"
-                        }
-                      )
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "path",
+                          {
+                            d: "M12 2L14 9L21 12L14 15L12 22L10 15L3 12L10 9L12 2Z",
+                            fill: "oklch(0.65 0.15 190)",
+                            stroke: "oklch(0.75 0.12 190)",
+                            strokeWidth: "0.5"
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "12", cy: "12", r: "3", fill: "oklch(0.90 0.10 200)" })
+                      ]
                     }
                   )
                 }
@@ -39497,6 +40799,18 @@ function LoadingScreen({ onComplete }) {
                     borderRadius: "50%",
                     border: "2px solid oklch(0.65 0.15 190 / 0.3)",
                     animation: "spin 3s linear infinite"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  style: {
+                    position: "absolute",
+                    inset: -16,
+                    borderRadius: "50%",
+                    border: "1px solid oklch(0.65 0.15 190 / 0.15)",
+                    animation: "spin 5s linear infinite reverse"
                   }
                 }
               )
@@ -39513,7 +40827,7 @@ function LoadingScreen({ onComplete }) {
                 "div",
                 {
                   style: {
-                    fontSize: "2rem",
+                    fontSize: "2.25rem",
                     fontWeight: 800,
                     letterSpacing: "-0.02em",
                     color: "oklch(0.95 0.005 260)",
@@ -39526,14 +40840,14 @@ function LoadingScreen({ onComplete }) {
                 "div",
                 {
                   style: {
-                    fontSize: "0.75rem",
-                    letterSpacing: "0.2em",
+                    fontSize: "0.7rem",
+                    letterSpacing: "0.25em",
                     textTransform: "uppercase",
                     color: "oklch(0.65 0.15 190)",
-                    marginTop: "0.25rem",
+                    marginTop: "0.35rem",
                     fontFamily: "var(--font-mono, 'JetBrains Mono', monospace)"
                   },
-                  children: "DMNZ · Loading"
+                  children: "DMNZ · Initializing"
                 }
               )
             ]
@@ -39556,7 +40870,7 @@ function LoadingScreen({ onComplete }) {
               maxWidth: 320,
               lineHeight: 1.6,
               letterSpacing: "0.05em",
-              fontFamily: "var(--font-body, 'Satoshi', sans-serif)",
+              fontFamily: "var(--font-body, 'DM Sans', sans-serif)",
               animation: "fadeInUp 1s ease-out 0.8s both",
               padding: "0 1rem"
             },
@@ -39922,14 +41236,43 @@ function NotificationCard({ notification, onDismiss }) {
     }
   );
 }
+function ScrollProgress() {
+  const barRef = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    function onScroll() {
+      const el = barRef.current;
+      if (!el) return;
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? scrollTop / docHeight * 100 : 0;
+      el.style.width = `${pct}%`;
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      ref: barRef,
+      "data-ocid": "scroll_progress.panel",
+      className: "progress-bar",
+      "aria-hidden": "true"
+    }
+  );
+}
 const LANGUAGE_KEY = "dz_ai_language";
+const SESSION_KEY = "dz_ai_session_token";
 const AiSessionContext = reactExports.createContext(null);
 function AiSessionProvider({ children }) {
   const [aiSessionToken, setAiSessionTokenState] = reactExports.useState(
-    null
+    () => {
+      try {
+        return sessionStorage.getItem(SESSION_KEY) ?? null;
+      } catch {
+        return null;
+      }
+    }
   );
-  const [aiMode, setAiModeState] = reactExports.useState(null);
-  const [isAdminSession, setIsAdminSession] = reactExports.useState(false);
   const [aiLanguage, setAiLanguageState] = reactExports.useState(() => {
     try {
       const stored = localStorage.getItem(LANGUAGE_KEY);
@@ -39938,47 +41281,44 @@ function AiSessionProvider({ children }) {
     }
     return "en";
   });
+  const [journalEntries, setJournalEntries] = reactExports.useState([]);
+  reactExports.useEffect(() => {
+    try {
+      if (aiSessionToken) {
+        sessionStorage.setItem(SESSION_KEY, aiSessionToken);
+      } else {
+        sessionStorage.removeItem(SESSION_KEY);
+      }
+    } catch {
+    }
+  }, [aiSessionToken]);
   reactExports.useEffect(() => {
     try {
       localStorage.setItem(LANGUAGE_KEY, aiLanguage);
     } catch {
     }
   }, [aiLanguage]);
-  function setSession(token, mode) {
-    setAiSessionTokenState(token);
-    setAiModeState(mode);
-  }
-  function setAdminSession(isAdmin) {
-    setIsAdminSession(isAdmin);
-  }
   function setAiSessionToken(token) {
     setAiSessionTokenState(token);
-  }
-  function setAiMode(mode) {
-    setAiModeState(mode);
   }
   function setAiLanguage(lang) {
     setAiLanguageState(lang);
   }
   function clearAiSession() {
     setAiSessionTokenState(null);
-    setAiModeState(null);
-    setIsAdminSession(false);
+    setJournalEntries([]);
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     AiSessionContext.Provider,
     {
       value: {
         aiSessionToken,
-        aiMode,
-        isAdminSession,
         aiLanguage,
-        setSession,
-        setAdminSession,
         setAiSessionToken,
-        setAiMode,
         setAiLanguage,
-        clearAiSession
+        clearAiSession,
+        journalEntries,
+        setJournalEntries
       },
       children
     }
@@ -40051,16 +41391,16 @@ function useSignalAccuracy() {
   return ctx;
 }
 const Home = reactExports.lazy(
-  () => __vitePreload(() => import("./Home-Df9AKR6C.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0).then((m2) => ({ default: m2.Home }))
+  () => __vitePreload(() => import("./Home-lfOARwU_.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0).then((m2) => ({ default: m2.Home }))
 );
 const AdminDashboard = reactExports.lazy(
-  () => __vitePreload(() => import("./AdminDashboard-Dx8TgBK-.js"), true ? __vite__mapDeps([4,1,2,5]) : void 0).then((m2) => ({ default: m2.AdminDashboard }))
+  () => __vitePreload(() => import("./AdminDashboard-I_0ekoBw.js"), true ? __vite__mapDeps([4,5,2,1]) : void 0).then((m2) => ({ default: m2.AdminDashboard }))
 );
 const NotFound = reactExports.lazy(
-  () => __vitePreload(() => import("./NotFound-1hfp0P0J.js"), true ? [] : void 0).then((m2) => ({ default: m2.NotFound }))
+  () => __vitePreload(() => import("./NotFound-CrN8aLEu.js"), true ? [] : void 0).then((m2) => ({ default: m2.NotFound }))
 );
 const AiChat = reactExports.lazy(
-  () => __vitePreload(() => import("./AiChat-Dp6vmHjq.js"), true ? __vite__mapDeps([6,1,5,3]) : void 0).then((m2) => ({ default: m2.AiChat }))
+  () => __vitePreload(() => import("./AiChat-B3YKkoP7.js"), true ? __vite__mapDeps([6,5,2,3]) : void 0).then((m2) => ({ default: m2.AiChat }))
 );
 function PageLoader() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "min-h-screen bg-background flex flex-col items-center justify-center gap-6", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-4", children: [
@@ -40110,12 +41450,15 @@ function AppShell({ children }) {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(LoadingScreen, { onComplete: handleLoadingDone });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(MaintenanceCheck, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollProgress, {}),
     children,
-    /* @__PURE__ */ jsxRuntimeExports.jsx(PushNotificationDisplay, {})
+    /* @__PURE__ */ jsxRuntimeExports.jsx(BackToTop, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PushNotificationDisplay, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(CustomCursor, {})
   ] });
 }
 const rootRoute = createRootRoute({
-  component: () => /* @__PURE__ */ jsxRuntimeExports.jsx(SessionProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(AiSessionProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(SignalAccuracyProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(AppShell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Suspense, { fallback: /* @__PURE__ */ jsxRuntimeExports.jsx(PageLoader, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }) }) }) }) })
+  component: () => /* @__PURE__ */ jsxRuntimeExports.jsx(SessionProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(AdminSessionProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(AiSessionProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(SignalAccuracyProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(AppShell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Suspense, { fallback: /* @__PURE__ */ jsxRuntimeExports.jsx(PageLoader, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }) }) }) }) }) })
 });
 const layoutRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -40174,50 +41517,51 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(InternetIdentityProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) }) })
 );
 export {
-  useAiSession as A,
+  AnnouncementCategory as A,
   Button as B,
   Confidence as C,
   Direction as D,
   ExternalLink as E,
-  useSignalAccuracy as F,
-  Menu as G,
-  reactDomExports as H,
-  composeRefs as I,
-  React$5 as J,
-  ReactDOM$2 as K,
+  FaqCategory as F,
+  useSignalAccuracy as G,
+  Menu as H,
+  Slot as I,
+  cva as J,
+  reactDomExports as K,
   Link as L,
   MarketType as M,
-  Slot as N,
-  cva as O,
+  ReactDOM$2 as N,
+  React$5 as O,
+  composeRefs as P,
   React$4 as R,
   SiBinance as S,
   Twitter as T,
   X,
   Zap as Z,
-  cn as a,
-  useActor as b,
+  useQuery as a,
+  createActor as b,
   createLucideIcon as c,
-  createActor as d,
-  useQuery as e,
-  Timeframe as f,
-  useSession as g,
-  useNavigate as h,
-  Subscribable as i,
+  Timeframe as d,
+  useComposedRefs as e,
+  cn as f,
+  useQueryClient as g,
+  useSession as h,
+  createSlot as i,
   jsxRuntimeExports as j,
-  hashKey as k,
-  getDefaultState as l,
-  useQueryClient as m,
-  notifyManager as n,
-  noop$6 as o,
-  shouldThrowError as p,
-  commonjsGlobal as q,
+  commonjsGlobal as k,
+  getDefaultExportFromCjs as l,
+  clsx as m,
+  invariant as n,
+  useNavigate as o,
+  SentimentLevel as p,
+  Subscribable as q,
   reactExports as r,
   shallowEqualObjects as s,
-  getDefaultExportFromCjs as t,
-  useComposedRefs as u,
-  clsx as v,
-  invariant as w,
-  useAnnouncement as x,
-  SentimentLevel as y,
-  createSlot as z
+  hashKey as t,
+  useActor as u,
+  getDefaultState as v,
+  notifyManager as w,
+  noop$6 as x,
+  shouldThrowError as y,
+  useAiSession as z
 };

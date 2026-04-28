@@ -65,8 +65,10 @@ import {
 import { toast } from "sonner";
 import { createActor } from "../backend";
 import {
+  AnnouncementCategory as AnnCatEnum,
   Confidence as ConfEnum,
   Direction as DirEnum,
+  FaqCategory as FaqCatEnum,
   MarketType as MktEnum,
   SentimentLevel as SentEnum,
   Timeframe as TfEnum,
@@ -93,16 +95,19 @@ import {
   useScheduledSignalsEnhanced,
   useSignalOfWeekAdmin,
   useSignalPerformanceStats,
+  useSignalTemplates,
+  useTopTraders,
   useWhitepaper,
 } from "../hooks/useAdminEnhancements";
 import { useAnalytics } from "../hooks/useAnalytics";
-import { useAnnouncement } from "../hooks/useAnnouncement";
+// import { useAnnouncement } from "../hooks/useAnnouncement"; // replaced by direct actor.getAnnouncements()
 import { useAuditLog } from "../hooks/useAuditLog";
 import { useBinanceFeed } from "../hooks/useBinanceFeed";
 import { useFaqs } from "../hooks/useFaqs";
 import { useSignals } from "../hooks/useSignals";
 import { useStats } from "../hooks/useStats";
 import type {
+  Announcement,
   AssetSentiment,
   BinancePost,
   BurnScheduleEntry,
@@ -117,9 +122,11 @@ import type {
   SentimentLevel,
   Signal,
   SignalOfWeekFull,
+  SignalTemplate,
   StatsConfig,
   Testimonial,
   Timeframe,
+  TopTrader,
   WhitepaperContent,
   WhitepaperSection,
 } from "../types";
@@ -156,15 +163,20 @@ function signalToForm(s: Signal): SignalFormState {
     marketType: s.marketType,
     direction: s.direction,
     entryPrice: s.entryPrice,
+    tp1: s.tp1 ?? "",
+    tp2: s.tp2 ?? "",
+    tp3: s.tp3 ?? "",
     targetPrice: s.targetPrice,
     stopLoss: s.stopLoss,
     notes: s.notes,
     confidence: s.confidence,
     sourceLabel: s.sourceLabel,
+    providerLabel: s.providerLabel ?? "",
     timeframe: s.timeframe,
     isDraft: s.isDraft,
     publishAt: bigIntToDatetimeLocal(s.publishAt),
     expiry: bigIntToDatetimeLocal(s.expiry),
+    tags: s.tags ?? [],
   };
 }
 
@@ -184,6 +196,7 @@ function SignalsTab({ sessionToken }: { sessionToken: string }) {
   const { actor } = useActor(createActor);
   const qc = useQueryClient();
   const { data: signals = [], isLoading } = useSignals();
+  const { data: templates = [] } = useSignalTemplates(sessionToken);
   const [editing, setEditing] = useState<Signal | null>(null);
   const [adding, setAdding] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -221,13 +234,19 @@ function SignalsTab({ sessionToken }: { sessionToken: string }) {
       form.entryPrice,
       form.targetPrice,
       form.stopLoss,
+      form.tp1,
+      form.tp2,
+      form.tp3,
       form.notes,
       form.confidence,
       form.sourceLabel,
+      form.providerLabel,
       datetimeLocalToBigInt(form.expiry),
       form.timeframe,
       form.isDraft,
       datetimeLocalToBigInt(form.publishAt),
+      null,
+      form.tags,
     );
     setSaving(false);
     if (r.__kind__ === "ok") {
@@ -253,13 +272,19 @@ function SignalsTab({ sessionToken }: { sessionToken: string }) {
       form.entryPrice,
       form.targetPrice,
       form.stopLoss,
+      form.tp1,
+      form.tp2,
+      form.tp3,
       form.notes,
       form.confidence,
       form.sourceLabel,
+      form.providerLabel,
       datetimeLocalToBigInt(form.expiry),
       form.timeframe,
       form.isDraft,
       datetimeLocalToBigInt(form.publishAt),
+      null,
+      form.tags,
     );
     setSaving(false);
     if (r.__kind__ === "ok") {
@@ -336,6 +361,7 @@ function SignalsTab({ sessionToken }: { sessionToken: string }) {
           onCancel={cancelForm}
           submitLabel="Add Signal"
           saving={saving}
+          templates={templates as SignalTemplate[]}
         />
       )}
 
@@ -385,6 +411,7 @@ function SignalsTab({ sessionToken }: { sessionToken: string }) {
                   onCancel={cancelForm}
                   submitLabel="Save Changes"
                   saving={saving}
+                  templates={templates as SignalTemplate[]}
                 />
               ) : confirmDelete === s.id ? (
                 <div className="flex items-center justify-between gap-3 flex-wrap bg-destructive/10 border border-destructive/30 rounded-lg p-3">
@@ -616,15 +643,20 @@ function CsvImportPanel({
       entryPrice: r.entryPrice,
       targetPrice: r.targetPrice,
       stopLoss: r.stopLoss,
+      tp1: r.targetPrice,
+      tp2: "",
+      tp3: "",
       notes: r.notes,
       confidence:
         (r.confidence as (typeof ConfEnum)[keyof typeof ConfEnum]) ||
         ConfEnum.Medium,
       sourceLabel: r.sourceLabel,
+      providerLabel: "",
       timeframe: (r.timeframe as Timeframe) || TfEnum.Swing,
       isDraft: false,
       publishAt: undefined,
       expiry: undefined,
+      tags: [],
     }));
     const result = await actor.importSignals(sessionToken, inputs);
     setImporting(false);
@@ -1419,7 +1451,11 @@ function FaqTab({ sessionToken }: { sessionToken: string }) {
   const { data: faqs = [], isLoading } = useFaqs();
   const [editing, setEditing] = useState<FAQ | null>(null);
   const [adding, setAdding] = useState(false);
-  const [form, setForm] = useState({ question: "", answer: "" });
+  const [form, setForm] = useState({
+    question: "",
+    answer: "",
+    category: FaqCatEnum.Signals,
+  });
   const [saving, setSaving] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const sorted = [...faqs].sort((a, b) => Number(a.order - b.order));
@@ -1433,13 +1469,18 @@ function FaqTab({ sessionToken }: { sessionToken: string }) {
     e.preventDefault();
     if (!actor) return;
     setSaving(true);
-    const r = await actor.addFaq(sessionToken, form.question, form.answer);
+    const r = await actor.addFaq(
+      sessionToken,
+      form.question,
+      form.answer,
+      form.category,
+    );
     setSaving(false);
     if (r.__kind__ === "ok") {
       toast.success("FAQ added");
       qc.invalidateQueries({ queryKey: ["faqs"] });
       setAdding(false);
-      setForm({ question: "", answer: "" });
+      setForm({ question: "", answer: "", category: FaqCatEnum.Signals });
     } else {
       toast.error(r.err);
     }
@@ -1454,6 +1495,7 @@ function FaqTab({ sessionToken }: { sessionToken: string }) {
       editing.id,
       form.question,
       form.answer,
+      editing.category ?? FaqCatEnum.Signals,
     );
     setSaving(false);
     if (r.__kind__ === "ok") {
@@ -1559,7 +1601,11 @@ function FaqTab({ sessionToken }: { sessionToken: string }) {
             onClick={() => {
               setAdding(true);
               setEditing(null);
-              setForm({ question: "", answer: "" });
+              setForm({
+                question: "",
+                answer: "",
+                category: FaqCatEnum.Signals,
+              });
             }}
             data-ocid="faq.add.primary_button"
           >
@@ -1657,7 +1703,11 @@ function FaqTab({ sessionToken }: { sessionToken: string }) {
                       variant="outline"
                       onClick={() => {
                         setEditing(faq);
-                        setForm({ question: faq.question, answer: faq.answer });
+                        setForm({
+                          question: faq.question,
+                          answer: faq.answer,
+                          category: faq.category ?? FaqCatEnum.Signals,
+                        });
                         setAdding(false);
                       }}
                       data-ocid={`faq.edit_button.${i + 1}`}
@@ -1964,162 +2014,178 @@ function NotifyMeTab({ sessionToken }: { sessionToken: string }) {
 function AnnouncementsTab({ sessionToken }: { sessionToken: string }) {
   const { actor } = useActor(createActor);
   const qc = useQueryClient();
-  const { data: announcement } = useAnnouncement();
-  const [text, setText] = useState("");
-  const [link, setLink] = useState("");
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [adding, setAdding] = useState(false);
+  const [editing, setEditing] = useState<Announcement | null>(null);
   const [saving, setSaving] = useState(false);
-  const [toggling, setToggling] = useState(false);
-  const [scheduleEnabled, setScheduleEnabled] = useState(false);
-  const [publishAt, setPublishAt] = useState("");
+  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+  const [form, setForm] = useState({
+    title: "",
+    body: "",
+    link: "",
+    category: AnnCatEnum.General,
+    isPinned: false,
+    publishAt: "",
+  });
+
+  const loadAnnouncements = useCallback(async () => {
+    if (!actor) return;
+    setLoading(true);
+    try {
+      const list = await actor.getAnnouncements();
+      setAnnouncements(list);
+    } catch {
+      toast.error("Failed to load announcements");
+    } finally {
+      setLoading(false);
+    }
+  }, [actor]);
 
   useEffect(() => {
-    if (announcement) {
-      setText(announcement.text);
-      setLink(announcement.link ?? "");
-      if (announcement.publishAt) {
-        setPublishAt(bigIntToDatetimeLocal(announcement.publishAt));
-        setScheduleEnabled(true);
-      }
-    }
-  }, [announcement]);
+    loadAnnouncements();
+  }, [loadAnnouncements]);
 
-  async function handleSave(e: React.FormEvent) {
+  function cancelForm() {
+    setAdding(false);
+    setEditing(null);
+    setForm({
+      title: "",
+      body: "",
+      link: "",
+      category: AnnCatEnum.General,
+      isPinned: false,
+      publishAt: "",
+    });
+  }
+
+  async function handleAdd(e: React.FormEvent) {
     e.preventDefault();
     if (!actor) return;
     setSaving(true);
-    const publishAtValue: bigint | null =
-      scheduleEnabled && publishAt ? datetimeLocalToBigInt(publishAt) : null;
-    const r = await actor.setAnnouncement(
+    const r = await actor.addAnnouncement(
       sessionToken,
-      text,
-      link.trim() || null,
-      publishAtValue,
+      form.title,
+      form.body,
+      form.category,
+      form.link.trim() || null,
+      form.isPinned,
+      form.publishAt ? datetimeLocalToBigInt(form.publishAt) : null,
     );
     setSaving(false);
     if (r.__kind__ === "ok") {
-      toast.success(
-        scheduleEnabled && publishAt
-          ? `Announcement scheduled for ${new Date(publishAt).toLocaleString()}`
-          : "Announcement saved",
-      );
-      qc.invalidateQueries({ queryKey: ["announcement"] });
+      toast.success("Announcement added");
+      qc.invalidateQueries({ queryKey: ["announcements"] });
+      loadAnnouncements();
+      cancelForm();
     } else {
       toast.error(r.err);
     }
   }
 
-  async function handleToggle() {
-    if (!actor) return;
-    setToggling(true);
-    const r = await actor.toggleAnnouncement(sessionToken);
-    setToggling(false);
+  async function handleUpdate(e: React.FormEvent) {
+    e.preventDefault();
+    if (!actor || !editing) return;
+    setSaving(true);
+    const r = await actor.updateAnnouncement(
+      sessionToken,
+      editing.id,
+      form.title,
+      form.body,
+      form.category,
+      form.link.trim() || null,
+      form.isPinned,
+      editing.isActive,
+      form.publishAt ? datetimeLocalToBigInt(form.publishAt) : null,
+    );
+    setSaving(false);
     if (r.__kind__ === "ok") {
-      toast.success(r.ok ? "Banner activated" : "Banner deactivated");
-      qc.invalidateQueries({ queryKey: ["announcement"] });
+      toast.success("Announcement updated");
+      loadAnnouncements();
+      cancelForm();
     } else {
       toast.error(r.err);
     }
   }
 
-  const isScheduled = announcement?.publishAt
-    ? Number(announcement.publishAt / 1_000_000n) > Date.now()
-    : false;
+  async function handleDelete(id: string) {
+    if (!actor) return;
+    const r = await actor.deleteAnnouncement(sessionToken, id);
+    if (r.__kind__ === "ok") {
+      toast.success("Announcement deleted");
+      setAnnouncements((prev) => prev.filter((a) => a.id !== id));
+    } else {
+      toast.error(r.err);
+    }
+    setConfirmDelete(null);
+  }
 
-  return (
-    <div className="flex flex-col gap-6" data-ocid="admin.announcements.panel">
-      <div className="flex items-center justify-between flex-wrap gap-3">
-        <h3 className="font-display font-semibold text-foreground text-lg flex items-center gap-2">
-          <Bell className="w-5 h-5 text-primary" /> Sitewide Announcement
-        </h3>
-        {announcement && (
-          <div className="flex items-center gap-3">
-            {isScheduled ? (
-              <Badge
-                variant="outline"
-                className="text-xs border-yellow-500/50 text-yellow-600 dark:text-yellow-400"
-              >
-                ⏰ Scheduled
-              </Badge>
-            ) : (
-              <Badge
-                variant={announcement.isActive ? "default" : "secondary"}
-                className={
-                  announcement.isActive
-                    ? "bg-primary/20 text-primary border-primary/30"
-                    : ""
-                }
-              >
-                {announcement.isActive ? "● Live" : "○ Hidden"}
-              </Badge>
-            )}
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={handleToggle}
-              disabled={toggling}
-              data-ocid="announcements.toggle.button"
-              className={
-                announcement.isActive
-                  ? "text-destructive border-destructive/30 hover:bg-destructive/10"
-                  : "text-primary border-primary/30 hover:bg-primary/10"
-              }
-            >
-              {toggling
-                ? "…"
-                : announcement.isActive
-                  ? "Deactivate Banner"
-                  : "Activate Banner"}
-            </Button>
-          </div>
-        )}
-      </div>
+  async function handlePin(id: string, pin: boolean) {
+    if (!actor) return;
+    const r = await actor.pinAnnouncement(sessionToken, id, pin);
+    if (r.__kind__ === "ok") {
+      toast.success(pin ? "Pinned" : "Unpinned");
+      loadAnnouncements();
+    } else {
+      toast.error(r.err);
+    }
+  }
 
-      {announcement && (
-        <div className="bg-muted/30 border border-border rounded-xl p-4 flex flex-col gap-1">
-          <div className="flex items-center justify-between gap-2">
-            <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium">
-              Current Banner Preview
-            </p>
-            {isScheduled && announcement.publishAt ? (
-              <span className="text-xs font-mono text-yellow-600 dark:text-yellow-400">
-                Scheduled for {formatTimestamp(announcement.publishAt)}
-              </span>
-            ) : (
-              <span className="text-xs font-mono text-primary">
-                {announcement.isActive ? "Active now" : "Inactive"}
-              </span>
-            )}
-          </div>
-          <p className="text-sm text-foreground">
-            {announcement.text}
-            {announcement.link && (
-              <span className="text-primary ml-2 text-xs">
-                ↗ {announcement.link}
-              </span>
-            )}
-          </p>
-        </div>
-      )}
-
-      <form
-        onSubmit={handleSave}
-        className="flex flex-col gap-4 bg-card border border-border rounded-xl p-5"
-      >
-        <p className="text-sm font-semibold text-foreground">
-          Edit Announcement
-        </p>
-        <div className="flex flex-col gap-1.5">
+  const AnnForm = ({
+    onSubmit,
+    label,
+  }: { onSubmit: (e: React.FormEvent) => void; label: string }) => (
+    <form
+      onSubmit={onSubmit}
+      className="flex flex-col gap-3 bg-muted/30 border border-border rounded-xl p-5"
+    >
+      <div className="grid sm:grid-cols-2 gap-3">
+        <div className="sm:col-span-2 flex flex-col gap-1.5">
           <Label className="text-xs text-muted-foreground uppercase tracking-wide">
-            Banner Text *
+            Title *
+          </Label>
+          <Input
+            required
+            value={form.title}
+            onChange={(e) => setForm({ ...form, title: e.target.value })}
+            placeholder="New Signal Alert — April 2026"
+            data-ocid="announcements.title.input"
+          />
+        </div>
+        <div className="sm:col-span-2 flex flex-col gap-1.5">
+          <Label className="text-xs text-muted-foreground uppercase tracking-wide">
+            Body *
           </Label>
           <Textarea
             required
-            rows={2}
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            rows={3}
+            value={form.body}
+            onChange={(e) => setForm({ ...form, body: e.target.value })}
             placeholder="DMNZ launches April 2, 2028 — join the fair launch on Blum!"
-            data-ocid="announcements.text.textarea"
+            data-ocid="announcements.body.textarea"
           />
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <Label className="text-xs text-muted-foreground uppercase tracking-wide">
+            Category
+          </Label>
+          <Select
+            value={form.category}
+            onValueChange={(v) =>
+              setForm({ ...form, category: v as typeof AnnCatEnum.General })
+            }
+          >
+            <SelectTrigger data-ocid="announcements.category.select">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="General">General</SelectItem>
+              <SelectItem value="Token">Token</SelectItem>
+              <SelectItem value="Signal">Signal</SelectItem>
+              <SelectItem value="Alert">Alert</SelectItem>
+              <SelectItem value="Admin">Admin</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         <div className="flex flex-col gap-1.5">
           <Label className="text-xs text-muted-foreground uppercase tracking-wide">
@@ -2127,76 +2193,206 @@ function AnnouncementsTab({ sessionToken }: { sessionToken: string }) {
           </Label>
           <Input
             type="url"
-            value={link}
-            onChange={(e) => setLink(e.target.value)}
+            value={form.link}
+            onChange={(e) => setForm({ ...form, link: e.target.value })}
             placeholder="https://…"
             data-ocid="announcements.link.input"
           />
         </div>
-
-        {/* Schedule toggle */}
-        <div className="flex flex-col gap-3 pt-2 border-t border-border">
-          <div className="flex items-center gap-3">
-            <Switch
-              checked={scheduleEnabled}
-              onCheckedChange={setScheduleEnabled}
-              data-ocid="announcements.schedule.switch"
-            />
-            <div>
-              <Label className="font-medium text-foreground text-sm">
-                Schedule for later
-              </Label>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                Toggle on to set a future publish time for this announcement.
-              </p>
-            </div>
-          </div>
-          {scheduleEnabled && (
-            <div className="flex flex-col gap-1.5">
-              <Label className="text-xs text-muted-foreground uppercase tracking-wide">
-                Publish At *
-              </Label>
-              <Input
-                type="datetime-local"
-                value={publishAt}
-                onChange={(e) => setPublishAt(e.target.value)}
-                required={scheduleEnabled}
-                data-ocid="announcements.publish_at.input"
-              />
-            </div>
-          )}
+        <div className="flex flex-col gap-1.5">
+          <Label className="text-xs text-muted-foreground uppercase tracking-wide">
+            Publish At
+          </Label>
+          <Input
+            type="datetime-local"
+            value={form.publishAt}
+            onChange={(e) => setForm({ ...form, publishAt: e.target.value })}
+            data-ocid="announcements.publish_at.input"
+          />
         </div>
-
-        <div className="flex items-center gap-3 pt-1">
-          <Button
-            type="submit"
-            disabled={saving || !text.trim()}
-            className="btn-primary"
-            data-ocid="announcements.save.primary_button"
-          >
-            <Save className="w-4 h-4 mr-1" />
-            {saving
-              ? "Saving…"
-              : scheduleEnabled
-                ? "Schedule Announcement"
-                : "Save Announcement"}
-          </Button>
-          {!announcement && (
-            <p className="text-xs text-muted-foreground">
-              Save first, then activate the banner.
-            </p>
-          )}
+        <div className="flex items-center gap-3 mt-4">
+          <Switch
+            checked={form.isPinned}
+            onCheckedChange={(v) => setForm({ ...form, isPinned: v })}
+            data-ocid="announcements.pinned.switch"
+          />
+          <Label className="text-sm">Pin this announcement</Label>
         </div>
-      </form>
-
-      <div className="bg-muted/20 border border-border rounded-xl p-4">
-        <p className="text-xs text-muted-foreground flex items-start gap-2">
-          <MessageSquare className="w-4 h-4 shrink-0 mt-0.5" />
-          The announcement banner appears at the very top of the public site
-          when activated. Use "Schedule for later" to auto-publish at a future
-          time.
-        </p>
       </div>
+      <div className="flex gap-2 justify-end pt-1 border-t border-border">
+        <Button
+          type="button"
+          variant="outline"
+          onClick={cancelForm}
+          data-ocid="announcements.form.cancel_button"
+        >
+          <X className="w-4 h-4 mr-1" /> Cancel
+        </Button>
+        <Button
+          type="submit"
+          disabled={saving}
+          className="btn-primary"
+          data-ocid="announcements.form.submit_button"
+        >
+          <Save className="w-4 h-4 mr-1" />
+          {saving ? "Saving…" : label}
+        </Button>
+      </div>
+    </form>
+  );
+
+  return (
+    <div className="flex flex-col gap-5" data-ocid="admin.announcements.panel">
+      <div className="flex items-center justify-between flex-wrap gap-2">
+        <h3 className="font-display font-semibold text-foreground text-lg flex items-center gap-2">
+          <Bell className="w-5 h-5 text-primary" /> Announcements
+          <span className="text-xs font-mono bg-muted text-muted-foreground px-2 py-0.5 rounded-full">
+            {announcements.length}
+          </span>
+        </h3>
+        {!adding && !editing && (
+          <Button
+            size="sm"
+            className="btn-primary"
+            onClick={() => setAdding(true)}
+            data-ocid="announcements.add.primary_button"
+          >
+            <Plus className="w-4 h-4 mr-1" /> Add Announcement
+          </Button>
+        )}
+      </div>
+
+      {adding && <AnnForm onSubmit={handleAdd} label="Add Announcement" />}
+
+      {loading ? (
+        <div
+          data-ocid="announcements.loading_state"
+          className="flex flex-col gap-2"
+        >
+          {[1, 2, 3].map((n) => (
+            <div
+              key={n}
+              className="h-16 rounded-xl bg-muted/50 animate-pulse"
+            />
+          ))}
+        </div>
+      ) : announcements.length === 0 && !adding ? (
+        <div
+          data-ocid="announcements.empty_state"
+          className="text-center text-muted-foreground py-16 flex flex-col items-center gap-3"
+        >
+          <Bell className="w-10 h-10 opacity-20" />
+          <p className="font-medium">No announcements yet.</p>
+        </div>
+      ) : (
+        <div className="flex flex-col gap-3">
+          {announcements.map((ann, i) => (
+            <Card
+              key={ann.id}
+              data-ocid={`announcements.item.${i + 1}`}
+              className="bg-card border-border p-4"
+            >
+              {editing?.id === ann.id ? (
+                <AnnForm onSubmit={handleUpdate} label="Save Changes" />
+              ) : confirmDelete === ann.id ? (
+                <div className="flex items-center justify-between gap-3 flex-wrap bg-destructive/10 border border-destructive/30 rounded-lg p-3">
+                  <p className="text-sm text-foreground">
+                    Delete <strong>{ann.title}</strong>?
+                  </p>
+                  <div className="flex gap-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => setConfirmDelete(null)}
+                      data-ocid={`announcements.delete.cancel_button.${i + 1}`}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      onClick={() => handleDelete(ann.id)}
+                      data-ocid={`announcements.delete.confirm_button.${i + 1}`}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-start justify-between gap-3 flex-wrap">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      {ann.isPinned && (
+                        <span className="text-xs text-primary font-semibold">
+                          📌 Pinned
+                        </span>
+                      )}
+                      <Badge
+                        variant="outline"
+                        className="text-xs border-primary/30 text-primary"
+                      >
+                        {ann.category}
+                      </Badge>
+                      <Badge
+                        variant={ann.isActive ? "default" : "secondary"}
+                        className={`text-xs ${ann.isActive ? "bg-primary/20 text-primary border-primary/30" : ""}`}
+                      >
+                        {ann.isActive ? "● Live" : "○ Draft"}
+                      </Badge>
+                    </div>
+                    <p className="font-semibold text-foreground text-sm mt-1">
+                      {ann.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                      {ann.body}
+                    </p>
+                  </div>
+                  <div className="flex gap-1 shrink-0">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => {
+                        setEditing(ann);
+                        setForm({
+                          title: ann.title,
+                          body: ann.body,
+                          link: ann.link ?? "",
+                          category: ann.category,
+                          isPinned: ann.isPinned,
+                          publishAt: ann.publishAt
+                            ? bigIntToDatetimeLocal(ann.publishAt)
+                            : "",
+                        });
+                        setAdding(false);
+                      }}
+                      data-ocid={`announcements.edit_button.${i + 1}`}
+                    >
+                      <Edit2 className="w-3 h-3" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handlePin(ann.id, !ann.isPinned)}
+                      data-ocid={`announcements.pin_button.${i + 1}`}
+                      className="text-primary border-primary/30"
+                    >
+                      {ann.isPinned ? "Unpin" : "Pin"}
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      onClick={() => setConfirmDelete(ann.id)}
+                      data-ocid={`announcements.delete_button.${i + 1}`}
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </Card>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -4313,6 +4509,7 @@ function CommunityContentTab({ sessionToken }: { sessionToken: string }) {
   const testimonials = useCommunityTestimonials(sessionToken);
   const sotw = useSignalOfWeekAdmin(sessionToken);
   const milestones = useCommunityMilestones(sessionToken);
+  const topTraders = useTopTraders(sessionToken);
   const { data: signals = [] } = useSignals();
 
   const [quoteForm, setQuoteForm] = useState({ quote: "", author: "" });
@@ -4327,6 +4524,12 @@ function CommunityContentTab({ sessionToken }: { sessionToken: string }) {
   const [milestoneForm, setMilestoneForm] = useState({
     title: "",
     description: "",
+  });
+  const [traderForm, setTraderForm] = useState({
+    name: "",
+    bio: "",
+    achievement: "",
+    week: "",
   });
 
   async function handleAddQuote(e: React.FormEvent) {
@@ -4360,6 +4563,12 @@ function CommunityContentTab({ sessionToken }: { sessionToken: string }) {
     e.preventDefault();
     await milestones.add.mutateAsync(milestoneForm);
     setMilestoneForm({ title: "", description: "" });
+  }
+
+  async function handleAddTrader(e: React.FormEvent) {
+    e.preventDefault();
+    await topTraders.add.mutateAsync(traderForm);
+    setTraderForm({ name: "", bio: "", achievement: "", week: "" });
   }
 
   const liveSignals = signals.filter((s) => !s.isDraft);
@@ -4726,6 +4935,128 @@ function CommunityContentTab({ sessionToken }: { sessionToken: string }) {
                     Reached ✓
                   </Badge>
                 )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Top Traders Wall */}
+      <div className="bg-card border border-border rounded-xl p-5 flex flex-col gap-4">
+        <h4 className="font-display font-semibold text-foreground flex items-center gap-2">
+          <Star className="w-4 h-4 text-primary" /> Top Traders Wall
+          <span className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full font-mono">
+            {topTraders.data?.length ?? 0}
+          </span>
+        </h4>
+        <form
+          onSubmit={handleAddTrader}
+          className="grid sm:grid-cols-2 gap-3 bg-muted/20 border border-border rounded-lg p-4"
+        >
+          <div className="flex flex-col gap-1.5">
+            <Label className="text-xs text-muted-foreground uppercase tracking-wide">
+              Name *
+            </Label>
+            <Input
+              required
+              value={traderForm.name}
+              onChange={(e) =>
+                setTraderForm({ ...traderForm, name: e.target.value })
+              }
+              placeholder="Trader name"
+              data-ocid="community.trader.name.input"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <Label className="text-xs text-muted-foreground uppercase tracking-wide">
+              Week *
+            </Label>
+            <Input
+              required
+              value={traderForm.week}
+              onChange={(e) =>
+                setTraderForm({ ...traderForm, week: e.target.value })
+              }
+              placeholder="Week of Jan 15, 2026"
+              data-ocid="community.trader.week.input"
+            />
+          </div>
+          <div className="sm:col-span-2 flex flex-col gap-1.5">
+            <Label className="text-xs text-muted-foreground uppercase tracking-wide">
+              Achievement *
+            </Label>
+            <Input
+              required
+              value={traderForm.achievement}
+              onChange={(e) =>
+                setTraderForm({ ...traderForm, achievement: e.target.value })
+              }
+              placeholder="+340% on BTC/USDT swing trade"
+              data-ocid="community.trader.achievement.input"
+            />
+          </div>
+          <div className="sm:col-span-2 flex gap-2 items-end">
+            <div className="flex flex-col gap-1.5 flex-1">
+              <Label className="text-xs text-muted-foreground uppercase tracking-wide">
+                Bio
+              </Label>
+              <Input
+                value={traderForm.bio}
+                onChange={(e) =>
+                  setTraderForm({ ...traderForm, bio: e.target.value })
+                }
+                placeholder="Short bio or quote"
+                data-ocid="community.trader.bio.input"
+              />
+            </div>
+            <Button
+              type="submit"
+              className="btn-primary shrink-0"
+              disabled={topTraders.add.isPending}
+              data-ocid="community.trader.add.primary_button"
+            >
+              <Plus className="w-4 h-4 mr-1" />
+              {topTraders.add.isPending ? "…" : "Add Trader"}
+            </Button>
+          </div>
+        </form>
+        {(topTraders.data ?? []).length > 0 && (
+          <div className="flex flex-col gap-2">
+            {(topTraders.data ?? []).map((t: TopTrader, i: number) => (
+              <div
+                key={t.id}
+                data-ocid={`community.trader.item.${i + 1}`}
+                className="flex items-start justify-between gap-3 bg-muted/20 rounded-lg p-3"
+              >
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <p className="text-sm font-semibold text-foreground">
+                      {t.name}
+                    </p>
+                    <span className="text-xs text-muted-foreground">
+                      {t.week}
+                    </span>
+                  </div>
+                  {t.achievement && (
+                    <p className="text-xs text-primary mt-0.5 font-mono">
+                      {t.achievement}
+                    </p>
+                  )}
+                  {t.bio && (
+                    <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">
+                      {t.bio}
+                    </p>
+                  )}
+                </div>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => topTraders.remove.mutate(t.id)}
+                  className="shrink-0 text-destructive hover:bg-destructive/10 h-7 w-7 p-0"
+                  data-ocid={`community.trader.delete_button.${i + 1}`}
+                >
+                  <Trash2 className="w-3 h-3" />
+                </Button>
               </div>
             ))}
           </div>

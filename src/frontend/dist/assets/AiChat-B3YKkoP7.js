@@ -1,18 +1,7 @@
-import { c as createLucideIcon, b as useActor, r as reactExports, d as createActor, A as useAiSession, F as useSignalAccuracy, j as jsxRuntimeExports, B as Button, X, G as Menu, Z as Zap } from "./index-BusfRT-8.js";
-import { m as ue, G as Globe, o as FileText, n as ChartColumn, p as ChevronUp, T as TrendingUp, C as ChevronDown, B as Badge, l as Download, I as Input } from "./index-BNgp4POB.js";
-import { S as Select, b as SelectTrigger, c as SelectValue, d as SelectContent, e as SelectItem, L as LogOut, T as Textarea, B as BookOpen } from "./textarea-BIQZlGpT.js";
-import { A as Award, S as Send, L as Lock, E as Eye } from "./send-D7junR57.js";
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$6 = [
-  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
-  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
-];
-const Copy = createLucideIcon("copy", __iconNode$6);
+import { c as createLucideIcon, u as useActor, r as reactExports, b as createActor, z as useAiSession, G as useSignalAccuracy, j as jsxRuntimeExports, Z as Zap, B as Button, X, H as Menu } from "./index-DU2hFDMP.js";
+import { S as Select, d as SelectTrigger, e as SelectValue, f as SelectContent, g as SelectItem, F as FileText, L as LogOut, T as Textarea, B as Badge } from "./textarea-SknAc1Vk.js";
+import { u as ue, G as Globe, T as TrendingUp, l as ChartColumn, B as BookOpen, C as ChevronUp, a as ChevronDown, k as Download, I as Input } from "./index-CjIyOQEo.js";
+import { S as Send, T as ThumbsUp, a as ThumbsDown, E as EyeOff, b as Eye } from "./thumbs-up-Bga2oUKg.js";
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -23,21 +12,13 @@ const __iconNode$5 = [
   [
     "path",
     {
-      d: "M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49",
-      key: "ct8e1f"
+      d: "m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526",
+      key: "1yiouv"
     }
   ],
-  ["path", { d: "M14.084 14.158a3 3 0 0 1-4.242-4.242", key: "151rxh" }],
-  [
-    "path",
-    {
-      d: "M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143",
-      key: "13bj9a"
-    }
-  ],
-  ["path", { d: "m2 2 20 20", key: "1ooewy" }]
+  ["circle", { cx: "12", cy: "8", r: "6", key: "1vp47v" }]
 ];
-const EyeOff = createLucideIcon("eye-off", __iconNode$5);
+const Award = createLucideIcon("award", __iconNode$5);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -45,6 +26,17 @@ const EyeOff = createLucideIcon("eye-off", __iconNode$5);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$4 = [
+  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
+  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
+];
+const Copy = createLucideIcon("copy", __iconNode$4);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$3 = [
   [
     "path",
     {
@@ -55,15 +47,7 @@ const __iconNode$4 = [
   ["path", { d: "M9 18h6", key: "x1upvd" }],
   ["path", { d: "M10 22h4", key: "ceow96" }]
 ];
-const Lightbulb = createLucideIcon("lightbulb", __iconNode$4);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$3 = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
-const LoaderCircle = createLucideIcon("loader-circle", __iconNode$3);
+const Lightbulb = createLucideIcon("lightbulb", __iconNode$3);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -71,27 +55,19 @@ const LoaderCircle = createLucideIcon("loader-circle", __iconNode$3);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$2 = [
-  ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
-  ["path", { d: "M3 3v5h5", key: "1xhq8a" }]
+  ["path", { d: "M9 17H7A5 5 0 0 1 7 7h2", key: "8i5ue5" }],
+  ["path", { d: "M15 7h2a5 5 0 1 1 0 10h-2", key: "1b9ql8" }],
+  ["line", { x1: "8", x2: "16", y1: "12", y2: "12", key: "1jonct" }]
 ];
-const RotateCcw = createLucideIcon("rotate-ccw", __iconNode$2);
+const Link2 = createLucideIcon("link-2", __iconNode$2);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$1 = [
-  ["path", { d: "M17 14V2", key: "8ymqnk" }],
-  [
-    "path",
-    {
-      d: "M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z",
-      key: "m61m77"
-    }
-  ]
-];
-const ThumbsDown = createLucideIcon("thumbs-down", __iconNode$1);
+const __iconNode$1 = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
+const LoaderCircle = createLucideIcon("loader-circle", __iconNode$1);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -99,43 +75,10 @@ const ThumbsDown = createLucideIcon("thumbs-down", __iconNode$1);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode = [
-  ["path", { d: "M7 10v12", key: "1qc93n" }],
-  [
-    "path",
-    {
-      d: "M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z",
-      key: "emmmcr"
-    }
-  ]
+  ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
+  ["path", { d: "M3 3v5h5", key: "1xhq8a" }]
 ];
-const ThumbsUp = createLucideIcon("thumbs-up", __iconNode);
-const AI_PROVIDERS = [
-  { provider: "default", label: "Default", available: true },
-  { provider: "gemini", label: "Gemini", available: true },
-  { provider: "grok", label: "Grok (xAI)", available: true },
-  { provider: "chatgpt", label: "ChatGPT", available: true },
-  { provider: "claude", label: "Claude", available: true },
-  { provider: "perplexity", label: "Perplexity", available: true },
-  { provider: "mistral", label: "Mistral", available: true },
-  { provider: "cohere", label: "Cohere", available: true },
-  { provider: "deepseek", label: "DeepSeek", available: true },
-  { provider: "groq", label: "Groq", available: true },
-  { provider: "together", label: "Together AI", available: true },
-  { provider: "fireworks", label: "Fireworks AI", available: true },
-  { provider: "openrouter", label: "OpenRouter", available: true },
-  { provider: "replicate", label: "Replicate", available: true },
-  { provider: "huggingface", label: "HuggingFace", available: true },
-  { provider: "ai21", label: "AI21 Labs", available: true },
-  { provider: "nlpcloud", label: "NLP Cloud", available: true },
-  { provider: "anyscale", label: "Anyscale", available: true },
-  { provider: "cerebras", label: "Cerebras", available: true },
-  { provider: "sambanova", label: "SambaNova", available: true },
-  { provider: "cloudflare", label: "Cloudflare AI", available: true },
-  { provider: "novita", label: "Novita AI", available: true },
-  { provider: "moonshot", label: "Moonshot", available: true },
-  { provider: "zhipu", label: "Zhipu AI", available: true },
-  { provider: "upstage", label: "Upstage", available: true }
-];
+const RotateCcw = createLucideIcon("rotate-ccw", __iconNode);
 function useValidateAiPasscode() {
   const { actor, isFetching } = useActor(createActor);
   const [isLoading, setIsLoading] = reactExports.useState(false);
@@ -150,11 +93,10 @@ function useValidateAiPasscode() {
       setError(null);
       try {
         const result = await actor.validateAiPasscode(passcode);
-        if (false) ;
         if (result.__kind__ === "ok") {
-          const [token, rawMode] = result.ok;
-          const mode = rawMode === "insane" ? "insane" : "normal";
-          return { token, mode };
+          const raw = result.ok;
+          const token = Array.isArray(raw) ? raw[0] : raw;
+          return { token };
         }
         setError(result.err ?? "Invalid passcode. Access denied.");
         return null;
@@ -189,7 +131,7 @@ function useSendAiMessage() {
   const [isLoading, setIsLoading] = reactExports.useState(false);
   const [error, setError] = reactExports.useState(null);
   const send = reactExports.useCallback(
-    async (token, message, provider, mode, messages) => {
+    async (token, message, messages) => {
       setIsLoading(true);
       setError(null);
       try {
@@ -197,31 +139,27 @@ function useSendAiMessage() {
           const chatHistory = messages.slice(-50).map((m) => ({
             role: m.role === "user" ? "user" : "assistant",
             content: m.content,
-            timestamp: BigInt(m.timestamp),
-            provider: m.provider
+            timestamp: BigInt(m.timestamp)
           }));
           const result = await actor.sendAiMessage(
             token,
             message,
-            provider,
-            mode,
+            "default",
             chatHistory
           );
           if (result.__kind__ === "ok" && result.ok) {
             return {
               role: "assistant",
               content: result.ok,
-              provider,
               timestamp: Date.now(),
               messageId: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`
             };
           }
         }
-        const responseText = getFallbackResponse(message, mode, provider);
+        const responseText = getFallbackResponse(message);
         return {
           role: "assistant",
           content: responseText,
-          provider,
           timestamp: Date.now(),
           messageId: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`
         };
@@ -236,65 +174,34 @@ function useSendAiMessage() {
   );
   return { send, isLoading, error, clearError: () => setError(null) };
 }
-function getFallbackResponse(message, mode, provider) {
-  var _a;
+function getFallbackResponse(message) {
   const lowerMsg = message.toLowerCase();
-  const providerLabel = ((_a = AI_PROVIDERS.find((p) => p.provider === provider)) == null ? void 0 : _a.label) ?? "DemonZeno";
   if (lowerMsg.includes("btc") || lowerMsg.includes("bitcoin") || lowerMsg.includes("signal") || lowerMsg.includes("trade")) {
-    if (mode === "insane") {
-      return `**${providerLabel} — INSANE MODE SIGNAL 🔥**
-
-**BTC/USDT — LONG 🚀**
-• Entry: $67,200 – $67,500
-• TP1: $69,800 (+3.9%)
-• TP2: $72,400 (+7.7%)
-• TP3: $75,000 (+11.5%)
-• Stop Loss: $65,900 (-2%)
-• Timeframe: 4H–1D
-• Confidence: HIGH
-• Leverage: 5–10x (manage risk)
-
-_This is aggressive analysis. Manage your position size. No financial advice._`;
-    }
-    return `**${providerLabel} — Trading Signal 📊**
-
-**BTC/USDT — LONG (Binance)**
-• Entry Zone: $67,200 – $67,500
-• TP1: $69,000 (+2.7%)
-• TP2: $71,500 (+6.4%)
-• TP3: $74,200 (+10.4%)
-• Stop Loss: $65,900 (-2%)
-• Timeframe: 4H
-• Confidence: Medium
-• Source: Technical Analysis
-
-_Always use proper risk management. This is not financial advice._`;
+    return "**DemonZeno AI — Signal Analysis 📊**\n\n**BTC/USDT — LONG 🚀**\n• Entry Zone: $67,200 – $67,500\n• TP1: $69,800 (+3.9%)\n• TP2: $72,400 (+7.7%)\n• TP3: $75,000 (+11.5%)\n• Stop Loss: $65,900 (-2%)\n• Timeframe: 4H–1D\n• Confidence: HIGH\n\n_Always manage your risk. Not financial advice._";
   }
   if (lowerMsg.includes("eth") || lowerMsg.includes("ethereum")) {
-    return `**${providerLabel} — ETH/USDT Signal 📈**
-
-• Direction: LONG
-• Entry: $3,450 – $3,480
-• TP1: $3,600 (+4.3%)
-• TP2: $3,750 (+8.7%)
-• TP3: $4,000 (+15.9%)
-• Stop Loss: $3,320 (-3.8%)
-• Timeframe: 1D
-• Confidence: Medium
-
-_Binance spot & futures. DYOR._`;
+    return "**DemonZeno AI — ETH/USDT Signal 📈**\n\n• Direction: LONG\n• Entry: $3,450 – $3,480\n• TP1: $3,600 (+4.3%)\n• TP2: $3,750 (+8.7%)\n• TP3: $4,000 (+15.9%)\n• Stop Loss: $3,320 (-3.8%)\n• Timeframe: 1D\n• Confidence: Medium\n\n_DYOR. Not financial advice._";
   }
-  return `**DemonZeno AI — ${mode === "insane" ? "INSANE MODE 🔥" : "Normal Mode"}**
+  if (lowerMsg.includes("forex") || lowerMsg.includes("eur") || lowerMsg.includes("usd")) {
+    return "**DemonZeno AI — Forex Signal 📈**\n\n**EUR/USD — LONG**\n• Entry: 1.0850 – 1.0860\n• TP1: 1.0920 (+0.65%)\n• TP2: 1.0980 (+1.20%)\n• TP3: 1.1050 (+1.84%)\n• Stop Loss: 1.0800 (-0.46%)\n• Timeframe: 4H\n• Confidence: Medium\n\n_Risk management is key. Not financial advice._";
+  }
+  if (lowerMsg.includes("code") || lowerMsg.includes("function") || lowerMsg.includes("script")) {
+    return "**DemonZeno AI — Code Assistant 💻**\n\nI can help you write code in JavaScript, TypeScript, Python, Rust, and more. What would you like me to build?\n\nJust describe the function, script, or component you need and I'll provide working code.\n\n_Powered by DemonZeno AI — Master the Chaos._";
+  }
+  return `**DemonZeno AI — Ready to Trade 🔥**
 
-I'm analyzing your request: "${message}"
+I'm your all-in-one AI powered by 50+ providers, silently routing to the best model for your request.
 
-For best results, ask me about:
-• Specific trading pairs (BTC/USDT, ETH/USDT, etc.)
-• Entry/exit signals with 3 targets and stop-loss
-• Market analysis and trends
-• Risk management strategies${mode === "insane" ? "\n• Any asset on any exchange — no restrictions" : "\n• Binance-listed assets"}
+I can handle:
+• Trading signals — crypto, forex, stocks (Entry · TP1 · TP2 · TP3 · Stop Loss)
+• Market analysis and trend breakdowns
+• Code writing in any language
+• General knowledge and Q&A
+• Signal backtesting and trade journaling
 
-_Powered by ${providerLabel}. Master the chaos, trade like a god._`;
+Just ask me anything.
+
+_Master the Chaos, Slay the Market, Trade Like a God._`;
 }
 const LANGUAGE_LABELS = {
   en: "🇬🇧 EN",
@@ -336,8 +243,7 @@ function extractSignalData(content) {
   if (!entry && !tp1) return null;
   return { asset, entry, tp1, tp2, tp3, sl, timeframe, confidence };
 }
-function exportAiSignalCard(content, provider, mode, signal) {
-  var _a;
+function exportAiSignalCard(content, signal) {
   const canvas = document.createElement("canvas");
   canvas.width = 640;
   canvas.height = 460;
@@ -346,26 +252,21 @@ function exportAiSignalCard(content, provider, mode, signal) {
   ctx.fillStyle = "#0e0f14";
   ctx.fillRect(0, 0, 640, 460);
   const grad = ctx.createLinearGradient(0, 0, 640, 0);
-  grad.addColorStop(0, "oklch(0.65 0.15 190 / 1)");
-  grad.addColorStop(1, "oklch(0.5 0.18 210 / 1)");
+  grad.addColorStop(0, "#2dd4bf");
+  grad.addColorStop(1, "#38bdf8");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 640, 7);
-  if (mode === "insane") {
-    ctx.fillStyle = "#7f1d1d";
-    ctx.fillRect(0, 453, 640, 7);
-  }
   ctx.font = "bold 24px 'Space Grotesk', sans-serif";
   ctx.fillStyle = "#38bdf8";
   ctx.fillText("Demon", 28, 50);
   ctx.fillStyle = "#2dd4bf";
   ctx.fillText("Zeno", 116, 50);
   ctx.font = "bold 11px 'DM Sans', sans-serif";
-  ctx.fillStyle = mode === "insane" ? "#ef4444" : "#2dd4bf";
-  ctx.fillText(mode.toUpperCase(), 190, 46);
-  const provLabel = ((_a = AI_PROVIDERS.find((p) => p.provider === provider)) == null ? void 0 : _a.label) ?? provider;
+  ctx.fillStyle = "#ef4444";
+  ctx.fillText("AI", 188, 46);
   ctx.font = "11px 'DM Sans', sans-serif";
   ctx.fillStyle = "#6b7280";
-  ctx.fillText(`via ${provLabel}`, 28, 68);
+  ctx.fillText("Powered by 50+ AI Providers", 28, 68);
   ctx.strokeStyle = "#1e2030";
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -463,7 +364,7 @@ function exportAiSignalCard(content, provider, mode, signal) {
   ctx.fillText("DZ·QR", 584, 402);
   ctx.textAlign = "left";
   ctx.save();
-  ctx.globalAlpha = 0.1;
+  ctx.globalAlpha = 0.08;
   ctx.font = "bold 52px 'Space Grotesk', sans-serif";
   ctx.fillStyle = "#2dd4bf";
   ctx.translate(320, 370);
@@ -570,11 +471,9 @@ function ConfidenceMeter({ pct }) {
 function InlineSignalCard({
   signal,
   index,
-  mode,
   onBacktest,
   onLogTrade
 }) {
-  const accentColor = mode === "insane" ? "oklch(0.7 0.2 22)" : "oklch(0.65 0.15 190)";
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
@@ -587,11 +486,18 @@ function InlineSignalCard({
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-2 mb-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs font-bold", style: { color: accentColor }, children: [
-              "📊 ",
-              signal.asset || "SIGNAL"
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "span",
+              {
+                className: "text-xs font-bold",
+                style: { color: "oklch(0.65 0.15 190)" },
+                children: [
+                  "📊 ",
+                  signal.asset || "SIGNAL"
+                ]
+              }
+            ),
+            signal.timeframe && /* @__PURE__ */ jsxRuntimeExports.jsx(
               "span",
               {
                 className: "text-xs px-1.5 py-0.5 rounded",
@@ -599,7 +505,7 @@ function InlineSignalCard({
                   background: "oklch(0.65 0.15 190 / 0.15)",
                   color: "oklch(0.75 0.15 190)"
                 },
-                children: signal.timeframe || "—"
+                children: signal.timeframe
               }
             )
           ] }),
@@ -635,7 +541,7 @@ function InlineSignalCard({
             {
               variant: "ghost",
               size: "sm",
-              "data-ocid": `ai_chat.signal_card.chain_button.${index}`,
+              "data-ocid": `ai_chat.signal_card.log_button.${index}`,
               onClick: () => onLogTrade(signal),
               className: "h-6 px-2 text-[10px] gap-1 text-muted-foreground hover:text-primary",
               children: [
@@ -649,19 +555,6 @@ function InlineSignalCard({
     }
   );
 }
-function ModeBadge({ mode, onClick }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "button",
-    {
-      type: "button",
-      "data-ocid": "ai_chat.mode.toggle",
-      onClick,
-      className: mode === "insane" ? "badge-mode-insane cursor-pointer hover:opacity-80 transition-opacity" : "badge-mode-normal cursor-pointer hover:opacity-80 transition-opacity",
-      "aria-label": `Switch to ${mode === "normal" ? "Insane" : "Normal"} mode`,
-      children: mode === "normal" ? "NORMAL" : "INSANE 🔥"
-    }
-  );
-}
 function TypingIndicator() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-3", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-9 h-9 rounded-full overflow-hidden shrink-0 border border-border bg-card", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -670,27 +563,22 @@ function TypingIndicator() {
         src: "/assets/demonzeno-character.png",
         alt: "DemonZeno AI",
         className: "w-full object-cover object-top",
-        style: { height: "115%" }
+        style: {
+          height: "136%",
+          clipPath: "inset(0 0 18% 0)",
+          marginBottom: "-18%"
+        }
       }
     ) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "chat-message-ai", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "typing-indicator", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "typing-dot" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "typing-dot" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "typing-dot" })
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "chat-message-ai", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1 py-1 px-1", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-muted-foreground mr-2", children: "DemonZeno AI is thinking" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "typing-indicator", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "typing-dot" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "typing-dot" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "typing-dot" })
+      ] })
     ] }) })
   ] });
-}
-function StatusDot({ available }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "span",
-    {
-      className: "inline-block w-2 h-2 rounded-full shrink-0 mr-1.5",
-      style: {
-        background: available ? "oklch(0.7 0.18 145)" : "oklch(0.45 0.01 260)"
-      },
-      "aria-hidden": "true"
-    }
-  );
 }
 function AccuracyPanel({ onClose }) {
   const { stats, signals } = useSignalAccuracy();
@@ -747,16 +635,28 @@ function JournalPanel({
   onClose,
   onClear
 }) {
+  const totalPnl = entries.reduce((sum, e) => sum + (e.pnl ?? 0), 0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
       "data-ocid": "ai_chat.journal.panel",
-      className: "mx-4 mb-2 rounded-xl border border-border bg-card p-3 max-h-60 overflow-y-auto",
+      className: "mx-4 mb-2 rounded-xl border border-border bg-card p-3 max-h-64 overflow-y-auto",
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between mb-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "w-4 h-4 text-primary" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-semibold text-foreground", children: "AI Trade Journal" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-semibold text-foreground", children: "AI Trade Journal" }),
+            entries.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "span",
+              {
+                className: `text-xs font-bold ${totalPnl >= 0 ? "text-green-400" : "text-destructive"}`,
+                children: [
+                  totalPnl >= 0 ? "+" : "",
+                  totalPnl.toFixed(2),
+                  "% P&L"
+                ]
+              }
+            )
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1", children: [
             entries.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -796,7 +696,11 @@ function JournalPanel({
             className: "rounded-lg bg-background border border-border p-2 text-xs",
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-2", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold text-foreground truncate max-w-[180px]", children: entry.signal }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-semibold text-foreground truncate max-w-[180px]", children: [
+                  entry.asset,
+                  " ",
+                  entry.direction
+                ] }),
                 entry.pnl != null && /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   "span",
                   {
@@ -817,6 +721,10 @@ function JournalPanel({
                 entry.exitPrice != null && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
                   "Exit: ",
                   entry.exitPrice
+                ] }),
+                entry.lots > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                  "Lots: ",
+                  entry.lots
                 ] })
               ] }),
               entry.notes && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground mt-0.5 truncate", children: entry.notes })
@@ -837,15 +745,19 @@ function LogTradeForm({
     signal.entry ? Number.parseFloat(signal.entry.replace(/[^0-9.]/g, "")) || 0 : 0
   );
   const [exitPrice, setExitPrice] = reactExports.useState("");
+  const [lots, setLots] = reactExports.useState("0.01");
+  const [direction, setDirection] = reactExports.useState("Buy");
   const [notes, setNotes] = reactExports.useState("");
   const [loading, setLoading] = reactExports.useState(false);
   const pnl = exitPrice && entryPrice ? ((Number.parseFloat(exitPrice) - entryPrice) / entryPrice * 100).toFixed(2) : null;
   async function handleSubmit() {
     setLoading(true);
     await onSubmit({
-      signal: signal.asset || "Unknown",
+      asset: signal.asset || "Unknown",
+      direction,
       entryPrice,
       exitPrice: exitPrice ? Number.parseFloat(exitPrice) : void 0,
+      lots: Number.parseFloat(lots) || 0,
       pnl: pnl ? Number.parseFloat(pnl) : void 0,
       notes
     });
@@ -876,19 +788,53 @@ function LogTradeForm({
             }
           )
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "label",
-            {
-              className: "text-xs text-muted-foreground",
-              htmlFor: "entry-price",
-              children: "Entry Price"
-            }
-          ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "label",
+              {
+                className: "text-xs text-muted-foreground",
+                htmlFor: "lt-direction",
+                children: "Direction"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "select",
+              {
+                id: "lt-direction",
+                value: direction,
+                onChange: (e) => setDirection(e.target.value),
+                className: "h-9 rounded-lg px-3 text-sm bg-background border border-border text-foreground",
+                "data-ocid": "ai_chat.log_trade.direction_select",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Buy", children: "Buy / Long" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Sell", children: "Sell / Short" })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-xs text-muted-foreground", htmlFor: "lt-lots", children: "Lot Size" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                id: "lt-lots",
+                type: "number",
+                value: lots,
+                onChange: (e) => setLots(e.target.value),
+                className: "h-9 rounded-lg px-3 text-sm bg-background border border-border text-foreground",
+                "data-ocid": "ai_chat.log_trade.lots_input",
+                step: "0.01"
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-xs text-muted-foreground", htmlFor: "lt-entry", children: "Entry Price" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "input",
             {
-              id: "entry-price",
+              id: "lt-entry",
               type: "number",
               value: entryPrice,
               onChange: (e) => setEntryPrice(Number.parseFloat(e.target.value) || 0),
@@ -897,8 +843,8 @@ function LogTradeForm({
             }
           )
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "text-xs text-muted-foreground", htmlFor: "exit-price", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "text-xs text-muted-foreground", htmlFor: "lt-exit", children: [
             "Exit Price (optional)",
             pnl && /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "span",
@@ -915,7 +861,7 @@ function LogTradeForm({
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "input",
             {
-              id: "exit-price",
+              id: "lt-exit",
               type: "number",
               value: exitPrice,
               onChange: (e) => setExitPrice(e.target.value),
@@ -925,18 +871,18 @@ function LogTradeForm({
             }
           )
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-xs text-muted-foreground", htmlFor: "notes", children: "Notes" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-xs text-muted-foreground", htmlFor: "lt-notes", children: "Notes" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "textarea",
             {
-              id: "notes",
+              id: "lt-notes",
               value: notes,
               onChange: (e) => setNotes(e.target.value),
               className: "rounded-lg px-3 py-2 text-sm bg-background border border-border text-foreground resize-none",
               rows: 2,
               "data-ocid": "ai_chat.log_trade.notes_textarea",
-              placeholder: "Trade notes..."
+              placeholder: "Trade notes…"
             }
           )
         ] }),
@@ -959,6 +905,151 @@ function LogTradeForm({
               "data-ocid": "ai_chat.log_trade.submit_button",
               className: "flex-1 text-xs btn-primary",
               children: loading ? "Saving…" : "Log Trade"
+            }
+          )
+        ] })
+      ] })
+    }
+  );
+}
+function FeatureModal({
+  title,
+  content,
+  loading,
+  onClose,
+  inputPlaceholder,
+  inputLabel,
+  onSubmit,
+  secondInput,
+  secondLabel,
+  secondPlaceholder
+}) {
+  const [val, setVal] = reactExports.useState("");
+  const [val2, setVal2] = reactExports.useState("");
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      className: "fixed inset-0 z-50 flex items-center justify-center p-4",
+      style: { background: "oklch(0 0 0 / 0.75)" },
+      "data-ocid": "ai_chat.feature.dialog",
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-card border border-border rounded-2xl p-5 w-full max-w-lg max-h-[80vh] overflow-y-auto flex flex-col gap-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display font-bold text-foreground text-base", children: title }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              onClick: onClose,
+              "data-ocid": "ai_chat.feature.close_button",
+              className: "text-muted-foreground hover:text-foreground",
+              "aria-label": "Close",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-4 h-4" })
+            }
+          )
+        ] }),
+        onSubmit && !content && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
+          inputLabel && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "label",
+              {
+                htmlFor: "feat-input",
+                className: "text-xs text-muted-foreground",
+                children: inputLabel
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                id: "feat-input",
+                type: "text",
+                value: val,
+                onChange: (e) => setVal(e.target.value),
+                placeholder: inputPlaceholder,
+                className: "h-9 rounded-lg px-3 text-sm bg-background border border-border text-foreground",
+                "data-ocid": "ai_chat.feature.input",
+                onKeyDown: (e) => {
+                  if (e.key === "Enter" && val.trim())
+                    onSubmit(val.trim(), val2.trim() || void 0);
+                }
+              }
+            )
+          ] }),
+          secondInput && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "label",
+              {
+                htmlFor: "feat-input-2",
+                className: "text-xs text-muted-foreground",
+                children: secondLabel
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                id: "feat-input-2",
+                type: "text",
+                value: val2,
+                onChange: (e) => setVal2(e.target.value),
+                placeholder: secondPlaceholder,
+                className: "h-9 rounded-lg px-3 text-sm bg-background border border-border text-foreground",
+                "data-ocid": "ai_chat.feature.second_input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              onClick: () => {
+                if (val.trim()) onSubmit(val.trim(), val2.trim() || void 0);
+              },
+              disabled: loading || !val.trim(),
+              "data-ocid": "ai_chat.feature.submit_button",
+              className: "btn-primary",
+              children: loading ? "Generating…" : "Generate"
+            }
+          )
+        ] }),
+        loading && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            "data-ocid": "ai_chat.feature.loading_state",
+            className: "flex items-center gap-3 py-4",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "typing-indicator", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "typing-dot" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "typing-dot" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "typing-dot" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm text-muted-foreground", children: "DemonZeno AI is working…" })
+            ]
+          }
+        ),
+        content && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-sm text-foreground leading-relaxed whitespace-pre-wrap break-words bg-background rounded-xl p-4 border border-border", children: content }),
+        content && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              variant: "outline",
+              size: "sm",
+              className: "flex-1 text-xs gap-1",
+              onClick: () => {
+                navigator.clipboard.writeText(content);
+                ue.success("Copied!");
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Copy, { className: "w-3 h-3" }),
+                "Copy"
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              onClick: onClose,
+              "data-ocid": "ai_chat.feature.confirm_button",
+              size: "sm",
+              className: "flex-1 text-xs btn-primary",
+              children: "Done"
             }
           )
         ] })
@@ -1095,6 +1186,7 @@ function DailyBriefingBanner({ briefing }) {
             onClick: () => setCollapsed((v) => !v),
             className: "flex items-center gap-2 w-full px-3 py-2 text-xs font-semibold text-left",
             style: { color: "oklch(0.75 0.15 190)" },
+            "data-ocid": "ai_chat.briefing.toggle",
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(TrendingUp, { className: "w-3.5 h-3.5 shrink-0" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "flex-1", children: "📊 Daily Market Briefing" }),
@@ -1110,17 +1202,12 @@ function DailyBriefingBanner({ briefing }) {
 function MessageBubble({
   message,
   index,
-  mode,
   onRate,
   onBacktest,
   onLogTrade
 }) {
-  var _a;
   const isUser = message.role === "user";
   const { markWin, markLoss } = useSignalAccuracy();
-  const providerLabel = (_a = AI_PROVIDERS.find(
-    (p) => p.provider === message.provider
-  )) == null ? void 0 : _a.label;
   const signalData = !isUser ? extractSignalData(message.content) : null;
   const signalId = message.signalId;
   const msgId = message.messageId ?? `msg-${message.timestamp}`;
@@ -1129,12 +1216,7 @@ function MessageBubble({
     ue.success("Copied to clipboard");
   }
   function handleExport() {
-    exportAiSignalCard(
-      message.content,
-      message.provider ?? "default",
-      mode,
-      signalData ?? void 0
-    );
+    exportAiSignalCard(message.content, signalData ?? void 0);
     triggerConfetti();
     ue.success("Signal card exported! 🎉");
   }
@@ -1163,12 +1245,26 @@ function MessageBubble({
             src: "/assets/demonzeno-character.png",
             alt: "DemonZeno AI",
             className: "w-full object-cover object-top",
-            style: { height: "115%" }
+            style: {
+              height: "136%",
+              clipPath: "inset(0 0 18% 0)",
+              marginBottom: "-18%"
+            }
           }
         ) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1 min-w-0 flex-1", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-wrap", children: [
-            providerLabel && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-semibold px-2 py-0.5 rounded self-start bg-primary/15 text-primary", children: providerLabel }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: "text-xs font-semibold px-2 py-0.5 rounded",
+                style: {
+                  background: "oklch(0.65 0.15 190 / 0.12)",
+                  color: "oklch(0.72 0.14 190)"
+                },
+                children: "DemonZeno AI"
+              }
+            ),
             signalData && /* @__PURE__ */ jsxRuntimeExports.jsx(
               Badge,
               {
@@ -1204,7 +1300,6 @@ function MessageBubble({
             {
               signal: signalData,
               index,
-              mode,
               onBacktest,
               onLogTrade
             }
@@ -1276,42 +1371,47 @@ function MessageBubble({
     }
   );
 }
-function EmptyState({
-  isInsane,
-  onSuggestion
-}) {
-  const suggestions = isInsane ? [
-    "BTC 10x leverage signal",
-    "Best altcoins right now",
-    "Short TSLA setup",
-    "SOL entry for tonight"
-  ] : [
-    "BTC/USDT signal",
-    "ETH long or short?",
-    "Top Binance plays today",
-    "Scalp setup for SOL"
+function EmptyState({ onSuggestion }) {
+  const suggestions = [
+    "BTC/USDT signal with Entry, SL, TP1/TP2/TP3",
+    "ETH long or short analysis",
+    "EUR/USD forex signal for today",
+    "AAPL stock entry & exit",
+    "Write a Python trading bot",
+    "Full signal chain for SOL",
+    "Compare BTC vs ETH right now",
+    "What is market regime today?"
   ];
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
       "data-ocid": "ai_chat.empty_state",
-      className: "flex flex-col items-center justify-center py-16 gap-5 text-center",
+      className: "flex flex-col items-center justify-center py-14 gap-5 text-center",
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-20 h-20 rounded-2xl flex items-center justify-center bg-primary/[0.12] border border-primary/30", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-10 h-10 text-primary", strokeWidth: 2 }) }),
-          isInsane && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              className: "absolute -top-1 -right-1 w-4 h-4 rounded-full animate-pulse bg-destructive",
-              "aria-hidden": "true"
-            }
-          )
-        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "w-20 h-20 rounded-2xl flex items-center justify-center",
+            style: {
+              background: "oklch(0.65 0.15 190 / 0.10)",
+              border: "1px solid oklch(0.65 0.15 190 / 0.25)",
+              boxShadow: "0 0 30px oklch(0.65 0.15 190 / 0.15)"
+            },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Zap,
+              {
+                className: "w-10 h-10",
+                style: { color: "oklch(0.65 0.15 190)" },
+                strokeWidth: 2
+              }
+            )
+          }
+        ),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-bold text-xl text-foreground", children: "DemonZeno AI is ready" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm mt-1 max-w-sm", children: isInsane ? "INSANE MODE — Unrestricted signals for any asset on any exchange." : "Ask for trading signals with 3 TPs, stop loss & entry. Binance-listed assets." })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-bold text-xl text-foreground", children: "DemonZeno AI — Ready" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm mt-1.5 max-w-sm leading-relaxed", children: "Powered by 50+ AI providers silently working in the background. Ask for signals, analysis, code, or anything else." })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2 justify-center", children: suggestions.map((q) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2 justify-center max-w-sm", children: suggestions.map((q) => /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",
           {
             type: "button",
@@ -1322,30 +1422,22 @@ function EmptyState({
           q
         )) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground max-w-xs", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary/80 font-semibold", children: "Tip:" }),
-          " Signals include Entry · TP1 · TP2 · TP3 · Stop Loss with Confidence meter"
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary/80 font-semibold", children: "Every signal includes:" }),
+          " ",
+          "Entry · TP1 · TP2 · TP3 · Stop Loss · Confidence"
         ] })
       ]
     }
   );
 }
 function AiChatInterface() {
-  const {
-    aiSessionToken,
-    clearAiSession,
-    aiMode,
-    setAiMode,
-    aiLanguage,
-    setAiLanguage
-  } = useAiSession();
+  const { aiSessionToken, clearAiSession, aiLanguage, setAiLanguage } = useAiSession();
   const { invalidate } = useInvalidateAiSession();
   const { send, isLoading } = useSendAiMessage();
   const { actor } = useActor(createActor);
   const { addAiSignal } = useSignalAccuracy();
   const [messages, setMessages] = reactExports.useState([]);
   const [input, setInput] = reactExports.useState("");
-  const [provider, setProvider] = reactExports.useState("default");
-  const [providerStatuses, setProviderStatuses] = reactExports.useState(/* @__PURE__ */ new Map());
   const [showAccuracy, setShowAccuracy] = reactExports.useState(false);
   const [showJournal, setShowJournal] = reactExports.useState(false);
   const [showFaq, setShowFaq] = reactExports.useState(false);
@@ -1356,20 +1448,12 @@ function AiChatInterface() {
   const [logTradeSignal, setLogTradeSignal] = reactExports.useState(null);
   const [isLoadingRecap, setIsLoadingRecap] = reactExports.useState(false);
   const [isBacktesting, setIsBacktesting] = reactExports.useState(false);
+  const [activeFeature, setActiveFeature] = reactExports.useState(null);
+  const [featureContent, setFeatureContent] = reactExports.useState(null);
+  const [featureLoading, setFeatureLoading] = reactExports.useState(false);
   const scrollRef = reactExports.useRef(null);
   const textareaRef = reactExports.useRef(null);
   const messageCount = messages.length;
-  reactExports.useEffect(() => {
-    if (!actor) return;
-    actor.getAiProviderStatus().then((statuses) => {
-      const map = /* @__PURE__ */ new Map();
-      for (const [prov, available] of statuses) {
-        map.set(prov, available);
-      }
-      setProviderStatuses(map);
-    }).catch(() => {
-    });
-  }, [actor]);
   reactExports.useEffect(() => {
     if (!actor) return;
     actor.getDailyBriefing().then((briefing) => {
@@ -1389,6 +1473,156 @@ function AiChatInterface() {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messageCount, isLoading]);
+  function openFeature(f) {
+    setActiveFeature(f);
+    setFeatureContent(null);
+  }
+  function closeFeature() {
+    setActiveFeature(null);
+    setFeatureContent(null);
+    setFeatureLoading(false);
+  }
+  async function handleSignalOfDay() {
+    if (!actor) return;
+    setFeatureLoading(true);
+    try {
+      const signal = await actor.getSignalOfTheDay();
+      if (signal) {
+        const txt = `📊 **SIGNAL OF THE DAY: ${signal.asset}**
+
+Direction: ${signal.direction}
+Entry: ${signal.entryPrice}
+TP1: ${signal.tp1}
+TP2: ${signal.tp2}
+TP3: ${signal.tp3}
+Stop Loss: ${signal.stopLoss}
+Timeframe: ${signal.timeframe}
+Confidence: ${signal.confidence}`;
+        setFeatureContent(txt);
+        const aiMsg = {
+          role: "assistant",
+          content: txt,
+          timestamp: Date.now(),
+          messageId: `sotd-${Date.now()}`
+        };
+        setMessages((prev) => [...prev, aiMsg]);
+      } else {
+        setFeatureContent(
+          "No Signal of the Day has been set yet. Check back later!"
+        );
+      }
+    } catch {
+      setFeatureContent("Could not fetch Signal of the Day. Please try again.");
+    } finally {
+      setFeatureLoading(false);
+    }
+  }
+  async function handleGenerateBriefing() {
+    if (!actor || !aiSessionToken) return;
+    setFeatureLoading(true);
+    try {
+      const result = await actor.generateDailyBriefing(aiSessionToken);
+      if (result.__kind__ === "ok") {
+        setDailyBriefing(result.ok);
+        setFeatureContent(result.ok);
+      } else {
+        setFeatureContent("Could not generate briefing. Try again.");
+      }
+    } catch {
+      setFeatureContent("Failed to generate briefing.");
+    } finally {
+      setFeatureLoading(false);
+    }
+  }
+  async function handleSignalChain(asset) {
+    if (!actor || !aiSessionToken || !asset) return;
+    setFeatureLoading(true);
+    try {
+      const result = await actor.generateSignalChain(asset, aiSessionToken);
+      if (result.__kind__ === "ok") {
+        setFeatureContent(result.ok);
+        const aiMsg = {
+          role: "assistant",
+          content: result.ok,
+          timestamp: Date.now(),
+          messageId: `chain-${Date.now()}`
+        };
+        setMessages((prev) => [...prev, aiMsg]);
+      } else {
+        setFeatureContent("Failed to generate signal chain.");
+      }
+    } catch {
+      setFeatureContent("Signal chain failed. Try again.");
+    } finally {
+      setFeatureLoading(false);
+    }
+  }
+  async function handleCompare(asset1, asset2) {
+    if (!actor || !aiSessionToken) return;
+    setFeatureLoading(true);
+    try {
+      const result = await actor.compareSignals(asset1, asset2, aiSessionToken);
+      if (result.__kind__ === "ok") {
+        setFeatureContent(result.ok);
+        const aiMsg = {
+          role: "assistant",
+          content: result.ok,
+          timestamp: Date.now(),
+          messageId: `compare-${Date.now()}`
+        };
+        setMessages((prev) => [...prev, aiMsg]);
+      } else {
+        setFeatureContent("Comparison failed. Try again.");
+      }
+    } catch {
+      setFeatureContent("Could not compare signals.");
+    } finally {
+      setFeatureLoading(false);
+    }
+  }
+  async function handlePricePrediction(asset) {
+    if (!actor || !aiSessionToken) return;
+    setFeatureLoading(true);
+    try {
+      const result = await actor.generatePricePrediction(asset, aiSessionToken);
+      if (result.__kind__ === "ok") {
+        setFeatureContent(result.ok);
+        const aiMsg = {
+          role: "assistant",
+          content: result.ok,
+          timestamp: Date.now(),
+          messageId: `predict-${Date.now()}`
+        };
+        setMessages((prev) => [...prev, aiMsg]);
+      } else {
+        setFeatureContent("Price prediction failed.");
+      }
+    } catch {
+      setFeatureContent("Could not generate prediction.");
+    } finally {
+      setFeatureLoading(false);
+    }
+  }
+  async function handlePostTrade(signal, outcome) {
+    if (!actor || !aiSessionToken) return;
+    setFeatureLoading(true);
+    try {
+      const result = await actor.generatePostTradeAnalysis(
+        signal,
+        outcome,
+        aiSessionToken
+      );
+      if (result.__kind__ === "ok") {
+        setFeatureContent(result.ok);
+      } else {
+        setFeatureContent("Post-trade analysis failed.");
+      }
+    } catch {
+      setFeatureContent("Could not generate analysis.");
+    } finally {
+      setFeatureLoading(false);
+    }
+  }
   const handleRate = reactExports.useCallback(
     async (msgId, rating) => {
       if (!actor || !aiSessionToken) return;
@@ -1467,8 +1701,7 @@ ${result.ok}`,
       const history = messages.map((m) => ({
         role: m.role,
         content: m.content,
-        timestamp: BigInt(m.timestamp),
-        provider: m.provider
+        timestamp: BigInt(m.timestamp)
       }));
       const result = await actor.getSessionRecap(history, aiSessionToken);
       if (result.__kind__ === "ok") {
@@ -1491,7 +1724,7 @@ ${result.ok}`,
         } catch {
         }
       }
-      ue.success(`Language set to ${LANGUAGE_LABELS[lang]}`);
+      ue.success(`Language: ${LANGUAGE_LABELS[lang]}`);
     },
     [actor, aiSessionToken, setAiLanguage]
   );
@@ -1503,7 +1736,6 @@ ${result.ok}`,
     const userMsg = {
       role: "user",
       content: text,
-      // Show original, not suffixed
       timestamp: Date.now()
     };
     setMessages((prev) => [...prev, userMsg]);
@@ -1512,13 +1744,7 @@ ${result.ok}`,
       ...messages,
       { ...userMsg, content: messageWithLang }
     ];
-    const reply = await send(
-      aiSessionToken,
-      messageWithLang,
-      provider,
-      aiMode ?? "normal",
-      historyWithLang
-    );
+    const reply = await send(aiSessionToken, messageWithLang, historyWithLang);
     if (reply) {
       const sigData = extractSignalData(reply.content);
       let signalId;
@@ -1532,7 +1758,7 @@ ${result.ok}`,
           sl: sigData.sl,
           timeframe: sigData.timeframe,
           confidence: `${sigData.confidence}%`,
-          provider: reply.provider ?? "default"
+          provider: "DemonZeno AI"
         });
       }
       const newMsg = {
@@ -1546,8 +1772,6 @@ ${result.ok}`,
     input,
     isLoading,
     aiSessionToken,
-    provider,
-    aiMode,
     aiLanguage,
     messages,
     send,
@@ -1570,24 +1794,57 @@ ${result.ok}`,
     setMessages([]);
     (_a = textareaRef.current) == null ? void 0 : _a.focus();
   }
-  function toggleMode() {
-    setAiMode(aiMode === "normal" ? "insane" : "normal");
-  }
-  const isInsane = aiMode === "insane";
-  const enrichedProviders = AI_PROVIDERS.map((p) => ({
-    ...p,
-    available: providerStatuses.has(p.provider) ? providerStatuses.get(p.provider) ?? false : p.available
-  }));
+  const featureButtons = [
+    {
+      icon: TrendingUp,
+      label: "Signal of Day",
+      ocid: "ai_chat.feature.signal_of_day",
+      action: () => {
+        openFeature("signalOfDay");
+        handleSignalOfDay();
+      }
+    },
+    {
+      icon: ChartColumn,
+      label: "Daily Briefing",
+      ocid: "ai_chat.feature.daily_briefing",
+      action: () => {
+        openFeature("briefing");
+        handleGenerateBriefing();
+      }
+    },
+    {
+      icon: Link2,
+      label: "Signal Chain",
+      ocid: "ai_chat.feature.signal_chain",
+      action: () => openFeature("chain")
+    },
+    {
+      icon: Copy,
+      label: "Compare",
+      ocid: "ai_chat.feature.compare",
+      action: () => openFeature("compare")
+    },
+    {
+      icon: Zap,
+      label: "Price Predict",
+      ocid: "ai_chat.feature.price_predict",
+      action: () => openFeature("predict")
+    },
+    {
+      icon: BookOpen,
+      label: "Post-Trade",
+      ocid: "ai_chat.feature.post_trade",
+      action: () => openFeature("postTrade")
+    }
+  ];
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
         "data-ocid": "ai_chat.panel",
         className: "flex flex-col",
-        style: {
-          height: "100dvh",
-          background: isInsane ? "linear-gradient(180deg, oklch(0.145 0.01 260) 0%, oklch(0.16 0.02 22) 100%)" : "oklch(0.145 0.01 260)"
-        },
+        style: { height: "100dvh", background: "oklch(0.145 0.01 260)" },
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "header",
@@ -1602,21 +1859,52 @@ ${result.ok}`,
                       src: "/assets/demonzeno-character.png",
                       alt: "DemonZeno AI",
                       className: "w-full object-cover object-top",
-                      style: { height: "115%" }
+                      style: {
+                        height: "136%",
+                        clipPath: "inset(0 0 18% 0)",
+                        marginBottom: "-18%"
+                      }
                     }
                   ) }),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("h1", { className: "font-display font-bold text-sm leading-none text-foreground truncate", children: [
-                      "Demon",
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Zeno" }),
-                      " ",
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-muted-foreground font-normal", children: "AI" })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground leading-none mt-0.5", children: "25+ AI providers" })
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "h1",
+                      {
+                        className: "font-display font-bold text-sm leading-none truncate",
+                        style: { color: "oklch(0.97 0.005 260)" },
+                        children: [
+                          "Demon",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.65 0.15 190)" }, children: "Zeno" }),
+                          " ",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.65 0.15 190 / 0.7)" }, children: "AI" })
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground leading-none mt-0.5", children: "50+ providers · Auto-routing" })
                   ] })
                 ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1 ml-1 shrink-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ModeBadge, { mode: aiMode ?? "normal", onClick: toggleMode }) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "hidden md:flex items-center gap-1.5 ml-auto shrink-0", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1.5 ml-1 shrink-0", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "span",
+                  {
+                    className: "inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full font-medium",
+                    style: {
+                      background: "oklch(0.65 0.15 190 / 0.12)",
+                      color: "oklch(0.72 0.14 190)",
+                      border: "1px solid oklch(0.65 0.15 190 / 0.25)"
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "span",
+                        {
+                          className: "w-1.5 h-1.5 rounded-full animate-pulse inline-block",
+                          style: { background: "oklch(0.65 0.15 190)" }
+                        }
+                      ),
+                      "LIVE"
+                    ]
+                  }
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "hidden md:flex items-center gap-1 ml-auto shrink-0 flex-wrap", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsxs(Select, { value: aiLanguage, onValueChange: handleLanguageChange, children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       SelectTrigger,
@@ -1631,35 +1919,22 @@ ${result.ok}`,
                     ),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: Object.entries(LANGUAGE_LABELS).map(([code, label]) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: code, className: "text-xs", children: label }, code)) })
                   ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    Select,
+                  featureButtons.map(({ icon: Icon, label, ocid, action }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
                     {
-                      value: provider,
-                      onValueChange: (v) => setProvider(v),
+                      variant: "ghost",
+                      size: "sm",
+                      "data-ocid": ocid,
+                      onClick: action,
+                      className: "text-muted-foreground hover:text-foreground h-8 px-2 gap-1 text-xs",
+                      title: label,
                       children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          SelectTrigger,
-                          {
-                            "data-ocid": "ai_chat.provider.select",
-                            className: "h-8 text-xs w-36 bg-background border-border",
-                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "AI Provider" })
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: enrichedProviders.map((p) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          SelectItem,
-                          {
-                            value: p.provider,
-                            className: "text-xs",
-                            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center", children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(StatusDot, { available: p.available }),
-                              p.label
-                            ] })
-                          },
-                          p.provider
-                        )) })
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Icon, { className: "w-3.5 h-3.5" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hidden lg:inline", children: label })
                       ]
-                    }
-                  ),
+                    },
+                    label
+                  )),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     Button,
                     {
@@ -1717,6 +1992,7 @@ ${result.ok}`,
                       "data-ocid": "ai_chat.clear_button",
                       onClick: clearChat,
                       className: "text-muted-foreground hover:text-foreground h-8 px-2 gap-1 text-xs",
+                      title: "Clear chat",
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(RotateCcw, { className: "w-3.5 h-3.5" })
                     }
                   ),
@@ -1728,6 +2004,7 @@ ${result.ok}`,
                       "data-ocid": "ai_chat.logout_button",
                       onClick: handleLogout,
                       className: "text-muted-foreground hover:text-foreground h-8 px-2 gap-1 text-xs",
+                      title: "Logout",
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(LogOut, { className: "w-3.5 h-3.5" })
                     }
                   )
@@ -1748,117 +2025,94 @@ ${result.ok}`,
             }
           ),
           mobileToolbarOpen && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "md:hidden flex flex-col gap-2 px-3 py-2.5 bg-card border-b border-border shrink-0", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                Select,
-                {
-                  value: aiLanguage,
-                  onValueChange: (v) => {
-                    handleLanguageChange(v);
-                    setMobileToolbarOpen(false);
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                      SelectTrigger,
-                      {
-                        "data-ocid": "ai_chat.language.select",
-                        className: "h-8 text-xs flex-1 bg-background border-border",
-                        children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Globe, { className: "w-3 h-3 mr-1" }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {})
-                        ]
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: Object.entries(LANGUAGE_LABELS).map(([code, label]) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: code, className: "text-xs", children: label }, code)) })
-                  ]
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                Select,
-                {
-                  value: provider,
-                  onValueChange: (v) => {
-                    setProvider(v);
-                    setMobileToolbarOpen(false);
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      SelectTrigger,
-                      {
-                        "data-ocid": "ai_chat.provider.select",
-                        className: "h-8 text-xs flex-1 bg-background border-border",
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Provider" })
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: enrichedProviders.map((p) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      SelectItem,
-                      {
-                        value: p.provider,
-                        className: "text-xs",
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(StatusDot, { available: p.available }),
-                          p.label
-                        ] })
-                      },
-                      p.provider
-                    )) })
-                  ]
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1 flex-wrap", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
               {
-                icon: Award,
+                value: aiLanguage,
+                onValueChange: (v) => {
+                  handleLanguageChange(v);
+                  setMobileToolbarOpen(false);
+                },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    SelectTrigger,
+                    {
+                      "data-ocid": "ai_chat.language.select.mobile",
+                      className: "h-8 text-xs flex-1 bg-background border-border",
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Globe, { className: "w-3 h-3 mr-1" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {})
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: Object.entries(LANGUAGE_LABELS).map(([code, label]) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: code, className: "text-xs", children: label }, code)) })
+                ]
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1 flex-wrap", children: [
+              ...featureButtons.map(
+                ({ icon: Icon, label, ocid, action }) => ({
+                  Icon,
+                  label,
+                  ocid: `${ocid}.mobile`,
+                  action: () => {
+                    action();
+                    setMobileToolbarOpen(false);
+                  }
+                })
+              ),
+              {
+                Icon: Award,
                 label: "Tracker",
+                ocid: "ai_chat.accuracy.toggle.mobile",
                 action: () => {
                   setShowAccuracy((v) => !v);
                   setMobileToolbarOpen(false);
-                },
-                ocid: "ai_chat.accuracy.toggle"
+                }
               },
               {
-                icon: FileText,
+                Icon: FileText,
                 label: "Journal",
+                ocid: "ai_chat.journal.toggle.mobile",
                 action: () => {
                   setShowJournal((v) => !v);
                   setMobileToolbarOpen(false);
-                },
-                ocid: "ai_chat.journal.toggle"
+                }
               },
               {
-                icon: Lightbulb,
+                Icon: Lightbulb,
                 label: "FAQ",
+                ocid: "ai_chat.faq.toggle.mobile",
                 action: () => {
                   setShowFaq((v) => !v);
                   setMobileToolbarOpen(false);
-                },
-                ocid: "ai_chat.faq.toggle"
+                }
               },
               {
-                icon: ChartColumn,
+                Icon: ChartColumn,
                 label: "Recap",
+                ocid: "ai_chat.recap.button.mobile",
                 action: () => {
                   handleSessionRecap();
                   setMobileToolbarOpen(false);
-                },
-                ocid: "ai_chat.recap.button"
+                }
               },
               {
-                icon: RotateCcw,
+                Icon: RotateCcw,
                 label: "Clear",
+                ocid: "ai_chat.clear_button.mobile",
                 action: () => {
                   clearChat();
                   setMobileToolbarOpen(false);
-                },
-                ocid: "ai_chat.clear_button"
+                }
               },
               {
-                icon: LogOut,
+                Icon: LogOut,
                 label: "Logout",
-                action: handleLogout,
-                ocid: "ai_chat.logout_button"
+                ocid: "ai_chat.logout_button.mobile",
+                action: handleLogout
               }
-            ].map(({ icon: Icon, label, action, ocid }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            ].map(({ Icon, label, ocid, action }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
               Button,
               {
                 variant: "ghost",
@@ -1891,19 +2145,12 @@ ${result.ok}`,
               ref: scrollRef,
               className: "flex-1 overflow-y-auto px-3 md:px-4 py-6",
               children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-3xl mx-auto flex flex-col gap-5", children: [
-                messages.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  EmptyState,
-                  {
-                    isInsane,
-                    onSuggestion: (q) => setInput(q)
-                  }
-                ),
+                messages.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(EmptyState, { onSuggestion: (q) => setInput(q) }),
                 messages.map((msg, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                   MessageBubble,
                   {
                     message: msg,
                     index: i + 1,
-                    mode: aiMode ?? "normal",
                     onRate: handleRate,
                     onBacktest: handleBacktest,
                     onLogTrade: (signal) => setLogTradeSignal(signal)
@@ -1924,7 +2171,7 @@ ${result.ok}`,
                   value: input,
                   onChange: (e) => setInput(e.target.value),
                   onKeyDown: handleKeyDown,
-                  placeholder: isInsane ? "Ask anything — no restrictions…" : "Ask for a Binance signal… (Enter to send)",
+                  placeholder: "Ask for a signal, market analysis, code, or anything… (Enter to send)",
                   rows: 1,
                   className: "resize-none min-h-[44px] max-h-32 bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary text-sm leading-relaxed"
                 }
@@ -1941,7 +2188,7 @@ ${result.ok}`,
                 }
               )
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs text-center mt-1.5", children: isInsane ? "⚡ INSANE MODE: Unrestricted AI — No financial advice. Trade at your own risk." : "DemonZeno AI may be wrong. Always do your own research. Not financial advice." })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs text-center mt-1.5", children: "DemonZeno AI may be wrong. Always do your own research. Not financial advice." })
           ] })
         ]
       }
@@ -1960,35 +2207,105 @@ ${result.ok}`,
         recap: recapContent,
         onClose: () => setRecapContent(null)
       }
+    ),
+    activeFeature === "signalOfDay" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      FeatureModal,
+      {
+        title: "📊 Signal of the Day",
+        content: featureContent,
+        loading: featureLoading,
+        onClose: closeFeature
+      }
+    ),
+    activeFeature === "briefing" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      FeatureModal,
+      {
+        title: "📈 Daily Market Briefing",
+        content: featureContent,
+        loading: featureLoading,
+        onClose: closeFeature
+      }
+    ),
+    activeFeature === "chain" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      FeatureModal,
+      {
+        title: "🔗 Signal Chain — Full Trading Plan",
+        content: featureContent,
+        loading: featureLoading,
+        onClose: closeFeature,
+        inputLabel: "Asset (e.g. BTC/USDT, EUR/USD, AAPL)",
+        inputPlaceholder: "Enter asset…",
+        onSubmit: (asset) => handleSignalChain(asset)
+      }
+    ),
+    activeFeature === "compare" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      FeatureModal,
+      {
+        title: "⚔️ Compare Two Assets",
+        content: featureContent,
+        loading: featureLoading,
+        onClose: closeFeature,
+        inputLabel: "Asset 1 (e.g. BTC/USDT)",
+        inputPlaceholder: "Asset 1…",
+        secondInput: true,
+        secondLabel: "Asset 2 (e.g. ETH/USDT)",
+        secondPlaceholder: "Asset 2…",
+        onSubmit: (a1, a2) => handleCompare(a1, a2 ?? "")
+      }
+    ),
+    activeFeature === "predict" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      FeatureModal,
+      {
+        title: "🔮 Price Prediction",
+        content: featureContent,
+        loading: featureLoading,
+        onClose: closeFeature,
+        inputLabel: "Asset (e.g. BTC, ETH, EUR/USD)",
+        inputPlaceholder: "Enter asset…",
+        onSubmit: (asset) => handlePricePrediction(asset)
+      }
+    ),
+    activeFeature === "postTrade" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      FeatureModal,
+      {
+        title: "📋 Post-Trade Analysis",
+        content: featureContent,
+        loading: featureLoading,
+        onClose: closeFeature,
+        inputLabel: "Signal (e.g. BTC LONG Entry 67000, TP1 69000, SL 65000)",
+        inputPlaceholder: "Describe the signal…",
+        secondInput: true,
+        secondLabel: "Outcome (e.g. Hit TP1, stopped out at SL)",
+        secondPlaceholder: "What happened…",
+        onSubmit: (signal, outcome) => handlePostTrade(signal, outcome ?? "")
+      }
     )
   ] });
 }
 function AiPasswordEntry() {
   const [passcode, setPasscode] = reactExports.useState("");
   const [showPass, setShowPass] = reactExports.useState(false);
-  const [successMode, setSuccessMode] = reactExports.useState(null);
+  const [unlocked, setUnlocked] = reactExports.useState(false);
   const { validate, isLoading, error, clearError } = useValidateAiPasscode();
-  const { setSession } = useAiSession();
+  const { setAiSessionToken } = useAiSession();
   async function handleSubmit(e) {
     e.preventDefault();
     if (!passcode.trim()) return;
     const result = await validate(passcode.trim());
     if (result) {
-      setSuccessMode(result.mode);
+      setUnlocked(true);
       setTimeout(() => {
-        setSession(result.token, result.mode);
-      }, 600);
+        setAiSessionToken(result.token);
+      }, 700);
     }
   }
-  const isInsaneSuccess = successMode === "insane";
-  const glowColor = isInsaneSuccess ? "oklch(0.55 0.22 25 / 0.25)" : "oklch(0.65 0.15 190 / 0.18)";
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
       "data-ocid": "ai_password.panel",
-      className: "min-h-screen flex items-center justify-center px-4",
+      className: "min-h-screen flex items-center justify-center px-4 relative overflow-hidden",
       style: {
-        background: "linear-gradient(135deg, oklch(0.145 0.01 260) 0%, oklch(0.18 0.02 200) 50%, oklch(0.145 0.01 260) 100%)"
+        background: "linear-gradient(135deg, oklch(0.12 0.015 260) 0%, oklch(0.16 0.025 200) 50%, oklch(0.12 0.015 260) 100%)"
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -1996,20 +2313,56 @@ function AiPasswordEntry() {
           {
             className: "absolute inset-0 pointer-events-none",
             style: {
-              background: `radial-gradient(ellipse 60% 40% at 50% 50%, ${glowColor}, transparent)`,
-              transition: "background 0.5s ease"
+              background: unlocked ? "radial-gradient(ellipse 70% 50% at 50% 50%, oklch(0.65 0.15 190 / 0.22), transparent)" : "radial-gradient(ellipse 60% 40% at 50% 50%, oklch(0.65 0.15 190 / 0.10), transparent)",
+              transition: "background 0.6s ease"
             }
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative w-full max-w-md", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-6", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute inset-0 pointer-events-none opacity-[0.04]",
+            style: {
+              backgroundImage: "linear-gradient(oklch(0.65 0.15 190) 1px, transparent 1px), linear-gradient(90deg, oklch(0.65 0.15 190) 1px, transparent 1px)",
+              backgroundSize: "48px 48px"
+            }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute bottom-0 left-0 right-0 h-48 pointer-events-none overflow-hidden opacity-10", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
-              className: "relative w-32 h-32 overflow-hidden rounded-2xl shadow-elevated",
+              className: "absolute inset-0",
               style: {
-                border: isInsaneSuccess ? "2px solid oklch(0.55 0.22 25 / 0.7)" : "2px solid oklch(0.65 0.15 190 / 0.4)",
-                boxShadow: successMode ? `0 0 32px ${glowColor}` : void 0,
-                transition: "border-color 0.4s ease, box-shadow 0.4s ease"
+                background: "linear-gradient(to top, oklch(0.65 0.15 190 / 0.4), transparent)"
+              }
+            }
+          ),
+          ["15%", "33%", "51%", "69%", "87%"].map((left) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute bottom-0 h-full",
+              style: {
+                left,
+                width: "2px",
+                background: "linear-gradient(to top, oklch(0.65 0.15 190), transparent)",
+                transform: "perspective(400px) rotateX(60deg)",
+                transformOrigin: "bottom center"
+              }
+            },
+            left
+          ))
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative w-full max-w-md z-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-6", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "relative w-28 rounded-2xl overflow-hidden",
+              style: {
+                border: unlocked ? "2px solid oklch(0.65 0.15 190 / 0.8)" : "2px solid oklch(0.65 0.15 190 / 0.35)",
+                boxShadow: unlocked ? "0 0 40px oklch(0.65 0.15 190 / 0.4), 0 0 80px oklch(0.65 0.15 190 / 0.15)" : "0 0 20px oklch(0.65 0.15 190 / 0.1)",
+                transition: "all 0.5s ease",
+                height: "112px"
               },
               children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "img",
@@ -2017,7 +2370,11 @@ function AiPasswordEntry() {
                   src: "/assets/demonzeno-character.png",
                   alt: "DemonZeno AI",
                   className: "w-full object-cover object-top",
-                  style: { height: "115%", objectPosition: "top center" }
+                  style: {
+                    height: "136%",
+                    clipPath: "inset(0 0 18% 0)",
+                    marginBottom: "-18%"
+                  }
                 }
               )
             }
@@ -2026,8 +2383,11 @@ function AiPasswordEntry() {
             /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "h1",
               {
-                className: "font-display font-bold text-3xl text-glow",
-                style: { color: "oklch(0.95 0.005 260)" },
+                className: "font-display font-bold text-4xl tracking-tight",
+                style: {
+                  color: "oklch(0.97 0.005 260)",
+                  textShadow: "0 0 32px oklch(0.65 0.15 190 / 0.5)"
+                },
                 children: [
                   "Demon",
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.65 0.15 190)" }, children: "Zeno" }),
@@ -2039,62 +2399,63 @@ function AiPasswordEntry() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "p",
               {
-                style: { color: "oklch(0.55 0.01 260)" },
-                className: "text-sm mt-1",
-                children: "Password-protected. Authorized users only."
+                className: "text-sm mt-2 font-medium",
+                style: { color: "oklch(0.55 0.08 190)" },
+                children: "Master the Market with 50+ AI Providers"
               }
             )
           ] }),
-          successMode && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2 justify-center", children: [
+            "Crypto Signals",
+            "Forex & Stocks",
+            "Code Writing",
+            "Market Analysis",
+            "Signal Chaining",
+            "Trade Journal"
+          ].map((cap) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "span",
+            {
+              className: "text-xs px-2.5 py-1 rounded-full",
+              style: {
+                background: "oklch(0.65 0.15 190 / 0.08)",
+                border: "1px solid oklch(0.65 0.15 190 / 0.2)",
+                color: "oklch(0.65 0.15 190 / 0.85)"
+              },
+              children: cap
+            },
+            cap
+          )) }),
+          unlocked && /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
               className: "w-full rounded-xl px-4 py-3 text-center font-semibold text-sm animate-pulse",
               style: {
-                background: isInsaneSuccess ? "oklch(0.55 0.22 25 / 0.2)" : "oklch(0.65 0.15 190 / 0.15)",
-                border: `1px solid ${isInsaneSuccess ? "oklch(0.55 0.22 25 / 0.5)" : "oklch(0.65 0.15 190 / 0.4)"}`,
-                color: isInsaneSuccess ? "oklch(0.7 0.2 25)" : "oklch(0.75 0.15 190)"
+                background: "oklch(0.65 0.15 190 / 0.15)",
+                border: "1px solid oklch(0.65 0.15 190 / 0.5)",
+                color: "oklch(0.75 0.15 190)"
               },
-              children: isInsaneSuccess ? "🔥 INSANE Mode Unlocked — Entering…" : "✅ Normal Mode Unlocked — Entering…"
+              children: "⚡ DemonZeno AI Unlocked — Entering…"
             }
           ),
-          !successMode && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          !unlocked && /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "div",
             {
-              className: "w-full rounded-2xl p-8",
+              className: "w-full rounded-2xl p-7",
               style: {
-                background: "oklch(0.18 0.01 260)",
-                border: "1px solid oklch(0.28 0.01 260)",
-                boxShadow: "0 32px 64px oklch(0 0 0 / 0.4)"
+                background: "oklch(0.16 0.015 260)",
+                border: "1px solid oklch(0.26 0.015 260)",
+                boxShadow: "0 32px 80px oklch(0 0 0 / 0.5), inset 0 1px 0 oklch(1 0 0 / 0.03)"
               },
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-6", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "div",
-                    {
-                      className: "w-8 h-8 rounded-lg flex items-center justify-center",
-                      style: {
-                        background: "oklch(0.65 0.15 190 / 0.15)",
-                        border: "1px solid oklch(0.65 0.15 190 / 0.3)"
-                      },
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Lock,
-                        {
-                          className: "w-4 h-4",
-                          style: { color: "oklch(0.65 0.15 190)" }
-                        }
-                      )
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "span",
-                    {
-                      className: "font-display font-semibold",
-                      style: { color: "oklch(0.95 0.005 260)" },
-                      children: "Enter Access Code"
-                    }
-                  )
-                ] }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "flex flex-col gap-4", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-center mb-1", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "text-xs font-medium uppercase tracking-widest",
+                      style: { color: "oklch(0.50 0.08 190)" },
+                      children: "Enter Passcode to Unlock"
+                    }
+                  ) }),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       Input,
@@ -2106,11 +2467,11 @@ function AiPasswordEntry() {
                           setPasscode(e.target.value);
                           if (error) clearError();
                         },
-                        placeholder: "Enter access code…",
-                        className: "pr-10",
+                        placeholder: "DemonZeno passcode…",
+                        className: "pr-10 h-12 text-base",
                         style: {
-                          background: "oklch(0.145 0.01 260)",
-                          border: "1px solid oklch(0.28 0.01 260)",
+                          background: "oklch(0.12 0.01 260)",
+                          border: "1px solid oklch(0.28 0.015 260)",
                           color: "oklch(0.95 0.005 260)"
                         },
                         autoFocus: true,
@@ -2123,7 +2484,7 @@ function AiPasswordEntry() {
                         type: "button",
                         onClick: () => setShowPass((v) => !v),
                         className: "absolute right-3 top-1/2 -translate-y-1/2 transition-colors",
-                        style: { color: "oklch(0.55 0.01 260)" },
+                        style: { color: "oklch(0.50 0.01 260)" },
                         "aria-label": showPass ? "Hide passcode" : "Show passcode",
                         children: showPass ? /* @__PURE__ */ jsxRuntimeExports.jsx(EyeOff, { className: "w-4 h-4" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Eye, { className: "w-4 h-4" })
                       }
@@ -2135,8 +2496,8 @@ function AiPasswordEntry() {
                       "data-ocid": "ai_password.error_state",
                       className: "text-sm font-medium px-3 py-2 rounded-lg",
                       style: {
-                        background: "oklch(0.55 0.22 25 / 0.15)",
-                        color: "oklch(0.7 0.2 25)",
+                        background: "oklch(0.55 0.22 25 / 0.12)",
+                        color: "oklch(0.72 0.18 25)",
                         border: "1px solid oklch(0.55 0.22 25 / 0.3)"
                       },
                       children: error
@@ -2148,13 +2509,20 @@ function AiPasswordEntry() {
                       "data-ocid": "ai_password.submit_button",
                       type: "submit",
                       disabled: isLoading || !passcode.trim(),
-                      className: "btn-primary w-full h-11 font-semibold",
+                      className: "h-12 font-semibold text-base rounded-xl w-full",
+                      style: {
+                        background: isLoading ? "oklch(0.45 0.12 190)" : "linear-gradient(135deg, oklch(0.55 0.15 190) 0%, oklch(0.48 0.18 200) 100%)",
+                        color: "oklch(0.98 0.005 260)",
+                        border: "none",
+                        boxShadow: "0 4px 24px oklch(0.55 0.15 190 / 0.35)",
+                        transition: "all 0.2s ease"
+                      },
                       children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
                         /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 mr-2 animate-spin" }),
                         "Authenticating…"
                       ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-4 h-4 mr-2" }),
-                        "Access DemonZeno AI"
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-5 h-5 mr-2" }),
+                        "Unlock DemonZeno AI"
                       ] })
                     }
                   )
@@ -2163,14 +2531,21 @@ function AiPasswordEntry() {
                   "p",
                   {
                     className: "text-xs text-center mt-4",
-                    style: { color: "oklch(0.45 0.01 260)" },
-                    children: "Session expires when you close this tab. No data stored."
+                    style: { color: "oklch(0.42 0.01 260)" },
+                    children: "Session expires when you close this tab · No data stored"
                   }
                 )
               ]
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs", style: { color: "oklch(0.45 0.01 260)" }, children: "Powered by 25+ AI providers · Gemini · Grok · ChatGPT · and more" })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "p",
+            {
+              className: "text-xs text-center",
+              style: { color: "oklch(0.40 0.01 260)" },
+              children: "Powered by 50+ AI providers · Gemini · Grok · ChatGPT · Claude · DeepSeek · Groq · Mistral · and more"
+            }
+          )
         ] }) })
       ]
     }
@@ -2223,7 +2598,7 @@ function AiPasswordGuard({ children }) {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
-              className: "w-12 h-12 rounded-full border-2 border-t-transparent animate-spin",
+              className: "w-12 h-12 rounded-full border-2 animate-spin",
               style: {
                 borderColor: "oklch(0.65 0.15 190 / 0.6)",
                 borderTopColor: "transparent"

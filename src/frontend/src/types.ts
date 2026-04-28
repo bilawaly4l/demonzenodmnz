@@ -8,16 +8,19 @@ import type {
   AuditEntry,
   AuditSnapshot,
   BinancePost,
+  BurnEvent,
   BurnScheduleEntry,
   BurnTracker,
   CommunityCounter,
   CommunityMilestone,
+  CommunityQuestion,
   Confidence,
   DayStats,
   DemonZenoQuote,
   Direction,
   FAQ,
   HolderBenefit,
+  HypeMilestone,
   JournalEntry,
   MaintenanceMode,
   MarketMoodBanner,
@@ -47,16 +50,18 @@ import type {
   Result_16,
   Result_17,
   Result_18,
-  Result_19,
   RoadmapMilestone,
   SentimentLevel,
   Signal,
   SignalOfWeekFull,
   SignalPerformanceStats,
+  SignalTemplate,
   Stats,
   StatsConfig,
   Testimonial,
   Timeframe,
+  TokenData,
+  TopTrader,
   WhitepaperContent,
   WhitepaperSection,
 } from "./backend";
@@ -71,16 +76,19 @@ export type {
   AuditEntry,
   AuditSnapshot,
   BinancePost,
+  BurnEvent,
   BurnScheduleEntry,
   BurnTracker,
   CommunityCounter,
   CommunityMilestone,
+  CommunityQuestion,
   Confidence,
   DayStats,
   DemonZenoQuote,
   Direction,
   FAQ,
   HolderBenefit,
+  HypeMilestone,
   JournalEntry,
   MaintenanceMode,
   MarketMoodBanner,
@@ -109,23 +117,26 @@ export type {
   Result_16,
   Result_17,
   Result_18,
-  Result_19,
   ResultStatus,
   RoadmapMilestone,
   SentimentLevel,
   Signal,
   SignalOfWeekFull,
   SignalPerformanceStats,
+  SignalTemplate,
   Stats,
   StatsConfig,
   Testimonial,
   Timeframe,
+  TokenData,
+  TopTrader,
   WhitepaperContent,
   WhitepaperSection,
 };
 
 export type MarketFilter = "All" | "Crypto" | "Forex" | "Stocks";
 export type ExtendedResultStatus = "Win" | "Loss" | "Active" | "Expired";
+export type AiLanguage = "en" | "ar" | "es" | "zh";
 
 export interface SessionContextValue {
   sessionToken: string | null;
@@ -133,14 +144,33 @@ export interface SessionContextValue {
   clearSession: () => void;
 }
 
+// ─── Admin Session Context ─────────────────────────────────────────────────
+export interface AdminSessionContextValue {
+  adminToken: string | null;
+  setAdminToken: (token: string | null) => void;
+  clearAdminSession: () => void;
+  clickCount: number;
+  incrementClickCount: () => void;
+}
+
 // ─── AI Types ──────────────────────────────────────────────────────────────
 export type AiMode = "normal" | "insane";
-export type AiLanguage = "en" | "ar" | "es" | "zh";
 
 export interface AiSessionState {
   token: string;
   mode: AiMode;
   isAdmin: boolean;
+}
+
+export interface AiMessage {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: number;
+  provider?: string;
+  rating?: 1 | -1;
+  signalData?: AiSignal;
+  messageId?: string;
 }
 
 export interface AiSignal {
@@ -195,4 +225,15 @@ export interface SignalArchiveFilter {
 export interface ScheduledSignal extends Signal {
   scheduledAt: bigint;
   published: boolean;
+}
+
+// ─── AiSessionContextValue ─────────────────────────────────────────────────
+export interface AiSessionContextValue {
+  aiSessionToken: string | null;
+  aiLanguage: AiLanguage;
+  setAiSessionToken: (token: string | null) => void;
+  setAiLanguage: (lang: AiLanguage) => void;
+  clearAiSession: () => void;
+  journalEntries: JournalEntry[];
+  setJournalEntries: (entries: JournalEntry[]) => void;
 }

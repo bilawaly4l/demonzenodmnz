@@ -28,8 +28,7 @@ export function usePushNotifications(sessionToken: string) {
     queryKey: ["pushNotifications", sessionToken],
     queryFn: async () => {
       if (!actor || !sessionToken) return [];
-      const r = await actor.getActivePushNotifications();
-      return r;
+      return actor.getActivePushNotifications();
     },
     enabled: !!actor && !isFetching && !!sessionToken,
     staleTime: 30_000,
@@ -60,6 +59,35 @@ export function usePushNotifications(sessionToken: string) {
   });
 
   return { ...query, create, dismiss };
+}
+
+// ─── Active Push Notifications (public — for display overlay) ─────────────
+export function useActivePushNotifications() {
+  const { actor, isFetching } = useActor(createActor);
+  const qc = useQueryClient();
+
+  const query = useQuery<PushNotification[]>({
+    queryKey: ["activePushNotifications"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getActivePushNotifications();
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 30_000,
+    refetchInterval: 60_000,
+  });
+
+  const dismiss = useMutation({
+    mutationFn: async (id: string) => {
+      if (!actor) throw new Error("No actor");
+      return actor.dismissPushNotification(id);
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["activePushNotifications"] });
+    },
+  });
+
+  return { ...query, dismiss };
 }
 
 // ─── Signal Performance Stats ─────────────────────────────────────────────
@@ -111,6 +139,22 @@ export function useMarketMoodBanner(sessionToken: string) {
   });
 
   return { ...query, set };
+}
+
+// ─── Public Market Mood Banner ────────────────────────────────────────────
+export function usePublicMarketMoodBanner() {
+  const { actor, isFetching } = useActor(createActor);
+
+  return useQuery<MarketMoodBanner | null>({
+    queryKey: ["marketMoodBanner"],
+    queryFn: async () => {
+      if (!actor) return null;
+      const r = await actor.getMarketMoodBanner();
+      return r ?? null;
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 30_000,
+  });
 }
 
 // ─── Maintenance Mode ─────────────────────────────────────────────────────
@@ -276,7 +320,7 @@ export function useActivityHeatmap(sessionToken: string) {
   });
 }
 
-// ─── Community Content ────────────────────────────────────────────────────
+// ─── Community Quotes (admin) ─────────────────────────────────────────────
 export function useCommunityQuotes(sessionToken: string) {
   const { actor, isFetching } = useActor(createActor);
   const qc = useQueryClient();
@@ -285,8 +329,7 @@ export function useCommunityQuotes(sessionToken: string) {
     queryKey: ["communityQuotes"],
     queryFn: async () => {
       if (!actor) return [];
-      const r = await actor.getQuotes();
-      return r;
+      return actor.getQuotes();
     },
     enabled: !!actor && !isFetching,
     staleTime: 60_000,
@@ -330,8 +373,7 @@ export function useCommunityTestimonials(sessionToken: string) {
     queryKey: ["communityTestimonials"],
     queryFn: async () => {
       if (!actor) return [];
-      const r = await actor.getTestimonials();
-      return r;
+      return actor.getTestimonials();
     },
     enabled: !!actor && !isFetching,
     staleTime: 60_000,
@@ -421,8 +463,7 @@ export function useCommunityMilestones(sessionToken: string) {
     queryKey: ["communityMilestones"],
     queryFn: async () => {
       if (!actor) return [];
-      const r = await actor.getMilestones();
-      return r;
+      return actor.getMilestones();
     },
     enabled: !!actor && !isFetching,
     staleTime: 60_000,
@@ -500,8 +541,7 @@ export function useBurnSchedule(sessionToken: string) {
     queryKey: ["burnSchedule"],
     queryFn: async () => {
       if (!actor) return [];
-      const r = await actor.getBurnSchedule();
-      return r;
+      return actor.getBurnSchedule();
     },
     enabled: !!actor && !isFetching,
     staleTime: 60_000,
@@ -542,6 +582,20 @@ export function useBurnSchedule(sessionToken: string) {
   return { ...query, add, updateStatus };
 }
 
+// ─── Admin Execute Command ────────────────────────────────────────────────
+export function useExecuteAdminCommand(sessionToken: string) {
+  const { actor } = useActor(createActor);
+
+  return useMutation({
+    mutationFn: async (command: string) => {
+      if (!actor) throw new Error("No actor");
+      return actor.executeAdminCommand(sessionToken, command);
+    },
+    onSuccess: () => toast.success("Command executed"),
+    onError: () => toast.error("Command failed"),
+  });
+}
+
 // ─── Admin Activity Logger ────────────────────────────────────────────────
 export function useAdminActivity(sessionToken: string) {
   const { actor } = useActor(createActor);
@@ -551,7 +605,7 @@ export function useAdminActivity(sessionToken: string) {
     try {
       await actor.recordAdminActivity(action, sessionToken);
     } catch {
-      // silently fail — logging should never block UI
+      // silently fail
     }
   }
 
@@ -566,10 +620,106 @@ export function useAdminRole(sessionToken: string) {
     queryKey: ["adminRole", sessionToken],
     queryFn: async () => {
       if (!actor || !sessionToken) return null;
-      const r = await actor.validateAdminRole(sessionToken);
-      return r;
+      return actor.validateAdminRole(sessionToken);
     },
     enabled: !!actor && !isFetching && !!sessionToken,
     staleTime: 300_000,
   });
+}
+
+// ─── Rollback Admin Action ────────────────────────────────────────────────
+export function useRollbackAdminAction(sessionToken: string) {
+  const { actor } = useActor(createActor);
+  const qc = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (entryId: string) => {
+      if (!actor) throw new Error("No actor");
+      return actor.rollbackAdminAction(sessionToken, entryId);
+    },
+    onSuccess: () => {
+      toast.success("Action rolled back");
+      qc.invalidateQueries({ queryKey: ["auditSnapshots"] });
+    },
+    onError: () => toast.error("Rollback failed"),
+  });
+}
+
+// ─── Top Traders ─────────────────────────────────────────────────────────
+export function useTopTraders(sessionToken: string) {
+  const { actor, isFetching } = useActor(createActor);
+  const qc = useQueryClient();
+
+  const query = useQuery({
+    queryKey: ["topTraders"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getTopTraders();
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 60_000,
+  });
+
+  const add = useMutation({
+    mutationFn: async ({
+      name,
+      bio,
+      achievement,
+      week,
+    }: { name: string; bio: string; achievement: string; week: string }) => {
+      if (!actor) throw new Error("No actor");
+      return actor.addTopTrader(name, bio, achievement, week, sessionToken);
+    },
+    onSuccess: () => {
+      toast.success("Top trader added");
+      qc.invalidateQueries({ queryKey: ["topTraders"] });
+    },
+    onError: () => toast.error("Failed to add trader"),
+  });
+
+  const remove = useMutation({
+    mutationFn: async (id: string) => {
+      if (!actor) throw new Error("No actor");
+      return actor.deleteTopTrader(id, sessionToken);
+    },
+    onSuccess: () => {
+      toast.success("Trader removed");
+      qc.invalidateQueries({ queryKey: ["topTraders"] });
+    },
+    onError: () => toast.error("Failed to remove trader"),
+  });
+
+  return { ...query, add, remove };
+}
+
+// ─── Signal Templates ─────────────────────────────────────────────────────
+export function useSignalTemplates(sessionToken: string) {
+  const { actor, isFetching } = useActor(createActor);
+  const qc = useQueryClient();
+
+  const query = useQuery({
+    queryKey: ["signalTemplates", sessionToken],
+    queryFn: async () => {
+      if (!actor || !sessionToken) return [];
+      const r = await actor.getSignalTemplates(sessionToken);
+      if (r.__kind__ === "ok") return r.ok;
+      return [];
+    },
+    enabled: !!actor && !isFetching && !!sessionToken,
+    staleTime: 120_000,
+  });
+
+  const remove = useMutation({
+    mutationFn: async (id: string) => {
+      if (!actor) throw new Error("No actor");
+      return actor.deleteSignalTemplate(sessionToken, id);
+    },
+    onSuccess: () => {
+      toast.success("Template deleted");
+      qc.invalidateQueries({ queryKey: ["signalTemplates"] });
+    },
+    onError: () => toast.error("Failed to delete template"),
+  });
+
+  return { ...query, remove };
 }

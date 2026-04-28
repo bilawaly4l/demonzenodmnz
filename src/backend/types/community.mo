@@ -33,4 +33,26 @@ module {
     reachedAt      : ?Int;
     celebrateUntil : ?Int;
   };
+
+  // Top Traders wall
+  public type TopTrader = {
+    id          : Text;
+    name        : Text;
+    bio         : Text;
+    achievement : Text;
+    week        : Text;
+    isActive    : Bool;
+    createdAt   : Int;
+  };
+
+  // Community Q&A
+  public type CommunityQuestion = {
+    id        : Text;
+    question  : Text;
+    answer    : ?Text;
+    isPinned  : Bool;
+    votes     : Nat;
+    timestamp : Int;
+    isActive  : Bool;
+  };
 };

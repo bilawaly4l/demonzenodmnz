@@ -11,26 +11,26 @@ import AuditLib "../lib/audit";
 import AuthLib "../lib/auth";
 
 mixin (
-  pushNotifications : List.List<AdminTypes.PushNotification>,
+  pushNotifications  : List.List<AdminTypes.PushNotification>,
   pushNotifIdCounter : { var value : Nat },
-  marketBannerRef : { var value : ?AdminTypes.MarketMoodBanner },
-  maintenanceRef : { var value : AdminTypes.MaintenanceMode },
-  auditSnapshots : List.List<AdminTypes.AuditSnapshot>,
-  snapshotIdCounter : { var value : Nat },
-  abTests : List.List<AdminTypes.AbTestInternal>,
-  abTestIdCounter : { var value : Nat },
-  activityMap : Map.Map<Text, Nat>,
-  auditLog : List.List<AuditTypes.AuditEntry>,
-  auditIdCounter : { var value : Nat },
-  sessions : Set.Set<Text>,
-  signals : List.List<SignalTypes.Signal>,
+  marketBannerRef    : { var value : ?AdminTypes.MarketMoodBanner },
+  maintenanceRef     : { var value : AdminTypes.MaintenanceMode },
+  auditSnapshots     : List.List<AdminTypes.AuditSnapshot>,
+  snapshotIdCounter  : { var value : Nat },
+  abTests            : List.List<AdminTypes.AbTestInternal>,
+  abTestIdCounter    : { var value : Nat },
+  activityMap        : Map.Map<Text, Nat>,
+  auditLog           : List.List<AuditTypes.AuditEntry>,
+  auditIdCounter     : { var value : Nat },
+  sessions           : Set.Set<Text>,
+  signals            : List.List<SignalTypes.Signal>,
 ) {
 
   // ── Push Notifications ────────────────────────────────────────────────────
 
   public func createPushNotification(
-    title : Text,
-    body : Text,
+    title        : Text,
+    body         : Text,
     sessionToken : Text,
   ) : async Common.Result<Text, Text> {
     if (not AuthLib.validateSession(sessions, sessionToken)) {
@@ -38,7 +38,11 @@ mixin (
     };
     let (notif, newId) = AdminLib.createPushNotification(pushNotifications, pushNotifIdCounter.value, title, body);
     pushNotifIdCounter.value := newId;
-    auditIdCounter.value := AuditLib.logEntry(auditLog, auditIdCounter.value, "push_notification", "Created push notification: " # title);
+    auditIdCounter.value := AuditLib.logEntry(
+      auditLog, auditIdCounter.value,
+      "push_notification", "Created push notification: " # title,
+      sessionToken, null,
+    );
     #ok(notif.id);
   };
 
@@ -55,15 +59,19 @@ mixin (
   // ── Market Mood Banner ────────────────────────────────────────────────────
 
   public func setMarketMoodBanner(
-    mood : Text,
-    message : Text,
+    mood         : Text,
+    message      : Text,
     sessionToken : Text,
   ) : async Common.Result<(), Text> {
     if (not AuthLib.validateSession(sessions, sessionToken)) {
       return #err("Unauthorized");
     };
     AdminLib.setMarketMoodBanner(marketBannerRef, mood, message);
-    auditIdCounter.value := AuditLib.logEntry(auditLog, auditIdCounter.value, "market_mood", "Set market mood: " # mood);
+    auditIdCounter.value := AuditLib.logEntry(
+      auditLog, auditIdCounter.value,
+      "market_mood", "Set market mood: " # mood,
+      sessionToken, null,
+    );
     #ok(());
   };
 
@@ -84,18 +92,17 @@ mixin (
     let count = AdminLib.publishScheduledSignals(signals);
     if (count > 0) {
       auditIdCounter.value := AuditLib.logEntry(
-        auditLog,
-        auditIdCounter.value,
-        "auto_publish",
-        "Auto-published " # count.toText() # " scheduled signals",
+        auditLog, auditIdCounter.value,
+        "auto_publish", "Auto-published " # count.toText() # " scheduled signals",
+        "system", null,
       );
     };
     count;
   };
 
   public func scheduleSignal(
-    signalId : Text,
-    publishAt : Int,
+    signalId     : Text,
+    publishAt    : Int,
     sessionToken : Text,
   ) : async Common.Result<(), Text> {
     if (not AuthLib.validateSession(sessions, sessionToken)) {
@@ -105,15 +112,19 @@ mixin (
     if (not found) {
       return #err("Signal not found");
     };
-    auditIdCounter.value := AuditLib.logEntry(auditLog, auditIdCounter.value, "schedule_signal", "Scheduled signal " # signalId);
+    auditIdCounter.value := AuditLib.logEntry(
+      auditLog, auditIdCounter.value,
+      "schedule_signal", "Scheduled signal " # signalId,
+      sessionToken, null,
+    );
     #ok(());
   };
 
   // ── Maintenance Mode ──────────────────────────────────────────────────────
 
   public func setMaintenanceMode(
-    enabled : Bool,
-    message : Text,
+    enabled      : Bool,
+    message      : Text,
     sessionToken : Text,
   ) : async Common.Result<(), Text> {
     if (not AuthLib.validateSession(sessions, sessionToken)) {
@@ -121,10 +132,9 @@ mixin (
     };
     AdminLib.setMaintenanceMode(maintenanceRef, enabled, message);
     auditIdCounter.value := AuditLib.logEntry(
-      auditLog,
-      auditIdCounter.value,
-      "maintenance_mode",
-      "Set maintenance mode: " # (if (enabled) "ON" else "OFF"),
+      auditLog, auditIdCounter.value,
+      "maintenance_mode", "Set maintenance mode: " # (if (enabled) "ON" else "OFF"),
+      sessionToken, null,
     );
     #ok(());
   };
@@ -137,14 +147,18 @@ mixin (
 
   public func createAuditSnapshot(
     snapshotLabel : Text,
-    sessionToken : Text,
+    sessionToken  : Text,
   ) : async Common.Result<Text, Text> {
     if (not AuthLib.validateSession(sessions, sessionToken)) {
       return #err("Unauthorized");
     };
     let (snap, newId) = AdminLib.createAuditSnapshot(auditSnapshots, auditLog, snapshotIdCounter.value, snapshotLabel);
     snapshotIdCounter.value := newId;
-    auditIdCounter.value := AuditLib.logEntry(auditLog, auditIdCounter.value, "create_snapshot", "Created audit snapshot: " # snapshotLabel);
+    auditIdCounter.value := AuditLib.logEntry(
+      auditLog, auditIdCounter.value,
+      "create_snapshot", "Created audit snapshot: " # snapshotLabel,
+      sessionToken, null,
+    );
     #ok(snap.id);
   };
 
@@ -160,9 +174,9 @@ mixin (
   // ── A/B Content Testing ───────────────────────────────────────────────────
 
   public func createAbTest(
-    name : Text,
-    variantA : Text,
-    variantB : Text,
+    name         : Text,
+    variantA     : Text,
+    variantB     : Text,
     sessionToken : Text,
   ) : async Common.Result<Text, Text> {
     if (not AuthLib.validateSession(sessions, sessionToken)) {
@@ -170,7 +184,11 @@ mixin (
     };
     let (id, newId) = AdminLib.createAbTest(abTests, abTestIdCounter.value, name, variantA, variantB);
     abTestIdCounter.value := newId;
-    auditIdCounter.value := AuditLib.logEntry(auditLog, auditIdCounter.value, "create_ab_test", "Created A/B test: " # name);
+    auditIdCounter.value := AuditLib.logEntry(
+      auditLog, auditIdCounter.value,
+      "create_ab_test", "Created A/B test: " # name,
+      sessionToken, null,
+    );
     #ok(id);
   };
 
@@ -184,7 +202,7 @@ mixin (
   };
 
   public func recordAbImpression(
-    testId : Text,
+    testId  : Text,
     variant : Text,
   ) : async () {
     AdminLib.recordAbImpression(abTests, testId, variant);
@@ -197,7 +215,7 @@ mixin (
   // ── Admin Activity Heatmap ────────────────────────────────────────────────
 
   public func recordAdminActivity(
-    action : Text,
+    action       : Text,
     sessionToken : Text,
   ) : async Common.Result<(), Text> {
     if (not AuthLib.validateSession(sessions, sessionToken)) {
@@ -225,5 +243,35 @@ mixin (
       return #err("Unauthorized");
     };
     #ok(AdminLib.getSignalPerformanceStats(signals));
+  };
+
+  // ── Admin Command Console ─────────────────────────────────────────────────
+
+  /// Execute a named admin command.
+  /// Supported: "clear_cache", "reset_stats", "toggle_maintenance"
+  public func executeAdminCommand(
+    sessionToken : Text,
+    command      : Text,
+  ) : async Common.Result<Text, Text> {
+    if (not AuthLib.validateSession(sessions, sessionToken)) {
+      return #err("Unauthorized");
+    };
+    let result : Text = if (command == "clear_cache") {
+      "Cache cleared (no-op in canister; state is persistent)";
+    } else if (command == "reset_stats") {
+      "Stats reset: signal performance recomputed on next query";
+    } else if (command == "toggle_maintenance") {
+      let current = AdminLib.getMaintenanceMode(maintenanceRef);
+      AdminLib.setMaintenanceMode(maintenanceRef, not current.enabled, current.message);
+      "Maintenance mode toggled to: " # (if (not current.enabled) "ON" else "OFF");
+    } else {
+      return #err("Unknown command: " # command);
+    };
+    auditIdCounter.value := AuditLib.logEntry(
+      auditLog, auditIdCounter.value,
+      "admin_command", "Executed: " # command,
+      sessionToken, null,
+    );
+    #ok(result);
   };
 };

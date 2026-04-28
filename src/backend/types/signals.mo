@@ -13,16 +13,23 @@ module {
     entryPrice : Text;
     targetPrice : Text;
     stopLoss : Text;
+    tp1 : Text;
+    tp2 : Text;
+    tp3 : Text;
     datePosted : Text;
     result : ResultStatus;
     notes : Text;
-    // New fields
     confidence : Confidence;
     sourceLabel : Text;
+    providerLabel : Text;
     expiry : ?Int;
     timeframe : Timeframe;
     isDraft : Bool;
     publishAt : ?Int;
+    templateId : ?Text;
+    voteUp : Nat;
+    voteDown : Nat;
+    tags : [Text];
   };
 
   /// Input type for creating or bulk-importing signals (no generated fields)
@@ -33,12 +40,30 @@ module {
     entryPrice : Text;
     targetPrice : Text;
     stopLoss : Text;
+    tp1 : Text;
+    tp2 : Text;
+    tp3 : Text;
     notes : Text;
     confidence : Confidence;
     sourceLabel : Text;
+    providerLabel : Text;
     expiry : ?Int;
     timeframe : Timeframe;
     isDraft : Bool;
     publishAt : ?Int;
+    templateId : ?Text;
+    tags : [Text];
+  };
+
+  public type SignalTemplate = {
+    id : Text;
+    name : Text;
+    asset : Text;
+    marketType : MarketType;
+    direction : Direction;
+    timeframe : Timeframe;
+    confidence : Confidence;
+    notes : Text;
+    createdAt : Int;
   };
 };

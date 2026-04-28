@@ -10,7 +10,12 @@ export function useAnnouncement() {
     queryKey: ["announcement"],
     queryFn: async () => {
       if (!actor) return null;
-      return actor.getAnnouncement();
+      const announcements = await actor.getAnnouncements();
+      // Return first active pinned announcement, then first active, or null
+      const pinned = announcements.find((a) => a.isActive && a.isPinned);
+      if (pinned) return pinned;
+      const active = announcements.find((a) => a.isActive);
+      return active ?? null;
     },
     enabled: !!actor && !isFetching,
     refetchInterval: 60_000,

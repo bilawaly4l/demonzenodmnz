@@ -30,6 +30,7 @@ import type {
   MarketType,
   Timeframe,
 } from "../backend";
+import { AnnouncementCategory } from "../backend";
 import { useAnalytics } from "../hooks/useAnalytics";
 import { useAuditLog } from "../hooks/useAuditLog";
 import { useSignals } from "../hooks/useSignals";
@@ -78,13 +79,19 @@ function SignalsTab({ sessionToken }: { sessionToken: string }) {
         entry,
         tp,
         sl,
-        "",
+        tp, // tp1
+        tp, // tp2
+        tp, // tp3
+        "", // notes
         "Medium" as Confidence,
-        "DemonZeno AI",
-        null,
+        "DemonZeno AI", // sourceLabel
+        "DemonZeno AI", // providerLabel
+        null, // expiry
         "Scalp" as Timeframe,
         false,
-        null,
+        null, // publishAt
+        null, // templateId
+        [], // tags
       );
       qc.invalidateQueries({ queryKey: ["signals"] });
       toast.success("Signal added");
@@ -342,17 +349,19 @@ function AnnouncementsTab({ sessionToken }: { sessionToken: string }) {
   const [text, setText] = useState("");
   const [link, setLink] = useState("");
   const [saving, setSaving] = useState(false);
-  const [toggling, setToggling] = useState(false);
 
   async function handleSave() {
     if (!actor || !text.trim()) return;
     setSaving(true);
     try {
-      await actor.setAnnouncement(
+      await actor.addAnnouncement(
         sessionToken,
-        text.trim(),
+        text.trim(), // title
+        text.trim(), // body (same as title for quick post)
+        AnnouncementCategory.General,
         link.trim() || null,
-        null,
+        false, // isPinned
+        null, // publishAt
       );
       qc.invalidateQueries({ queryKey: ["announcement"] });
       toast.success("Announcement saved");
@@ -362,20 +371,6 @@ function AnnouncementsTab({ sessionToken }: { sessionToken: string }) {
       toast.error("Failed to save announcement");
     } finally {
       setSaving(false);
-    }
-  }
-
-  async function handleToggle() {
-    if (!actor) return;
-    setToggling(true);
-    try {
-      await actor.toggleAnnouncement(sessionToken);
-      qc.invalidateQueries({ queryKey: ["announcement"] });
-      toast.success("Announcement toggled");
-    } catch {
-      toast.error("Failed to toggle");
-    } finally {
-      setToggling(false);
     }
   }
 
@@ -396,39 +391,23 @@ function AnnouncementsTab({ sessionToken }: { sessionToken: string }) {
         data-ocid="admin_panel.announcements.link_input"
         className="h-8 text-xs"
       />
-      <div className="flex gap-2">
-        <Button
-          size="sm"
-          disabled={saving || !text.trim()}
-          onClick={handleSave}
-          data-ocid="admin_panel.announcements.save_button"
-          className="h-8 text-xs flex-1"
-          style={{
-            background: "oklch(0.65 0.15 190)",
-            color: "oklch(0.1 0 0)",
-          }}
-        >
-          {saving ? (
-            <Loader2 className="w-3 h-3 animate-spin" />
-          ) : (
-            "Save Announcement"
-          )}
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          disabled={toggling}
-          onClick={handleToggle}
-          data-ocid="admin_panel.announcements.toggle"
-          className="h-8 text-xs px-3 border-border"
-        >
-          {toggling ? (
-            <Loader2 className="w-3 h-3 animate-spin" />
-          ) : (
-            "Toggle Active"
-          )}
-        </Button>
-      </div>
+      <Button
+        size="sm"
+        disabled={saving || !text.trim()}
+        onClick={handleSave}
+        data-ocid="admin_panel.announcements.save_button"
+        className="h-8 text-xs"
+        style={{
+          background: "oklch(0.65 0.15 190)",
+          color: "oklch(0.1 0 0)",
+        }}
+      >
+        {saving ? (
+          <Loader2 className="w-3 h-3 animate-spin" />
+        ) : (
+          "Save Announcement"
+        )}
+      </Button>
     </div>
   );
 }

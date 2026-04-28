@@ -1,193 +1,14 @@
-var __typeError = (msg) => {
-  throw TypeError(msg);
-};
-var __accessCheck = (obj, member, msg) => member.has(obj) || __typeError("Cannot " + msg);
-var __privateGet = (obj, member, getter) => (__accessCheck(obj, member, "read from private field"), getter ? getter.call(obj) : member.get(obj));
-var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
-var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
-var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
-var _client, _currentResult, _currentMutation, _mutateOptions, _MutationObserver_instances, updateResult_fn, notify_fn, _a;
-import { i as Subscribable, s as shallowEqualObjects, k as hashKey, l as getDefaultState, n as notifyManager, m as useQueryClient, r as reactExports, o as noop$3, p as shouldThrowError, c as createLucideIcon, u as useComposedRefs, j as jsxRuntimeExports, a as cn, q as commonjsGlobal, t as getDefaultExportFromCjs, v as clsx, R as React, w as invariant, f as Timeframe, C as Confidence, D as Direction, M as MarketType, B as Button, X, b as useActor, e as useQuery, d as createActor, g as useSession, h as useNavigate, Z as Zap, x as useAnnouncement, y as SentimentLevel } from "./index-BusfRT-8.js";
-import { u as useControllableState, P as Primitive, c as composeEventHandlers, b as createContextScope, a as useId, e as createCollection, f as useDirection, q as useCallbackRef, I as Input, m as ue, T as TrendingUp, n as ChartColumn, G as Globe, o as FileText, B as Badge, l as Download, p as ChevronUp, C as ChevronDown } from "./index-BNgp4POB.js";
-import { P as Presence, L as Label$1, U as Users, B as Bell, F as Flame, b as useSignals, C as Card, a as useStats, c as useFaqs, u as useBinanceFeed } from "./useSignals-pMorhrua.js";
-import { u as usePrevious, a as useSize, C as Check, S as Select, b as SelectTrigger, c as SelectValue, d as SelectContent, e as SelectItem, L as LogOut, T as Textarea, B as BookOpen } from "./textarea-BIQZlGpT.js";
-var MutationObserver = (_a = class extends Subscribable {
-  constructor(client, options) {
-    super();
-    __privateAdd(this, _MutationObserver_instances);
-    __privateAdd(this, _client);
-    __privateAdd(this, _currentResult);
-    __privateAdd(this, _currentMutation);
-    __privateAdd(this, _mutateOptions);
-    __privateSet(this, _client, client);
-    this.setOptions(options);
-    this.bindMethods();
-    __privateMethod(this, _MutationObserver_instances, updateResult_fn).call(this);
-  }
-  bindMethods() {
-    this.mutate = this.mutate.bind(this);
-    this.reset = this.reset.bind(this);
-  }
-  setOptions(options) {
-    var _a2;
-    const prevOptions = this.options;
-    this.options = __privateGet(this, _client).defaultMutationOptions(options);
-    if (!shallowEqualObjects(this.options, prevOptions)) {
-      __privateGet(this, _client).getMutationCache().notify({
-        type: "observerOptionsUpdated",
-        mutation: __privateGet(this, _currentMutation),
-        observer: this
-      });
-    }
-    if ((prevOptions == null ? void 0 : prevOptions.mutationKey) && this.options.mutationKey && hashKey(prevOptions.mutationKey) !== hashKey(this.options.mutationKey)) {
-      this.reset();
-    } else if (((_a2 = __privateGet(this, _currentMutation)) == null ? void 0 : _a2.state.status) === "pending") {
-      __privateGet(this, _currentMutation).setOptions(this.options);
-    }
-  }
-  onUnsubscribe() {
-    var _a2;
-    if (!this.hasListeners()) {
-      (_a2 = __privateGet(this, _currentMutation)) == null ? void 0 : _a2.removeObserver(this);
-    }
-  }
-  onMutationUpdate(action) {
-    __privateMethod(this, _MutationObserver_instances, updateResult_fn).call(this);
-    __privateMethod(this, _MutationObserver_instances, notify_fn).call(this, action);
-  }
-  getCurrentResult() {
-    return __privateGet(this, _currentResult);
-  }
-  reset() {
-    var _a2;
-    (_a2 = __privateGet(this, _currentMutation)) == null ? void 0 : _a2.removeObserver(this);
-    __privateSet(this, _currentMutation, void 0);
-    __privateMethod(this, _MutationObserver_instances, updateResult_fn).call(this);
-    __privateMethod(this, _MutationObserver_instances, notify_fn).call(this);
-  }
-  mutate(variables, options) {
-    var _a2;
-    __privateSet(this, _mutateOptions, options);
-    (_a2 = __privateGet(this, _currentMutation)) == null ? void 0 : _a2.removeObserver(this);
-    __privateSet(this, _currentMutation, __privateGet(this, _client).getMutationCache().build(__privateGet(this, _client), this.options));
-    __privateGet(this, _currentMutation).addObserver(this);
-    return __privateGet(this, _currentMutation).execute(variables);
-  }
-}, _client = new WeakMap(), _currentResult = new WeakMap(), _currentMutation = new WeakMap(), _mutateOptions = new WeakMap(), _MutationObserver_instances = new WeakSet(), updateResult_fn = function() {
-  var _a2;
-  const state = ((_a2 = __privateGet(this, _currentMutation)) == null ? void 0 : _a2.state) ?? getDefaultState();
-  __privateSet(this, _currentResult, {
-    ...state,
-    isPending: state.status === "pending",
-    isSuccess: state.status === "success",
-    isError: state.status === "error",
-    isIdle: state.status === "idle",
-    mutate: this.mutate,
-    reset: this.reset
-  });
-}, notify_fn = function(action) {
-  notifyManager.batch(() => {
-    var _a2, _b, _c, _d, _e, _f, _g, _h;
-    if (__privateGet(this, _mutateOptions) && this.hasListeners()) {
-      const variables = __privateGet(this, _currentResult).variables;
-      const onMutateResult = __privateGet(this, _currentResult).context;
-      const context = {
-        client: __privateGet(this, _client),
-        meta: this.options.meta,
-        mutationKey: this.options.mutationKey
-      };
-      if ((action == null ? void 0 : action.type) === "success") {
-        try {
-          (_b = (_a2 = __privateGet(this, _mutateOptions)).onSuccess) == null ? void 0 : _b.call(
-            _a2,
-            action.data,
-            variables,
-            onMutateResult,
-            context
-          );
-        } catch (e3) {
-          void Promise.reject(e3);
-        }
-        try {
-          (_d = (_c = __privateGet(this, _mutateOptions)).onSettled) == null ? void 0 : _d.call(
-            _c,
-            action.data,
-            null,
-            variables,
-            onMutateResult,
-            context
-          );
-        } catch (e3) {
-          void Promise.reject(e3);
-        }
-      } else if ((action == null ? void 0 : action.type) === "error") {
-        try {
-          (_f = (_e = __privateGet(this, _mutateOptions)).onError) == null ? void 0 : _f.call(
-            _e,
-            action.error,
-            variables,
-            onMutateResult,
-            context
-          );
-        } catch (e3) {
-          void Promise.reject(e3);
-        }
-        try {
-          (_h = (_g = __privateGet(this, _mutateOptions)).onSettled) == null ? void 0 : _h.call(
-            _g,
-            void 0,
-            action.error,
-            variables,
-            onMutateResult,
-            context
-          );
-        } catch (e3) {
-          void Promise.reject(e3);
-        }
-      }
-    }
-    this.listeners.forEach((listener) => {
-      listener(__privateGet(this, _currentResult));
-    });
-  });
-}, _a);
-function useMutation(options, queryClient) {
-  const client = useQueryClient();
-  const [observer] = reactExports.useState(
-    () => new MutationObserver(
-      client,
-      options
-    )
-  );
-  reactExports.useEffect(() => {
-    observer.setOptions(options);
-  }, [observer, options]);
-  const result = reactExports.useSyncExternalStore(
-    reactExports.useCallback(
-      (onStoreChange) => observer.subscribe(notifyManager.batchCalls(onStoreChange)),
-      [observer]
-    ),
-    () => observer.getCurrentResult(),
-    () => observer.getCurrentResult()
-  );
-  const mutate = reactExports.useCallback(
-    (variables, mutateOptions) => {
-      observer.mutate(variables, mutateOptions).catch(noop$3);
-    },
-    [observer]
-  );
-  if (result.error && shouldThrowError(observer.options.throwOnError, [result.error])) {
-    throw result.error;
-  }
-  return { ...result, mutate, mutateAsync: result.mutate };
-}
+import { c as createLucideIcon, r as reactExports, j as jsxRuntimeExports, i as createSlot, f as cn, e as useComposedRefs, k as commonjsGlobal, l as getDefaultExportFromCjs, m as clsx, R as React, n as invariant, d as Timeframe, C as Confidence, D as Direction, M as MarketType, X, B as Button, u as useActor, g as useQueryClient, a as useQuery, b as createActor, F as FaqCategory, h as useSession, o as useNavigate, Z as Zap, A as AnnouncementCategory, p as SentimentLevel } from "./index-DU2hFDMP.js";
+import { u as usePrevious, a as useSize, c as createCollection, b as useDirection, C as Check, F as FileText, S as Select, d as SelectTrigger, e as SelectValue, f as SelectContent, g as SelectItem, B as Badge, L as LogOut, T as Textarea } from "./textarea-SknAc1Vk.js";
+import { P as Presence, u as useMutation, C as CircleHelp, U as Users, F as Flame, b as useSignals, a as Card, M as MessageSquare } from "./useSignals-CwN6K5Wx.js";
+import { b as useControllableState, P as Primitive$1, d as composeEventHandlers, f as createContextScope, c as useId, m as useCallbackRef, I as Input, u as ue, T as TrendingUp, l as ChartColumn, G as Globe, k as Download, C as ChevronUp, a as ChevronDown, B as BookOpen } from "./index-CjIyOQEo.js";
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$h = [
+const __iconNode$g = [
   [
     "path",
     {
@@ -196,18 +17,7 @@ const __iconNode$h = [
     }
   ]
 ];
-const Activity = createLucideIcon("activity", __iconNode$h);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$g = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m4.9 4.9 14.2 14.2", key: "1m5liu" }]
-];
-const Ban = createLucideIcon("ban", __iconNode$g);
+const Activity = createLucideIcon("activity", __iconNode$g);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -215,14 +25,10 @@ const Ban = createLucideIcon("ban", __iconNode$g);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$f = [
-  ["path", { d: "M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5", key: "1osxxc" }],
-  ["path", { d: "M16 2v4", key: "4m81vk" }],
-  ["path", { d: "M8 2v4", key: "1cmpym" }],
-  ["path", { d: "M3 10h5", key: "r794hk" }],
-  ["path", { d: "M17.5 17.5 16 16.3V14", key: "akvzfd" }],
-  ["circle", { cx: "16", cy: "16", r: "6", key: "qoo3c4" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m4.9 4.9 14.2 14.2", key: "1m5liu" }]
 ];
-const CalendarClock = createLucideIcon("calendar-clock", __iconNode$f);
+const Ban = createLucideIcon("ban", __iconNode$f);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -230,11 +36,16 @@ const CalendarClock = createLucideIcon("calendar-clock", __iconNode$f);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$e = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
-  ["path", { d: "M12 17h.01", key: "p32p05" }]
+  ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
+  [
+    "path",
+    {
+      d: "M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326",
+      key: "11g9vi"
+    }
+  ]
 ];
-const CircleHelp = createLucideIcon("circle-help", __iconNode$e);
+const Bell = createLucideIcon("bell", __iconNode$e);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -242,6 +53,21 @@ const CircleHelp = createLucideIcon("circle-help", __iconNode$e);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$d = [
+  ["path", { d: "M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5", key: "1osxxc" }],
+  ["path", { d: "M16 2v4", key: "4m81vk" }],
+  ["path", { d: "M8 2v4", key: "1cmpym" }],
+  ["path", { d: "M3 10h5", key: "r794hk" }],
+  ["path", { d: "M17.5 17.5 16 16.3V14", key: "akvzfd" }],
+  ["circle", { cx: "16", cy: "16", r: "6", key: "qoo3c4" }]
+];
+const CalendarClock = createLucideIcon("calendar-clock", __iconNode$d);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$c = [
   ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1", key: "tgr4d6" }],
   [
     "path",
@@ -255,19 +81,7 @@ const __iconNode$d = [
   ["path", { d: "M8 11h.01", key: "1dfujw" }],
   ["path", { d: "M8 16h.01", key: "18s6g9" }]
 ];
-const ClipboardList = createLucideIcon("clipboard-list", __iconNode$d);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$c = [
-  ["path", { d: "m18 16 4-4-4-4", key: "1inbqp" }],
-  ["path", { d: "m6 8-4 4 4 4", key: "15zrgr" }],
-  ["path", { d: "m14.5 4-5 16", key: "e7oirm" }]
-];
-const CodeXml = createLucideIcon("code-xml", __iconNode$c);
+const ClipboardList = createLucideIcon("clipboard-list", __iconNode$c);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -275,12 +89,11 @@ const CodeXml = createLucideIcon("code-xml", __iconNode$c);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$b = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M12 12v6", key: "3ahymv" }],
-  ["path", { d: "m15 15-3-3-3 3", key: "15xj92" }]
+  ["path", { d: "m18 16 4-4-4-4", key: "1inbqp" }],
+  ["path", { d: "m6 8-4 4 4 4", key: "15zrgr" }],
+  ["path", { d: "m14.5 4-5 16", key: "e7oirm" }]
 ];
-const FileUp = createLucideIcon("file-up", __iconNode$b);
+const CodeXml = createLucideIcon("code-xml", __iconNode$b);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -288,9 +101,12 @@ const FileUp = createLucideIcon("file-up", __iconNode$b);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$a = [
-  ["path", { d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z", key: "1lielz" }]
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M12 12v6", key: "3ahymv" }],
+  ["path", { d: "m15 15-3-3-3 3", key: "15xj92" }]
 ];
-const MessageSquare = createLucideIcon("message-square", __iconNode$a);
+const FileUp = createLucideIcon("file-up", __iconNode$a);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -447,6 +263,73 @@ const __iconNode = [
   ]
 ];
 const Wrench = createLucideIcon("wrench", __iconNode);
+var NODES = [
+  "a",
+  "button",
+  "div",
+  "form",
+  "h2",
+  "h3",
+  "img",
+  "input",
+  "label",
+  "li",
+  "nav",
+  "ol",
+  "p",
+  "select",
+  "span",
+  "svg",
+  "ul"
+];
+var Primitive = NODES.reduce((primitive, node) => {
+  const Slot = createSlot(`Primitive.${node}`);
+  const Node = reactExports.forwardRef((props, forwardedRef) => {
+    const { asChild, ...primitiveProps } = props;
+    const Comp = asChild ? Slot : node;
+    if (typeof window !== "undefined") {
+      window[Symbol.for("radix-ui")] = true;
+    }
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Comp, { ...primitiveProps, ref: forwardedRef });
+  });
+  Node.displayName = `Primitive.${node}`;
+  return { ...primitive, [node]: Node };
+}, {});
+var NAME = "Label";
+var Label$2 = reactExports.forwardRef((props, forwardedRef) => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Primitive.label,
+    {
+      ...props,
+      ref: forwardedRef,
+      onMouseDown: (event) => {
+        var _a;
+        const target = event.target;
+        if (target.closest("button, input, select, textarea")) return;
+        (_a = props.onMouseDown) == null ? void 0 : _a.call(props, event);
+        if (!event.defaultPrevented && event.detail > 1) event.preventDefault();
+      }
+    }
+  );
+});
+Label$2.displayName = NAME;
+var Root$2 = Label$2;
+function Label$1({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Root$2,
+    {
+      "data-slot": "label",
+      className: cn(
+        "flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
+        className
+      ),
+      ...props
+    }
+  );
+}
 var SWITCH_NAME = "Switch";
 var [createSwitchContext] = createContextScope(SWITCH_NAME);
 var [SwitchProvider, useSwitchContext] = createSwitchContext(SWITCH_NAME);
@@ -476,7 +359,7 @@ var Switch$1 = reactExports.forwardRef(
     });
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(SwitchProvider, { scope: __scopeSwitch, checked, disabled, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Primitive.button,
+        Primitive$1.button,
         {
           type: "button",
           role: "switch",
@@ -521,7 +404,7 @@ var SwitchThumb = reactExports.forwardRef(
     const { __scopeSwitch, ...thumbProps } = props;
     const context = useSwitchContext(THUMB_NAME, __scopeSwitch);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Primitive.span,
+      Primitive$1.span,
       {
         "data-state": getState$1(context.checked),
         "data-disabled": context.disabled ? "" : void 0,
@@ -683,7 +566,7 @@ var RovingFocusGroupImpl = reactExports.forwardRef((props, forwardedRef) => {
         []
       ),
       children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Primitive.div,
+        Primitive$1.div,
         {
           tabIndex: isTabbingBackOut || focusableItemsCount === 0 ? -1 : 0,
           "data-orientation": orientation,
@@ -748,7 +631,7 @@ var RovingFocusGroupItem = reactExports.forwardRef(
         focusable,
         active,
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive.span,
+          Primitive$1.span,
           {
             tabIndex: isCurrentTabStop ? 0 : -1,
             "data-orientation": context.orientation,
@@ -857,7 +740,7 @@ var Tabs$1 = reactExports.forwardRef(
         dir: direction,
         activationMode,
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive.div,
+          Primitive$1.div,
           {
             dir: direction,
             "data-orientation": orientation,
@@ -885,7 +768,7 @@ var TabsList$1 = reactExports.forwardRef(
         dir: context.dir,
         loop,
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive.div,
+          Primitive$1.div,
           {
             role: "tablist",
             "aria-orientation": context.orientation,
@@ -915,7 +798,7 @@ var TabsTrigger$1 = reactExports.forwardRef(
         focusable: !disabled,
         active: isSelected,
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive.button,
+          Primitive$1.button,
           {
             type: "button",
             role: "tab",
@@ -964,7 +847,7 @@ var TabsContent$1 = reactExports.forwardRef(
       return () => cancelAnimationFrame(rAF);
     }, []);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || isSelected, children: ({ present }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Primitive.div,
+      Primitive$1.div,
       {
         "data-state": isSelected ? "active" : "inactive",
         "data-orientation": context.orientation,
@@ -4110,8 +3993,8 @@ isBuffer$2.exports;
   var freeExports = exports$1 && !exports$1.nodeType && exports$1;
   var freeModule = freeExports && true && module && !module.nodeType && module;
   var moduleExports = freeModule && freeModule.exports === freeExports;
-  var Buffer2 = moduleExports ? root2.Buffer : void 0;
-  var nativeIsBuffer = Buffer2 ? Buffer2.isBuffer : void 0;
+  var Buffer = moduleExports ? root2.Buffer : void 0;
+  var nativeIsBuffer = Buffer ? Buffer.isBuffer : void 0;
   var isBuffer2 = nativeIsBuffer || stubFalse2;
   module.exports = isBuffer2;
 })(isBuffer$2, isBuffer$2.exports);
@@ -23200,7 +23083,7 @@ var CheckboxTrigger = reactExports.forwardRef(
       }
     }, [control, setChecked]);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Primitive.button,
+      Primitive$1.button,
       {
         type: "button",
         role: "checkbox",
@@ -23284,7 +23167,7 @@ var CheckboxIndicator = reactExports.forwardRef(
       {
         present: forceMount || isIndeterminate(context.checked) || context.checked === true,
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive.span,
+          Primitive$1.span,
           {
             "data-state": getState(context.checked),
             "data-disabled": context.disabled ? "" : void 0,
@@ -23336,7 +23219,7 @@ var CheckboxBubbleInput = reactExports.forwardRef(
     }, [bubbleInput, prevChecked, checked, hasConsumerStoppedPropagationRef]);
     const defaultCheckedRef = reactExports.useRef(isIndeterminate(checked) ? false : checked);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Primitive.input,
+      Primitive$1.input,
       {
         type: "checkbox",
         "aria-hidden": true,
@@ -23404,228 +23287,403 @@ const emptySignalForm = {
   marketType: MarketType.Crypto,
   direction: Direction.Buy,
   entryPrice: "",
+  tp1: "",
+  tp2: "",
+  tp3: "",
   targetPrice: "",
   stopLoss: "",
   notes: "",
   confidence: Confidence.Medium,
   sourceLabel: "",
+  providerLabel: "",
   timeframe: Timeframe.Swing,
   isDraft: false,
   publishAt: "",
-  expiry: ""
+  expiry: "",
+  tags: []
 };
+const DIFFICULTY_TAGS = ["scalp", "swing", "long-term", "high-risk", "safe"];
 function AdminSignalForm({
   form,
   onChange,
   onSubmit,
   onCancel,
   submitLabel,
-  saving
+  saving,
+  templates = []
 }) {
+  const [tagInput, setTagInput] = reactExports.useState("");
+  const [showTemplates, setShowTemplates] = reactExports.useState(false);
   function set(patch) {
     onChange({ ...form, ...patch });
+  }
+  function addTag(tag) {
+    const t2 = tag.trim().toLowerCase().replace(/\s+/g, "-");
+    if (!t2 || form.tags.includes(t2)) return;
+    set({ tags: [...form.tags, t2] });
+    setTagInput("");
+  }
+  function removeTag(tag) {
+    set({ tags: form.tags.filter((t2) => t2 !== tag) });
+  }
+  function loadTemplate(tmpl) {
+    set({
+      asset: tmpl.asset,
+      marketType: tmpl.marketType,
+      direction: tmpl.direction,
+      notes: tmpl.notes,
+      confidence: tmpl.confidence,
+      timeframe: tmpl.timeframe
+    });
+    setShowTemplates(false);
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "form",
     {
       onSubmit,
-      className: "grid grid-cols-1 sm:grid-cols-2 gap-3 bg-muted/30 border border-border rounded-xl p-5",
+      className: "flex flex-col gap-4 bg-muted/30 border border-border rounded-xl p-5",
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Asset Name *" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              required: true,
-              value: form.asset,
-              onChange: (e3) => set({ asset: e3.target.value }),
-              placeholder: "BTC/USDT, EUR/USD, AAPL…",
-              "data-ocid": "signal_form.asset.input"
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Market Type *" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Select,
-            {
-              value: form.marketType,
-              onValueChange: (v2) => set({ marketType: v2 }),
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "signal_form.market_type.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Crypto", children: "Crypto" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Forex", children: "Forex" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Stock", children: "Stock" })
-                ] })
-              ]
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Direction *" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Select,
-            {
-              value: form.direction,
-              onValueChange: (v2) => set({ direction: v2 }),
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "signal_form.direction.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Buy", children: "BUY" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Sell", children: "SELL" })
-                ] })
-              ]
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Entry Price *" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              required: true,
-              value: form.entryPrice,
-              onChange: (e3) => set({ entryPrice: e3.target.value }),
-              placeholder: "e.g. 42000",
-              "data-ocid": "signal_form.entry_price.input"
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Target Price *" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              required: true,
-              value: form.targetPrice,
-              onChange: (e3) => set({ targetPrice: e3.target.value }),
-              placeholder: "e.g. 45000",
-              "data-ocid": "signal_form.target_price.input"
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Stop Loss *" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              required: true,
-              value: form.stopLoss,
-              onChange: (e3) => set({ stopLoss: e3.target.value }),
-              placeholder: "e.g. 40000",
-              "data-ocid": "signal_form.stop_loss.input"
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Timeframe *" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Select,
-            {
-              value: form.timeframe,
-              onValueChange: (v2) => set({ timeframe: v2 }),
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "signal_form.timeframe.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Scalp", children: "Scalp" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Swing", children: "Swing" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "LongTerm", children: "Long-Term" })
-                ] })
-              ]
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Confidence *" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Select,
-            {
-              value: form.confidence,
-              onValueChange: (v2) => set({ confidence: v2 }),
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "signal_form.confidence.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Low", children: "Low" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Medium", children: "Medium" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "High", children: "High" })
-                ] })
-              ]
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Source Label" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              value: form.sourceLabel,
-              onChange: (e3) => set({ sourceLabel: e3.target.value }),
-              placeholder: "Technical Analysis",
-              "data-ocid": "signal_form.source_label.input"
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Notes (optional)" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              value: form.notes,
-              onChange: (e3) => set({ notes: e3.target.value }),
-              placeholder: "Optional notes…",
-              "data-ocid": "signal_form.notes.input"
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Expiry (optional)" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              type: "datetime-local",
-              value: form.expiry,
-              onChange: (e3) => set({ expiry: e3.target.value }),
-              "data-ocid": "signal_form.expiry.input"
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5 justify-center", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mt-4", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Checkbox,
+        templates.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Quick Templates" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
               {
-                id: "isDraft",
-                checked: form.isDraft,
-                onCheckedChange: (v2) => set({ isDraft: !!v2 }),
-                "data-ocid": "signal_form.is_draft.checkbox"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Label$1,
-              {
-                htmlFor: "isDraft",
-                className: "text-sm font-medium cursor-pointer",
-                children: "Save as Draft"
+                type: "button",
+                onClick: () => setShowTemplates((v2) => !v2),
+                className: "text-xs text-primary hover:text-primary/80 transition-colors flex items-center gap-1",
+                "data-ocid": "signal_form.templates.toggle",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "w-3 h-3" }),
+                  showTemplates ? "Hide" : `Load Template (${templates.length})`
+                ]
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Drafts won't appear on the public site until published." })
-        ] }),
-        form.isDraft && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex flex-col gap-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Scheduled Publish Date/Time" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
+          showTemplates && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
             {
-              type: "datetime-local",
-              value: form.publishAt,
-              onChange: (e3) => set({ publishAt: e3.target.value }),
-              "data-ocid": "signal_form.publish_at.input"
+              className: "flex flex-col gap-1 max-h-40 overflow-y-auto border border-border rounded-lg p-2 bg-background",
+              "data-ocid": "signal_form.templates.panel",
+              children: templates.map((tmpl, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => loadTemplate(tmpl),
+                  "data-ocid": `signal_form.template.item.${i + 1}`,
+                  className: "flex items-center gap-2 p-2 rounded-md hover:bg-muted/60 transition-colors text-left",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-medium text-foreground", children: tmpl.name }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-muted-foreground ml-auto shrink-0", children: [
+                      tmpl.asset,
+                      " · ",
+                      tmpl.marketType
+                    ] })
+                  ]
+                },
+                tmpl.id
+              ))
             }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Leave blank to publish manually from the Scheduling tab." })
+          )
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex gap-2 justify-end pt-1", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Asset Name *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                required: true,
+                value: form.asset,
+                onChange: (e3) => set({ asset: e3.target.value }),
+                placeholder: "BTC/USDT, EUR/USD, AAPL…",
+                "data-ocid": "signal_form.asset.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Market Type *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.marketType,
+                onValueChange: (v2) => set({ marketType: v2 }),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "signal_form.market_type.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Crypto", children: "Crypto" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Forex", children: "Forex" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Stock", children: "Stock" })
+                  ] })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Direction *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.direction,
+                onValueChange: (v2) => set({ direction: v2 }),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "signal_form.direction.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Buy", children: "BUY" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Sell", children: "SELL" })
+                  ] })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Entry Price *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                required: true,
+                value: form.entryPrice,
+                onChange: (e3) => set({ entryPrice: e3.target.value }),
+                placeholder: "e.g. 42000",
+                "data-ocid": "signal_form.entry_price.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Stop Loss *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                required: true,
+                value: form.stopLoss,
+                onChange: (e3) => set({ stopLoss: e3.target.value }),
+                placeholder: "e.g. 40000",
+                "data-ocid": "signal_form.stop_loss.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Take Profit 1 *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                required: true,
+                value: form.tp1,
+                onChange: (e3) => set({ tp1: e3.target.value }),
+                placeholder: "TP1 e.g. 44000",
+                "data-ocid": "signal_form.tp1.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Take Profit 2" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: form.tp2,
+                onChange: (e3) => set({ tp2: e3.target.value }),
+                placeholder: "TP2 e.g. 46000",
+                "data-ocid": "signal_form.tp2.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Take Profit 3" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: form.tp3,
+                onChange: (e3) => set({ tp3: e3.target.value }),
+                placeholder: "TP3 e.g. 48000",
+                "data-ocid": "signal_form.tp3.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Target Price *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                required: true,
+                value: form.targetPrice,
+                onChange: (e3) => set({ targetPrice: e3.target.value }),
+                placeholder: "Primary target e.g. 45000",
+                "data-ocid": "signal_form.target_price.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Timeframe *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.timeframe,
+                onValueChange: (v2) => set({ timeframe: v2 }),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "signal_form.timeframe.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Scalp", children: "Scalp" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Swing", children: "Swing" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "LongTerm", children: "Long-Term" })
+                  ] })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Confidence *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.confidence,
+                onValueChange: (v2) => set({ confidence: v2 }),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "signal_form.confidence.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Low", children: "Low" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Medium", children: "Medium" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "High", children: "High" })
+                  ] })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Source Label" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: form.sourceLabel,
+                onChange: (e3) => set({ sourceLabel: e3.target.value }),
+                placeholder: "Technical Analysis",
+                "data-ocid": "signal_form.source_label.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Provider Label" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: form.providerLabel,
+                onChange: (e3) => set({ providerLabel: e3.target.value }),
+                placeholder: "DemonZeno AI",
+                "data-ocid": "signal_form.provider_label.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Notes (optional)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: form.notes,
+                onChange: (e3) => set({ notes: e3.target.value }),
+                placeholder: "Optional reasoning or notes…",
+                "data-ocid": "signal_form.notes.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex flex-col gap-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Tags (optional)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-2 flex-wrap", children: DIFFICULTY_TAGS.map((tag) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                onClick: () => form.tags.includes(tag) ? removeTag(tag) : addTag(tag),
+                "data-ocid": `signal_form.tag.${tag}`,
+                className: `px-2 py-0.5 rounded text-xs font-medium border transition-colors ${form.tags.includes(tag) ? "bg-primary/20 border-primary/40 text-primary" : "bg-muted/30 border-border text-muted-foreground hover:bg-muted/60"}`,
+                children: tag
+              },
+              tag
+            )) }),
+            form.tags.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-1", children: form.tags.filter((t2) => !DIFFICULTY_TAGS.includes(t2)).map((tag) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Badge,
+              {
+                variant: "outline",
+                className: "text-xs flex items-center gap-1 border-primary/30 text-primary",
+                "data-ocid": `signal_form.tag_badge.${tag}`,
+                children: [
+                  tag,
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "button",
+                    {
+                      type: "button",
+                      onClick: () => removeTag(tag),
+                      className: "ml-0.5 hover:text-destructive transition-colors",
+                      "aria-label": `Remove ${tag} tag`,
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-2.5 h-2.5" })
+                    }
+                  )
+                ]
+              },
+              tag
+            )) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-2", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: tagInput,
+                onChange: (e3) => setTagInput(e3.target.value),
+                onKeyDown: (e3) => {
+                  if (e3.key === "Enter") {
+                    e3.preventDefault();
+                    addTag(tagInput);
+                  }
+                },
+                placeholder: "Custom tag + Enter",
+                className: "h-8 text-xs",
+                "data-ocid": "signal_form.tag_input.input"
+              }
+            ) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Expiry (optional)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "datetime-local",
+                value: form.expiry,
+                onChange: (e3) => set({ expiry: e3.target.value }),
+                "data-ocid": "signal_form.expiry.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5 justify-center", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mt-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Checkbox,
+                {
+                  id: "isDraft",
+                  checked: form.isDraft,
+                  onCheckedChange: (v2) => set({ isDraft: !!v2 }),
+                  "data-ocid": "signal_form.is_draft.checkbox"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Label$1,
+                {
+                  htmlFor: "isDraft",
+                  className: "text-sm font-medium cursor-pointer",
+                  children: "Save as Draft"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Drafts won't appear publicly until published." })
+          ] }),
+          form.isDraft && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Scheduled Publish Date/Time" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "datetime-local",
+                value: form.publishAt,
+                onChange: (e3) => set({ publishAt: e3.target.value }),
+                "data-ocid": "signal_form.publish_at.input"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Leave blank to publish manually from the Scheduling tab." })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 justify-end pt-1 border-t border-border", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             Button,
             {
@@ -23644,7 +23702,7 @@ function AdminSignalForm({
             {
               type: "submit",
               disabled: saving,
-              className: "btn-primary",
+              className: "btn-primary btn-micro",
               "data-ocid": "signal_form.submit_button",
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { className: "w-4 h-4 mr-1" }),
@@ -23664,8 +23722,7 @@ function usePushNotifications(sessionToken) {
     queryKey: ["pushNotifications", sessionToken],
     queryFn: async () => {
       if (!actor || !sessionToken) return [];
-      const r = await actor.getActivePushNotifications();
-      return r;
+      return actor.getActivePushNotifications();
     },
     enabled: !!actor && !isFetching && !!sessionToken,
     staleTime: 3e4
@@ -23855,8 +23912,7 @@ function useCommunityQuotes(sessionToken) {
     queryKey: ["communityQuotes"],
     queryFn: async () => {
       if (!actor) return [];
-      const r = await actor.getQuotes();
-      return r;
+      return actor.getQuotes();
     },
     enabled: !!actor && !isFetching,
     staleTime: 6e4
@@ -23895,8 +23951,7 @@ function useCommunityTestimonials(sessionToken) {
     queryKey: ["communityTestimonials"],
     queryFn: async () => {
       if (!actor) return [];
-      const r = await actor.getTestimonials();
-      return r;
+      return actor.getTestimonials();
     },
     enabled: !!actor && !isFetching,
     staleTime: 6e4
@@ -23972,8 +24027,7 @@ function useCommunityMilestones(sessionToken) {
     queryKey: ["communityMilestones"],
     queryFn: async () => {
       if (!actor) return [];
-      const r = await actor.getMilestones();
-      return r;
+      return actor.getMilestones();
     },
     enabled: !!actor && !isFetching,
     staleTime: 6e4
@@ -24041,8 +24095,7 @@ function useBurnSchedule(sessionToken) {
     queryKey: ["burnSchedule"],
     queryFn: async () => {
       if (!actor) return [];
-      const r = await actor.getBurnSchedule();
-      return r;
+      return actor.getBurnSchedule();
     },
     enabled: !!actor && !isFetching,
     staleTime: 6e4
@@ -24085,12 +24138,79 @@ function useAdminRole(sessionToken) {
     queryKey: ["adminRole", sessionToken],
     queryFn: async () => {
       if (!actor || !sessionToken) return null;
-      const r = await actor.validateAdminRole(sessionToken);
-      return r;
+      return actor.validateAdminRole(sessionToken);
     },
     enabled: !!actor && !isFetching && !!sessionToken,
     staleTime: 3e5
   });
+}
+function useTopTraders(sessionToken) {
+  const { actor, isFetching } = useActor(createActor);
+  const qc = useQueryClient();
+  const query = useQuery({
+    queryKey: ["topTraders"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getTopTraders();
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 6e4
+  });
+  const add2 = useMutation({
+    mutationFn: async ({
+      name,
+      bio,
+      achievement,
+      week
+    }) => {
+      if (!actor) throw new Error("No actor");
+      return actor.addTopTrader(name, bio, achievement, week, sessionToken);
+    },
+    onSuccess: () => {
+      ue.success("Top trader added");
+      qc.invalidateQueries({ queryKey: ["topTraders"] });
+    },
+    onError: () => ue.error("Failed to add trader")
+  });
+  const remove = useMutation({
+    mutationFn: async (id) => {
+      if (!actor) throw new Error("No actor");
+      return actor.deleteTopTrader(id, sessionToken);
+    },
+    onSuccess: () => {
+      ue.success("Trader removed");
+      qc.invalidateQueries({ queryKey: ["topTraders"] });
+    },
+    onError: () => ue.error("Failed to remove trader")
+  });
+  return { ...query, add: add2, remove };
+}
+function useSignalTemplates(sessionToken) {
+  const { actor, isFetching } = useActor(createActor);
+  const qc = useQueryClient();
+  const query = useQuery({
+    queryKey: ["signalTemplates", sessionToken],
+    queryFn: async () => {
+      if (!actor || !sessionToken) return [];
+      const r = await actor.getSignalTemplates(sessionToken);
+      if (r.__kind__ === "ok") return r.ok;
+      return [];
+    },
+    enabled: !!actor && !isFetching && !!sessionToken,
+    staleTime: 12e4
+  });
+  const remove = useMutation({
+    mutationFn: async (id) => {
+      if (!actor) throw new Error("No actor");
+      return actor.deleteSignalTemplate(sessionToken, id);
+    },
+    onSuccess: () => {
+      ue.success("Template deleted");
+      qc.invalidateQueries({ queryKey: ["signalTemplates"] });
+    },
+    onError: () => ue.error("Failed to delete template")
+  });
+  return { ...query, remove };
 }
 function useAnalytics(sessionToken) {
   const { actor, isFetching } = useActor(createActor);
@@ -24125,6 +24245,136 @@ function useAuditLog(sessionToken) {
     staleTime: 3e4
   });
 }
+const SEED_POSTS = [
+  {
+    id: "bp-seed-1",
+    title: "BTC/USDT Breakout Confirmed — Entry Zone $67,200–$67,500",
+    snippet: "Market structure looks strong after the consolidation phase. Watching for clean break above resistance with volume confirmation. TP1: $69,500 | TP2: $72,000 | TP3: $76,000 | SL: $65,800",
+    url: "https://www.binance.com/en/square/profile/@DemonZeno",
+    date: "2026-04-25"
+  },
+  {
+    id: "bp-seed-2",
+    title: "ETH/USDT Bullish Divergence on the 4H — Signal Incoming",
+    snippet: "RSI divergence forming on the 4-hour chart. On-chain data shows accumulation. Three TP targets marked — manage SL tight below $3,320. Full signal posted.",
+    url: "https://www.binance.com/en/square/profile/@DemonZeno",
+    date: "2026-04-25"
+  },
+  {
+    id: "bp-seed-3",
+    title: "SOL/USDT Ecosystem Momentum Building — Watch $155 Level",
+    snippet: "Solana volume spiking with DEX activity. Could front-run broader altcoin rotation. Aggressive entry setup forming — check Binance Square for full signal.",
+    url: "https://www.binance.com/en/square/profile/@DemonZeno",
+    date: "2026-04-24"
+  }
+];
+function useBinanceFeed() {
+  const { actor, isFetching } = useActor(createActor);
+  const query = useQuery({
+    queryKey: ["binanceFeed"],
+    queryFn: async () => {
+      if (!actor) return SEED_POSTS;
+      const result = await actor.getBinanceFeed();
+      return result.length > 0 ? result : SEED_POSTS;
+    },
+    enabled: !!actor && !isFetching,
+    refetchInterval: 3e5,
+    // 5 minutes
+    placeholderData: SEED_POSTS
+  });
+  return {
+    posts: query.data ?? SEED_POSTS,
+    isLoading: query.isLoading,
+    error: query.error ? "Failed to load Binance feed" : null,
+    refetch: query.refetch
+  };
+}
+const SEED_FAQS = [
+  {
+    id: "faq-1",
+    question: "What is DemonZeno?",
+    answer: "DemonZeno is an anime-inspired free trading signals platform and meme token project providing daily signals for crypto, forex, and stocks.",
+    order: BigInt(1),
+    helpfulCount: BigInt(0),
+    notHelpfulCount: BigInt(0),
+    timestamp: BigInt(0),
+    category: FaqCategory.Platform
+  },
+  {
+    id: "faq-2",
+    question: "What is DMNZ?",
+    answer: "DMNZ is the DemonZeno token — a meme token launching April 2, 2028 via a Telegram Mini App on Blum as a 100% fair launch with no presale and no private allocation.",
+    order: BigInt(2),
+    helpfulCount: BigInt(0),
+    notHelpfulCount: BigInt(0),
+    timestamp: BigInt(0),
+    category: FaqCategory.DmnzToken
+  },
+  {
+    id: "faq-3",
+    question: "Are the signals really free?",
+    answer: "Yes, 100% free. No subscription, no fees, no hidden charges — ever. DemonZeno is committed to free signals for the entire community.",
+    order: BigInt(3),
+    helpfulCount: BigInt(0),
+    notHelpfulCount: BigInt(0),
+    timestamp: BigInt(0),
+    category: FaqCategory.Signals
+  },
+  {
+    id: "faq-4",
+    question: "Where does DemonZeno post daily free signals?",
+    answer: "DemonZeno posts daily free signals on Binance Square at @DemonZeno. Follow there to get every signal the moment it drops — no subscription needed.",
+    order: BigInt(4),
+    helpfulCount: BigInt(0),
+    notHelpfulCount: BigInt(0),
+    timestamp: BigInt(0),
+    category: FaqCategory.Signals
+  },
+  {
+    id: "faq-5",
+    question: "When does DMNZ token launch?",
+    answer: "DMNZ launches on April 2, 2028 via a Telegram Mini App on the Blum platform. It's a 100% fair launch with no presale, no private sale, and no allocation breakdown.",
+    order: BigInt(5),
+    helpfulCount: BigInt(0),
+    notHelpfulCount: BigInt(0),
+    timestamp: BigInt(0),
+    category: FaqCategory.DmnzToken
+  }
+];
+function useFaqs() {
+  const { actor, isFetching } = useActor(createActor);
+  return useQuery({
+    queryKey: ["faqs"],
+    queryFn: async () => {
+      if (!actor) return SEED_FAQS;
+      const result = await actor.getFaqs();
+      return result.length > 0 ? result : SEED_FAQS;
+    },
+    enabled: !!actor && !isFetching,
+    placeholderData: SEED_FAQS
+  });
+}
+function useStats() {
+  const { actor, isFetching } = useActor(createActor);
+  return useQuery({
+    queryKey: ["stats"],
+    queryFn: async () => {
+      if (!actor) {
+        return {
+          active: BigInt(0),
+          wins: BigInt(0),
+          losses: BigInt(0),
+          winRate: 0,
+          totalSignals: BigInt(0),
+          assetsCovered: BigInt(0)
+        };
+      }
+      return actor.getStats();
+    },
+    enabled: !!actor && !isFetching,
+    refetchInterval: 3e4
+  });
+}
 function datetimeLocalToBigInt(value) {
   if (!value) return null;
   return BigInt(new Date(value).getTime()) * 1000000n;
@@ -24153,15 +24403,20 @@ function signalToForm(s2) {
     marketType: s2.marketType,
     direction: s2.direction,
     entryPrice: s2.entryPrice,
+    tp1: s2.tp1 ?? "",
+    tp2: s2.tp2 ?? "",
+    tp3: s2.tp3 ?? "",
     targetPrice: s2.targetPrice,
     stopLoss: s2.stopLoss,
     notes: s2.notes,
     confidence: s2.confidence,
     sourceLabel: s2.sourceLabel,
+    providerLabel: s2.providerLabel ?? "",
     timeframe: s2.timeframe,
     isDraft: s2.isDraft,
     publishAt: bigIntToDatetimeLocal(s2.publishAt),
-    expiry: bigIntToDatetimeLocal(s2.expiry)
+    expiry: bigIntToDatetimeLocal(s2.expiry),
+    tags: s2.tags ?? []
   };
 }
 const PIE_COLORS = [
@@ -24177,6 +24432,7 @@ function SignalsTab({ sessionToken }) {
   const { actor } = useActor(createActor);
   const qc = useQueryClient();
   const { data: signals = [], isLoading } = useSignals();
+  const { data: templates = [] } = useSignalTemplates(sessionToken);
   const [editing, setEditing] = reactExports.useState(null);
   const [adding, setAdding] = reactExports.useState(false);
   const [saving, setSaving] = reactExports.useState(false);
@@ -24210,13 +24466,19 @@ function SignalsTab({ sessionToken }) {
       form.entryPrice,
       form.targetPrice,
       form.stopLoss,
+      form.tp1,
+      form.tp2,
+      form.tp3,
       form.notes,
       form.confidence,
       form.sourceLabel,
+      form.providerLabel,
       datetimeLocalToBigInt(form.expiry),
       form.timeframe,
       form.isDraft,
-      datetimeLocalToBigInt(form.publishAt)
+      datetimeLocalToBigInt(form.publishAt),
+      null,
+      form.tags
     );
     setSaving(false);
     if (r.__kind__ === "ok") {
@@ -24241,13 +24503,19 @@ function SignalsTab({ sessionToken }) {
       form.entryPrice,
       form.targetPrice,
       form.stopLoss,
+      form.tp1,
+      form.tp2,
+      form.tp3,
       form.notes,
       form.confidence,
       form.sourceLabel,
+      form.providerLabel,
       datetimeLocalToBigInt(form.expiry),
       form.timeframe,
       form.isDraft,
-      datetimeLocalToBigInt(form.publishAt)
+      datetimeLocalToBigInt(form.publishAt),
+      null,
+      form.tags
     );
     setSaving(false);
     if (r.__kind__ === "ok") {
@@ -24325,7 +24593,8 @@ function SignalsTab({ sessionToken }) {
         onSubmit: handleAdd,
         onCancel: cancelForm,
         submitLabel: "Add Signal",
-        saving
+        saving,
+        templates
       }
     ),
     showImport && /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -24370,7 +24639,8 @@ function SignalsTab({ sessionToken }) {
             onSubmit: handleUpdate,
             onCancel: cancelForm,
             submitLabel: "Save Changes",
-            saving
+            saving,
+            templates
           }
         ) : confirmDelete === s2.id ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-3 flex-wrap bg-destructive/10 border border-destructive/30 rounded-lg p-3", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-foreground", children: [
@@ -24526,15 +24796,15 @@ function CsvImportPanel({
   const [importing, setImporting] = reactExports.useState(false);
   const fileRef = reactExports.useRef(null);
   function handleFile(e3) {
-    var _a2;
+    var _a;
     setError(null);
     setRows([]);
-    const file = (_a2 = e3.target.files) == null ? void 0 : _a2[0];
+    const file = (_a = e3.target.files) == null ? void 0 : _a[0];
     if (!file) return;
     const reader = new FileReader();
     reader.onload = (ev) => {
-      var _a3;
-      const text = (_a3 = ev.target) == null ? void 0 : _a3.result;
+      var _a2;
+      const text = (_a2 = ev.target) == null ? void 0 : _a2.result;
       const lines = text.split(/\r?\n/).filter((l2) => l2.trim());
       if (lines.length < 2) {
         setError("CSV must have a header row and at least one data row.");
@@ -24583,13 +24853,18 @@ function CsvImportPanel({
       entryPrice: r.entryPrice,
       targetPrice: r.targetPrice,
       stopLoss: r.stopLoss,
+      tp1: r.targetPrice,
+      tp2: "",
+      tp3: "",
       notes: r.notes,
       confidence: r.confidence || Confidence.Medium,
       sourceLabel: r.sourceLabel,
+      providerLabel: "",
       timeframe: r.timeframe || Timeframe.Swing,
       isDraft: false,
       publishAt: void 0,
-      expiry: void 0
+      expiry: void 0,
+      tags: []
     }));
     const result = await actor.importSignals(sessionToken, inputs);
     setImporting(false);
@@ -25322,7 +25597,11 @@ function FaqTab({ sessionToken }) {
   const { data: faqs = [], isLoading } = useFaqs();
   const [editing, setEditing] = reactExports.useState(null);
   const [adding, setAdding] = reactExports.useState(false);
-  const [form, setForm] = reactExports.useState({ question: "", answer: "" });
+  const [form, setForm] = reactExports.useState({
+    question: "",
+    answer: "",
+    category: FaqCategory.Signals
+  });
   const [saving, setSaving] = reactExports.useState(false);
   const [confirmDelete, setConfirmDelete] = reactExports.useState(null);
   const sorted = [...faqs].sort((a2, b2) => Number(a2.order - b2.order));
@@ -25334,13 +25613,18 @@ function FaqTab({ sessionToken }) {
     e3.preventDefault();
     if (!actor) return;
     setSaving(true);
-    const r = await actor.addFaq(sessionToken, form.question, form.answer);
+    const r = await actor.addFaq(
+      sessionToken,
+      form.question,
+      form.answer,
+      form.category
+    );
     setSaving(false);
     if (r.__kind__ === "ok") {
       ue.success("FAQ added");
       qc.invalidateQueries({ queryKey: ["faqs"] });
       setAdding(false);
-      setForm({ question: "", answer: "" });
+      setForm({ question: "", answer: "", category: FaqCategory.Signals });
     } else {
       ue.error(r.err);
     }
@@ -25353,7 +25637,8 @@ function FaqTab({ sessionToken }) {
       sessionToken,
       editing.id,
       form.question,
-      form.answer
+      form.answer,
+      editing.category ?? FaqCategory.Signals
     );
     setSaving(false);
     if (r.__kind__ === "ok") {
@@ -25467,7 +25752,11 @@ function FaqTab({ sessionToken }) {
           onClick: () => {
             setAdding(true);
             setEditing(null);
-            setForm({ question: "", answer: "" });
+            setForm({
+              question: "",
+              answer: "",
+              category: FaqCategory.Signals
+            });
           },
           "data-ocid": "faq.add.primary_button",
           children: [
@@ -25562,7 +25851,11 @@ function FaqTab({ sessionToken }) {
                 variant: "outline",
                 onClick: () => {
                   setEditing(faq);
-                  setForm({ question: faq.question, answer: faq.answer });
+                  setForm({
+                    question: faq.question,
+                    answer: faq.answer,
+                    category: faq.category ?? FaqCategory.Signals
+                  });
                   setAdding(false);
                 },
                 "data-ocid": `faq.edit_button.${i + 1}`,
@@ -25837,127 +26130,169 @@ function NotifyMeTab({ sessionToken }) {
 function AnnouncementsTab({ sessionToken }) {
   const { actor } = useActor(createActor);
   const qc = useQueryClient();
-  const { data: announcement } = useAnnouncement();
-  const [text, setText] = reactExports.useState("");
-  const [link, setLink] = reactExports.useState("");
+  const [announcements, setAnnouncements] = reactExports.useState([]);
+  const [loading, setLoading] = reactExports.useState(false);
+  const [adding, setAdding] = reactExports.useState(false);
+  const [editing, setEditing] = reactExports.useState(null);
   const [saving, setSaving] = reactExports.useState(false);
-  const [toggling, setToggling] = reactExports.useState(false);
-  const [scheduleEnabled, setScheduleEnabled] = reactExports.useState(false);
-  const [publishAt, setPublishAt] = reactExports.useState("");
-  reactExports.useEffect(() => {
-    if (announcement) {
-      setText(announcement.text);
-      setLink(announcement.link ?? "");
-      if (announcement.publishAt) {
-        setPublishAt(bigIntToDatetimeLocal(announcement.publishAt));
-        setScheduleEnabled(true);
-      }
+  const [confirmDelete, setConfirmDelete] = reactExports.useState(null);
+  const [form, setForm] = reactExports.useState({
+    title: "",
+    body: "",
+    link: "",
+    category: AnnouncementCategory.General,
+    isPinned: false,
+    publishAt: ""
+  });
+  const loadAnnouncements = reactExports.useCallback(async () => {
+    if (!actor) return;
+    setLoading(true);
+    try {
+      const list = await actor.getAnnouncements();
+      setAnnouncements(list);
+    } catch {
+      ue.error("Failed to load announcements");
+    } finally {
+      setLoading(false);
     }
-  }, [announcement]);
-  async function handleSave(e3) {
+  }, [actor]);
+  reactExports.useEffect(() => {
+    loadAnnouncements();
+  }, [loadAnnouncements]);
+  function cancelForm() {
+    setAdding(false);
+    setEditing(null);
+    setForm({
+      title: "",
+      body: "",
+      link: "",
+      category: AnnouncementCategory.General,
+      isPinned: false,
+      publishAt: ""
+    });
+  }
+  async function handleAdd(e3) {
     e3.preventDefault();
     if (!actor) return;
     setSaving(true);
-    const publishAtValue = scheduleEnabled && publishAt ? datetimeLocalToBigInt(publishAt) : null;
-    const r = await actor.setAnnouncement(
+    const r = await actor.addAnnouncement(
       sessionToken,
-      text,
-      link.trim() || null,
-      publishAtValue
+      form.title,
+      form.body,
+      form.category,
+      form.link.trim() || null,
+      form.isPinned,
+      form.publishAt ? datetimeLocalToBigInt(form.publishAt) : null
     );
     setSaving(false);
     if (r.__kind__ === "ok") {
-      ue.success(
-        scheduleEnabled && publishAt ? `Announcement scheduled for ${new Date(publishAt).toLocaleString()}` : "Announcement saved"
-      );
-      qc.invalidateQueries({ queryKey: ["announcement"] });
+      ue.success("Announcement added");
+      qc.invalidateQueries({ queryKey: ["announcements"] });
+      loadAnnouncements();
+      cancelForm();
     } else {
       ue.error(r.err);
     }
   }
-  async function handleToggle() {
-    if (!actor) return;
-    setToggling(true);
-    const r = await actor.toggleAnnouncement(sessionToken);
-    setToggling(false);
+  async function handleUpdate(e3) {
+    e3.preventDefault();
+    if (!actor || !editing) return;
+    setSaving(true);
+    const r = await actor.updateAnnouncement(
+      sessionToken,
+      editing.id,
+      form.title,
+      form.body,
+      form.category,
+      form.link.trim() || null,
+      form.isPinned,
+      editing.isActive,
+      form.publishAt ? datetimeLocalToBigInt(form.publishAt) : null
+    );
+    setSaving(false);
     if (r.__kind__ === "ok") {
-      ue.success(r.ok ? "Banner activated" : "Banner deactivated");
-      qc.invalidateQueries({ queryKey: ["announcement"] });
+      ue.success("Announcement updated");
+      loadAnnouncements();
+      cancelForm();
     } else {
       ue.error(r.err);
     }
   }
-  const isScheduled = (announcement == null ? void 0 : announcement.publishAt) ? Number(announcement.publishAt / 1000000n) > Date.now() : false;
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-6", "data-ocid": "admin.announcements.panel", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between flex-wrap gap-3", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "font-display font-semibold text-foreground text-lg flex items-center gap-2", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Bell, { className: "w-5 h-5 text-primary" }),
-        " Sitewide Announcement"
-      ] }),
-      announcement && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-        isScheduled ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Badge,
-          {
-            variant: "outline",
-            className: "text-xs border-yellow-500/50 text-yellow-600 dark:text-yellow-400",
-            children: "⏰ Scheduled"
-          }
-        ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Badge,
-          {
-            variant: announcement.isActive ? "default" : "secondary",
-            className: announcement.isActive ? "bg-primary/20 text-primary border-primary/30" : "",
-            children: announcement.isActive ? "● Live" : "○ Hidden"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Button,
-          {
-            size: "sm",
-            variant: "outline",
-            onClick: handleToggle,
-            disabled: toggling,
-            "data-ocid": "announcements.toggle.button",
-            className: announcement.isActive ? "text-destructive border-destructive/30 hover:bg-destructive/10" : "text-primary border-primary/30 hover:bg-primary/10",
-            children: toggling ? "…" : announcement.isActive ? "Deactivate Banner" : "Activate Banner"
-          }
-        )
-      ] })
-    ] }),
-    announcement && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-muted/30 border border-border rounded-xl p-4 flex flex-col gap-1", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-2", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground uppercase tracking-wide font-medium", children: "Current Banner Preview" }),
-        isScheduled && announcement.publishAt ? /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs font-mono text-yellow-600 dark:text-yellow-400", children: [
-          "Scheduled for ",
-          formatTimestamp(announcement.publishAt)
-        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-mono text-primary", children: announcement.isActive ? "Active now" : "Inactive" })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-foreground", children: [
-        announcement.text,
-        announcement.link && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-primary ml-2 text-xs", children: [
-          "↗ ",
-          announcement.link
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "form",
-      {
-        onSubmit: handleSave,
-        className: "flex flex-col gap-4 bg-card border border-border rounded-xl p-5",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-foreground", children: "Edit Announcement" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Banner Text *" }),
+  async function handleDelete(id) {
+    if (!actor) return;
+    const r = await actor.deleteAnnouncement(sessionToken, id);
+    if (r.__kind__ === "ok") {
+      ue.success("Announcement deleted");
+      setAnnouncements((prev) => prev.filter((a2) => a2.id !== id));
+    } else {
+      ue.error(r.err);
+    }
+    setConfirmDelete(null);
+  }
+  async function handlePin(id, pin) {
+    if (!actor) return;
+    const r = await actor.pinAnnouncement(sessionToken, id, pin);
+    if (r.__kind__ === "ok") {
+      ue.success(pin ? "Pinned" : "Unpinned");
+      loadAnnouncements();
+    } else {
+      ue.error(r.err);
+    }
+  }
+  const AnnForm = ({
+    onSubmit,
+    label
+  }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "form",
+    {
+      onSubmit,
+      className: "flex flex-col gap-3 bg-muted/30 border border-border rounded-xl p-5",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid sm:grid-cols-2 gap-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Title *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                required: true,
+                value: form.title,
+                onChange: (e3) => setForm({ ...form, title: e3.target.value }),
+                placeholder: "New Signal Alert — April 2026",
+                "data-ocid": "announcements.title.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Body *" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Textarea,
               {
                 required: true,
-                rows: 2,
-                value: text,
-                onChange: (e3) => setText(e3.target.value),
+                rows: 3,
+                value: form.body,
+                onChange: (e3) => setForm({ ...form, body: e3.target.value }),
                 placeholder: "DMNZ launches April 2, 2028 — join the fair launch on Blum!",
-                "data-ocid": "announcements.text.textarea"
+                "data-ocid": "announcements.body.textarea"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Category" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.category,
+                onValueChange: (v2) => setForm({ ...form, category: v2 }),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "announcements.category.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "General", children: "General" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Token", children: "Token" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Signal", children: "Signal" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Alert", children: "Alert" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Admin", children: "Admin" })
+                  ] })
+                ]
               }
             )
           ] }),
@@ -25967,65 +26302,218 @@ function AnnouncementsTab({ sessionToken }) {
               Input,
               {
                 type: "url",
-                value: link,
-                onChange: (e3) => setLink(e3.target.value),
+                value: form.link,
+                onChange: (e3) => setForm({ ...form, link: e3.target.value }),
                 placeholder: "https://…",
                 "data-ocid": "announcements.link.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3 pt-2 border-t border-border", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Switch,
-                {
-                  checked: scheduleEnabled,
-                  onCheckedChange: setScheduleEnabled,
-                  "data-ocid": "announcements.schedule.switch"
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "font-medium text-foreground text-sm", children: "Schedule for later" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-0.5", children: "Toggle on to set a future publish time for this announcement." })
-              ] })
-            ] }),
-            scheduleEnabled && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Publish At *" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  type: "datetime-local",
-                  value: publishAt,
-                  onChange: (e3) => setPublishAt(e3.target.value),
-                  required: scheduleEnabled,
-                  "data-ocid": "announcements.publish_at.input"
-                }
-              )
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 pt-1", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Button,
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Publish At" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
               {
-                type: "submit",
-                disabled: saving || !text.trim(),
-                className: "btn-primary",
-                "data-ocid": "announcements.save.primary_button",
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { className: "w-4 h-4 mr-1" }),
-                  saving ? "Saving…" : scheduleEnabled ? "Schedule Announcement" : "Save Announcement"
-                ]
+                type: "datetime-local",
+                value: form.publishAt,
+                onChange: (e3) => setForm({ ...form, publishAt: e3.target.value }),
+                "data-ocid": "announcements.publish_at.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mt-4", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Switch,
+              {
+                checked: form.isPinned,
+                onCheckedChange: (v2) => setForm({ ...form, isPinned: v2 }),
+                "data-ocid": "announcements.pinned.switch"
               }
             ),
-            !announcement && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Save first, then activate the banner." })
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-sm", children: "Pin this announcement" })
           ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 justify-end pt-1 border-t border-border", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              type: "button",
+              variant: "outline",
+              onClick: cancelForm,
+              "data-ocid": "announcements.form.cancel_button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-4 h-4 mr-1" }),
+                " Cancel"
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              type: "submit",
+              disabled: saving,
+              className: "btn-primary",
+              "data-ocid": "announcements.form.submit_button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { className: "w-4 h-4 mr-1" }),
+                saving ? "Saving…" : label
+              ]
+            }
+          )
+        ] })
+      ]
+    }
+  );
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-5", "data-ocid": "admin.announcements.panel", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between flex-wrap gap-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "font-display font-semibold text-foreground text-lg flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Bell, { className: "w-5 h-5 text-primary" }),
+        " Announcements",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-mono bg-muted text-muted-foreground px-2 py-0.5 rounded-full", children: announcements.length })
+      ] }),
+      !adding && !editing && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        Button,
+        {
+          size: "sm",
+          className: "btn-primary",
+          onClick: () => setAdding(true),
+          "data-ocid": "announcements.add.primary_button",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-4 h-4 mr-1" }),
+            " Add Announcement"
+          ]
+        }
+      )
+    ] }),
+    adding && /* @__PURE__ */ jsxRuntimeExports.jsx(AnnForm, { onSubmit: handleAdd, label: "Add Announcement" }),
+    loading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        "data-ocid": "announcements.loading_state",
+        className: "flex flex-col gap-2",
+        children: [1, 2, 3].map((n2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "h-16 rounded-xl bg-muted/50 animate-pulse"
+          },
+          n2
+        ))
+      }
+    ) : announcements.length === 0 && !adding ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        "data-ocid": "announcements.empty_state",
+        className: "text-center text-muted-foreground py-16 flex flex-col items-center gap-3",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Bell, { className: "w-10 h-10 opacity-20" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: "No announcements yet." })
         ]
       }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-muted/20 border border-border rounded-xl p-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground flex items-start gap-2", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { className: "w-4 h-4 shrink-0 mt-0.5" }),
-      'The announcement banner appears at the very top of the public site when activated. Use "Schedule for later" to auto-publish at a future time.'
-    ] }) })
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col gap-3", children: announcements.map((ann, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Card,
+      {
+        "data-ocid": `announcements.item.${i + 1}`,
+        className: "bg-card border-border p-4",
+        children: (editing == null ? void 0 : editing.id) === ann.id ? /* @__PURE__ */ jsxRuntimeExports.jsx(AnnForm, { onSubmit: handleUpdate, label: "Save Changes" }) : confirmDelete === ann.id ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-3 flex-wrap bg-destructive/10 border border-destructive/30 rounded-lg p-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-foreground", children: [
+            "Delete ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: ann.title }),
+            "?"
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                size: "sm",
+                variant: "outline",
+                onClick: () => setConfirmDelete(null),
+                "data-ocid": `announcements.delete.cancel_button.${i + 1}`,
+                children: "Cancel"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                size: "sm",
+                variant: "destructive",
+                onClick: () => handleDelete(ann.id),
+                "data-ocid": `announcements.delete.confirm_button.${i + 1}`,
+                children: "Delete"
+              }
+            )
+          ] })
+        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-3 flex-wrap", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-wrap", children: [
+              ann.isPinned && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-primary font-semibold", children: "📌 Pinned" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  variant: "outline",
+                  className: "text-xs border-primary/30 text-primary",
+                  children: ann.category
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  variant: ann.isActive ? "default" : "secondary",
+                  className: `text-xs ${ann.isActive ? "bg-primary/20 text-primary border-primary/30" : ""}`,
+                  children: ann.isActive ? "● Live" : "○ Draft"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-foreground text-sm mt-1", children: ann.title }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-0.5 line-clamp-2", children: ann.body })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1 shrink-0", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                size: "sm",
+                variant: "outline",
+                onClick: () => {
+                  setEditing(ann);
+                  setForm({
+                    title: ann.title,
+                    body: ann.body,
+                    link: ann.link ?? "",
+                    category: ann.category,
+                    isPinned: ann.isPinned,
+                    publishAt: ann.publishAt ? bigIntToDatetimeLocal(ann.publishAt) : ""
+                  });
+                  setAdding(false);
+                },
+                "data-ocid": `announcements.edit_button.${i + 1}`,
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Pen, { className: "w-3 h-3" })
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                size: "sm",
+                variant: "outline",
+                onClick: () => handlePin(ann.id, !ann.isPinned),
+                "data-ocid": `announcements.pin_button.${i + 1}`,
+                className: "text-primary border-primary/30",
+                children: ann.isPinned ? "Unpin" : "Pin"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                size: "sm",
+                variant: "destructive",
+                onClick: () => setConfirmDelete(ann.id),
+                "data-ocid": `announcements.delete_button.${i + 1}`,
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3 h-3" })
+              }
+            )
+          ] })
+        ] })
+      },
+      ann.id
+    )) })
   ] });
 }
 function AuditLogTab({ sessionToken }) {
@@ -27961,11 +28449,12 @@ function AdminRolesTab({ sessionToken }) {
   ] });
 }
 function CommunityContentTab({ sessionToken }) {
-  var _a2, _b, _c;
+  var _a, _b, _c, _d;
   const quotes = useCommunityQuotes(sessionToken);
   const testimonials = useCommunityTestimonials(sessionToken);
   const sotw = useSignalOfWeekAdmin(sessionToken);
   const milestones = useCommunityMilestones(sessionToken);
+  const topTraders = useTopTraders(sessionToken);
   const { data: signals = [] } = useSignals();
   const [quoteForm, setQuoteForm] = reactExports.useState({ quote: "", author: "" });
   const [testForm, setTestForm] = reactExports.useState({
@@ -27979,6 +28468,12 @@ function CommunityContentTab({ sessionToken }) {
   const [milestoneForm, setMilestoneForm] = reactExports.useState({
     title: "",
     description: ""
+  });
+  const [traderForm, setTraderForm] = reactExports.useState({
+    name: "",
+    bio: "",
+    achievement: "",
+    week: ""
   });
   async function handleAddQuote(e3) {
     e3.preventDefault();
@@ -28009,13 +28504,18 @@ function CommunityContentTab({ sessionToken }) {
     await milestones.add.mutateAsync(milestoneForm);
     setMilestoneForm({ title: "", description: "" });
   }
+  async function handleAddTrader(e3) {
+    e3.preventDefault();
+    await topTraders.add.mutateAsync(traderForm);
+    setTraderForm({ name: "", bio: "", achievement: "", week: "" });
+  }
   const liveSignals = signals.filter((s2) => !s2.isDraft);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-8", "data-ocid": "admin.community.panel", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-card border border-border rounded-xl p-5 flex flex-col gap-4", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("h4", { className: "font-display font-semibold text-foreground flex items-center gap-2", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { className: "w-4 h-4 text-primary" }),
         " Quote Rotator",
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full font-mono", children: ((_a2 = quotes.data) == null ? void 0 : _a2.length) ?? 0 })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full font-mono", children: ((_a = quotes.data) == null ? void 0 : _a.length) ?? 0 })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleAddQuote, className: "flex flex-col gap-3", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
@@ -28368,6 +28868,117 @@ function CommunityContentTab({ sessionToken }) {
           ]
         },
         m2.id
+      )) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-card border border-border rounded-xl p-5 flex flex-col gap-4", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("h4", { className: "font-display font-semibold text-foreground flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "w-4 h-4 text-primary" }),
+        " Top Traders Wall",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded-full font-mono", children: ((_d = topTraders.data) == null ? void 0 : _d.length) ?? 0 })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "form",
+        {
+          onSubmit: handleAddTrader,
+          className: "grid sm:grid-cols-2 gap-3 bg-muted/20 border border-border rounded-lg p-4",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Name *" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  required: true,
+                  value: traderForm.name,
+                  onChange: (e3) => setTraderForm({ ...traderForm, name: e3.target.value }),
+                  placeholder: "Trader name",
+                  "data-ocid": "community.trader.name.input"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Week *" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  required: true,
+                  value: traderForm.week,
+                  onChange: (e3) => setTraderForm({ ...traderForm, week: e3.target.value }),
+                  placeholder: "Week of Jan 15, 2026",
+                  "data-ocid": "community.trader.week.input"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex flex-col gap-1.5", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Achievement *" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  required: true,
+                  value: traderForm.achievement,
+                  onChange: (e3) => setTraderForm({ ...traderForm, achievement: e3.target.value }),
+                  placeholder: "+340% on BTC/USDT swing trade",
+                  "data-ocid": "community.trader.achievement.input"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2 flex gap-2 items-end", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1.5 flex-1", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs text-muted-foreground uppercase tracking-wide", children: "Bio" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: traderForm.bio,
+                    onChange: (e3) => setTraderForm({ ...traderForm, bio: e3.target.value }),
+                    placeholder: "Short bio or quote",
+                    "data-ocid": "community.trader.bio.input"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Button,
+                {
+                  type: "submit",
+                  className: "btn-primary shrink-0",
+                  disabled: topTraders.add.isPending,
+                  "data-ocid": "community.trader.add.primary_button",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-4 h-4 mr-1" }),
+                    topTraders.add.isPending ? "…" : "Add Trader"
+                  ]
+                }
+              )
+            ] })
+          ]
+        }
+      ),
+      (topTraders.data ?? []).length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col gap-2", children: (topTraders.data ?? []).map((t2, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          "data-ocid": `community.trader.item.${i + 1}`,
+          className: "flex items-start justify-between gap-3 bg-muted/20 rounded-lg p-3",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-wrap", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-foreground", children: t2.name }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-muted-foreground", children: t2.week })
+              ] }),
+              t2.achievement && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-primary mt-0.5 font-mono", children: t2.achievement }),
+              t2.bio && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-0.5 line-clamp-1", children: t2.bio })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                size: "sm",
+                variant: "ghost",
+                onClick: () => topTraders.remove.mutate(t2.id),
+                className: "shrink-0 text-destructive hover:bg-destructive/10 h-7 w-7 p-0",
+                "data-ocid": `community.trader.delete_button.${i + 1}`,
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3 h-3" })
+              }
+            )
+          ]
+        },
+        t2.id
       )) })
     ] })
   ] });
@@ -28801,8 +29412,8 @@ function AdminConsoleTab({ sessionToken }) {
     ]);
     setTimeout(
       () => {
-        var _a2;
-        return (_a2 = scrollRef.current) == null ? void 0 : _a2.scrollTo({
+        var _a;
+        return (_a = scrollRef.current) == null ? void 0 : _a.scrollTo({
           top: scrollRef.current.scrollHeight,
           behavior: "smooth"
         });

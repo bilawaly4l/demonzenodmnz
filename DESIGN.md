@@ -2,57 +2,58 @@
 
 ## Direction
 
-**DemonZeno Phase 1** — Anime-inspired open-road trading platform with dark mode first. Sky blue dominant meets teal accent. Cinematic minimalism layered over signal trading UI. Confident, unforgettable, zero clutter. Dark mode toggles via localStorage; default on first visit.
+**DemonZeno Phase 6** — Cinematic anime open-road single-page trading platform. Dark charcoal foundation (near-black surfaces) anchors premium restraint. Sky blue breathes atmosphere into hero and key accents. Teal/mint cuts through as action color. Crimson signals urgency and loss. Zero clutter. Dark mode always active. Every interaction feels like a frame from an anime movie.
 
 ## Tone
 
-Bold, confident anime aesthetic with premium restraint. Dark mode optimized for trading focus. Clean surfaces over sky-inspired gradients. Premium tech meets cinematic anime frame composition. Every section feels like a frame — character-driven, minimal text, visual hierarchy through color and space.
+Bold anime cinematography meets trading-focused UX. Dark mode optimized for focus and premium presence. DemonZeno character as persistent anchor — anime boy, teal hoodie, white shirt, red sneakers on highway. Sky blue + teal create depth; crimson interrupts with urgency. Silent, confident, unforgettable.
 
 ## Differentiation
 
-DemonZeno anime character (teal hoodie, red sneakers, highway setting) as persistent brand anchor. Phase 1 upgrades: signal confidence scoring (Low/Med/High), timeframe categories (Scalp/Swing/Long-term), performance charting (teal wins, crimson losses), skeleton loading, smooth scroll animations, back-to-top button, stats bar. Anime open-road metaphor reinforced through highway parallax in hero.
+DemonZeno anime character (teal hoodie, red sneakers, highway) as visual anchor. Unified AI unlock via passcode. Strict anime open-road aesthetic: sky blue for atmospheric hero/depth, teal for action/active states, dark charcoal for premium surfaces, crimson for urgency/losses. Parallax highway in hero, smooth signal cards with confidence/timeframe badges, skeleton loading, scroll progress bar, cinematic transitions. Every section feels designed, nothing generic.
 
-## Color Palette
+## Color Palette (OKLCH)
 
 | Token                        | OKLCH             | Role                                   |
 | ---------------------------- | ----------------- | -------------------------------------- |
-| primary / accent             | 0.65 0.15 190     | Teal — buttons, active states, accent  |
-| chart-3 / timeframe-swing    | 0.7 0.18 145      | Mint teal — signal wins, swing trades  |
-| confidence-high              | 0.65 0.15 130     | Emerald — high confidence signals      |
+| sky-blue (dark mode)         | 0.58 0.16 258     | Atmospheric hero, accent depth         |
+| sky-blue-light (light mode)  | 0.75 0.12 265     | Hero background, transitions           |
+| primary / accent / teal      | 0.65 0.15 190     | CTA, active states, signal entry point |
+| chart-3 / mint-teal          | 0.7 0.18 145      | Signal wins, swing trades (positive)   |
+| confidence-high              | 0.65 0.15 130     | Emerald — high confidence              |
 | confidence-medium            | 0.65 0.14 70      | Amber — medium confidence              |
-| destructive / chart-loss     | 0.55 0.22 25      | Crimson red — SELL, losses, urgent     |
-| confidence-low / muted       | 0.35 0.01 260     | Grey — low confidence, secondary       |
-| timeframe-scalp              | 0.65 0.15 190     | Sky blue — scalp trades                |
-| timeframe-longterm           | 0.55 0.15 295     | Violet — long-term trades              |
-| background (light)           | 0.75 0.08 270     | Sky blue — primary background          |
-| background (dark)            | 0.145 0.01 260    | Near-black — dark mode default         |
-| card                         | 0.18 0.01 260     | Dark charcoal — elevated surfaces      |
-| expired                      | 0.3 0.02 260      | Muted dark grey — expired signals      |
+| destructive / crimson        | 0.55 0.22 25      | SELL signals, losses, urgency          |
+| confidence-low               | 0.35 0.01 260     | Grey — low confidence, muted           |
+| timeframe-scalp              | 0.65 0.15 190     | Sky-teal — scalp/quick trades          |
+| timeframe-longterm           | 0.55 0.15 295     | Violet — long-term positions           |
+| background (dark)            | 0.145 0.01 260    | Near-black charcoal — dark mode only   |
+| card                         | 0.18 0.01 260     | Dark charcoal — elevated card surfaces |
+| expired                      | 0.3 0.02 260      | Muted grey — expired/inactive          |
 
 ## Typography
 
-- **Display**: Space Grotesk — h1 `text-6xl md:text-7xl font-bold`, h2 `text-4xl font-bold`, h3 `text-2xl font-bold`
-- **Body**: DM Sans — body `text-base`, small `text-sm`, label `text-xs font-semibold uppercase`
-- **Mono**: Geist Mono — admin UI, code blocks
-- **Badges**: label `text-xs font-semibold`, uppercase tracking-wider for source labels
+- **Display**: Space Grotesk — h1 `text-6xl md:text-7xl font-bold`, h2 `text-4xl font-bold`, h3 `text-2xl font-bold`. Anime confidence in letterforms.
+- **Body**: DM Sans — `text-base` body, `text-sm` small, `text-xs font-semibold uppercase` labels. Clean, readable, premium restraint.
+- **Mono**: JetBrains Mono — admin UI, code blocks, signal entry/exit values. Technical precision.
+- **Signal Cards**: Labels `text-xs font-semibold`, uppercase tracking-wider (source/timeframe badges)
 
 ## Elevation & Depth
 
-Cards `shadow-elevated: 0 12px 32px rgba(0,0,0,0.15)` for depth. Header sticky with `border-b sky-blue-tint`. Sections alternate: sky-blue main content, muted/20 accent sections. Restraint over drama — no neon glow.
+Dark charcoal layers create depth. Cards use `shadow-elevated: 0 12px 32px rgba(0,0,0,0.15)` for premium separation. Hero breathes with sky-blue atmospheric tint. Sticky header on dark-charcoal with `border-b sky-blue` for navigation anchor. Sections alternate: main content (dark-charcoal), accent sections (`muted/20` darker grey). No neon glow — refined shadows only.
 
 ## Structural Zones
 
 | Zone                 | Background              | Notes                                              |
 | -------------------- | ----------------------- | -------------------------------------------------- |
-| Header               | card (0.18 0.01 260)    | Sticky, announcement banner, dark mode toggle     |
-| Hero                 | background (sky blue)   | DemonZeno char, slogan, CTA, highway parallax     |
-| Content (main)       | background (sky blue)   | Signals, stats, FAQ sections                      |
-| Content (accent)     | muted/15–20% opacity    | Every other section for rhythm                    |
-| Signal Card          | card with left-border   | Teal left accent, badges (confidence, timeframe)  |
-| Skeleton Loading     | muted/50% + animate     | Pulse animation on load                           |
+| Header               | card (0.18 0.01 260)    | Sticky, dark charcoal, sky-blue border accent     |
+| Hero                 | sky-blue gradient        | DemonZeno char, slogan, highway parallax          |
+| Content (main)       | background (0.145)      | Dark charcoal, signals, FAQ, sections             |
+| Content (accent)     | card (0.18)             | Slightly elevated alternate sections for rhythm   |
+| Signal Card          | card with left-border   | Teal left accent, confidence/timeframe badges     |
+| Chat Interface       | card + input footer     | User bubbles teal, AI bubbles dark charcoal       |
+| Skeleton Loading     | muted/50% + pulse       | Pulse animation on all loading states             |
 | Progress Bar         | teal-to-mint gradient   | Fixed top, thin (3px), scroll-driven width        |
-| Back-to-Top Btn      | primary (circular)      | Fixed bottom-right, shadow-elevated, scale hover  |
-| Stats Bar            | stats-bg (dark card)    | Compact horizontal, 3 items (signals, win%, mkts) |
+| Back-to-Top Btn      | primary teal            | Fixed bottom-right, shadow-elevated, scale hover  |
 | Footer               | card (0.18 0.01 260)    | Dark base, sky-blue top border                    |
 
 ## Component Patterns
@@ -74,11 +75,13 @@ Cards `shadow-elevated: 0 12px 32px rgba(0,0,0,0.15)` for depth. Header sticky w
 
 ## Constraints
 
-- **Color Discipline**: Sky blue (primary), teal (accent), dark charcoal (surface), crimson (urgent), white/grey (text). No random accent colors.
-- **Dark Mode First**: Default to dark; toggle persists to localStorage. Light mode optional future.
-- **No Clutter**: Ample spacing between sections, max 3 items mobile / 4–5 desktop per row.
-- **Semantic Badges**: Green/emerald = high/success, Amber = medium, Grey = low, Red = loss/sell, Teal = active/primary, Violet = long-term.
-- **Typography Strict**: Space Grotesk (display), DM Sans (body), Geist Mono (mono only).
+- **Anime Aesthetic**: Sky blue for atmosphere, teal for action, dark charcoal for surfaces, crimson for urgency. No random accent colors.
+- **Dark Mode Only**: Premium dark-charcoal foundation throughout. No light mode in this phase.
+- **Zero Clutter**: Ample spacing between sections, max 3 items mobile / 4–5 desktop per row.
+- **Semantic Color**: Emerald=high/success, Amber=medium, Grey=low, Crimson=loss/urgency, Teal=active/primary.
+- **Font Discipline**: Space Grotesk (display bold), DM Sans (body), JetBrains Mono (admin/code).
+- **Single-Page App**: No multi-page routing. Smooth section scrolling with progress indicator.
+- **Token Compliance**: All colors via CSS variables. No raw hex, rgb(), or arbitrary Tailwind classes.
 
 ## Signature Details
 

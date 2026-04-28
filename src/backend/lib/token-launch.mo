@@ -1,13 +1,20 @@
 import TokenLaunchTypes "../types/token-launch";
 import SignalTypes "../types/signals";
+import Common "../types/common";
 import List "mo:core/List";
+import Nat "mo:core/Nat";
 import Time "mo:core/Time";
+import Order "mo:core/Order";
 
 module {
-  public type WhitepaperSection  = TokenLaunchTypes.WhitepaperSection;
-  public type WhitepaperContent  = TokenLaunchTypes.WhitepaperContent;
-  public type HolderBenefit      = TokenLaunchTypes.HolderBenefit;
-  public type SignalOfWeek       = TokenLaunchTypes.SignalOfWeek;
+  public type WhitepaperSection = TokenLaunchTypes.WhitepaperSection;
+  public type WhitepaperContent = TokenLaunchTypes.WhitepaperContent;
+  public type HolderBenefit     = TokenLaunchTypes.HolderBenefit;
+  public type SignalOfWeek      = TokenLaunchTypes.SignalOfWeek;
+  public type BurnEvent         = TokenLaunchTypes.BurnEvent;
+  public type HypeMilestone     = TokenLaunchTypes.HypeMilestone;
+  public type TokenData         = TokenLaunchTypes.TokenData;
+  public type Result<T, E>      = Common.Result<T, E>;
 
   // ── Whitepaper ─────────────────────────────────────────────────────────────
 
@@ -56,6 +63,14 @@ module {
     ref.value := { content with updatedAt = Time.now() };
   };
 
+  public func getWhitepaperUrl(urlRef : { var value : ?Text }) : ?Text {
+    urlRef.value;
+  };
+
+  public func setWhitepaperUrl(urlRef : { var value : ?Text }, url : Text) {
+    urlRef.value := ?url;
+  };
+
   // ── Holder benefits ────────────────────────────────────────────────────────
 
   public func defaultHolderBenefits() : [HolderBenefit] {
@@ -99,8 +114,7 @@ module {
   };
 
   public func getHolderBenefits(benefits : List.List<HolderBenefit>) : [HolderBenefit] {
-    let active = benefits.filter(func(b) { b.active });
-    active.toArray();
+    benefits.filter(func(b) { b.active }).toArray();
   };
 
   // ── Signal of the Week ─────────────────────────────────────────────────────
@@ -126,6 +140,111 @@ module {
           case (?sig) { ?(sig, sow.comment, sow.weekOf, sow.featuredAt) };
         };
       };
+    };
+  };
+
+  // ── Burn Events ────────────────────────────────────────────────────────────
+
+  public func getBurnSchedule(burnEvents : List.List<BurnEvent>) : [BurnEvent] {
+    burnEvents.toArray();
+  };
+
+  public func addBurnEvent(
+    burnEvents : List.List<BurnEvent>,
+    idCounter  : { var value : Nat },
+    date       : Text,
+    amount     : Text,
+    reason     : Text,
+  ) : (BurnEvent, Nat) {
+    idCounter.value += 1;
+    let id = "burn-" # idCounter.value.toText();
+    let event : BurnEvent = {
+      id;
+      date;
+      amount;
+      reason;
+      executed  = false;
+      createdAt = Time.now();
+    };
+    burnEvents.add(event);
+    (event, idCounter.value);
+  };
+
+  public func markBurnEventExecuted(
+    burnEvents : List.List<BurnEvent>,
+    id         : Text,
+  ) : Result<(), Text> {
+    var found = false;
+    burnEvents.mapInPlace(func(e) {
+      if (e.id == id) {
+        found := true;
+        { e with executed = true };
+      } else { e };
+    });
+    if (found) { #ok(()) } else { #err("Burn event not found: " # id) };
+  };
+
+  // ── Hype Milestones ────────────────────────────────────────────────────────
+
+  public func defaultHypeMilestones() : [HypeMilestone] {
+    [
+      { id = "hm1"; title = "1,000 Community Members";    targetCount = 1000;   achieved = false; achievedAt = null; order = 0 },
+      { id = "hm2"; title = "5,000 Binance Followers";    targetCount = 5000;   achieved = false; achievedAt = null; order = 1 },
+      { id = "hm3"; title = "10,000 Signal Subscribers";  targetCount = 10000;  achieved = false; achievedAt = null; order = 2 },
+      { id = "hm4"; title = "50,000 Platform Visitors";   targetCount = 50000;  achieved = false; achievedAt = null; order = 3 },
+      { id = "hm5"; title = "Token Launch April 2, 2028"; targetCount = 100000; achieved = false; achievedAt = null; order = 4 },
+    ];
+  };
+
+  public func getHypeMilestones(milestones : List.List<HypeMilestone>) : [HypeMilestone] {
+    let arr = milestones.toArray();
+    arr.sort(func(a : HypeMilestone, b : HypeMilestone) : Order.Order { Nat.compare(a.order, b.order) });
+  };
+
+  public func addHypeMilestone(
+    milestones  : List.List<HypeMilestone>,
+    idCounter   : { var value : Nat },
+    title       : Text,
+    targetCount : Nat,
+  ) : HypeMilestone {
+    idCounter.value += 1;
+    let order = milestones.size();
+    let m : HypeMilestone = {
+      id          = "hm-" # idCounter.value.toText();
+      title;
+      targetCount;
+      achieved    = false;
+      achievedAt  = null;
+      order;
+    };
+    milestones.add(m);
+    m;
+  };
+
+  public func markHypeMilestoneAchieved(
+    milestones : List.List<HypeMilestone>,
+    id         : Text,
+  ) : Result<(), Text> {
+    var found = false;
+    milestones.mapInPlace(func(m) {
+      if (m.id == id) {
+        found := true;
+        { m with achieved = true; achievedAt = ?Time.now() };
+      } else { m };
+    });
+    if (found) { #ok(()) } else { #err("Milestone not found: " # id) };
+  };
+
+  // ── Token Data ─────────────────────────────────────────────────────────────
+
+  public func defaultTokenData() : TokenData {
+    {
+      supply         = "100% Fair Launch";
+      burnedAmount   = "0";
+      launchDate     = "April 2, 2028";
+      launchPlatform = "Telegram Mini App via Blum";
+      ticker         = "DMNZ";
+      name           = "DemonZeno";
     };
   };
 };

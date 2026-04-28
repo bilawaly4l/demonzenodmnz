@@ -18,6 +18,7 @@ export function JoinMovementSection() {
       <div
         className="absolute -top-20 -left-20 w-96 h-96 rounded-full blur-3xl pointer-events-none animate-pulse-glow"
         style={{ background: "oklch(0.65 0.15 190 / 0.08)" }}
+        aria-hidden="true"
       />
       <div
         className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full blur-3xl pointer-events-none animate-pulse-glow"
@@ -25,6 +26,7 @@ export function JoinMovementSection() {
           background: "oklch(0.55 0.22 25 / 0.06)",
           animationDelay: "1s",
         }}
+        aria-hidden="true"
       />
 
       <div className="container mx-auto px-4 max-w-3xl relative z-10 text-center">

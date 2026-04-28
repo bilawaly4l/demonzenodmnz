@@ -1,335 +1,87 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useActor } from "@caffeineai/core-infrastructure";
-import { useNavigate } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import {
   AlertTriangle,
-  ArrowRight,
-  BarChart3,
   Bitcoin,
-  CheckCircle,
+  Bot,
   ChevronDown,
   ChevronUp,
   Clock,
   DollarSign,
-  ExternalLink,
   LineChart,
-  Shield,
-  Target,
-  TrendingUp,
-  Twitter,
-  Users,
   Zap,
 } from "lucide-react";
-import { useRef, useState } from "react";
-import { SiBinance } from "react-icons/si";
+import { useState } from "react";
 import { createActor } from "../backend";
-import { AdminPasscodeModal } from "../components/AdminPasscodeModal";
-import { BinanceSquareFeedSection } from "../components/BinanceSquareFeedSection";
-import { BlumDeepDiveSection } from "../components/BlumDeepDiveSection";
-import { BlumExplainerSection } from "../components/BlumExplainerSection";
-import { BlumPreviewSection } from "../components/BlumPreviewSection";
+import { BlumSectionCombined } from "../components/BlumSectionCombined";
 import { BondingCurveSection } from "../components/BondingCurveSection";
-import { BurnCountdownSection } from "../components/BurnCountdownSection";
-import { BurnScheduleSection } from "../components/BurnScheduleSection";
-import { CommunityCounterSection } from "../components/CommunityCounterSection";
-import { CountdownTimer } from "../components/CountdownTimer";
+import { BurnSection } from "../components/BurnSection";
+import { CommunitySectionCombined } from "../components/CommunitySectionCombined";
+import { FaqAiSection } from "../components/FaqAiSection";
 import { FilterBar } from "../components/FilterBar";
-import { HolderBenefitsSection } from "../components/HolderBenefitsSection";
+import { HeroSection } from "../components/HeroSection";
 import { HowToUseSection } from "../components/HowToUseSection";
-import { HypeBarSection } from "../components/HypeBarSection";
 import { JoinMovementSection } from "../components/JoinMovementSection";
-import { LaunchCountdownSection } from "../components/LaunchCountdownSection";
-import { ManifestoSection } from "../components/ManifestoSection";
-import { MilestonesSection } from "../components/MilestonesSection";
-import { QuoteRotatorSection } from "../components/QuoteRotatorSection";
+import { PhilosophySectionCombined } from "../components/PhilosophySectionCombined";
 import { RoadmapSection } from "../components/RoadmapSection";
 import { ScrollAnimation } from "../components/ScrollAnimation";
-import { SignalAcademySection } from "../components/SignalAcademySection";
 import { SignalCard } from "../components/SignalCard";
 import { SignalDetailModal } from "../components/SignalDetailModal";
-import { SignalOfWeekSection } from "../components/SignalOfWeekSection";
 import { SkeletonCard } from "../components/SkeletonCard";
-import { StatsBar } from "../components/StatsBar";
-import { TelegramMockupSection } from "../components/TelegramMockupSection";
-import { TokenBurnTrackerSection } from "../components/TokenBurnTrackerSection";
 import { TokenFaqChatbotSection } from "../components/TokenFaqChatbotSection";
-import { TokenUtilitySection } from "../components/TokenUtilitySection";
-import { WhitepaperSection } from "../components/WhitepaperSection";
+import { TokenSectionCombined } from "../components/TokenSectionCombined";
 import { WhyDemonZenoSection } from "../components/WhyDemonZenoSection";
-import { useSession } from "../contexts/SessionContext";
-import { useFaqs } from "../hooks/useFaqs";
-import { useSignalOfTheDay } from "../hooks/useSignalOfTheDay";
 import { useSignals } from "../hooks/useSignals";
 import type { MarketFilter, Signal, Timeframe } from "../types";
 
-function scrollTo(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+// ─── Announcement banner ──────────────────────────────────────────────────────
+function useMarketMoodBanner() {
+  const { actor, isFetching } = useActor(createActor);
+  return useQuery({
+    queryKey: ["marketMoodBanner"],
+    queryFn: async () => {
+      if (!actor) return null;
+      const res = await actor.getMarketMoodBanner();
+      return res ?? null;
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 60_000,
+  });
 }
 
-// ─── Hero ─────────────────────────────────────────────────────────────────
-function HeroSection() {
-  const { data: signalOfTheDay } = useSignalOfTheDay();
-  const [sotdModalOpen, setSotdModalOpen] = useState(false);
-  const { setSessionToken } = useSession();
-  const navigate = useNavigate();
-
-  // Admin unlock via click counter
-  const [clickCount, setClickCount] = useState(0);
-  const [showPasscodeModal, setShowPasscodeModal] = useState(false);
-  const clickResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  function handleDemonZenoClick() {
-    if (clickResetTimer.current) clearTimeout(clickResetTimer.current);
-    const newCount = clickCount + 1;
-    if (newCount > 5) {
-      setClickCount(0);
-      setShowPasscodeModal(true);
-    } else {
-      setClickCount(newCount);
-      clickResetTimer.current = setTimeout(() => setClickCount(0), 30000);
-    }
-  }
-
-  function handleAdminSuccess(token: string) {
-    setSessionToken(token);
-    setShowPasscodeModal(false);
-    navigate({ to: "/admin" });
-  }
-
+function MarketMoodBannerBar() {
+  const { data: banner } = useMarketMoodBanner();
+  if (!banner) return null;
   return (
-    <section
-      id="hero"
-      data-ocid="hero.section"
-      className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-background"
+    <div
+      data-ocid="market_mood.banner"
+      className="w-full py-2 px-4 text-center text-sm font-semibold"
+      style={{
+        background:
+          banner.mood === "Bullish"
+            ? "oklch(0.45 0.18 145 / 0.9)"
+            : banner.mood === "Bearish"
+              ? "oklch(0.45 0.22 25 / 0.9)"
+              : "oklch(0.45 0.15 60 / 0.9)",
+        color: "oklch(0.97 0.005 260)",
+      }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-muted/30 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none overflow-hidden opacity-20">
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-2 h-16 bg-primary rounded-full" />
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary/30" />
-      </div>
-
-      {sotdModalOpen && signalOfTheDay && (
-        <SignalDetailModal
-          signal={signalOfTheDay}
-          onClose={() => setSotdModalOpen(false)}
-        />
+      {banner.mood && (
+        <span className="mr-2">
+          {banner.mood === "Bullish"
+            ? "📈"
+            : banner.mood === "Bearish"
+              ? "📉"
+              : "➡️"}
+        </span>
       )}
-
-      <AdminPasscodeModal
-        open={showPasscodeModal}
-        onSuccess={handleAdminSuccess}
-        onClose={() => {
-          setShowPasscodeModal(false);
-          setClickCount(0);
-        }}
-      />
-
-      <div className="container mx-auto px-4 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
-        <div className="flex flex-col gap-6 max-w-xl">
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-1.5 w-fit">
-            <Zap className="w-3.5 h-3.5 text-primary" />
-            <span className="text-primary text-xs font-semibold tracking-wide uppercase">
-              Free Trading Signals · Binance
-            </span>
-          </div>
-
-          <h1 className="font-display font-bold text-5xl md:text-6xl text-foreground leading-tight text-glow">
-            DemonZeno:
-            <br />
-            <span className="text-primary">Master the Chaos,</span>
-            <br />
-            Slay the Market,
-            <br />
-            and Trade Like a God.
-          </h1>
-
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            Daily free signals for crypto, forex, and stocks. The DMNZ token
-            launches April 2, 2028 on Blum.
-          </p>
-
-          {signalOfTheDay && (
-            <button
-              type="button"
-              data-ocid="hero.signal_of_the_day.card"
-              onClick={() => setSotdModalOpen(true)}
-              className="text-left flex items-center gap-4 bg-primary/10 border border-primary/30 rounded-xl px-4 py-3 hover:bg-primary/15 hover:border-primary/50 transition-smooth group w-fit max-w-full"
-            >
-              <div className="flex flex-col gap-0.5 min-w-0">
-                <span className="text-primary text-xs font-bold uppercase tracking-widest">
-                  ⚡ Signal of the Day
-                </span>
-                <span className="font-display font-bold text-foreground truncate">
-                  {signalOfTheDay.asset} ·{" "}
-                  <span
-                    className={
-                      signalOfTheDay.direction === "Buy"
-                        ? "text-emerald-400"
-                        : "text-destructive"
-                    }
-                  >
-                    {signalOfTheDay.direction}
-                  </span>
-                </span>
-                <span className="text-muted-foreground text-xs">
-                  Confidence: {signalOfTheDay.confidence} · Tap to view full
-                  signal
-                </span>
-              </div>
-              <ArrowRight className="w-4 h-4 text-primary shrink-0 group-hover:translate-x-1 transition-smooth" />
-            </button>
-          )}
-
-          <div className="flex flex-col gap-3">
-            <p className="text-sm text-muted-foreground font-medium">
-              Launch countdown:
-            </p>
-            <CountdownTimer />
-          </div>
-
-          <div className="flex flex-wrap gap-3 pt-2">
-            <Button
-              data-ocid="hero.get_signals.primary_button"
-              onClick={() => scrollTo("signals")}
-              className="btn-primary px-6 h-11 text-base"
-            >
-              Get Free Signals <ArrowRight className="w-4 h-4 ml-1" />
-            </Button>
-            <Button
-              variant="outline"
-              data-ocid="hero.learn_dmnz.secondary_button"
-              onClick={() => scrollTo("token")}
-              className="border-primary/40 text-primary hover:bg-primary/10 h-11 text-base"
-            >
-              Learn About DMNZ
-            </Button>
-          </div>
-        </div>
-
-        <div className="flex justify-center md:justify-end">
-          <div className="relative">
-            <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl scale-75 animate-pulse-glow" />
-            {/* DemonZeno character — clicking 6+ times unlocks admin (no visible hint) */}
-            <button
-              type="button"
-              onClick={handleDemonZenoClick}
-              className="relative z-10 p-0 bg-transparent border-0 cursor-default focus:outline-none"
-              tabIndex={-1}
-              aria-hidden="true"
-            >
-              <img
-                src="/assets/demonzeno-character.png"
-                alt="DemonZeno — anime-style boy on an open highway"
-                className="w-64 md:w-80 lg:w-96 object-contain drop-shadow-2xl pointer-events-none"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
+      {banner.message}
+    </div>
   );
 }
 
-// ─── Stats Bar ─────────────────────────────────────────────────────────────
-function StatsBarSection() {
-  return (
-    <section
-      data-ocid="stats_bar.section"
-      className="bg-muted/20 border-y border-border"
-    >
-      <div className="container mx-auto px-4 py-4">
-        <StatsBar />
-      </div>
-    </section>
-  );
-}
-
-// ─── About ────────────────────────────────────────────────────────────────
-function AboutSection() {
-  return (
-    <section id="about" data-ocid="about.section" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4 max-w-4xl text-center flex flex-col gap-8">
-        <ScrollAnimation>
-          <div className="flex flex-col gap-3">
-            <span className="text-primary text-sm font-semibold uppercase tracking-widest">
-              About
-            </span>
-            <h2 className="font-display font-bold text-4xl text-foreground">
-              Who is DemonZeno?
-            </h2>
-          </div>
-        </ScrollAnimation>
-        <ScrollAnimation delay={100}>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            DemonZeno is an anime persona who walks the open road of the markets
-            — calm, calculated, and relentless. Every day, DemonZeno delivers
-            free, accurate trading signals for{" "}
-            <strong className="text-foreground">crypto tokens</strong>,{" "}
-            <strong className="text-foreground">forex pairs</strong>, and{" "}
-            <strong className="text-foreground">stocks</strong> — giving every
-            trader access to the same intelligence the pros use.
-          </p>
-        </ScrollAnimation>
-        <ScrollAnimation delay={150}>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            The mission is simple:{" "}
-            <em className="text-primary not-italic font-semibold">
-              democratize trading information
-            </em>
-            . No subscriptions. No fees. No gatekeeping. Just signals and
-            results — completely free.
-          </p>
-        </ScrollAnimation>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-          {[
-            {
-              icon: <Zap className="w-6 h-6 text-primary" />,
-              label: "Daily Signals",
-              desc: "Fresh signals every single day",
-              delay: 200,
-            },
-            {
-              icon: <Shield className="w-6 h-6 text-primary" />,
-              label: "100% Free",
-              desc: "No subscription. No hidden fees",
-              delay: 250,
-            },
-            {
-              icon: <Users className="w-6 h-6 text-primary" />,
-              label: "Community First",
-              desc: "Built for traders, not VCs",
-              delay: 300,
-            },
-          ].map(({ icon, label, desc, delay }) => (
-            <ScrollAnimation key={label} delay={delay}>
-              <div className="bg-card border border-border rounded-xl p-5 flex flex-col items-center gap-3 card-elevated">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  {icon}
-                </div>
-                <span className="font-display font-semibold text-foreground">
-                  {label}
-                </span>
-                <span className="text-muted-foreground text-sm text-center">
-                  {desc}
-                </span>
-              </div>
-            </ScrollAnimation>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Helpers ──────────────────────────────────────────────────────────────
+// ─── Signal Feed ──────────────────────────────────────────────────────────────
 function useLastUpdated(refetchedAt: number | undefined): string {
   if (!refetchedAt) return "";
   const diff = Math.floor((Date.now() - refetchedAt) / 60_000);
@@ -338,7 +90,6 @@ function useLastUpdated(refetchedAt: number | undefined): string {
   return `${diff} minutes ago`;
 }
 
-// ─── Signal Feed ──────────────────────────────────────────────────────────
 function SignalFeedSection() {
   const { data: signals = [], isLoading, dataUpdatedAt } = useSignals();
   const [filter, setFilter] = useState<MarketFilter>("All");
@@ -382,13 +133,13 @@ function SignalFeedSection() {
               Signals
             </span>
             <h2 className="font-display font-bold text-4xl text-foreground">
-              Trading Signals
+              Daily Trading Signals
             </h2>
             <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm flex-wrap">
-              <span>Real trading signals from DemonZeno</span>
+              <span>Real trading signals by DemonZeno</span>
               <span className="inline-flex items-center gap-1 bg-yellow-400/10 text-yellow-500 border border-yellow-400/30 rounded-full px-2.5 py-0.5 text-xs font-semibold">
                 <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse inline-block" />
-                Binance
+                Binance Square @DemonZeno
               </span>
             </div>
           </div>
@@ -508,8 +259,7 @@ function SignalFeedSection() {
               DemonZeno is preparing the next signal. Stay sharp.
             </p>
             <p className="text-muted-foreground text-sm max-w-sm">
-              Check back soon — signals drop daily across crypto, forex, and
-              stocks on Binance.
+              Check back soon — signals drop daily on Binance Square @DemonZeno.
             </p>
           </div>
         ) : (
@@ -520,6 +270,7 @@ function SignalFeedSection() {
                 signal={signal}
                 index={i + 1}
                 onClick={setSelectedSignal}
+                showExport
               />
             ))}
           </div>
@@ -529,7 +280,134 @@ function SignalFeedSection() {
   );
 }
 
-// ─── Markets ──────────────────────────────────────────────────────────────
+// ─── AI Chat CTA ──────────────────────────────────────────────────────────────
+function AiChatCTASection() {
+  return (
+    <section
+      id="ai-cta"
+      data-ocid="ai_cta.section"
+      className="py-24 relative overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, oklch(0.12 0.02 260) 0%, oklch(0.14 0.04 200) 50%, oklch(0.12 0.02 260) 100%)",
+      }}
+    >
+      <div
+        className="absolute -top-20 -left-10 w-80 h-80 rounded-full blur-3xl pointer-events-none"
+        style={{ background: "oklch(0.65 0.15 190 / 0.08)" }}
+      />
+      <div
+        className="absolute -bottom-20 -right-10 w-80 h-80 rounded-full blur-3xl pointer-events-none"
+        style={{ background: "oklch(0.55 0.22 25 / 0.06)" }}
+      />
+
+      <div className="container mx-auto px-4 max-w-3xl relative z-10 text-center">
+        <ScrollAnimation>
+          <div className="flex flex-col items-center gap-2 mb-6">
+            <div
+              className="w-16 h-16 rounded-2xl flex items-center justify-center mb-2"
+              style={{
+                background: "oklch(0.65 0.15 190 / 0.15)",
+                border: "1px solid oklch(0.65 0.15 190 / 0.3)",
+                boxShadow: "0 0 40px oklch(0.65 0.15 190 / 0.2)",
+              }}
+            >
+              <Bot
+                className="w-8 h-8"
+                style={{ color: "oklch(0.65 0.15 190)" }}
+              />
+            </div>
+            <span
+              className="text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full"
+              style={{
+                background: "oklch(0.65 0.15 190 / 0.1)",
+                color: "oklch(0.72 0.14 190)",
+                border: "1px solid oklch(0.65 0.15 190 / 0.25)",
+              }}
+            >
+              AI-Powered · 50+ Providers
+            </span>
+          </div>
+
+          <h2
+            className="font-display font-bold text-4xl md:text-5xl leading-tight mb-4"
+            style={{ color: "oklch(0.97 0.005 260)" }}
+          >
+            Access{" "}
+            <span
+              className="text-glow"
+              style={{ color: "oklch(0.72 0.18 195)" }}
+            >
+              DemonZeno AI
+            </span>
+          </h2>
+
+          <p
+            className="text-base mb-4 max-w-xl mx-auto"
+            style={{ color: "oklch(0.72 0.01 260)" }}
+          >
+            One unified AI powered silently by{" "}
+            <strong style={{ color: "oklch(0.65 0.15 190)" }}>
+              50+ AI providers
+            </strong>
+            . Trading signals, market analysis, code writing, signal chaining —
+            all in one place. No provider selection. No limits.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {[
+              "Trading Signals",
+              "Forex & Stocks",
+              "Market Analysis",
+              "Code Writing",
+              "Signal Chaining",
+              "Multi-Language",
+              "Session Recap",
+              "Daily Briefing",
+            ].map((cap) => (
+              <span
+                key={cap}
+                className="text-xs px-3 py-1.5 rounded-full"
+                style={{
+                  background: "oklch(0.65 0.15 190 / 0.08)",
+                  border: "1px solid oklch(0.65 0.15 190 / 0.2)",
+                  color: "oklch(0.65 0.15 190 / 0.9)",
+                }}
+              >
+                {cap}
+              </span>
+            ))}
+          </div>
+        </ScrollAnimation>
+
+        <ScrollAnimation delay={150}>
+          <Button
+            data-ocid="ai_cta.open_ai.primary_button"
+            asChild
+            className="h-14 px-10 text-lg font-bold gap-3 rounded-2xl"
+            style={{
+              background:
+                "linear-gradient(135deg, oklch(0.55 0.15 190) 0%, oklch(0.48 0.18 200) 100%)",
+              color: "oklch(0.98 0.005 260)",
+              border: "none",
+              boxShadow: "0 4px 40px oklch(0.55 0.15 190 / 0.4)",
+            }}
+          >
+            <a href="/ai">
+              <Zap className="w-5 h-5" />
+              Unlock DemonZeno AI
+            </a>
+          </Button>
+          <p className="mt-4 text-xs" style={{ color: "oklch(0.50 0.01 260)" }}>
+            Password required · Session-based · No data stored
+          </p>
+        </ScrollAnimation>
+      </div>
+    </section>
+  );
+}
+
+// ─── Markets ──────────────────────────────────────────────────────────────────
 function MarketsSection() {
   const markets = [
     {
@@ -605,421 +483,9 @@ function MarketsSection() {
   );
 }
 
-// ─── Token ────────────────────────────────────────────────────────────────
-function TokenSection() {
-  const [name, setName] = useState("");
-  const [contact, setContact] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [notifyLoading, setNotifyLoading] = useState(false);
-  const { actor } = useActor(createActor);
-
-  async function handleNotify(e: React.FormEvent) {
-    e.preventDefault();
-    if (!actor || !contact) return;
-    setNotifyLoading(true);
-    try {
-      await actor.submitNotifyMe(name.trim() || null, contact.trim());
-      setSubmitted(true);
-    } catch {
-      // silent fail
-    } finally {
-      setNotifyLoading(false);
-    }
-  }
-
-  return (
-    <section id="token" data-ocid="token.section" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <ScrollAnimation>
-          <div className="flex flex-col gap-3 mb-12 text-center">
-            <span className="text-primary text-sm font-semibold uppercase tracking-widest">
-              Token
-            </span>
-            <h2 className="font-display font-bold text-4xl text-foreground">
-              DMNZ Token Info
-            </h2>
-          </div>
-        </ScrollAnimation>
-        <div className="grid md:grid-cols-2 gap-8">
-          <ScrollAnimation direction="left">
-            <div className="bg-card border border-border rounded-2xl p-8 flex flex-col gap-5 card-elevated">
-              <h3 className="font-display font-bold text-2xl text-foreground">
-                DemonZeno (DMNZ)
-              </h3>
-              <div className="flex flex-col gap-3 text-sm">
-                {[
-                  ["Ticker", "DMNZ"],
-                  ["Launch Type", "100% Fair Launch"],
-                  ["Platform", "Telegram Mini App via Blum"],
-                  ["Launch Date", "April 2, 2028"],
-                  ["Presale", "None"],
-                  ["Private Sale", "None"],
-                  ["Allocation", "None"],
-                ].map(([k, v]) => (
-                  <div
-                    key={k}
-                    className="flex items-center justify-between gap-2 py-2 border-b border-border/50 last:border-0"
-                  >
-                    <span className="text-muted-foreground">{k}</span>
-                    <span className="font-semibold text-foreground font-mono">
-                      {v}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-2 bg-primary/10 border border-primary/30 rounded-xl p-4 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-                  <CheckCircle className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-display font-bold text-primary text-sm">
-                    100% Fair Launch
-                  </p>
-                  <p className="text-muted-foreground text-xs">
-                    No presale · No insiders · No allocation breakdown
-                  </p>
-                </div>
-              </div>
-            </div>
-          </ScrollAnimation>
-
-          <ScrollAnimation direction="right">
-            <div className="flex flex-col gap-6">
-              <div className="bg-card border border-border rounded-2xl p-6 flex flex-col gap-4 card-elevated">
-                <p className="font-display font-semibold text-foreground text-lg">
-                  Launch Countdown
-                </p>
-                <CountdownTimer />
-              </div>
-
-              <div className="bg-card border border-border rounded-2xl p-6 flex flex-col gap-4 card-elevated">
-                <h3 className="font-display font-semibold text-foreground">
-                  Get Notified at Launch
-                </h3>
-                {submitted ? (
-                  <div
-                    data-ocid="token.notify.success_state"
-                    className="flex items-center gap-2 text-primary"
-                  >
-                    <CheckCircle className="w-5 h-5" />
-                    <span className="font-medium">You're on the list!</span>
-                  </div>
-                ) : (
-                  <form onSubmit={handleNotify} className="flex flex-col gap-3">
-                    <div className="flex flex-col gap-1.5">
-                      <Label
-                        htmlFor="notify-name"
-                        className="text-muted-foreground text-xs"
-                      >
-                        Name (optional)
-                      </Label>
-                      <Input
-                        id="notify-name"
-                        data-ocid="token.notify.name.input"
-                        placeholder="Your name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="bg-secondary border-input"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <Label
-                        htmlFor="notify-contact"
-                        className="text-muted-foreground text-xs"
-                      >
-                        Telegram or Email *
-                      </Label>
-                      <Input
-                        id="notify-contact"
-                        data-ocid="token.notify.contact.input"
-                        placeholder="@username or email"
-                        required
-                        value={contact}
-                        onChange={(e) => setContact(e.target.value)}
-                        className="bg-secondary border-input"
-                      />
-                    </div>
-                    <Button
-                      type="submit"
-                      data-ocid="token.notify.submit_button"
-                      disabled={notifyLoading || !contact}
-                      className="btn-primary"
-                    >
-                      {notifyLoading ? "Saving…" : "Notify Me at Launch"}
-                    </Button>
-                  </form>
-                )}
-              </div>
-            </div>
-          </ScrollAnimation>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Philosophy, Psychology & Mistakes ────────────────────────────────────
-function TradingPhilosophySection() {
-  const sections = [
-    {
-      id: "philosophy",
-      tag: "Philosophy",
-      title: "The DemonZeno Signal Philosophy",
-      bg: "bg-background",
-      items: [
-        {
-          icon: "🎯",
-          title: "Structure Over Emotion",
-          desc: "Every signal from DemonZeno is built on price structure, not gut feelings. When the chart speaks, we listen — not the news.",
-        },
-        {
-          icon: "⚡",
-          title: "Entry, TP, SL — Always",
-          desc: "A signal without a stop loss is a gamble. DemonZeno always gives you three Take Profit targets and a clear Stop Loss. No exceptions.",
-        },
-        {
-          icon: "🌐",
-          title: "Risk Before Reward",
-          desc: "DemonZeno calculates risk first. Never trade a signal where the risk-reward ratio is below 1:2. The downside defines the upside.",
-        },
-      ],
-    },
-    {
-      id: "psychology",
-      tag: "Psychology",
-      title: "Trading Psychology",
-      bg: "bg-muted/30",
-      items: [
-        {
-          icon: "🧠",
-          title: "Emotions Are the Enemy",
-          desc: "Fear and greed destroy accounts. Execute your plan, stick to your stop loss, and detach from the outcome.",
-        },
-        {
-          icon: "📉",
-          title: "A Loss is Data",
-          desc: "Every losing trade is a lesson. DemonZeno treats losses as tuition paid to the market. Log it, learn it, move on.",
-        },
-        {
-          icon: "⏳",
-          title: "Patience is an Edge",
-          desc: "The best signals come to those who wait. Don't chase entries. If you missed it, the next one is coming.",
-        },
-      ],
-    },
-    {
-      id: "mistakes",
-      tag: "Mistakes",
-      title: "Mistakes to Avoid",
-      bg: "bg-background",
-      items: [
-        {
-          icon: "🚫",
-          title: "Trading Without a Stop Loss",
-          desc: "Never enter a trade without defining your exit on the downside. The market will find your pain point without one.",
-        },
-        {
-          icon: "💸",
-          title: "Over-Leveraging",
-          desc: "10x leverage on a 5% move wipes your account. Start with low leverage until your win rate is proven.",
-        },
-        {
-          icon: "🔄",
-          title: "Revenge Trading",
-          desc: "Lost 3 in a row? Step away. Revenge trades are emotionally driven and almost always lose. The market doesn't owe you a win.",
-        },
-      ],
-    },
-  ];
-
-  return (
-    <>
-      {sections.map(({ id, tag, title, bg, items }) => (
-        <section
-          key={id}
-          id={id}
-          data-ocid={`${id}.section`}
-          className={`py-20 ${bg}`}
-        >
-          <div className="container mx-auto px-4 max-w-5xl">
-            <ScrollAnimation>
-              <div className="flex flex-col gap-3 mb-12 text-center">
-                <span className="text-primary text-sm font-semibold uppercase tracking-widest">
-                  {tag}
-                </span>
-                <h2 className="font-display font-bold text-4xl text-foreground">
-                  {title}
-                </h2>
-              </div>
-            </ScrollAnimation>
-            <div className="grid md:grid-cols-3 gap-6">
-              {items.map(({ icon, title: t, desc }, i) => (
-                <ScrollAnimation key={t} delay={i * 80}>
-                  <div
-                    data-ocid={`${id}.item.${i + 1}`}
-                    className="bg-card border border-border rounded-2xl p-6 flex flex-col gap-4 card-elevated hover:border-primary/30 transition-smooth"
-                  >
-                    <div className="text-3xl">{icon}</div>
-                    <h3 className="font-display font-bold text-foreground text-base">
-                      {t}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {desc}
-                    </p>
-                  </div>
-                </ScrollAnimation>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
-    </>
-  );
-}
-
-// ─── FAQ ──────────────────────────────────────────────────────────────────
-function FAQSection() {
-  const { data: faqs = [], isLoading } = useFaqs();
-
-  return (
-    <section id="faq" data-ocid="faq.section" className="py-20 bg-background">
-      <div className="container mx-auto px-4 max-w-3xl">
-        <ScrollAnimation>
-          <div className="flex flex-col gap-3 mb-12 text-center">
-            <span className="text-primary text-sm font-semibold uppercase tracking-widest">
-              Questions
-            </span>
-            <h2 className="font-display font-bold text-4xl text-foreground">
-              FAQ
-            </h2>
-          </div>
-        </ScrollAnimation>
-
-        {isLoading ? (
-          <div data-ocid="faq.loading_state" className="flex flex-col gap-3">
-            {[1, 2, 3, 4, 5, 6].map((k) => (
-              <div
-                key={k}
-                className="h-14 bg-card border border-border rounded-xl animate-pulse"
-              />
-            ))}
-          </div>
-        ) : faqs.length === 0 ? (
-          <div
-            data-ocid="faq.empty_state"
-            className="text-center text-muted-foreground py-10"
-          >
-            FAQ entries coming soon.
-          </div>
-        ) : (
-          <Accordion type="single" collapsible className="flex flex-col gap-2">
-            {[...faqs]
-              .sort((a, b) => Number(a.order - b.order))
-              .map((faq, i) => (
-                <AccordionItem
-                  key={faq.id}
-                  value={faq.id}
-                  data-ocid={`faq.item.${i + 1}`}
-                  className="bg-card border border-border rounded-xl px-5 data-[state=open]:border-primary/40 transition-smooth"
-                >
-                  <AccordionTrigger className="font-display font-semibold text-foreground hover:no-underline py-4 text-left">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-          </Accordion>
-        )}
-      </div>
-    </section>
-  );
-}
-
-// ─── Community ────────────────────────────────────────────────────────────
-function CommunitySection() {
-  const platforms = [
-    {
-      icon: <SiBinance className="w-7 h-7" />,
-      name: "Binance Square",
-      handle: "@DemonZeno",
-      desc: "Daily free trading signals. Follow for real-time updates.",
-      url: "https://www.binance.com/en/square/profile/@DemonZeno",
-      cta: "Follow @DemonZeno",
-    },
-    {
-      icon: <Twitter className="w-7 h-7" />,
-      name: "Twitter / X",
-      handle: "@ZenoDemon",
-      desc: "Market takes, signal highlights, and token news.",
-      url: "https://twitter.com/ZenoDemon",
-      cta: "Follow @ZenoDemon",
-    },
-  ];
-
-  return (
-    <section
-      id="community"
-      data-ocid="community.section"
-      className="py-20 bg-muted/30"
-    >
-      <div className="container mx-auto px-4 max-w-3xl">
-        <ScrollAnimation>
-          <div className="flex flex-col gap-3 mb-10 text-center">
-            <span className="text-primary text-sm font-semibold uppercase tracking-widest">
-              Community
-            </span>
-            <h2 className="font-display font-bold text-4xl text-foreground">
-              Join the Community
-            </h2>
-            <p className="text-muted-foreground">
-              Follow DemonZeno for daily free signals and token updates.
-            </p>
-          </div>
-        </ScrollAnimation>
-        <div className="grid md:grid-cols-2 gap-5 mt-8">
-          {platforms.map(({ icon, name, handle, desc, url, cta }, i) => (
-            <ScrollAnimation key={name} delay={i * 100}>
-              <div
-                data-ocid={`community.${name.toLowerCase().replace(/\s+\/\s+|\s+/g, "_")}.card`}
-                className="bg-card border border-border rounded-2xl p-6 flex flex-col items-center gap-4 card-elevated text-center"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
-                  {icon}
-                </div>
-                <div>
-                  <h3 className="font-display font-semibold text-foreground text-lg">
-                    {name}
-                  </h3>
-                  <p className="text-primary text-sm font-mono font-semibold mt-0.5">
-                    {handle}
-                  </p>
-                  <p className="text-muted-foreground text-sm mt-2">{desc}</p>
-                </div>
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-ocid={`community.${name.toLowerCase().replace(/\s+\/\s+|\s+/g, "_")}.link`}
-                  className="inline-flex items-center gap-2 btn-primary px-4 py-2 rounded-lg text-sm font-semibold text-primary-foreground"
-                >
-                  {cta}
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </ScrollAnimation>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Disclaimer ───────────────────────────────────────────────────────────
+// ─── Disclaimer ───────────────────────────────────────────────────────────────
 function DisclaimerSection() {
   const [expanded, setExpanded] = useState(false);
-
   return (
     <section
       id="disclaimer"
@@ -1038,12 +504,11 @@ function DisclaimerSection() {
             <span>Risk Disclaimer & Legal Notice</span>
           </div>
           {expanded ? (
-            <ChevronUp className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-smooth shrink-0" />
+            <ChevronUp className="w-4 h-4 text-muted-foreground shrink-0" />
           ) : (
-            <ChevronDown className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-smooth shrink-0" />
+            <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />
           )}
         </button>
-
         {expanded && (
           <div
             data-ocid="disclaimer.panel"
@@ -1053,8 +518,8 @@ function DisclaimerSection() {
               <strong className="text-foreground">
                 Informational Purposes Only:
               </strong>{" "}
-              Trading signals provided by DemonZeno are for informational
-              purposes only and do not constitute financial advice.
+              Trading signals are for informational purposes only and do not
+              constitute financial advice.
             </p>
             <p>
               <strong className="text-foreground">Risk Warning:</strong> All
@@ -1076,97 +541,83 @@ function DisclaimerSection() {
   );
 }
 
-// ─── Home ─────────────────────────────────────────────────────────────────
+// ─── Home (master page) ───────────────────────────────────────────────────────
 export function Home() {
   return (
     <>
-      {/* 1. Hero — DemonZeno character click-counter triggers admin unlock */}
+      {/* Market mood banner (if admin set one) */}
+      <MarketMoodBannerBar />
+
+      {/* 1. Hero — parallax, DemonZeno image, admin unlock */}
       <HeroSection />
 
-      {/* 2. Stats Bar */}
-      <StatsBarSection />
-
-      {/* 3. Signal Feed */}
-      <SignalFeedSection />
-
-      {/* 4. How to Use Signals */}
+      {/* 2. How to Use Signals walkthrough */}
       <HowToUseSection />
 
-      {/* 5. Signal Academy */}
-      <SignalAcademySection />
+      {/* 3. Signal Philosophy + Psychology + Mistakes */}
+      <PhilosophySectionCombined />
 
-      {/* 6. Trading Philosophy, Psychology & Mistakes */}
-      <TradingPhilosophySection />
+      {/* 4. Daily Signals feed */}
+      <SignalFeedSection />
 
-      {/* 9. Manifesto */}
-      <ScrollAnimation>
-        <ManifestoSection />
-      </ScrollAnimation>
+      {/* 5. AI Chat CTA */}
+      <AiChatCTASection />
 
-      {/* 10. Why DemonZeno */}
-      <ScrollAnimation>
-        <WhyDemonZenoSection />
-      </ScrollAnimation>
+      {/* 6. DMNZ Token — supply, countdown, hype bar, utility, benefits */}
+      <TokenSectionCombined />
 
-      {/* 11. About */}
-      <AboutSection />
+      {/* 7. Why DMNZ — comparison */}
+      <WhyDemonZenoSection />
 
-      {/* 12. Markets Covered */}
-      <MarketsSection />
+      {/* 8. Burn Schedule */}
+      <BurnSection />
 
-      {/* 13. Roadmap */}
-      <RoadmapSection />
+      {/* 9. BLUM platform deep dive */}
+      <BlumSectionCombined />
 
-      {/* 12. Launch Countdown */}
-      <LaunchCountdownSection />
-
-      {/* 13. Hype Bar */}
-      <HypeBarSection />
-
-      {/* 14. Token sections */}
-      <TokenSection />
-      <TokenUtilitySection />
-      <HolderBenefitsSection />
+      {/* 10. Bonding Curve explainer */}
       <BondingCurveSection />
 
-      {/* 15. BLUM sections */}
-      <ScrollAnimation>
-        <TelegramMockupSection />
-      </ScrollAnimation>
-      <BlumPreviewSection />
-      <ScrollAnimation>
-        <BlumExplainerSection />
-      </ScrollAnimation>
-      <BlumDeepDiveSection />
+      {/* 11. Roadmap */}
+      <RoadmapSection />
 
-      {/* 16. Burn sections (ONE each) */}
-      <BurnCountdownSection />
-      <BurnScheduleSection />
-      <TokenBurnTrackerSection />
+      {/* 12. Markets covered */}
+      <MarketsSection />
 
-      {/* 17. Whitepaper */}
-      <WhitepaperSection />
+      {/* 13. Community — quotes, testimonials, signal of week, top traders */}
+      <CommunitySectionCombined />
 
-      {/* 18. Community sections (ONE each) */}
-      <QuoteRotatorSection />
-      <SignalOfWeekSection />
-      <CommunityCounterSection />
-      <BinanceSquareFeedSection />
-      <MilestonesSection />
-
-      {/* 19. Join Movement */}
+      {/* 14. Join the Movement CTA */}
       <JoinMovementSection />
 
-      {/* 20. Token FAQ Chatbot */}
-      <TokenFaqChatbotSection />
+      {/* 15. FAQ AI section */}
+      <FaqAiSection />
 
-      {/* 21. FAQ — backend-driven */}
-      <FAQSection />
+      {/* 16. Token FAQ Chatbot */}
+      <section
+        id="token-faq"
+        data-ocid="token_faq.section"
+        className="py-20 bg-muted/30"
+      >
+        <div className="container mx-auto px-4 max-w-3xl">
+          <ScrollAnimation>
+            <div className="flex flex-col gap-3 mb-10 text-center">
+              <span className="text-primary text-sm font-semibold uppercase tracking-widest">
+                DMNZ AI Assistant
+              </span>
+              <h2 className="font-display font-bold text-3xl text-foreground">
+                Token FAQ Chatbot
+              </h2>
+              <p className="text-muted-foreground text-sm">
+                Ask anything about the DMNZ token, launch mechanics, and Blum.
+              </p>
+            </div>
+          </ScrollAnimation>
+          <TokenFaqChatbotSection />
+        </div>
+      </section>
 
-      {/* 22. Community social links */}
-      <CommunitySection />
-
-      {/* 23. Disclaimer */}
+      {/* 17. Disclaimer */}
       <DisclaimerSection />
     </>
   );

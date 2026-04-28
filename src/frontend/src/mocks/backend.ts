@@ -1,13 +1,27 @@
 import type {
+  AbTest,
+  ActivityEntry,
   Announcement,
   BinancePost,
+  BurnEvent,
+  BurnScheduleEntry,
   BurnTracker,
   ChatMessage,
   CommunityCounter,
+  CommunityMilestone,
+  CommunityQuestion,
+  DemonZenoQuote,
   FAQ,
+  HolderBenefit,
+  HypeMilestone,
+  JournalEntry,
+  MaintenanceMode,
+  MarketMoodBanner,
   MarketSentiment,
   NotifyMe,
   PriceData,
+  PushNotification,
+  ResponseRating,
   Result,
   Result_1,
   Result_2,
@@ -19,20 +33,36 @@ import type {
   Result_8,
   Result_9,
   Result_10,
+  Result_11,
+  Result_12,
   Result_13,
   Result_14,
   Result_15,
   Result_16,
   Result_17,
+  Result_18,
+  Result_19,
+  Result_21,
+  Result_22,
   RoadmapMilestone,
   Signal,
+  SignalInput,
+  SignalOfWeekFull,
+  SignalPerformanceStats,
+  SignalTemplate,
   Stats,
   StatsConfig,
+  Testimonial,
+  TokenData,
+  TopTrader,
+  WhitepaperContent,
   backendInterface,
 } from "../backend";
 import {
+  AnnouncementCategory,
   Confidence,
   Direction,
+  FaqCategory,
   MarketType,
   ResultStatus,
   SentimentLevel,
@@ -48,6 +78,13 @@ const sampleSignals: Signal[] = [
     entryPrice: "62500",
     targetPrice: "68000",
     stopLoss: "59000",
+    tp1: "65000",
+    tp2: "67000",
+    tp3: "68000",
+    voteUp: BigInt(12),
+    voteDown: BigInt(2),
+    providerLabel: "DemonZeno AI",
+    tags: ["crypto", "btc"],
     datePosted: "2026-04-20",
     result: ResultStatus.Win,
     notes: "Strong support at this level with bullish momentum",
@@ -64,6 +101,13 @@ const sampleSignals: Signal[] = [
     entryPrice: "3100",
     targetPrice: "3600",
     stopLoss: "2900",
+    tp1: "3300",
+    tp2: "3450",
+    tp3: "3600",
+    voteUp: BigInt(8),
+    voteDown: BigInt(1),
+    providerLabel: "DemonZeno AI",
+    tags: ["crypto", "eth"],
     datePosted: "2026-04-21",
     result: ResultStatus.Active,
     notes: "Break of key resistance zone",
@@ -80,6 +124,13 @@ const sampleSignals: Signal[] = [
     entryPrice: "1.0850",
     targetPrice: "1.0700",
     stopLoss: "1.0950",
+    tp1: "1.0800",
+    tp2: "1.0750",
+    tp3: "1.0700",
+    voteUp: BigInt(5),
+    voteDown: BigInt(3),
+    providerLabel: "DemonZeno AI",
+    tags: ["forex", "eurusd"],
     datePosted: "2026-04-21",
     result: ResultStatus.Active,
     notes: "Dollar strength play",
@@ -96,6 +147,13 @@ const sampleSignals: Signal[] = [
     entryPrice: "178",
     targetPrice: "195",
     stopLoss: "170",
+    tp1: "185",
+    tp2: "190",
+    tp3: "195",
+    voteUp: BigInt(3),
+    voteDown: BigInt(4),
+    providerLabel: "DemonZeno AI",
+    tags: ["stocks", "aapl"],
     datePosted: "2026-04-19",
     result: ResultStatus.Loss,
     notes: "Earnings play",
@@ -113,6 +171,10 @@ const sampleFaqs: FAQ[] = [
     answer:
       "DemonZeno is an anime-inspired free trading signals platform and meme token project providing daily signals for crypto, forex, and stocks.",
     order: BigInt(1),
+    category: FaqCategory.Platform,
+    helpfulCount: BigInt(24),
+    notHelpfulCount: BigInt(1),
+    timestamp: BigInt(Date.now() * 1_000_000),
   },
   {
     id: "2",
@@ -120,6 +182,10 @@ const sampleFaqs: FAQ[] = [
     answer:
       "DMNZ is the DemonZeno token — a meme token launching April 2, 2028 via a Telegram Mini App on Blum as a 100% fair launch.",
     order: BigInt(2),
+    category: FaqCategory.DmnzToken,
+    helpfulCount: BigInt(18),
+    notHelpfulCount: BigInt(0),
+    timestamp: BigInt(Date.now() * 1_000_000),
   },
   {
     id: "3",
@@ -127,6 +193,10 @@ const sampleFaqs: FAQ[] = [
     answer:
       "Yes, 100% free. No subscription, no fees, no hidden charges — ever.",
     order: BigInt(3),
+    category: FaqCategory.Signals,
+    helpfulCount: BigInt(32),
+    notHelpfulCount: BigInt(0),
+    timestamp: BigInt(Date.now() * 1_000_000),
   },
   {
     id: "4",
@@ -134,6 +204,10 @@ const sampleFaqs: FAQ[] = [
     answer:
       "DemonZeno provides high-quality signals based on technical analysis. Past performance is not a guarantee of future results.",
     order: BigInt(4),
+    category: FaqCategory.Signals,
+    helpfulCount: BigInt(15),
+    notHelpfulCount: BigInt(2),
+    timestamp: BigInt(Date.now() * 1_000_000),
   },
   {
     id: "5",
@@ -141,6 +215,10 @@ const sampleFaqs: FAQ[] = [
     answer:
       "Crypto tokens (BTC, ETH, SOL and more), Forex pairs (EUR/USD, GBP/JPY and more), and Stock market (AAPL, TSLA, NVDA and more).",
     order: BigInt(5),
+    category: FaqCategory.Signals,
+    helpfulCount: BigInt(20),
+    notHelpfulCount: BigInt(1),
+    timestamp: BigInt(Date.now() * 1_000_000),
   },
   {
     id: "6",
@@ -148,6 +226,10 @@ const sampleFaqs: FAQ[] = [
     answer:
       "DemonZeno posts daily free signals on Binance Square at @DemonZeno. Follow there to get every signal the moment it drops — no subscription needed.",
     order: BigInt(6),
+    category: FaqCategory.Signals,
+    helpfulCount: BigInt(28),
+    notHelpfulCount: BigInt(0),
+    timestamp: BigInt(Date.now() * 1_000_000),
   },
   {
     id: "7",
@@ -155,6 +237,10 @@ const sampleFaqs: FAQ[] = [
     answer:
       "DMNZ launches on April 2, 2028 via a Telegram Mini App on the Blum platform. It's a 100% fair launch with no presale, no private sale, and no allocation breakdown.",
     order: BigInt(7),
+    category: FaqCategory.DmnzToken,
+    helpfulCount: BigInt(40),
+    notHelpfulCount: BigInt(0),
+    timestamp: BigInt(Date.now() * 1_000_000),
   },
 ];
 
@@ -167,12 +253,18 @@ const sampleStats: Stats = {
   assetsCovered: BigInt(4),
 };
 
-const sampleAnnouncement: Announcement = {
-  id: "1",
-  text: "🚀 DMNZ Token launches April 2, 2028 on Blum! Follow @DemonZeno on Binance Square for daily free signals.",
-  link: undefined,
-  isActive: true,
-};
+const sampleAnnouncements: Announcement[] = [
+  {
+    id: "1",
+    title: "DMNZ Token Launch",
+    body: "🚀 DMNZ Token launches April 2, 2028 on Blum! Follow @DemonZeno on Binance Square for daily free signals.",
+    link: undefined,
+    isActive: true,
+    timestamp: BigInt(Date.now() * 1_000_000),
+    category: AnnouncementCategory.Token,
+    isPinned: false,
+  },
+];
 
 const sampleMarketSentiment: MarketSentiment = {
   overall: SentimentLevel.Bullish,
@@ -286,6 +378,13 @@ function mockSignal(
     timeframe: Timeframe.Swing,
     sourceLabel: "Technical Analysis",
     isDraft: false,
+    tp1: "",
+    tp2: "",
+    tp3: "",
+    voteUp: BigInt(0),
+    voteDown: BigInt(0),
+    providerLabel: "DemonZeno AI",
+    tags: [],
     ...overrides,
   };
 }
@@ -294,7 +393,7 @@ export const mockBackend: backendInterface = {
   getSignals: async () => sampleSignals,
   getFaqs: async () => sampleFaqs,
   getStats: async () => sampleStats,
-  getAnnouncement: async () => sampleAnnouncement,
+  getAnnouncements: async () => sampleAnnouncements,
   getMarketSentiment: async () => sampleMarketSentiment,
   getBinanceFeed: async () => sampleBinancePosts,
   getRoadmap: async () => sampleRoadmap,
@@ -343,17 +442,19 @@ export const mockBackend: backendInterface = {
 
   refreshMarketPrices: async (): Promise<PriceData[]> => [],
 
-  getStatsConfig: async (_token: string): Promise<Result_10> => ({
+  // Result_8 = { ok: StatsConfig } | { err: string }
+  getStatsConfig: async (_token: string): Promise<Result_8> => ({
     __kind__: "ok",
     ok: { useManual: false } as StatsConfig,
   }),
 
-  getNotifyMeList: async (_token: string): Promise<Result_13> => ({
+  // Result_12 = { ok: Array<NotifyMe> } | { err: string }
+  getNotifyMeList: async (_token: string): Promise<Result_12> => ({
     __kind__: "ok",
     ok: [] as NotifyMe[],
   }),
 
-  validatePasscode: async (_passcode: string): Promise<Result> => ({
+  validatePasscode: async (_passcode: string): Promise<Result_1> => ({
     __kind__: "ok",
     ok: "mock-session-token-12345",
   }),
@@ -361,6 +462,7 @@ export const mockBackend: backendInterface = {
   validateSession: async (_token: string) => true,
   invalidateSession: async (_token: string) => undefined,
 
+  // addSignal: 20 args — token, asset, marketType, direction, entryPrice, targetPrice, stopLoss, tp1, tp2, tp3, notes, confidence, sourceLabel, providerLabel, expiry, timeframe, isDraft, publishAt, templateId, tags
   addSignal: async (
     _token: string,
     asset: string,
@@ -369,14 +471,20 @@ export const mockBackend: backendInterface = {
     entryPrice: string,
     targetPrice: string,
     stopLoss: string,
+    tp1: string,
+    tp2: string,
+    tp3: string,
     notes: string,
     confidence: Confidence,
     sourceLabel: string,
+    providerLabel: string,
     _expiry: bigint | null,
     timeframe: Timeframe,
     _isDraft: boolean,
     _publishAt: bigint | null,
-  ): Promise<Result_3> => ({
+    _templateId: string | null,
+    _tags: Array<string>,
+  ): Promise<Result_2> => ({
     __kind__: "ok",
     ok: mockSignal({
       id: "new-1",
@@ -386,13 +494,18 @@ export const mockBackend: backendInterface = {
       entryPrice,
       targetPrice,
       stopLoss,
+      tp1,
+      tp2,
+      tp3,
       notes,
       confidence,
       sourceLabel,
+      providerLabel,
       timeframe,
     }),
   }),
 
+  // updateSignal: 21 args
   updateSignal: async (
     _token: string,
     id: string,
@@ -402,14 +515,20 @@ export const mockBackend: backendInterface = {
     entryPrice: string,
     targetPrice: string,
     stopLoss: string,
+    tp1: string,
+    tp2: string,
+    tp3: string,
     notes: string,
     confidence: Confidence,
     sourceLabel: string,
+    providerLabel: string,
     _expiry: bigint | null,
     timeframe: Timeframe,
     _isDraft: boolean,
     _publishAt: bigint | null,
-  ): Promise<Result_3> => ({
+    _templateId: string | null,
+    _tags: Array<string>,
+  ): Promise<Result_2> => ({
     __kind__: "ok",
     ok: mockSignal({
       id,
@@ -419,9 +538,13 @@ export const mockBackend: backendInterface = {
       entryPrice,
       targetPrice,
       stopLoss,
+      tp1,
+      tp2,
+      tp3,
       notes,
       confidence,
       sourceLabel,
+      providerLabel,
       timeframe,
     }),
   }),
@@ -430,7 +553,7 @@ export const mockBackend: backendInterface = {
     _token: string,
     id: string,
     result: ResultStatus,
-  ): Promise<Result_3> => ({
+  ): Promise<Result_2> => ({
     __kind__: "ok",
     ok: mockSignal({
       id,
@@ -445,31 +568,53 @@ export const mockBackend: backendInterface = {
     }),
   }),
 
-  deleteSignal: async (_token: string, _id: string): Promise<Result_2> => ({
+  deleteSignal: async (_token: string, _id: string): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
+  // addFaq now takes 4 args: token, question, answer, category
   addFaq: async (
     _token: string,
     question: string,
     answer: string,
-  ): Promise<Result_4> => ({
+    _category: FaqCategory,
+  ): Promise<Result_3> => ({
     __kind__: "ok",
-    ok: { id: "new-faq", question, answer, order: BigInt(99) },
+    ok: {
+      id: "new-faq",
+      question,
+      answer,
+      order: BigInt(99),
+      category: FaqCategory.Platform,
+      helpfulCount: BigInt(0),
+      notHelpfulCount: BigInt(0),
+      timestamp: BigInt(Date.now() * 1_000_000),
+    },
   }),
 
+  // updateFaq now takes 5 args: token, id, question, answer, category
   updateFaq: async (
     _token: string,
     id: string,
     question: string,
     answer: string,
-  ): Promise<Result_4> => ({
+    _category: FaqCategory,
+  ): Promise<Result_3> => ({
     __kind__: "ok",
-    ok: { id, question, answer, order: BigInt(1) },
+    ok: {
+      id,
+      question,
+      answer,
+      order: BigInt(1),
+      category: FaqCategory.Platform,
+      helpfulCount: BigInt(0),
+      notHelpfulCount: BigInt(0),
+      timestamp: BigInt(Date.now() * 1_000_000),
+    },
   }),
 
-  deleteFaq: async (_token: string, _id: string): Promise<Result_2> => ({
+  deleteFaq: async (_token: string, _id: string): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
@@ -477,39 +622,92 @@ export const mockBackend: backendInterface = {
   reorderFaqs: async (
     _token: string,
     _orderedIds: string[],
-  ): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
 
-  setAnnouncement: async (
+  // addAnnouncement: token, title, body, category, link, isPinned, publishAt
+  addAnnouncement: async (
     _token: string,
-    text: string,
+    title: string,
+    body: string,
+    _category: AnnouncementCategory,
     link: string | null,
+    _isPinned: boolean,
     _publishAt: bigint | null,
-  ): Promise<Result_7> => ({
+  ): Promise<Result_5> => ({
     __kind__: "ok",
-    ok: { id: "ann-1", text, link: link ?? undefined, isActive: true },
+    ok: {
+      id: "ann-new",
+      title,
+      body,
+      link: link ?? undefined,
+      isActive: true,
+      timestamp: BigInt(Date.now() * 1_000_000),
+      category: AnnouncementCategory.General,
+      isPinned: false,
+    },
   }),
 
-  toggleAnnouncement: async (_token: string): Promise<Result_6> => ({
+  // updateAnnouncement
+  updateAnnouncement: async (
+    _token: string,
+    id: string,
+    title: string,
+    body: string,
+    _category: AnnouncementCategory,
+    link: string | null,
+    _isPinned: boolean,
+    _isActive: boolean,
+    _publishAt: bigint | null,
+  ): Promise<Result_5> => ({
     __kind__: "ok",
-    ok: true,
+    ok: {
+      id,
+      title,
+      body,
+      link: link ?? undefined,
+      isActive: true,
+      timestamp: BigInt(Date.now() * 1_000_000),
+      category: AnnouncementCategory.General,
+      isPinned: false,
+    },
+  }),
+
+  deleteAnnouncement: async (_token: string, _id: string): Promise<Result> => ({
+    __kind__: "ok",
+    ok: null,
+  }),
+
+  pinAnnouncement: async (
+    _token: string,
+    _id: string,
+    _pin: boolean,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
+
+  getAllAnnouncements: async (_token: string): Promise<Result_17> => ({
+    __kind__: "ok",
+    ok: sampleAnnouncements,
   }),
 
   submitNotifyMe: async (
     _name: string | null,
     _contact: string,
-  ): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
 
   setStatsConfig: async (
     _token: string,
     _config: StatsConfig,
-  ): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
 
-  getScheduledSignals: async (_token: string): Promise<Result_9> => ({
+  // Result_7 = { ok: Array<Signal> } | { err: string }
+  getScheduledSignals: async (_token: string): Promise<Result_7> => ({
     __kind__: "ok" as const,
     ok: sampleSignals,
   }),
 
-  importSignals: async (_token: string, _inputs): Promise<Result_9> => ({
+  importSignals: async (
+    _token: string,
+    _inputs: Array<SignalInput>,
+  ): Promise<Result_7> => ({
     __kind__: "ok" as const,
     ok: sampleSignals,
   }),
@@ -519,7 +717,7 @@ export const mockBackend: backendInterface = {
     id: string,
     _isDraft: boolean,
     _publishAt: bigint | null,
-  ): Promise<Result_3> => ({
+  ): Promise<Result_2> => ({
     __kind__: "ok",
     ok: mockSignal({
       id,
@@ -533,12 +731,14 @@ export const mockBackend: backendInterface = {
     }),
   }),
 
-  getAuditLog: async (_token: string): Promise<Result_16> => ({
+  // Result_15 = { ok: Array<AuditEntry> } | { err: string }
+  getAuditLog: async (_token: string): Promise<Result_15> => ({
     __kind__: "ok",
     ok: [],
   }),
 
-  getAnalytics: async (_token: string): Promise<Result_17> => ({
+  // Result_16 = { ok: Analytics } | { err: string }
+  getAnalytics: async (_token: string): Promise<Result_16> => ({
     __kind__: "ok",
     ok: {
       signalsByMarket: [],
@@ -547,17 +747,18 @@ export const mockBackend: backendInterface = {
     },
   }),
 
-  banEmail: async (_token: string, _email: string): Promise<Result_2> => ({
+  banEmail: async (_token: string, _email: string): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  unbanEmail: async (_token: string, _email: string): Promise<Result_2> => ({
+  unbanEmail: async (_token: string, _email: string): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  getBannedEmails: async (_token: string): Promise<Result_15> => ({
+  // Result_14 = { ok: Array<string> } | { err: string }
+  getBannedEmails: async (_token: string): Promise<Result_14> => ({
     __kind__: "ok",
     ok: [],
   }),
@@ -565,11 +766,11 @@ export const mockBackend: backendInterface = {
   setSignalOfTheDay: async (
     _token: string,
     _signalId: string | null,
-  ): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
 
   getSignalOfTheDay: async (): Promise<Signal | null> => sampleSignals[0],
 
-  getAnalyticsCsv: async (_token: string): Promise<Result> => ({
+  getAnalyticsCsv: async (_token: string): Promise<Result_1> => ({
     __kind__: "ok",
     ok: "date,signups\n2026-04-20,3\n2026-04-21,5",
   }),
@@ -609,13 +810,13 @@ export const mockBackend: backendInterface = {
 
   invalidateAiSession: async (_token: string): Promise<void> => undefined,
 
+  // sendAiMessage(sessionToken, message, provider, history) — 4 args
   sendAiMessage: async (
     _sessionToken: string,
     _message: string,
     _provider: string,
-    _mode: string,
     _history: ChatMessage[],
-  ): Promise<Result> => ({
+  ): Promise<Result_1> => ({
     __kind__: "err",
     err: "Not implemented in mock",
   }),
@@ -624,19 +825,17 @@ export const mockBackend: backendInterface = {
     _adminToken: string,
     _provider: string,
     _key: string,
-  ): Promise<Result_2> => ({
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
   validateAiPasscode: async (_passcode: string): Promise<Result_1> => ({
     __kind__: "ok",
-    ok: ["mock-ai-session-token-12345", "normal"],
+    ok: "mock-ai-session-token-12345",
   }),
 
   validateAiSession: async (_token: string): Promise<boolean> => true,
-
-  validateInsaneSession: async (_token: string): Promise<boolean> => true,
 
   // Binance Feed
   addBinancePost: async (
@@ -645,7 +844,7 @@ export const mockBackend: backendInterface = {
     snippet: string,
     url: string,
     date: string,
-  ): Promise<Result_5> => ({
+  ): Promise<Result_4> => ({
     __kind__: "ok",
     ok: { id: "bp-new", title, snippet, url, date },
   }),
@@ -657,7 +856,7 @@ export const mockBackend: backendInterface = {
     snippet: string,
     url: string,
     date: string,
-  ): Promise<Result_5> => ({
+  ): Promise<Result_4> => ({
     __kind__: "ok",
     ok: { id, title, snippet, url, date },
   }),
@@ -665,7 +864,7 @@ export const mockBackend: backendInterface = {
   deleteBinancePost: async (
     _adminToken: string,
     _id: string,
-  ): Promise<Result_2> => ({
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
@@ -674,7 +873,7 @@ export const mockBackend: backendInterface = {
   setBurnTracker: async (
     _adminToken: string,
     _data: BurnTracker,
-  ): Promise<Result_2> => ({
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
@@ -682,7 +881,7 @@ export const mockBackend: backendInterface = {
   setCommunityCounter: async (
     _adminToken: string,
     _data: CommunityCounter,
-  ): Promise<Result_2> => ({
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
@@ -694,7 +893,7 @@ export const mockBackend: backendInterface = {
     _title: string,
     _description: string,
     _completed: boolean,
-  ): Promise<Result_2> => ({
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
@@ -703,7 +902,7 @@ export const mockBackend: backendInterface = {
   getSignalArchive: async (): Promise<Signal[]> => sampleSignals,
 
   // Admin config
-  getAdminConfig: async (_adminToken: string): Promise<Result> => ({
+  getAdminConfig: async (_adminToken: string): Promise<Result_1> => ({
     __kind__: "ok",
     ok: "{}",
   }),
@@ -713,121 +912,186 @@ export const mockBackend: backendInterface = {
 
   // ─── Stub implementations for new backend methods ────────────────────────
 
-  addBurnEntry: async (): Promise<Result> => ({ __kind__: "ok", ok: "ok" }),
+  addBurnEntry: async (
+    _date: string,
+    _amount: string,
+    _reason: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({ __kind__: "ok", ok: "ok" }),
 
-  addJournalEntry: async (): Promise<Result> => ({ __kind__: "ok", ok: "ok" }),
+  addBurnEvent: async (
+    _date: string,
+    _amount: string,
+    _reason: string,
+    _sessionToken: string,
+  ): Promise<Result_22> => ({
+    __kind__: "ok",
+    ok: {
+      id: "burn-1",
+      date: _date ?? new Date().toISOString().split("T")[0],
+      amount: "0",
+      reason: "mock",
+      executed: false,
+      createdAt: BigInt(Date.now() * 1_000_000),
+    },
+  }),
 
-  addMilestone: async (): Promise<Result> => ({ __kind__: "ok", ok: "ok" }),
+  addJournalEntry: async (
+    _entry: JournalEntry,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({ __kind__: "ok", ok: "ok" }),
 
-  addQuote: async (): Promise<Result> => ({ __kind__: "ok", ok: "ok" }),
+  addMilestone: async (
+    _title: string,
+    _description: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({ __kind__: "ok", ok: "ok" }),
 
-  addTestimonial: async (): Promise<Result> => ({ __kind__: "ok", ok: "ok" }),
+  addQuote: async (
+    _quote: string,
+    _author: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({ __kind__: "ok", ok: "ok" }),
+
+  addTestimonial: async (
+    _name: string,
+    _content: string,
+    _winAmount: string | null,
+    _asset: string | null,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({ __kind__: "ok", ok: "ok" }),
 
   askFaq: async (_question: string): Promise<string> =>
     "This is a mock FAQ answer. In production, the AI will answer your question.",
 
-  backtestSignal: async (): Promise<Result> => ({
+  askTokenFaq: async (_question: string): Promise<string> =>
+    "This is a mock token FAQ answer. In production, the AI will answer your DMNZ question.",
+
+  backtestSignal: async (
+    _signal: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({
     __kind__: "ok",
     ok: "Backtest result: This signal historically performed well with ~72% win rate over 30 days.",
   }),
 
-  clearJournal: async (): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
-
-  createAbTest: async (): Promise<Result> => ({ __kind__: "ok", ok: "ab-1" }),
-
-  createAuditSnapshot: async (): Promise<Result> => ({
-    __kind__: "ok",
-    ok: "snapshot-1",
-  }),
-
-  createPushNotification: async (): Promise<Result> => ({
-    __kind__: "ok",
-    ok: "notif-1",
-  }),
-
-  deleteQuote: async (): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
-
-  deleteTestimonial: async (): Promise<Result_2> => ({
+  clearJournal: async (_sessionToken: string): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  dismissPushNotification: async (): Promise<void> => undefined,
+  createAbTest: async (
+    _name: string,
+    _variantA: string,
+    _variantB: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({ __kind__: "ok", ok: "ab-1" }),
 
-  generateDailyBriefing: async (): Promise<Result> => ({
+  createAuditSnapshot: async (
+    _snapshotLabel: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({
+    __kind__: "ok",
+    ok: "snapshot-1",
+  }),
+
+  createPushNotification: async (
+    _title: string,
+    _body: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({
+    __kind__: "ok",
+    ok: "notif-1",
+  }),
+
+  deleteQuote: async (
+    _id: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
+
+  deleteTestimonial: async (
+    _id: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({
+    __kind__: "ok",
+    ok: null,
+  }),
+
+  dismissPushNotification: async (_id: string): Promise<void> => undefined,
+
+  generateDailyBriefing: async (_sessionToken: string): Promise<Result_1> => ({
     __kind__: "ok",
     ok: "📊 **DemonZeno Daily Briefing** — Markets are showing mixed signals today. BTC consolidating at key support. ETH showing bullish divergence. Stay patient and wait for clean setups.",
   }),
 
-  getAbTests: async (): Promise<{ __kind__: "ok"; ok: never[] }> => ({
+  // Result_19 = { ok: Array<AbTest> } | { err: string }
+  getAbTests: async (_sessionToken: string): Promise<Result_19> => ({
     __kind__: "ok",
     ok: [],
   }),
 
-  getAbVariant: async (): Promise<string> => "A",
+  getAbVariant: async (_testId: string): Promise<string> => "A",
 
-  getActivePushNotifications: async () => [],
+  getActivePushNotifications: async (): Promise<Array<PushNotification>> => [],
 
-  getAdminActivityHeatmap: async (): Promise<{ __kind__: "ok"; ok: never[] }> => ({
+  // Result_18 = { ok: Array<ActivityEntry> } | { err: string }
+  getAdminActivityHeatmap: async (_sessionToken: string): Promise<Result_18> => ({
     __kind__: "ok",
-    ok: [],
+    ok: [] as ActivityEntry[],
   }),
 
-  getAiLanguage: async (): Promise<Result> => ({
+  getAiLanguage: async (_sessionToken: string): Promise<Result_1> => ({
     __kind__: "ok",
     ok: "en",
   }),
 
-  getBurnSchedule: async () => [],
+  getBurnSchedule: async (): Promise<Array<BurnScheduleEntry>> => [],
 
   getDailyBriefing: async (): Promise<string> =>
     "📊 **DemonZeno Daily Briefing** — Check back later for today's market analysis.",
 
-  getHolderBenefits: async () => [],
+  getHolderBenefits: async (): Promise<Array<HolderBenefit>> => [],
 
-  getJournalEntries: async (): Promise<Result_14> => ({
+  // Result_13 = { ok: Array<JournalEntry> } | { err: string }
+  getJournalEntries: async (_sessionToken: string): Promise<Result_13> => ({
     __kind__: "ok",
     ok: [],
   }),
 
-  getMaintenanceMode: async () => ({
+  getMaintenanceMode: async (): Promise<MaintenanceMode> => ({
     enabled: false,
     message: "",
     updatedAt: BigInt(0),
   }),
 
-  getMarketMoodBanner: async () => null,
+  getMarketMoodBanner: async (): Promise<MarketMoodBanner | null> => null,
 
-  getMilestones: async () => [],
+  getMilestones: async (): Promise<Array<CommunityMilestone>> => [],
 
-  getPublicBurnSchedule: async () => [],
+  getPublicBurnSchedule: async (): Promise<Array<BurnScheduleEntry>> => [],
 
-  getQuotes: async () => [],
+  getQuotes: async (): Promise<Array<DemonZenoQuote>> => [],
 
-  getSessionRatings: async (): Promise<{ __kind__: "ok"; ok: never[] }> => ({
+  // Result_11 = { ok: Array<ResponseRating> } | { err: string }
+  getSessionRatings: async (_sessionToken: string): Promise<Result_11> => ({
     __kind__: "ok",
-    ok: [],
+    ok: [] as ResponseRating[],
   }),
 
-  getSessionRecap: async (): Promise<Result> => ({
+  getSessionRecap: async (
+    _history: Array<ChatMessage>,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({
     __kind__: "ok",
     ok: "Session Recap: No signals generated in this session yet.",
   }),
 
-  getSignalOfWeek: async () => null,
+  getSignalOfWeek: async (): Promise<SignalOfWeekFull | null> => null,
 
-  getSignalPerformanceStats: async (): Promise<{
-    __kind__: "ok";
-    ok: {
-      totalSignals: bigint;
-      wins: bigint;
-      losses: bigint;
-      pending: bigint;
-      winRate: number;
-      topAssets: never[];
-      weeklyTrend: never[];
-    };
-  }> => ({
+  // Result_10 = { ok: SignalPerformanceStats } | { err: string }
+  getSignalPerformanceStats: async (
+    _sessionToken: string,
+  ): Promise<Result_10> => ({
     __kind__: "ok",
     ok: {
       totalSignals: BigInt(100),
@@ -837,71 +1101,310 @@ export const mockBackend: backendInterface = {
       winRate: 87.0,
       topAssets: [],
       weeklyTrend: [],
-    },
+    } as SignalPerformanceStats,
   }),
 
-  getTestimonials: async () => [],
+  getTestimonials: async (): Promise<Array<Testimonial>> => [],
 
-  getWhitepaper: async () => ({
+  getWhitepaper: async (): Promise<WhitepaperContent> => ({
     title: "DemonZeno — DMNZ Token Whitepaper",
     updatedAt: BigInt(Date.now() * 1_000_000),
     sections: [],
   }),
 
-  listAuditSnapshots: async (): Promise<{ __kind__: "ok"; ok: never[] }> => ({
+  // Result_6 = { ok: Array<AuditSnapshot> } | { err: string }
+  listAuditSnapshots: async (_sessionToken: string): Promise<Result_6> => ({
     __kind__: "ok",
     ok: [],
   }),
 
-  markMilestoneReached: async (): Promise<Result_2> => ({
+  markMilestoneReached: async (
+    _id: string,
+    _celebrateDays: bigint,
+    _sessionToken: string,
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  rateAiResponse: async (): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
+  rateAiResponse: async (
+    _messageId: string,
+    _rating: bigint,
+    _sessionToken: string,
+  ): Promise<Result> => ({
+    __kind__: "ok",
+    ok: null,
+  }),
 
-  recordAbImpression: async (): Promise<void> => undefined,
+  recordAbImpression: async (
+    _testId: string,
+    _variant: string,
+  ): Promise<void> => undefined,
 
-  recordAdminActivity: async (): Promise<Result_2> => ({
+  recordAdminActivity: async (
+    _action: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
   publishScheduledSignals: async (): Promise<bigint> => BigInt(0),
 
-  scheduleSignal: async (): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
+  scheduleSignal: async (
+    _signalId: string,
+    _publishAt: bigint,
+    _sessionToken: string,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
 
-  setAiLanguage: async (): Promise<Result_2> => ({ __kind__: "ok", ok: null }),
+  setAiLanguage: async (
+    _lang: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
 
-  setMaintenanceMode: async (): Promise<Result_2> => ({
+  setMaintenanceMode: async (
+    _enabled: boolean,
+    _message: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  setMarketMoodBanner: async (): Promise<Result_2> => ({
+  setMarketMoodBanner: async (
+    _mood: string,
+    _message: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  setSignalOfWeek: async (): Promise<Result_2> => ({
+  setSignalOfWeek: async (
+    _signalId: string,
+    _comment: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  setSignalOfWeekWithDate: async (): Promise<Result_2> => ({
+  setSignalOfWeekWithDate: async (
+    _signalId: string,
+    _comment: string,
+    _weekOf: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  updateBurnEntryStatus: async (): Promise<Result_2> => ({
+  updateBurnEntryStatus: async (
+    _id: string,
+    _status: string,
+    _txHash: string | null,
+    _sessionToken: string,
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
-  updateWhitepaper: async (): Promise<Result_2> => ({
+  updateWhitepaper: async (
+    _content: WhitepaperContent,
+    _sessionToken: string,
+  ): Promise<Result> => ({
     __kind__: "ok",
     ok: null,
   }),
 
   validateAdminRole: async (_passcode: string): Promise<string | null> => null,
+
+  // Additional methods from backendInterface
+  addHypeMilestone: async (
+    _title: string,
+    _targetCount: bigint,
+    _sessionToken: string,
+  ): Promise<Result_21> => ({
+    __kind__: "ok",
+    ok: {
+      id: "hype-1",
+      title: _title ?? "Milestone",
+      achieved: false,
+      order: BigInt(1),
+      targetCount: _targetCount ?? BigInt(1000),
+    },
+  }),
+
+  addSignalNote: async (
+    _sessionToken: string,
+    _id: string,
+    _note: string,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
+
+  addSignalTemplate: async (
+    _sessionToken: string,
+    _name: string,
+    _asset: string,
+    _marketType: MarketType,
+    _direction: Direction,
+    _timeframe: Timeframe,
+    _confidence: Confidence,
+    _notes: string,
+  ): Promise<{ __kind__: "ok"; ok: SignalTemplate } | { __kind__: "err"; err: string }> => ({
+    __kind__: "ok",
+    ok: {
+      id: "tpl-1",
+      name: _name ?? "Template",
+      asset: _asset ?? "BTC/USDT",
+      marketType: _marketType ?? MarketType.Crypto,
+      direction: _direction ?? Direction.Buy,
+      timeframe: _timeframe ?? Timeframe.Swing,
+      confidence: _confidence ?? Confidence.Medium,
+      notes: _notes ?? "",
+      createdAt: BigInt(Date.now() * 1_000_000),
+    },
+  }),
+
+  addTopTrader: async (
+    _name: string,
+    _bio: string,
+    _achievement: string,
+    _week: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({ __kind__: "ok", ok: "ok" }),
+
+  analyzeNewsImpact: async (
+    _headline: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({
+    __kind__: "ok",
+    ok: "News impact analysis: Moderately bullish. The headline suggests positive market sentiment.",
+  }),
+
+  compareSignals: async (
+    _asset1: string,
+    _asset2: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({
+    __kind__: "ok",
+    ok: "Signal comparison: Both assets show similar momentum. BTC has higher volume confirmation.",
+  }),
+
+  deleteCommunityQuestion: async (
+    _id: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
+
+  deleteSignalTemplate: async (
+    _sessionToken: string,
+    _id: string,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
+
+  deleteTopTrader: async (
+    _id: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
+
+  executeAdminCommand: async (
+    _sessionToken: string,
+    _command: string,
+  ): Promise<Result_1> => ({ __kind__: "ok", ok: "Command executed" }),
+
+  generatePostTradeAnalysis: async (
+    _signal: string,
+    _outcome: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({
+    __kind__: "ok",
+    ok: "Post-trade analysis: The trade followed the plan. Entry was clean, exit was managed well.",
+  }),
+
+  generatePricePrediction: async (
+    _asset: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({
+    __kind__: "ok",
+    ok: "Price prediction (AI estimate, not financial advice): Short-term upside probable based on technicals.",
+  }),
+
+  generateSignalChain: async (
+    _asset: string,
+    _sessionToken: string,
+  ): Promise<Result_1> => ({
+    __kind__: "ok",
+    ok: "Signal chain: Entry → Manage to TP1 → Move SL to BE → Target TP2 → Final exit at TP3.",
+  }),
+
+  getCommunityQuestions: async (): Promise<Array<CommunityQuestion>> => [],
+
+  getFaqsByCategory: async (
+    _category: FaqCategory,
+  ): Promise<Array<FAQ>> => sampleFaqs,
+
+  getHypeMilestones: async (): Promise<Array<HypeMilestone>> => [],
+
+  getSignalTemplates: async (_sessionToken: string): Promise<Result_9> => ({
+    __kind__: "ok",
+    ok: [] as SignalTemplate[],
+  }),
+
+  getTokenBurnSchedule: async (): Promise<Array<BurnEvent>> => [],
+
+  getTokenData: async (): Promise<TokenData> => ({
+    name: "DemonZeno",
+    ticker: "DMNZ",
+    supply: "1,000,000,000",
+    launchDate: "April 2, 2028",
+    launchPlatform: "Blum (Telegram Mini App)",
+    burnedAmount: "0",
+  }),
+
+  getTopTraders: async (): Promise<Array<TopTrader>> => [],
+
+  getWhitepaperUrl: async (): Promise<string | null> => null,
+
+  markBurnEventExecuted: async (
+    _id: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
+
+  markHypeMilestoneAchieved: async (
+    _id: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
+
+  pinCommunityQuestion: async (
+    _id: string,
+    _answer: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
+
+  rateFaq: async (_id: string, _helpful: boolean): Promise<Result> => ({
+    __kind__: "ok",
+    ok: null,
+  }),
+
+  rollbackAdminAction: async (
+    _sessionToken: string,
+    _entryId: string,
+  ): Promise<Result_1> => ({ __kind__: "ok", ok: "Rollback successful" }),
+
+  setWhitepaperUrl: async (
+    _url: string,
+    _sessionToken: string,
+  ): Promise<Result> => ({ __kind__: "ok", ok: null }),
+
+  submitCommunityQuestion: async (
+    _question: string,
+  ): Promise<Result_1> => ({ __kind__: "ok", ok: "question-1" }),
+
+  voteCommunityQuestion: async (_id: string): Promise<Result> => ({
+    __kind__: "ok",
+    ok: null,
+  }),
+
+  voteOnSignal: async (_id: string, _direction: string): Promise<Result> => ({
+    __kind__: "ok",
+    ok: null,
+  }),
 };

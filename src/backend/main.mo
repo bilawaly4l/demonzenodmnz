@@ -3,18 +3,19 @@ import Map "mo:core/Map";
 import Set "mo:core/Set";
 
 import SignalTypes "types/signals";
-import StatsTypes "types/stats";
 import FaqTypes "types/faqs";
-import NotifyTypes "types/notify";
 import AnnTypes "types/announcements";
 import AuditTypes "types/audit";
-import SentimentTypes "types/sentiment";
-import BurnTypes "types/burn";
 import CommunityTypes "types/community";
-import BinanceFeedTypes "types/binance-feed";
-import RoadmapTypes "types/roadmap";
 import AdminEnhancementsTypes "types/admin-enhancements";
 import TokenLaunchTypes "types/token-launch";
+
+import StatsTypes "types/stats";
+import NotifyTypes "types/notify";
+import SentimentTypes "types/sentiment";
+import BurnTypes "types/burn";
+import BinanceFeedTypes "types/binance-feed";
+import RoadmapTypes "types/roadmap";
 
 import AuthApi "mixins/auth-api";
 import SignalsApi "mixins/signals-api";
@@ -38,8 +39,11 @@ import SentimentLib "lib/sentiment";
 import RoadmapLib "lib/roadmap";
 import TokenLaunchLib "lib/token-launch";
 import Time "mo:core/Time";
+import Migration "migration";
 
 
+
+(with migration = Migration.run)
 actor {
   // Session tokens (cleared on canister restart; frontend clears on tab close)
   let sessions = Set.empty<Text>();
@@ -47,6 +51,10 @@ actor {
   // Signals
   let signals = List.empty<SignalTypes.Signal>();
   let signalIdCounter = { var value : Nat = 0 };
+
+  // Signal templates
+  let signalTemplates = List.empty<SignalTypes.SignalTemplate>();
+  let templateIdCounter = { var value : Nat = 0 };
 
   // Signal of the Day (stores signal ID string)
   let signalOfTheDayRef = { var value : ?Text = null };
@@ -70,8 +78,8 @@ actor {
   // Newsletter ban list (emails that cannot receive notifications)
   let bannedEmails = Set.empty<Text>();
 
-  // Announcement
-  let announcementRef = { var value : ?AnnTypes.Announcement = null };
+  // Announcements (multi-announcement list)
+  let announcements = List.empty<AnnTypes.Announcement>();
   let annIdCounter = { var value : Nat = 0 };
 
   // Market sentiment (includes real-time price fields)
@@ -105,6 +113,14 @@ actor {
   let milestones = List.empty<CommunityTypes.CommunityMilestone>();
   let milestoneIdCounter = { var value : Nat = 0 };
 
+  // Top Traders wall
+  let topTraders = List.empty<CommunityTypes.TopTrader>();
+  let topTraderIdCounter = { var value : Nat = 0 };
+
+  // Community Q&A
+  let communityQuestions = List.empty<CommunityTypes.CommunityQuestion>();
+  let questionIdCounter = { var value : Nat = 0 };
+
   // Binance feed posts (manually curated)
   let binancePosts = List.empty<BinanceFeedTypes.BinancePost>();
   let binancePostIdCounter = { var value : Nat = 0 };
@@ -112,10 +128,8 @@ actor {
   // Roadmap milestones (seeded with defaults)
   let roadmapMilestones = List.fromArray<RoadmapTypes.RoadmapMilestone>(RoadmapLib.defaultMilestones());
 
-  // AI sessions: Normal-tier (any authenticated user)
+  // Unified DemonZeno AI sessions
   let aiSessions = Set.empty<Text>();
-  // AI sessions: Insane-tier (unlocked with Insane passcode only)
-  let insaneSessions = Set.empty<Text>();
 
   // AI provider API keys (empty by default; set via admin dashboard)
   let geminiKey      = { var value : Text = "" };
@@ -133,7 +147,7 @@ actor {
   let huggingfaceKey = { var value : Text = "" };
   let replicateKey   = { var value : Text = "" };
   let ollamaKey      = { var value : Text = "" };
-  // New providers
+  // Additional providers
   let ai21Key        = { var value : Text = "" };
   let nlpcloudKey    = { var value : Text = "" };
   let anyscaleKey    = { var value : Text = "" };
@@ -148,12 +162,24 @@ actor {
   // Token launch — whitepaper
   let whitepaperRef = { var value : TokenLaunchTypes.WhitepaperContent = TokenLaunchLib.defaultWhitepaper() };
 
+  // Whitepaper URL (downloadable PDF link)
+  let whitepaperUrlRef = { var value : ?Text = null };
+
   // Holder benefits (seeded with defaults)
   let holderBenefits = List.empty<TokenLaunchTypes.HolderBenefit>();
   let benefitsSeeded = { var value : Bool = false };
 
   // Signal of the Week
   let signalOfWeekRef = { var value : ?TokenLaunchTypes.SignalOfWeek = null };
+
+  // Burn events schedule (post-2028)
+  let burnEvents = List.empty<TokenLaunchTypes.BurnEvent>();
+  let burnEventIdCounter = { var value : Nat = 0 };
+
+  // Hype milestones toward launch
+  let hypeMilestones = List.empty<TokenLaunchTypes.HypeMilestone>();
+  let hypeMilestoneIdCounter = { var value : Nat = 0 };
+  let hypeMilestonesSeeded = { var value : Bool = false };
 
   // Admin enhancements state
   let pushNotifications = List.empty<AdminEnhancementsTypes.PushNotification>();
@@ -168,20 +194,47 @@ actor {
 
   // Mixins
   include AuthApi(sessions);
-  include SignalsApi(signals, signalIdCounter, auditLog, auditIdCounter, sessions, signalOfTheDayRef);
+  include SignalsApi(signals, signalIdCounter, auditLog, auditIdCounter, sessions, signalOfTheDayRef, signalTemplates, templateIdCounter);
   include StatsApi(signals, notifyEntries, statsConfigRef, sessions);
   include FaqsApi(faqs, faqIdCounter, sessions, faqsSeeded);
   include NotifyApi(notifyEntries, notifyIdCounter, sessions, bannedEmails);
-  include AnnouncementsApi(announcementRef, annIdCounter, auditLog, auditIdCounter, sessions);
+  include AnnouncementsApi(announcements, annIdCounter, auditLog, auditIdCounter, sessions);
   include AuditApi(auditLog, sessions);
   include SentimentApi(sentimentRef, sessions);
   include BurnApi(burnRef, sessions, burnSchedule, burnIdCounter, burnScheduleSeeded);
-  include CommunityApi(communityRef, sessions, quotes, quoteIdCounter, quotesSeeded, testimonials, testimonialIdCounter, milestones, milestoneIdCounter);
+  include CommunityApi(
+    communityRef,
+    sessions,
+    quotes,
+    quoteIdCounter,
+    quotesSeeded,
+    testimonials,
+    testimonialIdCounter,
+    milestones,
+    milestoneIdCounter,
+    topTraders,
+    topTraderIdCounter,
+    communityQuestions,
+    questionIdCounter,
+  );
   include BinanceFeedApi(binancePosts, binancePostIdCounter, sessions);
   include RoadmapApi(roadmapMilestones, sessions);
   include PriceFeedApi(sentimentRef, priceCache, priceCacheTime);
   include AdminConfigApi(sessions);
-  include TokenLaunchApi(sessions, whitepaperRef, holderBenefits, benefitsSeeded, signalOfWeekRef, signals);
+  include TokenLaunchApi(
+    sessions,
+    whitepaperRef,
+    holderBenefits,
+    benefitsSeeded,
+    signalOfWeekRef,
+    signals,
+    whitepaperUrlRef,
+    burnEvents,
+    burnEventIdCounter,
+    hypeMilestones,
+    hypeMilestoneIdCounter,
+    hypeMilestonesSeeded,
+  );
   include AdminEnhancementsApi(
     pushNotifications,
     pushNotifIdCounter,
@@ -199,8 +252,7 @@ actor {
   );
   include AiApi(
     aiSessions,
-    insaneSessions,
-    sessions,       // adminSessions — reuse the same admin sessions set
+    sessions,
     geminiKey,
     openaiKey,
     grokKey,
@@ -216,7 +268,6 @@ actor {
     huggingfaceKey,
     replicateKey,
     ollamaKey,
-    // Additional providers
     ai21Key,
     nlpcloudKey,
     anyscaleKey,

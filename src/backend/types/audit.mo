@@ -1,8 +1,10 @@
 module {
   public type AuditEntry = {
-    id : Text;
-    timestamp : Int;
-    action : Text;
-    details : Text;
+    id           : Text;
+    timestamp    : Int;
+    action       : Text;
+    details      : Text;
+    adminToken   : Text;
+    rollbackData : ?Text;
   };
 };

@@ -2,9 +2,7 @@ import { Outlet } from "@tanstack/react-router";
 import { Twitter, Zap } from "lucide-react";
 import { SiBinance } from "react-icons/si";
 import { AnnouncementBanner } from "./AnnouncementBanner";
-import { BackToTop } from "./BackToTop";
 import { Navbar } from "./Navbar";
-import { ScrollProgress } from "./ScrollProgress";
 
 const NAV_LINKS = [
   ["Signals", "#signals"],
@@ -127,14 +125,12 @@ function Footer() {
 export function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <ScrollProgress />
       <AnnouncementBanner />
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 pb-16 md:pb-0">
         <Outlet />
       </main>
       <Footer />
-      <BackToTop />
     </div>
   );
 }

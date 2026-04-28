@@ -9,157 +9,159 @@ import AiAuth "../lib/ai-auth";
 import AiProviders "../lib/ai-providers";
 
 mixin (
-  aiSessions : Set.Set<Text>,
-  insaneSessions : Set.Set<Text>,
+  aiSessions    : Set.Set<Text>,
   adminSessions : Set.Set<Text>,
   // API keys stored per provider
-  geminiKey : { var value : Text },
-  openaiKey : { var value : Text },
-  grokKey : { var value : Text },
-  claudeKey : { var value : Text },
-  perplexityKey : { var value : Text },
-  mistralKey : { var value : Text },
-  cohereKey : { var value : Text },
-  deepseekKey : { var value : Text },
-  groqKey : { var value : Text },
-  togetherKey : { var value : Text },
-  fireworksKey : { var value : Text },
-  openrouterKey : { var value : Text },
+  geminiKey      : { var value : Text },
+  openaiKey      : { var value : Text },
+  grokKey        : { var value : Text },
+  claudeKey      : { var value : Text },
+  perplexityKey  : { var value : Text },
+  mistralKey     : { var value : Text },
+  cohereKey      : { var value : Text },
+  deepseekKey    : { var value : Text },
+  groqKey        : { var value : Text },
+  togetherKey    : { var value : Text },
+  fireworksKey   : { var value : Text },
+  openrouterKey  : { var value : Text },
   huggingfaceKey : { var value : Text },
-  replicateKey : { var value : Text },
-  ollamaKey : { var value : Text },
+  replicateKey   : { var value : Text },
+  ollamaKey      : { var value : Text },
   // Additional providers
-  ai21Key : { var value : Text },
-  nlpcloudKey : { var value : Text },
-  anyscaleKey : { var value : Text },
-  cerebrasKey : { var value : Text },
-  sambanovaKey : { var value : Text },
-  cloudflareKey : { var value : Text },
-  novitaKey : { var value : Text },
-  moonshotKey : { var value : Text },
-  zhipuKey : { var value : Text },
-  upstageKey : { var value : Text },
+  ai21Key        : { var value : Text },
+  nlpcloudKey    : { var value : Text },
+  anyscaleKey    : { var value : Text },
+  cerebrasKey    : { var value : Text },
+  sambanovaKey   : { var value : Text },
+  cloudflareKey  : { var value : Text },
+  novitaKey      : { var value : Text },
+  moonshotKey    : { var value : Text },
+  zhipuKey       : { var value : Text },
+  upstageKey     : { var value : Text },
 ) {
 
   // ── Per-session supplementary state ──────────────────────────────────────
-  // Trade journals keyed by sessionToken
-  let journalMap = Map.empty<Text, List.List<AiTypes.JournalEntry>>();
-  // Response ratings keyed by sessionToken
-  let ratingMap = Map.empty<Text, List.List<AiTypes.ResponseRating>>();
-  // Language preference keyed by sessionToken
-  let langMap = Map.empty<Text, Text>();
-  // Cached daily briefing
-  let dailyBriefingRef = { var value : Text = "" };
-  let dailyBriefingDate = { var value : Int = 0 };
+  let journalMapV2    = Map.empty<Text, List.List<AiTypes.JournalEntry>>();
+  let ratingMap       = Map.empty<Text, List.List<AiTypes.ResponseRating>>();
+  let langMap         = Map.empty<Text, Text>();
+  let dailyBriefingRef  = { var value : Text = "" };
+  let dailyBriefingDate = { var value : Int  = 0  };
 
-  // ── AI Session Management ─────────────────────────────────────────────────
+  // ── Build provider keys record for smart routing ──────────────────────────
 
-  /// Validate passcode, return (sessionToken, mode) on success.
-  /// "normal" or "insane" mode is returned so the frontend knows which was unlocked.
-  public func validateAiPasscode(
-    passcode : Text,
-  ) : async Common.Result<(Text, Text), Text> {
-    switch (AiAuth.validatePasscodeWithMode(passcode)) {
-      case (?#Normal) {
-        let token = AiAuth.generateToken();
-        aiSessions.add(token);
-        #ok((token, "normal"));
-      };
-      case (?#Insane) {
-        let token = AiAuth.generateToken();
-        insaneSessions.add(token);
-        aiSessions.add(token); // also valid for general AI session checks
-        #ok((token, "insane"));
-      };
-      case null {
-        #err("Invalid passcode");
-      };
+  func providerKeys() : {
+    openrouter : Text; gemini    : Text; groq      : Text; deepseek  : Text;
+    grok       : Text; mistral   : Text; openai    : Text; cohere    : Text;
+    together   : Text; fireworks : Text; perplexity: Text; cerebras  : Text;
+    ai21       : Text; huggingface: Text; nlpcloud : Text; cloudflare: Text;
+    novita     : Text; moonshot  : Text; zhipu     : Text; upstage   : Text;
+    sambanova  : Text; anyscale  : Text; replicate : Text; ollama    : Text;
+    claude     : Text;
+  } {
+    {
+      openrouter  = openrouterKey.value;
+      gemini      = geminiKey.value;
+      groq        = groqKey.value;
+      deepseek    = deepseekKey.value;
+      grok        = grokKey.value;
+      mistral     = mistralKey.value;
+      openai      = openaiKey.value;
+      cohere      = cohereKey.value;
+      together    = togetherKey.value;
+      fireworks   = fireworksKey.value;
+      perplexity  = perplexityKey.value;
+      cerebras    = cerebrasKey.value;
+      ai21        = ai21Key.value;
+      huggingface = huggingfaceKey.value;
+      nlpcloud    = nlpcloudKey.value;
+      cloudflare  = cloudflareKey.value;
+      novita      = novitaKey.value;
+      moonshot    = moonshotKey.value;
+      zhipu       = zhipuKey.value;
+      upstage     = upstageKey.value;
+      sambanova   = sambanovaKey.value;
+      anyscale    = anyscaleKey.value;
+      replicate   = replicateKey.value;
+      ollama      = ollamaKey.value;
+      claude      = claudeKey.value;
     };
   };
 
-  /// Check if a session token is valid (Normal or Insane).
+  // ── Session helpers ───────────────────────────────────────────────────────
+
+  func sessionLang(token : Text) : Text {
+    switch (langMap.get(token)) {
+      case (?l) l;
+      case null "en";
+    };
+  };
+
+  // ── AI Session Management ─────────────────────────────────────────────────
+
+  /// Validate the unified DemonZeno AI passcode and return a session token.
+  public func validateAiPasscode(passcode : Text) : async Common.Result<Text, Text> {
+    if (AiAuth.validatePasscode(passcode)) {
+      let token = AiAuth.generateToken();
+      aiSessions.add(token);
+      #ok(token);
+    } else {
+      #err("Invalid passcode");
+    };
+  };
+
+  /// Check if a session token is valid.
   public query func validateAiSession(token : Text) : async Bool {
     AiAuth.validateSession(aiSessions, token);
   };
 
-  /// Check if a session token is an Insane-tier session.
-  public query func validateInsaneSession(token : Text) : async Bool {
-    AiAuth.validateSession(insaneSessions, token);
-  };
-
   public func invalidateAiSession(token : Text) : async () {
     AiAuth.invalidateSession(aiSessions, token);
-    AiAuth.invalidateSession(insaneSessions, token);
-    journalMap.remove(token);
+    journalMapV2.remove(token);
     ratingMap.remove(token);
     langMap.remove(token);
   };
 
   // ── AI Message Routing ────────────────────────────────────────────────────
 
-  /// Send a message to an AI provider with full conversation history.
-  /// The mode is validated server-side: Insane mode requires an insane session token.
+  /// Send a message through DemonZeno AI — auto-routes to the best provider.
+  /// The `provider` parameter is accepted for API compatibility but ignored;
+  /// the backend always auto-selects the best available provider.
   public func sendAiMessage(
     sessionToken : Text,
-    message : Text,
-    provider : Text,
-    mode : Text,
-    history : [AiTypes.ChatMessage],
+    message      : Text,
+    provider     : Text,
+    history      : [AiTypes.ChatMessage],
   ) : async Common.Result<Text, Text> {
-    // Validate AI session
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
       return #err("Invalid or expired AI session");
     };
-    // Insane mode requires an insane-tier session token; downgrade if not authorized
-    let effectiveMode = if (mode == "insane") {
-      if (AiAuth.validateSession(insaneSessions, sessionToken)) "insane" else "normal"
-    } else {
-      "normal"
-    };
-    // Get language preference for this session
-    let lang = switch (langMap.get(sessionToken)) {
-      case (?l) l;
-      case null "en";
-    };
-    // Look up API key for the requested provider — fall back to openrouter if empty
-    let apiKey = getProviderKey(provider);
-    let (finalProvider, finalKey) = if (apiKey == "") {
-      let fallbackKey = openrouterKey.value;
-      if (fallbackKey == "") {
-        return #err("No API key configured for provider '" # provider # "'. Please configure at least the OpenRouter key.");
-      };
-      ("openrouter", fallbackKey);
-    } else {
-      (provider, apiKey);
-    };
-    // Make the HTTP outcall with full history and language
-    let response = await AiProviders.callProvider(finalProvider, finalKey, effectiveMode, lang, history, message);
-    if (response == "") {
-      return #err("Empty response from provider");
-    };
+    let lang = sessionLang(sessionToken);
+    // Strip AiTypes.ChatMessage fields down to what the provider layer expects
+    let plainHistory = history.map(func(m) { { role = m.role; content = m.content } });
+    let response = await AiProviders.routeAndSendMessage(
+      providerKeys(), lang, plainHistory, message,
+    );
+    if (response == "") return #err("Empty response from provider");
     #ok(response);
   };
 
-  // ── AI signal backtesting ─────────────────────────────────────────────────
+  // ── AI Signal Backtesting ─────────────────────────────────────────────────
 
   public func backtestSignal(signal : Text, sessionToken : Text) : async Common.Result<Text, Text> {
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
       return #err("Invalid or expired AI session");
     };
-    if (hasNoProvider()) {
-      return #err("No AI provider configured. Please set at least one API key.");
-    };
-    let (prov, key) = getBestAvailableKey();
-    let prompt = "Perform a detailed backtesting analysis of the following trading signal. " #
+    let prompt =
+      "Perform a detailed backtesting analysis of the following trading signal. " #
       "Analyze how this signal would have performed historically based on typical market conditions for this asset. " #
-      "Include: approximate win rate for similar setups, average R:R achieved, market regime when this works best, " #
+      "Include: approximate win rate for similar setups, average risk-to-reward achieved, market regime when this works best, " #
       "and any historical precedents. Be specific and data-driven.\n\nSignal to backtest:\n" # signal;
-    let response = await AiProviders.callProvider(prov, key, "normal", "en", [], prompt);
+    let response = await AiProviders.routeAndSendMessage(providerKeys(), "en", [], prompt);
     if (response == "") return #err("Empty response from provider");
     #ok(response);
   };
 
-  // ── Daily market briefing ─────────────────────────────────────────────────
+  // ── Daily Market Briefing ─────────────────────────────────────────────────
 
   public query func getDailyBriefing() : async Text {
     dailyBriefingRef.value;
@@ -169,35 +171,32 @@ mixin (
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
       return #err("Invalid or expired AI session");
     };
-    if (hasNoProvider()) {
-      return #err("No AI provider configured.");
-    };
-    let (prov, key) = getBestAvailableKey();
-    let prompt = "Generate a concise daily market briefing for crypto traders. " #
+    let prompt =
+      "Generate a concise daily market briefing for crypto traders. " #
       "Cover: overall market sentiment (bullish/bearish/neutral), top 3 coins to watch today with brief reason, " #
       "key support/resistance levels for BTC and ETH, and one high-probability trade setup with entry/TP/SL. " #
       "Format it cleanly with emoji headers. Be professional and specific.";
-    let response = await AiProviders.callProvider(prov, key, "normal", "en", [], prompt);
+    let response = await AiProviders.routeAndSendMessage(providerKeys(), "en", [], prompt);
     if (response == "") return #err("Empty response from provider");
-    dailyBriefingRef.value := response;
+    dailyBriefingRef.value  := response;
     dailyBriefingDate.value := Time.now();
     #ok(response);
   };
 
-  // ── Trade journal ─────────────────────────────────────────────────────────
+  // ── Trade Journal ─────────────────────────────────────────────────────────
 
   public func addJournalEntry(
-    entry : AiTypes.JournalEntry,
+    entry        : AiTypes.JournalEntry,
     sessionToken : Text,
   ) : async Common.Result<Text, Text> {
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
       return #err("Invalid or expired AI session");
     };
-    let journal = switch (journalMap.get(sessionToken)) {
+    let journal = switch (journalMapV2.get(sessionToken)) {
       case (?j) j;
       case null {
         let j = List.empty<AiTypes.JournalEntry>();
-        journalMap.add(sessionToken, j);
+        journalMapV2.add(sessionToken, j);
         j;
       };
     };
@@ -209,9 +208,9 @@ mixin (
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
       return #err("Invalid or expired AI session");
     };
-    switch (journalMap.get(sessionToken)) {
+    switch (journalMapV2.get(sessionToken)) {
       case (?j) #ok(j.toArray());
-      case null #ok([]);
+      case null  #ok([]);
     };
   };
 
@@ -219,25 +218,21 @@ mixin (
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
       return #err("Invalid or expired AI session");
     };
-    switch (journalMap.get(sessionToken)) {
+    switch (journalMapV2.get(sessionToken)) {
       case (?j) { j.clear(); #ok(()) };
-      case null #ok(());
+      case null  #ok(());
     };
   };
 
-  // ── AI-powered FAQ ────────────────────────────────────────────────────────
-  // No auth required — publicly accessible
+  // ── AI-Powered FAQ ────────────────────────────────────────────────────────
 
   public func askFaq(question : Text) : async Text {
-    if (hasNoProvider()) {
-      return "DemonZeno AI is not yet configured. Please ask the admin to set up an API key.";
-    };
-    let (prov, key) = getBestAvailableKey();
-    let systemContext = "You are a helpful assistant for the DemonZeno platform. " #
+    let knowledgeBase =
+      "You are a helpful assistant for the DemonZeno platform. " #
       "Answer questions about DemonZeno using only the following knowledge base:\n\n" #
       "- DemonZeno is an anime-inspired crypto trading signals platform.\n" #
       "- DemonZeno provides FREE daily trading signals on Binance Square @DemonZeno.\n" #
-      "- The AI has two modes: Normal (for Binance assets) and Insane (for any asset/exchange).\n" #
+      "- DemonZeno AI is a single unified AI that handles all requests: trading signals, Q&A, code, and more.\n" #
       "- DMNZ is the platform's meme token launching via Telegram Mini App on Blum in 2027.\n" #
       "- 2026: Community building on Binance.\n" #
       "- 2027: DMNZ token launch via Blum on Telegram.\n" #
@@ -245,16 +240,41 @@ mixin (
       "- 100% fair launch, no presale, no allocation, no vesting.\n" #
       "- Official social links: Binance Square @DemonZeno and Twitter @ZenoDemon.\n" #
       "- Slogan: 'DemonZeno: Master the Chaos, Slay the Market, and Trade Like a God.'\n" #
-      "- Admin passcode is required to access the admin dashboard (256-bit SHA validated).\n" #
-      "Answer concisely and in DemonZeno's confident, anime-inspired voice. " #
+      "Answer concisely in DemonZeno's confident, anime-inspired voice. " #
       "If the question is not covered by the knowledge base, say so politely.";
-    await AiProviders.callProvider(prov, key, "normal", "en", [], systemContext # "\n\nQuestion: " # question);
+    await AiProviders.routeAndSendMessage(
+      providerKeys(), "en", [],
+      knowledgeBase # "\n\nQuestion: " # question,
+    );
   };
 
-  // ── Session recap ─────────────────────────────────────────────────────────
+  /// DMNZ-token-specific FAQ — answers only from token metadata context.
+  public func askTokenFaq(question : Text) : async Text {
+    let tokenContext =
+      "You are a dedicated DemonZeno Token (DMNZ) FAQ assistant. " #
+      "Only answer questions about the DMNZ token using this knowledge base:\n\n" #
+      "- Token name: DemonZeno | Ticker: DMNZ\n" #
+      "- 100% fair launch — no presale, no allocation, no vesting schedule\n" #
+      "- Launch platform: Telegram Mini App via Blum\n" #
+      "- Launch date: April 2, 2028\n" #
+      "- 2028 Buyback & Burn event: reduce supply, increase token price, trigger bonding curve for major exchange listings\n" #
+      "- Bonding curve mechanic: burn event moves DMNZ onto external centralised and decentralised exchanges\n" #
+      "- BLUM is a Telegram-based launchpad for Mini App tokens — DemonZeno launches there\n" #
+      "- Post-launch benefits: reduced supply through burns, community perks, exchange listings\n" #
+      "- No KYC, no whitelist, no ambassador program, no presale tiers\n" #
+      "- Follow the project: Binance Square @DemonZeno | Twitter @ZenoDemon\n" #
+      "Answer concisely and in DemonZeno's confident voice. " #
+      "If the question is outside this scope, politely redirect the user.";
+    await AiProviders.routeAndSendMessage(
+      providerKeys(), "en", [],
+      tokenContext # "\n\nQuestion: " # question,
+    );
+  };
+
+  // ── Session Recap ─────────────────────────────────────────────────────────
 
   public func getSessionRecap(
-    history : [AiTypes.ChatMessage],
+    history      : [AiTypes.ChatMessage],
     sessionToken : Text,
   ) : async Common.Result<Text, Text> {
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
@@ -263,11 +283,6 @@ mixin (
     if (history.size() == 0) {
       return #ok("No signals or insights discussed yet in this session.");
     };
-    if (hasNoProvider()) {
-      return #err("No AI provider configured.");
-    };
-    let (prov, key) = getBestAvailableKey();
-    // Build a compact transcript from history
     var transcript = "";
     for (msg in history.values()) {
       if (msg.role == "user") {
@@ -276,15 +291,16 @@ mixin (
         transcript := transcript # "AI: " # msg.content # "\n";
       };
     };
-    let prompt = "Summarize this trading session. List all signals discussed with their key details " #
+    let prompt =
+      "Summarize this trading session. List all signals discussed with their key details " #
       "(asset, entry, TP1/TP2/TP3, SL, timeframe), any market insights shared, and overall session theme. " #
       "Be concise and well-structured with emoji headers.\n\nSession transcript:\n" # transcript;
-    let response = await AiProviders.callProvider(prov, key, "normal", "en", [], prompt);
+    let response = await AiProviders.routeAndSendMessage(providerKeys(), "en", [], prompt);
     if (response == "") return #err("Empty response from provider");
     #ok(response);
   };
 
-  // ── Multi-language support ────────────────────────────────────────────────
+  // ── Multi-Language Support ────────────────────────────────────────────────
 
   public func setAiLanguage(lang : Text, sessionToken : Text) : async Common.Result<(), Text> {
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
@@ -294,7 +310,7 @@ mixin (
     let isSupported = supported.find(func(l) { l == lang });
     switch (isSupported) {
       case null return #err("Unsupported language. Supported: en, ar, es, zh");
-      case _ {};
+      case _    {};
     };
     langMap.add(sessionToken, lang);
     #ok(());
@@ -306,15 +322,15 @@ mixin (
     };
     switch (langMap.get(sessionToken)) {
       case (?l) #ok(l);
-      case null #ok("en");
+      case null  #ok("en");
     };
   };
 
-  // ── Response rating ───────────────────────────────────────────────────────
+  // ── Response Rating ───────────────────────────────────────────────────────
 
   public func rateAiResponse(
-    messageId : Text,
-    rating : Int,
+    messageId    : Text,
+    rating       : Int,
     sessionToken : Text,
   ) : async Common.Result<(), Text> {
     if (not AiAuth.validateSession(aiSessions, sessionToken)) {
@@ -336,7 +352,6 @@ mixin (
       rating;
       timestamp = Time.now();
     };
-    // Update if exists, otherwise add
     var found = false;
     ratings.mapInPlace(func(r) {
       if (r.messageId == messageId) {
@@ -358,47 +373,185 @@ mixin (
     };
     switch (ratingMap.get(sessionToken)) {
       case (?r) #ok(r.toArray());
-      case null #ok([]);
+      case null  #ok([]);
     };
+  };
+
+  // ── Post-Trade Analysis ───────────────────────────────────────────────────
+
+  /// Ask the AI to analyze what happened after a trade closed.
+  public func generatePostTradeAnalysis(
+    signal       : Text,
+    outcome      : Text,
+    sessionToken : Text,
+  ) : async Common.Result<Text, Text> {
+    if (not AiAuth.validateSession(aiSessions, sessionToken)) {
+      return #err("Invalid or expired AI session");
+    };
+    let prompt =
+      "Provide a detailed post-trade analysis for the following completed trade.\n\n" #
+      "Original Signal:\n" # signal # "\n\n" #
+      "Trade Outcome:\n" # outcome # "\n\n" #
+      "Analysis should include:\n" #
+      "1. What went right or wrong with the entry\n" #
+      "2. Whether the stop loss and take profits were reasonable\n" #
+      "3. What market conditions affected the outcome\n" #
+      "4. Key lessons learned from this trade\n" #
+      "5. How to improve the setup next time\n\n" #
+      "Be specific, constructive, and educational.";
+    let response = await AiProviders.routeAndSendMessage(providerKeys(), "en", [], prompt);
+    if (response == "") return #err("Empty response from provider");
+    #ok(response);
+  };
+
+  // ── Price Prediction ──────────────────────────────────────────────────────
+
+  /// Ask the AI for a short-term price prediction with confidence level.
+  public func generatePricePrediction(
+    asset        : Text,
+    sessionToken : Text,
+  ) : async Common.Result<Text, Text> {
+    if (not AiAuth.validateSession(aiSessions, sessionToken)) {
+      return #err("Invalid or expired AI session");
+    };
+    let prompt =
+      "Provide a short-term price prediction for " # asset # ".\n\n" #
+      "Format your response as:\n" #
+      "📈 PRICE PREDICTION: " # asset # "\n" #
+      "⏱ Timeframe: [24h/48h/7d]\n" #
+      "🎯 Target: $[price]\n" #
+      "📊 Confidence: [High/Medium/Low] — [brief reason]\n" #
+      "🔑 Key Factors: [3 bullet points driving this prediction]\n" #
+      "⚠️ Risk: [what could invalidate this prediction]\n\n" #
+      "IMPORTANT: This is an AI estimate based on technical and market analysis patterns. " #
+      "Always label it as an estimate, not financial advice.";
+    let response = await AiProviders.routeAndSendMessage(providerKeys(), "en", [], prompt);
+    if (response == "") return #err("Empty response from provider");
+    #ok(response);
+  };
+
+  // ── Signal Comparison ─────────────────────────────────────────────────────
+
+  /// Compare two assets side-by-side and determine which is the stronger trade.
+  public func compareSignals(
+    asset1       : Text,
+    asset2       : Text,
+    sessionToken : Text,
+  ) : async Common.Result<Text, Text> {
+    if (not AiAuth.validateSession(aiSessions, sessionToken)) {
+      return #err("Invalid or expired AI session");
+    };
+    let prompt =
+      "Compare the current trading opportunities for " # asset1 # " vs " # asset2 # ".\n\n" #
+      "For each asset provide:\n" #
+      "- Current trend direction\n" #
+      "- Key support/resistance levels\n" #
+      "- Recommended trade direction (LONG/SHORT)\n" #
+      "- Approximate Entry, SL, TP1, TP2, TP3\n" #
+      "- Confidence score (1–10)\n\n" #
+      "Then give a final verdict: which asset offers the stronger trade opportunity right now and why.\n\n" #
+      "Format clearly with emoji headers and a comparison table.";
+    let response = await AiProviders.routeAndSendMessage(providerKeys(), "en", [], prompt);
+    if (response == "") return #err("Empty response from provider");
+    #ok(response);
+  };
+
+  // ── News Impact Analysis ──────────────────────────────────────────────────
+
+  /// Paste a news headline and get an AI rating of its market impact.
+  public func analyzeNewsImpact(
+    headline     : Text,
+    sessionToken : Text,
+  ) : async Common.Result<Text, Text> {
+    if (not AiAuth.validateSession(aiSessions, sessionToken)) {
+      return #err("Invalid or expired AI session");
+    };
+    let prompt =
+      "Analyze the potential market impact of the following news headline:\n\n" #
+      "\"" # headline # "\"\n\n" #
+      "Provide:\n" #
+      "📰 HEADLINE ANALYSIS\n" #
+      "🔥 Impact Level: [High/Medium/Low/Neutral]\n" #
+      "📈 Expected Market Direction: [Bullish/Bearish/Neutral] for [affected assets]\n" #
+      "⏱ Duration: [Short-term/Medium-term/Long-term]\n" #
+      "🎯 Most Affected Assets: [list top 3 affected coins/pairs]\n" #
+      "💡 Trading Insight: [how to position around this news]\n" #
+      "⚠️ Disclaimer: This is AI analysis, not financial advice.";
+    let response = await AiProviders.routeAndSendMessage(providerKeys(), "en", [], prompt);
+    if (response == "") return #err("Empty response from provider");
+    #ok(response);
+  };
+
+  // ── AI Signal Chaining ────────────────────────────────────────────────────
+
+  /// Generate a complete multi-step trading plan: entry → management → exit.
+  public func generateSignalChain(
+    asset        : Text,
+    sessionToken : Text,
+  ) : async Common.Result<Text, Text> {
+    if (not AiAuth.validateSession(aiSessions, sessionToken)) {
+      return #err("Invalid or expired AI session");
+    };
+    let prompt =
+      "Create a complete multi-step trading plan for " # asset # ".\n\n" #
+      "Include ALL of the following in order:\n\n" #
+      "1. 🎯 INITIAL ENTRY SIGNAL\n" #
+      "   Entry: $X | SL: $X | TP1: $X | TP2: $X | TP3: $X\n\n" #
+      "2. 📊 TRADE MANAGEMENT\n" #
+      "   - When to move SL to breakeven\n" #
+      "   - When to take partial profits\n" #
+      "   - Position sizing recommendation\n\n" #
+      "3. 🔄 RE-ENTRY SETUP\n" #
+      "   - If TP1 is hit, where to re-enter for a continuation\n" #
+      "   - If SL is hit, where the next valid setup forms\n\n" #
+      "4. 🏁 EXIT STRATEGY\n" #
+      "   - Final exit levels\n" #
+      "   - Warning signals to exit early\n\n" #
+      "5. ⚠️ RISK ASSESSMENT\n" #
+      "   - Max risk per trade\n" #
+      "   - Market conditions that invalidate this plan";
+    let response = await AiProviders.routeAndSendMessage(providerKeys(), "en", [], prompt);
+    if (response == "") return #err("Empty response from provider");
+    #ok(response);
   };
 
   // ── Admin API Key Management ──────────────────────────────────────────────
 
   public func setAiApiKey(
     adminToken : Text,
-    provider : Text,
-    key : Text,
+    provider   : Text,
+    key        : Text,
   ) : async Common.Result<(), Text> {
     if (not adminSessions.contains(adminToken)) {
       return #err("Invalid admin session");
     };
     switch (provider) {
-      case "gemini"      { geminiKey.value := key };
-      case "openai"      { openaiKey.value := key };
-      case "gpt4o"       { openaiKey.value := key };
-      case "grok"        { grokKey.value := key };
-      case "claude"      { claudeKey.value := key };
-      case "perplexity"  { perplexityKey.value := key };
-      case "mistral"     { mistralKey.value := key };
-      case "cohere"      { cohereKey.value := key };
-      case "deepseek"    { deepseekKey.value := key };
-      case "groq"        { groqKey.value := key };
-      case "together"    { togetherKey.value := key };
-      case "fireworks"   { fireworksKey.value := key };
-      case "openrouter"  { openrouterKey.value := key };
+      case "gemini"      { geminiKey.value      := key };
+      case "openai"      { openaiKey.value      := key };
+      case "gpt4o"       { openaiKey.value      := key };
+      case "grok"        { grokKey.value        := key };
+      case "claude"      { claudeKey.value      := key };
+      case "perplexity"  { perplexityKey.value  := key };
+      case "mistral"     { mistralKey.value     := key };
+      case "cohere"      { cohereKey.value      := key };
+      case "deepseek"    { deepseekKey.value    := key };
+      case "groq"        { groqKey.value        := key };
+      case "together"    { togetherKey.value    := key };
+      case "fireworks"   { fireworksKey.value   := key };
+      case "openrouter"  { openrouterKey.value  := key };
       case "huggingface" { huggingfaceKey.value := key };
-      case "replicate"   { replicateKey.value := key };
-      case "ollama"      { ollamaKey.value := key };
-      case "ai21"        { ai21Key.value := key };
-      case "nlpcloud"    { nlpcloudKey.value := key };
-      case "anyscale"    { anyscaleKey.value := key };
-      case "cerebras"    { cerebrasKey.value := key };
-      case "sambanova"   { sambanovaKey.value := key };
-      case "cloudflare"  { cloudflareKey.value := key };
-      case "novita"      { novitaKey.value := key };
-      case "moonshot"    { moonshotKey.value := key };
-      case "zhipu"       { zhipuKey.value := key };
-      case "upstage"     { upstageKey.value := key };
+      case "replicate"   { replicateKey.value   := key };
+      case "ollama"      { ollamaKey.value      := key };
+      case "ai21"        { ai21Key.value        := key };
+      case "nlpcloud"    { nlpcloudKey.value    := key };
+      case "anyscale"    { anyscaleKey.value    := key };
+      case "cerebras"    { cerebrasKey.value    := key };
+      case "sambanova"   { sambanovaKey.value   := key };
+      case "cloudflare"  { cloudflareKey.value  := key };
+      case "novita"      { novitaKey.value      := key };
+      case "moonshot"    { moonshotKey.value    := key };
+      case "zhipu"       { zhipuKey.value       := key };
+      case "upstage"     { upstageKey.value     := key };
       case _ { return #err("Unknown provider: " # provider) };
     };
     #ok(());
@@ -406,95 +559,31 @@ mixin (
 
   public query func getAiProviderStatus() : async [(Text, Bool)] {
     [
-      ("gemini",      geminiKey.value != ""),
-      ("openai",      openaiKey.value != ""),
-      ("grok",        grokKey.value != ""),
-      ("claude",      claudeKey.value != ""),
-      ("perplexity",  perplexityKey.value != ""),
-      ("mistral",     mistralKey.value != ""),
-      ("cohere",      cohereKey.value != ""),
-      ("deepseek",    deepseekKey.value != ""),
-      ("groq",        groqKey.value != ""),
-      ("together",    togetherKey.value != ""),
-      ("fireworks",   fireworksKey.value != ""),
-      ("openrouter",  openrouterKey.value != ""),
+      ("gemini",      geminiKey.value      != ""),
+      ("openai",      openaiKey.value      != ""),
+      ("grok",        grokKey.value        != ""),
+      ("claude",      claudeKey.value      != ""),
+      ("perplexity",  perplexityKey.value  != ""),
+      ("mistral",     mistralKey.value     != ""),
+      ("cohere",      cohereKey.value      != ""),
+      ("deepseek",    deepseekKey.value    != ""),
+      ("groq",        groqKey.value        != ""),
+      ("together",    togetherKey.value    != ""),
+      ("fireworks",   fireworksKey.value   != ""),
+      ("openrouter",  openrouterKey.value  != ""),
       ("huggingface", huggingfaceKey.value != ""),
-      ("replicate",   replicateKey.value != ""),
-      ("ollama",      ollamaKey.value != ""),
-      ("ai21",        ai21Key.value != ""),
-      ("nlpcloud",    nlpcloudKey.value != ""),
-      ("anyscale",    anyscaleKey.value != ""),
-      ("cerebras",    cerebrasKey.value != ""),
-      ("sambanova",   sambanovaKey.value != ""),
-      ("cloudflare",  cloudflareKey.value != ""),
-      ("novita",      novitaKey.value != ""),
-      ("moonshot",    moonshotKey.value != ""),
-      ("zhipu",       zhipuKey.value != ""),
-      ("upstage",     upstageKey.value != ""),
+      ("replicate",   replicateKey.value   != ""),
+      ("ollama",      ollamaKey.value      != ""),
+      ("ai21",        ai21Key.value        != ""),
+      ("nlpcloud",    nlpcloudKey.value    != ""),
+      ("anyscale",    anyscaleKey.value    != ""),
+      ("cerebras",    cerebrasKey.value    != ""),
+      ("sambanova",   sambanovaKey.value   != ""),
+      ("cloudflare",  cloudflareKey.value  != ""),
+      ("novita",      novitaKey.value      != ""),
+      ("moonshot",    moonshotKey.value    != ""),
+      ("zhipu",       zhipuKey.value       != ""),
+      ("upstage",     upstageKey.value     != ""),
     ];
-  };
-
-  // ── Private helpers ───────────────────────────────────────────────────────
-
-  func getProviderKey(provider : Text) : Text {
-    switch (provider) {
-      case "gemini"      { geminiKey.value };
-      case "openai"      { openaiKey.value };
-      case "gpt4o"       { openaiKey.value };
-      case "grok"        { grokKey.value };
-      case "claude"      { claudeKey.value };
-      case "perplexity"  { perplexityKey.value };
-      case "mistral"     { mistralKey.value };
-      case "cohere"      { cohereKey.value };
-      case "deepseek"    { deepseekKey.value };
-      case "groq"        { groqKey.value };
-      case "together"    { togetherKey.value };
-      case "fireworks"   { fireworksKey.value };
-      case "openrouter"  { openrouterKey.value };
-      case "huggingface" { huggingfaceKey.value };
-      case "replicate"   { replicateKey.value };
-      case "ollama"      { ollamaKey.value };
-      case "ai21"        { ai21Key.value };
-      case "nlpcloud"    { nlpcloudKey.value };
-      case "anyscale"    { anyscaleKey.value };
-      case "cerebras"    { cerebrasKey.value };
-      case "sambanova"   { sambanovaKey.value };
-      case "cloudflare"  { cloudflareKey.value };
-      case "novita"      { novitaKey.value };
-      case "moonshot"    { moonshotKey.value };
-      case "zhipu"       { zhipuKey.value };
-      case "upstage"     { upstageKey.value };
-      case _             { "" };
-    };
-  };
-
-  /// Returns (provider, apiKey) for the best available provider (priority order).
-  /// Returns ("", "") when no provider has a key configured.
-  func getBestAvailableKey() : (Text, Text) {
-    let priority = [
-      ("openrouter",  openrouterKey.value),
-      ("gemini",      geminiKey.value),
-      ("groq",        groqKey.value),
-      ("mistral",     mistralKey.value),
-      ("deepseek",    deepseekKey.value),
-      ("together",    togetherKey.value),
-      ("openai",      openaiKey.value),
-      ("claude",      claudeKey.value),
-      ("perplexity",  perplexityKey.value),
-      ("cohere",      cohereKey.value),
-      ("grok",        grokKey.value),
-      ("fireworks",   fireworksKey.value),
-      ("cerebras",    cerebrasKey.value),
-      ("ai21",        ai21Key.value),
-    ];
-    for ((prov, key) in priority.values()) {
-      if (key != "") return (prov, key);
-    };
-    ("", "");
-  };
-
-  func hasNoProvider() : Bool {
-    let (_, key) = getBestAvailableKey();
-    key == "";
   };
 };

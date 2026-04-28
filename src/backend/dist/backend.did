@@ -9,6 +9,25 @@ type WhitepaperContent =
    title: text;
    updatedAt: int;
  };
+type TopTrader = 
+ record {
+   achievement: text;
+   bio: text;
+   createdAt: int;
+   id: text;
+   isActive: bool;
+   name: text;
+   week: text;
+ };
+type TokenData = 
+ record {
+   burnedAmount: text;
+   launchDate: text;
+   launchPlatform: text;
+   name: text;
+   supply: text;
+   ticker: text;
+ };
 type Timeframe = 
  variant {
    LongTerm;
@@ -39,6 +58,18 @@ type Stats =
    winRate: float64;
    wins: nat;
  };
+type SignalTemplate = 
+ record {
+   asset: text;
+   confidence: Confidence;
+   createdAt: int;
+   direction: Direction;
+   id: text;
+   marketType: MarketType;
+   name: text;
+   notes: text;
+   timeframe: Timeframe;
+ };
 type SignalPerformanceStats = 
  record {
    losses: nat;
@@ -66,11 +97,17 @@ type SignalInput =
    isDraft: bool;
    marketType: MarketType;
    notes: text;
+   providerLabel: text;
    publishAt: opt int;
    sourceLabel: text;
    stopLoss: text;
+   tags: vec text;
    targetPrice: text;
+   templateId: opt text;
    timeframe: Timeframe;
+   tp1: text;
+   tp2: text;
+   tp3: text;
  };
 type Signal = 
  record {
@@ -84,12 +121,20 @@ type Signal =
    isDraft: bool;
    marketType: MarketType;
    notes: text;
+   providerLabel: text;
    publishAt: opt int;
    result: ResultStatus;
    sourceLabel: text;
    stopLoss: text;
+   tags: vec text;
    targetPrice: text;
+   templateId: opt text;
    timeframe: Timeframe;
+   tp1: text;
+   tp2: text;
+   tp3: text;
+   voteDown: nat;
+   voteUp: nat;
  };
 type SentimentLevel = 
  variant {
@@ -107,42 +152,57 @@ type RoadmapMilestone =
 type Result_9 = 
  variant {
    err: text;
-   ok: vec Signal;
+   ok: vec SignalTemplate;
  };
 type Result_8 = 
  variant {
    err: text;
-   ok: vec AuditSnapshot;
+   ok: StatsConfig;
  };
 type Result_7 = 
  variant {
    err: text;
-   ok: Announcement;
+   ok: vec Signal;
  };
 type Result_6 = 
  variant {
    err: text;
-   ok: bool;
+   ok: vec AuditSnapshot;
  };
 type Result_5 = 
  variant {
    err: text;
-   ok: BinancePost;
+   ok: Announcement;
  };
 type Result_4 = 
  variant {
    err: text;
-   ok: FAQ;
+   ok: BinancePost;
  };
 type Result_3 = 
  variant {
    err: text;
-   ok: Signal;
+   ok: FAQ;
+ };
+type Result_22 = 
+ variant {
+   err: text;
+   ok: BurnEvent;
+ };
+type Result_21 = 
+ variant {
+   err: text;
+   ok: HypeMilestone;
+ };
+type Result_20 = 
+ variant {
+   err: text;
+   ok: SignalTemplate;
  };
 type Result_2 = 
  variant {
    err: text;
-   ok;
+   ok: Signal;
  };
 type Result_19 = 
  variant {
@@ -157,50 +217,47 @@ type Result_18 =
 type Result_17 = 
  variant {
    err: text;
-   ok: Analytics;
+   ok: vec Announcement;
  };
 type Result_16 = 
  variant {
    err: text;
-   ok: vec AuditEntry;
+   ok: Analytics;
  };
 type Result_15 = 
  variant {
    err: text;
-   ok: vec text;
+   ok: vec AuditEntry;
  };
 type Result_14 = 
  variant {
    err: text;
-   ok: vec JournalEntry;
+   ok: vec text;
  };
 type Result_13 = 
  variant {
    err: text;
-   ok: vec NotifyMe;
+   ok: vec JournalEntry;
  };
 type Result_12 = 
  variant {
    err: text;
-   ok: vec ResponseRating;
+   ok: vec NotifyMe;
  };
 type Result_11 = 
  variant {
    err: text;
-   ok: SignalPerformanceStats;
+   ok: vec ResponseRating;
  };
 type Result_10 = 
  variant {
    err: text;
-   ok: StatsConfig;
+   ok: SignalPerformanceStats;
  };
 type Result_1 = 
  variant {
    err: text;
-   ok: record {
-         text;
-         text;
-       };
+   ok: text;
  };
 type ResultStatus = 
  variant {
@@ -212,7 +269,7 @@ type ResultStatus =
 type Result = 
  variant {
    err: text;
-   ok: text;
+   ok;
  };
 type ResponseRating = 
  record {
@@ -276,13 +333,24 @@ type MaintenanceMode =
  };
 type JournalEntry = 
  record {
+   asset: text;
+   direction: text;
    entryPrice: float64;
    exitPrice: opt float64;
    id: text;
+   lots: float64;
    notes: text;
    pnl: opt float64;
-   signal: text;
    timestamp: int;
+ };
+type HypeMilestone = 
+ record {
+   achieved: bool;
+   achievedAt: opt int;
+   id: text;
+   order: nat;
+   targetCount: nat;
+   title: text;
  };
 type HolderBenefit = 
  record {
@@ -292,12 +360,23 @@ type HolderBenefit =
    id: text;
    title: text;
  };
+type FaqCategory = 
+ variant {
+   DmnzToken;
+   GeneralTrading;
+   Platform;
+   Signals;
+ };
 type FAQ = 
  record {
    answer: text;
+   category: FaqCategory;
+   helpfulCount: nat;
    id: text;
+   notHelpfulCount: nat;
    order: nat;
    question: text;
+   timestamp: int;
  };
 type Direction = 
  variant {
@@ -327,6 +406,16 @@ type Confidence =
    High;
    Low;
    Medium;
+ };
+type CommunityQuestion = 
+ record {
+   answer: opt text;
+   id: text;
+   isActive: bool;
+   isPinned: bool;
+   question: text;
+   timestamp: int;
+   votes: nat;
  };
 type CommunityMilestone = 
  record {
@@ -364,6 +453,15 @@ type BurnScheduleEntry =
    status: text;
    txHash: opt text;
  };
+type BurnEvent = 
+ record {
+   amount: text;
+   createdAt: int;
+   date: text;
+   executed: bool;
+   id: text;
+   reason: text;
+ };
 type BinancePost = 
  record {
    date: text;
@@ -382,8 +480,10 @@ type AuditSnapshot =
 type AuditEntry = 
  record {
    action: text;
+   adminToken: text;
    details: text;
    id: text;
+   rollbackData: opt text;
    timestamp: int;
  };
 type AssetStats = 
@@ -404,13 +504,25 @@ type AssetSentiment =
    trend: text;
    updatedAt: int;
  };
+type AnnouncementCategory = 
+ variant {
+   Admin;
+   Alert;
+   General;
+   Signal;
+   Token;
+ };
 type Announcement = 
  record {
+   body: text;
+   category: AnnouncementCategory;
    id: text;
    isActive: bool;
+   isPinned: bool;
    link: opt text;
    publishAt: opt int;
-   "text": text;
+   timestamp: int;
+   title: text;
  };
 type Analytics = 
  record {
@@ -435,145 +547,194 @@ type AbTest =
    variantB: text;
  };
 service : {
+  addAnnouncement: (sessionToken: text, title: text, body: text, category:
+   AnnouncementCategory, link: opt text, isPinned: bool, publishAt:
+   opt int) -> (Result_5);
   addBinancePost: (adminToken: text, title: text, snippet: text, url: 
-   text, date: text) -> (Result_5);
+   text, date: text) -> (Result_4);
   addBurnEntry: (date: text, amount: text, reason: text, sessionToken:
-   text) -> (Result);
-  addFaq: (sessionToken: text, question: text, answer: text) -> (Result_4);
-  addJournalEntry: (entry: JournalEntry, sessionToken: text) -> (Result);
+   text) -> (Result_1);
+  addBurnEvent: (date: text, amount: text, reason: text, sessionToken:
+   text) -> (Result_22);
+  addFaq: (sessionToken: text, question: text, answer: text, category:
+   FaqCategory) -> (Result_3);
+  addHypeMilestone: (title: text, targetCount: nat, sessionToken: text) ->
+   (Result_21);
+  addJournalEntry: (entry: JournalEntry, sessionToken: text) -> (Result_1);
   addMilestone: (title: text, description: text, sessionToken: text) ->
-   (Result);
-  addQuote: (quote: text, author: text, sessionToken: text) -> (Result);
+   (Result_1);
+  addQuote: (quote: text, author: text, sessionToken: text) -> (Result_1);
   addSignal: (sessionToken: text, asset: text, marketType: MarketType,
    direction: Direction, entryPrice: text, targetPrice: text, stopLoss: 
-   text, notes: text, confidence: Confidence, sourceLabel: text, expiry:
-   opt int, timeframe: Timeframe, isDraft: bool, publishAt: opt int) ->
-   (Result_3);
+   text, tp1: text, tp2: text, tp3: text, notes: text, confidence:
+   Confidence, sourceLabel: text, providerLabel: text, expiry: opt int,
+   timeframe: Timeframe, isDraft: bool, publishAt: opt int, templateId:
+   opt text, tags: vec text) -> (Result_2);
+  addSignalNote: (sessionToken: text, id: text, note: text) -> (Result);
+  addSignalTemplate: (sessionToken: text, name: text, asset: text,
+   marketType: MarketType, direction: Direction, timeframe: Timeframe,
+   confidence: Confidence, notes: text) -> (Result_20);
   addTestimonial: (name: text, content: text, winAmount: opt text, asset:
-   opt text, sessionToken: text) -> (Result);
+   opt text, sessionToken: text) -> (Result_1);
+  addTopTrader: (name: text, bio: text, achievement: text, week: text,
+   sessionToken: text) -> (Result_1);
+  analyzeNewsImpact: (headline: text, sessionToken: text) -> (Result_1);
   askFaq: (question: text) -> (text);
-  backtestSignal: (signal: text, sessionToken: text) -> (Result);
-  banEmail: (sessionToken: text, email: text) -> (Result_2);
-  clearJournal: (sessionToken: text) -> (Result_2);
+  askTokenFaq: (question: text) -> (text);
+  backtestSignal: (signal: text, sessionToken: text) -> (Result_1);
+  banEmail: (sessionToken: text, email: text) -> (Result);
+  clearJournal: (sessionToken: text) -> (Result);
+  compareSignals: (asset1: text, asset2: text, sessionToken: text) ->
+   (Result_1);
   createAbTest: (name: text, variantA: text, variantB: text, sessionToken:
-   text) -> (Result);
-  createAuditSnapshot: (snapshotLabel: text, sessionToken: text) -> (Result);
+   text) -> (Result_1);
+  createAuditSnapshot: (snapshotLabel: text, sessionToken: text) ->
+   (Result_1);
   createPushNotification: (title: text, body: text, sessionToken: text) ->
-   (Result);
-  deleteBinancePost: (adminToken: text, id: text) -> (Result_2);
-  deleteFaq: (sessionToken: text, id: text) -> (Result_2);
-  deleteQuote: (id: text, sessionToken: text) -> (Result_2);
-  deleteSignal: (sessionToken: text, id: text) -> (Result_2);
-  deleteTestimonial: (id: text, sessionToken: text) -> (Result_2);
+   (Result_1);
+  deleteAnnouncement: (sessionToken: text, id: text) -> (Result);
+  deleteBinancePost: (adminToken: text, id: text) -> (Result);
+  deleteCommunityQuestion: (id: text, sessionToken: text) -> (Result);
+  deleteFaq: (sessionToken: text, id: text) -> (Result);
+  deleteQuote: (id: text, sessionToken: text) -> (Result);
+  deleteSignal: (sessionToken: text, id: text) -> (Result);
+  deleteSignalTemplate: (sessionToken: text, id: text) -> (Result);
+  deleteTestimonial: (id: text, sessionToken: text) -> (Result);
+  deleteTopTrader: (id: text, sessionToken: text) -> (Result);
   dismissPushNotification: (id: text) -> ();
-  generateDailyBriefing: (sessionToken: text) -> (Result);
+  executeAdminCommand: (sessionToken: text, command: text) -> (Result_1);
+  generateDailyBriefing: (sessionToken: text) -> (Result_1);
+  generatePostTradeAnalysis: (signal: text, outcome: text, sessionToken:
+   text) -> (Result_1);
+  generatePricePrediction: (asset: text, sessionToken: text) -> (Result_1);
+  generateSignalChain: (asset: text, sessionToken: text) -> (Result_1);
   getAbTests: (sessionToken: text) -> (Result_19);
   getAbVariant: (testId: text) -> (text) query;
   getActivePushNotifications: () -> (vec PushNotification) query;
   getAdminActivityHeatmap: (sessionToken: text) -> (Result_18);
-  getAdminConfig: (adminToken: text) -> (Result);
-  getAiLanguage: (sessionToken: text) -> (Result) query;
+  getAdminConfig: (adminToken: text) -> (Result_1);
+  getAiLanguage: (sessionToken: text) -> (Result_1) query;
   getAiProviderStatus: () -> (vec record {
                                     text;
                                     bool;
                                   }) query;
-  getAnalytics: (sessionToken: text) -> (Result_17);
-  getAnalyticsCsv: (sessionToken: text) -> (Result);
-  getAnnouncement: () -> (opt Announcement) query;
-  getAuditLog: (sessionToken: text) -> (Result_16);
-  getBannedEmails: (sessionToken: text) -> (Result_15);
+  getAllAnnouncements: (sessionToken: text) -> (Result_17);
+  getAnalytics: (sessionToken: text) -> (Result_16);
+  getAnalyticsCsv: (sessionToken: text) -> (Result_1);
+  getAnnouncements: () -> (vec Announcement) query;
+  getAuditLog: (sessionToken: text) -> (Result_15);
+  getBannedEmails: (sessionToken: text) -> (Result_14);
   getBinanceFeed: () -> (vec BinancePost) query;
   getBurnSchedule: () -> (vec BurnScheduleEntry) query;
   getBurnTracker: () -> (BurnTracker) query;
   getCommunityCounter: () -> (CommunityCounter) query;
+  getCommunityQuestions: () -> (vec CommunityQuestion) query;
   getDailyBriefing: () -> (text) query;
   getFaqs: () -> (vec FAQ) query;
+  getFaqsByCategory: (category: FaqCategory) -> (vec FAQ) query;
   getHolderBenefits: () -> (vec HolderBenefit) query;
-  getJournalEntries: (sessionToken: text) -> (Result_14) query;
+  getHypeMilestones: () -> (vec HypeMilestone) query;
+  getJournalEntries: (sessionToken: text) -> (Result_13) query;
   getMaintenanceMode: () -> (MaintenanceMode) query;
   getMarketMoodBanner: () -> (opt MarketMoodBanner) query;
   getMarketPrices: () -> (vec PriceData) query;
   getMarketSentiment: () -> (MarketSentiment) query;
   getMilestones: () -> (vec CommunityMilestone) query;
-  getNotifyMeList: (sessionToken: text) -> (Result_13);
+  getNotifyMeList: (sessionToken: text) -> (Result_12);
   getPublicBurnSchedule: () -> (vec BurnScheduleEntry) query;
   getQuotes: () -> (vec DemonZenoQuote) query;
   getRoadmap: () -> (vec RoadmapMilestone) query;
-  getScheduledSignals: (sessionToken: text) -> (Result_9);
-  getSessionRatings: (sessionToken: text) -> (Result_12) query;
-  getSessionRecap: (history: vec ChatMessage, sessionToken: text) -> (Result);
+  getScheduledSignals: (sessionToken: text) -> (Result_7);
+  getSessionRatings: (sessionToken: text) -> (Result_11) query;
+  getSessionRecap: (history: vec ChatMessage, sessionToken: text) ->
+   (Result_1);
   getSignalArchive: () -> (vec Signal) query;
   getSignalOfTheDay: () -> (opt Signal) query;
   getSignalOfWeek: () -> (opt SignalOfWeekFull) query;
-  getSignalPerformanceStats: (sessionToken: text) -> (Result_11);
+  getSignalPerformanceStats: (sessionToken: text) -> (Result_10);
+  getSignalTemplates: (sessionToken: text) -> (Result_9);
   getSignals: () -> (vec Signal) query;
   getStats: () -> (Stats) query;
-  getStatsConfig: (sessionToken: text) -> (Result_10);
+  getStatsConfig: (sessionToken: text) -> (Result_8);
   getTestimonials: () -> (vec Testimonial) query;
+  getTokenBurnSchedule: () -> (vec BurnEvent) query;
+  getTokenData: () -> (TokenData) query;
+  getTopTraders: () -> (vec TopTrader) query;
   getWhitepaper: () -> (WhitepaperContent) query;
-  importSignals: (sessionToken: text, inputs: vec SignalInput) -> (Result_9);
+  getWhitepaperUrl: () -> (opt text) query;
+  importSignals: (sessionToken: text, inputs: vec SignalInput) -> (Result_7);
   initFaqs: () -> ();
   invalidateAiSession: (token: text) -> ();
   invalidateSession: (token: text) -> ();
-  listAuditSnapshots: (sessionToken: text) -> (Result_8);
+  listAuditSnapshots: (sessionToken: text) -> (Result_6);
+  markBurnEventExecuted: (id: text, sessionToken: text) -> (Result);
+  markHypeMilestoneAchieved: (id: text, sessionToken: text) -> (Result);
   markMilestoneReached: (id: text, celebrateDays: nat, sessionToken: 
-   text) -> (Result_2);
+   text) -> (Result);
+  pinAnnouncement: (sessionToken: text, id: text, pin: bool) -> (Result);
+  pinCommunityQuestion: (id: text, answer: text, sessionToken: text) ->
+   (Result);
   publishScheduledSignals: () -> (nat);
   rateAiResponse: (messageId: text, rating: int, sessionToken: text) ->
-   (Result_2);
+   (Result);
+  rateFaq: (id: text, helpful: bool) -> (Result);
   recordAbImpression: (testId: text, "variant": text) -> ();
-  recordAdminActivity: (action: text, sessionToken: text) -> (Result_2);
+  recordAdminActivity: (action: text, sessionToken: text) -> (Result);
   refreshMarketPrices: () -> (vec PriceData);
-  reorderFaqs: (sessionToken: text, orderedIds: vec text) -> (Result_2);
+  reorderFaqs: (sessionToken: text, orderedIds: vec text) -> (Result);
+  rollbackAdminAction: (sessionToken: text, entryId: text) -> (Result_1);
   scheduleSignal: (signalId: text, publishAt: int, sessionToken: text) ->
-   (Result_2);
-  sendAiMessage: (sessionToken: text, message: text, provider: text, mode:
-   text, history: vec ChatMessage) -> (Result);
-  setAiApiKey: (adminToken: text, provider: text, key: text) -> (Result_2);
-  setAiLanguage: (lang: text, sessionToken: text) -> (Result_2);
-  setAnnouncement: (sessionToken: text, "text": text, link: opt text,
-   publishAt: opt int) -> (Result_7);
-  setBurnTracker: (adminToken: text, data: BurnTracker) -> (Result_2);
-  setCommunityCounter: (adminToken: text, data: CommunityCounter) ->
-   (Result_2);
+   (Result);
+  sendAiMessage: (sessionToken: text, message: text, provider: text, history:
+   vec ChatMessage) -> (Result_1);
+  setAiApiKey: (adminToken: text, provider: text, key: text) -> (Result);
+  setAiLanguage: (lang: text, sessionToken: text) -> (Result);
+  setBurnTracker: (adminToken: text, data: BurnTracker) -> (Result);
+  setCommunityCounter: (adminToken: text, data: CommunityCounter) -> (Result);
   setMaintenanceMode: (enabled: bool, message: text, sessionToken: text) ->
-   (Result_2);
+   (Result);
   setMarketMoodBanner: (mood: text, message: text, sessionToken: text) ->
-   (Result_2);
+   (Result);
   setRoadmapMilestone: (adminToken: text, year: text, title: text,
-   description: text, completed: bool) -> (Result_2);
-  setSignalOfTheDay: (sessionToken: text, signalId: opt text) -> (Result_2);
+   description: text, completed: bool) -> (Result);
+  setSignalOfTheDay: (sessionToken: text, signalId: opt text) -> (Result);
   setSignalOfWeek: (signalId: text, comment: text, sessionToken: text) ->
-   (Result_2);
+   (Result);
   setSignalOfWeekWithDate: (signalId: text, comment: text, weekOf: text,
-   sessionToken: text) -> (Result_2);
-  setStatsConfig: (sessionToken: text, config: StatsConfig) -> (Result_2);
-  submitNotifyMe: (name: opt text, contact: text) -> (Result_2);
-  toggleAnnouncement: (sessionToken: text) -> (Result_6);
-  unbanEmail: (sessionToken: text, email: text) -> (Result_2);
+   sessionToken: text) -> (Result);
+  setStatsConfig: (sessionToken: text, config: StatsConfig) -> (Result);
+  setWhitepaperUrl: (url: text, sessionToken: text) -> (Result);
+  submitCommunityQuestion: (question: text) -> (Result_1);
+  submitNotifyMe: (name: opt text, contact: text) -> (Result);
+  unbanEmail: (sessionToken: text, email: text) -> (Result);
+  updateAnnouncement: (sessionToken: text, id: text, title: text, body: 
+   text, category: AnnouncementCategory, link: opt text, isPinned: bool,
+   isActive: bool, publishAt: opt int) -> (Result_5);
   updateBinancePost: (adminToken: text, id: text, title: text, snippet: 
-   text, url: text, date: text) -> (Result_5);
+   text, url: text, date: text) -> (Result_4);
   updateBurnEntryStatus: (id: text, status: text, txHash: opt text,
-   sessionToken: text) -> (Result_2);
-  updateFaq: (sessionToken: text, id: text, question: text, answer: text) ->
-   (Result_4);
+   sessionToken: text) -> (Result);
+  updateFaq: (sessionToken: text, id: text, question: text, answer: text,
+   category: FaqCategory) -> (Result_3);
   updateMarketSentiment: (token: text, sentiment: MarketSentiment) ->
-   (Result_2);
+   (Result);
   updateSignal: (sessionToken: text, id: text, asset: text, marketType:
    MarketType, direction: Direction, entryPrice: text, targetPrice: text,
-   stopLoss: text, notes: text, confidence: Confidence, sourceLabel: 
-   text, expiry: opt int, timeframe: Timeframe, isDraft: bool, publishAt:
-   opt int) -> (Result_3);
+   stopLoss: text, tp1: text, tp2: text, tp3: text, notes: text, confidence:
+   Confidence, sourceLabel: text, providerLabel: text, expiry: opt int,
+   timeframe: Timeframe, isDraft: bool, publishAt: opt int, templateId:
+   opt text, tags: vec text) -> (Result_2);
   updateSignalResult: (sessionToken: text, id: text, result: ResultStatus) ->
-   (Result_3);
-  updateSignalSchedule: (sessionToken: text, id: text, isDraft: bool,
-   publishAt: opt int) -> (Result_3);
-  updateWhitepaper: (content: WhitepaperContent, sessionToken: text) ->
    (Result_2);
+  updateSignalSchedule: (sessionToken: text, id: text, isDraft: bool,
+   publishAt: opt int) -> (Result_2);
+  updateWhitepaper: (content: WhitepaperContent, sessionToken: text) ->
+   (Result);
   validateAdminRole: (passcode: text) -> (opt text);
   validateAiPasscode: (passcode: text) -> (Result_1);
   validateAiSession: (token: text) -> (bool) query;
-  validateInsaneSession: (token: text) -> (bool) query;
-  validatePasscode: (passcode: text) -> (Result);
+  validatePasscode: (passcode: text) -> (Result_1);
   validateSession: (token: text) -> (bool) query;
+  voteCommunityQuestion: (id: text) -> (Result);
+  voteOnSignal: (id: text, direction: text) -> (Result);
 }

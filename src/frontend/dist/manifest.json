@@ -1,12 +1,12 @@
 {
   "name": "DemonZeno",
   "short_name": "DMNZ",
-  "description": "Master the Chaos, Slay the Market, and Trade Like a God.",
+  "description": "Free premium trading signals for crypto, forex, and stocks. DMNZ token launches April 2, 2028.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0e1a",
-  "theme_color": "#00d4e0",
-  "orientation": "any",
+  "background_color": "#0F172A",
+  "theme_color": "#0EA5E9",
+  "orientation": "portrait-primary",
   "categories": ["finance", "utilities"],
   "icons": [
     {
@@ -21,5 +21,7 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }

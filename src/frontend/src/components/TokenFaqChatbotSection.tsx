@@ -39,7 +39,7 @@ export function TokenFaqChatbotSection() {
     setInput("");
     setLoading(true);
     try {
-      const answer = await actor.askFaq(q);
+      const answer = await actor.askTokenFaq(q);
       setMessages((m) => [
         ...m,
         {

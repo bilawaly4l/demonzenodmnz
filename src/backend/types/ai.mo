@@ -1,5 +1,5 @@
 module {
-  public type AiMode = { #Normal; #Insane };
+  // AiMode removed — unified DemonZeno AI uses a single session store
 
   public type ChatMessage = {
     role      : Text;
@@ -11,8 +11,6 @@ module {
   public type AiRequest = {
     sessionToken : Text;
     message      : Text;
-    provider     : Text;
-    mode         : Text;
     history      : [ChatMessage];
   };
 
@@ -24,9 +22,11 @@ module {
   /// Trade journal entry for tracking P&L per session
   public type JournalEntry = {
     id         : Text;
-    signal     : Text;
+    asset      : Text;       // e.g. "BTC/USDT"
+    direction  : Text;       // "LONG" | "SHORT"
     entryPrice : Float;
     exitPrice  : ?Float;
+    lots       : Float;      // position size
     notes      : Text;
     timestamp  : Int;
     pnl        : ?Float;

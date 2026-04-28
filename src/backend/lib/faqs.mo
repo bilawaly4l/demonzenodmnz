@@ -1,11 +1,12 @@
 import List "mo:core/List";
 import Nat "mo:core/Nat";
-import Array "mo:core/Array";
+import Time "mo:core/Time";
 import Types "../types/faqs";
 import Common "../types/common";
 
 module {
   public type FAQ = Types.FAQ;
+  public type FaqCategory = Types.FaqCategory;
   public type Result<T, E> = Common.Result<T, E>;
 
   public func addFaq(
@@ -13,13 +14,18 @@ module {
     nextId : Nat,
     question : Text,
     answer : Text,
+    category : FaqCategory,
   ) : (FAQ, Nat) {
     let order = faqs.size();
     let faq : FAQ = {
       id = nextId.toText();
       question;
       answer;
+      category;
+      helpfulCount = 0;
+      notHelpfulCount = 0;
       order;
+      timestamp = Time.now();
     };
     faqs.add(faq);
     (faq, nextId + 1);
@@ -30,11 +36,12 @@ module {
     id : Text,
     question : Text,
     answer : Text,
+    category : FaqCategory,
   ) : Result<FAQ, Text> {
     var found : ?FAQ = null;
     faqs.mapInPlace(func(f) {
       if (f.id == id) {
-        let updated : FAQ = { f with question; answer };
+        let updated : FAQ = { f with question; answer; category };
         found := ?updated;
         updated;
       } else {
@@ -92,6 +99,25 @@ module {
     #ok(());
   };
 
+  public func rateFaq(
+    faqs : List.List<FAQ>,
+    id : Text,
+    helpful : Bool,
+  ) : Result<(), Text> {
+    var found = false;
+    faqs.mapInPlace(func(f) {
+      if (f.id == id) {
+        found := true;
+        if (helpful) {
+          { f with helpfulCount = f.helpfulCount + 1 };
+        } else {
+          { f with notHelpfulCount = f.notHelpfulCount + 1 };
+        };
+      } else { f };
+    });
+    if (found) { #ok(()) } else { #err("FAQ not found: " # id) };
+  };
+
   func compareByOrder(a : FAQ, b : FAQ) : { #less; #equal; #greater } {
     Nat.compare(a.order, b.order);
   };
@@ -99,6 +125,19 @@ module {
   public func getFaqs(faqs : List.List<FAQ>) : [FAQ] {
     let arr = faqs.toArray();
     // Sort by order field ascending
+    arr.sort(compareByOrder);
+  };
+
+  public func getFaqsByCategory(faqs : List.List<FAQ>, category : FaqCategory) : [FAQ] {
+    let filtered = faqs.filter(func(f) {
+      switch (category) {
+        case (#Signals) { switch (f.category) { case (#Signals) true; case _ false } };
+        case (#DmnzToken) { switch (f.category) { case (#DmnzToken) true; case _ false } };
+        case (#GeneralTrading) { switch (f.category) { case (#GeneralTrading) true; case _ false } };
+        case (#Platform) { switch (f.category) { case (#Platform) true; case _ false } };
+      };
+    });
+    let arr = filtered.toArray();
     arr.sort(compareByOrder);
   };
 };

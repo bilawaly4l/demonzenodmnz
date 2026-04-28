@@ -1,12 +1,16 @@
 import CommunityTypes "../types/community";
 import List "mo:core/List";
 import Time "mo:core/Time";
+import Common "../types/common";
 
 module {
-  public type CommunityCounter  = CommunityTypes.CommunityCounter;
-  public type DemonZenoQuote    = CommunityTypes.DemonZenoQuote;
-  public type Testimonial       = CommunityTypes.Testimonial;
+  public type CommunityCounter   = CommunityTypes.CommunityCounter;
+  public type DemonZenoQuote     = CommunityTypes.DemonZenoQuote;
+  public type Testimonial        = CommunityTypes.Testimonial;
   public type CommunityMilestone = CommunityTypes.CommunityMilestone;
+  public type TopTrader          = CommunityTypes.TopTrader;
+  public type CommunityQuestion  = CommunityTypes.CommunityQuestion;
+  public type Result<T, E>       = Common.Result<T, E>;
 
   // ── Community counter ────────────────────────────────────────────────────
 
@@ -56,8 +60,7 @@ module {
   };
 
   public func getQuotes(quotes : List.List<DemonZenoQuote>) : [DemonZenoQuote] {
-    let active = quotes.filter(func(q) { q.active });
-    active.toArray();
+    quotes.filter(func(q) { q.active }).toArray();
   };
 
   public func addQuote(
@@ -81,8 +84,7 @@ module {
   // ── Testimonials ─────────────────────────────────────────────────────────
 
   public func getTestimonials(testimonials : List.List<Testimonial>) : [Testimonial] {
-    let active = testimonials.filter(func(t) { t.active });
-    active.toArray();
+    testimonials.filter(func(t) { t.active }).toArray();
   };
 
   public func addTestimonial(
@@ -120,9 +122,9 @@ module {
   };
 
   public func addMilestone(
-    milestones : List.List<CommunityMilestone>,
-    idCounter  : { var value : Nat },
-    title      : Text,
+    milestones  : List.List<CommunityMilestone>,
+    idCounter   : { var value : Nat },
+    title       : Text,
     description : Text,
   ) : Text {
     idCounter.value += 1;
@@ -139,8 +141,8 @@ module {
   };
 
   public func markMilestoneReached(
-    milestones   : List.List<CommunityMilestone>,
-    id           : Text,
+    milestones    : List.List<CommunityMilestone>,
+    id            : Text,
     celebrateDays : Nat,
   ) {
     let now = Time.now();
@@ -149,6 +151,100 @@ module {
       if (m.id == id) {
         { m with reached = true; reachedAt = ?now; celebrateUntil = ?celebrateUntil };
       } else { m };
+    });
+  };
+
+  // ── Top Traders ──────────────────────────────────────────────────────────
+
+  public func getTopTraders(traders : List.List<TopTrader>) : [TopTrader] {
+    traders.filter(func(t) { t.isActive }).toArray();
+  };
+
+  public func addTopTrader(
+    traders     : List.List<TopTrader>,
+    idCounter   : { var value : Nat },
+    name        : Text,
+    bio         : Text,
+    achievement : Text,
+    week        : Text,
+  ) : Text {
+    idCounter.value += 1;
+    let id = "tt" # idCounter.value.toText();
+    traders.add({
+      id;
+      name;
+      bio;
+      achievement;
+      week;
+      isActive  = true;
+      createdAt = Time.now();
+    });
+    id;
+  };
+
+  public func deleteTopTrader(traders : List.List<TopTrader>, id : Text) {
+    traders.mapInPlace(func(t) {
+      if (t.id == id) { { t with isActive = false } } else { t };
+    });
+  };
+
+  // ── Community Questions ───────────────────────────────────────────────────
+
+  public func getCommunityQuestions(questions : List.List<CommunityQuestion>) : [CommunityQuestion] {
+    questions.filter(func(q) { q.isActive }).toArray();
+  };
+
+  public func submitCommunityQuestion(
+    questions : List.List<CommunityQuestion>,
+    idCounter : { var value : Nat },
+    question  : Text,
+  ) : Text {
+    idCounter.value += 1;
+    let id = "cq" # idCounter.value.toText();
+    questions.add({
+      id;
+      question;
+      answer    = null;
+      isPinned  = false;
+      votes     = 0;
+      timestamp = Time.now();
+      isActive  = true;
+    });
+    id;
+  };
+
+  public func pinCommunityQuestion(
+    questions : List.List<CommunityQuestion>,
+    id        : Text,
+    answer    : Text,
+  ) : Result<(), Text> {
+    var found = false;
+    questions.mapInPlace(func(q) {
+      if (q.id == id) {
+        found := true;
+        { q with isPinned = true; answer = ?answer };
+      } else { q };
+    });
+    if (found) { #ok(()) } else { #err("Question not found: " # id) };
+  };
+
+  public func voteCommunityQuestion(
+    questions : List.List<CommunityQuestion>,
+    id        : Text,
+  ) : Result<(), Text> {
+    var found = false;
+    questions.mapInPlace(func(q) {
+      if (q.id == id) {
+        found := true;
+        { q with votes = q.votes + 1 };
+      } else { q };
+    });
+    if (found) { #ok(()) } else { #err("Question not found: " # id) };
+  };
+
+  public func deleteCommunityQuestion(questions : List.List<CommunityQuestion>, id : Text) {
+    questions.mapInPlace(func(q) {
+      if (q.id == id) { { q with isActive = false } } else { q };
     });
   };
 };

@@ -1,26 +1,24 @@
 {
-  "overview": "DemonZeno (DMNZ) is a meme token + free trading signals platform with an anime open-road aesthetic. It delivers daily free crypto, forex, and stock signals, features a password-protected AI powered by 50+ providers, and includes a full admin dashboard accessible from inside the AI chat.",
+  "overview": "DemonZeno (DMNZ) is an anime-inspired meme token and free trading signals platform. It features a unified DemonZeno AI powered by 50+ AI providers for real-time crypto, forex, and stock signals, an AI-powered FAQ system, admin dashboard, community features, and a full token launch roadmap toward April 2028.",
   "features": [
-    "Password-protected AI chat with Normal and Insane modes (50+ AI providers)",
-    "Secret admin dashboard unlockable via AI chat with exact slogan passphrase",
-    "Real-time token price and market trend display in Market Sentiment section",
-    "Full signal archive with search and multi-filter (confidence, result, date, market)",
-    "Roadmap with 2026-2028 milestones including DMNZ launch and buyback & burn",
-    "Token burn tracker and community counter (admin-controlled)",
-    "BLUM mini app preview animated mockup and 2027 launch countdown",
-    "Admin dashboard with signal CRUD, FAQ management, analytics, audit log, and Binance Square feed editor",
-    "Anime open-road visual design with sky blue, teal, dark charcoal, and crimson palette"
+    "Unified DemonZeno AI with 50+ providers — real-time signals, Q&A, code writing",
+    "AI signal generator with Entry, Stop Loss, TP1/TP2/TP3 on every response",
+    "AI-powered FAQ and Token FAQ chatbot (fully backend-driven)",
+    "Secret admin dashboard (click-unlock + passcode)",
+    "Signal management, community voting, testimonials wall",
+    "DMNZ token launch sections with hype bar, countdown, burn tracker",
+    "Cinematic anime open-road design with custom cursor and animations",
+    "Full PWA, SEO, accessibility, and micro-interactions"
   ],
-  "category": "finance-trading",
+  "category": "finance",
   "tags": [
-    "meme-token",
-    "trading-signals",
     "crypto",
+    "trading-signals",
     "anime",
+    "meme-token",
     "ai-chat",
-    "admin-dashboard",
     "defi",
     "dmnz"
   ],
-  "last_updated": "2026-04-25T17:19:42.480Z"
+  "last_updated": "2026-04-28T07:25:48.044Z"
 }

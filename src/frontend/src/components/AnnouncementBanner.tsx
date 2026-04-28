@@ -17,7 +17,8 @@ export function AnnouncementBanner() {
       <div className="flex items-center gap-2 min-w-0">
         <Megaphone className="w-4 h-4 shrink-0" />
         <span className="text-sm font-medium truncate">
-          {announcement.text}
+          {announcement.title}
+          {announcement.body ? ` — ${announcement.body}` : ""}
         </span>
         {announcement.link && (
           <a
