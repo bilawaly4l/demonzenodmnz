@@ -14,29 +14,29 @@
     --sky-blue-light: 0.75 0.12 265;
 
     /* Light mode tokens */
-    --background: 0.95 0.005 260;
-    --foreground: 0.18 0.01 260;
-    --card: 1 0 0;
-    --card-foreground: 0.18 0.01 260;
-    --popover: 0.98 0.005 260;
-    --popover-foreground: 0.18 0.01 260;
+    --background: 0.145 0.01 260;
+    --foreground: 0.95 0.005 260;
+    --card: 0.18 0.01 260;
+    --card-foreground: 0.95 0.005 260;
+    --popover: 0.22 0.01 260;
+    --popover-foreground: 0.95 0.005 260;
 
     --primary: 0.65 0.15 190;
-    --primary-foreground: 0.98 0.005 260;
+    --primary-foreground: 0.145 0.01 260;
 
-    --secondary: 0.92 0.01 260;
-    --secondary-foreground: 0.25 0.01 260;
-    --muted: 0.93 0.01 260;
-    --muted-foreground: 0.48 0.01 260;
+    --secondary: 0.25 0.02 260;
+    --secondary-foreground: 0.85 0.01 260;
+    --muted: 0.25 0.02 260;
+    --muted-foreground: 0.55 0.01 260;
 
     --accent: 0.65 0.15 190;
-    --accent-foreground: 0.98 0.005 260;
+    --accent-foreground: 0.145 0.01 260;
 
-    --destructive: 0.55 0.22 25;
-    --destructive-foreground: 0.98 0.005 25;
+    --destructive: 0.65 0.2 22;
+    --destructive-foreground: 0.95 0.005 25;
 
-    --border: 0.88 0.01 260;
-    --input: 0.88 0.01 260;
+    --border: 0.28 0.01 260;
+    --input: 0.28 0.01 260;
     --ring: 0.65 0.15 190;
 
     --chart-1: 0.65 0.15 190;
@@ -85,22 +85,37 @@
     --stats-foreground: 0.18 0.01 260;
     --stats-accent: 0.65 0.15 190;
 
-    /* AI Chat */
-    --chat-user-bubble: 0.65 0.15 190;
-    --chat-user-bubble-foreground: 0.98 0.005 260;
-    --chat-ai-bubble: 0.18 0.01 260;
-    --chat-ai-bubble-foreground: 0.95 0.005 260;
-    --chat-ai-border-accent: 0.65 0.15 190;
-    --mode-normal-badge: 0.65 0.15 190;
-    --mode-normal-badge-foreground: 0.145 0.01 260;
-    --mode-insane-badge: 0.65 0.2 22;
-    --mode-insane-badge-foreground: 0.95 0.005 25;
+    /* Academy & Certificate */
+    --certificate-gold: 0.7 0.18 70;
+    --certificate-gold-foreground: 0.18 0.01 260;
+    --lesson-card-border: 0.65 0.15 190;
+    --tier-badge-bg: 0.65 0.15 190;
+    --tier-badge-foreground: 0.98 0.005 260;
+    --progress-fill: 0.65 0.15 190;
+    --progress-bg: 0.25 0.02 260;
 
     /* Premium Section Tokens */
     --burn-progress-start: 0.65 0.15 190;
     --burn-progress-end: 0.55 0.22 25;
     --milestone-indicator: 0.7 0.18 145;
     --countdown-accent: 0.65 0.15 190;
+
+    /* Glassmorphism & Premium Shadows */
+    --glass-blur: 16px;
+    --glass-opacity-light: 0.08;
+    --glass-opacity-dark: 0.04;
+    --glass-border-light: rgba(255, 255, 255, 0.18);
+    --glass-border-dark: rgba(255, 255, 255, 0.1);
+    --shadow-glow-soft: 0 0 12px oklch(var(--primary) / 0.2), 0 0 24px
+      oklch(var(--primary) / 0.1);
+    --shadow-glow-medium: 0 0 24px oklch(var(--primary) / 0.3), 0 0 48px
+      oklch(var(--primary) / 0.15);
+    --shadow-glow-strong: 0 0 32px oklch(var(--primary) / 0.4), 0 0 64px
+      oklch(var(--primary) / 0.2);
+    --certificate-border-glow: 0 0 24px oklch(var(--certificate-gold) / 0.25), 0
+      0 48px oklch(var(--certificate-gold) / 0.1), inset 0 1px 0
+      rgba(255, 255, 255, 0.12);
+    --transition-expand: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --countdown-urgency: 0.55 0.22 25;
   }
 
@@ -180,16 +195,14 @@
     --stats-foreground: 0.95 0.005 260;
     --stats-accent: 0.65 0.15 190;
 
-    /* AI Chat */
-    --chat-user-bubble: 0.65 0.15 190;
-    --chat-user-bubble-foreground: 0.145 0.01 260;
-    --chat-ai-bubble: 0.22 0.01 260;
-    --chat-ai-bubble-foreground: 0.95 0.005 260;
-    --chat-ai-border-accent: 0.65 0.15 190;
-    --mode-normal-badge: 0.65 0.15 190;
-    --mode-normal-badge-foreground: 0.145 0.01 260;
-    --mode-insane-badge: 0.65 0.2 22;
-    --mode-insane-badge-foreground: 0.95 0.005 25;
+    /* Academy & Certificate */
+    --certificate-gold: 0.7 0.18 70;
+    --certificate-gold-foreground: 0.18 0.01 260;
+    --lesson-card-border: 0.65 0.15 190;
+    --tier-badge-bg: 0.65 0.15 190;
+    --tier-badge-foreground: 0.98 0.005 260;
+    --progress-fill: 0.65 0.15 190;
+    --progress-bg: 0.25 0.02 260;
 
     /* Premium Section Tokens */
     --burn-progress-start: 0.65 0.15 190;
@@ -211,18 +224,21 @@
   font-family: "Space Grotesk";
   src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
   font-display: swap;
+  font-weight: 400 700;
 }
 
 @font-face {
-  font-family: "Satoshi";
-  src: url("/assets/fonts/Satoshi.woff2") format("woff2");
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
   font-display: swap;
+  font-weight: 400 700;
 }
 
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
   font-display: swap;
+  font-weight: 400 600;
 }
 
 @layer utilities {
@@ -421,50 +437,318 @@
     @apply text-primary bg-primary/10;
   }
 
-  /* Chat Message Bubbles */
-  .chat-message-user {
-    @apply rounded-lg px-4 py-3 max-w-xs md:max-w-md lg:max-w-lg;
-    background: oklch(var(--chat-user-bubble));
-    color: oklch(var(--chat-user-bubble-foreground));
+  /* ─── Quiz Interface — Mobile-Optimized ──────────────────────────────────── */
+
+  .quiz-container {
+    @apply rounded-lg p-4 md:p-6 border;
+    background: oklch(var(--card));
+    border-color: oklch(var(--border));
   }
 
-  .chat-message-ai {
-    @apply rounded-lg px-4 py-3 max-w-xs md:max-w-md lg:max-w-lg border-l-4;
-    background: oklch(var(--chat-ai-bubble));
-    color: oklch(var(--chat-ai-bubble-foreground));
-    border-left-color: oklch(var(--chat-ai-border-accent));
+  .quiz-progress {
+    @apply w-full h-1 rounded-full mb-4;
+    background: oklch(var(--muted) / 0.3);
   }
 
-  /* Mode Badges */
-  .badge-mode-normal {
-    @apply px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider;
-    background: oklch(var(--mode-normal-badge) / 0.15);
-    color: oklch(var(--mode-normal-badge));
+  .quiz-progress-fill {
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      oklch(var(--primary)),
+      oklch(var(--chart-3))
+    );
+    transition: width 0.3s ease;
   }
 
-  .badge-mode-insane {
-    @apply px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider animate-pulse-glow;
-    background: oklch(var(--mode-insane-badge) / 0.15);
-    color: oklch(var(--mode-insane-badge));
+  .quiz-countdown {
+    @apply text-center py-4;
   }
 
-  /* Typing Indicator */
-  .typing-indicator {
-    @apply flex gap-1 items-center;
+  .quiz-countdown-timer {
+    @apply text-6xl md:text-7xl font-display font-bold;
+    color: oklch(var(--primary));
   }
 
-  .typing-dot {
-    @apply w-2 h-2 rounded-full;
+  .quiz-countdown-timer.urgent {
+    color: oklch(var(--destructive));
+    animation: countdownPulse 1s ease-in-out infinite;
+  }
+
+  .quiz-question {
+    @apply py-6 md:py-8;
+  }
+
+  .quiz-question-number {
+    @apply text-sm font-mono font-bold uppercase tracking-wider mb-2;
+    color: oklch(var(--muted-foreground));
+  }
+
+  .quiz-question-text {
+    @apply text-lg md:text-xl font-semibold mb-6 leading-relaxed;
+    color: oklch(var(--foreground));
+  }
+
+  .quiz-answers {
+    @apply space-y-3;
+  }
+
+  .quiz-answer-button {
+    @apply w-full p-4 md:p-5 rounded-lg border-2 text-left transition-smooth font-medium text-base md:text-lg;
+    background: oklch(var(--background));
+    border-color: oklch(var(--border));
+    color: oklch(var(--foreground));
+  }
+
+  .quiz-answer-button:hover {
+    border-color: oklch(var(--primary));
+    background: oklch(var(--primary) / 0.05);
+  }
+
+  .quiz-answer-button:active {
+    transform: scale(0.98);
+  }
+
+  .quiz-answer-button.selected {
+    background: oklch(var(--primary) / 0.2);
+    border-color: oklch(var(--primary));
+    color: oklch(var(--primary));
+  }
+
+  .quiz-answer-button.correct {
+    background: oklch(0.7 0.15 145 / 0.2);
+    border-color: oklch(0.7 0.15 145);
+    color: oklch(0.7 0.15 145);
+  }
+
+  .quiz-answer-button.incorrect {
+    background: oklch(0.55 0.22 25 / 0.2);
+    border-color: oklch(0.55 0.22 25);
+    color: oklch(0.55 0.22 25);
+  }
+
+  .quiz-submit-button {
+    @apply w-full py-4 md:py-5 rounded-lg font-bold text-lg mt-8 transition-smooth;
     background: oklch(var(--primary));
-    animation: typingBounce 1.4s ease-in-out infinite;
+    color: oklch(var(--primary-foreground));
   }
 
-  .typing-dot:nth-child(2) {
-    animation-delay: 0.2s;
+  .quiz-submit-button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 32px oklch(var(--primary) / 0.3);
   }
 
-  .typing-dot:nth-child(3) {
-    animation-delay: 0.4s;
+  .quiz-submit-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .quiz-results {
+    @apply rounded-lg p-6 md:p-8 border text-center space-y-4;
+    background: oklch(var(--card));
+    border-color: oklch(var(--border));
+  }
+
+  .quiz-results.pass {
+    border-color: oklch(0.7 0.15 145);
+    background: oklch(0.7 0.15 145 / 0.08);
+  }
+
+  .quiz-results.fail {
+    border-color: oklch(0.55 0.22 25);
+    background: oklch(0.55 0.22 25 / 0.08);
+  }
+
+  .quiz-results-score {
+    @apply text-6xl md:text-7xl font-display font-bold;
+    color: oklch(var(--primary));
+  }
+
+  .quiz-results-text {
+    @apply text-lg md:text-xl font-semibold;
+    color: oklch(var(--foreground));
+  }
+
+  .certificate-card {
+    @apply rounded-lg p-6 border transition-smooth;
+    background: oklch(var(--card));
+    border-color: oklch(var(--certificate-gold));
+    box-shadow: var(--certificate-border-glow);
+    backdrop-filter: blur(8px);
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  .certificate-card:hover {
+    box-shadow: 0 0 40px oklch(var(--certificate-gold) / 0.35), 0 0 80px
+      oklch(var(--certificate-gold) / 0.2), inset 0 1px 0
+      rgba(255, 255, 255, 0.15);
+    transform: scale(1.01);
+  }
+
+  .certificate-header {
+    @apply flex items-start justify-between mb-4 pb-4 border-b;
+    border-bottom-color: oklch(var(--certificate-gold));
+  }
+
+  .certificate-tier {
+    @apply text-sm md:text-base font-bold uppercase tracking-wider;
+    color: oklch(var(--certificate-gold));
+  }
+
+  .certificate-date {
+    @apply text-xs font-mono;
+    color: oklch(var(--muted-foreground));
+  }
+
+  .certificate-id {
+    @apply font-mono text-xs font-bold tracking-widest mb-3;
+    color: oklch(var(--certificate-gold));
+  }
+
+  .certificate-info {
+    @apply space-y-2 mb-6 text-sm;
+    color: oklch(var(--foreground));
+  }
+
+  .certificate-info-row {
+    @apply flex justify-between;
+  }
+
+  .certificate-info-label {
+    @apply text-muted-foreground;
+    color: oklch(var(--muted-foreground));
+  }
+
+  .certificate-qr {
+    @apply rounded-lg p-4 bg-background mt-6;
+    border: 2px solid oklch(var(--certificate-gold));
+  }
+
+  .certificate-actions {
+    @apply flex gap-3 mt-6 pt-6 border-t;
+    border-top-color: oklch(var(--certificate-gold) / 0.3);
+  }
+
+  .certificate-download-btn {
+    @apply flex-1 py-3 rounded-lg font-semibold transition-smooth;
+    background: oklch(var(--certificate-gold));
+    color: oklch(var(--foreground));
+  }
+
+  .certificate-download-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px oklch(var(--certificate-gold) / 0.3);
+  }
+
+  .certificate-share-btn {
+    @apply flex-1 py-3 rounded-lg font-semibold border-2 transition-smooth;
+    border-color: oklch(var(--certificate-gold));
+    color: oklch(var(--certificate-gold));
+    background: transparent;
+  }
+
+  .certificate-share-btn:hover {
+    background: oklch(var(--certificate-gold) / 0.1);
+  }
+
+  .lesson-card {
+    @apply rounded-lg p-4 border-l-4 transition-smooth cursor-pointer;
+    background: oklch(var(--card));
+    border-left-color: oklch(var(--lesson-card-border));
+    animation: fadeInUp 0.6s ease-out forwards;
+    backdrop-filter: blur(8px);
+    border-radius: 0.875rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .lesson-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow-soft), 0 16px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .lesson-card-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: var(--transition-expand);
+  }
+
+  .lesson-card-content.expanded {
+    max-height: 800px;
+  }
+
+  .lesson-card-header {
+    @apply flex items-center justify-between gap-3 cursor-pointer select-none;
+  }
+
+  .lesson-card-title {
+    @apply text-lg md:text-xl font-bold;
+    color: oklch(var(--foreground));
+  }
+
+  .lesson-card-meta {
+    @apply flex gap-2 md:gap-3 text-xs;
+    margin-top: 0.5rem;
+  }
+
+  .lesson-card-duration {
+    @apply px-2 py-1 rounded-md;
+    background: oklch(var(--primary) / 0.1);
+    color: oklch(var(--primary));
+  }
+
+  .lesson-card-difficulty {
+    @apply px-2 py-1 rounded-md font-semibold uppercase;
+  }
+
+  .difficulty-beginner {
+    background: oklch(0.7 0.15 145 / 0.15);
+    color: oklch(0.7 0.15 145);
+  }
+
+  .difficulty-intermediate {
+    background: oklch(0.65 0.15 70 / 0.15);
+    color: oklch(0.65 0.15 70);
+  }
+
+  .difficulty-advanced {
+    background: oklch(0.65 0.15 190 / 0.15);
+    color: oklch(0.65 0.15 190);
+  }
+
+  .difficulty-expert {
+    background: oklch(0.55 0.22 25 / 0.15);
+    color: oklch(0.55 0.22 25);
+  }
+
+  .difficulty-master {
+    background: oklch(0.7 0.18 70 / 0.2);
+    color: oklch(0.7 0.18 70);
+  }
+
+  .tier-badge {
+    @apply px-3 py-1 rounded-full text-xs font-bold uppercase;
+    background: oklch(var(--tier-badge-bg) / 0.2);
+    color: oklch(var(--tier-badge-bg));
+  }
+
+  .progress-bar-custom {
+    @apply relative h-2 rounded-full overflow-hidden;
+    background: oklch(var(--progress-bg));
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      oklch(var(--progress-fill)),
+      oklch(var(--chart-3))
+    );
+    transition: width 0.6s ease-out;
+  }
+
+  .certificate-wall-grid {
+    @apply grid gap-4 md:gap-6;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   }
 
   /* Pulse Glow — used by badge-mode-insane */
@@ -665,6 +949,625 @@
     border-left: 4px solid oklch(var(--chart-loss));
   }
 
+  /* ─── Glossary Section ──────────────────────────────────────────────────── */
+
+  .glossary-search {
+    @apply w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground transition-smooth;
+    color: oklch(var(--foreground));
+  }
+
+  .glossary-search:focus {
+    @apply outline-none border-primary ring-2;
+    border-color: oklch(var(--primary));
+  }
+
+  .glossary-grid {
+    @apply grid gap-3 md:gap-4;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .glossary-term-card {
+    @apply rounded-lg p-4 border transition-smooth cursor-pointer hover:shadow-elevated;
+    background: oklch(var(--card));
+    border-color: oklch(var(--border));
+  }
+
+  .glossary-term-card:hover {
+    border-color: oklch(var(--primary));
+    background: oklch(var(--primary) / 0.05);
+  }
+
+  .glossary-term-name {
+    @apply text-base md:text-lg font-bold;
+    color: oklch(var(--primary));
+  }
+
+  .glossary-term-definition {
+    @apply text-sm mt-2 leading-relaxed;
+    color: oklch(var(--muted-foreground));
+  }
+
+  .glossary-term-example {
+    @apply text-xs mt-3 p-2 rounded-md italic;
+    background: oklch(var(--primary) / 0.1);
+    color: oklch(var(--foreground) / 0.8);
+  }
+
+  .glossary-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    animation: fadeInUp 0.3s ease-out;
+  }
+
+  .glossary-modal-content {
+    @apply rounded-lg p-6 md:p-8 max-w-2xl w-full max-h-96 overflow-y-auto;
+    background: oklch(var(--card));
+  }
+
+  .glossary-modal-close {
+    @apply absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center transition-smooth cursor-pointer;
+    background: oklch(var(--border));
+  }
+
+  .glossary-modal-close:hover {
+    background: oklch(var(--primary));
+  }
+
+  /* ─── Zeno AI Chat Widget ────────────────────────────────────────────────── */
+
+  .zeno-ai-widget {
+    @apply fixed bottom-8 right-8 z-30 transition-smooth;
+  }
+
+  .zeno-ai-button {
+    @apply w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-elevated transition-smooth;
+    background: oklch(var(--primary));
+    color: oklch(var(--primary-foreground));
+  }
+
+  .zeno-ai-button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 16px 40px oklch(var(--primary) / 0.4);
+  }
+
+  .zeno-ai-button:active {
+    transform: scale(0.95);
+  }
+
+  .zeno-ai-panel {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 1rem;
+    width: 360px;
+    height: 500px;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    background: oklch(var(--card));
+    border: 1px solid oklch(var(--border));
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease-out forwards;
+  }
+
+  .zeno-ai-header {
+    @apply p-4 border-b font-bold;
+    border-bottom-color: oklch(var(--border));
+    background: oklch(var(--primary) / 0.1);
+  }
+
+  .zeno-ai-messages {
+    @apply flex-1 overflow-y-auto p-4 space-y-3;
+  }
+
+  .zeno-ai-message {
+    @apply rounded-lg px-3 py-2 text-sm max-w-xs;
+  }
+
+  .zeno-ai-message.user {
+    @apply ml-auto;
+    background: oklch(var(--primary));
+    color: oklch(var(--primary-foreground));
+  }
+
+  .zeno-ai-message.ai {
+    @apply mr-auto;
+    background: oklch(var(--muted));
+    color: oklch(var(--muted-foreground));
+  }
+
+  .zeno-ai-input-area {
+    @apply border-t p-3 flex gap-2;
+    border-top-color: oklch(var(--border));
+  }
+
+  .zeno-ai-input {
+    @apply flex-1 px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm;
+  }
+
+  .zeno-ai-send {
+    @apply w-9 h-9 rounded-lg flex items-center justify-center transition-smooth;
+    background: oklch(var(--primary));
+    color: oklch(var(--primary-foreground));
+  }
+
+  .zeno-ai-send:hover {
+    transform: scale(1.05);
+  }
+
+  /* ─── Progress Tracking ──────────────────────────────────────────────────── */
+
+  .tier-progress-section {
+    @apply rounded-lg p-4 md:p-6 border;
+    background: oklch(var(--card));
+    border-color: oklch(var(--border));
+  }
+
+  .tier-progress-header {
+    @apply flex justify-between items-center mb-4;
+  }
+
+  .tier-name {
+    @apply text-lg md:text-xl font-bold;
+    color: oklch(var(--foreground));
+  }
+
+  .tier-completion-count {
+    @apply text-sm font-mono;
+    color: oklch(var(--primary));
+  }
+
+  .tier-progress-bar {
+    @apply relative h-2 rounded-full overflow-hidden mb-4;
+    background: oklch(var(--progress-bg));
+  }
+
+  .tier-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      oklch(var(--primary)),
+      oklch(var(--chart-3))
+    );
+    transition: width 0.6s ease-out;
+  }
+
+  .tier-stats {
+    @apply grid grid-cols-3 gap-3 text-center text-xs;
+  }
+
+  .tier-stat-item {
+    @apply p-2 rounded-md;
+    background: oklch(var(--background));
+  }
+
+  .tier-stat-value {
+    @apply text-base font-bold;
+    color: oklch(var(--primary));
+  }
+
+  .tier-stat-label {
+    @apply text-muted-foreground text-xs;
+    color: oklch(var(--muted-foreground));
+  }
+
+  /* ─── Reading Progress Bar ──────────────────────────────────────────────── */
+
+  .reading-progress {
+    @apply fixed top-0 left-0 h-1 z-50;
+    background: linear-gradient(
+      90deg,
+      oklch(var(--primary)),
+      oklch(var(--chart-3))
+    );
+    transition: width 0.1s ease;
+  }
+
+  .glass-card {
+    backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+    background: rgba(255, 255, 255, var(--glass-opacity-light));
+    border: 1px solid var(--glass-border-light);
+    border-radius: 1rem;
+  }
+
+  .dark .glass-card {
+    background: rgba(255, 255, 255, var(--glass-opacity-dark));
+    border: 1px solid var(--glass-border-dark);
+  }
+
+  .glass-card-glow {
+    backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+    background: rgba(255, 255, 255, var(--glass-opacity-light));
+    border: 1px solid var(--glass-border-light);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-glow-medium), inset 0 1px 0
+      rgba(255, 255, 255, 0.12);
+  }
+
+  .dark .glass-card-glow {
+    background: rgba(255, 255, 255, var(--glass-opacity-dark));
+    border: 1px solid var(--glass-border-dark);
+    box-shadow: var(--shadow-glow-strong), inset 0 1px 0
+      rgba(255, 255, 255, 0.06);
+  }
+
+  .glow-border {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .glow-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1.5px;
+    background: linear-gradient(
+      135deg,
+      oklch(var(--primary)),
+      oklch(var(--sky-blue)),
+      oklch(var(--destructive))
+    );
+    border-radius: inherit;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    animation: glowBorderRotate 4s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glow-border > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .anime-glow {
+    animation: animeGlowPulse 3s ease-in-out infinite;
+  }
+
+  /* Typewriter animation */
+  .typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid oklch(var(--primary));
+    animation: typewriterReveal 3.5s steps(40, end) forwards, typewriterBlink
+      0.8s step-end infinite;
+  }
+
+  .typewriter-done {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typewriterReveal 3.5s steps(40, end) forwards;
+  }
+
+  /* Hero particle orbs (pure CSS animated gradient orbs) */
+  .hero-bg-orbs {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    will-change: transform;
+  }
+
+  .hero-orb-1 {
+    width: 500px;
+    height: 500px;
+    top: -120px;
+    left: -100px;
+    background: radial-gradient(
+      circle,
+      oklch(var(--primary) / 0.6),
+      oklch(var(--sky-blue) / 0.3) 60%,
+      transparent
+    );
+    animation: orbFloat1 12s ease-in-out infinite;
+  }
+
+  .hero-orb-2 {
+    width: 400px;
+    height: 400px;
+    top: 40%;
+    right: -80px;
+    background: radial-gradient(
+      circle,
+      oklch(var(--destructive) / 0.4),
+      oklch(var(--primary) / 0.2) 60%,
+      transparent
+    );
+    animation: orbFloat2 15s ease-in-out infinite;
+  }
+
+  .hero-orb-3 {
+    width: 350px;
+    height: 350px;
+    bottom: -80px;
+    left: 30%;
+    background: radial-gradient(
+      circle,
+      oklch(var(--sky-blue) / 0.5),
+      oklch(var(--primary) / 0.2) 60%,
+      transparent
+    );
+    animation: orbFloat3 18s ease-in-out infinite;
+  }
+
+  /* DMNZ Ticker Bar */
+  .dmnz-ticker-bar {
+    @apply relative flex items-center justify-center gap-3 overflow-hidden;
+    background: linear-gradient(
+      90deg,
+      oklch(var(--primary) / 0.9),
+      oklch(var(--sky-blue) / 0.85),
+      oklch(var(--primary) / 0.9)
+    );
+    background-size: 200% 100%;
+    animation: tickerBarShimmer 4s ease-in-out infinite;
+    padding: 0.375rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: white;
+  }
+
+  .dmnz-ticker-digit {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.15s
+      ease;
+    animation: digitFlip 1s cubic-bezier(0.34, 1.56, 0.64, 1) 1;
+  }
+
+  .dmnz-ticker-pulse {
+    animation: tickerDotPulse 1.5s ease-in-out infinite;
+  }
+
+  /* Phase 7 Component Utilities */
+
+  /* Chart Signal Scanner Upload Zone */
+  .upload-zone {
+    @apply rounded-lg border-2 border-dashed p-8 text-center transition-smooth;
+    border-color: oklch(var(--primary));
+    background: oklch(var(--background) / 0.5);
+  }
+
+  .upload-zone:hover {
+    background: oklch(var(--primary) / 0.05);
+  }
+
+  .upload-zone.drag-over {
+    background: oklch(var(--primary) / 0.1);
+    border-color: oklch(var(--primary) / 0.8);
+  }
+
+  /* Signal Card Expiry Badge */
+  .badge-expiry {
+    @apply absolute top-4 right-4 px-2 py-1 rounded-md text-xs font-semibold;
+    background: oklch(var(--expired) / 0.15);
+    color: oklch(var(--expired-foreground));
+  }
+
+  /* Difficulty Stars */
+  .difficulty-stars {
+    @apply inline-flex gap-0.5;
+  }
+
+  .difficulty-star {
+    @apply text-sm;
+    color: oklch(var(--primary));
+  }
+
+  /* Category Tags */
+  .tag-category {
+    @apply inline-block px-2 py-1 rounded-full text-xs font-semibold;
+    background: oklch(var(--primary) / 0.15);
+    color: oklch(var(--primary));
+  }
+
+  .tag-category.scalp {
+    background: oklch(var(--timeframe-scalp) / 0.15);
+    color: oklch(var(--timeframe-scalp-foreground));
+  }
+
+  .tag-category.swing {
+    background: oklch(var(--timeframe-swing) / 0.15);
+    color: oklch(var(--timeframe-swing-foreground));
+  }
+
+  .tag-category.longterm {
+    background: oklch(var(--timeframe-longterm) / 0.15);
+    color: oklch(var(--timeframe-longterm-foreground));
+  }
+
+  /* Paper Trade CTA Button */
+  .btn-paper-trade {
+    @apply px-3 py-1 rounded-lg border text-xs font-semibold transition-smooth;
+    border-color: oklch(var(--primary));
+    color: oklch(var(--primary));
+    background: transparent;
+  }
+
+  .btn-paper-trade:hover {
+    background: oklch(var(--primary) / 0.1);
+    transform: scale(1.02);
+    box-shadow: 0 0 12px oklch(var(--primary) / 0.3);
+  }
+
+  /* Mobile Bottom Navigation */
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 z-40 border-t flex items-center justify-around gap-2 px-2 py-3 md:hidden;
+    background: oklch(var(--card));
+    border-top-color: oklch(var(--sky-blue));
+    height: 72px;
+  }
+
+  .bottom-nav-item {
+    @apply flex flex-col items-center gap-1 transition-smooth;
+  }
+
+  .bottom-nav-item.active {
+    color: oklch(var(--primary));
+  }
+
+  .bottom-nav-item.active::before {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: oklch(var(--primary) / 0.15);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  .bottom-nav-icon {
+    @apply w-6 h-6;
+  }
+
+  .bottom-nav-label {
+    @apply text-xs font-medium truncate max-w-full;
+  }
+
+  /* Community Ask Form */
+  .ask-form-input {
+    @apply w-full px-4 py-2 rounded-lg bg-background text-foreground border border-input ring-0 transition-smooth;
+  }
+
+  .ask-form-input:focus {
+    @apply ring-2;
+    border-color: oklch(var(--primary));
+  }
+
+  .community-question-card {
+    @apply rounded-lg p-4 border border-border hover:shadow-elevated transition-smooth;
+    background: oklch(var(--card));
+  }
+
+  .question-avatar {
+    @apply w-8 h-8 rounded-full inline-block;
+    background: oklch(var(--primary) / 0.2);
+  }
+
+  /* Top Traders Grid */
+  .trader-card {
+    @apply rounded-lg p-4 text-center border border-border transition-smooth;
+    background: oklch(var(--card));
+  }
+
+  .trader-card:hover {
+    border-color: oklch(var(--primary));
+    box-shadow: 0 0 12px oklch(var(--primary) / 0.2);
+  }
+
+  .trader-avatar {
+    @apply w-12 h-12 rounded-full mx-auto mb-2;
+    background: oklch(var(--primary) / 0.3);
+  }
+
+  .trader-winrate {
+    @apply text-2xl font-bold;
+    color: oklch(var(--primary));
+  }
+
+  /* Milestone Unlock */
+  .milestone-locked {
+    @apply rounded-lg p-8 text-center border border-border transition-smooth;
+    background: oklch(var(--muted) / 0.3);
+    color: oklch(var(--muted-foreground));
+  }
+
+  .milestone-locked.unlocked {
+    animation: scaleUp 0.5s ease-out forwards, pulseGlow 2s ease-in-out infinite;
+  }
+
+  /* Performance Leaderboard */
+  .leaderboard-bar-container {
+    @apply flex items-center gap-2 py-3;
+  }
+
+  .leaderboard-label {
+    @apply w-20 text-xs font-semibold uppercase;
+    color: oklch(var(--muted-foreground));
+  }
+
+  .leaderboard-bar {
+    @apply flex-1 h-3 rounded-full overflow-hidden;
+    background: oklch(var(--muted) / 0.2);
+  }
+
+  .leaderboard-bar-fill {
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      oklch(var(--chart-win)),
+      oklch(var(--chart-3))
+    );
+    transition: width 0.6s ease-out;
+  }
+
+  .leaderboard-percentage {
+    @apply w-12 text-xs font-bold text-right;
+    color: oklch(var(--chart-win));
+  }
+
+  /* Comparison Table */
+  .comparison-table {
+    @apply w-full text-left text-sm;
+  }
+
+  .comparison-table-header {
+    @apply font-bold border-b;
+    border-bottom-color: oklch(var(--border));
+  }
+
+  .comparison-table-demnz {
+    @apply font-bold;
+    background: oklch(var(--primary) / 0.1);
+    color: oklch(var(--primary));
+  }
+
+  .comparison-table-cell {
+    @apply px-4 py-3 border-b;
+    border-bottom-color: oklch(var(--border));
+  }
+
+  /* DMNZ Supply Counter */
+  .supply-counter-display {
+    @apply text-center py-8 px-6 rounded-lg;
+    background: oklch(var(--card));
+  }
+
+  .supply-counter-value {
+    @apply text-6xl md:text-7xl font-bold my-4 font-display;
+    color: oklch(var(--primary));
+    font-variant-numeric: tabular-nums;
+  }
+
+  .supply-counter-label {
+    @apply text-xs uppercase tracking-wider;
+    color: oklch(var(--muted-foreground));
+  }
+
   /* Mobile AI Chat Responsive */
   @media (max-width: 768px) {
     .chat-header-collapsible {
@@ -679,19 +1582,124 @@
     .chat-input-wrapper {
       @apply p-2;
     }
+
+    body {
+      padding-bottom: 72px;
+    }
   }
+}
+
+/* Certificate Image Styling — Physical Award Look */
+.certificate-image {
+  @apply relative rounded-lg border-8 p-8 md:p-12 text-center;
+  background: linear-gradient(135deg, #f5f1e8 0%, #ede6d3 100%);
+  border-color: #8b7355;
+  aspect-ratio: 1.414 / 1;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), inset 0 1px 0
+    rgba(255, 255, 255, 0.3);
+  font-family: var(--font-display);
+  color: #2c1810;
+}
+
+.certificate-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px dashed #b8956a;
+  border-radius: 0.5rem;
+  pointer-events: none;
+}
+
+.certificate-image::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  border: 1px solid rgba(139, 115, 85, 0.2);
+  border-radius: 0.375rem;
+  pointer-events: none;
+}
+
+.certificate-seal {
+  @apply relative w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto;
+  background: linear-gradient(
+    135deg,
+    oklch(var(--certificate-gold)) 0%,
+    oklch(0.65 0.15 70) 100%
+  );
+  box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3), inset 0 1px 0
+    rgba(255, 255, 255, 0.3);
+  border: 3px solid #8b7355;
+  color: white;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+.certificate-seal::before {
+  content: "✓";
+  position: absolute;
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation: lessonCompleteCheck 0.8s ease-out forwards;
+}
+
+.certificate-watermark {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 0.625rem;
+  opacity: 0.6;
+  color: #8b7355;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.certificate-watermark-zeno {
+  @apply font-display;
+  font-size: 0.75rem;
+}
+
+/* Tier Badge Colors — Master/Expert/Other */
+.tier-badge-master {
+  @apply px-3 py-2 rounded-full text-xs font-bold uppercase;
+  background: linear-gradient(
+    135deg,
+    oklch(0.7 0.18 70) 0%,
+    oklch(0.65 0.15 70) 100%
+  );
+  color: #2c1810;
+  box-shadow: 0 4px 12px rgba(178, 148, 68, 0.3);
+  animation: tierUnlockGlow 0.8s ease-out forwards;
+}
+
+.tier-badge-expert {
+  @apply px-3 py-2 rounded-full text-xs font-bold uppercase;
+  background: linear-gradient(135deg, #c0c0c0 0%, #a8a8a8 100%);
+  color: #2c1810;
+  box-shadow: 0 4px 12px rgba(192, 192, 192, 0.3);
+  animation: tierUnlockGlow 0.8s ease-out forwards;
+}
+
+.tier-badge-other {
+  @apply px-3 py-2 rounded-full text-xs font-bold uppercase;
+  background: linear-gradient(135deg, #cd7f32 0%, #b8860b 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(205, 127, 50, 0.3);
+  animation: tierUnlockGlow 0.8s ease-out forwards;
 }
 
 @keyframes pulseGlow {
   0%,
   100% {
-    box-shadow: 0 0 6px oklch(var(--mode-insane-badge) / 0.4), 0 0 12px
-      oklch(var(--mode-insane-badge) / 0.2);
+    box-shadow: 0 0 6px oklch(var(--primary) / 0.4), 0 0 12px
+      oklch(var(--primary) / 0.2);
     opacity: 1;
   }
   50% {
-    box-shadow: 0 0 16px oklch(var(--mode-insane-badge) / 0.8), 0 0 32px
-      oklch(var(--mode-insane-badge) / 0.4);
+    box-shadow: 0 0 16px oklch(var(--primary) / 0.8), 0 0 32px
+      oklch(var(--primary) / 0.4);
     opacity: 0.85;
   }
 }
@@ -835,5 +1843,192 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes glowBorderRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes animeGlowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 8px oklch(var(--primary) / 0.4), 0 0 20px
+      oklch(var(--primary) / 0.2), 0 0 40px oklch(var(--sky-blue) / 0.1);
+  }
+  50% {
+    box-shadow: 0 0 16px oklch(var(--primary) / 0.7), 0 0 40px
+      oklch(var(--primary) / 0.35), 0 0 80px oklch(var(--sky-blue) / 0.2);
+  }
+}
+
+@keyframes typewriterReveal {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes typewriterBlink {
+  0%,
+  100% {
+    border-color: oklch(var(--primary));
+  }
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes orbFloat1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -30px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.96);
+  }
+}
+
+@keyframes orbFloat2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  40% {
+    transform: translate(-50px, 30px) scale(1.08);
+  }
+  70% {
+    transform: translate(20px, -40px) scale(0.94);
+  }
+}
+
+@keyframes orbFloat3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -50px) scale(1.06);
+  }
+}
+
+@keyframes tickerBarShimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes digitFlip {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(8%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes tickerDotPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes tierUnlockGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    box-shadow: 0 0 24px oklch(var(--primary) / 0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes lessonCompleteCheck {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes orbFloat4 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  45% {
+    transform: translate(-15px, 25px) scale(1.03);
+  }
+  75% {
+    transform: translate(20px, -10px) scale(0.96);
   }
 }

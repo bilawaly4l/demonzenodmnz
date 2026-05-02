@@ -162,6 +162,14 @@ export default {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "slideUp": {
+          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "scaleUp": {
+          "0%": { opacity: "0", transform: "scale(0.8)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -183,6 +191,8 @@ export default {
         "sectionFadeIn": "sectionFadeIn 0.8s ease-out forwards",
         "pageWipeRight": "pageWipeRight 0.6s ease-in-out",
         "testimonialSlideUp": "testimonialSlideUp 0.8s ease-out backwards",
+        "slideUp": "slideUp 0.4s ease-out forwards",
+        "scaleUp": "scaleUp 0.5s ease-out forwards",
       },
     },
   },

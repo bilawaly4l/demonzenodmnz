@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, Zap } from "lucide-react";
+import { ArrowLeft, BookOpen, Zap } from "lucide-react";
 
 export function NotFound() {
   return (
@@ -9,13 +9,14 @@ export function NotFound() {
       className="min-h-[calc(100vh-8rem)] flex items-center justify-center bg-background py-20"
     >
       <div className="container mx-auto px-4 flex flex-col items-center gap-8 text-center max-w-xl">
-        {/* Character / illustration */}
+        {/* Character illustration */}
         <div className="relative">
-          <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl scale-75 animate-pulse-glow pointer-events-none" />
+          <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl scale-75 pointer-events-none" />
           <img
             src="/assets/demonzeno-character.png"
             alt="DemonZeno character"
             className="relative z-10 w-48 md:w-64 object-contain drop-shadow-2xl"
+            style={{ clipPath: "inset(0 0 18% 0)", marginBottom: "-18%" }}
           />
         </div>
 
@@ -52,18 +53,20 @@ export function NotFound() {
           </Button>
           <Button
             variant="outline"
-            data-ocid="not_found.signals.secondary_button"
+            data-ocid="not_found.academy.secondary_button"
             asChild
             className="border-primary/40 text-primary hover:bg-primary/10 h-11"
           >
-            <Link to="/">View Signals</Link>
+            <Link to="/">
+              <BookOpen className="w-4 h-4 mr-2" />
+              Start Academy
+            </Link>
           </Button>
         </div>
 
-        {/* Disclaimer */}
         <p className="text-muted-foreground text-xs max-w-sm">
           If you think this is a mistake, check the URL or head back to the
-          homepage and navigate from there.
+          homepage.
         </p>
       </div>
     </section>

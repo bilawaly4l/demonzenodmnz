@@ -1,8 +1,2 @@
-module {
-  public type NotifyMe = {
-    id : Text;
-    name : ?Text;
-    contact : Text;
-    dateSubmitted : Text;
-  };
-};
+// Removed — notify types deleted from this project.
+module {};

@@ -1,10 +1,2 @@
-module {
-  public type AuditEntry = {
-    id           : Text;
-    timestamp    : Int;
-    action       : Text;
-    details      : Text;
-    adminToken   : Text;
-    rollbackData : ?Text;
-  };
-};
+// Removed — audit types deleted from this project.
+module {};

@@ -1,230 +1,211 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Zap } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, Award, BookOpen, TrendingUp } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useSession } from "../contexts/SessionContext";
-import { useSignalOfTheDay } from "../hooks/useSignalOfTheDay";
 import { AdminPasscodeModal } from "./AdminPasscodeModal";
-import { CountdownTimer } from "./CountdownTimer";
-import { SignalDetailModal } from "./SignalDetailModal";
 
-function scrollTo(id: string) {
+const SLOGANS = [
+  "Trade the chart, not the news.",
+  "The demons of trading are fear and greed. Know them. Control them.",
+  "Every loss is tuition. Every win is validation.",
+  "Patience is the sharpest weapon in a trader's arsenal.",
+  "Risk management isn't optional. It's the only reason traders survive.",
+  "The best traders aren't the bravest. They're the most disciplined.",
+  "Master the basics. Everything else is noise.",
+  "In trading, the one who loses the least wins the most.",
+  "Your trading plan is your shield. Never go to battle without it.",
+  "Small consistent gains beat lucky big wins every time.",
+  "Protect your capital like it's your life.",
+  "Every pattern tells a story. Learn to read the chart like a book.",
+  "The exit matters more than the entry.",
+  "Trading is 80% psychology, 20% strategy.",
+  "Cut losses fast, let winners run.",
+  "The trend is your only friend.",
+];
+
+function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }
 
 export function HeroSection() {
-  const { data: signalOfTheDay } = useSignalOfTheDay();
-  const [sotdModalOpen, setSotdModalOpen] = useState(false);
-  const { setSessionToken } = useSession();
+  const { adminClickCount, showPasscodeModal, onHeroImageClick, dismissModal } =
+    useSession();
+  const [quoteIdx, setQuoteIdx] = useState(() =>
+    Math.floor(Math.random() * SLOGANS.length),
+  );
+  const [fadingOut, setFadingOut] = useState(false);
+  const [adminSuccess, setAdminSuccess] = useState(false);
 
-  const [clickCount, setClickCount] = useState(0);
-  const [showPasscodeModal, setShowPasscodeModal] = useState(false);
-  const clickResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // Parallax state
-  const [parallaxY, setParallaxY] = useState(0);
-  const heroRef = useRef<HTMLElement>(null);
-
+  // Rotate slogans every 4.5s with fade transition
   useEffect(() => {
-    function handleScroll() {
-      if (!heroRef.current) return;
-      const rect = heroRef.current.getBoundingClientRect();
-      const scrolled = -rect.top;
-      setParallaxY(scrolled * 0.4);
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const interval = setInterval(() => {
+      setFadingOut(true);
+      setTimeout(() => {
+        setQuoteIdx((prev) => (prev + 1) % SLOGANS.length);
+        setFadingOut(false);
+      }, 400);
+    }, 4500);
+    return () => clearInterval(interval);
   }, []);
 
-  function handleDemonZenoClick() {
-    if (clickResetTimer.current) clearTimeout(clickResetTimer.current);
-    const newCount = clickCount + 1;
-    if (newCount >= 6) {
-      setClickCount(0);
-      setShowPasscodeModal(true);
-    } else {
-      setClickCount(newCount);
-      clickResetTimer.current = setTimeout(() => setClickCount(0), 30000);
-    }
-  }
-
-  function handleAdminSuccess(token: string) {
-    setSessionToken(token);
-    setShowPasscodeModal(false);
-    window.location.href = "/admin";
+  function handleAdminSuccess() {
+    setAdminSuccess(true);
+    setTimeout(() => {
+      window.location.href = "/admin";
+    }, 300);
   }
 
   return (
     <section
-      ref={heroRef}
       id="hero"
       data-ocid="hero.section"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden bg-background"
     >
-      {/* Parallax background image */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          transform: `translateY(${parallaxY}px)`,
-          willChange: "transform",
-        }}
-        aria-hidden="true"
-      >
-        <img
-          src="/assets/generated/hero-highway-bg.dim_1920x600.jpg"
-          alt=""
-          className="w-full h-full object-cover object-center"
-          style={{ minHeight: "120%" }}
-        />
-        <div className="absolute inset-0 bg-background/70" />
+      {/* Background gradient orbs */}
+      <div className="hero-bg-orbs" aria-hidden="true">
+        <div className="hero-orb hero-orb-1" />
+        <div className="hero-orb hero-orb-2" />
+        <div className="hero-orb hero-orb-3" />
       </div>
-
-      {/* Decorative glow */}
-      <div
-        className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "oklch(0.65 0.15 190 / 0.06)" }}
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "oklch(0.55 0.22 25 / 0.05)" }}
-        aria-hidden="true"
-      />
-
-      {/* Road stripes decorative */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-1 pointer-events-none"
-        style={{ background: "oklch(0.65 0.15 190 / 0.2)" }}
-        aria-hidden="true"
-      />
-
-      {sotdModalOpen && signalOfTheDay && (
-        <SignalDetailModal
-          signal={signalOfTheDay}
-          onClose={() => setSotdModalOpen(false)}
-        />
-      )}
-
-      <AdminPasscodeModal
-        open={showPasscodeModal}
-        onSuccess={handleAdminSuccess}
-        onClose={() => {
-          setShowPasscodeModal(false);
-          setClickCount(0);
-        }}
-      />
 
       <div className="container mx-auto px-4 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
         {/* Left: text content */}
-        <div className="flex flex-col gap-6 max-w-xl">
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-1.5 w-fit backdrop-blur-sm">
-            <Zap className="w-3.5 h-3.5 text-primary" />
+        <div className="flex flex-col gap-6 max-w-xl fade-in-up">
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-1.5 w-fit">
+            <BookOpen className="w-3.5 h-3.5 text-primary" />
             <span className="text-primary text-xs font-semibold tracking-wide uppercase">
-              Free Trading Signals · Binance
+              Premium Trading Academy
             </span>
           </div>
 
-          <h1 className="font-display font-bold text-5xl md:text-6xl text-foreground leading-tight text-glow">
-            DemonZeno:
-            <br />
-            <span className="text-primary">Master the Chaos,</span>
-            <br />
-            Slay the Market,
-            <br />
-            and Trade Like a God.
+          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight text-glow">
+            Demon<span className="text-primary">Zeno</span>{" "}
+            <span className="block">Trading Academy</span>
           </h1>
 
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            Daily free signals for crypto, forex, and stocks — powered by
-            DemonZeno AI. The DMNZ token launches April 2, 2028 on Blum.
+          {/* Rotating DemonZeno slogan */}
+          <blockquote
+            className="border-l-4 border-primary/60 pl-4 italic text-muted-foreground text-lg leading-relaxed min-h-[3.5rem]"
+            style={{
+              opacity: fadingOut ? 0 : 1,
+              transition: "opacity 0.4s ease-in-out",
+            }}
+          >
+            &ldquo;{SLOGANS[quoteIdx]}&rdquo;
+          </blockquote>
+
+          <p className="text-muted-foreground leading-relaxed">
+            Master the markets from zero to expert — step by step. Earn
+            prestigious certificates. Trade like a demon. Think like a god.
           </p>
 
-          {signalOfTheDay && (
-            <button
-              type="button"
-              data-ocid="hero.signal_of_the_day.card"
-              onClick={() => setSotdModalOpen(true)}
-              className="text-left flex items-center gap-4 bg-primary/10 border border-primary/30 rounded-xl px-4 py-3 hover:bg-primary/15 hover:border-primary/50 transition-smooth group w-fit max-w-full backdrop-blur-sm"
-            >
-              <div className="flex flex-col gap-0.5 min-w-0">
-                <span className="text-primary text-xs font-bold uppercase tracking-widest">
-                  ⚡ Signal of the Day
+          <div className="flex items-center gap-6 py-2">
+            {[
+              { value: "5", label: "Tiers" },
+              { value: "30/30", label: "Pass Score" },
+              { value: "DMNZ", label: "Token" },
+            ].map(({ value, label }) => (
+              <div key={label} className="flex flex-col">
+                <span className="font-display font-bold text-2xl text-primary">
+                  {value}
                 </span>
-                <span className="font-display font-bold text-foreground truncate">
-                  {signalOfTheDay.asset} ·{" "}
-                  <span
-                    className={
-                      signalOfTheDay.direction === "Buy"
-                        ? "text-emerald-400"
-                        : "text-destructive"
-                    }
-                  >
-                    {signalOfTheDay.direction}
-                  </span>
-                </span>
-                <span className="text-muted-foreground text-xs">
-                  Confidence: {signalOfTheDay.confidence} · Tap to view
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">
+                  {label}
                 </span>
               </div>
-              <ArrowRight className="w-4 h-4 text-primary shrink-0 group-hover:translate-x-1 transition-smooth" />
-            </button>
-          )}
-
-          <div className="flex flex-col gap-3">
-            <p className="text-sm text-muted-foreground font-medium">
-              Launch countdown:
-            </p>
-            <CountdownTimer />
+            ))}
           </div>
 
-          <div className="flex flex-wrap gap-3 pt-2">
+          <div className="flex flex-wrap gap-3">
             <Button
-              data-ocid="hero.get_signals.primary_button"
-              onClick={() => scrollTo("signals")}
-              className="btn-primary px-6 h-11 text-base"
+              data-ocid="hero.start_learning.primary_button"
+              onClick={() => scrollToSection("academy")}
+              className="btn-primary btn-micro px-6 h-11 text-base"
             >
-              Get Free Signals <ArrowRight className="w-4 h-4 ml-1" />
+              <TrendingUp className="w-4 h-4 mr-1.5" />
+              Start Learning (Free)
             </Button>
             <Button
               variant="outline"
-              data-ocid="hero.enter_ai.secondary_button"
-              asChild
+              data-ocid="hero.dmnz_token.secondary_button"
+              onClick={() => scrollToSection("dmnz-token")}
               className="border-primary/40 text-primary hover:bg-primary/10 h-11 text-base"
             >
-              <a href="/ai">Enter DemonZeno AI</a>
+              DMNZ Token
             </Button>
+            <Button
+              variant="outline"
+              data-ocid="hero.certificates.secondary_button"
+              asChild
+              className="border-border text-muted-foreground hover:text-foreground hover:bg-muted h-11 text-base"
+            >
+              <Link to="/certificates">
+                <Award className="w-4 h-4 mr-1.5" />
+                Certificate Wall
+              </Link>
+            </Button>
+          </div>
+
+          {/* Feature pills */}
+          <div className="flex flex-wrap gap-2">
+            {[
+              "Free Forever",
+              "No Account Needed",
+              "Anti-Cheat Quizzes",
+              "Prestige Certificates",
+            ].map((f) => (
+              <span
+                key={f}
+                className="text-xs text-muted-foreground bg-muted/50 border border-border px-2.5 py-1 rounded-full"
+              >
+                ✓ {f}
+              </span>
+            ))}
           </div>
         </div>
 
         {/* Right: DemonZeno character */}
         <div className="flex justify-center md:justify-end">
-          <div className="relative">
+          <div className="relative select-none">
             <div
-              className="absolute inset-0 rounded-full blur-3xl scale-75 animate-pulse-glow pointer-events-none"
+              className="absolute inset-0 rounded-full blur-3xl scale-75 pointer-events-none anime-glow"
               style={{ background: "oklch(0.65 0.15 190 / 0.12)" }}
               aria-hidden="true"
             />
-            {/* 6+ clicks triggers admin modal — no visible UI hint */}
             <button
               type="button"
-              onClick={handleDemonZenoClick}
-              className="relative z-10 p-0 bg-transparent border-0 cursor-default focus:outline-none"
-              tabIndex={-1}
-              aria-hidden="true"
+              onClick={onHeroImageClick}
+              className="relative z-10 p-0 bg-transparent border-0 focus:outline-none cursor-pointer"
+              aria-label="DemonZeno character"
+              data-ocid="hero.character.button"
             >
               <div className="relative overflow-hidden">
                 <img
-                  src="/assets/demonzeno-character.png"
-                  alt="DemonZeno — anime-style character on an open highway"
+                  src="/assets/generated/demonzeno-hero.dim_800x900.png"
+                  alt="DemonZeno — anime-style trading character"
                   className="w-64 md:w-80 lg:w-96 object-cover object-top drop-shadow-2xl pointer-events-none"
                   style={{ clipPath: "inset(0 0 18% 0)", marginBottom: "-18%" }}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      "/assets/demonzeno-character.png";
+                  }}
                 />
               </div>
             </button>
+
+            {adminClickCount >= 3 && adminClickCount < 5 && (
+              <p
+                className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-muted-foreground/60 whitespace-nowrap pointer-events-none"
+                aria-hidden="true"
+              >
+                Keep clicking…
+              </p>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce pointer-events-none"
         aria-hidden="true"
@@ -232,6 +213,20 @@ export function HeroSection() {
         <div className="w-px h-8 bg-primary/30 rounded-full" />
         <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
       </div>
+
+      <AdminPasscodeModal
+        open={showPasscodeModal}
+        onSuccess={handleAdminSuccess}
+        onClose={dismissModal}
+      />
+
+      {adminSuccess && (
+        <div className="fixed inset-0 bg-background/50 backdrop-blur-sm z-50 flex items-center justify-center">
+          <div className="text-primary font-display font-bold text-2xl animate-pulse">
+            Access Granted…
+          </div>
+        </div>
+      )}
     </section>
   );
 }

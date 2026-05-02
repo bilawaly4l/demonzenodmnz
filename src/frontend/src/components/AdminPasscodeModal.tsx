@@ -6,14 +6,13 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { useActor } from "@caffeineai/core-infrastructure";
 import { Eye, EyeOff, Lock, Shield, Zap } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { createActor } from "../backend";
+import { useSession } from "../contexts/SessionContext";
 
 interface AdminPasscodeModalProps {
   open: boolean;
-  onSuccess: (token: string) => void;
+  onSuccess: () => void;
   onClose: () => void;
 }
 
@@ -25,12 +24,10 @@ export function AdminPasscodeModal({
   const [passcode, setPasscode] = useState("");
   const [showPasscode, setShowPasscode] = useState(false);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const [shake, setShake] = useState(false);
-  const { actor } = useActor(createActor);
+  const { submitPasscode } = useSession();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-focus input when modal opens
   useEffect(() => {
     if (open) {
       setTimeout(() => inputRef.current?.focus(), 100);
@@ -44,27 +41,21 @@ export function AdminPasscodeModal({
     onClose();
   }
 
-  async function handlePasscodeSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!actor || !passcode) return;
+    if (!passcode) return;
     setError("");
-    setLoading(true);
-    try {
-      const result = await actor.validatePasscode(passcode);
-      if (result.__kind__ === "ok") {
-        setPasscode("");
-        setShowPasscode(false);
-        onSuccess(result.ok);
-      } else {
-        setError("Access Denied — Invalid passcode");
-        setPasscode("");
-        setShake(true);
-        setTimeout(() => setShake(false), 600);
-      }
-    } catch {
-      setError("Connection error. Try again.");
-    } finally {
-      setLoading(false);
+
+    const success = submitPasscode(passcode);
+    if (success) {
+      setPasscode("");
+      setShowPasscode(false);
+      onSuccess();
+    } else {
+      setError("Access Denied — Invalid passcode");
+      setPasscode("");
+      setShake(true);
+      setTimeout(() => setShake(false), 600);
     }
   }
 
@@ -78,13 +69,6 @@ export function AdminPasscodeModal({
       <DialogContent
         data-ocid="admin.dialog"
         className={`bg-card border-border max-w-sm ${shake ? "animate-[shake_0.5s_ease-in-out]" : ""}`}
-        style={
-          shake
-            ? {
-                animation: "shake 0.5s cubic-bezier(.36,.07,.19,.97) both",
-              }
-            : {}
-        }
       >
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 font-display text-foreground">
@@ -95,7 +79,6 @@ export function AdminPasscodeModal({
           </DialogTitle>
         </DialogHeader>
 
-        {/* Anime-styled decorative header */}
         <div className="flex flex-col items-center py-4 gap-3">
           <div className="relative">
             <div className="w-16 h-16 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center">
@@ -115,10 +98,7 @@ export function AdminPasscodeModal({
           </div>
         </div>
 
-        <form
-          onSubmit={handlePasscodeSubmit}
-          className="flex flex-col gap-4 pb-2"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 pb-2">
           <div className="flex flex-col gap-2">
             <div className="relative">
               <Input
@@ -168,26 +148,16 @@ export function AdminPasscodeModal({
               variant="outline"
               data-ocid="admin.passcode.cancel_button"
               onClick={handleClose}
-              disabled={loading}
             >
               Cancel
             </Button>
             <Button
               type="submit"
               data-ocid="admin.passcode.submit_button"
-              disabled={loading || !passcode || !actor}
+              disabled={!passcode}
               className="btn-primary btn-micro"
             >
-              {loading ? (
-                <span className="flex items-center gap-1.5">
-                  <span className="w-3.5 h-3.5 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin" />
-                  Verifying…
-                </span>
-              ) : (
-                <span className="flex items-center gap-1.5">
-                  <Zap className="w-3.5 h-3.5" /> Unlock
-                </span>
-              )}
+              <Zap className="w-3.5 h-3.5 mr-1" /> Unlock
             </Button>
           </div>
         </form>

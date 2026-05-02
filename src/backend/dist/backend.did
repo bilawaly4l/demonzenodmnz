@@ -1,740 +1,217 @@
-type WhitepaperSection = 
+type http_request_result = 
  record {
-   content: text;
-   title: text;
+   body: blob;
+   headers: vec http_header;
+   status: nat;
  };
-type WhitepaperContent = 
+type http_header = 
  record {
-   sections: vec WhitepaperSection;
-   title: text;
-   updatedAt: int;
- };
-type TopTrader = 
- record {
-   achievement: text;
-   bio: text;
-   createdAt: int;
-   id: text;
-   isActive: bool;
    name: text;
-   week: text;
+   value: text;
  };
-type TokenData = 
+type ZenoAiResponse = 
  record {
-   burnedAmount: text;
-   launchDate: text;
+   answer: text;
+   success: bool;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type TokenInfo = 
+ record {
+   description: text;
+   distribution: text;
    launchPlatform: text;
    name: text;
-   supply: text;
+   slogan: text;
+   socialLinks: vec record {
+                      name: text;
+                      url: text;
+                    };
    ticker: text;
+   totalSupply: text;
  };
-type Timeframe = 
- variant {
-   LongTerm;
-   Scalp;
-   Swing;
- };
-type Testimonial = 
+type TierQuiz = 
  record {
-   active: bool;
-   asset: opt text;
-   content: text;
-   createdAt: int;
-   id: text;
-   name: text;
-   winAmount: opt text;
+   questions: vec QuizQuestion;
+   tierId: TierId;
+   tierName: text;
  };
-type StatsConfig = 
+type TierId = text;
+type TierDisabledEntry = 
  record {
-   manualStats: opt Stats;
-   useManual: bool;
- };
-type Stats = 
- record {
-   active: nat;
-   assetsCovered: nat;
-   losses: nat;
-   totalSignals: nat;
-   winRate: float64;
-   wins: nat;
- };
-type SignalTemplate = 
- record {
-   asset: text;
-   confidence: Confidence;
-   createdAt: int;
-   direction: Direction;
-   id: text;
-   marketType: MarketType;
-   name: text;
-   notes: text;
-   timeframe: Timeframe;
- };
-type SignalPerformanceStats = 
- record {
-   losses: nat;
-   pending: nat;
-   topAssets: vec AssetStats;
-   totalSignals: nat;
-   weeklyTrend: vec DayStats;
-   winRate: float64;
-   wins: nat;
- };
-type SignalOfWeekFull = 
- record {
-   comment: text;
-   featuredAt: int;
-   signal: Signal;
-   weekOf: text;
- };
-type SignalInput = 
- record {
-   asset: text;
-   confidence: Confidence;
-   direction: Direction;
-   entryPrice: text;
-   expiry: opt int;
-   isDraft: bool;
-   marketType: MarketType;
-   notes: text;
-   providerLabel: text;
-   publishAt: opt int;
-   sourceLabel: text;
-   stopLoss: text;
-   tags: vec text;
-   targetPrice: text;
-   templateId: opt text;
-   timeframe: Timeframe;
-   tp1: text;
-   tp2: text;
-   tp3: text;
- };
-type Signal = 
- record {
-   asset: text;
-   confidence: Confidence;
-   datePosted: text;
-   direction: Direction;
-   entryPrice: text;
-   expiry: opt int;
-   id: text;
-   isDraft: bool;
-   marketType: MarketType;
-   notes: text;
-   providerLabel: text;
-   publishAt: opt int;
-   result: ResultStatus;
-   sourceLabel: text;
-   stopLoss: text;
-   tags: vec text;
-   targetPrice: text;
-   templateId: opt text;
-   timeframe: Timeframe;
-   tp1: text;
-   tp2: text;
-   tp3: text;
-   voteDown: nat;
-   voteUp: nat;
- };
-type SentimentLevel = 
- variant {
-   Bearish;
-   Bullish;
-   Neutral;
+   disabled: bool;
+   tierId: text;
  };
 type RoadmapMilestone = 
  record {
    completed: bool;
+   date: opt text;
    description: text;
+   id: text;
    title: text;
    year: text;
- };
-type Result_9 = 
- variant {
-   err: text;
-   ok: vec SignalTemplate;
- };
-type Result_8 = 
- variant {
-   err: text;
-   ok: StatsConfig;
- };
-type Result_7 = 
- variant {
-   err: text;
-   ok: vec Signal;
- };
-type Result_6 = 
- variant {
-   err: text;
-   ok: vec AuditSnapshot;
- };
-type Result_5 = 
- variant {
-   err: text;
-   ok: Announcement;
- };
-type Result_4 = 
- variant {
-   err: text;
-   ok: BinancePost;
- };
-type Result_3 = 
- variant {
-   err: text;
-   ok: FAQ;
- };
-type Result_22 = 
- variant {
-   err: text;
-   ok: BurnEvent;
- };
-type Result_21 = 
- variant {
-   err: text;
-   ok: HypeMilestone;
- };
-type Result_20 = 
- variant {
-   err: text;
-   ok: SignalTemplate;
- };
-type Result_2 = 
- variant {
-   err: text;
-   ok: Signal;
- };
-type Result_19 = 
- variant {
-   err: text;
-   ok: vec AbTest;
- };
-type Result_18 = 
- variant {
-   err: text;
-   ok: vec ActivityEntry;
- };
-type Result_17 = 
- variant {
-   err: text;
-   ok: vec Announcement;
- };
-type Result_16 = 
- variant {
-   err: text;
-   ok: Analytics;
- };
-type Result_15 = 
- variant {
-   err: text;
-   ok: vec AuditEntry;
- };
-type Result_14 = 
- variant {
-   err: text;
-   ok: vec text;
- };
-type Result_13 = 
- variant {
-   err: text;
-   ok: vec JournalEntry;
- };
-type Result_12 = 
- variant {
-   err: text;
-   ok: vec NotifyMe;
- };
-type Result_11 = 
- variant {
-   err: text;
-   ok: vec ResponseRating;
- };
-type Result_10 = 
- variant {
-   err: text;
-   ok: SignalPerformanceStats;
  };
 type Result_1 = 
  variant {
    err: text;
-   ok: text;
- };
-type ResultStatus = 
- variant {
-   Active;
-   Expired;
-   Loss;
-   Win;
+   ok;
  };
 type Result = 
  variant {
    err: text;
-   ok;
+   ok: Certificate;
  };
-type ResponseRating = 
+type QuizQuestion = 
  record {
-   messageId: text;
-   rating: int;
-   timestamp: int;
- };
-type PushNotification = 
- record {
-   active: bool;
-   body: text;
-   createdAt: int;
-   expiresAt: opt int;
+   correctOption: text;
+   explanation: text;
    id: text;
-   title: text;
- };
-type PriceData = 
- record {
-   asset: text;
-   price: float64;
-   priceChange24h: float64;
-   trend: text;
-   updatedAt: int;
- };
-type NotifyMe = 
- record {
-   contact: text;
-   dateSubmitted: text;
-   id: text;
-   name: opt text;
- };
-type MarketType = 
- variant {
-   Crypto;
-   Forex;
-   Stock;
- };
-type MarketSentiment = 
- record {
-   assets: vec AssetSentiment;
-   overall: SentimentLevel;
-   updatedAt: int;
- };
-type MarketMoodBanner = 
- record {
-   active: bool;
-   message: text;
-   mood: text;
-   updatedAt: int;
- };
-type MarketCount = 
- record {
-   count: nat;
-   market: text;
- };
-type MaintenanceMode = 
- record {
-   enabled: bool;
-   message: text;
-   updatedAt: int;
- };
-type JournalEntry = 
- record {
-   asset: text;
-   direction: text;
-   entryPrice: float64;
-   exitPrice: opt float64;
-   id: text;
-   lots: float64;
-   notes: text;
-   pnl: opt float64;
-   timestamp: int;
- };
-type HypeMilestone = 
- record {
-   achieved: bool;
-   achievedAt: opt int;
-   id: text;
-   order: nat;
-   targetCount: nat;
-   title: text;
- };
-type HolderBenefit = 
- record {
-   active: bool;
-   description: text;
-   icon: text;
-   id: text;
-   title: text;
- };
-type FaqCategory = 
- variant {
-   DmnzToken;
-   GeneralTrading;
-   Platform;
-   Signals;
- };
-type FAQ = 
- record {
-   answer: text;
-   category: FaqCategory;
-   helpfulCount: nat;
-   id: text;
-   notHelpfulCount: nat;
-   order: nat;
+   isReviewFlagged: bool;
+   options: vec QuizOption;
    question: text;
+ };
+type QuizOption = 
+ record {
+   id: text;
+   "text": text;
+ };
+type QuizAttemptStats = 
+ record {
+   passCount: nat;
+   tierId: text;
+   totalAttempts: nat;
+ };
+type QuizAttemptLog = 
+ record {
+   fingerprint: text;
+   passed: bool;
+   score: nat;
+   tierId: text;
    timestamp: int;
  };
-type Direction = 
- variant {
-   Buy;
-   Sell;
- };
-type DemonZenoQuote = 
+type QuizAnswer = 
  record {
-   active: bool;
-   author: text;
-   id: text;
-   quote: text;
+   questionId: text;
+   selectedOption: text;
  };
-type DayStats = 
+type QuestionFailStat = 
  record {
-   day: text;
-   losses: nat;
-   wins: nat;
+   failCount: nat;
+   questionId: text;
+   tierId: text;
+   totalSeen: nat;
  };
-type DateCount = 
+type LessonRating = 
+ record {
+   lessonId: text;
+   rating: nat;
+   tierId: text;
+   timestamp: int;
+ };
+type LessonCompletionLog = 
+ record {
+   completedAt: int;
+   lessonId: text;
+   tierId: text;
+ };
+type DailyActiveLog = 
  record {
    count: nat;
    date: text;
  };
-type Confidence = 
- variant {
-   High;
-   Low;
-   Medium;
- };
-type CommunityQuestion = 
+type CertificateInfo = 
  record {
-   answer: opt text;
-   id: text;
-   isActive: bool;
+   city: text;
+   country: text;
+   dateOfBirth: text;
+   email: text;
+   fathersName: text;
+   fullName: text;
+ };
+type Certificate = 
+ record {
+   certId: text;
+   certInfo: CertificateInfo;
+   featured: bool;
+   isValid: bool;
+   issuedAt: int;
+   score: nat;
+   shareToken: text;
+   tierId: TierId;
+   tierName: text;
+   totalQuestions: nat;
+ };
+type AnnouncementBanner = 
+ record {
    isPinned: bool;
-   question: text;
-   timestamp: int;
-   votes: nat;
- };
-type CommunityMilestone = 
- record {
-   celebrateUntil: opt int;
-   description: text;
-   id: text;
-   reached: bool;
-   reachedAt: opt int;
-   title: text;
- };
-type CommunityCounter = 
- record {
-   binanceCount: nat;
-   lastUpdated: int;
-   twitterCount: nat;
- };
-type ChatMessage = 
- record {
-   content: text;
-   provider: opt text;
-   role: text;
-   timestamp: int;
- };
-type BurnTracker = 
- record {
-   lastUpdated: int;
-   totalBurned: nat;
- };
-type BurnScheduleEntry = 
- record {
-   amount: text;
-   date: text;
-   id: text;
-   reason: text;
-   status: text;
-   txHash: opt text;
- };
-type BurnEvent = 
- record {
-   amount: text;
-   createdAt: int;
-   date: text;
-   executed: bool;
-   id: text;
-   reason: text;
- };
-type BinancePost = 
- record {
-   date: text;
-   id: text;
-   snippet: text;
-   title: text;
-   url: text;
- };
-type AuditSnapshot = 
- record {
-   createdAt: int;
-   dataHash: text;
-   id: text;
-   snapshotLabel: text;
- };
-type AuditEntry = 
- record {
-   action: text;
-   adminToken: text;
-   details: text;
-   id: text;
-   rollbackData: opt text;
-   timestamp: int;
- };
-type AssetStats = 
- record {
-   asset: text;
-   losses: nat;
-   wins: nat;
- };
-type AssetSentiment = 
- record {
-   asset: text;
-   lastPriceUpdate: int;
-   level: SentimentLevel;
-   market: text;
-   note: text;
-   price: float64;
-   priceChange24h: float64;
-   trend: text;
+   "text": text;
    updatedAt: int;
  };
-type AnnouncementCategory = 
- variant {
-   Admin;
-   Alert;
-   General;
-   Signal;
-   Token;
- };
-type Announcement = 
+type AdminStats = 
  record {
-   body: text;
-   category: AnnouncementCategory;
-   id: text;
-   isActive: bool;
-   isPinned: bool;
-   link: opt text;
-   publishAt: opt int;
-   timestamp: int;
-   title: text;
- };
-type Analytics = 
- record {
-   notifyMeByDate: vec DateCount;
-   signalsByMarket: vec MarketCount;
-   totalNotifyMe: nat;
- };
-type ActivityEntry = 
- record {
-   count: nat;
-   dayOfWeek: nat;
-   hour: nat;
- };
-type AbTest = 
- record {
-   active: bool;
-   id: text;
-   impressionsA: nat;
-   impressionsB: nat;
-   name: text;
-   variantA: text;
-   variantB: text;
+   certsByTier: vec record {
+                      text;
+                      nat;
+                    };
+   totalCertificates: nat;
  };
 service : {
-  addAnnouncement: (sessionToken: text, title: text, body: text, category:
-   AnnouncementCategory, link: opt text, isPinned: bool, publishAt:
-   opt int) -> (Result_5);
-  addBinancePost: (adminToken: text, title: text, snippet: text, url: 
-   text, date: text) -> (Result_4);
-  addBurnEntry: (date: text, amount: text, reason: text, sessionToken:
-   text) -> (Result_1);
-  addBurnEvent: (date: text, amount: text, reason: text, sessionToken:
-   text) -> (Result_22);
-  addFaq: (sessionToken: text, question: text, answer: text, category:
-   FaqCategory) -> (Result_3);
-  addHypeMilestone: (title: text, targetCount: nat, sessionToken: text) ->
-   (Result_21);
-  addJournalEntry: (entry: JournalEntry, sessionToken: text) -> (Result_1);
-  addMilestone: (title: text, description: text, sessionToken: text) ->
+  adminExportCertificates: () -> (vec Certificate) query;
+  adminFeatureCertificate: (certId: text, featured: bool) -> (Result_1);
+  adminFlagQuestion: (questionId: text, flagged: bool) -> ();
+  adminGetAttemptLogs: (tierId: text) -> (vec QuizAttemptLog) query;
+  adminGetFlaggedQuestions: () -> (vec text) query;
+  adminGetQuestionFailStats: (tierId: text) -> (vec QuestionFailStat) query;
+  adminGetStats: () -> (AdminStats) query;
+  adminManualIssueCertificate: (tierId: text, info: CertificateInfo) ->
+   (Result);
+  adminRevokeOrReinstateCertificate: (certId: text, isValid: bool) ->
    (Result_1);
-  addQuote: (quote: text, author: text, sessionToken: text) -> (Result_1);
-  addSignal: (sessionToken: text, asset: text, marketType: MarketType,
-   direction: Direction, entryPrice: text, targetPrice: text, stopLoss: 
-   text, tp1: text, tp2: text, tp3: text, notes: text, confidence:
-   Confidence, sourceLabel: text, providerLabel: text, expiry: opt int,
-   timeframe: Timeframe, isDraft: bool, publishAt: opt int, templateId:
-   opt text, tags: vec text) -> (Result_2);
-  addSignalNote: (sessionToken: text, id: text, note: text) -> (Result);
-  addSignalTemplate: (sessionToken: text, name: text, asset: text,
-   marketType: MarketType, direction: Direction, timeframe: Timeframe,
-   confidence: Confidence, notes: text) -> (Result_20);
-  addTestimonial: (name: text, content: text, winAmount: opt text, asset:
-   opt text, sessionToken: text) -> (Result_1);
-  addTopTrader: (name: text, bio: text, achievement: text, week: text,
-   sessionToken: text) -> (Result_1);
-  analyzeNewsImpact: (headline: text, sessionToken: text) -> (Result_1);
-  askFaq: (question: text) -> (text);
-  askTokenFaq: (question: text) -> (text);
-  backtestSignal: (signal: text, sessionToken: text) -> (Result_1);
-  banEmail: (sessionToken: text, email: text) -> (Result);
-  clearJournal: (sessionToken: text) -> (Result);
-  compareSignals: (asset1: text, asset2: text, sessionToken: text) ->
-   (Result_1);
-  createAbTest: (name: text, variantA: text, variantB: text, sessionToken:
-   text) -> (Result_1);
-  createAuditSnapshot: (snapshotLabel: text, sessionToken: text) ->
-   (Result_1);
-  createPushNotification: (title: text, body: text, sessionToken: text) ->
-   (Result_1);
-  deleteAnnouncement: (sessionToken: text, id: text) -> (Result);
-  deleteBinancePost: (adminToken: text, id: text) -> (Result);
-  deleteCommunityQuestion: (id: text, sessionToken: text) -> (Result);
-  deleteFaq: (sessionToken: text, id: text) -> (Result);
-  deleteQuote: (id: text, sessionToken: text) -> (Result);
-  deleteSignal: (sessionToken: text, id: text) -> (Result);
-  deleteSignalTemplate: (sessionToken: text, id: text) -> (Result);
-  deleteTestimonial: (id: text, sessionToken: text) -> (Result);
-  deleteTopTrader: (id: text, sessionToken: text) -> (Result);
-  dismissPushNotification: (id: text) -> ();
-  executeAdminCommand: (sessionToken: text, command: text) -> (Result_1);
-  generateDailyBriefing: (sessionToken: text) -> (Result_1);
-  generatePostTradeAnalysis: (signal: text, outcome: text, sessionToken:
-   text) -> (Result_1);
-  generatePricePrediction: (asset: text, sessionToken: text) -> (Result_1);
-  generateSignalChain: (asset: text, sessionToken: text) -> (Result_1);
-  getAbTests: (sessionToken: text) -> (Result_19);
-  getAbVariant: (testId: text) -> (text) query;
-  getActivePushNotifications: () -> (vec PushNotification) query;
-  getAdminActivityHeatmap: (sessionToken: text) -> (Result_18);
-  getAdminConfig: (adminToken: text) -> (Result_1);
-  getAiLanguage: (sessionToken: text) -> (Result_1) query;
-  getAiProviderStatus: () -> (vec record {
-                                    text;
-                                    bool;
-                                  }) query;
-  getAllAnnouncements: (sessionToken: text) -> (Result_17);
-  getAnalytics: (sessionToken: text) -> (Result_16);
-  getAnalyticsCsv: (sessionToken: text) -> (Result_1);
-  getAnnouncements: () -> (vec Announcement) query;
-  getAuditLog: (sessionToken: text) -> (Result_15);
-  getBannedEmails: (sessionToken: text) -> (Result_14);
-  getBinanceFeed: () -> (vec BinancePost) query;
-  getBurnSchedule: () -> (vec BurnScheduleEntry) query;
-  getBurnTracker: () -> (BurnTracker) query;
-  getCommunityCounter: () -> (CommunityCounter) query;
-  getCommunityQuestions: () -> (vec CommunityQuestion) query;
-  getDailyBriefing: () -> (text) query;
-  getFaqs: () -> (vec FAQ) query;
-  getFaqsByCategory: (category: FaqCategory) -> (vec FAQ) query;
-  getHolderBenefits: () -> (vec HolderBenefit) query;
-  getHypeMilestones: () -> (vec HypeMilestone) query;
-  getJournalEntries: (sessionToken: text) -> (Result_13) query;
-  getMaintenanceMode: () -> (MaintenanceMode) query;
-  getMarketMoodBanner: () -> (opt MarketMoodBanner) query;
-  getMarketPrices: () -> (vec PriceData) query;
-  getMarketSentiment: () -> (MarketSentiment) query;
-  getMilestones: () -> (vec CommunityMilestone) query;
-  getNotifyMeList: (sessionToken: text) -> (Result_12);
-  getPublicBurnSchedule: () -> (vec BurnScheduleEntry) query;
-  getQuotes: () -> (vec DemonZenoQuote) query;
+  adminSetAnnouncementBanner: ("text": text, isPinned: bool) -> ();
+  adminSetTierDisabled: (tierId: text, disabled: bool) -> (Result_1);
+  adminUpdateMilestone: (id: text, completed: bool) -> (Result_1);
+  askZenoAi: (question: text) -> (ZenoAiResponse);
+  getAcademyQuiz: (tierId: text, seed: int) -> (opt TierQuiz) query;
+  getAdminLessonRatings: () -> (vec record {
+                                      text;
+                                      text;
+                                      float64;
+                                    }) query;
+  getAnnouncementBanner: () -> (opt AnnouncementBanner) query;
+  getCertificateByShareToken: (shareToken: text) -> (opt Certificate) query;
+  getCertificatesByTier: (tierId: text) -> (vec Certificate) query;
+  getDailyActiveCounts: () -> (vec DailyActiveLog) query;
+  getFeaturedCertificates: () -> (vec Certificate) query;
+  getFeaturedLesson: (tierId: text) -> (opt text) query;
+  getLessonCompletionTrends: () -> (vec LessonCompletionLog) query;
+  getLessonRatings: (tierId: text, lessonId: text) ->
+   (vec LessonRating) query;
+  getQuizAttemptStats: () -> (vec QuizAttemptStats) query;
+  getQuizFailMessage: (tierId: text) -> (opt text) query;
   getRoadmap: () -> (vec RoadmapMilestone) query;
-  getScheduledSignals: (sessionToken: text) -> (Result_7);
-  getSessionRatings: (sessionToken: text) -> (Result_11) query;
-  getSessionRecap: (history: vec ChatMessage, sessionToken: text) ->
-   (Result_1);
-  getSignalArchive: () -> (vec Signal) query;
-  getSignalOfTheDay: () -> (opt Signal) query;
-  getSignalOfWeek: () -> (opt SignalOfWeekFull) query;
-  getSignalPerformanceStats: (sessionToken: text) -> (Result_10);
-  getSignalTemplates: (sessionToken: text) -> (Result_9);
-  getSignals: () -> (vec Signal) query;
-  getStats: () -> (Stats) query;
-  getStatsConfig: (sessionToken: text) -> (Result_8);
-  getTestimonials: () -> (vec Testimonial) query;
-  getTokenBurnSchedule: () -> (vec BurnEvent) query;
-  getTokenData: () -> (TokenData) query;
-  getTopTraders: () -> (vec TopTrader) query;
-  getWhitepaper: () -> (WhitepaperContent) query;
-  getWhitepaperUrl: () -> (opt text) query;
-  importSignals: (sessionToken: text, inputs: vec SignalInput) -> (Result_7);
-  initFaqs: () -> ();
-  invalidateAiSession: (token: text) -> ();
-  invalidateSession: (token: text) -> ();
-  listAuditSnapshots: (sessionToken: text) -> (Result_6);
-  markBurnEventExecuted: (id: text, sessionToken: text) -> (Result);
-  markHypeMilestoneAchieved: (id: text, sessionToken: text) -> (Result);
-  markMilestoneReached: (id: text, celebrateDays: nat, sessionToken: 
-   text) -> (Result);
-  pinAnnouncement: (sessionToken: text, id: text, pin: bool) -> (Result);
-  pinCommunityQuestion: (id: text, answer: text, sessionToken: text) ->
-   (Result);
-  publishScheduledSignals: () -> (nat);
-  rateAiResponse: (messageId: text, rating: int, sessionToken: text) ->
-   (Result);
-  rateFaq: (id: text, helpful: bool) -> (Result);
-  recordAbImpression: (testId: text, "variant": text) -> ();
-  recordAdminActivity: (action: text, sessionToken: text) -> (Result);
-  refreshMarketPrices: () -> (vec PriceData);
-  reorderFaqs: (sessionToken: text, orderedIds: vec text) -> (Result);
-  rollbackAdminAction: (sessionToken: text, entryId: text) -> (Result_1);
-  scheduleSignal: (signalId: text, publishAt: int, sessionToken: text) ->
-   (Result);
-  sendAiMessage: (sessionToken: text, message: text, provider: text, history:
-   vec ChatMessage) -> (Result_1);
-  setAiApiKey: (adminToken: text, provider: text, key: text) -> (Result);
-  setAiLanguage: (lang: text, sessionToken: text) -> (Result);
-  setBurnTracker: (adminToken: text, data: BurnTracker) -> (Result);
-  setCommunityCounter: (adminToken: text, data: CommunityCounter) -> (Result);
-  setMaintenanceMode: (enabled: bool, message: text, sessionToken: text) ->
-   (Result);
-  setMarketMoodBanner: (mood: text, message: text, sessionToken: text) ->
-   (Result);
-  setRoadmapMilestone: (adminToken: text, year: text, title: text,
-   description: text, completed: bool) -> (Result);
-  setSignalOfTheDay: (sessionToken: text, signalId: opt text) -> (Result);
-  setSignalOfWeek: (signalId: text, comment: text, sessionToken: text) ->
-   (Result);
-  setSignalOfWeekWithDate: (signalId: text, comment: text, weekOf: text,
-   sessionToken: text) -> (Result);
-  setStatsConfig: (sessionToken: text, config: StatsConfig) -> (Result);
-  setWhitepaperUrl: (url: text, sessionToken: text) -> (Result);
-  submitCommunityQuestion: (question: text) -> (Result_1);
-  submitNotifyMe: (name: opt text, contact: text) -> (Result);
-  unbanEmail: (sessionToken: text, email: text) -> (Result);
-  updateAnnouncement: (sessionToken: text, id: text, title: text, body: 
-   text, category: AnnouncementCategory, link: opt text, isPinned: bool,
-   isActive: bool, publishAt: opt int) -> (Result_5);
-  updateBinancePost: (adminToken: text, id: text, title: text, snippet: 
-   text, url: text, date: text) -> (Result_4);
-  updateBurnEntryStatus: (id: text, status: text, txHash: opt text,
-   sessionToken: text) -> (Result);
-  updateFaq: (sessionToken: text, id: text, question: text, answer: text,
-   category: FaqCategory) -> (Result_3);
-  updateMarketSentiment: (token: text, sentiment: MarketSentiment) ->
-   (Result);
-  updateSignal: (sessionToken: text, id: text, asset: text, marketType:
-   MarketType, direction: Direction, entryPrice: text, targetPrice: text,
-   stopLoss: text, tp1: text, tp2: text, tp3: text, notes: text, confidence:
-   Confidence, sourceLabel: text, providerLabel: text, expiry: opt int,
-   timeframe: Timeframe, isDraft: bool, publishAt: opt int, templateId:
-   opt text, tags: vec text) -> (Result_2);
-  updateSignalResult: (sessionToken: text, id: text, result: ResultStatus) ->
-   (Result_2);
-  updateSignalSchedule: (sessionToken: text, id: text, isDraft: bool,
-   publishAt: opt int) -> (Result_2);
-  updateWhitepaper: (content: WhitepaperContent, sessionToken: text) ->
-   (Result);
-  validateAdminRole: (passcode: text) -> (opt text);
-  validateAiPasscode: (passcode: text) -> (Result_1);
-  validateAiSession: (token: text) -> (bool) query;
-  validatePasscode: (passcode: text) -> (Result_1);
-  validateSession: (token: text) -> (bool) query;
-  voteCommunityQuestion: (id: text) -> (Result);
-  voteOnSignal: (id: text, direction: text) -> (Result);
+  getTierDisabledStates: () -> (vec TierDisabledEntry) query;
+  getTokenInfo: () -> (TokenInfo) query;
+  listAllCertificates: () -> (vec Certificate) query;
+  logDailyActive: (date: text) -> ();
+  logLessonCompletion: (tierId: text, lessonId: text, timestamp: int) -> ();
+  searchCertificates: (searchTerm: text) -> (vec Certificate) query;
+  setFeaturedLesson: (tierId: text, lessonId: text, passcode: text) -> (bool);
+  setQuizFailMessage: (tierId: text, message: text, passcode: text) -> (bool);
+  submitCheckpointQuiz: (tierId: text, score: nat) -> (bool);
+  submitLessonRating: (tierId: text, lessonId: text, rating: nat) -> (bool);
+  submitQuizAndIssueCertificate: (tierId: text, answers: vec QuizAnswer,
+   fullName: text, fathersName: text, country: text, dateOfBirth: text,
+   email: text, city: text, seed: int, fingerprint: text) -> (Result);
+  verifyCertificate: (certId: text) -> (opt Certificate) query;
+  zenoAiTransform: (input: TransformationInput) ->
+   (TransformationOutput) query;
 }

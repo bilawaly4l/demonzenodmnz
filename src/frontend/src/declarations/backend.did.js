@@ -8,1558 +8,517 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const AnnouncementCategory = IDL.Variant({
-  'General' : IDL.Null,
-  'Token' : IDL.Null,
-  'Admin' : IDL.Null,
-  'Alert' : IDL.Null,
-  'Signal' : IDL.Null,
+export const CertificateInfo = IDL.Record({
+  'country' : IDL.Text,
+  'dateOfBirth' : IDL.Text,
+  'city' : IDL.Text,
+  'fullName' : IDL.Text,
+  'fathersName' : IDL.Text,
+  'email' : IDL.Text,
 });
-export const Announcement = IDL.Record({
-  'id' : IDL.Text,
-  'title' : IDL.Text,
-  'body' : IDL.Text,
-  'link' : IDL.Opt(IDL.Text),
-  'publishAt' : IDL.Opt(IDL.Int),
-  'isActive' : IDL.Bool,
+export const TierId = IDL.Text;
+export const Certificate = IDL.Record({
+  'certId' : IDL.Text,
+  'featured' : IDL.Bool,
+  'certInfo' : CertificateInfo,
+  'tierId' : TierId,
+  'tierName' : IDL.Text,
+  'shareToken' : IDL.Text,
+  'score' : IDL.Nat,
+  'totalQuestions' : IDL.Nat,
+  'issuedAt' : IDL.Int,
+  'isValid' : IDL.Bool,
+});
+export const Result_1 = IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text });
+export const QuizAttemptLog = IDL.Record({
+  'tierId' : IDL.Text,
+  'score' : IDL.Nat,
+  'fingerprint' : IDL.Text,
   'timestamp' : IDL.Int,
-  'category' : AnnouncementCategory,
-  'isPinned' : IDL.Bool,
+  'passed' : IDL.Bool,
 });
-export const Result_5 = IDL.Variant({ 'ok' : Announcement, 'err' : IDL.Text });
-export const BinancePost = IDL.Record({
-  'id' : IDL.Text,
-  'url' : IDL.Text,
-  'title' : IDL.Text,
-  'date' : IDL.Text,
-  'snippet' : IDL.Text,
+export const QuestionFailStat = IDL.Record({
+  'tierId' : IDL.Text,
+  'totalSeen' : IDL.Nat,
+  'questionId' : IDL.Text,
+  'failCount' : IDL.Nat,
 });
-export const Result_4 = IDL.Variant({ 'ok' : BinancePost, 'err' : IDL.Text });
-export const Result_1 = IDL.Variant({ 'ok' : IDL.Text, 'err' : IDL.Text });
-export const BurnEvent = IDL.Record({
-  'id' : IDL.Text,
-  'date' : IDL.Text,
-  'createdAt' : IDL.Int,
-  'executed' : IDL.Bool,
-  'amount' : IDL.Text,
-  'reason' : IDL.Text,
+export const AdminStats = IDL.Record({
+  'certsByTier' : IDL.Vec(IDL.Tuple(IDL.Text, IDL.Nat)),
+  'totalCertificates' : IDL.Nat,
 });
-export const Result_22 = IDL.Variant({ 'ok' : BurnEvent, 'err' : IDL.Text });
-export const FaqCategory = IDL.Variant({
-  'Signals' : IDL.Null,
-  'Platform' : IDL.Null,
-  'GeneralTrading' : IDL.Null,
-  'DmnzToken' : IDL.Null,
-});
-export const FAQ = IDL.Record({
-  'id' : IDL.Text,
-  'question' : IDL.Text,
-  'order' : IDL.Nat,
+export const Result = IDL.Variant({ 'ok' : Certificate, 'err' : IDL.Text });
+export const ZenoAiResponse = IDL.Record({
   'answer' : IDL.Text,
-  'notHelpfulCount' : IDL.Nat,
-  'timestamp' : IDL.Int,
-  'category' : FaqCategory,
-  'helpfulCount' : IDL.Nat,
+  'success' : IDL.Bool,
 });
-export const Result_3 = IDL.Variant({ 'ok' : FAQ, 'err' : IDL.Text });
-export const HypeMilestone = IDL.Record({
+export const QuizOption = IDL.Record({ 'id' : IDL.Text, 'text' : IDL.Text });
+export const QuizQuestion = IDL.Record({
   'id' : IDL.Text,
-  'achieved' : IDL.Bool,
-  'title' : IDL.Text,
-  'order' : IDL.Nat,
-  'achievedAt' : IDL.Opt(IDL.Int),
-  'targetCount' : IDL.Nat,
-});
-export const Result_21 = IDL.Variant({
-  'ok' : HypeMilestone,
-  'err' : IDL.Text,
-});
-export const JournalEntry = IDL.Record({
-  'id' : IDL.Text,
-  'pnl' : IDL.Opt(IDL.Float64),
-  'direction' : IDL.Text,
-  'asset' : IDL.Text,
-  'lots' : IDL.Float64,
-  'notes' : IDL.Text,
-  'timestamp' : IDL.Int,
-  'entryPrice' : IDL.Float64,
-  'exitPrice' : IDL.Opt(IDL.Float64),
-});
-export const MarketType = IDL.Variant({
-  'Stock' : IDL.Null,
-  'Forex' : IDL.Null,
-  'Crypto' : IDL.Null,
-});
-export const Direction = IDL.Variant({ 'Buy' : IDL.Null, 'Sell' : IDL.Null });
-export const Confidence = IDL.Variant({
-  'Low' : IDL.Null,
-  'High' : IDL.Null,
-  'Medium' : IDL.Null,
-});
-export const Timeframe = IDL.Variant({
-  'Scalp' : IDL.Null,
-  'Swing' : IDL.Null,
-  'LongTerm' : IDL.Null,
-});
-export const ResultStatus = IDL.Variant({
-  'Win' : IDL.Null,
-  'Loss' : IDL.Null,
-  'Active' : IDL.Null,
-  'Expired' : IDL.Null,
-});
-export const Signal = IDL.Record({
-  'id' : IDL.Text,
-  'tp1' : IDL.Text,
-  'tp2' : IDL.Text,
-  'tp3' : IDL.Text,
-  'result' : ResultStatus,
-  'marketType' : MarketType,
-  'direction' : Direction,
-  'voteDown' : IDL.Nat,
-  'asset' : IDL.Text,
-  'timeframe' : Timeframe,
-  'providerLabel' : IDL.Text,
-  'templateId' : IDL.Opt(IDL.Text),
-  'publishAt' : IDL.Opt(IDL.Int),
-  'tags' : IDL.Vec(IDL.Text),
-  'targetPrice' : IDL.Text,
-  'voteUp' : IDL.Nat,
-  'isDraft' : IDL.Bool,
-  'datePosted' : IDL.Text,
-  'stopLoss' : IDL.Text,
-  'sourceLabel' : IDL.Text,
-  'notes' : IDL.Text,
-  'entryPrice' : IDL.Text,
-  'expiry' : IDL.Opt(IDL.Int),
-  'confidence' : Confidence,
-});
-export const Result_2 = IDL.Variant({ 'ok' : Signal, 'err' : IDL.Text });
-export const Result = IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text });
-export const SignalTemplate = IDL.Record({
-  'id' : IDL.Text,
-  'marketType' : MarketType,
-  'direction' : Direction,
-  'asset' : IDL.Text,
-  'timeframe' : Timeframe,
-  'name' : IDL.Text,
-  'createdAt' : IDL.Int,
-  'notes' : IDL.Text,
-  'confidence' : Confidence,
-});
-export const Result_20 = IDL.Variant({
-  'ok' : SignalTemplate,
-  'err' : IDL.Text,
-});
-export const AbTest = IDL.Record({
-  'id' : IDL.Text,
-  'active' : IDL.Bool,
-  'name' : IDL.Text,
-  'variantA' : IDL.Text,
-  'variantB' : IDL.Text,
-  'impressionsA' : IDL.Nat,
-  'impressionsB' : IDL.Nat,
-});
-export const Result_19 = IDL.Variant({
-  'ok' : IDL.Vec(AbTest),
-  'err' : IDL.Text,
-});
-export const PushNotification = IDL.Record({
-  'id' : IDL.Text,
-  'title' : IDL.Text,
-  'active' : IDL.Bool,
-  'expiresAt' : IDL.Opt(IDL.Int),
-  'body' : IDL.Text,
-  'createdAt' : IDL.Int,
-});
-export const ActivityEntry = IDL.Record({
-  'dayOfWeek' : IDL.Nat,
-  'hour' : IDL.Nat,
-  'count' : IDL.Nat,
-});
-export const Result_18 = IDL.Variant({
-  'ok' : IDL.Vec(ActivityEntry),
-  'err' : IDL.Text,
-});
-export const Result_17 = IDL.Variant({
-  'ok' : IDL.Vec(Announcement),
-  'err' : IDL.Text,
-});
-export const MarketCount = IDL.Record({
-  'count' : IDL.Nat,
-  'market' : IDL.Text,
-});
-export const DateCount = IDL.Record({ 'date' : IDL.Text, 'count' : IDL.Nat });
-export const Analytics = IDL.Record({
-  'signalsByMarket' : IDL.Vec(MarketCount),
-  'notifyMeByDate' : IDL.Vec(DateCount),
-  'totalNotifyMe' : IDL.Nat,
-});
-export const Result_16 = IDL.Variant({ 'ok' : Analytics, 'err' : IDL.Text });
-export const AuditEntry = IDL.Record({
-  'id' : IDL.Text,
-  'action' : IDL.Text,
-  'rollbackData' : IDL.Opt(IDL.Text),
-  'adminToken' : IDL.Text,
-  'timestamp' : IDL.Int,
-  'details' : IDL.Text,
-});
-export const Result_15 = IDL.Variant({
-  'ok' : IDL.Vec(AuditEntry),
-  'err' : IDL.Text,
-});
-export const Result_14 = IDL.Variant({
-  'ok' : IDL.Vec(IDL.Text),
-  'err' : IDL.Text,
-});
-export const BurnScheduleEntry = IDL.Record({
-  'id' : IDL.Text,
-  'status' : IDL.Text,
-  'date' : IDL.Text,
-  'txHash' : IDL.Opt(IDL.Text),
-  'amount' : IDL.Text,
-  'reason' : IDL.Text,
-});
-export const BurnTracker = IDL.Record({
-  'lastUpdated' : IDL.Int,
-  'totalBurned' : IDL.Nat,
-});
-export const CommunityCounter = IDL.Record({
-  'lastUpdated' : IDL.Int,
-  'binanceCount' : IDL.Nat,
-  'twitterCount' : IDL.Nat,
-});
-export const CommunityQuestion = IDL.Record({
-  'id' : IDL.Text,
+  'correctOption' : IDL.Text,
   'question' : IDL.Text,
-  'votes' : IDL.Nat,
-  'answer' : IDL.Opt(IDL.Text),
-  'isActive' : IDL.Bool,
-  'timestamp' : IDL.Int,
+  'explanation' : IDL.Text,
+  'isReviewFlagged' : IDL.Bool,
+  'options' : IDL.Vec(QuizOption),
+});
+export const TierQuiz = IDL.Record({
+  'tierId' : TierId,
+  'tierName' : IDL.Text,
+  'questions' : IDL.Vec(QuizQuestion),
+});
+export const AnnouncementBanner = IDL.Record({
+  'text' : IDL.Text,
+  'updatedAt' : IDL.Int,
   'isPinned' : IDL.Bool,
 });
-export const HolderBenefit = IDL.Record({
-  'id' : IDL.Text,
-  'title' : IDL.Text,
-  'active' : IDL.Bool,
-  'icon' : IDL.Text,
-  'description' : IDL.Text,
+export const DailyActiveLog = IDL.Record({
+  'date' : IDL.Text,
+  'count' : IDL.Nat,
 });
-export const Result_13 = IDL.Variant({
-  'ok' : IDL.Vec(JournalEntry),
-  'err' : IDL.Text,
+export const LessonCompletionLog = IDL.Record({
+  'lessonId' : IDL.Text,
+  'completedAt' : IDL.Int,
+  'tierId' : IDL.Text,
 });
-export const MaintenanceMode = IDL.Record({
-  'enabled' : IDL.Bool,
-  'updatedAt' : IDL.Int,
-  'message' : IDL.Text,
+export const LessonRating = IDL.Record({
+  'lessonId' : IDL.Text,
+  'tierId' : IDL.Text,
+  'timestamp' : IDL.Int,
+  'rating' : IDL.Nat,
 });
-export const MarketMoodBanner = IDL.Record({
-  'active' : IDL.Bool,
-  'mood' : IDL.Text,
-  'updatedAt' : IDL.Int,
-  'message' : IDL.Text,
-});
-export const PriceData = IDL.Record({
-  'trend' : IDL.Text,
-  'asset' : IDL.Text,
-  'updatedAt' : IDL.Int,
-  'priceChange24h' : IDL.Float64,
-  'price' : IDL.Float64,
-});
-export const SentimentLevel = IDL.Variant({
-  'Bearish' : IDL.Null,
-  'Neutral' : IDL.Null,
-  'Bullish' : IDL.Null,
-});
-export const AssetSentiment = IDL.Record({
-  'trend' : IDL.Text,
-  'asset' : IDL.Text,
-  'note' : IDL.Text,
-  'lastPriceUpdate' : IDL.Int,
-  'level' : SentimentLevel,
-  'updatedAt' : IDL.Int,
-  'priceChange24h' : IDL.Float64,
-  'market' : IDL.Text,
-  'price' : IDL.Float64,
-});
-export const MarketSentiment = IDL.Record({
-  'assets' : IDL.Vec(AssetSentiment),
-  'updatedAt' : IDL.Int,
-  'overall' : SentimentLevel,
-});
-export const CommunityMilestone = IDL.Record({
-  'id' : IDL.Text,
-  'reached' : IDL.Bool,
-  'celebrateUntil' : IDL.Opt(IDL.Int),
-  'title' : IDL.Text,
-  'description' : IDL.Text,
-  'reachedAt' : IDL.Opt(IDL.Int),
-});
-export const NotifyMe = IDL.Record({
-  'id' : IDL.Text,
-  'contact' : IDL.Text,
-  'dateSubmitted' : IDL.Text,
-  'name' : IDL.Opt(IDL.Text),
-});
-export const Result_12 = IDL.Variant({
-  'ok' : IDL.Vec(NotifyMe),
-  'err' : IDL.Text,
-});
-export const DemonZenoQuote = IDL.Record({
-  'id' : IDL.Text,
-  'active' : IDL.Bool,
-  'quote' : IDL.Text,
-  'author' : IDL.Text,
+export const QuizAttemptStats = IDL.Record({
+  'tierId' : IDL.Text,
+  'passCount' : IDL.Nat,
+  'totalAttempts' : IDL.Nat,
 });
 export const RoadmapMilestone = IDL.Record({
+  'id' : IDL.Text,
   'title' : IDL.Text,
+  'date' : IDL.Opt(IDL.Text),
   'completed' : IDL.Bool,
   'year' : IDL.Text,
   'description' : IDL.Text,
 });
-export const Result_7 = IDL.Variant({
-  'ok' : IDL.Vec(Signal),
-  'err' : IDL.Text,
+export const TierDisabledEntry = IDL.Record({
+  'tierId' : IDL.Text,
+  'disabled' : IDL.Bool,
 });
-export const ResponseRating = IDL.Record({
-  'messageId' : IDL.Text,
-  'timestamp' : IDL.Int,
-  'rating' : IDL.Int,
-});
-export const Result_11 = IDL.Variant({
-  'ok' : IDL.Vec(ResponseRating),
-  'err' : IDL.Text,
-});
-export const ChatMessage = IDL.Record({
-  'content' : IDL.Text,
-  'provider' : IDL.Opt(IDL.Text),
-  'role' : IDL.Text,
-  'timestamp' : IDL.Int,
-});
-export const SignalOfWeekFull = IDL.Record({
-  'featuredAt' : IDL.Int,
-  'comment' : IDL.Text,
-  'signal' : Signal,
-  'weekOf' : IDL.Text,
-});
-export const AssetStats = IDL.Record({
-  'asset' : IDL.Text,
-  'wins' : IDL.Nat,
-  'losses' : IDL.Nat,
-});
-export const DayStats = IDL.Record({
-  'day' : IDL.Text,
-  'wins' : IDL.Nat,
-  'losses' : IDL.Nat,
-});
-export const SignalPerformanceStats = IDL.Record({
-  'topAssets' : IDL.Vec(AssetStats),
-  'pending' : IDL.Nat,
-  'wins' : IDL.Nat,
-  'losses' : IDL.Nat,
-  'weeklyTrend' : IDL.Vec(DayStats),
-  'winRate' : IDL.Float64,
-  'totalSignals' : IDL.Nat,
-});
-export const Result_10 = IDL.Variant({
-  'ok' : SignalPerformanceStats,
-  'err' : IDL.Text,
-});
-export const Result_9 = IDL.Variant({
-  'ok' : IDL.Vec(SignalTemplate),
-  'err' : IDL.Text,
-});
-export const Stats = IDL.Record({
-  'active' : IDL.Nat,
-  'wins' : IDL.Nat,
-  'losses' : IDL.Nat,
-  'assetsCovered' : IDL.Nat,
-  'winRate' : IDL.Float64,
-  'totalSignals' : IDL.Nat,
-});
-export const StatsConfig = IDL.Record({
-  'useManual' : IDL.Bool,
-  'manualStats' : IDL.Opt(Stats),
-});
-export const Result_8 = IDL.Variant({ 'ok' : StatsConfig, 'err' : IDL.Text });
-export const Testimonial = IDL.Record({
-  'id' : IDL.Text,
-  'active' : IDL.Bool,
-  'content' : IDL.Text,
-  'asset' : IDL.Opt(IDL.Text),
-  'name' : IDL.Text,
-  'createdAt' : IDL.Int,
-  'winAmount' : IDL.Opt(IDL.Text),
-});
-export const TokenData = IDL.Record({
+export const TokenInfo = IDL.Record({
   'ticker' : IDL.Text,
-  'burnedAmount' : IDL.Text,
+  'socialLinks' : IDL.Vec(IDL.Record({ 'url' : IDL.Text, 'name' : IDL.Text })),
   'name' : IDL.Text,
   'launchPlatform' : IDL.Text,
-  'supply' : IDL.Text,
-  'launchDate' : IDL.Text,
+  'description' : IDL.Text,
+  'totalSupply' : IDL.Text,
+  'slogan' : IDL.Text,
+  'distribution' : IDL.Text,
 });
-export const TopTrader = IDL.Record({
-  'id' : IDL.Text,
-  'bio' : IDL.Text,
+export const QuizAnswer = IDL.Record({
+  'questionId' : IDL.Text,
+  'selectedOption' : IDL.Text,
+});
+export const http_header = IDL.Record({
+  'value' : IDL.Text,
   'name' : IDL.Text,
-  'createdAt' : IDL.Int,
-  'week' : IDL.Text,
-  'achievement' : IDL.Text,
-  'isActive' : IDL.Bool,
 });
-export const WhitepaperSection = IDL.Record({
-  'title' : IDL.Text,
-  'content' : IDL.Text,
+export const http_request_result = IDL.Record({
+  'status' : IDL.Nat,
+  'body' : IDL.Vec(IDL.Nat8),
+  'headers' : IDL.Vec(http_header),
 });
-export const WhitepaperContent = IDL.Record({
-  'title' : IDL.Text,
-  'updatedAt' : IDL.Int,
-  'sections' : IDL.Vec(WhitepaperSection),
+export const TransformationInput = IDL.Record({
+  'context' : IDL.Vec(IDL.Nat8),
+  'response' : http_request_result,
 });
-export const SignalInput = IDL.Record({
-  'tp1' : IDL.Text,
-  'tp2' : IDL.Text,
-  'tp3' : IDL.Text,
-  'marketType' : MarketType,
-  'direction' : Direction,
-  'asset' : IDL.Text,
-  'timeframe' : Timeframe,
-  'providerLabel' : IDL.Text,
-  'templateId' : IDL.Opt(IDL.Text),
-  'publishAt' : IDL.Opt(IDL.Int),
-  'tags' : IDL.Vec(IDL.Text),
-  'targetPrice' : IDL.Text,
-  'isDraft' : IDL.Bool,
-  'stopLoss' : IDL.Text,
-  'sourceLabel' : IDL.Text,
-  'notes' : IDL.Text,
-  'entryPrice' : IDL.Text,
-  'expiry' : IDL.Opt(IDL.Int),
-  'confidence' : Confidence,
-});
-export const AuditSnapshot = IDL.Record({
-  'id' : IDL.Text,
-  'createdAt' : IDL.Int,
-  'dataHash' : IDL.Text,
-  'snapshotLabel' : IDL.Text,
-});
-export const Result_6 = IDL.Variant({
-  'ok' : IDL.Vec(AuditSnapshot),
-  'err' : IDL.Text,
+export const TransformationOutput = IDL.Record({
+  'status' : IDL.Nat,
+  'body' : IDL.Vec(IDL.Nat8),
+  'headers' : IDL.Vec(http_header),
 });
 
 export const idlService = IDL.Service({
-  'addAnnouncement' : IDL.Func(
-      [
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        AnnouncementCategory,
-        IDL.Opt(IDL.Text),
-        IDL.Bool,
-        IDL.Opt(IDL.Int),
-      ],
-      [Result_5],
-      [],
-    ),
-  'addBinancePost' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-      [Result_4],
-      [],
-    ),
-  'addBurnEntry' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-      [Result_1],
-      [],
-    ),
-  'addBurnEvent' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-      [Result_22],
-      [],
-    ),
-  'addFaq' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, FaqCategory],
-      [Result_3],
-      [],
-    ),
-  'addHypeMilestone' : IDL.Func([IDL.Text, IDL.Nat, IDL.Text], [Result_21], []),
-  'addJournalEntry' : IDL.Func([JournalEntry, IDL.Text], [Result_1], []),
-  'addMilestone' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result_1], []),
-  'addQuote' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result_1], []),
-  'addSignal' : IDL.Func(
-      [
-        IDL.Text,
-        IDL.Text,
-        MarketType,
-        Direction,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        Confidence,
-        IDL.Text,
-        IDL.Text,
-        IDL.Opt(IDL.Int),
-        Timeframe,
-        IDL.Bool,
-        IDL.Opt(IDL.Int),
-        IDL.Opt(IDL.Text),
-        IDL.Vec(IDL.Text),
-      ],
-      [Result_2],
-      [],
-    ),
-  'addSignalNote' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result], []),
-  'addSignalTemplate' : IDL.Func(
-      [
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        MarketType,
-        Direction,
-        Timeframe,
-        Confidence,
-        IDL.Text,
-      ],
-      [Result_20],
-      [],
-    ),
-  'addTestimonial' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Opt(IDL.Text), IDL.Opt(IDL.Text), IDL.Text],
-      [Result_1],
-      [],
-    ),
-  'addTopTrader' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-      [Result_1],
-      [],
-    ),
-  'analyzeNewsImpact' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-  'askFaq' : IDL.Func([IDL.Text], [IDL.Text], []),
-  'askTokenFaq' : IDL.Func([IDL.Text], [IDL.Text], []),
-  'backtestSignal' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-  'banEmail' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'clearJournal' : IDL.Func([IDL.Text], [Result], []),
-  'compareSignals' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result_1], []),
-  'createAbTest' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-      [Result_1],
-      [],
-    ),
-  'createAuditSnapshot' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-  'createPushNotification' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text],
-      [Result_1],
-      [],
-    ),
-  'deleteAnnouncement' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'deleteBinancePost' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'deleteCommunityQuestion' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'deleteFaq' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'deleteQuote' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'deleteSignal' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'deleteSignalTemplate' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'deleteTestimonial' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'deleteTopTrader' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'dismissPushNotification' : IDL.Func([IDL.Text], [], []),
-  'executeAdminCommand' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-  'generateDailyBriefing' : IDL.Func([IDL.Text], [Result_1], []),
-  'generatePostTradeAnalysis' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text],
-      [Result_1],
-      [],
-    ),
-  'generatePricePrediction' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-  'generateSignalChain' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-  'getAbTests' : IDL.Func([IDL.Text], [Result_19], []),
-  'getAbVariant' : IDL.Func([IDL.Text], [IDL.Text], ['query']),
-  'getActivePushNotifications' : IDL.Func(
-      [],
-      [IDL.Vec(PushNotification)],
+  'adminExportCertificates' : IDL.Func([], [IDL.Vec(Certificate)], ['query']),
+  'adminFeatureCertificate' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
+  'adminFlagQuestion' : IDL.Func([IDL.Text, IDL.Bool], [], []),
+  'adminGetAttemptLogs' : IDL.Func(
+      [IDL.Text],
+      [IDL.Vec(QuizAttemptLog)],
       ['query'],
     ),
-  'getAdminActivityHeatmap' : IDL.Func([IDL.Text], [Result_18], []),
-  'getAdminConfig' : IDL.Func([IDL.Text], [Result_1], []),
-  'getAiLanguage' : IDL.Func([IDL.Text], [Result_1], ['query']),
-  'getAiProviderStatus' : IDL.Func(
-      [],
-      [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Bool))],
+  'adminGetFlaggedQuestions' : IDL.Func([], [IDL.Vec(IDL.Text)], ['query']),
+  'adminGetQuestionFailStats' : IDL.Func(
+      [IDL.Text],
+      [IDL.Vec(QuestionFailStat)],
       ['query'],
     ),
-  'getAllAnnouncements' : IDL.Func([IDL.Text], [Result_17], []),
-  'getAnalytics' : IDL.Func([IDL.Text], [Result_16], []),
-  'getAnalyticsCsv' : IDL.Func([IDL.Text], [Result_1], []),
-  'getAnnouncements' : IDL.Func([], [IDL.Vec(Announcement)], ['query']),
-  'getAuditLog' : IDL.Func([IDL.Text], [Result_15], []),
-  'getBannedEmails' : IDL.Func([IDL.Text], [Result_14], []),
-  'getBinanceFeed' : IDL.Func([], [IDL.Vec(BinancePost)], ['query']),
-  'getBurnSchedule' : IDL.Func([], [IDL.Vec(BurnScheduleEntry)], ['query']),
-  'getBurnTracker' : IDL.Func([], [BurnTracker], ['query']),
-  'getCommunityCounter' : IDL.Func([], [CommunityCounter], ['query']),
-  'getCommunityQuestions' : IDL.Func(
+  'adminGetStats' : IDL.Func([], [AdminStats], ['query']),
+  'adminManualIssueCertificate' : IDL.Func(
+      [IDL.Text, CertificateInfo],
+      [Result],
       [],
-      [IDL.Vec(CommunityQuestion)],
+    ),
+  'adminRevokeOrReinstateCertificate' : IDL.Func(
+      [IDL.Text, IDL.Bool],
+      [Result_1],
+      [],
+    ),
+  'adminSetAnnouncementBanner' : IDL.Func([IDL.Text, IDL.Bool], [], []),
+  'adminSetTierDisabled' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
+  'adminUpdateMilestone' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
+  'askZenoAi' : IDL.Func([IDL.Text], [ZenoAiResponse], []),
+  'getAcademyQuiz' : IDL.Func(
+      [IDL.Text, IDL.Int],
+      [IDL.Opt(TierQuiz)],
       ['query'],
     ),
-  'getDailyBriefing' : IDL.Func([], [IDL.Text], ['query']),
-  'getFaqs' : IDL.Func([], [IDL.Vec(FAQ)], ['query']),
-  'getFaqsByCategory' : IDL.Func([FaqCategory], [IDL.Vec(FAQ)], ['query']),
-  'getHolderBenefits' : IDL.Func([], [IDL.Vec(HolderBenefit)], ['query']),
-  'getHypeMilestones' : IDL.Func([], [IDL.Vec(HypeMilestone)], ['query']),
-  'getJournalEntries' : IDL.Func([IDL.Text], [Result_13], ['query']),
-  'getMaintenanceMode' : IDL.Func([], [MaintenanceMode], ['query']),
-  'getMarketMoodBanner' : IDL.Func([], [IDL.Opt(MarketMoodBanner)], ['query']),
-  'getMarketPrices' : IDL.Func([], [IDL.Vec(PriceData)], ['query']),
-  'getMarketSentiment' : IDL.Func([], [MarketSentiment], ['query']),
-  'getMilestones' : IDL.Func([], [IDL.Vec(CommunityMilestone)], ['query']),
-  'getNotifyMeList' : IDL.Func([IDL.Text], [Result_12], []),
-  'getPublicBurnSchedule' : IDL.Func(
+  'getAdminLessonRatings' : IDL.Func(
       [],
-      [IDL.Vec(BurnScheduleEntry)],
+      [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Text, IDL.Float64))],
       ['query'],
     ),
-  'getQuotes' : IDL.Func([], [IDL.Vec(DemonZenoQuote)], ['query']),
+  'getAnnouncementBanner' : IDL.Func(
+      [],
+      [IDL.Opt(AnnouncementBanner)],
+      ['query'],
+    ),
+  'getCertificateByShareToken' : IDL.Func(
+      [IDL.Text],
+      [IDL.Opt(Certificate)],
+      ['query'],
+    ),
+  'getCertificatesByTier' : IDL.Func(
+      [IDL.Text],
+      [IDL.Vec(Certificate)],
+      ['query'],
+    ),
+  'getDailyActiveCounts' : IDL.Func([], [IDL.Vec(DailyActiveLog)], ['query']),
+  'getFeaturedCertificates' : IDL.Func([], [IDL.Vec(Certificate)], ['query']),
+  'getFeaturedLesson' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], ['query']),
+  'getLessonCompletionTrends' : IDL.Func(
+      [],
+      [IDL.Vec(LessonCompletionLog)],
+      ['query'],
+    ),
+  'getLessonRatings' : IDL.Func(
+      [IDL.Text, IDL.Text],
+      [IDL.Vec(LessonRating)],
+      ['query'],
+    ),
+  'getQuizAttemptStats' : IDL.Func([], [IDL.Vec(QuizAttemptStats)], ['query']),
+  'getQuizFailMessage' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], ['query']),
   'getRoadmap' : IDL.Func([], [IDL.Vec(RoadmapMilestone)], ['query']),
-  'getScheduledSignals' : IDL.Func([IDL.Text], [Result_7], []),
-  'getSessionRatings' : IDL.Func([IDL.Text], [Result_11], ['query']),
-  'getSessionRecap' : IDL.Func(
-      [IDL.Vec(ChatMessage), IDL.Text],
-      [Result_1],
+  'getTierDisabledStates' : IDL.Func(
       [],
+      [IDL.Vec(TierDisabledEntry)],
+      ['query'],
     ),
-  'getSignalArchive' : IDL.Func([], [IDL.Vec(Signal)], ['query']),
-  'getSignalOfTheDay' : IDL.Func([], [IDL.Opt(Signal)], ['query']),
-  'getSignalOfWeek' : IDL.Func([], [IDL.Opt(SignalOfWeekFull)], ['query']),
-  'getSignalPerformanceStats' : IDL.Func([IDL.Text], [Result_10], []),
-  'getSignalTemplates' : IDL.Func([IDL.Text], [Result_9], []),
-  'getSignals' : IDL.Func([], [IDL.Vec(Signal)], ['query']),
-  'getStats' : IDL.Func([], [Stats], ['query']),
-  'getStatsConfig' : IDL.Func([IDL.Text], [Result_8], []),
-  'getTestimonials' : IDL.Func([], [IDL.Vec(Testimonial)], ['query']),
-  'getTokenBurnSchedule' : IDL.Func([], [IDL.Vec(BurnEvent)], ['query']),
-  'getTokenData' : IDL.Func([], [TokenData], ['query']),
-  'getTopTraders' : IDL.Func([], [IDL.Vec(TopTrader)], ['query']),
-  'getWhitepaper' : IDL.Func([], [WhitepaperContent], ['query']),
-  'getWhitepaperUrl' : IDL.Func([], [IDL.Opt(IDL.Text)], ['query']),
-  'importSignals' : IDL.Func([IDL.Text, IDL.Vec(SignalInput)], [Result_7], []),
-  'initFaqs' : IDL.Func([], [], []),
-  'invalidateAiSession' : IDL.Func([IDL.Text], [], []),
-  'invalidateSession' : IDL.Func([IDL.Text], [], []),
-  'listAuditSnapshots' : IDL.Func([IDL.Text], [Result_6], []),
-  'markBurnEventExecuted' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'markHypeMilestoneAchieved' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'markMilestoneReached' : IDL.Func(
-      [IDL.Text, IDL.Nat, IDL.Text],
-      [Result],
-      [],
+  'getTokenInfo' : IDL.Func([], [TokenInfo], ['query']),
+  'listAllCertificates' : IDL.Func([], [IDL.Vec(Certificate)], ['query']),
+  'logDailyActive' : IDL.Func([IDL.Text], [], []),
+  'logLessonCompletion' : IDL.Func([IDL.Text, IDL.Text, IDL.Int], [], []),
+  'searchCertificates' : IDL.Func(
+      [IDL.Text],
+      [IDL.Vec(Certificate)],
+      ['query'],
     ),
-  'pinAnnouncement' : IDL.Func([IDL.Text, IDL.Text, IDL.Bool], [Result], []),
-  'pinCommunityQuestion' : IDL.Func(
+  'setFeaturedLesson' : IDL.Func(
       [IDL.Text, IDL.Text, IDL.Text],
-      [Result],
+      [IDL.Bool],
       [],
     ),
-  'publishScheduledSignals' : IDL.Func([], [IDL.Nat], []),
-  'rateAiResponse' : IDL.Func([IDL.Text, IDL.Int, IDL.Text], [Result], []),
-  'rateFaq' : IDL.Func([IDL.Text, IDL.Bool], [Result], []),
-  'recordAbImpression' : IDL.Func([IDL.Text, IDL.Text], [], []),
-  'recordAdminActivity' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'refreshMarketPrices' : IDL.Func([], [IDL.Vec(PriceData)], []),
-  'reorderFaqs' : IDL.Func([IDL.Text, IDL.Vec(IDL.Text)], [Result], []),
-  'rollbackAdminAction' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-  'scheduleSignal' : IDL.Func([IDL.Text, IDL.Int, IDL.Text], [Result], []),
-  'sendAiMessage' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, IDL.Vec(ChatMessage)],
-      [Result_1],
-      [],
-    ),
-  'setAiApiKey' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result], []),
-  'setAiLanguage' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'setBurnTracker' : IDL.Func([IDL.Text, BurnTracker], [Result], []),
-  'setCommunityCounter' : IDL.Func([IDL.Text, CommunityCounter], [Result], []),
-  'setMaintenanceMode' : IDL.Func([IDL.Bool, IDL.Text, IDL.Text], [Result], []),
-  'setMarketMoodBanner' : IDL.Func(
+  'setQuizFailMessage' : IDL.Func(
       [IDL.Text, IDL.Text, IDL.Text],
-      [Result],
+      [IDL.Bool],
       [],
     ),
-  'setRoadmapMilestone' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Bool],
-      [Result],
+  'submitCheckpointQuiz' : IDL.Func([IDL.Text, IDL.Nat], [IDL.Bool], []),
+  'submitLessonRating' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Nat],
+      [IDL.Bool],
       [],
     ),
-  'setSignalOfTheDay' : IDL.Func([IDL.Text, IDL.Opt(IDL.Text)], [Result], []),
-  'setSignalOfWeek' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result], []),
-  'setSignalOfWeekWithDate' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-      [Result],
-      [],
-    ),
-  'setStatsConfig' : IDL.Func([IDL.Text, StatsConfig], [Result], []),
-  'setWhitepaperUrl' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'submitCommunityQuestion' : IDL.Func([IDL.Text], [Result_1], []),
-  'submitNotifyMe' : IDL.Func([IDL.Opt(IDL.Text), IDL.Text], [Result], []),
-  'unbanEmail' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-  'updateAnnouncement' : IDL.Func(
+  'submitQuizAndIssueCertificate' : IDL.Func(
       [
         IDL.Text,
+        IDL.Vec(QuizAnswer),
         IDL.Text,
         IDL.Text,
         IDL.Text,
-        AnnouncementCategory,
-        IDL.Opt(IDL.Text),
-        IDL.Bool,
-        IDL.Bool,
-        IDL.Opt(IDL.Int),
+        IDL.Text,
+        IDL.Text,
+        IDL.Text,
+        IDL.Int,
+        IDL.Text,
       ],
-      [Result_5],
-      [],
-    ),
-  'updateBinancePost' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-      [Result_4],
-      [],
-    ),
-  'updateBurnEntryStatus' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Opt(IDL.Text), IDL.Text],
       [Result],
       [],
     ),
-  'updateFaq' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Text, IDL.Text, FaqCategory],
-      [Result_3],
-      [],
+  'verifyCertificate' : IDL.Func([IDL.Text], [IDL.Opt(Certificate)], ['query']),
+  'zenoAiTransform' : IDL.Func(
+      [TransformationInput],
+      [TransformationOutput],
+      ['query'],
     ),
-  'updateMarketSentiment' : IDL.Func([IDL.Text, MarketSentiment], [Result], []),
-  'updateSignal' : IDL.Func(
-      [
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        MarketType,
-        Direction,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        Confidence,
-        IDL.Text,
-        IDL.Text,
-        IDL.Opt(IDL.Int),
-        Timeframe,
-        IDL.Bool,
-        IDL.Opt(IDL.Int),
-        IDL.Opt(IDL.Text),
-        IDL.Vec(IDL.Text),
-      ],
-      [Result_2],
-      [],
-    ),
-  'updateSignalResult' : IDL.Func(
-      [IDL.Text, IDL.Text, ResultStatus],
-      [Result_2],
-      [],
-    ),
-  'updateSignalSchedule' : IDL.Func(
-      [IDL.Text, IDL.Text, IDL.Bool, IDL.Opt(IDL.Int)],
-      [Result_2],
-      [],
-    ),
-  'updateWhitepaper' : IDL.Func([WhitepaperContent, IDL.Text], [Result], []),
-  'validateAdminRole' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], []),
-  'validateAiPasscode' : IDL.Func([IDL.Text], [Result_1], []),
-  'validateAiSession' : IDL.Func([IDL.Text], [IDL.Bool], ['query']),
-  'validatePasscode' : IDL.Func([IDL.Text], [Result_1], []),
-  'validateSession' : IDL.Func([IDL.Text], [IDL.Bool], ['query']),
-  'voteCommunityQuestion' : IDL.Func([IDL.Text], [Result], []),
-  'voteOnSignal' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
-  const AnnouncementCategory = IDL.Variant({
-    'General' : IDL.Null,
-    'Token' : IDL.Null,
-    'Admin' : IDL.Null,
-    'Alert' : IDL.Null,
-    'Signal' : IDL.Null,
+  const CertificateInfo = IDL.Record({
+    'country' : IDL.Text,
+    'dateOfBirth' : IDL.Text,
+    'city' : IDL.Text,
+    'fullName' : IDL.Text,
+    'fathersName' : IDL.Text,
+    'email' : IDL.Text,
   });
-  const Announcement = IDL.Record({
-    'id' : IDL.Text,
-    'title' : IDL.Text,
-    'body' : IDL.Text,
-    'link' : IDL.Opt(IDL.Text),
-    'publishAt' : IDL.Opt(IDL.Int),
-    'isActive' : IDL.Bool,
+  const TierId = IDL.Text;
+  const Certificate = IDL.Record({
+    'certId' : IDL.Text,
+    'featured' : IDL.Bool,
+    'certInfo' : CertificateInfo,
+    'tierId' : TierId,
+    'tierName' : IDL.Text,
+    'shareToken' : IDL.Text,
+    'score' : IDL.Nat,
+    'totalQuestions' : IDL.Nat,
+    'issuedAt' : IDL.Int,
+    'isValid' : IDL.Bool,
+  });
+  const Result_1 = IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text });
+  const QuizAttemptLog = IDL.Record({
+    'tierId' : IDL.Text,
+    'score' : IDL.Nat,
+    'fingerprint' : IDL.Text,
     'timestamp' : IDL.Int,
-    'category' : AnnouncementCategory,
-    'isPinned' : IDL.Bool,
+    'passed' : IDL.Bool,
   });
-  const Result_5 = IDL.Variant({ 'ok' : Announcement, 'err' : IDL.Text });
-  const BinancePost = IDL.Record({
-    'id' : IDL.Text,
-    'url' : IDL.Text,
-    'title' : IDL.Text,
-    'date' : IDL.Text,
-    'snippet' : IDL.Text,
+  const QuestionFailStat = IDL.Record({
+    'tierId' : IDL.Text,
+    'totalSeen' : IDL.Nat,
+    'questionId' : IDL.Text,
+    'failCount' : IDL.Nat,
   });
-  const Result_4 = IDL.Variant({ 'ok' : BinancePost, 'err' : IDL.Text });
-  const Result_1 = IDL.Variant({ 'ok' : IDL.Text, 'err' : IDL.Text });
-  const BurnEvent = IDL.Record({
-    'id' : IDL.Text,
-    'date' : IDL.Text,
-    'createdAt' : IDL.Int,
-    'executed' : IDL.Bool,
-    'amount' : IDL.Text,
-    'reason' : IDL.Text,
+  const AdminStats = IDL.Record({
+    'certsByTier' : IDL.Vec(IDL.Tuple(IDL.Text, IDL.Nat)),
+    'totalCertificates' : IDL.Nat,
   });
-  const Result_22 = IDL.Variant({ 'ok' : BurnEvent, 'err' : IDL.Text });
-  const FaqCategory = IDL.Variant({
-    'Signals' : IDL.Null,
-    'Platform' : IDL.Null,
-    'GeneralTrading' : IDL.Null,
-    'DmnzToken' : IDL.Null,
-  });
-  const FAQ = IDL.Record({
-    'id' : IDL.Text,
-    'question' : IDL.Text,
-    'order' : IDL.Nat,
+  const Result = IDL.Variant({ 'ok' : Certificate, 'err' : IDL.Text });
+  const ZenoAiResponse = IDL.Record({
     'answer' : IDL.Text,
-    'notHelpfulCount' : IDL.Nat,
-    'timestamp' : IDL.Int,
-    'category' : FaqCategory,
-    'helpfulCount' : IDL.Nat,
+    'success' : IDL.Bool,
   });
-  const Result_3 = IDL.Variant({ 'ok' : FAQ, 'err' : IDL.Text });
-  const HypeMilestone = IDL.Record({
+  const QuizOption = IDL.Record({ 'id' : IDL.Text, 'text' : IDL.Text });
+  const QuizQuestion = IDL.Record({
     'id' : IDL.Text,
-    'achieved' : IDL.Bool,
-    'title' : IDL.Text,
-    'order' : IDL.Nat,
-    'achievedAt' : IDL.Opt(IDL.Int),
-    'targetCount' : IDL.Nat,
-  });
-  const Result_21 = IDL.Variant({ 'ok' : HypeMilestone, 'err' : IDL.Text });
-  const JournalEntry = IDL.Record({
-    'id' : IDL.Text,
-    'pnl' : IDL.Opt(IDL.Float64),
-    'direction' : IDL.Text,
-    'asset' : IDL.Text,
-    'lots' : IDL.Float64,
-    'notes' : IDL.Text,
-    'timestamp' : IDL.Int,
-    'entryPrice' : IDL.Float64,
-    'exitPrice' : IDL.Opt(IDL.Float64),
-  });
-  const MarketType = IDL.Variant({
-    'Stock' : IDL.Null,
-    'Forex' : IDL.Null,
-    'Crypto' : IDL.Null,
-  });
-  const Direction = IDL.Variant({ 'Buy' : IDL.Null, 'Sell' : IDL.Null });
-  const Confidence = IDL.Variant({
-    'Low' : IDL.Null,
-    'High' : IDL.Null,
-    'Medium' : IDL.Null,
-  });
-  const Timeframe = IDL.Variant({
-    'Scalp' : IDL.Null,
-    'Swing' : IDL.Null,
-    'LongTerm' : IDL.Null,
-  });
-  const ResultStatus = IDL.Variant({
-    'Win' : IDL.Null,
-    'Loss' : IDL.Null,
-    'Active' : IDL.Null,
-    'Expired' : IDL.Null,
-  });
-  const Signal = IDL.Record({
-    'id' : IDL.Text,
-    'tp1' : IDL.Text,
-    'tp2' : IDL.Text,
-    'tp3' : IDL.Text,
-    'result' : ResultStatus,
-    'marketType' : MarketType,
-    'direction' : Direction,
-    'voteDown' : IDL.Nat,
-    'asset' : IDL.Text,
-    'timeframe' : Timeframe,
-    'providerLabel' : IDL.Text,
-    'templateId' : IDL.Opt(IDL.Text),
-    'publishAt' : IDL.Opt(IDL.Int),
-    'tags' : IDL.Vec(IDL.Text),
-    'targetPrice' : IDL.Text,
-    'voteUp' : IDL.Nat,
-    'isDraft' : IDL.Bool,
-    'datePosted' : IDL.Text,
-    'stopLoss' : IDL.Text,
-    'sourceLabel' : IDL.Text,
-    'notes' : IDL.Text,
-    'entryPrice' : IDL.Text,
-    'expiry' : IDL.Opt(IDL.Int),
-    'confidence' : Confidence,
-  });
-  const Result_2 = IDL.Variant({ 'ok' : Signal, 'err' : IDL.Text });
-  const Result = IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text });
-  const SignalTemplate = IDL.Record({
-    'id' : IDL.Text,
-    'marketType' : MarketType,
-    'direction' : Direction,
-    'asset' : IDL.Text,
-    'timeframe' : Timeframe,
-    'name' : IDL.Text,
-    'createdAt' : IDL.Int,
-    'notes' : IDL.Text,
-    'confidence' : Confidence,
-  });
-  const Result_20 = IDL.Variant({ 'ok' : SignalTemplate, 'err' : IDL.Text });
-  const AbTest = IDL.Record({
-    'id' : IDL.Text,
-    'active' : IDL.Bool,
-    'name' : IDL.Text,
-    'variantA' : IDL.Text,
-    'variantB' : IDL.Text,
-    'impressionsA' : IDL.Nat,
-    'impressionsB' : IDL.Nat,
-  });
-  const Result_19 = IDL.Variant({ 'ok' : IDL.Vec(AbTest), 'err' : IDL.Text });
-  const PushNotification = IDL.Record({
-    'id' : IDL.Text,
-    'title' : IDL.Text,
-    'active' : IDL.Bool,
-    'expiresAt' : IDL.Opt(IDL.Int),
-    'body' : IDL.Text,
-    'createdAt' : IDL.Int,
-  });
-  const ActivityEntry = IDL.Record({
-    'dayOfWeek' : IDL.Nat,
-    'hour' : IDL.Nat,
-    'count' : IDL.Nat,
-  });
-  const Result_18 = IDL.Variant({
-    'ok' : IDL.Vec(ActivityEntry),
-    'err' : IDL.Text,
-  });
-  const Result_17 = IDL.Variant({
-    'ok' : IDL.Vec(Announcement),
-    'err' : IDL.Text,
-  });
-  const MarketCount = IDL.Record({ 'count' : IDL.Nat, 'market' : IDL.Text });
-  const DateCount = IDL.Record({ 'date' : IDL.Text, 'count' : IDL.Nat });
-  const Analytics = IDL.Record({
-    'signalsByMarket' : IDL.Vec(MarketCount),
-    'notifyMeByDate' : IDL.Vec(DateCount),
-    'totalNotifyMe' : IDL.Nat,
-  });
-  const Result_16 = IDL.Variant({ 'ok' : Analytics, 'err' : IDL.Text });
-  const AuditEntry = IDL.Record({
-    'id' : IDL.Text,
-    'action' : IDL.Text,
-    'rollbackData' : IDL.Opt(IDL.Text),
-    'adminToken' : IDL.Text,
-    'timestamp' : IDL.Int,
-    'details' : IDL.Text,
-  });
-  const Result_15 = IDL.Variant({
-    'ok' : IDL.Vec(AuditEntry),
-    'err' : IDL.Text,
-  });
-  const Result_14 = IDL.Variant({ 'ok' : IDL.Vec(IDL.Text), 'err' : IDL.Text });
-  const BurnScheduleEntry = IDL.Record({
-    'id' : IDL.Text,
-    'status' : IDL.Text,
-    'date' : IDL.Text,
-    'txHash' : IDL.Opt(IDL.Text),
-    'amount' : IDL.Text,
-    'reason' : IDL.Text,
-  });
-  const BurnTracker = IDL.Record({
-    'lastUpdated' : IDL.Int,
-    'totalBurned' : IDL.Nat,
-  });
-  const CommunityCounter = IDL.Record({
-    'lastUpdated' : IDL.Int,
-    'binanceCount' : IDL.Nat,
-    'twitterCount' : IDL.Nat,
-  });
-  const CommunityQuestion = IDL.Record({
-    'id' : IDL.Text,
+    'correctOption' : IDL.Text,
     'question' : IDL.Text,
-    'votes' : IDL.Nat,
-    'answer' : IDL.Opt(IDL.Text),
-    'isActive' : IDL.Bool,
-    'timestamp' : IDL.Int,
+    'explanation' : IDL.Text,
+    'isReviewFlagged' : IDL.Bool,
+    'options' : IDL.Vec(QuizOption),
+  });
+  const TierQuiz = IDL.Record({
+    'tierId' : TierId,
+    'tierName' : IDL.Text,
+    'questions' : IDL.Vec(QuizQuestion),
+  });
+  const AnnouncementBanner = IDL.Record({
+    'text' : IDL.Text,
+    'updatedAt' : IDL.Int,
     'isPinned' : IDL.Bool,
   });
-  const HolderBenefit = IDL.Record({
-    'id' : IDL.Text,
-    'title' : IDL.Text,
-    'active' : IDL.Bool,
-    'icon' : IDL.Text,
-    'description' : IDL.Text,
+  const DailyActiveLog = IDL.Record({ 'date' : IDL.Text, 'count' : IDL.Nat });
+  const LessonCompletionLog = IDL.Record({
+    'lessonId' : IDL.Text,
+    'completedAt' : IDL.Int,
+    'tierId' : IDL.Text,
   });
-  const Result_13 = IDL.Variant({
-    'ok' : IDL.Vec(JournalEntry),
-    'err' : IDL.Text,
+  const LessonRating = IDL.Record({
+    'lessonId' : IDL.Text,
+    'tierId' : IDL.Text,
+    'timestamp' : IDL.Int,
+    'rating' : IDL.Nat,
   });
-  const MaintenanceMode = IDL.Record({
-    'enabled' : IDL.Bool,
-    'updatedAt' : IDL.Int,
-    'message' : IDL.Text,
-  });
-  const MarketMoodBanner = IDL.Record({
-    'active' : IDL.Bool,
-    'mood' : IDL.Text,
-    'updatedAt' : IDL.Int,
-    'message' : IDL.Text,
-  });
-  const PriceData = IDL.Record({
-    'trend' : IDL.Text,
-    'asset' : IDL.Text,
-    'updatedAt' : IDL.Int,
-    'priceChange24h' : IDL.Float64,
-    'price' : IDL.Float64,
-  });
-  const SentimentLevel = IDL.Variant({
-    'Bearish' : IDL.Null,
-    'Neutral' : IDL.Null,
-    'Bullish' : IDL.Null,
-  });
-  const AssetSentiment = IDL.Record({
-    'trend' : IDL.Text,
-    'asset' : IDL.Text,
-    'note' : IDL.Text,
-    'lastPriceUpdate' : IDL.Int,
-    'level' : SentimentLevel,
-    'updatedAt' : IDL.Int,
-    'priceChange24h' : IDL.Float64,
-    'market' : IDL.Text,
-    'price' : IDL.Float64,
-  });
-  const MarketSentiment = IDL.Record({
-    'assets' : IDL.Vec(AssetSentiment),
-    'updatedAt' : IDL.Int,
-    'overall' : SentimentLevel,
-  });
-  const CommunityMilestone = IDL.Record({
-    'id' : IDL.Text,
-    'reached' : IDL.Bool,
-    'celebrateUntil' : IDL.Opt(IDL.Int),
-    'title' : IDL.Text,
-    'description' : IDL.Text,
-    'reachedAt' : IDL.Opt(IDL.Int),
-  });
-  const NotifyMe = IDL.Record({
-    'id' : IDL.Text,
-    'contact' : IDL.Text,
-    'dateSubmitted' : IDL.Text,
-    'name' : IDL.Opt(IDL.Text),
-  });
-  const Result_12 = IDL.Variant({ 'ok' : IDL.Vec(NotifyMe), 'err' : IDL.Text });
-  const DemonZenoQuote = IDL.Record({
-    'id' : IDL.Text,
-    'active' : IDL.Bool,
-    'quote' : IDL.Text,
-    'author' : IDL.Text,
+  const QuizAttemptStats = IDL.Record({
+    'tierId' : IDL.Text,
+    'passCount' : IDL.Nat,
+    'totalAttempts' : IDL.Nat,
   });
   const RoadmapMilestone = IDL.Record({
+    'id' : IDL.Text,
     'title' : IDL.Text,
+    'date' : IDL.Opt(IDL.Text),
     'completed' : IDL.Bool,
     'year' : IDL.Text,
     'description' : IDL.Text,
   });
-  const Result_7 = IDL.Variant({ 'ok' : IDL.Vec(Signal), 'err' : IDL.Text });
-  const ResponseRating = IDL.Record({
-    'messageId' : IDL.Text,
-    'timestamp' : IDL.Int,
-    'rating' : IDL.Int,
+  const TierDisabledEntry = IDL.Record({
+    'tierId' : IDL.Text,
+    'disabled' : IDL.Bool,
   });
-  const Result_11 = IDL.Variant({
-    'ok' : IDL.Vec(ResponseRating),
-    'err' : IDL.Text,
-  });
-  const ChatMessage = IDL.Record({
-    'content' : IDL.Text,
-    'provider' : IDL.Opt(IDL.Text),
-    'role' : IDL.Text,
-    'timestamp' : IDL.Int,
-  });
-  const SignalOfWeekFull = IDL.Record({
-    'featuredAt' : IDL.Int,
-    'comment' : IDL.Text,
-    'signal' : Signal,
-    'weekOf' : IDL.Text,
-  });
-  const AssetStats = IDL.Record({
-    'asset' : IDL.Text,
-    'wins' : IDL.Nat,
-    'losses' : IDL.Nat,
-  });
-  const DayStats = IDL.Record({
-    'day' : IDL.Text,
-    'wins' : IDL.Nat,
-    'losses' : IDL.Nat,
-  });
-  const SignalPerformanceStats = IDL.Record({
-    'topAssets' : IDL.Vec(AssetStats),
-    'pending' : IDL.Nat,
-    'wins' : IDL.Nat,
-    'losses' : IDL.Nat,
-    'weeklyTrend' : IDL.Vec(DayStats),
-    'winRate' : IDL.Float64,
-    'totalSignals' : IDL.Nat,
-  });
-  const Result_10 = IDL.Variant({
-    'ok' : SignalPerformanceStats,
-    'err' : IDL.Text,
-  });
-  const Result_9 = IDL.Variant({
-    'ok' : IDL.Vec(SignalTemplate),
-    'err' : IDL.Text,
-  });
-  const Stats = IDL.Record({
-    'active' : IDL.Nat,
-    'wins' : IDL.Nat,
-    'losses' : IDL.Nat,
-    'assetsCovered' : IDL.Nat,
-    'winRate' : IDL.Float64,
-    'totalSignals' : IDL.Nat,
-  });
-  const StatsConfig = IDL.Record({
-    'useManual' : IDL.Bool,
-    'manualStats' : IDL.Opt(Stats),
-  });
-  const Result_8 = IDL.Variant({ 'ok' : StatsConfig, 'err' : IDL.Text });
-  const Testimonial = IDL.Record({
-    'id' : IDL.Text,
-    'active' : IDL.Bool,
-    'content' : IDL.Text,
-    'asset' : IDL.Opt(IDL.Text),
-    'name' : IDL.Text,
-    'createdAt' : IDL.Int,
-    'winAmount' : IDL.Opt(IDL.Text),
-  });
-  const TokenData = IDL.Record({
+  const TokenInfo = IDL.Record({
     'ticker' : IDL.Text,
-    'burnedAmount' : IDL.Text,
+    'socialLinks' : IDL.Vec(
+      IDL.Record({ 'url' : IDL.Text, 'name' : IDL.Text })
+    ),
     'name' : IDL.Text,
     'launchPlatform' : IDL.Text,
-    'supply' : IDL.Text,
-    'launchDate' : IDL.Text,
+    'description' : IDL.Text,
+    'totalSupply' : IDL.Text,
+    'slogan' : IDL.Text,
+    'distribution' : IDL.Text,
   });
-  const TopTrader = IDL.Record({
-    'id' : IDL.Text,
-    'bio' : IDL.Text,
-    'name' : IDL.Text,
-    'createdAt' : IDL.Int,
-    'week' : IDL.Text,
-    'achievement' : IDL.Text,
-    'isActive' : IDL.Bool,
+  const QuizAnswer = IDL.Record({
+    'questionId' : IDL.Text,
+    'selectedOption' : IDL.Text,
   });
-  const WhitepaperSection = IDL.Record({
-    'title' : IDL.Text,
-    'content' : IDL.Text,
+  const http_header = IDL.Record({ 'value' : IDL.Text, 'name' : IDL.Text });
+  const http_request_result = IDL.Record({
+    'status' : IDL.Nat,
+    'body' : IDL.Vec(IDL.Nat8),
+    'headers' : IDL.Vec(http_header),
   });
-  const WhitepaperContent = IDL.Record({
-    'title' : IDL.Text,
-    'updatedAt' : IDL.Int,
-    'sections' : IDL.Vec(WhitepaperSection),
+  const TransformationInput = IDL.Record({
+    'context' : IDL.Vec(IDL.Nat8),
+    'response' : http_request_result,
   });
-  const SignalInput = IDL.Record({
-    'tp1' : IDL.Text,
-    'tp2' : IDL.Text,
-    'tp3' : IDL.Text,
-    'marketType' : MarketType,
-    'direction' : Direction,
-    'asset' : IDL.Text,
-    'timeframe' : Timeframe,
-    'providerLabel' : IDL.Text,
-    'templateId' : IDL.Opt(IDL.Text),
-    'publishAt' : IDL.Opt(IDL.Int),
-    'tags' : IDL.Vec(IDL.Text),
-    'targetPrice' : IDL.Text,
-    'isDraft' : IDL.Bool,
-    'stopLoss' : IDL.Text,
-    'sourceLabel' : IDL.Text,
-    'notes' : IDL.Text,
-    'entryPrice' : IDL.Text,
-    'expiry' : IDL.Opt(IDL.Int),
-    'confidence' : Confidence,
-  });
-  const AuditSnapshot = IDL.Record({
-    'id' : IDL.Text,
-    'createdAt' : IDL.Int,
-    'dataHash' : IDL.Text,
-    'snapshotLabel' : IDL.Text,
-  });
-  const Result_6 = IDL.Variant({
-    'ok' : IDL.Vec(AuditSnapshot),
-    'err' : IDL.Text,
+  const TransformationOutput = IDL.Record({
+    'status' : IDL.Nat,
+    'body' : IDL.Vec(IDL.Nat8),
+    'headers' : IDL.Vec(http_header),
   });
   
   return IDL.Service({
-    'addAnnouncement' : IDL.Func(
-        [
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          AnnouncementCategory,
-          IDL.Opt(IDL.Text),
-          IDL.Bool,
-          IDL.Opt(IDL.Int),
-        ],
-        [Result_5],
-        [],
-      ),
-    'addBinancePost' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-        [Result_4],
-        [],
-      ),
-    'addBurnEntry' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-        [Result_1],
-        [],
-      ),
-    'addBurnEvent' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-        [Result_22],
-        [],
-      ),
-    'addFaq' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, FaqCategory],
-        [Result_3],
-        [],
-      ),
-    'addHypeMilestone' : IDL.Func(
-        [IDL.Text, IDL.Nat, IDL.Text],
-        [Result_21],
-        [],
-      ),
-    'addJournalEntry' : IDL.Func([JournalEntry, IDL.Text], [Result_1], []),
-    'addMilestone' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result_1], []),
-    'addQuote' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result_1], []),
-    'addSignal' : IDL.Func(
-        [
-          IDL.Text,
-          IDL.Text,
-          MarketType,
-          Direction,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          Confidence,
-          IDL.Text,
-          IDL.Text,
-          IDL.Opt(IDL.Int),
-          Timeframe,
-          IDL.Bool,
-          IDL.Opt(IDL.Int),
-          IDL.Opt(IDL.Text),
-          IDL.Vec(IDL.Text),
-        ],
-        [Result_2],
-        [],
-      ),
-    'addSignalNote' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result], []),
-    'addSignalTemplate' : IDL.Func(
-        [
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          MarketType,
-          Direction,
-          Timeframe,
-          Confidence,
-          IDL.Text,
-        ],
-        [Result_20],
-        [],
-      ),
-    'addTestimonial' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Opt(IDL.Text), IDL.Opt(IDL.Text), IDL.Text],
-        [Result_1],
-        [],
-      ),
-    'addTopTrader' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-        [Result_1],
-        [],
-      ),
-    'analyzeNewsImpact' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-    'askFaq' : IDL.Func([IDL.Text], [IDL.Text], []),
-    'askTokenFaq' : IDL.Func([IDL.Text], [IDL.Text], []),
-    'backtestSignal' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-    'banEmail' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'clearJournal' : IDL.Func([IDL.Text], [Result], []),
-    'compareSignals' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result_1], []),
-    'createAbTest' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-        [Result_1],
-        [],
-      ),
-    'createAuditSnapshot' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-    'createPushNotification' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text],
-        [Result_1],
-        [],
-      ),
-    'deleteAnnouncement' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'deleteBinancePost' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'deleteCommunityQuestion' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'deleteFaq' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'deleteQuote' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'deleteSignal' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'deleteSignalTemplate' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'deleteTestimonial' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'deleteTopTrader' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'dismissPushNotification' : IDL.Func([IDL.Text], [], []),
-    'executeAdminCommand' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-    'generateDailyBriefing' : IDL.Func([IDL.Text], [Result_1], []),
-    'generatePostTradeAnalysis' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text],
-        [Result_1],
-        [],
-      ),
-    'generatePricePrediction' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-    'generateSignalChain' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-    'getAbTests' : IDL.Func([IDL.Text], [Result_19], []),
-    'getAbVariant' : IDL.Func([IDL.Text], [IDL.Text], ['query']),
-    'getActivePushNotifications' : IDL.Func(
-        [],
-        [IDL.Vec(PushNotification)],
+    'adminExportCertificates' : IDL.Func([], [IDL.Vec(Certificate)], ['query']),
+    'adminFeatureCertificate' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
+    'adminFlagQuestion' : IDL.Func([IDL.Text, IDL.Bool], [], []),
+    'adminGetAttemptLogs' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(QuizAttemptLog)],
         ['query'],
       ),
-    'getAdminActivityHeatmap' : IDL.Func([IDL.Text], [Result_18], []),
-    'getAdminConfig' : IDL.Func([IDL.Text], [Result_1], []),
-    'getAiLanguage' : IDL.Func([IDL.Text], [Result_1], ['query']),
-    'getAiProviderStatus' : IDL.Func(
-        [],
-        [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Bool))],
+    'adminGetFlaggedQuestions' : IDL.Func([], [IDL.Vec(IDL.Text)], ['query']),
+    'adminGetQuestionFailStats' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(QuestionFailStat)],
         ['query'],
       ),
-    'getAllAnnouncements' : IDL.Func([IDL.Text], [Result_17], []),
-    'getAnalytics' : IDL.Func([IDL.Text], [Result_16], []),
-    'getAnalyticsCsv' : IDL.Func([IDL.Text], [Result_1], []),
-    'getAnnouncements' : IDL.Func([], [IDL.Vec(Announcement)], ['query']),
-    'getAuditLog' : IDL.Func([IDL.Text], [Result_15], []),
-    'getBannedEmails' : IDL.Func([IDL.Text], [Result_14], []),
-    'getBinanceFeed' : IDL.Func([], [IDL.Vec(BinancePost)], ['query']),
-    'getBurnSchedule' : IDL.Func([], [IDL.Vec(BurnScheduleEntry)], ['query']),
-    'getBurnTracker' : IDL.Func([], [BurnTracker], ['query']),
-    'getCommunityCounter' : IDL.Func([], [CommunityCounter], ['query']),
-    'getCommunityQuestions' : IDL.Func(
+    'adminGetStats' : IDL.Func([], [AdminStats], ['query']),
+    'adminManualIssueCertificate' : IDL.Func(
+        [IDL.Text, CertificateInfo],
+        [Result],
         [],
-        [IDL.Vec(CommunityQuestion)],
+      ),
+    'adminRevokeOrReinstateCertificate' : IDL.Func(
+        [IDL.Text, IDL.Bool],
+        [Result_1],
+        [],
+      ),
+    'adminSetAnnouncementBanner' : IDL.Func([IDL.Text, IDL.Bool], [], []),
+    'adminSetTierDisabled' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
+    'adminUpdateMilestone' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
+    'askZenoAi' : IDL.Func([IDL.Text], [ZenoAiResponse], []),
+    'getAcademyQuiz' : IDL.Func(
+        [IDL.Text, IDL.Int],
+        [IDL.Opt(TierQuiz)],
         ['query'],
       ),
-    'getDailyBriefing' : IDL.Func([], [IDL.Text], ['query']),
-    'getFaqs' : IDL.Func([], [IDL.Vec(FAQ)], ['query']),
-    'getFaqsByCategory' : IDL.Func([FaqCategory], [IDL.Vec(FAQ)], ['query']),
-    'getHolderBenefits' : IDL.Func([], [IDL.Vec(HolderBenefit)], ['query']),
-    'getHypeMilestones' : IDL.Func([], [IDL.Vec(HypeMilestone)], ['query']),
-    'getJournalEntries' : IDL.Func([IDL.Text], [Result_13], ['query']),
-    'getMaintenanceMode' : IDL.Func([], [MaintenanceMode], ['query']),
-    'getMarketMoodBanner' : IDL.Func(
+    'getAdminLessonRatings' : IDL.Func(
         [],
-        [IDL.Opt(MarketMoodBanner)],
+        [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Text, IDL.Float64))],
         ['query'],
       ),
-    'getMarketPrices' : IDL.Func([], [IDL.Vec(PriceData)], ['query']),
-    'getMarketSentiment' : IDL.Func([], [MarketSentiment], ['query']),
-    'getMilestones' : IDL.Func([], [IDL.Vec(CommunityMilestone)], ['query']),
-    'getNotifyMeList' : IDL.Func([IDL.Text], [Result_12], []),
-    'getPublicBurnSchedule' : IDL.Func(
+    'getAnnouncementBanner' : IDL.Func(
         [],
-        [IDL.Vec(BurnScheduleEntry)],
+        [IDL.Opt(AnnouncementBanner)],
         ['query'],
       ),
-    'getQuotes' : IDL.Func([], [IDL.Vec(DemonZenoQuote)], ['query']),
+    'getCertificateByShareToken' : IDL.Func(
+        [IDL.Text],
+        [IDL.Opt(Certificate)],
+        ['query'],
+      ),
+    'getCertificatesByTier' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(Certificate)],
+        ['query'],
+      ),
+    'getDailyActiveCounts' : IDL.Func([], [IDL.Vec(DailyActiveLog)], ['query']),
+    'getFeaturedCertificates' : IDL.Func([], [IDL.Vec(Certificate)], ['query']),
+    'getFeaturedLesson' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], ['query']),
+    'getLessonCompletionTrends' : IDL.Func(
+        [],
+        [IDL.Vec(LessonCompletionLog)],
+        ['query'],
+      ),
+    'getLessonRatings' : IDL.Func(
+        [IDL.Text, IDL.Text],
+        [IDL.Vec(LessonRating)],
+        ['query'],
+      ),
+    'getQuizAttemptStats' : IDL.Func(
+        [],
+        [IDL.Vec(QuizAttemptStats)],
+        ['query'],
+      ),
+    'getQuizFailMessage' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], ['query']),
     'getRoadmap' : IDL.Func([], [IDL.Vec(RoadmapMilestone)], ['query']),
-    'getScheduledSignals' : IDL.Func([IDL.Text], [Result_7], []),
-    'getSessionRatings' : IDL.Func([IDL.Text], [Result_11], ['query']),
-    'getSessionRecap' : IDL.Func(
-        [IDL.Vec(ChatMessage), IDL.Text],
-        [Result_1],
+    'getTierDisabledStates' : IDL.Func(
         [],
+        [IDL.Vec(TierDisabledEntry)],
+        ['query'],
       ),
-    'getSignalArchive' : IDL.Func([], [IDL.Vec(Signal)], ['query']),
-    'getSignalOfTheDay' : IDL.Func([], [IDL.Opt(Signal)], ['query']),
-    'getSignalOfWeek' : IDL.Func([], [IDL.Opt(SignalOfWeekFull)], ['query']),
-    'getSignalPerformanceStats' : IDL.Func([IDL.Text], [Result_10], []),
-    'getSignalTemplates' : IDL.Func([IDL.Text], [Result_9], []),
-    'getSignals' : IDL.Func([], [IDL.Vec(Signal)], ['query']),
-    'getStats' : IDL.Func([], [Stats], ['query']),
-    'getStatsConfig' : IDL.Func([IDL.Text], [Result_8], []),
-    'getTestimonials' : IDL.Func([], [IDL.Vec(Testimonial)], ['query']),
-    'getTokenBurnSchedule' : IDL.Func([], [IDL.Vec(BurnEvent)], ['query']),
-    'getTokenData' : IDL.Func([], [TokenData], ['query']),
-    'getTopTraders' : IDL.Func([], [IDL.Vec(TopTrader)], ['query']),
-    'getWhitepaper' : IDL.Func([], [WhitepaperContent], ['query']),
-    'getWhitepaperUrl' : IDL.Func([], [IDL.Opt(IDL.Text)], ['query']),
-    'importSignals' : IDL.Func(
-        [IDL.Text, IDL.Vec(SignalInput)],
-        [Result_7],
-        [],
+    'getTokenInfo' : IDL.Func([], [TokenInfo], ['query']),
+    'listAllCertificates' : IDL.Func([], [IDL.Vec(Certificate)], ['query']),
+    'logDailyActive' : IDL.Func([IDL.Text], [], []),
+    'logLessonCompletion' : IDL.Func([IDL.Text, IDL.Text, IDL.Int], [], []),
+    'searchCertificates' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(Certificate)],
+        ['query'],
       ),
-    'initFaqs' : IDL.Func([], [], []),
-    'invalidateAiSession' : IDL.Func([IDL.Text], [], []),
-    'invalidateSession' : IDL.Func([IDL.Text], [], []),
-    'listAuditSnapshots' : IDL.Func([IDL.Text], [Result_6], []),
-    'markBurnEventExecuted' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'markHypeMilestoneAchieved' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'markMilestoneReached' : IDL.Func(
-        [IDL.Text, IDL.Nat, IDL.Text],
-        [Result],
-        [],
-      ),
-    'pinAnnouncement' : IDL.Func([IDL.Text, IDL.Text, IDL.Bool], [Result], []),
-    'pinCommunityQuestion' : IDL.Func(
+    'setFeaturedLesson' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text],
-        [Result],
+        [IDL.Bool],
         [],
       ),
-    'publishScheduledSignals' : IDL.Func([], [IDL.Nat], []),
-    'rateAiResponse' : IDL.Func([IDL.Text, IDL.Int, IDL.Text], [Result], []),
-    'rateFaq' : IDL.Func([IDL.Text, IDL.Bool], [Result], []),
-    'recordAbImpression' : IDL.Func([IDL.Text, IDL.Text], [], []),
-    'recordAdminActivity' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'refreshMarketPrices' : IDL.Func([], [IDL.Vec(PriceData)], []),
-    'reorderFaqs' : IDL.Func([IDL.Text, IDL.Vec(IDL.Text)], [Result], []),
-    'rollbackAdminAction' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
-    'scheduleSignal' : IDL.Func([IDL.Text, IDL.Int, IDL.Text], [Result], []),
-    'sendAiMessage' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, IDL.Vec(ChatMessage)],
-        [Result_1],
-        [],
-      ),
-    'setAiApiKey' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result], []),
-    'setAiLanguage' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'setBurnTracker' : IDL.Func([IDL.Text, BurnTracker], [Result], []),
-    'setCommunityCounter' : IDL.Func(
-        [IDL.Text, CommunityCounter],
-        [Result],
-        [],
-      ),
-    'setMaintenanceMode' : IDL.Func(
-        [IDL.Bool, IDL.Text, IDL.Text],
-        [Result],
-        [],
-      ),
-    'setMarketMoodBanner' : IDL.Func(
+    'setQuizFailMessage' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text],
-        [Result],
+        [IDL.Bool],
         [],
       ),
-    'setRoadmapMilestone' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Bool],
-        [Result],
+    'submitCheckpointQuiz' : IDL.Func([IDL.Text, IDL.Nat], [IDL.Bool], []),
+    'submitLessonRating' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Nat],
+        [IDL.Bool],
         [],
       ),
-    'setSignalOfTheDay' : IDL.Func([IDL.Text, IDL.Opt(IDL.Text)], [Result], []),
-    'setSignalOfWeek' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Result], []),
-    'setSignalOfWeekWithDate' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-        [Result],
-        [],
-      ),
-    'setStatsConfig' : IDL.Func([IDL.Text, StatsConfig], [Result], []),
-    'setWhitepaperUrl' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'submitCommunityQuestion' : IDL.Func([IDL.Text], [Result_1], []),
-    'submitNotifyMe' : IDL.Func([IDL.Opt(IDL.Text), IDL.Text], [Result], []),
-    'unbanEmail' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
-    'updateAnnouncement' : IDL.Func(
+    'submitQuizAndIssueCertificate' : IDL.Func(
         [
           IDL.Text,
+          IDL.Vec(QuizAnswer),
           IDL.Text,
           IDL.Text,
           IDL.Text,
-          AnnouncementCategory,
-          IDL.Opt(IDL.Text),
-          IDL.Bool,
-          IDL.Bool,
-          IDL.Opt(IDL.Int),
+          IDL.Text,
+          IDL.Text,
+          IDL.Text,
+          IDL.Int,
+          IDL.Text,
         ],
-        [Result_5],
-        [],
-      ),
-    'updateBinancePost' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
-        [Result_4],
-        [],
-      ),
-    'updateBurnEntryStatus' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Opt(IDL.Text), IDL.Text],
         [Result],
         [],
       ),
-    'updateFaq' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Text, IDL.Text, FaqCategory],
-        [Result_3],
-        [],
+    'verifyCertificate' : IDL.Func(
+        [IDL.Text],
+        [IDL.Opt(Certificate)],
+        ['query'],
       ),
-    'updateMarketSentiment' : IDL.Func(
-        [IDL.Text, MarketSentiment],
-        [Result],
-        [],
+    'zenoAiTransform' : IDL.Func(
+        [TransformationInput],
+        [TransformationOutput],
+        ['query'],
       ),
-    'updateSignal' : IDL.Func(
-        [
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          MarketType,
-          Direction,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          Confidence,
-          IDL.Text,
-          IDL.Text,
-          IDL.Opt(IDL.Int),
-          Timeframe,
-          IDL.Bool,
-          IDL.Opt(IDL.Int),
-          IDL.Opt(IDL.Text),
-          IDL.Vec(IDL.Text),
-        ],
-        [Result_2],
-        [],
-      ),
-    'updateSignalResult' : IDL.Func(
-        [IDL.Text, IDL.Text, ResultStatus],
-        [Result_2],
-        [],
-      ),
-    'updateSignalSchedule' : IDL.Func(
-        [IDL.Text, IDL.Text, IDL.Bool, IDL.Opt(IDL.Int)],
-        [Result_2],
-        [],
-      ),
-    'updateWhitepaper' : IDL.Func([WhitepaperContent, IDL.Text], [Result], []),
-    'validateAdminRole' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], []),
-    'validateAiPasscode' : IDL.Func([IDL.Text], [Result_1], []),
-    'validateAiSession' : IDL.Func([IDL.Text], [IDL.Bool], ['query']),
-    'validatePasscode' : IDL.Func([IDL.Text], [Result_1], []),
-    'validateSession' : IDL.Func([IDL.Text], [IDL.Bool], ['query']),
-    'voteCommunityQuestion' : IDL.Func([IDL.Text], [Result], []),
-    'voteOnSignal' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
   });
 };
 

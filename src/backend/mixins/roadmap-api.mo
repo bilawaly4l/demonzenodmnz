@@ -1,40 +1,32 @@
 import List "mo:core/List";
-import Set "mo:core/Set";
 import RoadmapTypes "../types/roadmap";
 import Common "../types/common";
 import RoadmapLib "../lib/roadmap";
-import AuthLib "../lib/auth";
 
 mixin (
   roadmapMilestones : List.List<RoadmapTypes.RoadmapMilestone>,
-  sessions          : Set.Set<Text>,
 ) {
+  /// Get all roadmap milestones (public — no auth required).
   public query func getRoadmap() : async [RoadmapTypes.RoadmapMilestone] {
-    RoadmapLib.getRoadmap(roadmapMilestones);
+    roadmapMilestones.toArray();
   };
 
-  /// Admin: add or replace a roadmap milestone
-  public func setRoadmapMilestone(
-    adminToken  : Text,
-    year        : Text,
-    title       : Text,
-    description : Text,
-    completed   : Bool,
-  ) : async Common.Result<(), Text> {
-    if (not AuthLib.validateSession(sessions, adminToken)) {
-      return #err("Unauthorized");
+  /// Get static DMNZ token info (public — no auth required).
+  public query func getTokenInfo() : async RoadmapTypes.TokenInfo {
+    RoadmapLib.getTokenInfo();
+  };
+
+  /// Admin: update a milestone's completed status by its id.
+  public func adminUpdateMilestone(id : Text, completed : Bool) : async Common.Result<(), Text> {
+    let found = roadmapMilestones.find(func(m : RoadmapTypes.RoadmapMilestone) : Bool { m.id == id });
+    switch (found) {
+      case null { #err("Milestone not found: " # id) };
+      case (?_) {
+        roadmapMilestones.mapInPlace(func(m : RoadmapTypes.RoadmapMilestone) : RoadmapTypes.RoadmapMilestone {
+          if (m.id == id) { { m with completed } } else { m };
+        });
+        #ok(());
+      };
     };
-    // If a milestone for this year already exists, replace it
-    var found = false;
-    roadmapMilestones.mapInPlace(func(m) {
-      if (m.year == year) {
-        found := true;
-        { m with title; description; completed };
-      } else { m };
-    });
-    if (not found) {
-      roadmapMilestones.add({ year; title; description; completed });
-    };
-    #ok(());
   };
 };

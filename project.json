@@ -1,24 +1,28 @@
 {
-  "overview": "DemonZeno (DMNZ) is an anime-inspired meme token and free trading signals platform. It features a unified DemonZeno AI powered by 50+ AI providers for real-time crypto, forex, and stock signals, an AI-powered FAQ system, admin dashboard, community features, and a full token launch roadmap toward April 2028.",
+  "overview": "DemonZeno is a world-class trading education platform and official hub for the DMNZ meme token. It features a 5-tier Trading Academy (Beginner to Master) with 15-20 premium lessons per tier, interactive exercises, chart pattern diagrams, famous trader profiles, and a rigorous quiz system requiring a perfect 30/30 score for a prestigious certificate. Zeno AI (powered by Gemini) is embedded in every lesson for trading Q&A. All certificates are globally stored and displayed on a public Certificate Wall. The DMNZ token section covers the Full Fair Launch, roadmap, and how to buy via Blum Mini App.",
   "features": [
-    "Unified DemonZeno AI with 50+ providers — real-time signals, Q&A, code writing",
-    "AI signal generator with Entry, Stop Loss, TP1/TP2/TP3 on every response",
-    "AI-powered FAQ and Token FAQ chatbot (fully backend-driven)",
-    "Secret admin dashboard (click-unlock + passcode)",
-    "Signal management, community voting, testimonials wall",
-    "DMNZ token launch sections with hype bar, countdown, burn tracker",
-    "Cinematic anime open-road design with custom cursor and animations",
-    "Full PWA, SEO, accessibility, and micro-interactions"
+    "5-tier Trading Academy (Beginner to Master) with 15-20 lessons per tier",
+    "Premium lessons with real trade breakdowns, chart patterns, case studies, and DemonZeno quotes",
+    "Famous trader profiles: Jesse Livermore, Paul Tudor Jones, George Soros, Waqar Zaka",
+    "Rigorous 30-question MCQ quiz with 100+ question pool per tier — perfect 30/30 required",
+    "Anti-cheating measures: randomized answers, 45s timer, no answer reveal, IP fingerprint logging",
+    "Premium certificate image with 9-char unique ID, tier badge, DemonZeno watermark, QR code",
+    "Public Certificate Wall — searchable by ID, filterable by tier, with leaderboard",
+    "Zeno AI embedded in every lesson for trading Q&A (Gemini-powered, no off-topic)",
+    "Interactive exercises: spot the mistake, pattern recognition drills, risk calculator",
+    "Progress tracking: lesson streaks, weekly goals, comeback reminders, spaced repetition",
+    "Session-local Admin Dashboard with global certificate management and analytics",
+    "DMNZ token info with Full Fair Launch messaging, roadmap, and Blum Mini App buy guide"
   ],
-  "category": "finance",
+  "category": "education",
   "tags": [
+    "trading",
+    "education",
     "crypto",
-    "trading-signals",
-    "anime",
-    "meme-token",
-    "ai-chat",
-    "defi",
+    "academy",
+    "certificates",
+    "meme-coin",
     "dmnz"
   ],
-  "last_updated": "2026-04-28T07:25:48.044Z"
+  "last_updated": "2026-05-02T01:35:31.304Z"
 }

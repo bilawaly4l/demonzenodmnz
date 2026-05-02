@@ -32,3 +32,4 @@ args = [
 [dependencies]
 core = "2.2.0"
 sha2 = "0.1.14"
+caffeineai-http-outcalls = "0.1.1"
