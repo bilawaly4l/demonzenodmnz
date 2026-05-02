@@ -1,11 +1,24 @@
-import { c as createLucideIcon, r as reactExports, j as jsxRuntimeExports, X, A as Award, T as Twitter, t as useListAllCertificates, q as useFeaturedCertificates, v as useVerifyCertificate } from "./index-LpNaIZiB.js";
-import { S as ShieldCheck, B as Badge } from "./badge-BsFgkTBp.js";
-import { B as Button } from "./button-CM5rLxPe.js";
-import { S as Search, I as Input, T as Trophy } from "./input-BtQJcYzA.js";
-import { D as Dialog, a as DialogContent, U as Users } from "./dialog-CZlrs0oE.js";
-import { C as Check, L as Link2, a as CertificateGenerator } from "./CertificateGenerator-D-9YPRdj.js";
-import { D as Download, G as Globe, a as Star, S as Shield } from "./star-BrTRvvX0.js";
-import { E as ExternalLink } from "./external-link-j1Jn2SNC.js";
+import { c as createLucideIcon, r as reactExports, j as jsxRuntimeExports, X, A as Award, T as Twitter, t as useListAllCertificates, q as useFeaturedCertificates, v as useVerifyCertificate } from "./index-DhDL5MF6.js";
+import { S as ShieldCheck, B as Badge } from "./badge-pb8jetag.js";
+import { B as Button } from "./button-BgkjFKKh.js";
+import { S as Search, I as Input, T as Trophy } from "./input-D9I7p6UY.js";
+import { D as Dialog, a as DialogContent, U as Users } from "./dialog-C1QUKAnc.js";
+import { C as Check, L as Link2, a as CertificateGenerator } from "./CertificateGenerator-bJWzY9tq.js";
+import { D as Download, G as Globe, a as Star, S as Shield } from "./star-CfMfmKn7.js";
+import { E as ExternalLink } from "./external-link-Bg5l6Ni1.js";
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$2 = [
+  ["path", { d: "m3 16 4 4 4-4", key: "1co6wj" }],
+  ["path", { d: "M7 20V4", key: "1yoxec" }],
+  ["path", { d: "m21 8-4-4-4 4", key: "1c9v7m" }],
+  ["path", { d: "M17 4v16", key: "7dpous" }]
+];
+const ArrowDownUp = createLucideIcon("arrow-down-up", __iconNode$2);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -13,12 +26,10 @@ import { E as ExternalLink } from "./external-link-j1Jn2SNC.js";
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$1 = [
-  ["path", { d: "m3 16 4 4 4-4", key: "1co6wj" }],
-  ["path", { d: "M7 20V4", key: "1yoxec" }],
-  ["path", { d: "m21 8-4-4-4 4", key: "1c9v7m" }],
-  ["path", { d: "M17 4v16", key: "7dpous" }]
+  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
+  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
 ];
-const ArrowDownUp = createLucideIcon("arrow-down-up", __iconNode$1);
+const Copy = createLucideIcon("copy", __iconNode$1);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -26,10 +37,16 @@ const ArrowDownUp = createLucideIcon("arrow-down-up", __iconNode$1);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode = [
-  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
-  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
+  [
+    "path",
+    {
+      d: "M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z",
+      key: "1vdc57"
+    }
+  ],
+  ["path", { d: "M5 21h14", key: "11awu3" }]
 ];
-const Copy = createLucideIcon("copy", __iconNode);
+const Crown = createLucideIcon("crown", __iconNode);
 const TIER_STYLE$1 = {
   beginner: {
     color: "oklch(0.65 0.18 145)",
@@ -214,12 +231,12 @@ Verify: ${verifyUrl}`
     DialogContent,
     {
       "data-ocid": "cert_wall.verify.dialog",
-      className: "max-w-2xl w-full p-0 overflow-hidden",
+      className: "max-w-4xl w-full p-0 overflow-hidden",
       style: {
-        background: "oklch(0.16 0.01 260)",
+        background: "#0a0612",
         border: `1.5px solid ${GOLD_BORDER}`,
-        boxShadow: `0 0 60px ${GOLD_BG}, 0 24px 64px rgba(0,0,0,0.5)`,
-        maxHeight: "92vh",
+        boxShadow: "0 0 80px #FFD70018, 0 24px 64px rgba(0,0,0,0.7)",
+        maxHeight: "95vh",
         overflowY: "auto"
       },
       children: [
@@ -669,7 +686,18 @@ function CertRow({
             }
           ),
           cert.featured && /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "w-3 h-3 fill-current", style: { color: GOLD } }),
-          anniversary && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { title: "1 Year Anniversary!", className: "text-sm", children: "🎂" })
+          anniversary && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "span",
+            {
+              title: "1 Year Anniversary!",
+              className: "px-1.5 py-0.5 rounded text-[10px] font-bold uppercase",
+              style: {
+                background: "oklch(0.7 0.18 70 / 0.12)",
+                color: GOLD
+              },
+              children: "1 Year"
+            }
+          )
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "py-3.5 px-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-foreground text-sm leading-tight", children: cert.certInfo.fullName }),
@@ -745,7 +773,18 @@ function CertCard({
               }
             ),
             cert.featured && /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "w-4 h-4 fill-current", style: { color: GOLD } }),
-            anniversary && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { title: "1 Year Anniversary!", className: "text-sm", children: "🎂" }),
+            anniversary && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                title: "1 Year Anniversary!",
+                className: "px-1.5 py-0.5 rounded text-[10px] font-bold uppercase",
+                style: {
+                  background: "oklch(0.7 0.18 70 / 0.12)",
+                  color: GOLD
+                },
+                children: "1 Year"
+              }
+            ),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Award,
               {
@@ -1033,6 +1072,157 @@ function VerifyInlineResult({
     }
   );
 }
+function HallOfMasters({
+  allCerts,
+  onVerify
+}) {
+  const [showAll, setShowAll] = reactExports.useState(false);
+  const masters = allCerts.filter((c) => c.isValid && c.tierId.toLowerCase() === "master").sort((a, b) => Number(b.issuedAt - a.issuedAt));
+  if (masters.length === 0) return null;
+  const displayed = showAll ? masters : masters.slice(0, 6);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-10", "data-ocid": "cert_wall.hall_of_masters.section", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between mb-4", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { className: "w-5 h-5", style: { color: GOLD } }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "font-display font-bold text-xl text-foreground", children: "Hall of Masters" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "span",
+          {
+            className: "px-2 py-0.5 rounded-full text-xs font-bold",
+            style: {
+              background: "oklch(0.7 0.18 70 / 0.15)",
+              color: GOLD
+            },
+            children: masters.length
+          }
+        )
+      ] }),
+      masters.length > 6 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          onClick: () => setShowAll((v) => !v),
+          "data-ocid": "cert_wall.hall_of_masters.toggle",
+          className: "text-xs underline transition-colors",
+          style: { color: "oklch(0.65 0.15 190)" },
+          children: showAll ? "Show fewer" : `View all ${masters.length} Masters`
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4", children: displayed.map((cert, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      MasterCertCard,
+      {
+        cert,
+        index: idx,
+        onVerify
+      },
+      cert.certId
+    )) })
+  ] });
+}
+function MasterCertCard({
+  cert,
+  index,
+  onVerify
+}) {
+  const { copied, copy } = useCopy();
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      "data-ocid": `cert_wall.hall_of_masters.item.${index + 1}`,
+      className: "relative flex flex-col gap-3 rounded-xl p-5 border-2 overflow-hidden transition-smooth hover:scale-[1.01]",
+      style: {
+        background: "oklch(0.7 0.18 70 / 0.05)",
+        borderColor: "oklch(0.7 0.18 70 / 0.55)",
+        boxShadow: "0 0 30px oklch(0.7 0.18 70 / 0.12), inset 0 1px 0 rgba(255,255,255,0.08)"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute top-0 right-0 w-24 h-24 pointer-events-none opacity-10",
+            style: {
+              background: `radial-gradient(circle at top right, ${GOLD}, transparent 70%)`
+            },
+            "aria-hidden": "true"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "span",
+            {
+              className: "text-xs font-bold uppercase tracking-wider flex items-center gap-1",
+              style: { color: GOLD },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { className: "w-3 h-3" }),
+                "Master Certified"
+              ]
+            }
+          ),
+          cert.featured && /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "w-3.5 h-3.5 fill-current", style: { color: GOLD } })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-lg text-foreground leading-tight", children: cert.certInfo.fullName }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground text-xs mt-0.5", children: [
+            "s/o ",
+            cert.certInfo.fathersName,
+            " · ",
+            cert.certInfo.country
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Shield, { className: "w-3 h-3 shrink-0", style: { color: `${GOLD}b0` } }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "span",
+            {
+              className: "font-mono text-xs font-bold tracking-widest flex-1",
+              style: { color: GOLD },
+              children: cert.certId
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              onClick: () => copy(cert.certId, cert.certId),
+              "aria-label": "Copy certificate ID",
+              className: "transition-colors",
+              style: {
+                color: copied === cert.certId ? GOLD : "oklch(0.45 0.01 260)"
+              },
+              children: copied === cert.certId ? /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "w-3 h-3" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Copy, { className: "w-3 h-3" })
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "flex items-center justify-between pt-2 border-t",
+            style: { borderColor: "oklch(0.7 0.18 70 / 0.2)" },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-muted-foreground", children: fmtDate(cert.issuedAt) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Button,
+                {
+                  variant: "ghost",
+                  size: "sm",
+                  onClick: () => onVerify(cert),
+                  "data-ocid": `cert_wall.hall_of_masters.verify_button.${index + 1}`,
+                  className: "h-7 px-2.5 text-xs gap-1",
+                  style: { color: GOLD },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(ShieldCheck, { className: "w-3 h-3" }),
+                    "View"
+                  ]
+                }
+              )
+            ]
+          }
+        )
+      ]
+    }
+  );
+}
 function CertLeaderboard({ allCerts }) {
   const leaders = Object.values(
     allCerts.filter((c) => c.isValid).reduce((acc, cert) => {
@@ -1240,6 +1430,7 @@ function CertificateWall() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground uppercase tracking-wider mt-0.5", children: label })
           ] }, label)) }),
           !isLoading && allCerts.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(CertLeaderboard, { allCerts }),
+          !isLoading && allCerts.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(HallOfMasters, { allCerts, onVerify: openModal }),
           !isLoading && featuredCerts.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-10", "data-ocid": "cert_wall.featured.section", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-4", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "w-4 h-4 fill-current", style: { color: GOLD } }),

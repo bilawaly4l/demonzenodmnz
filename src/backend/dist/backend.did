@@ -110,12 +110,55 @@ type QuestionFailStat =
    tierId: text;
    totalSeen: nat;
  };
+type ProgressSnapshot = 
+ record {
+   certificatesEarned: vec text;
+   createdAt: int;
+   masteryLevels: vec record {
+                        text;
+                        float64;
+                      };
+   shareToken: text;
+   tiersCompleted: vec text;
+ };
+type MonthlyChallenge = 
+ record {
+   badgeEarned: bool;
+   lessonsCompleted: nat;
+   month: text;
+   targetLessons: nat;
+ };
+type MasteryRecord = 
+ record {
+   conceptCheckerScore: float64;
+   confidenceScore: float64;
+   lessonId: text;
+   masteryPct: float64;
+   quizScore: float64;
+   tier: text;
+   updatedAt: int;
+ };
 type LessonRating = 
  record {
    lessonId: text;
    rating: nat;
    tierId: text;
    timestamp: int;
+ };
+type LessonOfWeek = 
+ record {
+   expiresAt: int;
+   lessonId: text;
+   lessonTitle: text;
+   setAt: int;
+   tier: text;
+ };
+type LessonEngagement = 
+ record {
+   lessonId: text;
+   tier: text;
+   totalTimeSeconds: nat;
+   visitCount: nat;
  };
 type LessonCompletionLog = 
  record {
@@ -164,12 +207,31 @@ type AdminStats =
                     };
    totalCertificates: nat;
  };
+type ABTestRecord = 
+ record {
+   activeVersion: text;
+   questionId: text;
+   versionAAttempts: nat;
+   versionAPassCount: nat;
+   versionAText: text;
+   versionBAttempts: nat;
+   versionBPassCount: nat;
+   versionBText: text;
+ };
 service : {
+  adminCreateABTest: (passcode: text, questionId: text, versionAText: 
+   text, versionBText: text) -> ();
   adminExportCertificates: () -> (vec Certificate) query;
   adminFeatureCertificate: (certId: text, featured: bool) -> (Result_1);
   adminFlagQuestion: (questionId: text, flagged: bool) -> ();
+  adminGetABTests: (passcode: text) -> (vec ABTestRecord) query;
   adminGetAttemptLogs: (tierId: text) -> (vec QuizAttemptLog) query;
+  adminGetEngagementData: (passcode: text) -> (vec LessonEngagement) query;
   adminGetFlaggedQuestions: () -> (vec text) query;
+  adminGetMonthlyStats: (passcode: text) -> (vec record {
+                                                   text;
+                                                   nat;
+                                                 }) query;
   adminGetQuestionFailStats: (tierId: text) -> (vec QuestionFailStat) query;
   adminGetStats: () -> (AdminStats) query;
   adminManualIssueCertificate: (tierId: text, info: CertificateInfo) ->
@@ -177,15 +239,24 @@ service : {
   adminRevokeOrReinstateCertificate: (certId: text, isValid: bool) ->
    (Result_1);
   adminSetAnnouncementBanner: ("text": text, isPinned: bool) -> ();
+  adminSetLessonOfWeek: (passcode: text, lessonId: text, lessonTitle: 
+   text, tier: text) -> ();
   adminSetTierDisabled: (tierId: text, disabled: bool) -> (Result_1);
+  adminToggleABVersion: (passcode: text, questionId: text) -> ();
   adminUpdateMilestone: (id: text, completed: bool) -> (Result_1);
   askZenoAi: (question: text) -> (ZenoAiResponse);
+  generateProgressShareLink: (tiersCompleted: vec text, certificatesEarned:
+   vec text, masteryLevels: vec record {
+                                  text;
+                                  float64;
+                                }) -> (text);
   getAcademyQuiz: (tierId: text, seed: int) -> (opt TierQuiz) query;
   getAdminLessonRatings: () -> (vec record {
                                       text;
                                       text;
                                       float64;
                                     }) query;
+  getAllMasteryRecords: () -> (vec MasteryRecord) query;
   getAnnouncementBanner: () -> (opt AnnouncementBanner) query;
   getCertificateByShareToken: (shareToken: text) -> (opt Certificate) query;
   getCertificatesByTier: (tierId: text) -> (vec Certificate) query;
@@ -193,8 +264,12 @@ service : {
   getFeaturedCertificates: () -> (vec Certificate) query;
   getFeaturedLesson: (tierId: text) -> (opt text) query;
   getLessonCompletionTrends: () -> (vec LessonCompletionLog) query;
+  getLessonMastery: (lessonId: text) -> (opt MasteryRecord) query;
+  getLessonOfWeek: () -> (opt LessonOfWeek) query;
   getLessonRatings: (tierId: text, lessonId: text) ->
    (vec LessonRating) query;
+  getMonthlyChallenge: (month: text) -> (opt MonthlyChallenge) query;
+  getProgressSnapshot: (shareToken: text) -> (opt ProgressSnapshot) query;
   getQuizAttemptStats: () -> (vec QuizAttemptStats) query;
   getQuizFailMessage: (tierId: text) -> (opt text) query;
   getRoadmap: () -> (vec RoadmapMilestone) query;
@@ -203,6 +278,9 @@ service : {
   listAllCertificates: () -> (vec Certificate) query;
   logDailyActive: (date: text) -> ();
   logLessonCompletion: (tierId: text, lessonId: text, timestamp: int) -> ();
+  recordABTestResult: (questionId: text, version: text, passed: bool) -> ();
+  recordLessonCompleted: (lessonId: text) -> (MonthlyChallenge);
+  recordLessonTime: (lessonId: text, tier: text, timeSeconds: nat) -> ();
   searchCertificates: (searchTerm: text) -> (vec Certificate) query;
   setFeaturedLesson: (tierId: text, lessonId: text, passcode: text) -> (bool);
   setQuizFailMessage: (tierId: text, message: text, passcode: text) -> (bool);
@@ -211,6 +289,8 @@ service : {
   submitQuizAndIssueCertificate: (tierId: text, answers: vec QuizAnswer,
    fullName: text, fathersName: text, country: text, dateOfBirth: text,
    email: text, city: text, seed: int, fingerprint: text) -> (Result);
+  updateLessonMastery: (lessonId: text, tier: text, confidenceScore: 
+   float64, conceptCheckerScore: float64, quizScore: float64) -> ();
   verifyCertificate: (certId: text) -> (opt Certificate) query;
   zenoAiTransform: (input: TransformationInput) ->
    (TransformationOutput) query;

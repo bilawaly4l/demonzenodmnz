@@ -38,13 +38,8 @@ import { LessonConceptChecker } from "./LessonConceptChecker";
 import { LessonConfidenceRating } from "./LessonConfidenceRating";
 import { LessonPreCheck } from "./LessonPreCheck";
 import { MythVsRealityCard } from "./MythVsRealityCard";
-import { PatternRecognitionDrill } from "./PatternRecognitionDrill";
-import { RiskCalculatorWidget } from "./RiskCalculatorWidget";
 import { ScrollAnimation } from "./ScrollAnimation";
-import { SelfAssessmentChecklist } from "./SelfAssessmentChecklist";
-import { SpotTheMistakeExercise } from "./SpotTheMistakeExercise";
 import { TraderProfileCard } from "./TraderProfileCard";
-import { TradingPlanWorksheet } from "./TradingPlanWorksheet";
 import { WarRoomSection } from "./WarRoomSection";
 import { ZenoAiLesson } from "./ZenoAiLesson";
 
@@ -6488,18 +6483,6 @@ function LessonCard({
             onRate={handleConfidenceRate}
           />
 
-          {/* Spot the Mistake Exercise */}
-          {enhancement.spotTheMistake && (
-            <SpotTheMistakeExercise
-              scenario={enhancement.spotTheMistake.scenario}
-              question={enhancement.spotTheMistake.question}
-              mistakes={enhancement.spotTheMistake.mistakes}
-              correctIndex={enhancement.spotTheMistake.correctIndex}
-              explanation={enhancement.spotTheMistake.explanation}
-              tierColor={tier.color}
-            />
-          )}
-
           {/* Concept Checker (must pass to unlock next lesson) */}
           {!conceptPassed && (
             <LessonConceptChecker
@@ -7319,30 +7302,6 @@ export function TradingAcademySection() {
             );
           })}
         </div>
-
-        {/* Interactive Learning Tools */}
-        <ScrollAnimation delay={50}>
-          <div className="my-6 flex flex-col gap-4">
-            <h3
-              className="font-display font-bold text-sm uppercase tracking-widest"
-              style={{ color: tier.color }}
-            >
-              🛠️ Interactive Tools
-            </h3>
-            <PatternRecognitionDrill tierColor={tier.color} />
-            <RiskCalculatorWidget tierColor={tier.color} />
-            <TradingPlanWorksheet tierColor={tier.color} />
-          </div>
-        </ScrollAnimation>
-
-        {/* Self-Assessment Checklist */}
-        <ScrollAnimation delay={80}>
-          <SelfAssessmentChecklist
-            tierId={tier.id}
-            tierColor={tier.color}
-            tierName={tier.name}
-          />
-        </ScrollAnimation>
 
         {/* DemonZeno's War Room */}
         <ScrollAnimation delay={100}>

@@ -10,6 +10,11 @@ import {
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Certificate, CertificateFrame, PersonalInfo } from "../types";
 
+// ─── Canvas dimensions ────────────────────────────────────────────────────────
+
+const CW = 1400;
+const CH = 1000;
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface CertificateGeneratorProps {
@@ -18,43 +23,60 @@ interface CertificateGeneratorProps {
   onClose?: () => void;
 }
 
-// ─── Constants ────────────────────────────────────────────────────────────────
+// ─── Frame config ─────────────────────────────────────────────────────────────
 
-const CW = 1200;
-const CH = 850;
-
-const FRAMES: { id: CertificateFrame; label: string; preview: string }[] = [
-  {
-    id: "classic",
-    label: "Classic",
-    preview: "bg-gradient-to-br from-stone-100 to-amber-50",
-  },
-  {
-    id: "dark",
-    label: "Dark",
-    preview: "bg-gradient-to-br from-gray-900 to-slate-900",
-  },
-  {
-    id: "gold",
-    label: "Gold",
-    preview: "bg-gradient-to-br from-amber-100 to-yellow-200",
-  },
+const FRAMES: { id: CertificateFrame; label: string }[] = [
+  { id: "classic", label: "Classic" },
+  { id: "dark", label: "Dark" },
+  { id: "gold", label: "Gold" },
 ];
 
-const TIER_BADGE_COLOR = {
-  master: { fill: "#b8860b", stroke: "#ffd700", text: "#1a0f00" },
-  expert: { fill: "#a8a8a8", stroke: "#d0d0d0", text: "#1a1a1a" },
-  default: { fill: "#cd7f32", stroke: "#e8a040", text: "#ffffff" },
-};
+// ─── Tier colours ─────────────────────────────────────────────────────────────
 
-// ─── Canvas drawing helpers ────────────────────────────────────────────────────
-
-function getBadgeColors(tierId: string) {
+function getTierColors(tierId: string): {
+  primary: string;
+  glow: string;
+  text: string;
+  label: string;
+} {
   const k = tierId.toLowerCase();
-  if (k === "master") return TIER_BADGE_COLOR.master;
-  if (k === "expert") return TIER_BADGE_COLOR.expert;
-  return TIER_BADGE_COLOR.default;
+  if (k === "master")
+    return {
+      primary: "#FFD700",
+      glow: "#FFD70066",
+      text: "#1a0800",
+      label: "MASTER",
+    };
+  if (k === "expert")
+    return {
+      primary: "#C0C0C0",
+      glow: "#C0C0C066",
+      text: "#111",
+      label: "EXPERT",
+    };
+  if (k === "advanced")
+    return {
+      primary: "#CD7F32",
+      glow: "#CD7F3266",
+      text: "#fff",
+      label: "ADVANCED",
+    };
+  if (k === "intermediate")
+    return {
+      primary: "#4a9eff",
+      glow: "#4a9eff66",
+      text: "#fff",
+      label: "INTERMEDIATE",
+    };
+  return {
+    primary: "#22c55e",
+    glow: "#22c55e66",
+    text: "#fff",
+    label: "BEGINNER",
+  };
 }
+
+// ─── Drawing helpers ──────────────────────────────────────────────────────────
 
 function drawRoundRect(
   ctx: CanvasRenderingContext2D,
@@ -77,175 +99,251 @@ function drawRoundRect(
   ctx.closePath();
 }
 
-function drawDiamondDivider(
+/** Ornate corner — L-shape with inner arc + diamond tip */
+function drawCorner(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  sx: number,
+  sy: number,
+  len: number,
+  color: string,
+) {
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.lineCap = "round";
+
+  // outer L
+  ctx.beginPath();
+  ctx.moveTo(x + sx * len, y);
+  ctx.lineTo(x, y);
+  ctx.lineTo(x, y + sy * len);
+  ctx.stroke();
+
+  // inner arc
+  ctx.beginPath();
+  ctx.arc(
+    x,
+    y,
+    len * 0.38,
+    sx < 0 ? 0 : Math.PI,
+    sy < 0
+      ? sx < 0
+        ? (3 * Math.PI) / 2
+        : (3 * Math.PI) / 2
+      : sx < 0
+        ? Math.PI / 2
+        : Math.PI / 2,
+    true,
+  );
+  ctx.stroke();
+
+  // diamond tip
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(x, y - sy * 5);
+  ctx.lineTo(x + sx * 5, y);
+  ctx.lineTo(x, y + sy * 5);
+  ctx.lineTo(x - sx * 5, y);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.restore();
+}
+
+/** Horizontal decorative divider with diamond centre */
+function drawDivider(
   ctx: CanvasRenderingContext2D,
   cx: number,
   y: number,
   halfW: number,
   color: string,
+  double_ = false,
 ) {
   ctx.save();
   ctx.strokeStyle = color;
-  ctx.lineWidth = 1.5;
+  ctx.lineWidth = 1.2;
 
-  // left line
-  ctx.beginPath();
-  ctx.moveTo(cx - 24, y);
-  ctx.lineTo(cx - halfW, y);
-  ctx.stroke();
+  const gap = double_ ? 3 : 0;
+  for (const dy of double_ ? [-gap, gap] : [0]) {
+    ctx.beginPath();
+    ctx.moveTo(cx - halfW, y + dy);
+    ctx.lineTo(cx - 14, y + dy);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx + 14, y + dy);
+    ctx.lineTo(cx + halfW, y + dy);
+    ctx.stroke();
+  }
 
-  // right line
-  ctx.beginPath();
-  ctx.moveTo(cx + 24, y);
-  ctx.lineTo(cx + halfW, y);
-  ctx.stroke();
-
-  // diamond
   ctx.fillStyle = color;
   ctx.beginPath();
-  ctx.moveTo(cx, y - 6);
-  ctx.lineTo(cx + 10, y);
-  ctx.lineTo(cx, y + 6);
-  ctx.lineTo(cx - 10, y);
+  ctx.moveTo(cx, y - 8);
+  ctx.lineTo(cx + 8, y);
+  ctx.lineTo(cx, y + 8);
+  ctx.lineTo(cx - 8, y);
   ctx.closePath();
   ctx.fill();
 
   ctx.restore();
 }
 
-function drawCornerOrnament(
-  ctx: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  size: number,
-  flipX: boolean,
-  flipY: boolean,
-  color: string,
-) {
-  ctx.save();
-  ctx.translate(x, y);
-  if (flipX) ctx.scale(-1, 1);
-  if (flipY) ctx.scale(1, -1);
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 1.5;
-
-  // Corner L-shape
-  ctx.beginPath();
-  ctx.moveTo(0, size);
-  ctx.lineTo(0, 0);
-  ctx.lineTo(size, 0);
-  ctx.stroke();
-
-  // Small arc flourish
-  ctx.beginPath();
-  ctx.arc(0, 0, size * 0.35, 0, Math.PI / 2);
-  ctx.stroke();
-
-  // Small diamond at corner
-  ctx.fillStyle = color;
-  ctx.beginPath();
-  ctx.moveTo(0, -4);
-  ctx.lineTo(4, 0);
-  ctx.lineTo(0, 4);
-  ctx.lineTo(-4, 0);
-  ctx.closePath();
-  ctx.fill();
-
-  ctx.restore();
-}
-
-function drawShieldBadge(
-  ctx: CanvasRenderingContext2D,
-  cx: number,
-  cy: number,
-  size: number,
-  tierId: string,
-) {
-  const colors = getBadgeColors(tierId);
-  const s = size;
-
-  ctx.save();
-  ctx.translate(cx, cy);
-
-  // Shield shape
-  ctx.beginPath();
-  ctx.moveTo(0, -s);
-  ctx.lineTo(s * 0.75, -s * 0.6);
-  ctx.lineTo(s * 0.75, s * 0.2);
-  ctx.bezierCurveTo(s * 0.75, s * 0.8, 0, s, 0, s);
-  ctx.bezierCurveTo(0, s, -s * 0.75, s * 0.8, -s * 0.75, s * 0.2);
-  ctx.lineTo(-s * 0.75, -s * 0.6);
-  ctx.closePath();
-
-  // Fill with gradient
-  const grad = ctx.createLinearGradient(0, -s, 0, s);
-  grad.addColorStop(0, colors.fill);
-  grad.addColorStop(1, colors.stroke);
-  ctx.fillStyle = grad;
-  ctx.fill();
-
-  ctx.strokeStyle = colors.stroke;
-  ctx.lineWidth = 2;
-  ctx.stroke();
-
-  // Checkmark
-  ctx.strokeStyle = colors.text;
-  ctx.lineWidth = s * 0.15;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
-  ctx.beginPath();
-  ctx.moveTo(-s * 0.3, 0);
-  ctx.lineTo(-s * 0.05, s * 0.3);
-  ctx.lineTo(s * 0.4, -s * 0.35);
-  ctx.stroke();
-
-  ctx.restore();
-}
-
-function drawVerifiedStamp(
+/** Circular "VERIFIED LEARNER" seal */
+function drawSeal(
   ctx: CanvasRenderingContext2D,
   cx: number,
   cy: number,
   r: number,
-  textColor: string,
-  borderColor: string,
+  goldColor: string,
 ) {
   ctx.save();
-  ctx.globalAlpha = 0.75;
+  ctx.globalAlpha = 0.82;
 
-  // Outer circle
+  // outer ring
   ctx.beginPath();
   ctx.arc(cx, cy, r, 0, Math.PI * 2);
-  ctx.strokeStyle = borderColor;
+  ctx.strokeStyle = goldColor;
   ctx.lineWidth = 3;
   ctx.stroke();
 
-  // Inner ring
+  // inner ring
   ctx.beginPath();
-  ctx.arc(cx, cy, r - 8, 0, Math.PI * 2);
-  ctx.strokeStyle = borderColor;
-  ctx.lineWidth = 1.5;
+  ctx.arc(cx, cy, r - 10, 0, Math.PI * 2);
+  ctx.strokeStyle = goldColor;
+  ctx.lineWidth = 1;
   ctx.stroke();
 
-  // Checkmark
-  ctx.strokeStyle = borderColor;
-  ctx.lineWidth = 4;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
+  // dashed ring between
+  ctx.setLineDash([4, 3]);
   ctx.beginPath();
-  ctx.moveTo(cx - r * 0.4, cy);
-  ctx.lineTo(cx - r * 0.1, cy + r * 0.35);
-  ctx.lineTo(cx + r * 0.45, cy - r * 0.35);
+  ctx.arc(cx, cy, r - 5, 0, Math.PI * 2);
+  ctx.strokeStyle = goldColor;
+  ctx.lineWidth = 0.8;
   ctx.stroke();
+  ctx.setLineDash([]);
 
-  // Text (rotated)
-  ctx.fillStyle = textColor;
-  ctx.font = `bold ${Math.round(r * 0.28)}px serif`;
+  // centre sword icon
+  ctx.fillStyle = goldColor;
+  ctx.font = `bold ${Math.round(r * 0.52)}px serif`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.translate(cx, cy);
-  ctx.rotate(-Math.PI / 6);
-  ctx.fillText("VERIFIED LEARNER", 0, r * 0.72);
+  ctx.fillText("⚔", cx, cy);
+
+  // arc text "VERIFIED LEARNER"
+  const textR = r - 16;
+  const letters = "VERIFIED LEARNER";
+  const totalAngle = Math.PI * 0.88;
+  const startAngle = -Math.PI / 2 - totalAngle / 2;
+  ctx.font = `bold ${Math.round(r * 0.17)}px 'Space Grotesk', sans-serif`;
+  ctx.fillStyle = goldColor;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  for (let i = 0; i < letters.length; i++) {
+    const a = startAngle + (i / (letters.length - 1)) * totalAngle;
+    const lx = cx + textR * Math.cos(a);
+    const ly = cy + textR * Math.sin(a);
+    ctx.save();
+    ctx.translate(lx, ly);
+    ctx.rotate(a + Math.PI / 2);
+    ctx.fillText(letters[i], 0, 0);
+    ctx.restore();
+  }
+
+  ctx.restore();
+}
+
+/** Mini QR-like grid decoration */
+function drawQrGrid(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  size: number,
+  url: string,
+  color: string,
+) {
+  const MODS = 11;
+  const cell = size / MODS;
+
+  let seed = 0;
+  for (let i = 0; i < url.length; i++) {
+    seed = ((seed << 5) - seed + url.charCodeAt(i)) | 0;
+  }
+  function rand(): number {
+    seed ^= seed << 13;
+    seed ^= seed >> 7;
+    seed ^= seed << 17;
+    return ((seed >>> 0) & 0xffff) / 0xffff;
+  }
+
+  ctx.save();
+  ctx.fillStyle = color;
+
+  for (let r = 0; r < MODS; r++) {
+    for (let c = 0; c < MODS; c++) {
+      const finder =
+        (r < 3 && c < 3) ||
+        (r < 3 && c >= MODS - 3) ||
+        (r >= MODS - 3 && c < 3);
+      const on = finder ? true : rand() > 0.48;
+      if (on)
+        ctx.fillRect(
+          x + c * cell + 0.5,
+          y + r * cell + 0.5,
+          cell - 1,
+          cell - 1,
+        );
+    }
+  }
+
+  ctx.restore();
+}
+
+/** Tier badge — circular with gradient fill */
+function drawTierBadge(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  r: number,
+  tierId: string,
+) {
+  const tc = getTierColors(tierId);
+
+  ctx.save();
+
+  // glow
+  ctx.shadowBlur = 24;
+  ctx.shadowColor = tc.glow;
+
+  // outer ring
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  const gr = ctx.createRadialGradient(cx, cy - r * 0.3, 0, cx, cy, r);
+  gr.addColorStop(0, `${tc.primary}ff`);
+  gr.addColorStop(0.6, `${tc.primary}cc`);
+  gr.addColorStop(1, `${tc.primary}44`);
+  ctx.fillStyle = gr;
+  ctx.fill();
+  ctx.strokeStyle = tc.primary;
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  // inner decorative ring
+  ctx.beginPath();
+  ctx.arc(cx, cy, r - 7, 0, Math.PI * 2);
+  ctx.strokeStyle =
+    tc.text === "#fff" ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.25)";
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // tier label inside
+  ctx.fillStyle = tc.text;
+  ctx.font = `bold ${Math.round(r * 0.3)}px 'Space Grotesk', sans-serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(tc.label, cx, cy);
 
   ctx.restore();
 }
@@ -261,209 +359,218 @@ function drawCertificate(
 ) {
   ctx.clearRect(0, 0, CW, CH);
 
-  // ── 1. Background ──────────────────────────────────────────────────────────
-  let bgColor: string;
-  let textPrimary: string;
-  let textSecondary: string;
-  let accentColor: string;
-  let borderColor: string;
-  let stampColor: string;
+  // ── 1. Background ────────────────────────────────────────────────────────────
+  let bgC1: string;
+  let bgC2: string;
+  let gold: string;
+  let textLight: string;
+  let textMid: string;
+  let borderCol: string;
 
-  if (frame === "classic") {
-    bgColor = "#f8f4ec";
-    textPrimary = "#1a0f08";
-    textSecondary = "#5a3e2b";
-    accentColor = "#8b6914";
-    borderColor = "#8b7355";
-    stampColor = "#9b2020";
-  } else if (frame === "dark") {
-    bgColor = "#0a0a1a";
-    textPrimary = "#f0e8d0";
-    textSecondary = "#c8b898";
-    accentColor = "#d4a832";
-    borderColor = "#d4a832";
-    stampColor = "#d4a832";
+  if (frame === "dark") {
+    bgC1 = "#0a0612";
+    bgC2 = "#0f0a1e";
+    gold = "#FFD700";
+    textLight = "#f5ecd0";
+    textMid = "#c8b880";
+    borderCol = "#FFD700";
+  } else if (frame === "classic") {
+    bgC1 = "#1a1230";
+    bgC2 = "#110d22";
+    gold = "#d4a832";
+    textLight = "#f0e8d8";
+    textMid = "#b89860";
+    borderCol = "#d4a832";
   } else {
     // gold
-    const bgGrad = ctx.createLinearGradient(0, 0, CW, CH);
-    bgGrad.addColorStop(0, "#fdf3d8");
-    bgGrad.addColorStop(1, "#f5d980");
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, CW, CH);
-    bgColor = "transparent";
-    textPrimary = "#1a0e00";
-    textSecondary = "#4a3000";
-    accentColor = "#7a5c00";
-    borderColor = "#b8860b";
-    stampColor = "#7a0000";
+    bgC1 = "#0c0a08";
+    bgC2 = "#1a1408";
+    gold = "#FFD700";
+    textLight = "#fff8e0";
+    textMid = "#d4b860";
+    borderCol = "#FFD700";
   }
 
-  if (bgColor !== "transparent") {
-    ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, CW, CH);
-  }
+  // gradient bg
+  const bgGrad = ctx.createLinearGradient(0, 0, CW, CH);
+  bgGrad.addColorStop(0, bgC1);
+  bgGrad.addColorStop(1, bgC2);
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, CW, CH);
 
-  // Subtle texture overlay
-  if (frame !== "dark") {
-    const texGrad = ctx.createRadialGradient(
-      CW / 2,
-      CH / 2,
-      0,
-      CW / 2,
-      CH / 2,
-      CW * 0.7,
-    );
-    texGrad.addColorStop(0, "rgba(255,255,255,0.3)");
-    texGrad.addColorStop(1, "rgba(139,115,85,0.08)");
-    ctx.fillStyle = texGrad;
-    ctx.fillRect(0, 0, CW, CH);
-  }
-
-  // ── 2. Outer double border ─────────────────────────────────────────────────
-  const margin = 20;
-  const innerMargin = 34;
-
-  ctx.strokeStyle = borderColor;
-  ctx.lineWidth = frame === "dark" ? 3 : 2.5;
-  if (frame === "dark") {
-    ctx.shadowBlur = 12;
-    ctx.shadowColor = `${borderColor}88`;
-  }
-  drawRoundRect(ctx, margin, margin, CW - margin * 2, CH - margin * 2, 8);
-  ctx.stroke();
-  ctx.shadowBlur = 0;
-
-  ctx.strokeStyle = borderColor + (frame === "dark" ? "66" : "60");
-  ctx.lineWidth = 1;
-  drawRoundRect(
-    ctx,
-    innerMargin,
-    innerMargin,
-    CW - innerMargin * 2,
-    CH - innerMargin * 2,
-    4,
+  // subtle radial vignette
+  const vignette = ctx.createRadialGradient(
+    CW / 2,
+    CH / 2,
+    CH * 0.1,
+    CW / 2,
+    CH / 2,
+    CW * 0.75,
   );
-  ctx.stroke();
+  vignette.addColorStop(0, "rgba(255,215,0,0.04)");
+  vignette.addColorStop(0.5, "rgba(0,0,0,0)");
+  vignette.addColorStop(1, "rgba(0,0,0,0.45)");
+  ctx.fillStyle = vignette;
+  ctx.fillRect(0, 0, CW, CH);
 
-  // Corner ornaments
-  const ornSize = 40;
-  const ornPad = margin + 8;
-  drawCornerOrnament(ctx, ornPad, ornPad, ornSize, false, false, borderColor);
-  drawCornerOrnament(
-    ctx,
-    CW - ornPad,
-    ornPad,
-    ornSize,
-    true,
-    false,
-    borderColor,
-  );
-  drawCornerOrnament(
-    ctx,
-    ornPad,
-    CH - ornPad,
-    ornSize,
-    false,
-    true,
-    borderColor,
-  );
-  drawCornerOrnament(
-    ctx,
-    CW - ornPad,
-    CH - ornPad,
-    ornSize,
-    true,
-    true,
-    borderColor,
-  );
+  // ── 2. WATERMARK diagonal text ────────────────────────────────────────────────
+  ctx.save();
+  ctx.globalAlpha = 0.042;
+  ctx.translate(CW / 2, CH / 2);
+  ctx.rotate(-Math.PI / 5.5);
+  ctx.fillStyle = gold;
+  ctx.font = `bold 130px 'Space Grotesk', sans-serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("DEMONZENO", 0, 0);
+  ctx.restore();
 
-  // ── 3. DemonZeno watermark ─────────────────────────────────────────────────
+  // ── 3. DemonZeno image watermark (bottom-right, very faint) ───────────────────
   if (demonZenoImg) {
     ctx.save();
-    ctx.globalAlpha = 0.1;
-    const wmSize = 140;
-    const wmX = CW - wmSize - 50;
-    const wmY = CH - wmSize - 50;
-    ctx.drawImage(demonZenoImg, wmX, wmY, wmSize, wmSize);
+    ctx.globalAlpha = 0.07;
+    const wmSize = 200;
+    ctx.drawImage(
+      demonZenoImg,
+      CW - wmSize - 30,
+      CH - wmSize - 30,
+      wmSize,
+      wmSize,
+    );
     ctx.restore();
   }
 
-  // ── 4. Header text ─────────────────────────────────────────────────────────
+  // ── 4. Outer border (heavy gold) ──────────────────────────────────────────────
+  const M = 22;
+  ctx.save();
+  ctx.shadowBlur = 18;
+  ctx.shadowColor = `${gold}55`;
+  ctx.strokeStyle = gold;
+  ctx.lineWidth = 7;
+  drawRoundRect(ctx, M, M, CW - M * 2, CH - M * 2, 6);
+  ctx.stroke();
+  ctx.restore();
+
+  // ── 5. Inner border (thin) ────────────────────────────────────────────────────
+  const M2 = 36;
+  ctx.strokeStyle = `${gold}88`;
+  ctx.lineWidth = 1.5;
+  drawRoundRect(ctx, M2, M2, CW - M2 * 2, CH - M2 * 2, 4);
+  ctx.stroke();
+
+  // ── 6. Corner ornaments ───────────────────────────────────────────────────────
+  const ornPad = M + 14;
+  const ornLen = 52;
+  drawCorner(ctx, ornPad, ornPad, 1, 1, ornLen, borderCol);
+  drawCorner(ctx, CW - ornPad, ornPad, -1, 1, ornLen, borderCol);
+  drawCorner(ctx, ornPad, CH - ornPad, 1, -1, ornLen, borderCol);
+  drawCorner(ctx, CW - ornPad, CH - ornPad, -1, -1, ornLen, borderCol);
+
+  // ── 7. Header — logo + title ───────────────────────────────────────────────────
   ctx.textAlign = "center";
 
-  ctx.fillStyle = accentColor;
-  ctx.font = `bold 18px 'Space Grotesk', serif`;
+  // DEMONZENO logo line
+  ctx.save();
+  ctx.fillStyle = gold;
+  ctx.font = `bold 22px 'Space Grotesk', sans-serif`;
+  ctx.letterSpacing = "8px";
+  ctx.shadowBlur = 8;
+  ctx.shadowColor = gold;
+  ctx.fillText("⚔  DEMONZENO  ⚔", CW / 2, 88);
+  ctx.letterSpacing = "0px";
+  ctx.restore();
+
+  // CERTIFICATE OF ACHIEVEMENT
+  ctx.save();
+  ctx.fillStyle = textLight;
+  ctx.font = `800 42px 'Space Grotesk', serif`;
+  ctx.letterSpacing = "6px";
+  ctx.fillText("CERTIFICATE OF ACHIEVEMENT", CW / 2, 140);
+  ctx.letterSpacing = "0px";
+  ctx.restore();
+
+  // sub-header divider
+  drawDivider(ctx, CW / 2, 162, 480, borderCol, true);
+
+  // ── 8. Tier badge (centred, prominent) ────────────────────────────────────────
+  drawTierBadge(ctx, CW / 2, 240, 56, cert.tierId);
+
+  // TRADING ACADEMY below badge
+  ctx.fillStyle = `${gold}99`;
+  ctx.font = `600 13px 'Space Grotesk', sans-serif`;
   ctx.letterSpacing = "4px";
-  ctx.fillText("DEMONZENO TRADING ACADEMY", CW / 2, 90);
+  ctx.textAlign = "center";
+  ctx.fillText("TRADING ACADEMY", CW / 2, 314);
   ctx.letterSpacing = "0px";
 
-  ctx.fillStyle = textPrimary;
-  ctx.font = "italic bold 42px Georgia, serif";
-  ctx.fillText("Certificate of Achievement", CW / 2, 148);
+  // ── 9. "This is to certify that" ──────────────────────────────────────────────
+  ctx.fillStyle = textMid;
+  ctx.font = "italic 17px Georgia, serif";
+  ctx.textAlign = "center";
+  ctx.fillText("This is to certify that", CW / 2, 358);
 
-  // ── 5. Diamond divider ─────────────────────────────────────────────────────
-  drawDiamondDivider(ctx, CW / 2, 172, 420, borderColor);
-
-  // ── 6. "This is to certify that" ──────────────────────────────────────────
-  ctx.fillStyle = textSecondary;
-  ctx.font = "16px Georgia, serif";
-  ctx.fillText("This is to certify that", CW / 2, 206);
-
-  // ── 7. Recipient name ─────────────────────────────────────────────────────
-  ctx.fillStyle = textPrimary;
-  ctx.font = `bold 56px 'Space Grotesk', Georgia, serif`;
+  // ── 10. Name (most prominent) ─────────────────────────────────────────────────
   const nameText = info.fullName || cert.certInfo.fullName;
-  ctx.fillText(nameText, CW / 2, 272);
+  ctx.save();
+  ctx.fillStyle = gold;
+  ctx.font = `bold 64px 'Space Grotesk', Georgia, serif`;
+  ctx.shadowBlur = 14;
+  ctx.shadowColor = `${gold}55`;
+  ctx.textAlign = "center";
+  ctx.fillText(nameText, CW / 2, 430);
+  ctx.restore();
 
-  // ── 8. Father's name ──────────────────────────────────────────────────────
-  ctx.fillStyle = textSecondary;
-  ctx.font = "italic 18px Georgia, serif";
+  // ── 11. Father's name ─────────────────────────────────────────────────────────
+  ctx.fillStyle = textMid;
+  ctx.font = "italic 17px Georgia, serif";
+  ctx.textAlign = "center";
   ctx.fillText(
-    `Son/Daughter of ${info.fathersName || cert.certInfo.fathersName}`,
+    `Son / Daughter of ${info.fathersName || cert.certInfo.fathersName}`,
     CW / 2,
-    302,
+    466,
   );
 
-  // ── 9. Completion text ────────────────────────────────────────────────────
-  ctx.fillStyle = textSecondary;
+  // ── 12. Achievement text ──────────────────────────────────────────────────────
+  ctx.fillStyle = textMid;
   ctx.font = "16px Georgia, serif";
-  ctx.fillText("has successfully completed the", CW / 2, 338);
+  ctx.textAlign = "center";
+  ctx.fillText("has successfully completed the", CW / 2, 506);
 
-  // ── 10. Tier name ─────────────────────────────────────────────────────────
-  ctx.fillStyle = accentColor;
-  ctx.font = `bold 32px 'Space Grotesk', Georgia, serif`;
+  ctx.save();
+  ctx.fillStyle = gold;
+  ctx.font = `bold 26px 'Space Grotesk', serif`;
   ctx.letterSpacing = "3px";
-  ctx.fillText(`${cert.tierName.toUpperCase()} TIER`, CW / 2, 378);
+  ctx.textAlign = "center";
+  ctx.fillText(`${cert.tierName.toUpperCase()} TIER`, CW / 2, 540);
   ctx.letterSpacing = "0px";
+  ctx.restore();
 
-  // ── 11. Tier badge (shield) ────────────────────────────────────────────────
-  drawShieldBadge(ctx, CW / 2, 440, 28, cert.tierId);
-
-  // ── 12. Academy + score ────────────────────────────────────────────────────
-  ctx.fillStyle = textSecondary;
+  ctx.fillStyle = textMid;
   ctx.font = "16px Georgia, serif";
-  ctx.fillText("of the DemonZeno Trading Academy", CW / 2, 490);
+  ctx.textAlign = "center";
+  ctx.fillText("of the DemonZeno Trading Academy", CW / 2, 568);
 
-  ctx.fillStyle = frame === "dark" ? "#6edcc0" : accentColor;
-  ctx.font = "bold 16px Georgia, serif";
+  ctx.save();
+  ctx.fillStyle = "#4ade80";
+  ctx.font = "bold 15px Georgia, serif";
+  ctx.textAlign = "center";
   ctx.fillText(
-    `with a perfect score of ${String(cert.score)}/${String(cert.totalQuestions)}`,
+    `achieving a perfect score of ${String(cert.score)} / ${String(cert.totalQuestions)}`,
     CW / 2,
-    514,
+    594,
   );
+  ctx.restore();
 
-  // ── 13. Divider 2 ─────────────────────────────────────────────────────────
-  drawDiamondDivider(ctx, CW / 2, 536, 360, borderColor);
+  // ── 13. Divider 2 ─────────────────────────────────────────────────────────────
+  drawDivider(ctx, CW / 2, 616, 400, borderCol, false);
 
-  // ── 14. Personal info (two columns) ───────────────────────────────────────
-  const infoY = 562;
-  const leftX = 300;
-  const rightX = 700;
-  const labelFont = `bold 10px 'Space Grotesk', sans-serif`;
-  const valueFont = "14px Georgia, serif";
-  const lineH = 36;
+  // ── 14. Info columns ──────────────────────────────────────────────────────────
+  const COL_L = 340;
+  const COL_R = 760;
+  const INFO_Y = 640;
+  const LINE_H = 38;
 
-  const leftInfo: Array<{ label: string; value: string }> = [
+  const leftFields: { label: string; value: string }[] = [
     { label: "COUNTRY", value: info.country || cert.certInfo.country },
     {
       label: "DATE OF BIRTH",
@@ -471,82 +578,100 @@ function drawCertificate(
     },
     { label: "CITY", value: info.city || cert.certInfo.city },
   ];
-  const rightInfo: Array<{ label: string; value: string }> = [
+
+  const issuedDateStr = new Date(
+    Number(cert.issuedAt) / 1_000_000,
+  ).toLocaleString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+
+  const rightFields: { label: string; value: string }[] = [
     { label: "EMAIL", value: info.email || cert.certInfo.email },
-    {
-      label: "DATE OF ISSUE",
-      value: new Date(Number(cert.issuedAt) / 1_000_000).toLocaleString(
-        "en-US",
-        {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        },
-      ),
-    },
+    { label: "DATE OF ISSUE", value: issuedDateStr },
     { label: "CERTIFICATE ID", value: cert.certId },
   ];
 
-  for (let i = 0; i < leftInfo.length; i++) {
-    const yOff = infoY + i * lineH;
+  for (let i = 0; i < leftFields.length; i++) {
+    const fy = INFO_Y + i * LINE_H;
     ctx.textAlign = "right";
-    ctx.fillStyle = `${accentColor}bb`;
-    ctx.font = labelFont;
+    ctx.fillStyle = `${gold}99`;
+    ctx.font = `bold 10px 'Space Grotesk', sans-serif`;
     ctx.letterSpacing = "1.5px";
-    ctx.fillText(leftInfo[i].label, leftX, yOff);
+    ctx.fillText(leftFields[i].label, COL_L, fy);
     ctx.letterSpacing = "0px";
-    ctx.fillStyle = textSecondary;
-    ctx.font = valueFont;
-    ctx.fillText(leftInfo[i].value, leftX, yOff + 16);
+    ctx.fillStyle = textLight;
+    ctx.font = "14px Georgia, serif";
+    ctx.fillText(leftFields[i].value, COL_L, fy + 17);
   }
 
-  for (let i = 0; i < rightInfo.length; i++) {
-    const yOff = infoY + i * lineH;
+  for (let i = 0; i < rightFields.length; i++) {
+    const fy = INFO_Y + i * LINE_H;
     ctx.textAlign = "left";
-    ctx.fillStyle = `${accentColor}bb`;
-    ctx.font = labelFont;
+    ctx.fillStyle = `${gold}99`;
+    ctx.font = `bold 10px 'Space Grotesk', sans-serif`;
     ctx.letterSpacing = "1.5px";
-    ctx.fillText(rightInfo[i].label, rightX, yOff);
+    ctx.fillText(rightFields[i].label, COL_R, fy);
     ctx.letterSpacing = "0px";
-    ctx.fillStyle = textSecondary;
-    ctx.font = valueFont;
-    ctx.fillText(rightInfo[i].value, rightX, yOff + 16);
+    ctx.fillStyle = textLight;
+    ctx.font = "14px Georgia, serif";
+    ctx.fillText(rightFields[i].value, COL_R, fy + 17);
   }
 
-  // ── 15. Cert ID bottom-left ────────────────────────────────────────────────
-  ctx.textAlign = "left";
-  ctx.fillStyle = accentColor;
+  // ── 15. Verified Learner Seal (bottom-left area) ──────────────────────────────
+  drawSeal(ctx, 148, CH - 150, 84, gold);
+
+  // ── 16. QR code placeholder (bottom-right area) ───────────────────────────────
+  const qrSize = 76;
+  const qrX = CW - qrSize - 80;
+  const qrY = CH - qrSize - 80;
+  const verifyUrl = `${typeof window !== "undefined" ? window.location.origin : "https://demonzeno.com"}/certificates?verify=${cert.certId}`;
+  ctx.save();
+  ctx.fillStyle = `${gold}18`;
+  ctx.beginPath();
+  ctx.roundRect(qrX - 8, qrY - 8, qrSize + 16, qrSize + 16 + 24, 4);
+  ctx.fill();
+  ctx.restore();
+  drawQrGrid(ctx, qrX, qrY, qrSize, verifyUrl, gold);
+  ctx.fillStyle = `${gold}80`;
+  ctx.font = `9px 'Space Grotesk', monospace`;
+  ctx.textAlign = "center";
+  ctx.fillText("Verify at:", qrX + qrSize / 2, qrY + qrSize + 12);
+  ctx.fillText("demonzeno.com", qrX + qrSize / 2, qrY + qrSize + 24);
+
+  // ── 17. Certificate ID prominent side display ─────────────────────────────────
+  ctx.save();
+  ctx.fillStyle = gold;
   ctx.font = `bold 13px 'JetBrains Mono', monospace`;
   ctx.letterSpacing = "3px";
-  ctx.fillText(`ID: ${cert.certId}`, 60, CH - 50);
+  ctx.textAlign = "left";
+  ctx.fillText(`ID: ${cert.certId}`, 68, CH - 50);
   ctx.letterSpacing = "0px";
+  ctx.restore();
 
-  // ── 16. "Verified Learner" stamp ──────────────────────────────────────────
-  drawVerifiedStamp(ctx, CW - 168, CH / 2 + 40, 52, stampColor, stampColor);
+  // ── 18. Footer decorative line + text ─────────────────────────────────────────
+  drawDivider(ctx, CW / 2, CH - 76, 560, `${borderCol}44`, false);
 
-  // ── 17. No expiry note ────────────────────────────────────────────────────
-  ctx.textAlign = "center";
-  ctx.fillStyle = `${accentColor}80`;
+  ctx.fillStyle = `${gold}55`;
   ctx.font = "italic 12px Georgia, serif";
+  ctx.textAlign = "center";
   ctx.fillText(
-    "No expiry — Issued forever · DemonZeno Trading Academy",
+    "DemonZeno Trading Academy — Free World-Class Trading Education · No Expiry",
     CW / 2,
-    CH - 50,
+    CH - 52,
   );
-
-  // ── 18. DemonZeno watermark text ─────────────────────────────────────────
-  ctx.textAlign = "right";
-  ctx.fillStyle = `${accentColor}66`;
-  ctx.font = `bold 10px 'Space Grotesk', sans-serif`;
-  ctx.letterSpacing = "2px";
-  ctx.fillText("DemonZeno ® DMNZ Academy", CW - 55, CH - 32);
-  ctx.letterSpacing = "0px";
+  ctx.fillText(
+    `Issued: ${new Date(Number(cert.issuedAt) / 1_000_000).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}`,
+    CW / 2,
+    CH - 34,
+  );
 }
 
-// ─── Frame preview thumbnail ──────────────────────────────────────────────────
+// ─── Frame preview ────────────────────────────────────────────────────────────
 
 function FramePreview({
   frame,
@@ -559,10 +684,10 @@ function FramePreview({
   active: boolean;
   onClick: () => void;
 }) {
-  const previewStyle: Record<CertificateFrame, string> = {
-    classic: "linear-gradient(135deg, #f8f4ec 0%, #e8dcc8 100%) border-box",
-    dark: "linear-gradient(135deg, #0a0a1a 0%, #1a1a30 100%) border-box",
-    gold: "linear-gradient(135deg, #fdf3d8 0%, #f5d980 100%) border-box",
+  const previewBg: Record<CertificateFrame, string> = {
+    classic: "linear-gradient(135deg, #1a1230 0%, #110d22 100%)",
+    dark: "linear-gradient(135deg, #0a0612 0%, #0f0a1e 100%)",
+    gold: "linear-gradient(135deg, #0c0a08 0%, #1a1408 100%)",
   };
 
   return (
@@ -570,22 +695,20 @@ function FramePreview({
       type="button"
       onClick={onClick}
       data-ocid={`cert_gen.frame_${frame}`}
-      className="flex flex-col items-center gap-1.5 group"
+      className="flex flex-col items-center gap-1.5"
     >
       <div
-        className="w-16 h-12 rounded-lg border-2 transition-all"
+        className="w-16 h-11 rounded-lg border-2 transition-all"
         style={{
-          background: previewStyle[frame],
-          borderColor: active ? "oklch(0.65 0.15 190)" : "oklch(0.28 0.01 260)",
-          boxShadow: active ? "0 0 12px oklch(0.65 0.15 190 / 0.4)" : "none",
+          background: previewBg[frame],
+          borderColor: active ? "#FFD700" : "oklch(0.28 0.01 260)",
+          boxShadow: active ? "0 0 12px #FFD70066" : "none",
           transform: active ? "scale(1.08)" : "scale(1)",
         }}
       />
       <span
         className="text-xs font-semibold transition-colors"
-        style={{
-          color: active ? "oklch(0.65 0.15 190)" : "oklch(0.55 0.01 260)",
-        }}
+        style={{ color: active ? "#FFD700" : "oklch(0.55 0.01 260)" }}
       >
         {label}
       </span>
@@ -615,7 +738,7 @@ export function CertificateGenerator({
   onClose,
 }: CertificateGeneratorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [frame, setFrame] = useState<CertificateFrame>("classic");
+  const [frame, setFrame] = useState<CertificateFrame>("dark");
   const [imgLoaded, setImgLoaded] = useState(false);
   const demonZenoImgRef = useRef<HTMLImageElement | null>(null);
   const { copied, copy } = useCopy();
@@ -634,7 +757,7 @@ export function CertificateGenerator({
       setImgLoaded(true);
     };
     img.onerror = () => {
-      setImgLoaded(true); // proceed without watermark image
+      setImgLoaded(true);
     };
   }, []);
 
@@ -656,7 +779,7 @@ export function CertificateGenerator({
     if (imgLoaded) render();
   }, [imgLoaded, render]);
 
-  function handleDownload() {
+  function handleDownloadPng() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const link = document.createElement("a");
@@ -665,10 +788,38 @@ export function CertificateGenerator({
     link.click();
   }
 
-  const verifyUrl = `${origin}/verify/${certificate.certId}`;
+  function handleDownloadPdf() {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const dataUrl = canvas.toDataURL("image/png", 1.0);
+    // Open print dialog with the certificate rendered in an iframe
+    const win = window.open("", "_blank");
+    if (!win) return;
+    win.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>DemonZeno Certificate ${certificate.certId}</title>
+          <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { background: #000; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+            img { max-width: 100%; height: auto; }
+            @page { size: landscape; margin: 0; }
+            @media print { body { background: #000; } img { width: 100%; } }
+          </style>
+        </head>
+        <body>
+          <img src="${dataUrl}" alt="DemonZeno Certificate" />
+          <script>window.onload=function(){window.print();}<\/script>
+        </body>
+      </html>
+    `);
+    win.document.close();
+  }
+
   const shareUrl = `${origin}/certificates?verify=${certificate.certId}`;
   const tweetText = encodeURIComponent(
-    `I just earned the ${certificate.tierName} certificate from DemonZeno Trading Academy with a PERFECT 30/30! 📈\nVerify it here: ${verifyUrl} #DemonZeno #DMNZ #Trading`,
+    `I just earned the ${certificate.tierName} certificate from @DemonZeno Trading Academy with a PERFECT 30/30! 📈\nCertificate ID: ${certificate.certId}\nVerify: ${shareUrl} #DemonZeno #DMNZ #Trading`,
   );
   const binancePost = `https://www.binance.com/en/square/post?text=${tweetText}`;
 
@@ -677,7 +828,7 @@ export function CertificateGenerator({
       {/* Frame selector */}
       <div>
         <p className="text-xs text-muted-foreground uppercase tracking-widest mb-3">
-          Certificate Frame Style
+          Certificate Style
         </p>
         <div className="flex gap-6 justify-center">
           {FRAMES.map((f) => (
@@ -695,14 +846,18 @@ export function CertificateGenerator({
       {/* Canvas preview */}
       <div
         className="relative rounded-xl overflow-hidden border"
-        style={{ borderColor: "oklch(0.28 0.01 260)", maxHeight: "420px" }}
+        style={{
+          borderColor: "#FFD70044",
+          boxShadow: "0 0 32px #FFD70022",
+          background: "#0a0612",
+        }}
       >
         {!imgLoaded && (
           <div
             className="absolute inset-0 flex items-center justify-center"
-            style={{ background: "oklch(0.14 0.01 260)" }}
+            style={{ background: "#0a0612" }}
           >
-            <div className="w-6 h-6 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+            <div className="w-6 h-6 rounded-full border-2 border-yellow-400 border-t-transparent animate-spin" />
           </div>
         )}
         <canvas
@@ -720,16 +875,25 @@ export function CertificateGenerator({
       <div className="flex flex-wrap gap-2 justify-center">
         <Button
           type="button"
-          onClick={handleDownload}
+          onClick={handleDownloadPng}
           data-ocid="cert_gen.download_button"
           className="gap-2 font-semibold"
-          style={{
-            background: "oklch(0.7 0.18 70)",
-            color: "#1a0f00",
-          }}
+          style={{ background: "#FFD700", color: "#1a0800" }}
         >
           <Download className="w-4 h-4" />
-          Download Certificate (PNG)
+          Download PNG
+        </Button>
+
+        <Button
+          type="button"
+          variant="outline"
+          onClick={handleDownloadPdf}
+          data-ocid="cert_gen.download_pdf_button"
+          className="gap-2 font-semibold"
+          style={{ borderColor: "#FFD70044", color: "#FFD700" }}
+        >
+          <Download className="w-4 h-4" />
+          Save as PDF
         </Button>
 
         <Button
@@ -741,11 +905,11 @@ export function CertificateGenerator({
         >
           {copied ? (
             <>
-              <Check className="w-4 h-4" /> Link Copied!
+              <Check className="w-4 h-4" /> Copied!
             </>
           ) : (
             <>
-              <Link2 className="w-4 h-4" /> Copy Share Link
+              <Link2 className="w-4 h-4" /> Copy Link
             </>
           )}
         </Button>
@@ -774,10 +938,10 @@ export function CertificateGenerator({
           onClick={() => window.open(binancePost, "_blank", "noopener")}
           data-ocid="cert_gen.share_binance_button"
           className="gap-2"
-          style={{ color: "oklch(0.7 0.18 70)" }}
+          style={{ color: "#FFD700" }}
         >
           <ExternalLink className="w-4 h-4" />
-          Share on Binance Square
+          Binance Square
         </Button>
 
         {onClose && (

@@ -30,12 +30,28 @@ export const Certificate = IDL.Record({
   'isValid' : IDL.Bool,
 });
 export const Result_1 = IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text });
+export const ABTestRecord = IDL.Record({
+  'versionAPassCount' : IDL.Nat,
+  'activeVersion' : IDL.Text,
+  'versionBText' : IDL.Text,
+  'versionBAttempts' : IDL.Nat,
+  'versionAText' : IDL.Text,
+  'questionId' : IDL.Text,
+  'versionAAttempts' : IDL.Nat,
+  'versionBPassCount' : IDL.Nat,
+});
 export const QuizAttemptLog = IDL.Record({
   'tierId' : IDL.Text,
   'score' : IDL.Nat,
   'fingerprint' : IDL.Text,
   'timestamp' : IDL.Int,
   'passed' : IDL.Bool,
+});
+export const LessonEngagement = IDL.Record({
+  'lessonId' : IDL.Text,
+  'visitCount' : IDL.Nat,
+  'tier' : IDL.Text,
+  'totalTimeSeconds' : IDL.Nat,
 });
 export const QuestionFailStat = IDL.Record({
   'tierId' : IDL.Text,
@@ -66,6 +82,15 @@ export const TierQuiz = IDL.Record({
   'tierName' : IDL.Text,
   'questions' : IDL.Vec(QuizQuestion),
 });
+export const MasteryRecord = IDL.Record({
+  'lessonId' : IDL.Text,
+  'quizScore' : IDL.Float64,
+  'tier' : IDL.Text,
+  'confidenceScore' : IDL.Float64,
+  'updatedAt' : IDL.Int,
+  'masteryPct' : IDL.Float64,
+  'conceptCheckerScore' : IDL.Float64,
+});
 export const AnnouncementBanner = IDL.Record({
   'text' : IDL.Text,
   'updatedAt' : IDL.Int,
@@ -80,11 +105,31 @@ export const LessonCompletionLog = IDL.Record({
   'completedAt' : IDL.Int,
   'tierId' : IDL.Text,
 });
+export const LessonOfWeek = IDL.Record({
+  'lessonId' : IDL.Text,
+  'expiresAt' : IDL.Int,
+  'tier' : IDL.Text,
+  'lessonTitle' : IDL.Text,
+  'setAt' : IDL.Int,
+});
 export const LessonRating = IDL.Record({
   'lessonId' : IDL.Text,
   'tierId' : IDL.Text,
   'timestamp' : IDL.Int,
   'rating' : IDL.Nat,
+});
+export const MonthlyChallenge = IDL.Record({
+  'month' : IDL.Text,
+  'targetLessons' : IDL.Nat,
+  'badgeEarned' : IDL.Bool,
+  'lessonsCompleted' : IDL.Nat,
+});
+export const ProgressSnapshot = IDL.Record({
+  'createdAt' : IDL.Int,
+  'shareToken' : IDL.Text,
+  'tiersCompleted' : IDL.Vec(IDL.Text),
+  'masteryLevels' : IDL.Vec(IDL.Tuple(IDL.Text, IDL.Float64)),
+  'certificatesEarned' : IDL.Vec(IDL.Text),
 });
 export const QuizAttemptStats = IDL.Record({
   'tierId' : IDL.Text,
@@ -137,15 +182,31 @@ export const TransformationOutput = IDL.Record({
 });
 
 export const idlService = IDL.Service({
+  'adminCreateABTest' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+      [],
+      [],
+    ),
   'adminExportCertificates' : IDL.Func([], [IDL.Vec(Certificate)], ['query']),
   'adminFeatureCertificate' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
   'adminFlagQuestion' : IDL.Func([IDL.Text, IDL.Bool], [], []),
+  'adminGetABTests' : IDL.Func([IDL.Text], [IDL.Vec(ABTestRecord)], ['query']),
   'adminGetAttemptLogs' : IDL.Func(
       [IDL.Text],
       [IDL.Vec(QuizAttemptLog)],
       ['query'],
     ),
+  'adminGetEngagementData' : IDL.Func(
+      [IDL.Text],
+      [IDL.Vec(LessonEngagement)],
+      ['query'],
+    ),
   'adminGetFlaggedQuestions' : IDL.Func([], [IDL.Vec(IDL.Text)], ['query']),
+  'adminGetMonthlyStats' : IDL.Func(
+      [IDL.Text],
+      [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Nat))],
+      ['query'],
+    ),
   'adminGetQuestionFailStats' : IDL.Func(
       [IDL.Text],
       [IDL.Vec(QuestionFailStat)],
@@ -163,9 +224,24 @@ export const idlService = IDL.Service({
       [],
     ),
   'adminSetAnnouncementBanner' : IDL.Func([IDL.Text, IDL.Bool], [], []),
+  'adminSetLessonOfWeek' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+      [],
+      [],
+    ),
   'adminSetTierDisabled' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
+  'adminToggleABVersion' : IDL.Func([IDL.Text, IDL.Text], [], []),
   'adminUpdateMilestone' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
   'askZenoAi' : IDL.Func([IDL.Text], [ZenoAiResponse], []),
+  'generateProgressShareLink' : IDL.Func(
+      [
+        IDL.Vec(IDL.Text),
+        IDL.Vec(IDL.Text),
+        IDL.Vec(IDL.Tuple(IDL.Text, IDL.Float64)),
+      ],
+      [IDL.Text],
+      [],
+    ),
   'getAcademyQuiz' : IDL.Func(
       [IDL.Text, IDL.Int],
       [IDL.Opt(TierQuiz)],
@@ -176,6 +252,7 @@ export const idlService = IDL.Service({
       [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Text, IDL.Float64))],
       ['query'],
     ),
+  'getAllMasteryRecords' : IDL.Func([], [IDL.Vec(MasteryRecord)], ['query']),
   'getAnnouncementBanner' : IDL.Func(
       [],
       [IDL.Opt(AnnouncementBanner)],
@@ -199,9 +276,25 @@ export const idlService = IDL.Service({
       [IDL.Vec(LessonCompletionLog)],
       ['query'],
     ),
+  'getLessonMastery' : IDL.Func(
+      [IDL.Text],
+      [IDL.Opt(MasteryRecord)],
+      ['query'],
+    ),
+  'getLessonOfWeek' : IDL.Func([], [IDL.Opt(LessonOfWeek)], ['query']),
   'getLessonRatings' : IDL.Func(
       [IDL.Text, IDL.Text],
       [IDL.Vec(LessonRating)],
+      ['query'],
+    ),
+  'getMonthlyChallenge' : IDL.Func(
+      [IDL.Text],
+      [IDL.Opt(MonthlyChallenge)],
+      ['query'],
+    ),
+  'getProgressSnapshot' : IDL.Func(
+      [IDL.Text],
+      [IDL.Opt(ProgressSnapshot)],
       ['query'],
     ),
   'getQuizAttemptStats' : IDL.Func([], [IDL.Vec(QuizAttemptStats)], ['query']),
@@ -216,6 +309,9 @@ export const idlService = IDL.Service({
   'listAllCertificates' : IDL.Func([], [IDL.Vec(Certificate)], ['query']),
   'logDailyActive' : IDL.Func([IDL.Text], [], []),
   'logLessonCompletion' : IDL.Func([IDL.Text, IDL.Text, IDL.Int], [], []),
+  'recordABTestResult' : IDL.Func([IDL.Text, IDL.Text, IDL.Bool], [], []),
+  'recordLessonCompleted' : IDL.Func([IDL.Text], [MonthlyChallenge], []),
+  'recordLessonTime' : IDL.Func([IDL.Text, IDL.Text, IDL.Nat], [], []),
   'searchCertificates' : IDL.Func(
       [IDL.Text],
       [IDL.Vec(Certificate)],
@@ -253,6 +349,11 @@ export const idlService = IDL.Service({
       [Result],
       [],
     ),
+  'updateLessonMastery' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Float64, IDL.Float64, IDL.Float64],
+      [],
+      [],
+    ),
   'verifyCertificate' : IDL.Func([IDL.Text], [IDL.Opt(Certificate)], ['query']),
   'zenoAiTransform' : IDL.Func(
       [TransformationInput],
@@ -286,12 +387,28 @@ export const idlFactory = ({ IDL }) => {
     'isValid' : IDL.Bool,
   });
   const Result_1 = IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text });
+  const ABTestRecord = IDL.Record({
+    'versionAPassCount' : IDL.Nat,
+    'activeVersion' : IDL.Text,
+    'versionBText' : IDL.Text,
+    'versionBAttempts' : IDL.Nat,
+    'versionAText' : IDL.Text,
+    'questionId' : IDL.Text,
+    'versionAAttempts' : IDL.Nat,
+    'versionBPassCount' : IDL.Nat,
+  });
   const QuizAttemptLog = IDL.Record({
     'tierId' : IDL.Text,
     'score' : IDL.Nat,
     'fingerprint' : IDL.Text,
     'timestamp' : IDL.Int,
     'passed' : IDL.Bool,
+  });
+  const LessonEngagement = IDL.Record({
+    'lessonId' : IDL.Text,
+    'visitCount' : IDL.Nat,
+    'tier' : IDL.Text,
+    'totalTimeSeconds' : IDL.Nat,
   });
   const QuestionFailStat = IDL.Record({
     'tierId' : IDL.Text,
@@ -322,6 +439,15 @@ export const idlFactory = ({ IDL }) => {
     'tierName' : IDL.Text,
     'questions' : IDL.Vec(QuizQuestion),
   });
+  const MasteryRecord = IDL.Record({
+    'lessonId' : IDL.Text,
+    'quizScore' : IDL.Float64,
+    'tier' : IDL.Text,
+    'confidenceScore' : IDL.Float64,
+    'updatedAt' : IDL.Int,
+    'masteryPct' : IDL.Float64,
+    'conceptCheckerScore' : IDL.Float64,
+  });
   const AnnouncementBanner = IDL.Record({
     'text' : IDL.Text,
     'updatedAt' : IDL.Int,
@@ -333,11 +459,31 @@ export const idlFactory = ({ IDL }) => {
     'completedAt' : IDL.Int,
     'tierId' : IDL.Text,
   });
+  const LessonOfWeek = IDL.Record({
+    'lessonId' : IDL.Text,
+    'expiresAt' : IDL.Int,
+    'tier' : IDL.Text,
+    'lessonTitle' : IDL.Text,
+    'setAt' : IDL.Int,
+  });
   const LessonRating = IDL.Record({
     'lessonId' : IDL.Text,
     'tierId' : IDL.Text,
     'timestamp' : IDL.Int,
     'rating' : IDL.Nat,
+  });
+  const MonthlyChallenge = IDL.Record({
+    'month' : IDL.Text,
+    'targetLessons' : IDL.Nat,
+    'badgeEarned' : IDL.Bool,
+    'lessonsCompleted' : IDL.Nat,
+  });
+  const ProgressSnapshot = IDL.Record({
+    'createdAt' : IDL.Int,
+    'shareToken' : IDL.Text,
+    'tiersCompleted' : IDL.Vec(IDL.Text),
+    'masteryLevels' : IDL.Vec(IDL.Tuple(IDL.Text, IDL.Float64)),
+    'certificatesEarned' : IDL.Vec(IDL.Text),
   });
   const QuizAttemptStats = IDL.Record({
     'tierId' : IDL.Text,
@@ -389,15 +535,35 @@ export const idlFactory = ({ IDL }) => {
   });
   
   return IDL.Service({
+    'adminCreateABTest' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+        [],
+        [],
+      ),
     'adminExportCertificates' : IDL.Func([], [IDL.Vec(Certificate)], ['query']),
     'adminFeatureCertificate' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
     'adminFlagQuestion' : IDL.Func([IDL.Text, IDL.Bool], [], []),
+    'adminGetABTests' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(ABTestRecord)],
+        ['query'],
+      ),
     'adminGetAttemptLogs' : IDL.Func(
         [IDL.Text],
         [IDL.Vec(QuizAttemptLog)],
         ['query'],
       ),
+    'adminGetEngagementData' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(LessonEngagement)],
+        ['query'],
+      ),
     'adminGetFlaggedQuestions' : IDL.Func([], [IDL.Vec(IDL.Text)], ['query']),
+    'adminGetMonthlyStats' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Nat))],
+        ['query'],
+      ),
     'adminGetQuestionFailStats' : IDL.Func(
         [IDL.Text],
         [IDL.Vec(QuestionFailStat)],
@@ -415,9 +581,24 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
     'adminSetAnnouncementBanner' : IDL.Func([IDL.Text, IDL.Bool], [], []),
+    'adminSetLessonOfWeek' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+        [],
+        [],
+      ),
     'adminSetTierDisabled' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
+    'adminToggleABVersion' : IDL.Func([IDL.Text, IDL.Text], [], []),
     'adminUpdateMilestone' : IDL.Func([IDL.Text, IDL.Bool], [Result_1], []),
     'askZenoAi' : IDL.Func([IDL.Text], [ZenoAiResponse], []),
+    'generateProgressShareLink' : IDL.Func(
+        [
+          IDL.Vec(IDL.Text),
+          IDL.Vec(IDL.Text),
+          IDL.Vec(IDL.Tuple(IDL.Text, IDL.Float64)),
+        ],
+        [IDL.Text],
+        [],
+      ),
     'getAcademyQuiz' : IDL.Func(
         [IDL.Text, IDL.Int],
         [IDL.Opt(TierQuiz)],
@@ -428,6 +609,7 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Text, IDL.Float64))],
         ['query'],
       ),
+    'getAllMasteryRecords' : IDL.Func([], [IDL.Vec(MasteryRecord)], ['query']),
     'getAnnouncementBanner' : IDL.Func(
         [],
         [IDL.Opt(AnnouncementBanner)],
@@ -451,9 +633,25 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Vec(LessonCompletionLog)],
         ['query'],
       ),
+    'getLessonMastery' : IDL.Func(
+        [IDL.Text],
+        [IDL.Opt(MasteryRecord)],
+        ['query'],
+      ),
+    'getLessonOfWeek' : IDL.Func([], [IDL.Opt(LessonOfWeek)], ['query']),
     'getLessonRatings' : IDL.Func(
         [IDL.Text, IDL.Text],
         [IDL.Vec(LessonRating)],
+        ['query'],
+      ),
+    'getMonthlyChallenge' : IDL.Func(
+        [IDL.Text],
+        [IDL.Opt(MonthlyChallenge)],
+        ['query'],
+      ),
+    'getProgressSnapshot' : IDL.Func(
+        [IDL.Text],
+        [IDL.Opt(ProgressSnapshot)],
         ['query'],
       ),
     'getQuizAttemptStats' : IDL.Func(
@@ -472,6 +670,9 @@ export const idlFactory = ({ IDL }) => {
     'listAllCertificates' : IDL.Func([], [IDL.Vec(Certificate)], ['query']),
     'logDailyActive' : IDL.Func([IDL.Text], [], []),
     'logLessonCompletion' : IDL.Func([IDL.Text, IDL.Text, IDL.Int], [], []),
+    'recordABTestResult' : IDL.Func([IDL.Text, IDL.Text, IDL.Bool], [], []),
+    'recordLessonCompleted' : IDL.Func([IDL.Text], [MonthlyChallenge], []),
+    'recordLessonTime' : IDL.Func([IDL.Text, IDL.Text, IDL.Nat], [], []),
     'searchCertificates' : IDL.Func(
         [IDL.Text],
         [IDL.Vec(Certificate)],
@@ -507,6 +708,11 @@ export const idlFactory = ({ IDL }) => {
           IDL.Text,
         ],
         [Result],
+        [],
+      ),
+    'updateLessonMastery' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Float64, IDL.Float64, IDL.Float64],
+        [],
         [],
       ),
     'verifyCertificate' : IDL.Func(

@@ -6,6 +6,7 @@ import {
   Award,
   Check,
   Copy,
+  Crown,
   Globe,
   Search,
   Shield,
@@ -292,8 +293,15 @@ function CertRow({
             <Star className="w-3 h-3 fill-current" style={{ color: GOLD }} />
           )}
           {anniversary && (
-            <span title="1 Year Anniversary!" className="text-sm">
-              🎂
+            <span
+              title="1 Year Anniversary!"
+              className="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase"
+              style={{
+                background: "oklch(0.7 0.18 70 / 0.12)",
+                color: GOLD,
+              }}
+            >
+              1 Year
             </span>
           )}
         </div>
@@ -386,8 +394,15 @@ function CertCard({
             <Star className="w-4 h-4 fill-current" style={{ color: GOLD }} />
           )}
           {anniversary && (
-            <span title="1 Year Anniversary!" className="text-sm">
-              🎂
+            <span
+              title="1 Year Anniversary!"
+              className="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase"
+              style={{
+                background: "oklch(0.7 0.18 70 / 0.12)",
+                color: GOLD,
+              }}
+            >
+              1 Year
             </span>
           )}
           <Award
@@ -654,6 +669,172 @@ function VerifyInlineResult({
         <ShieldCheck className="w-3 h-3" />
         View Full
       </Button>
+    </div>
+  );
+}
+
+// ─── Hall of Masters ─────────────────────────────────────────────────────────
+
+function HallOfMasters({
+  allCerts,
+  onVerify,
+}: {
+  allCerts: Certificate[];
+  onVerify: (cert: Certificate) => void;
+}) {
+  const [showAll, setShowAll] = useState(false);
+  const masters = allCerts
+    .filter((c) => c.isValid && c.tierId.toLowerCase() === "master")
+    .sort((a, b) => Number(b.issuedAt - a.issuedAt));
+
+  if (masters.length === 0) return null;
+
+  const displayed = showAll ? masters : masters.slice(0, 6);
+
+  return (
+    <div className="mb-10" data-ocid="cert_wall.hall_of_masters.section">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <Crown className="w-5 h-5" style={{ color: GOLD }} />
+          <h2 className="font-display font-bold text-xl text-foreground">
+            Hall of Masters
+          </h2>
+          <span
+            className="px-2 py-0.5 rounded-full text-xs font-bold"
+            style={{
+              background: "oklch(0.7 0.18 70 / 0.15)",
+              color: GOLD,
+            }}
+          >
+            {masters.length}
+          </span>
+        </div>
+        {masters.length > 6 && (
+          <button
+            type="button"
+            onClick={() => setShowAll((v) => !v)}
+            data-ocid="cert_wall.hall_of_masters.toggle"
+            className="text-xs underline transition-colors"
+            style={{ color: "oklch(0.65 0.15 190)" }}
+          >
+            {showAll ? "Show fewer" : `View all ${masters.length} Masters`}
+          </button>
+        )}
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {displayed.map((cert, idx) => (
+          <MasterCertCard
+            key={cert.certId}
+            cert={cert}
+            index={idx}
+            onVerify={onVerify}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MasterCertCard({
+  cert,
+  index,
+  onVerify,
+}: {
+  cert: Certificate;
+  index: number;
+  onVerify: (cert: Certificate) => void;
+}) {
+  const { copied, copy } = useCopy();
+  return (
+    <div
+      data-ocid={`cert_wall.hall_of_masters.item.${index + 1}`}
+      className="relative flex flex-col gap-3 rounded-xl p-5 border-2 overflow-hidden transition-smooth hover:scale-[1.01]"
+      style={{
+        background: "oklch(0.7 0.18 70 / 0.05)",
+        borderColor: "oklch(0.7 0.18 70 / 0.55)",
+        boxShadow:
+          "0 0 30px oklch(0.7 0.18 70 / 0.12), inset 0 1px 0 rgba(255,255,255,0.08)",
+      }}
+    >
+      {/* Corner accent */}
+      <div
+        className="absolute top-0 right-0 w-24 h-24 pointer-events-none opacity-10"
+        style={{
+          background: `radial-gradient(circle at top right, ${GOLD}, transparent 70%)`,
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <span
+          className="text-xs font-bold uppercase tracking-wider flex items-center gap-1"
+          style={{ color: GOLD }}
+        >
+          <Crown className="w-3 h-3" />
+          Master Certified
+        </span>
+        {cert.featured && (
+          <Star className="w-3.5 h-3.5 fill-current" style={{ color: GOLD }} />
+        )}
+      </div>
+
+      {/* Name */}
+      <div>
+        <p className="font-display font-bold text-lg text-foreground leading-tight">
+          {cert.certInfo.fullName}
+        </p>
+        <p className="text-muted-foreground text-xs mt-0.5">
+          s/o {cert.certInfo.fathersName} · {cert.certInfo.country}
+        </p>
+      </div>
+
+      {/* ID + copy */}
+      <div className="flex items-center gap-1.5">
+        <Shield className="w-3 h-3 shrink-0" style={{ color: `${GOLD}b0` }} />
+        <span
+          className="font-mono text-xs font-bold tracking-widest flex-1"
+          style={{ color: GOLD }}
+        >
+          {cert.certId}
+        </span>
+        <button
+          type="button"
+          onClick={() => copy(cert.certId, cert.certId)}
+          aria-label="Copy certificate ID"
+          className="transition-colors"
+          style={{
+            color: copied === cert.certId ? GOLD : "oklch(0.45 0.01 260)",
+          }}
+        >
+          {copied === cert.certId ? (
+            <Check className="w-3 h-3" />
+          ) : (
+            <Copy className="w-3 h-3" />
+          )}
+        </button>
+      </div>
+
+      {/* Date + Verify */}
+      <div
+        className="flex items-center justify-between pt-2 border-t"
+        style={{ borderColor: "oklch(0.7 0.18 70 / 0.2)" }}
+      >
+        <span className="text-xs text-muted-foreground">
+          {fmtDate(cert.issuedAt)}
+        </span>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => onVerify(cert)}
+          data-ocid={`cert_wall.hall_of_masters.verify_button.${index + 1}`}
+          className="h-7 px-2.5 text-xs gap-1"
+          style={{ color: GOLD }}
+        >
+          <ShieldCheck className="w-3 h-3" />
+          View
+        </Button>
+      </div>
     </div>
   );
 }
@@ -950,6 +1131,11 @@ export function CertificateWall() {
         {/* ── Leaderboard ── */}
         {!isLoading && allCerts.length > 0 && (
           <CertLeaderboard allCerts={allCerts} />
+        )}
+
+        {/* ── Hall of Masters ──────────────────────────────────────────────── */}
+        {!isLoading && allCerts.length > 0 && (
+          <HallOfMasters allCerts={allCerts} onVerify={openModal} />
         )}
 
         {/* ── Featured Graduates ────────────────────────────────────────────── */}

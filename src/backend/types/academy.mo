@@ -186,4 +186,70 @@ module {
     tierId    : Text;
     lessonId  : Text;
   };
+
+  // ── Learning-science domain types ─────────────────────────────────────────
+
+  /// Composite mastery score for a single lesson
+  /// masteryPct = (confidenceScore × 0.3) + (conceptCheckerScore × 0.35) + (quizScore × 0.35)
+  public type MasteryRecord = {
+    lessonId            : Text;
+    tier                : Text;
+    confidenceScore     : Float;
+    conceptCheckerScore : Float;
+    quizScore           : Float;
+    masteryPct          : Float;
+    updatedAt           : Int;
+  };
+
+  /// Monthly challenge progress (10 lessons/month earns the badge)
+  public type MonthlyChallenge = {
+    month            : Text;  // "YYYY-MM"
+    lessonsCompleted : Nat;
+    badgeEarned      : Bool;
+    targetLessons    : Nat;   // always 10
+  };
+
+  /// A completed-lesson event stored per monthly bucket
+  public type MonthlyLessonEvent = {
+    month    : Text;
+    lessonId : Text;
+  };
+
+  /// Read-only progress snapshot for study-partner share links
+  public type ProgressSnapshot = {
+    shareToken         : Text;
+    tiersCompleted     : [Text];
+    certificatesEarned : [Text];
+    masteryLevels      : [(Text, Float)];
+    createdAt          : Int;
+  };
+
+  /// Admin-set "lesson of the week" with 7-day expiry
+  public type LessonOfWeek = {
+    lessonId    : Text;
+    lessonTitle : Text;
+    tier        : Text;
+    setAt       : Int;
+    expiresAt   : Int;  // setAt + 7 days in nanoseconds
+  };
+
+  /// A/B test record for a quiz question
+  public type ABTestRecord = {
+    questionId       : Text;
+    versionAText     : Text;
+    versionBText     : Text;
+    versionAPassCount : Nat;
+    versionBPassCount : Nat;
+    versionAAttempts : Nat;
+    versionBAttempts : Nat;
+    activeVersion    : Text;  // "A" | "B"
+  };
+
+  /// Engagement tracking per lesson (for admin heatmap)
+  public type LessonEngagement = {
+    lessonId         : Text;
+    tier             : Text;
+    totalTimeSeconds : Nat;
+    visitCount       : Nat;
+  };
 };

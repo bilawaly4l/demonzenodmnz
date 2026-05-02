@@ -45,44 +45,44 @@
     --chart-4: 0.45 0.15 320;
     --chart-5: 0.6 0.15 85;
 
-    --sidebar: 0.97 0.005 260;
-    --sidebar-foreground: 0.18 0.01 260;
+    --sidebar: 0.16 0.01 260;
+    --sidebar-foreground: 0.95 0.005 260;
     --sidebar-primary: 0.65 0.15 190;
-    --sidebar-primary-foreground: 0.98 0.005 260;
-    --sidebar-accent: 0.92 0.01 260;
-    --sidebar-accent-foreground: 0.25 0.01 260;
-    --sidebar-border: 0.88 0.01 260;
+    --sidebar-primary-foreground: 0.145 0.01 260;
+    --sidebar-accent: 0.25 0.02 260;
+    --sidebar-accent-foreground: 0.85 0.01 260;
+    --sidebar-border: 0.25 0.01 260;
     --sidebar-ring: 0.65 0.15 190;
 
     /* Signal Confidence Badges */
-    --confidence-low: 0.55 0.05 260;
-    --confidence-low-foreground: 0.35 0.02 260;
+    --confidence-low: 0.35 0.02 260;
+    --confidence-low-foreground: 0.75 0.01 260;
     --confidence-medium: 0.65 0.14 70;
     --confidence-medium-foreground: 0.18 0.01 260;
     --confidence-high: 0.65 0.15 130;
-    --confidence-high-foreground: 0.18 0.01 260;
+    --confidence-high-foreground: 0.145 0.01 260;
 
     /* Signal Timeframe Badges */
     --timeframe-scalp: 0.65 0.15 190;
-    --timeframe-scalp-foreground: 0.12 0.01 260;
+    --timeframe-scalp-foreground: 0.145 0.01 260;
     --timeframe-swing: 0.7 0.18 145;
-    --timeframe-swing-foreground: 0.12 0.01 260;
+    --timeframe-swing-foreground: 0.145 0.01 260;
     --timeframe-longterm: 0.55 0.15 295;
     --timeframe-longterm-foreground: 0.98 0.005 260;
 
     /* Signal Source & Expired */
-    --source-label: 0.55 0.01 260;
-    --source-label-foreground: 0.45 0.01 260;
-    --expired: 0.45 0.02 260;
-    --expired-foreground: 0.5 0.01 260;
+    --source-label: 0.35 0.01 260;
+    --source-label-foreground: 0.65 0.01 260;
+    --expired: 0.3 0.02 260;
+    --expired-foreground: 0.65 0.01 260;
 
     /* Performance Chart */
     --chart-win: 0.7 0.18 145;
     --chart-loss: 0.55 0.22 25;
 
     /* Stats Bar */
-    --stats-bg: 0.97 0.005 260;
-    --stats-foreground: 0.18 0.01 260;
+    --stats-bg: 0.16 0.01 260;
+    --stats-foreground: 0.95 0.005 260;
     --stats-accent: 0.65 0.15 190;
 
     /* Academy & Certificate */
@@ -119,98 +119,7 @@
     --countdown-urgency: 0.55 0.22 25;
   }
 
-  .dark {
-    --background: 0.145 0.01 260;
-    --foreground: 0.95 0.005 260;
-    --card: 0.18 0.01 260;
-    --card-foreground: 0.95 0.005 260;
-    --popover: 0.22 0.01 260;
-    --popover-foreground: 0.95 0.005 260;
-
-    --primary: 0.65 0.15 190;
-    --primary-foreground: 0.145 0.01 260;
-
-    --secondary: 0.25 0.02 260;
-    --secondary-foreground: 0.85 0.01 260;
-    --muted: 0.25 0.02 260;
-    --muted-foreground: 0.55 0.01 260;
-
-    --accent: 0.65 0.15 190;
-    --accent-foreground: 0.145 0.01 260;
-
-    --destructive: 0.65 0.2 22;
-    --destructive-foreground: 0.95 0.005 25;
-
-    /* Anime Sky Blue Glow in Dark Mode */
-    --sky-blue: 0.58 0.16 258;
-    --sky-blue-light: 0.65 0.14 260;
-
-    --border: 0.28 0.01 260;
-    --input: 0.28 0.01 260;
-    --ring: 0.65 0.15 190;
-
-    --chart-1: 0.65 0.15 190;
-    --chart-2: 0.55 0.22 25;
-    --chart-3: 0.7 0.18 145;
-    --chart-4: 0.45 0.15 320;
-    --chart-5: 0.6 0.15 85;
-
-    --sidebar: 0.16 0.01 260;
-    --sidebar-foreground: 0.95 0.005 260;
-    --sidebar-primary: 0.65 0.15 190;
-    --sidebar-primary-foreground: 0.145 0.01 260;
-    --sidebar-accent: 0.25 0.02 260;
-    --sidebar-accent-foreground: 0.85 0.01 260;
-    --sidebar-border: 0.25 0.01 260;
-    --sidebar-ring: 0.65 0.15 190;
-
-    /* Signal Confidence Badges */
-    --confidence-low: 0.35 0.02 260;
-    --confidence-low-foreground: 0.75 0.01 260;
-    --confidence-medium: 0.65 0.14 70;
-    --confidence-medium-foreground: 0.18 0.01 260;
-    --confidence-high: 0.65 0.15 130;
-    --confidence-high-foreground: 0.145 0.01 260;
-
-    /* Signal Timeframe Badges */
-    --timeframe-scalp: 0.65 0.15 190;
-    --timeframe-scalp-foreground: 0.145 0.01 260;
-    --timeframe-swing: 0.7 0.18 145;
-    --timeframe-swing-foreground: 0.145 0.01 260;
-    --timeframe-longterm: 0.55 0.15 295;
-    --timeframe-longterm-foreground: 0.95 0.005 260;
-
-    /* Signal Source & Expired */
-    --source-label: 0.35 0.01 260;
-    --source-label-foreground: 0.65 0.01 260;
-    --expired: 0.3 0.02 260;
-    --expired-foreground: 0.65 0.01 260;
-
-    /* Performance Chart */
-    --chart-win: 0.7 0.18 145;
-    --chart-loss: 0.55 0.22 25;
-
-    /* Stats Bar */
-    --stats-bg: 0.16 0.01 260;
-    --stats-foreground: 0.95 0.005 260;
-    --stats-accent: 0.65 0.15 190;
-
-    /* Academy & Certificate */
-    --certificate-gold: 0.7 0.18 70;
-    --certificate-gold-foreground: 0.18 0.01 260;
-    --lesson-card-border: 0.65 0.15 190;
-    --tier-badge-bg: 0.65 0.15 190;
-    --tier-badge-foreground: 0.98 0.005 260;
-    --progress-fill: 0.65 0.15 190;
-    --progress-bg: 0.25 0.02 260;
-
-    /* Premium Section Tokens */
-    --burn-progress-start: 0.65 0.15 190;
-    --burn-progress-end: 0.55 0.22 25;
-    --milestone-indicator: 0.7 0.18 145;
-    --countdown-accent: 0.65 0.15 190;
-    --countdown-urgency: 0.55 0.22 25;
-  }
+  /* .dark override removed — dark is the only theme; all tokens live in :root */
 
   * {
     @apply border-border;
@@ -1180,11 +1089,6 @@
     border-radius: 1rem;
   }
 
-  .dark .glass-card {
-    background: rgba(255, 255, 255, var(--glass-opacity-dark));
-    border: 1px solid var(--glass-border-dark);
-  }
-
   .glass-card-glow {
     backdrop-filter: blur(var(--glass-blur)) saturate(180%);
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
@@ -1193,13 +1097,6 @@
     border-radius: 1rem;
     box-shadow: var(--shadow-glow-medium), inset 0 1px 0
       rgba(255, 255, 255, 0.12);
-  }
-
-  .dark .glass-card-glow {
-    background: rgba(255, 255, 255, var(--glass-opacity-dark));
-    border: 1px solid var(--glass-border-dark);
-    box-shadow: var(--shadow-glow-strong), inset 0 1px 0
-      rgba(255, 255, 255, 0.06);
   }
 
   .glow-border {

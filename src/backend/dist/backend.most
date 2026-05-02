@@ -1,4 +1,15 @@
 // Version: 1.0.0
+type ABTestRecord__285930220 =
+  {
+    activeVersion : Text;
+    questionId : Text;
+    versionAAttempts : Nat;
+    versionAPassCount : Nat;
+    versionAText : Text;
+    versionBAttempts : Nat;
+    versionBPassCount : Nat;
+    versionBText : Text
+  };
 type AnnouncementBanner__90072680 =
   {isPinned : Bool; text : Text; updatedAt : Int};
 type CertificateInfo__74452744 =
@@ -26,10 +37,39 @@ type Certificate__788398204 =
 type DailyActiveLog__922159160 = {count : Nat; date : Text};
 type LessonCompletionLog__818633468 =
   {completedAt : Int; lessonId : Text; tierId : Text};
+type LessonEngagement__737324748 =
+  {lessonId : Text; tier : Text; totalTimeSeconds : Nat; visitCount : Nat};
+type LessonOfWeek__834080232 =
+  {
+    expiresAt : Int;
+    lessonId : Text;
+    lessonTitle : Text;
+    setAt : Int;
+    tier : Text
+  };
 type LessonRating__882028736 =
   {lessonId : Text; rating : Nat; tierId : Text; timestamp : Int};
+type MasteryRecord__673083980 =
+  {
+    conceptCheckerScore : Float;
+    confidenceScore : Float;
+    lessonId : Text;
+    masteryPct : Float;
+    quizScore : Float;
+    tier : Text;
+    updatedAt : Int
+  };
+type MonthlyLessonEvent__35947320 = {lessonId : Text; month : Text};
 type Nat__490723111 = Nat__920180692;
 type Nat__920180692 = Nat;
+type ProgressSnapshot__726161096 =
+  {
+    certificatesEarned : [Text];
+    createdAt : Int;
+    masteryLevels : [(Text, Float)];
+    shareToken : Text;
+    tiersCompleted : [Text]
+  };
 type QuestionFailStat__578405410 =
   {failCount : Nat; questionId : Text; tierId : Text; totalSeen : Nat};
 type QuizAttemptLog__720748341 =
@@ -56,6 +96,13 @@ type TierFailMessage__290049600 = {message : Text; tierId : Text};
 type TierFeaturedLesson__913252491 = {lessonId : Text; tierId : Text};
 type TierId__469380039 = Text;
 actor {
+  stable ADMIN_PASSCODE : Text;
+  stable abTests :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ABTestRecord__285930220]];
+      var elementIndex : Nat__490723111
+    };
   stable announcementBanner : {var banner : ?AnnouncementBanner__90072680};
   stable attemptLogs :
     {
@@ -88,6 +135,12 @@ actor {
       var blocks : [var [var ?TierDisabledEntry__861211889]];
       var elementIndex : Nat__490723111
     };
+  stable engagements :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?LessonEngagement__737324748]];
+      var elementIndex : Nat__490723111
+    };
   stable flaggedQuestions :
     {
       var blockIndex : Nat__490723111;
@@ -100,10 +153,29 @@ actor {
       var blocks : [var [var ?LessonCompletionLog__818633468]];
       var elementIndex : Nat__490723111
     };
+  stable lessonOfWeekHolder : {var item : ?LessonOfWeek__834080232};
   stable lessonRatings :
     {
       var blockIndex : Nat__490723111;
       var blocks : [var [var ?LessonRating__882028736]];
+      var elementIndex : Nat__490723111
+    };
+  stable masteryRecords :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?MasteryRecord__673083980]];
+      var elementIndex : Nat__490723111
+    };
+  stable monthlyEvents :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?MonthlyLessonEvent__35947320]];
+      var elementIndex : Nat__490723111
+    };
+  stable progressSnapshots :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ProgressSnapshot__726161096]];
       var elementIndex : Nat__490723111
     };
   stable questionFailStats :
@@ -118,6 +190,7 @@ actor {
       var blocks : [var [var ?RoadmapMilestone__956576536]];
       var elementIndex : Nat__490723111
     };
+  stable shareSnapshotCounter : {var value : Nat};
   stable tierFailMessages :
     {
       var blockIndex : Nat__490723111;

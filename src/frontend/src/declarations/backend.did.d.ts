@@ -10,6 +10,16 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface ABTestRecord {
+  'versionAPassCount' : bigint,
+  'activeVersion' : string,
+  'versionBText' : string,
+  'versionBAttempts' : bigint,
+  'versionAText' : string,
+  'questionId' : string,
+  'versionAAttempts' : bigint,
+  'versionBPassCount' : bigint,
+}
 export interface AdminStats {
   'certsByTier' : Array<[string, bigint]>,
   'totalCertificates' : bigint,
@@ -45,11 +55,46 @@ export interface LessonCompletionLog {
   'completedAt' : bigint,
   'tierId' : string,
 }
+export interface LessonEngagement {
+  'lessonId' : string,
+  'visitCount' : bigint,
+  'tier' : string,
+  'totalTimeSeconds' : bigint,
+}
+export interface LessonOfWeek {
+  'lessonId' : string,
+  'expiresAt' : bigint,
+  'tier' : string,
+  'lessonTitle' : string,
+  'setAt' : bigint,
+}
 export interface LessonRating {
   'lessonId' : string,
   'tierId' : string,
   'timestamp' : bigint,
   'rating' : bigint,
+}
+export interface MasteryRecord {
+  'lessonId' : string,
+  'quizScore' : number,
+  'tier' : string,
+  'confidenceScore' : number,
+  'updatedAt' : bigint,
+  'masteryPct' : number,
+  'conceptCheckerScore' : number,
+}
+export interface MonthlyChallenge {
+  'month' : string,
+  'targetLessons' : bigint,
+  'badgeEarned' : boolean,
+  'lessonsCompleted' : bigint,
+}
+export interface ProgressSnapshot {
+  'createdAt' : bigint,
+  'shareToken' : string,
+  'tiersCompleted' : Array<string>,
+  'masteryLevels' : Array<[string, number]>,
+  'certificatesEarned' : Array<string>,
 }
 export interface QuestionFailStat {
   'tierId' : string,
@@ -125,11 +170,18 @@ export interface http_request_result {
   'headers' : Array<http_header>,
 }
 export interface _SERVICE {
+  'adminCreateABTest' : ActorMethod<
+    [string, string, string, string],
+    undefined
+  >,
   'adminExportCertificates' : ActorMethod<[], Array<Certificate>>,
   'adminFeatureCertificate' : ActorMethod<[string, boolean], Result_1>,
   'adminFlagQuestion' : ActorMethod<[string, boolean], undefined>,
+  'adminGetABTests' : ActorMethod<[string], Array<ABTestRecord>>,
   'adminGetAttemptLogs' : ActorMethod<[string], Array<QuizAttemptLog>>,
+  'adminGetEngagementData' : ActorMethod<[string], Array<LessonEngagement>>,
   'adminGetFlaggedQuestions' : ActorMethod<[], Array<string>>,
+  'adminGetMonthlyStats' : ActorMethod<[string], Array<[string, bigint]>>,
   'adminGetQuestionFailStats' : ActorMethod<[string], Array<QuestionFailStat>>,
   'adminGetStats' : ActorMethod<[], AdminStats>,
   'adminManualIssueCertificate' : ActorMethod<
@@ -141,11 +193,21 @@ export interface _SERVICE {
     Result_1
   >,
   'adminSetAnnouncementBanner' : ActorMethod<[string, boolean], undefined>,
+  'adminSetLessonOfWeek' : ActorMethod<
+    [string, string, string, string],
+    undefined
+  >,
   'adminSetTierDisabled' : ActorMethod<[string, boolean], Result_1>,
+  'adminToggleABVersion' : ActorMethod<[string, string], undefined>,
   'adminUpdateMilestone' : ActorMethod<[string, boolean], Result_1>,
   'askZenoAi' : ActorMethod<[string], ZenoAiResponse>,
+  'generateProgressShareLink' : ActorMethod<
+    [Array<string>, Array<string>, Array<[string, number]>],
+    string
+  >,
   'getAcademyQuiz' : ActorMethod<[string, bigint], [] | [TierQuiz]>,
   'getAdminLessonRatings' : ActorMethod<[], Array<[string, string, number]>>,
+  'getAllMasteryRecords' : ActorMethod<[], Array<MasteryRecord>>,
   'getAnnouncementBanner' : ActorMethod<[], [] | [AnnouncementBanner]>,
   'getCertificateByShareToken' : ActorMethod<[string], [] | [Certificate]>,
   'getCertificatesByTier' : ActorMethod<[string], Array<Certificate>>,
@@ -153,7 +215,11 @@ export interface _SERVICE {
   'getFeaturedCertificates' : ActorMethod<[], Array<Certificate>>,
   'getFeaturedLesson' : ActorMethod<[string], [] | [string]>,
   'getLessonCompletionTrends' : ActorMethod<[], Array<LessonCompletionLog>>,
+  'getLessonMastery' : ActorMethod<[string], [] | [MasteryRecord]>,
+  'getLessonOfWeek' : ActorMethod<[], [] | [LessonOfWeek]>,
   'getLessonRatings' : ActorMethod<[string, string], Array<LessonRating>>,
+  'getMonthlyChallenge' : ActorMethod<[string], [] | [MonthlyChallenge]>,
+  'getProgressSnapshot' : ActorMethod<[string], [] | [ProgressSnapshot]>,
   'getQuizAttemptStats' : ActorMethod<[], Array<QuizAttemptStats>>,
   'getQuizFailMessage' : ActorMethod<[string], [] | [string]>,
   'getRoadmap' : ActorMethod<[], Array<RoadmapMilestone>>,
@@ -162,6 +228,9 @@ export interface _SERVICE {
   'listAllCertificates' : ActorMethod<[], Array<Certificate>>,
   'logDailyActive' : ActorMethod<[string], undefined>,
   'logLessonCompletion' : ActorMethod<[string, string, bigint], undefined>,
+  'recordABTestResult' : ActorMethod<[string, string, boolean], undefined>,
+  'recordLessonCompleted' : ActorMethod<[string], MonthlyChallenge>,
+  'recordLessonTime' : ActorMethod<[string, string, bigint], undefined>,
   'searchCertificates' : ActorMethod<[string], Array<Certificate>>,
   'setFeaturedLesson' : ActorMethod<[string, string, string], boolean>,
   'setQuizFailMessage' : ActorMethod<[string, string, string], boolean>,
@@ -181,6 +250,10 @@ export interface _SERVICE {
       string,
     ],
     Result
+  >,
+  'updateLessonMastery' : ActorMethod<
+    [string, string, number, number, number],
+    undefined
   >,
   'verifyCertificate' : ActorMethod<[string], [] | [Certificate]>,
   'zenoAiTransform' : ActorMethod<[TransformationInput], TransformationOutput>,

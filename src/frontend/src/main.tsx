@@ -14,13 +14,8 @@ declare global {
   }
 }
 
-// Apply theme from localStorage before first render to avoid flash
-(function initTheme() {
-  const stored = localStorage.getItem("dz-theme");
-  const isDark = stored !== "light";
-  document.documentElement.classList.toggle("dark", isDark);
-  document.documentElement.classList.toggle("light", !isDark);
-})();
+// Dark theme only — always apply dark class
+document.documentElement.classList.add("dark");
 
 const queryClient = new QueryClient();
 

@@ -5,6 +5,7 @@ import RoadmapLib "lib/roadmap";
 import AcademyApi "mixins/academy-api";
 import RoadmapApi "mixins/roadmap-api";
 import ZenoAiApi "mixins/zeno-ai-api";
+import LearningScienceApi "mixins/learning-science-api";
 
 actor {
   // ── Academy state ──────────────────────────────────────────────────────────────────────────
@@ -32,6 +33,15 @@ actor {
   // Per-tier featured lesson (admin-set)
   let tierFeaturedLessons  = List.empty<AcademyTypes.TierFeaturedLesson>();
 
+  // ── Learning-science state ────────────────────────────────────────────────────────────
+  let masteryRecords        = List.empty<AcademyTypes.MasteryRecord>();
+  let monthlyEvents         = List.empty<AcademyTypes.MonthlyLessonEvent>();
+  let shareSnapshotCounter  = { var value : Nat = 0 };
+  let progressSnapshots     = List.empty<AcademyTypes.ProgressSnapshot>();
+  let lessonOfWeekHolder    = { var item : ?AcademyTypes.LessonOfWeek = null };
+  let abTests               = List.empty<AcademyTypes.ABTestRecord>();
+  let engagements           = List.empty<AcademyTypes.LessonEngagement>();
+
   // ── Roadmap state ─────────────────────────────────────────────────────────────────────
   // Seeded with confirmed milestones: 2026, April 2 2027, Jan 1 2028.
   let roadmapMilestones = List.fromArray<RoadmapTypes.RoadmapMilestone>(RoadmapLib.defaultMilestones());
@@ -45,4 +55,8 @@ actor {
   );
   include RoadmapApi(roadmapMilestones);
   include ZenoAiApi();
+  include LearningScienceApi(
+    masteryRecords, monthlyEvents, shareSnapshotCounter,
+    progressSnapshots, lessonOfWeekHolder, abTests, engagements,
+  );
 };

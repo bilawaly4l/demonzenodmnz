@@ -89,40 +89,25 @@ export class ExternalBlob {
         return this;
     }
 }
-export type TierId = string;
-export interface RoadmapMilestone {
-    id: string;
-    title: string;
-    date?: string;
-    completed: boolean;
-    year: string;
-    description: string;
+export interface QuizAttemptLog {
+    tierId: string;
+    score: bigint;
+    fingerprint: string;
+    timestamp: bigint;
+    passed: boolean;
+}
+export interface QuizAnswer {
+    questionId: string;
+    selectedOption: string;
 }
 export interface TransformationOutput {
     status: bigint;
     body: Uint8Array;
     headers: Array<http_header>;
 }
-export interface QuizAnswer {
-    questionId: string;
-    selectedOption: string;
-}
 export interface ZenoAiResponse {
     answer: string;
     success: boolean;
-}
-export interface TokenInfo {
-    ticker: string;
-    socialLinks: Array<{
-        url: string;
-        name: string;
-    }>;
-    name: string;
-    launchPlatform: string;
-    description: string;
-    totalSupply: string;
-    slogan: string;
-    distribution: string;
 }
 export interface QuizQuestion {
     id: string;
@@ -142,10 +127,15 @@ export interface DailyActiveLog {
     date: string;
     count: bigint;
 }
-export interface AnnouncementBanner {
-    text: string;
-    updatedAt: bigint;
-    isPinned: boolean;
+export interface ABTestRecord {
+    versionAPassCount: bigint;
+    activeVersion: string;
+    versionBText: string;
+    versionBAttempts: bigint;
+    versionAText: string;
+    questionId: string;
+    versionAAttempts: bigint;
+    versionBPassCount: bigint;
 }
 export interface TierQuiz {
     tierId: TierId;
@@ -159,29 +149,16 @@ export type Result_1 = {
     __kind__: "err";
     err: string;
 };
-export interface http_header {
-    value: string;
-    name: string;
-}
-export interface http_request_result {
-    status: bigint;
-    body: Uint8Array;
-    headers: Array<http_header>;
-}
 export interface TierDisabledEntry {
     tierId: string;
     disabled: boolean;
 }
-export type Result = {
-    __kind__: "ok";
-    ok: Certificate;
-} | {
-    __kind__: "err";
-    err: string;
-};
-export interface AdminStats {
-    certsByTier: Array<[string, bigint]>;
-    totalCertificates: bigint;
+export interface ProgressSnapshot {
+    createdAt: bigint;
+    shareToken: string;
+    tiersCompleted: Array<string>;
+    masteryLevels: Array<[string, number]>;
+    certificatesEarned: Array<string>;
 }
 export interface TransformationInput {
     context: Uint8Array;
@@ -203,6 +180,75 @@ export interface CertificateInfo {
 export interface QuizOption {
     id: string;
     text: string;
+}
+export interface LessonEngagement {
+    lessonId: string;
+    visitCount: bigint;
+    tier: string;
+    totalTimeSeconds: bigint;
+}
+export interface LessonOfWeek {
+    lessonId: string;
+    expiresAt: bigint;
+    tier: string;
+    lessonTitle: string;
+    setAt: bigint;
+}
+export interface MasteryRecord {
+    lessonId: string;
+    quizScore: number;
+    tier: string;
+    confidenceScore: number;
+    updatedAt: bigint;
+    masteryPct: number;
+    conceptCheckerScore: number;
+}
+export type TierId = string;
+export interface RoadmapMilestone {
+    id: string;
+    title: string;
+    date?: string;
+    completed: boolean;
+    year: string;
+    description: string;
+}
+export interface TokenInfo {
+    ticker: string;
+    socialLinks: Array<{
+        url: string;
+        name: string;
+    }>;
+    name: string;
+    launchPlatform: string;
+    description: string;
+    totalSupply: string;
+    slogan: string;
+    distribution: string;
+}
+export interface AnnouncementBanner {
+    text: string;
+    updatedAt: bigint;
+    isPinned: boolean;
+}
+export interface http_header {
+    value: string;
+    name: string;
+}
+export interface http_request_result {
+    status: bigint;
+    body: Uint8Array;
+    headers: Array<http_header>;
+}
+export type Result = {
+    __kind__: "ok";
+    ok: Certificate;
+} | {
+    __kind__: "err";
+    err: string;
+};
+export interface AdminStats {
+    certsByTier: Array<[string, bigint]>;
+    totalCertificates: bigint;
 }
 export interface LessonRating {
     lessonId: string;
@@ -227,29 +273,36 @@ export interface Certificate {
     issuedAt: bigint;
     isValid: boolean;
 }
-export interface QuizAttemptLog {
-    tierId: string;
-    score: bigint;
-    fingerprint: string;
-    timestamp: bigint;
-    passed: boolean;
+export interface MonthlyChallenge {
+    month: string;
+    targetLessons: bigint;
+    badgeEarned: boolean;
+    lessonsCompleted: bigint;
 }
 export interface backendInterface {
+    adminCreateABTest(passcode: string, questionId: string, versionAText: string, versionBText: string): Promise<void>;
     adminExportCertificates(): Promise<Array<Certificate>>;
     adminFeatureCertificate(certId: string, featured: boolean): Promise<Result_1>;
     adminFlagQuestion(questionId: string, flagged: boolean): Promise<void>;
+    adminGetABTests(passcode: string): Promise<Array<ABTestRecord>>;
     adminGetAttemptLogs(tierId: string): Promise<Array<QuizAttemptLog>>;
+    adminGetEngagementData(passcode: string): Promise<Array<LessonEngagement>>;
     adminGetFlaggedQuestions(): Promise<Array<string>>;
+    adminGetMonthlyStats(passcode: string): Promise<Array<[string, bigint]>>;
     adminGetQuestionFailStats(tierId: string): Promise<Array<QuestionFailStat>>;
     adminGetStats(): Promise<AdminStats>;
     adminManualIssueCertificate(tierId: string, info: CertificateInfo): Promise<Result>;
     adminRevokeOrReinstateCertificate(certId: string, isValid: boolean): Promise<Result_1>;
     adminSetAnnouncementBanner(text: string, isPinned: boolean): Promise<void>;
+    adminSetLessonOfWeek(passcode: string, lessonId: string, lessonTitle: string, tier: string): Promise<void>;
     adminSetTierDisabled(tierId: string, disabled: boolean): Promise<Result_1>;
+    adminToggleABVersion(passcode: string, questionId: string): Promise<void>;
     adminUpdateMilestone(id: string, completed: boolean): Promise<Result_1>;
     askZenoAi(question: string): Promise<ZenoAiResponse>;
+    generateProgressShareLink(tiersCompleted: Array<string>, certificatesEarned: Array<string>, masteryLevels: Array<[string, number]>): Promise<string>;
     getAcademyQuiz(tierId: string, seed: bigint): Promise<TierQuiz | null>;
     getAdminLessonRatings(): Promise<Array<[string, string, number]>>;
+    getAllMasteryRecords(): Promise<Array<MasteryRecord>>;
     getAnnouncementBanner(): Promise<AnnouncementBanner | null>;
     getCertificateByShareToken(shareToken: string): Promise<Certificate | null>;
     getCertificatesByTier(tierId: string): Promise<Array<Certificate>>;
@@ -257,7 +310,11 @@ export interface backendInterface {
     getFeaturedCertificates(): Promise<Array<Certificate>>;
     getFeaturedLesson(tierId: string): Promise<string | null>;
     getLessonCompletionTrends(): Promise<Array<LessonCompletionLog>>;
+    getLessonMastery(lessonId: string): Promise<MasteryRecord | null>;
+    getLessonOfWeek(): Promise<LessonOfWeek | null>;
     getLessonRatings(tierId: string, lessonId: string): Promise<Array<LessonRating>>;
+    getMonthlyChallenge(month: string): Promise<MonthlyChallenge | null>;
+    getProgressSnapshot(shareToken: string): Promise<ProgressSnapshot | null>;
     getQuizAttemptStats(): Promise<Array<QuizAttemptStats>>;
     getQuizFailMessage(tierId: string): Promise<string | null>;
     getRoadmap(): Promise<Array<RoadmapMilestone>>;
@@ -266,18 +323,36 @@ export interface backendInterface {
     listAllCertificates(): Promise<Array<Certificate>>;
     logDailyActive(date: string): Promise<void>;
     logLessonCompletion(tierId: string, lessonId: string, timestamp: bigint): Promise<void>;
+    recordABTestResult(questionId: string, version: string, passed: boolean): Promise<void>;
+    recordLessonCompleted(lessonId: string): Promise<MonthlyChallenge>;
+    recordLessonTime(lessonId: string, tier: string, timeSeconds: bigint): Promise<void>;
     searchCertificates(searchTerm: string): Promise<Array<Certificate>>;
     setFeaturedLesson(tierId: string, lessonId: string, passcode: string): Promise<boolean>;
     setQuizFailMessage(tierId: string, message: string, passcode: string): Promise<boolean>;
     submitCheckpointQuiz(tierId: string, score: bigint): Promise<boolean>;
     submitLessonRating(tierId: string, lessonId: string, rating: bigint): Promise<boolean>;
     submitQuizAndIssueCertificate(tierId: string, answers: Array<QuizAnswer>, fullName: string, fathersName: string, country: string, dateOfBirth: string, email: string, city: string, seed: bigint, fingerprint: string): Promise<Result>;
+    updateLessonMastery(lessonId: string, tier: string, confidenceScore: number, conceptCheckerScore: number, quizScore: number): Promise<void>;
     verifyCertificate(certId: string): Promise<Certificate | null>;
     zenoAiTransform(input: TransformationInput): Promise<TransformationOutput>;
 }
-import type { AnnouncementBanner as _AnnouncementBanner, Certificate as _Certificate, Result as _Result, Result_1 as _Result_1, RoadmapMilestone as _RoadmapMilestone, TierQuiz as _TierQuiz } from "./declarations/backend.did.d.ts";
+import type { AnnouncementBanner as _AnnouncementBanner, Certificate as _Certificate, LessonOfWeek as _LessonOfWeek, MasteryRecord as _MasteryRecord, MonthlyChallenge as _MonthlyChallenge, ProgressSnapshot as _ProgressSnapshot, Result as _Result, Result_1 as _Result_1, RoadmapMilestone as _RoadmapMilestone, TierQuiz as _TierQuiz } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
+    async adminCreateABTest(arg0: string, arg1: string, arg2: string, arg3: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.adminCreateABTest(arg0, arg1, arg2, arg3);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.adminCreateABTest(arg0, arg1, arg2, arg3);
+            return result;
+        }
+    }
     async adminExportCertificates(): Promise<Array<Certificate>> {
         if (this.processError) {
             try {
@@ -320,6 +395,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async adminGetABTests(arg0: string): Promise<Array<ABTestRecord>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.adminGetABTests(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.adminGetABTests(arg0);
+            return result;
+        }
+    }
     async adminGetAttemptLogs(arg0: string): Promise<Array<QuizAttemptLog>> {
         if (this.processError) {
             try {
@@ -334,6 +423,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async adminGetEngagementData(arg0: string): Promise<Array<LessonEngagement>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.adminGetEngagementData(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.adminGetEngagementData(arg0);
+            return result;
+        }
+    }
     async adminGetFlaggedQuestions(): Promise<Array<string>> {
         if (this.processError) {
             try {
@@ -345,6 +448,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.adminGetFlaggedQuestions();
+            return result;
+        }
+    }
+    async adminGetMonthlyStats(arg0: string): Promise<Array<[string, bigint]>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.adminGetMonthlyStats(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.adminGetMonthlyStats(arg0);
             return result;
         }
     }
@@ -418,6 +535,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async adminSetLessonOfWeek(arg0: string, arg1: string, arg2: string, arg3: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.adminSetLessonOfWeek(arg0, arg1, arg2, arg3);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.adminSetLessonOfWeek(arg0, arg1, arg2, arg3);
+            return result;
+        }
+    }
     async adminSetTierDisabled(arg0: string, arg1: boolean): Promise<Result_1> {
         if (this.processError) {
             try {
@@ -430,6 +561,20 @@ export class Backend implements backendInterface {
         } else {
             const result = await this.actor.adminSetTierDisabled(arg0, arg1);
             return from_candid_Result_1_n1(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async adminToggleABVersion(arg0: string, arg1: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.adminToggleABVersion(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.adminToggleABVersion(arg0, arg1);
+            return result;
         }
     }
     async adminUpdateMilestone(arg0: string, arg1: boolean): Promise<Result_1> {
@@ -460,6 +605,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async generateProgressShareLink(arg0: Array<string>, arg1: Array<string>, arg2: Array<[string, number]>): Promise<string> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.generateProgressShareLink(arg0, arg1, arg2);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.generateProgressShareLink(arg0, arg1, arg2);
+            return result;
+        }
+    }
     async getAcademyQuiz(arg0: string, arg1: bigint): Promise<TierQuiz | null> {
         if (this.processError) {
             try {
@@ -485,6 +644,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.getAdminLessonRatings();
+            return result;
+        }
+    }
+    async getAllMasteryRecords(): Promise<Array<MasteryRecord>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllMasteryRecords();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllMasteryRecords();
             return result;
         }
     }
@@ -586,6 +759,34 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async getLessonMastery(arg0: string): Promise<MasteryRecord | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getLessonMastery(arg0);
+                return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getLessonMastery(arg0);
+            return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getLessonOfWeek(): Promise<LessonOfWeek | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getLessonOfWeek();
+                return from_candid_opt_n10(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getLessonOfWeek();
+            return from_candid_opt_n10(this._uploadFile, this._downloadFile, result);
+        }
+    }
     async getLessonRatings(arg0: string, arg1: string): Promise<Array<LessonRating>> {
         if (this.processError) {
             try {
@@ -598,6 +799,34 @@ export class Backend implements backendInterface {
         } else {
             const result = await this.actor.getLessonRatings(arg0, arg1);
             return result;
+        }
+    }
+    async getMonthlyChallenge(arg0: string): Promise<MonthlyChallenge | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getMonthlyChallenge(arg0);
+                return from_candid_opt_n11(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getMonthlyChallenge(arg0);
+            return from_candid_opt_n11(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getProgressSnapshot(arg0: string): Promise<ProgressSnapshot | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getProgressSnapshot(arg0);
+                return from_candid_opt_n12(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getProgressSnapshot(arg0);
+            return from_candid_opt_n12(this._uploadFile, this._downloadFile, result);
         }
     }
     async getQuizAttemptStats(): Promise<Array<QuizAttemptStats>> {
@@ -632,14 +861,14 @@ export class Backend implements backendInterface {
         if (this.processError) {
             try {
                 const result = await this.actor.getRoadmap();
-                return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
+                return from_candid_vec_n13(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getRoadmap();
-            return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
+            return from_candid_vec_n13(this._uploadFile, this._downloadFile, result);
         }
     }
     async getTierDisabledStates(): Promise<Array<TierDisabledEntry>> {
@@ -709,6 +938,48 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.logLessonCompletion(arg0, arg1, arg2);
+            return result;
+        }
+    }
+    async recordABTestResult(arg0: string, arg1: string, arg2: boolean): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.recordABTestResult(arg0, arg1, arg2);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.recordABTestResult(arg0, arg1, arg2);
+            return result;
+        }
+    }
+    async recordLessonCompleted(arg0: string): Promise<MonthlyChallenge> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.recordLessonCompleted(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.recordLessonCompleted(arg0);
+            return result;
+        }
+    }
+    async recordLessonTime(arg0: string, arg1: string, arg2: bigint): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.recordLessonTime(arg0, arg1, arg2);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.recordLessonTime(arg0, arg1, arg2);
             return result;
         }
     }
@@ -796,6 +1067,20 @@ export class Backend implements backendInterface {
             return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
         }
     }
+    async updateLessonMastery(arg0: string, arg1: string, arg2: number, arg3: number, arg4: number): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateLessonMastery(arg0, arg1, arg2, arg3, arg4);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateLessonMastery(arg0, arg1, arg2, arg3, arg4);
+            return result;
+        }
+    }
     async verifyCertificate(arg0: string): Promise<Certificate | null> {
         if (this.processError) {
             try {
@@ -831,8 +1116,17 @@ function from_candid_Result_1_n1(_uploadFile: (file: ExternalBlob) => Promise<Ui
 function from_candid_Result_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result): Result {
     return from_candid_variant_n4(_uploadFile, _downloadFile, value);
 }
-function from_candid_RoadmapMilestone_n10(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _RoadmapMilestone): RoadmapMilestone {
-    return from_candid_record_n11(_uploadFile, _downloadFile, value);
+function from_candid_RoadmapMilestone_n14(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _RoadmapMilestone): RoadmapMilestone {
+    return from_candid_record_n15(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n10(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_LessonOfWeek]): LessonOfWeek | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n11(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_MonthlyChallenge]): MonthlyChallenge | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n12(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_ProgressSnapshot]): ProgressSnapshot | null {
+    return value.length === 0 ? null : value[0];
 }
 function from_candid_opt_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_TierQuiz]): TierQuiz | null {
     return value.length === 0 ? null : value[0];
@@ -846,7 +1140,10 @@ function from_candid_opt_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Ar
 function from_candid_opt_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [string]): string | null {
     return value.length === 0 ? null : value[0];
 }
-function from_candid_record_n11(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+function from_candid_opt_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_MasteryRecord]): MasteryRecord | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_record_n15(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
     id: string;
     title: string;
     date: [] | [string];
@@ -908,8 +1205,8 @@ function from_candid_variant_n4(_uploadFile: (file: ExternalBlob) => Promise<Uin
         err: value.err
     } : value;
 }
-function from_candid_vec_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_RoadmapMilestone>): Array<RoadmapMilestone> {
-    return value.map((x)=>from_candid_RoadmapMilestone_n10(_uploadFile, _downloadFile, x));
+function from_candid_vec_n13(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_RoadmapMilestone>): Array<RoadmapMilestone> {
+    return value.map((x)=>from_candid_RoadmapMilestone_n14(_uploadFile, _downloadFile, x));
 }
 export interface CreateActorOptions {
     agent?: Agent;

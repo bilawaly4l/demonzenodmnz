@@ -13,13 +13,12 @@ import type {
   LessonProgressContextValue,
   LessonsLearnedEntry,
   SoundContextValue,
-  ThemeContextValue,
   WeeklyGoal,
 } from "../types";
 
 const ADMIN_PASSCODE = "2420075112009BILAWALPRAKRITI";
 const CLICK_THRESHOLD = 5;
-const THEME_KEY = "dz_theme";
+
 const STREAK_KEY = "dz_streak_date";
 const STREAK_DAYS_KEY = "dz_streak_days";
 const CONFIDENCE_KEY = "dz_confidence";
@@ -34,7 +33,6 @@ const SOUND_KEY = "dz_sound";
 const AdminSessionContext = createContext<AdminSessionContextValue | null>(
   null,
 );
-const ThemeContext = createContext<ThemeContextValue | null>(null);
 const LessonProgressContext = createContext<LessonProgressContextValue | null>(
   null,
 );
@@ -50,15 +48,6 @@ function getISOWeekStart(): string {
 
 function isSameWeek(weekStart: string): boolean {
   return weekStart === getISOWeekStart();
-}
-
-function getStoredTheme(): boolean {
-  try {
-    const stored = localStorage.getItem(THEME_KEY);
-    return stored !== "light";
-  } catch {
-    return true;
-  }
 }
 
 function progressKey(tierId: string) {
@@ -139,21 +128,6 @@ export function SessionProvider({ children }: { children: ReactNode }) {
       /* ignore */
     }
   }, []);
-
-  // ── Theme state
-  const [isDark, setIsDark] = useState<boolean>(getStoredTheme);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.classList.toggle("light", !isDark);
-    try {
-      localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
-    } catch {
-      /* ignore */
-    }
-  }, [isDark]);
-
-  const toggleTheme = useCallback(() => setIsDark((v) => !v), []);
 
   // ── Lesson progress state
   const getLessonProgress = useCallback((tierId: string): string[] => {
@@ -428,11 +402,6 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     ],
   );
 
-  const themeValue = useMemo<ThemeContextValue>(
-    () => ({ isDark, toggleTheme }),
-    [isDark, toggleTheme],
-  );
-
   const soundValue = useMemo<SoundContextValue>(
     () => ({
       soundEnabled,
@@ -497,15 +466,19 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     ],
   );
 
+  // Always apply dark theme
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+    document.documentElement.classList.remove("light");
+  }, []);
+
   return (
     <AdminSessionContext.Provider value={adminValue}>
-      <ThemeContext.Provider value={themeValue}>
-        <SoundContext.Provider value={soundValue}>
-          <LessonProgressContext.Provider value={lessonValue}>
-            {children}
-          </LessonProgressContext.Provider>
-        </SoundContext.Provider>
-      </ThemeContext.Provider>
+      <SoundContext.Provider value={soundValue}>
+        <LessonProgressContext.Provider value={lessonValue}>
+          {children}
+        </LessonProgressContext.Provider>
+      </SoundContext.Provider>
     </AdminSessionContext.Provider>
   );
 }
@@ -513,12 +486,6 @@ export function SessionProvider({ children }: { children: ReactNode }) {
 export function useSession(): AdminSessionContextValue {
   const ctx = useContext(AdminSessionContext);
   if (!ctx) throw new Error("useSession must be used within SessionProvider");
-  return ctx;
-}
-
-export function useTheme(): ThemeContextValue {
-  const ctx = useContext(ThemeContext);
-  if (!ctx) throw new Error("useTheme must be used within SessionProvider");
   return ctx;
 }
 

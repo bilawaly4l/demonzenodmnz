@@ -182,10 +182,14 @@ export function HeroSection() {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src="/assets/generated/demonzeno-hero.dim_800x900.png"
-                  alt="DemonZeno — anime-style trading character"
-                  className="w-64 md:w-80 lg:w-96 object-cover object-top drop-shadow-2xl pointer-events-none"
-                  style={{ clipPath: "inset(0 0 18% 0)", marginBottom: "-18%" }}
+                  src="/assets/demonzeno-real.png"
+                  alt="DemonZeno — anime trading character"
+                  className="w-64 md:w-80 lg:w-96 object-cover drop-shadow-2xl pointer-events-none"
+                  style={{
+                    objectPosition: "50% 5%",
+                    clipPath: "inset(0 8% 20% 8%)",
+                    marginBottom: "-20%",
+                  }}
                   onError={(e) => {
                     (e.target as HTMLImageElement).src =
                       "/assets/demonzeno-character.png";

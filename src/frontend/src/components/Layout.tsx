@@ -13,7 +13,6 @@ import {
 import { useState } from "react";
 import { SiBinance } from "react-icons/si";
 import { useAnnouncementBanner } from "../hooks/useAcademy";
-import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_LINKS = [
   { label: "Home", href: "/", isRoute: true },
@@ -83,7 +82,7 @@ function AnnouncementBar() {
   );
 }
 
-function Navbar({ themeToggle }: { themeToggle?: React.ReactNode }) {
+function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const routerState = useRouterState();
@@ -188,7 +187,6 @@ function Navbar({ themeToggle }: { themeToggle?: React.ReactNode }) {
         </ul>
 
         <div className="flex items-center gap-1">
-          {themeToggle}
           <button
             type="button"
             data-ocid="navbar.mobile_menu.toggle"
@@ -356,7 +354,7 @@ function Footer() {
 export function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Navbar themeToggle={<ThemeToggle />} />
+      <Navbar />
       <AnnouncementBar />
       <main className="flex-1">
         <Outlet />

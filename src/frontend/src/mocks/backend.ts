@@ -1,4 +1,15 @@
-import type {
+import { 
+  ABTestRecord,
+  DailyActiveLog,
+  LessonEngagement,
+  LessonOfWeek,
+  MasteryRecord,
+  MonthlyChallenge,
+  ProgressSnapshot,
+  TransformationInput,
+  TransformationOutput,
+ } from "../backend";
+import type { 
   AdminStats,
   AnnouncementBanner,
   Certificate,
@@ -6,14 +17,14 @@ import type {
   QuizAnswer,
   QuizAttemptStats,
   QuizQuestion,
-  RoadmapMilestone,
   Result,
   Result_1,
+  RoadmapMilestone,
   TierQuiz,
   TokenInfo,
   ZenoAiResponse,
   backendInterface,
-} from "../backend";
+ } from "../backend";
 
 // ─── Mock certificate data ────────────────────────────────────────────────────
 
@@ -402,5 +413,110 @@ export const mockBackend: backendInterface = {
     _rating: bigint,
   ): Promise<boolean> {
     return true;
+  },
+
+  // ─── Learning Science APIs ─────────────────────────────────────────────────
+
+  async updateLessonMastery(
+    _lessonId: string,
+    _tier: string,
+    _confidenceScore: number,
+    _conceptCheckerScore: number,
+    _quizScore: number,
+  ): Promise<void> {
+    return;
+  },
+
+  async getLessonMastery(_lessonId: string): Promise<MasteryRecord | null> {
+    return null;
+  },
+
+  async getAllMasteryRecords(): Promise<MasteryRecord[]> {
+    return [];
+  },
+
+  async recordLessonCompleted(_lessonId: string): Promise<MonthlyChallenge> {
+    const month = new Date().toISOString().slice(0, 7);
+    return {
+      month,
+      lessonsCompleted: BigInt(1),
+      targetLessons: BigInt(10),
+      badgeEarned: false,
+    };
+  },
+
+  async getMonthlyChallenge(_month: string): Promise<MonthlyChallenge | null> {
+    return null;
+  },
+
+  async generateProgressShareLink(
+    _tiersCompleted: string[],
+    _certificatesEarned: string[],
+    _masteryLevels: [string, number][],
+  ): Promise<string> {
+    return `mock_share_${generateCertId()}`;
+  },
+
+  async getProgressSnapshot(_shareToken: string): Promise<ProgressSnapshot | null> {
+    return null;
+  },
+
+  async recordLessonTime(
+    _lessonId: string,
+    _tier: string,
+    _timeSeconds: bigint,
+  ): Promise<void> {
+    return;
+  },
+
+  async getLessonOfWeek(): Promise<LessonOfWeek | null> {
+    return null;
+  },
+
+  // ─── Admin A/B & Analytics APIs ───────────────────────────────────────────
+
+  async adminCreateABTest(
+    _passcode: string,
+    _questionId: string,
+    _versionAText: string,
+    _versionBText: string,
+  ): Promise<void> {
+    return;
+  },
+
+  async adminGetABTests(_passcode: string): Promise<ABTestRecord[]> {
+    return [];
+  },
+
+  async adminToggleABVersion(
+    _passcode: string,
+    _questionId: string,
+  ): Promise<void> {
+    return;
+  },
+
+  async recordABTestResult(
+    _questionId: string,
+    _version: string,
+    _passed: boolean,
+  ): Promise<void> {
+    return;
+  },
+
+  async adminGetEngagementData(_passcode: string): Promise<LessonEngagement[]> {
+    return [];
+  },
+
+  async adminGetMonthlyStats(_passcode: string): Promise<[string, bigint][]> {
+    return [];
+  },
+
+  async adminSetLessonOfWeek(
+    _passcode: string,
+    _lessonId: string,
+    _lessonTitle: string,
+    _tier: string,
+  ): Promise<void> {
+    return;
   },
 };

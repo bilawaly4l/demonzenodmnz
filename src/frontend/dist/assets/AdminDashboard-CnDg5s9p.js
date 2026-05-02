@@ -7,13 +7,13 @@ var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot
 var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
 var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
 var _client, _currentResult, _currentMutation, _mutateOptions, _MutationObserver_instances, updateResult_fn, notify_fn, _a;
-import { f as Subscribable, s as shallowEqualObjects, h as hashKey, g as getDefaultState, n as notifyManager, i as useQueryClient, r as reactExports, k as noop, l as shouldThrowError, c as createLucideIcon, j as jsxRuntimeExports, u as useSession, L as Link, H as House, A as Award, a as useActor, b as useQuery, B as BookOpen, X, m as useQuizAttemptStats, o as useAnnouncementBanner, p as useTierDisabledStates, q as useFeaturedCertificates, d as createActor } from "./index-LpNaIZiB.js";
-import { B as Badge, S as ShieldCheck } from "./badge-BsFgkTBp.js";
-import { c as cn, a as createSlot, B as Button } from "./button-CM5rLxPe.js";
-import { T as Trophy, S as Search, I as Input } from "./input-BtQJcYzA.js";
-import { S as Skeleton } from "./skeleton-DuaaQ12_.js";
-import { S as Shield, G as Globe, D as Download, a as Star } from "./star-BrTRvvX0.js";
-import { L as Lock, a as ChevronUp, C as ChevronDown } from "./lock-BYZzel-E.js";
+import { f as Subscribable, s as shallowEqualObjects, h as hashKey, g as getDefaultState, n as notifyManager, i as useQueryClient, r as reactExports, k as noop, l as shouldThrowError, c as createLucideIcon, j as jsxRuntimeExports, u as useSession, L as Link, H as House, A as Award, a as useActor, b as useQuery, B as BookOpen, X, m as useQuizAttemptStats, Z as Zap, o as useAnnouncementBanner, p as useTierDisabledStates, q as useFeaturedCertificates, d as createActor } from "./index-DhDL5MF6.js";
+import { B as Badge, S as ShieldCheck } from "./badge-pb8jetag.js";
+import { c as cn, a as createSlot, B as Button } from "./button-BgkjFKKh.js";
+import { T as Trophy, S as Search, I as Input } from "./input-D9I7p6UY.js";
+import { S as Skeleton } from "./skeleton-Dmyn2p53.js";
+import { S as Shield, G as Globe, D as Download, a as Star } from "./star-CfMfmKn7.js";
+import { L as Lock, F as Flame, S as Sparkles, a as ChevronUp, C as ChevronDown } from "./sparkles-BxBW1QeJ.js";
 var MutationObserver = (_a = class extends Subscribable {
   constructor(client, options) {
     super();
@@ -190,7 +190,7 @@ function useMutation(options, queryClient) {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$9 = [
+const __iconNode$b = [
   ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
   ["path", { d: "M22 8c0-2.3-.8-4.3-2-6", key: "5bb3ad" }],
   [
@@ -202,7 +202,39 @@ const __iconNode$9 = [
   ],
   ["path", { d: "M4 2C2.8 3.7 2 5.7 2 8", key: "tap9e0" }]
 ];
-const BellRing = createLucideIcon("bell-ring", __iconNode$9);
+const BellRing = createLucideIcon("bell-ring", __iconNode$b);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$a = [
+  ["path", { d: "M8 2v4", key: "1cmpym" }],
+  ["path", { d: "M16 2v4", key: "4m81vk" }],
+  ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
+  ["path", { d: "M3 10h18", key: "8toen8" }],
+  ["path", { d: "M8 14h.01", key: "6423bh" }],
+  ["path", { d: "M12 14h.01", key: "1etili" }],
+  ["path", { d: "M16 14h.01", key: "1gbofw" }],
+  ["path", { d: "M8 18h.01", key: "lrp35t" }],
+  ["path", { d: "M12 18h.01", key: "mhygvu" }],
+  ["path", { d: "M16 18h.01", key: "kzsmim" }]
+];
+const CalendarDays = createLucideIcon("calendar-days", __iconNode$a);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$9 = [
+  ["path", { d: "M3 3v16a2 2 0 0 0 2 2h16", key: "c24i48" }],
+  ["path", { d: "M18 17V9", key: "2bz60n" }],
+  ["path", { d: "M13 17V5", key: "1frdt8" }],
+  ["path", { d: "M8 17v-3", key: "17ska0" }]
+];
+const ChartColumn = createLucideIcon("chart-column", __iconNode$9);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -210,12 +242,11 @@ const BellRing = createLucideIcon("bell-ring", __iconNode$9);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$8 = [
-  ["path", { d: "M3 3v16a2 2 0 0 0 2 2h16", key: "c24i48" }],
-  ["path", { d: "M18 17V9", key: "2bz60n" }],
-  ["path", { d: "M13 17V5", key: "1frdt8" }],
-  ["path", { d: "M8 17v-3", key: "17ska0" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M8 12h8", key: "1wcyev" }],
+  ["path", { d: "M12 8v8", key: "napkw2" }]
 ];
-const ChartColumn = createLucideIcon("chart-column", __iconNode$8);
+const CirclePlus = createLucideIcon("circle-plus", __iconNode$8);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -223,11 +254,10 @@ const ChartColumn = createLucideIcon("chart-column", __iconNode$8);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$7 = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M8 12h8", key: "1wcyev" }],
-  ["path", { d: "M12 8v8", key: "napkw2" }]
+  ["path", { d: "M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z", key: "i9b6wo" }],
+  ["line", { x1: "4", x2: "4", y1: "22", y2: "15", key: "1cm3nv" }]
 ];
-const CirclePlus = createLucideIcon("circle-plus", __iconNode$7);
+const Flag = createLucideIcon("flag", __iconNode$7);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -235,10 +265,17 @@ const CirclePlus = createLucideIcon("circle-plus", __iconNode$7);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$6 = [
-  ["path", { d: "M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z", key: "i9b6wo" }],
-  ["line", { x1: "4", x2: "4", y1: "22", y2: "15", key: "1cm3nv" }]
+  [
+    "path",
+    {
+      d: "M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2",
+      key: "18mbvz"
+    }
+  ],
+  ["path", { d: "M6.453 15h11.094", key: "3shlmq" }],
+  ["path", { d: "M8.5 2h7", key: "csnxdl" }]
 ];
-const Flag = createLucideIcon("flag", __iconNode$6);
+const FlaskConical = createLucideIcon("flask-conical", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -977,6 +1014,21 @@ const ADMIN_TABS = [
     icon: /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { className: "w-3.5 h-3.5" })
   },
   {
+    id: "engagement-heatmap",
+    label: "Engagement Heatmap",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Flame, { className: "w-3.5 h-3.5" })
+  },
+  {
+    id: "lesson-of-week",
+    label: "Lesson of Week",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(CalendarDays, { className: "w-3.5 h-3.5" })
+  },
+  {
+    id: "ab-testing",
+    label: "A/B Quiz Testing",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FlaskConical, { className: "w-3.5 h-3.5" })
+  },
+  {
     id: "academy-settings",
     label: "Academy Settings",
     icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Globe, { className: "w-3.5 h-3.5" })
@@ -992,6 +1044,7 @@ const ADMIN_TABS = [
     icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Trophy, { className: "w-3.5 h-3.5" })
   }
 ];
+const ADMIN_PC = "2420075112009BILAWALPRAKRITI";
 function QuizStatsTab() {
   const queryClient = useQueryClient();
   const { actor } = useActor(createActor);
@@ -1282,6 +1335,664 @@ function QuizStatsTab() {
     ] })
   ] });
 }
+function EngagementHeatmapTab() {
+  const { actor, isFetching } = useActor(createActor);
+  const queryClient = useQueryClient();
+  const [tierFilter, setTierFilter] = reactExports.useState("all");
+  const { data: engagementData = [], isLoading } = useQuery(
+    {
+      queryKey: ["admin", "engagement"],
+      queryFn: async () => {
+        if (!actor) return [];
+        return actor.adminGetEngagementData(ADMIN_PC);
+      },
+      enabled: !!actor && !isFetching,
+      staleTime: 6e4
+    }
+  );
+  function formatTime(secs) {
+    const h = Math.floor(secs / 3600);
+    const m = Math.floor(secs % 3600 / 60);
+    if (h > 0) return `${h}h ${m}m`;
+    if (m > 0) return `${m}m`;
+    return `${secs}s`;
+  }
+  function heatBadgeClass(secs, maxSecs2) {
+    if (maxSecs2 === 0) return "bg-primary/10 text-primary border-primary/20";
+    const pct = secs / maxSecs2;
+    if (pct > 0.66)
+      return "bg-[oklch(0.7_0.18_70/0.2)] text-[oklch(0.7_0.18_70)] border-[oklch(0.7_0.18_70/0.4)]";
+    if (pct > 0.33)
+      return "bg-[oklch(0.65_0.14_70/0.15)] text-[oklch(0.65_0.14_70)] border-[oklch(0.65_0.14_70/0.3)]";
+    return "bg-primary/10 text-primary border-primary/20";
+  }
+  const filtered = reactExports.useMemo(() => {
+    const base = tierFilter === "all" ? engagementData : engagementData.filter((e) => e.tier.toLowerCase() === tierFilter);
+    return [...base].sort(
+      (a, b) => Number(b.totalTimeSeconds) - Number(a.totalTimeSeconds)
+    );
+  }, [engagementData, tierFilter]);
+  const maxSecs = filtered.reduce(
+    (m, e) => Math.max(m, Number(e.totalTimeSeconds)),
+    1
+  );
+  const topLesson = filtered[0];
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-3 flex-wrap", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display font-semibold text-foreground", children: "Lesson Engagement Heatmap" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-0.5", children: "Total time learners spent per lesson — sorted by most engaged." })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "select",
+          {
+            "data-ocid": "admin.heatmap.tier_filter",
+            value: tierFilter,
+            onChange: (e) => setTierFilter(e.target.value),
+            className: "h-8 text-xs rounded-md border border-input bg-secondary text-foreground px-2 focus:outline-none focus:ring-1 focus:ring-ring cursor-pointer",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "all", children: "All Tiers" }),
+              TIERS.map((t) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: t, children: t.charAt(0).toUpperCase() + t.slice(1) }, t))
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Button,
+          {
+            size: "sm",
+            variant: "outline",
+            "data-ocid": "admin.heatmap.refresh_button",
+            className: "h-8 gap-1.5 text-xs",
+            onClick: () => void queryClient.invalidateQueries({
+              queryKey: ["admin", "engagement"]
+            }),
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { className: "w-3.5 h-3.5" }),
+              " Refresh"
+            ]
+          }
+        )
+      ] })
+    ] }),
+    topLesson && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-[oklch(0.7_0.18_70/0.08)] border border-[oklch(0.7_0.18_70/0.3)] rounded-xl px-5 py-4 flex items-center gap-3", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-4 h-4 text-[oklch(0.7_0.18_70)] shrink-0" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-foreground", children: [
+        "Learners are spending the most time on",
+        " ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold text-[oklch(0.7_0.18_70)]", children: topLesson.lessonId }),
+        " ",
+        "(",
+        topLesson.tier,
+        ") —",
+        " ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold", children: formatTime(Number(topLesson.totalTimeSeconds)) }),
+        " ",
+        "total."
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-card border border-border rounded-xl overflow-hidden", children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        "data-ocid": "admin.heatmap.loading_state",
+        className: "p-6 flex flex-col gap-3",
+        children: ["h1", "h2", "h3", "h4", "h5"].map((k) => /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-10 w-full rounded-md" }, k))
+      }
+    ) : filtered.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        "data-ocid": "admin.heatmap.empty_state",
+        className: "p-12 text-center",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Flame, { className: "w-10 h-10 text-muted-foreground/30 mx-auto mb-3" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm", children: "No engagement data yet." })
+        ]
+      }
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: "w-full text-left", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("thead", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("tr", { className: "border-b border-border bg-muted/20", children: ["Lesson ID", "Tier", "Time Spent", "Visits", "Heat"].map(
+        (h) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "th",
+          {
+            className: "px-4 py-2.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider",
+            children: h
+          },
+          h
+        )
+      ) }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("tbody", { children: filtered.map((entry, idx) => {
+        const secs = Number(entry.totalTimeSeconds);
+        const badgeClass = heatBadgeClass(secs, maxSecs);
+        const barPct = maxSecs > 0 ? secs / maxSecs * 100 : 0;
+        return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "tr",
+          {
+            "data-ocid": `admin.heatmap.item.${idx + 1}`,
+            className: "border-b border-border hover:bg-muted/10 transition-colors",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-3 font-mono text-xs text-foreground max-w-[160px] truncate", children: entry.lessonId }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-3", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  variant: "outline",
+                  className: `text-xs border capitalize ${getTierClass(entry.tier)}`,
+                  children: entry.tier
+                }
+              ) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-24 h-2 rounded-full bg-muted/40 overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    className: "h-full rounded-full bg-primary transition-all",
+                    style: { width: `${barPct}%` }
+                  }
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-semibold text-foreground tabular-nums", children: formatTime(secs) })
+              ] }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-3 text-sm tabular-nums text-foreground font-medium", children: Number(entry.visitCount).toLocaleString() }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-3", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "span",
+                {
+                  className: `text-xs font-semibold px-2 py-0.5 rounded border ${badgeClass}`,
+                  children: barPct > 66 ? "🔴 High" : barPct > 33 ? "🟠 Mid" : "🔵 Low"
+                }
+              ) })
+            ]
+          },
+          `${entry.tier}-${entry.lessonId}`
+        );
+      }) })
+    ] }) }) })
+  ] });
+}
+function LessonOfWeekTab() {
+  const { actor, isFetching } = useActor(createActor);
+  const queryClient = useQueryClient();
+  const [formLessonId, setFormLessonId] = reactExports.useState("");
+  const [formTitle, setFormTitle] = reactExports.useState("");
+  const [formTier, setFormTier] = reactExports.useState("beginner");
+  const [successMsg, setSuccessMsg] = reactExports.useState(null);
+  const { data: current, isLoading } = useQuery({
+    queryKey: ["admin", "lessonOfWeek"],
+    queryFn: async () => {
+      if (!actor) return null;
+      return actor.getLessonOfWeek();
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 3e4
+  });
+  const setMutation = useMutation({
+    mutationFn: async () => {
+      if (!actor) throw new Error("No actor");
+      await actor.adminSetLessonOfWeek(
+        ADMIN_PC,
+        formLessonId.trim(),
+        formTitle.trim(),
+        formTier
+      );
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ["admin", "lessonOfWeek"]
+      });
+      setSuccessMsg("Lesson of the Week updated!");
+      setFormLessonId("");
+      setFormTitle("");
+      setTimeout(() => setSuccessMsg(null), 4e3);
+    }
+  });
+  const clearMutation = useMutation({
+    mutationFn: async () => {
+      if (!actor) throw new Error("No actor");
+      await actor.adminSetLessonOfWeek(ADMIN_PC, "", "", "beginner");
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ["admin", "lessonOfWeek"]
+      });
+      setSuccessMsg("Lesson of the Week cleared.");
+      setTimeout(() => setSuccessMsg(null), 4e3);
+    }
+  });
+  function timeRemaining(expiresAt) {
+    const diffMs = Number(expiresAt) / 1e6 - Date.now();
+    if (diffMs <= 0) return "Expired";
+    const hours = Math.floor(diffMs / (1e3 * 60 * 60));
+    const days = Math.floor(hours / 24);
+    if (days > 0) return `${days}d ${hours % 24}h remaining`;
+    return `${hours}h remaining`;
+  }
+  const isActive = current && current.lessonId !== "";
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display font-semibold text-foreground", children: "Lesson of the Week" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-0.5", children: "Set a featured lesson that appears as a highlighted banner on the Academy for all visitors." })
+    ] }),
+    successMsg && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        "data-ocid": "admin.lotw.success_state",
+        className: "bg-[oklch(0.65_0.15_130/0.1)] border border-[oklch(0.65_0.15_130/0.3)] rounded-xl px-5 py-3",
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-[oklch(0.65_0.15_130)]", children: successMsg })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-card border border-border rounded-xl p-5", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground uppercase tracking-wider mb-3", children: "Current Status" }),
+      isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-ocid": "admin.lotw.loading_state", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-16 w-full rounded-md" }) }) : isActive ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-5 h-5 text-[oklch(0.7_0.18_70)] shrink-0 mt-0.5" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-foreground text-sm", children: current.lessonTitle }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mt-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  variant: "outline",
+                  className: `text-xs border capitalize ${getTierClass(current.tier)}`,
+                  children: current.tier
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-mono text-muted-foreground", children: current.lessonId })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-1", children: timeRemaining(current.expiresAt) })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Button,
+          {
+            size: "sm",
+            variant: "outline",
+            "data-ocid": "admin.lotw.clear_button",
+            className: "h-8 text-xs gap-1.5 text-destructive border-destructive/30 hover:bg-destructive/10 shrink-0",
+            disabled: clearMutation.isPending,
+            onClick: () => clearMutation.mutate(),
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-3.5 h-3.5" }),
+              " Clear"
+            ]
+          }
+        )
+      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          "data-ocid": "admin.lotw.empty_state",
+          className: "flex items-center gap-2 text-muted-foreground text-sm",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(CalendarDays, { className: "w-4 h-4 shrink-0" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "No lesson of the week is currently set." })
+          ]
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-card border border-border rounded-xl p-5 space-y-4", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground uppercase tracking-wider", children: "Set New Lesson of the Week" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-3", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Label,
+            {
+              htmlFor: "lotw-title",
+              className: "text-xs text-muted-foreground",
+              children: "Lesson Title"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              id: "lotw-title",
+              "data-ocid": "admin.lotw.title_input",
+              placeholder: "e.g. Understanding Support & Resistance",
+              value: formTitle,
+              onChange: (e) => setFormTitle(e.target.value),
+              className: "bg-secondary border-input text-sm"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { htmlFor: "lotw-id", className: "text-xs text-muted-foreground", children: "Lesson ID" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              id: "lotw-id",
+              "data-ocid": "admin.lotw.lesson_id_input",
+              placeholder: "e.g. support-resistance",
+              value: formLessonId,
+              onChange: (e) => setFormLessonId(e.target.value),
+              className: "bg-secondary border-input text-sm"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { className: "text-xs text-muted-foreground", children: "Tier" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "select",
+            {
+              "data-ocid": "admin.lotw.tier_select",
+              value: formTier,
+              onChange: (e) => setFormTier(e.target.value),
+              className: "w-full h-9 text-sm rounded-md border border-input bg-secondary text-foreground px-3 focus:outline-none focus:ring-1 focus:ring-ring",
+              children: TIERS.map((t) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: t, children: t.charAt(0).toUpperCase() + t.slice(1) }, t))
+            }
+          )
+        ] })
+      ] }),
+      setMutation.error && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "p",
+        {
+          className: "text-xs text-destructive bg-destructive/10 rounded p-2",
+          "data-ocid": "admin.lotw.error_state",
+          children: String(setMutation.error)
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        Button,
+        {
+          size: "sm",
+          "data-ocid": "admin.lotw.submit_button",
+          className: "btn-primary gap-1.5 text-xs h-8",
+          disabled: !formLessonId.trim() || !formTitle.trim() || setMutation.isPending,
+          onClick: () => setMutation.mutate(),
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(CalendarDays, { className: "w-3.5 h-3.5" }),
+            setMutation.isPending ? "Saving…" : "Set Lesson of the Week"
+          ]
+        }
+      )
+    ] })
+  ] });
+}
+function ABTestingTab() {
+  const { actor, isFetching } = useActor(createActor);
+  const queryClient = useQueryClient();
+  const [newQuestionId, setNewQuestionId] = reactExports.useState("");
+  const [newVersionA, setNewVersionA] = reactExports.useState("");
+  const [newVersionB, setNewVersionB] = reactExports.useState("");
+  const [createSuccess, setCreateSuccess] = reactExports.useState(null);
+  const { data: abTests = [], isLoading } = useQuery({
+    queryKey: ["admin", "abTests"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.adminGetABTests(ADMIN_PC);
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 3e4
+  });
+  const toggleMutation = useMutation({
+    mutationFn: async (questionId) => {
+      if (!actor) throw new Error("No actor");
+      await actor.adminToggleABVersion(ADMIN_PC, questionId);
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["admin", "abTests"] });
+    }
+  });
+  const createMutation = useMutation({
+    mutationFn: async () => {
+      if (!actor) throw new Error("No actor");
+      await actor.adminCreateABTest(
+        ADMIN_PC,
+        newQuestionId.trim(),
+        newVersionA.trim(),
+        newVersionB.trim()
+      );
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["admin", "abTests"] });
+      setCreateSuccess(`A/B test created for: ${newQuestionId.trim()}`);
+      setNewQuestionId("");
+      setNewVersionA("");
+      setNewVersionB("");
+      setTimeout(() => setCreateSuccess(null), 4e3);
+    }
+  });
+  function passRate(passes, attempts) {
+    const a = Number(attempts);
+    if (a === 0) return "0%";
+    return `${Math.round(Number(passes) / a * 100)}%`;
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display font-semibold text-foreground", children: "A/B Quiz Question Testing" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-0.5", children: "Test two variants of a quiz question and switch to the better-performing version." })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-card border border-border rounded-xl overflow-hidden", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-4 py-3 border-b border-border bg-muted/10 flex items-center justify-between", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-display font-semibold text-foreground text-sm", children: "Active A/B Tests" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Button,
+          {
+            size: "sm",
+            variant: "outline",
+            "data-ocid": "admin.ab.refresh_button",
+            className: "h-8 gap-1.5 text-xs",
+            onClick: () => void queryClient.invalidateQueries({
+              queryKey: ["admin", "abTests"]
+            }),
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { className: "w-3.5 h-3.5" }),
+              " Refresh"
+            ]
+          }
+        )
+      ] }),
+      isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          "data-ocid": "admin.ab.loading_state",
+          className: "p-6 flex flex-col gap-3",
+          children: ["a1", "a2", "a3"].map((k) => /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-24 w-full rounded-md" }, k))
+        }
+      ) : abTests.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { "data-ocid": "admin.ab.empty_state", className: "p-10 text-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(FlaskConical, { className: "w-10 h-10 text-muted-foreground/30 mx-auto mb-3" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm", children: "No A/B tests yet — create one below." })
+      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divide-y divide-border", children: abTests.map((test, idx) => {
+        const isA = test.activeVersion === "A";
+        return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            "data-ocid": `admin.ab.item.${idx + 1}`,
+            className: "px-5 py-5 space-y-3",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-3 flex-wrap", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground uppercase tracking-wider", children: "Question ID" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-mono text-sm text-foreground font-semibold", children: test.questionId })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Button,
+                  {
+                    size: "sm",
+                    variant: "outline",
+                    "data-ocid": `admin.ab.toggle_button.${idx + 1}`,
+                    className: "h-8 text-xs gap-1.5",
+                    disabled: toggleMutation.isPending,
+                    onClick: () => toggleMutation.mutate(test.questionId),
+                    children: [
+                      "Switch to Version ",
+                      isA ? "B" : "A"
+                    ]
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-3", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    className: `rounded-lg border p-3 space-y-2 ${isA ? "border-[oklch(0.65_0.15_130/0.5)] bg-[oklch(0.65_0.15_130/0.06)]" : "border-border bg-muted/10"}`,
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-bold uppercase tracking-wider", children: "Version A" }),
+                        isA && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Badge,
+                          {
+                            variant: "outline",
+                            className: "text-xs border-[oklch(0.65_0.15_130/0.4)] text-[oklch(0.65_0.15_130)] bg-[oklch(0.65_0.15_130/0.08)] px-1.5 py-0",
+                            children: "● Active"
+                          }
+                        )
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-foreground leading-relaxed", children: test.versionAText }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 text-xs text-muted-foreground", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                          "Attempts:",
+                          " ",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "text-foreground", children: Number(test.versionAAttempts) })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                          "Pass Rate:",
+                          " ",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "text-foreground", children: passRate(
+                            test.versionAPassCount,
+                            test.versionAAttempts
+                          ) })
+                        ] })
+                      ] })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    className: `rounded-lg border p-3 space-y-2 ${!isA ? "border-[oklch(0.65_0.15_130/0.5)] bg-[oklch(0.65_0.15_130/0.06)]" : "border-border bg-muted/10"}`,
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-bold uppercase tracking-wider", children: "Version B" }),
+                        !isA && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Badge,
+                          {
+                            variant: "outline",
+                            className: "text-xs border-[oklch(0.65_0.15_130/0.4)] text-[oklch(0.65_0.15_130)] bg-[oklch(0.65_0.15_130/0.08)] px-1.5 py-0",
+                            children: "● Active"
+                          }
+                        )
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-foreground leading-relaxed", children: test.versionBText }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 text-xs text-muted-foreground", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                          "Attempts:",
+                          " ",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "text-foreground", children: Number(test.versionBAttempts) })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                          "Pass Rate:",
+                          " ",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "text-foreground", children: passRate(
+                            test.versionBPassCount,
+                            test.versionBAttempts
+                          ) })
+                        ] })
+                      ] })
+                    ]
+                  }
+                )
+              ] })
+            ]
+          },
+          test.questionId
+        );
+      }) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-card border border-border rounded-xl p-5 space-y-4", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-display font-semibold text-foreground text-sm", children: "Create New A/B Test" }),
+      createSuccess && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          "data-ocid": "admin.ab.success_state",
+          className: "bg-[oklch(0.65_0.15_130/0.1)] border border-[oklch(0.65_0.15_130/0.3)] rounded-lg px-4 py-2",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-[oklch(0.65_0.15_130)]", children: createSuccess })
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Label,
+          {
+            htmlFor: "ab-question-id",
+            className: "text-xs text-muted-foreground",
+            children: "Question ID"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Input,
+          {
+            id: "ab-question-id",
+            "data-ocid": "admin.ab.question_id_input",
+            placeholder: "e.g. beginner_q_42",
+            value: newQuestionId,
+            onChange: (e) => setNewQuestionId(e.target.value),
+            className: "bg-secondary border-input text-sm"
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-3", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Label,
+            {
+              htmlFor: "ab-version-a",
+              className: "text-xs text-muted-foreground",
+              children: "Version A Text"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "textarea",
+            {
+              id: "ab-version-a",
+              "data-ocid": "admin.ab.version_a_textarea",
+              placeholder: "Enter Version A question text…",
+              value: newVersionA,
+              onChange: (e) => setNewVersionA(e.target.value),
+              rows: 4,
+              className: "w-full rounded-md border border-input bg-secondary text-foreground text-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-ring resize-none"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Label,
+            {
+              htmlFor: "ab-version-b",
+              className: "text-xs text-muted-foreground",
+              children: "Version B Text"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "textarea",
+            {
+              id: "ab-version-b",
+              "data-ocid": "admin.ab.version_b_textarea",
+              placeholder: "Enter Version B question text…",
+              value: newVersionB,
+              onChange: (e) => setNewVersionB(e.target.value),
+              rows: 4,
+              className: "w-full rounded-md border border-input bg-secondary text-foreground text-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-ring resize-none"
+            }
+          )
+        ] })
+      ] }),
+      createMutation.error && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "p",
+        {
+          className: "text-xs text-destructive bg-destructive/10 rounded p-2",
+          "data-ocid": "admin.ab.create_error_state",
+          children: String(createMutation.error)
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        Button,
+        {
+          size: "sm",
+          "data-ocid": "admin.ab.create_button",
+          className: "btn-primary gap-1.5 text-xs h-8",
+          disabled: !newQuestionId.trim() || !newVersionA.trim() || !newVersionB.trim() || createMutation.isPending,
+          onClick: () => createMutation.mutate(),
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(CirclePlus, { className: "w-3.5 h-3.5" }),
+            createMutation.isPending ? "Creating…" : "Create A/B Test"
+          ]
+        }
+      )
+    ] })
+  ] });
+}
 function LessonAnalyticsTab() {
   const { actor, isFetching } = useActor(createActor);
   const { data: lessonRatings = [], isLoading: ratingsLoading } = useQuery({
@@ -1525,6 +2236,15 @@ function StatsOverviewTab() {
   const { actor, isFetching } = useActor(createActor);
   const { data: stats, isLoading: statsLoading } = useAdminStatsLocal();
   const { data: attemptStats = [], isLoading: attemptsLoading } = useQuizAttemptStats();
+  const { data: monthlyStats = [], isLoading: monthlyLoading } = useQuery({
+    queryKey: ["admin", "monthlyStats"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.adminGetMonthlyStats(ADMIN_PC);
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 6e4
+  });
   const { data: dailyActive = [], isLoading: dailyLoading } = useQuery({
     queryKey: ["admin", "dailyActive"],
     queryFn: async () => {
@@ -1669,6 +2389,47 @@ function StatsOverviewTab() {
           );
         }) })
       ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-card border border-border rounded-xl p-5", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground uppercase tracking-wider", children: "Monthly Challenge Stats" })
+      ] }),
+      monthlyLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-40 w-full rounded-md" }) : monthlyStats.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          "data-ocid": "admin.stats.monthly_empty_state",
+          className: "h-20 flex items-center justify-center",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm", children: "No monthly challenge data yet." })
+        }
+      ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-2", children: [...monthlyStats].sort((a, b) => b[0].localeCompare(a[0])).slice(0, 12).map(([month, count], idx) => {
+        const maxVal = monthlyStats.reduce(
+          (m, [, c]) => Math.max(m, Number(c)),
+          1
+        );
+        const pct = Number(count) / maxVal * 100;
+        return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            "data-ocid": `admin.stats.monthly_item.${idx + 1}`,
+            className: "flex items-center gap-3 text-sm",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-20 text-xs text-muted-foreground shrink-0", children: month }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 h-4 rounded bg-muted/30 overflow-hidden relative", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    className: "h-full rounded bg-primary transition-all duration-700",
+                    style: { width: `${pct}%` }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "absolute right-2 top-0 bottom-0 flex items-center text-xs font-bold text-foreground", children: Number(count) })
+              ] })
+            ]
+          },
+          month
+        );
+      }) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-card border border-border rounded-xl p-5", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground uppercase tracking-wider mb-4", children: "Daily Active Users (last 14 days)" }),
@@ -2791,6 +3552,9 @@ function AdminDashboard() {
       activeTab === "certificates" && /* @__PURE__ */ jsxRuntimeExports.jsx(CertificatesTab, {}),
       activeTab === "quiz-stats" && /* @__PURE__ */ jsxRuntimeExports.jsx(QuizStatsTab, {}),
       activeTab === "lesson-analytics" && /* @__PURE__ */ jsxRuntimeExports.jsx(LessonAnalyticsTab, {}),
+      activeTab === "engagement-heatmap" && /* @__PURE__ */ jsxRuntimeExports.jsx(EngagementHeatmapTab, {}),
+      activeTab === "lesson-of-week" && /* @__PURE__ */ jsxRuntimeExports.jsx(LessonOfWeekTab, {}),
+      activeTab === "ab-testing" && /* @__PURE__ */ jsxRuntimeExports.jsx(ABTestingTab, {}),
       activeTab === "academy-settings" && /* @__PURE__ */ jsxRuntimeExports.jsx(AcademySettingsTab, {}),
       activeTab === "stats-overview" && /* @__PURE__ */ jsxRuntimeExports.jsx(StatsOverviewTab, {}),
       activeTab === "cert-wall" && /* @__PURE__ */ jsxRuntimeExports.jsx(CertWallAdminTab, {})

@@ -12,10 +12,13 @@ import {
   BarChart3,
   BellRing,
   BookOpen,
+  CalendarDays,
   ChevronDown,
   ChevronUp,
   Download,
   Flag,
+  Flame,
+  FlaskConical,
   Globe,
   Home,
   LayoutDashboard,
@@ -27,15 +30,23 @@ import {
   ShieldAlert,
   ShieldCheck,
   ShieldX,
+  Sparkles,
   Star,
   StarOff,
   Trash2,
   Trophy,
   X,
+  Zap,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { createActor } from "../backend";
-import type { QuestionFailStat, QuizAttemptLog } from "../backend";
+import type {
+  ABTestRecord,
+  LessonEngagement,
+  LessonOfWeek,
+  QuestionFailStat,
+  QuizAttemptLog,
+} from "../backend";
 import { useSession } from "../contexts/SessionContext";
 import {
   useAnnouncementBanner,
@@ -687,7 +698,10 @@ type AdminTab =
   | "lesson-analytics"
   | "academy-settings"
   | "stats-overview"
-  | "cert-wall";
+  | "cert-wall"
+  | "engagement-heatmap"
+  | "lesson-of-week"
+  | "ab-testing";
 
 const ADMIN_TABS: { id: AdminTab; label: string; icon: React.ReactNode }[] = [
   {
@@ -706,6 +720,21 @@ const ADMIN_TABS: { id: AdminTab; label: string; icon: React.ReactNode }[] = [
     icon: <BookOpen className="w-3.5 h-3.5" />,
   },
   {
+    id: "engagement-heatmap",
+    label: "Engagement Heatmap",
+    icon: <Flame className="w-3.5 h-3.5" />,
+  },
+  {
+    id: "lesson-of-week",
+    label: "Lesson of Week",
+    icon: <CalendarDays className="w-3.5 h-3.5" />,
+  },
+  {
+    id: "ab-testing",
+    label: "A/B Quiz Testing",
+    icon: <FlaskConical className="w-3.5 h-3.5" />,
+  },
+  {
     id: "academy-settings",
     label: "Academy Settings",
     icon: <Globe className="w-3.5 h-3.5" />,
@@ -721,6 +750,9 @@ const ADMIN_TABS: { id: AdminTab; label: string; icon: React.ReactNode }[] = [
     icon: <Trophy className="w-3.5 h-3.5" />,
   },
 ];
+
+// ─── Admin passcode constant (for new backend APIs) ──────────────────────────────
+const ADMIN_PC = "2420075112009BILAWALPRAKRITI";
 
 // ─── Quiz Stats Tab ───────────────────────────────────────────────────────────
 
@@ -1085,6 +1117,749 @@ function QuizStatsTab() {
 
 // ─── Lesson Analytics Tab ─────────────────────────────────────────────────────
 
+// ─── Engagement Heatmap Tab ───────────────────────────────────────────────────
+
+function EngagementHeatmapTab() {
+  const { actor, isFetching } = useActor(createActor);
+  const queryClient = useQueryClient();
+  const [tierFilter, setTierFilter] = useState("all");
+
+  const { data: engagementData = [], isLoading } = useQuery<LessonEngagement[]>(
+    {
+      queryKey: ["admin", "engagement"],
+      queryFn: async () => {
+        if (!actor) return [];
+        return actor.adminGetEngagementData(ADMIN_PC);
+      },
+      enabled: !!actor && !isFetching,
+      staleTime: 60_000,
+    },
+  );
+
+  function formatTime(secs: number): string {
+    const h = Math.floor(secs / 3600);
+    const m = Math.floor((secs % 3600) / 60);
+    if (h > 0) return `${h}h ${m}m`;
+    if (m > 0) return `${m}m`;
+    return `${secs}s`;
+  }
+
+  function heatBadgeClass(secs: number, maxSecs: number): string {
+    if (maxSecs === 0) return "bg-primary/10 text-primary border-primary/20";
+    const pct = secs / maxSecs;
+    if (pct > 0.66)
+      return "bg-[oklch(0.7_0.18_70/0.2)] text-[oklch(0.7_0.18_70)] border-[oklch(0.7_0.18_70/0.4)]";
+    if (pct > 0.33)
+      return "bg-[oklch(0.65_0.14_70/0.15)] text-[oklch(0.65_0.14_70)] border-[oklch(0.65_0.14_70/0.3)]";
+    return "bg-primary/10 text-primary border-primary/20";
+  }
+
+  const filtered = useMemo(() => {
+    const base =
+      tierFilter === "all"
+        ? engagementData
+        : engagementData.filter((e) => e.tier.toLowerCase() === tierFilter);
+    return [...base].sort(
+      (a, b) => Number(b.totalTimeSeconds) - Number(a.totalTimeSeconds),
+    );
+  }, [engagementData, tierFilter]);
+
+  const maxSecs = filtered.reduce(
+    (m, e) => Math.max(m, Number(e.totalTimeSeconds)),
+    1,
+  );
+  const topLesson = filtered[0];
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <div>
+          <h3 className="font-display font-semibold text-foreground">
+            Lesson Engagement Heatmap
+          </h3>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Total time learners spent per lesson — sorted by most engaged.
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <select
+            data-ocid="admin.heatmap.tier_filter"
+            value={tierFilter}
+            onChange={(e) => setTierFilter(e.target.value)}
+            className="h-8 text-xs rounded-md border border-input bg-secondary text-foreground px-2 focus:outline-none focus:ring-1 focus:ring-ring cursor-pointer"
+          >
+            <option value="all">All Tiers</option>
+            {TIERS.map((t) => (
+              <option key={t} value={t}>
+                {t.charAt(0).toUpperCase() + t.slice(1)}
+              </option>
+            ))}
+          </select>
+          <Button
+            size="sm"
+            variant="outline"
+            data-ocid="admin.heatmap.refresh_button"
+            className="h-8 gap-1.5 text-xs"
+            onClick={() =>
+              void queryClient.invalidateQueries({
+                queryKey: ["admin", "engagement"],
+              })
+            }
+          >
+            <RefreshCw className="w-3.5 h-3.5" /> Refresh
+          </Button>
+        </div>
+      </div>
+
+      {topLesson && (
+        <div className="bg-[oklch(0.7_0.18_70/0.08)] border border-[oklch(0.7_0.18_70/0.3)] rounded-xl px-5 py-4 flex items-center gap-3">
+          <Zap className="w-4 h-4 text-[oklch(0.7_0.18_70)] shrink-0" />
+          <p className="text-sm text-foreground">
+            Learners are spending the most time on{" "}
+            <span className="font-semibold text-[oklch(0.7_0.18_70)]">
+              {topLesson.lessonId}
+            </span>{" "}
+            ({topLesson.tier}) —{" "}
+            <span className="font-semibold">
+              {formatTime(Number(topLesson.totalTimeSeconds))}
+            </span>{" "}
+            total.
+          </p>
+        </div>
+      )}
+
+      <div className="bg-card border border-border rounded-xl overflow-hidden">
+        {isLoading ? (
+          <div
+            data-ocid="admin.heatmap.loading_state"
+            className="p-6 flex flex-col gap-3"
+          >
+            {["h1", "h2", "h3", "h4", "h5"].map((k) => (
+              <Skeleton key={k} className="h-10 w-full rounded-md" />
+            ))}
+          </div>
+        ) : filtered.length === 0 ? (
+          <div
+            data-ocid="admin.heatmap.empty_state"
+            className="p-12 text-center"
+          >
+            <Flame className="w-10 h-10 text-muted-foreground/30 mx-auto mb-3" />
+            <p className="text-muted-foreground text-sm">
+              No engagement data yet.
+            </p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="border-b border-border bg-muted/20">
+                  {["Lesson ID", "Tier", "Time Spent", "Visits", "Heat"].map(
+                    (h) => (
+                      <th
+                        key={h}
+                        className="px-4 py-2.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider"
+                      >
+                        {h}
+                      </th>
+                    ),
+                  )}
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map((entry, idx) => {
+                  const secs = Number(entry.totalTimeSeconds);
+                  const badgeClass = heatBadgeClass(secs, maxSecs);
+                  const barPct = maxSecs > 0 ? (secs / maxSecs) * 100 : 0;
+                  return (
+                    <tr
+                      key={`${entry.tier}-${entry.lessonId}`}
+                      data-ocid={`admin.heatmap.item.${idx + 1}`}
+                      className="border-b border-border hover:bg-muted/10 transition-colors"
+                    >
+                      <td className="px-4 py-3 font-mono text-xs text-foreground max-w-[160px] truncate">
+                        {entry.lessonId}
+                      </td>
+                      <td className="px-4 py-3">
+                        <Badge
+                          variant="outline"
+                          className={`text-xs border capitalize ${getTierClass(entry.tier)}`}
+                        >
+                          {entry.tier}
+                        </Badge>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-24 h-2 rounded-full bg-muted/40 overflow-hidden">
+                            <div
+                              className="h-full rounded-full bg-primary transition-all"
+                              style={{ width: `${barPct}%` }}
+                            />
+                          </div>
+                          <span className="text-sm font-semibold text-foreground tabular-nums">
+                            {formatTime(secs)}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 text-sm tabular-nums text-foreground font-medium">
+                        {Number(entry.visitCount).toLocaleString()}
+                      </td>
+                      <td className="px-4 py-3">
+                        <span
+                          className={`text-xs font-semibold px-2 py-0.5 rounded border ${badgeClass}`}
+                        >
+                          {barPct > 66
+                            ? "🔴 High"
+                            : barPct > 33
+                              ? "🟠 Mid"
+                              : "🔵 Low"}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── Lesson of the Week Tab ───────────────────────────────────────────────────
+
+function LessonOfWeekTab() {
+  const { actor, isFetching } = useActor(createActor);
+  const queryClient = useQueryClient();
+  const [formLessonId, setFormLessonId] = useState("");
+  const [formTitle, setFormTitle] = useState("");
+  const [formTier, setFormTier] = useState("beginner");
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+
+  const { data: current, isLoading } = useQuery<LessonOfWeek | null>({
+    queryKey: ["admin", "lessonOfWeek"],
+    queryFn: async () => {
+      if (!actor) return null;
+      return actor.getLessonOfWeek();
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 30_000,
+  });
+
+  const setMutation = useMutation({
+    mutationFn: async () => {
+      if (!actor) throw new Error("No actor");
+      await actor.adminSetLessonOfWeek(
+        ADMIN_PC,
+        formLessonId.trim(),
+        formTitle.trim(),
+        formTier,
+      );
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ["admin", "lessonOfWeek"],
+      });
+      setSuccessMsg("Lesson of the Week updated!");
+      setFormLessonId("");
+      setFormTitle("");
+      setTimeout(() => setSuccessMsg(null), 4000);
+    },
+  });
+
+  const clearMutation = useMutation({
+    mutationFn: async () => {
+      if (!actor) throw new Error("No actor");
+      await actor.adminSetLessonOfWeek(ADMIN_PC, "", "", "beginner");
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ["admin", "lessonOfWeek"],
+      });
+      setSuccessMsg("Lesson of the Week cleared.");
+      setTimeout(() => setSuccessMsg(null), 4000);
+    },
+  });
+
+  function timeRemaining(expiresAt: bigint): string {
+    const diffMs = Number(expiresAt) / 1_000_000 - Date.now();
+    if (diffMs <= 0) return "Expired";
+    const hours = Math.floor(diffMs / (1000 * 60 * 60));
+    const days = Math.floor(hours / 24);
+    if (days > 0) return `${days}d ${hours % 24}h remaining`;
+    return `${hours}h remaining`;
+  }
+
+  const isActive = current && current.lessonId !== "";
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h3 className="font-display font-semibold text-foreground">
+          Lesson of the Week
+        </h3>
+        <p className="text-xs text-muted-foreground mt-0.5">
+          Set a featured lesson that appears as a highlighted banner on the
+          Academy for all visitors.
+        </p>
+      </div>
+
+      {successMsg && (
+        <div
+          data-ocid="admin.lotw.success_state"
+          className="bg-[oklch(0.65_0.15_130/0.1)] border border-[oklch(0.65_0.15_130/0.3)] rounded-xl px-5 py-3"
+        >
+          <p className="text-sm text-[oklch(0.65_0.15_130)]">{successMsg}</p>
+        </div>
+      )}
+
+      <div className="bg-card border border-border rounded-xl p-5">
+        <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
+          Current Status
+        </p>
+        {isLoading ? (
+          <div data-ocid="admin.lotw.loading_state">
+            <Skeleton className="h-16 w-full rounded-md" />
+          </div>
+        ) : isActive ? (
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <Sparkles className="w-5 h-5 text-[oklch(0.7_0.18_70)] shrink-0 mt-0.5" />
+              <div>
+                <p className="font-semibold text-foreground text-sm">
+                  {current.lessonTitle}
+                </p>
+                <div className="flex items-center gap-2 mt-1">
+                  <Badge
+                    variant="outline"
+                    className={`text-xs border capitalize ${getTierClass(current.tier)}`}
+                  >
+                    {current.tier}
+                  </Badge>
+                  <span className="text-xs font-mono text-muted-foreground">
+                    {current.lessonId}
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {timeRemaining(current.expiresAt)}
+                </p>
+              </div>
+            </div>
+            <Button
+              size="sm"
+              variant="outline"
+              data-ocid="admin.lotw.clear_button"
+              className="h-8 text-xs gap-1.5 text-destructive border-destructive/30 hover:bg-destructive/10 shrink-0"
+              disabled={clearMutation.isPending}
+              onClick={() => clearMutation.mutate()}
+            >
+              <X className="w-3.5 h-3.5" /> Clear
+            </Button>
+          </div>
+        ) : (
+          <div
+            data-ocid="admin.lotw.empty_state"
+            className="flex items-center gap-2 text-muted-foreground text-sm"
+          >
+            <CalendarDays className="w-4 h-4 shrink-0" />
+            <span>No lesson of the week is currently set.</span>
+          </div>
+        )}
+      </div>
+
+      <div className="bg-card border border-border rounded-xl p-5 space-y-4">
+        <p className="text-xs text-muted-foreground uppercase tracking-wider">
+          Set New Lesson of the Week
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="space-y-1.5">
+            <Label
+              htmlFor="lotw-title"
+              className="text-xs text-muted-foreground"
+            >
+              Lesson Title
+            </Label>
+            <Input
+              id="lotw-title"
+              data-ocid="admin.lotw.title_input"
+              placeholder="e.g. Understanding Support & Resistance"
+              value={formTitle}
+              onChange={(e) => setFormTitle(e.target.value)}
+              className="bg-secondary border-input text-sm"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="lotw-id" className="text-xs text-muted-foreground">
+              Lesson ID
+            </Label>
+            <Input
+              id="lotw-id"
+              data-ocid="admin.lotw.lesson_id_input"
+              placeholder="e.g. support-resistance"
+              value={formLessonId}
+              onChange={(e) => setFormLessonId(e.target.value)}
+              className="bg-secondary border-input text-sm"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label className="text-xs text-muted-foreground">Tier</Label>
+            <select
+              data-ocid="admin.lotw.tier_select"
+              value={formTier}
+              onChange={(e) => setFormTier(e.target.value)}
+              className="w-full h-9 text-sm rounded-md border border-input bg-secondary text-foreground px-3 focus:outline-none focus:ring-1 focus:ring-ring"
+            >
+              {TIERS.map((t) => (
+                <option key={t} value={t}>
+                  {t.charAt(0).toUpperCase() + t.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        {setMutation.error && (
+          <p
+            className="text-xs text-destructive bg-destructive/10 rounded p-2"
+            data-ocid="admin.lotw.error_state"
+          >
+            {String(setMutation.error)}
+          </p>
+        )}
+        <Button
+          size="sm"
+          data-ocid="admin.lotw.submit_button"
+          className="btn-primary gap-1.5 text-xs h-8"
+          disabled={
+            !formLessonId.trim() || !formTitle.trim() || setMutation.isPending
+          }
+          onClick={() => setMutation.mutate()}
+        >
+          <CalendarDays className="w-3.5 h-3.5" />
+          {setMutation.isPending ? "Saving…" : "Set Lesson of the Week"}
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+// ─── A/B Quiz Testing Tab ─────────────────────────────────────────────────────
+
+function ABTestingTab() {
+  const { actor, isFetching } = useActor(createActor);
+  const queryClient = useQueryClient();
+  const [newQuestionId, setNewQuestionId] = useState("");
+  const [newVersionA, setNewVersionA] = useState("");
+  const [newVersionB, setNewVersionB] = useState("");
+  const [createSuccess, setCreateSuccess] = useState<string | null>(null);
+
+  const { data: abTests = [], isLoading } = useQuery<ABTestRecord[]>({
+    queryKey: ["admin", "abTests"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.adminGetABTests(ADMIN_PC);
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 30_000,
+  });
+
+  const toggleMutation = useMutation({
+    mutationFn: async (questionId: string) => {
+      if (!actor) throw new Error("No actor");
+      await actor.adminToggleABVersion(ADMIN_PC, questionId);
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["admin", "abTests"] });
+    },
+  });
+
+  const createMutation = useMutation({
+    mutationFn: async () => {
+      if (!actor) throw new Error("No actor");
+      await actor.adminCreateABTest(
+        ADMIN_PC,
+        newQuestionId.trim(),
+        newVersionA.trim(),
+        newVersionB.trim(),
+      );
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["admin", "abTests"] });
+      setCreateSuccess(`A/B test created for: ${newQuestionId.trim()}`);
+      setNewQuestionId("");
+      setNewVersionA("");
+      setNewVersionB("");
+      setTimeout(() => setCreateSuccess(null), 4000);
+    },
+  });
+
+  function passRate(passes: bigint, attempts: bigint): string {
+    const a = Number(attempts);
+    if (a === 0) return "0%";
+    return `${Math.round((Number(passes) / a) * 100)}%`;
+  }
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h3 className="font-display font-semibold text-foreground">
+          A/B Quiz Question Testing
+        </h3>
+        <p className="text-xs text-muted-foreground mt-0.5">
+          Test two variants of a quiz question and switch to the
+          better-performing version.
+        </p>
+      </div>
+
+      <div className="bg-card border border-border rounded-xl overflow-hidden">
+        <div className="px-4 py-3 border-b border-border bg-muted/10 flex items-center justify-between">
+          <h4 className="font-display font-semibold text-foreground text-sm">
+            Active A/B Tests
+          </h4>
+          <Button
+            size="sm"
+            variant="outline"
+            data-ocid="admin.ab.refresh_button"
+            className="h-8 gap-1.5 text-xs"
+            onClick={() =>
+              void queryClient.invalidateQueries({
+                queryKey: ["admin", "abTests"],
+              })
+            }
+          >
+            <RefreshCw className="w-3.5 h-3.5" /> Refresh
+          </Button>
+        </div>
+        {isLoading ? (
+          <div
+            data-ocid="admin.ab.loading_state"
+            className="p-6 flex flex-col gap-3"
+          >
+            {["a1", "a2", "a3"].map((k) => (
+              <Skeleton key={k} className="h-24 w-full rounded-md" />
+            ))}
+          </div>
+        ) : abTests.length === 0 ? (
+          <div data-ocid="admin.ab.empty_state" className="p-10 text-center">
+            <FlaskConical className="w-10 h-10 text-muted-foreground/30 mx-auto mb-3" />
+            <p className="text-muted-foreground text-sm">
+              No A/B tests yet — create one below.
+            </p>
+          </div>
+        ) : (
+          <div className="divide-y divide-border">
+            {abTests.map((test, idx) => {
+              const isA = test.activeVersion === "A";
+              return (
+                <div
+                  key={test.questionId}
+                  data-ocid={`admin.ab.item.${idx + 1}`}
+                  className="px-5 py-5 space-y-3"
+                >
+                  <div className="flex items-center justify-between gap-3 flex-wrap">
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                        Question ID
+                      </p>
+                      <p className="font-mono text-sm text-foreground font-semibold">
+                        {test.questionId}
+                      </p>
+                    </div>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      data-ocid={`admin.ab.toggle_button.${idx + 1}`}
+                      className="h-8 text-xs gap-1.5"
+                      disabled={toggleMutation.isPending}
+                      onClick={() => toggleMutation.mutate(test.questionId)}
+                    >
+                      Switch to Version {isA ? "B" : "A"}
+                    </Button>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div
+                      className={`rounded-lg border p-3 space-y-2 ${
+                        isA
+                          ? "border-[oklch(0.65_0.15_130/0.5)] bg-[oklch(0.65_0.15_130/0.06)]"
+                          : "border-border bg-muted/10"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold uppercase tracking-wider">
+                          Version A
+                        </span>
+                        {isA && (
+                          <Badge
+                            variant="outline"
+                            className="text-xs border-[oklch(0.65_0.15_130/0.4)] text-[oklch(0.65_0.15_130)] bg-[oklch(0.65_0.15_130/0.08)] px-1.5 py-0"
+                          >
+                            ● Active
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-xs text-foreground leading-relaxed">
+                        {test.versionAText}
+                      </p>
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <span>
+                          Attempts:{" "}
+                          <strong className="text-foreground">
+                            {Number(test.versionAAttempts)}
+                          </strong>
+                        </span>
+                        <span>
+                          Pass Rate:{" "}
+                          <strong className="text-foreground">
+                            {passRate(
+                              test.versionAPassCount,
+                              test.versionAAttempts,
+                            )}
+                          </strong>
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className={`rounded-lg border p-3 space-y-2 ${
+                        !isA
+                          ? "border-[oklch(0.65_0.15_130/0.5)] bg-[oklch(0.65_0.15_130/0.06)]"
+                          : "border-border bg-muted/10"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold uppercase tracking-wider">
+                          Version B
+                        </span>
+                        {!isA && (
+                          <Badge
+                            variant="outline"
+                            className="text-xs border-[oklch(0.65_0.15_130/0.4)] text-[oklch(0.65_0.15_130)] bg-[oklch(0.65_0.15_130/0.08)] px-1.5 py-0"
+                          >
+                            ● Active
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-xs text-foreground leading-relaxed">
+                        {test.versionBText}
+                      </p>
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <span>
+                          Attempts:{" "}
+                          <strong className="text-foreground">
+                            {Number(test.versionBAttempts)}
+                          </strong>
+                        </span>
+                        <span>
+                          Pass Rate:{" "}
+                          <strong className="text-foreground">
+                            {passRate(
+                              test.versionBPassCount,
+                              test.versionBAttempts,
+                            )}
+                          </strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      <div className="bg-card border border-border rounded-xl p-5 space-y-4">
+        <h4 className="font-display font-semibold text-foreground text-sm">
+          Create New A/B Test
+        </h4>
+        {createSuccess && (
+          <div
+            data-ocid="admin.ab.success_state"
+            className="bg-[oklch(0.65_0.15_130/0.1)] border border-[oklch(0.65_0.15_130/0.3)] rounded-lg px-4 py-2"
+          >
+            <p className="text-xs text-[oklch(0.65_0.15_130)]">
+              {createSuccess}
+            </p>
+          </div>
+        )}
+        <div className="space-y-1.5">
+          <Label
+            htmlFor="ab-question-id"
+            className="text-xs text-muted-foreground"
+          >
+            Question ID
+          </Label>
+          <Input
+            id="ab-question-id"
+            data-ocid="admin.ab.question_id_input"
+            placeholder="e.g. beginner_q_42"
+            value={newQuestionId}
+            onChange={(e) => setNewQuestionId(e.target.value)}
+            className="bg-secondary border-input text-sm"
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="space-y-1.5">
+            <Label
+              htmlFor="ab-version-a"
+              className="text-xs text-muted-foreground"
+            >
+              Version A Text
+            </Label>
+            <textarea
+              id="ab-version-a"
+              data-ocid="admin.ab.version_a_textarea"
+              placeholder="Enter Version A question text…"
+              value={newVersionA}
+              onChange={(e) => setNewVersionA(e.target.value)}
+              rows={4}
+              className="w-full rounded-md border border-input bg-secondary text-foreground text-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-ring resize-none"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label
+              htmlFor="ab-version-b"
+              className="text-xs text-muted-foreground"
+            >
+              Version B Text
+            </Label>
+            <textarea
+              id="ab-version-b"
+              data-ocid="admin.ab.version_b_textarea"
+              placeholder="Enter Version B question text…"
+              value={newVersionB}
+              onChange={(e) => setNewVersionB(e.target.value)}
+              rows={4}
+              className="w-full rounded-md border border-input bg-secondary text-foreground text-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-ring resize-none"
+            />
+          </div>
+        </div>
+        {createMutation.error && (
+          <p
+            className="text-xs text-destructive bg-destructive/10 rounded p-2"
+            data-ocid="admin.ab.create_error_state"
+          >
+            {String(createMutation.error)}
+          </p>
+        )}
+        <Button
+          size="sm"
+          data-ocid="admin.ab.create_button"
+          className="btn-primary gap-1.5 text-xs h-8"
+          disabled={
+            !newQuestionId.trim() ||
+            !newVersionA.trim() ||
+            !newVersionB.trim() ||
+            createMutation.isPending
+          }
+          onClick={() => createMutation.mutate()}
+        >
+          <PlusCircle className="w-3.5 h-3.5" />
+          {createMutation.isPending ? "Creating…" : "Create A/B Test"}
+        </Button>
+      </div>
+    </div>
+  );
+}
+
 function LessonAnalyticsTab() {
   const { actor, isFetching } = useActor(createActor);
 
@@ -1412,6 +2187,18 @@ function StatsOverviewTab() {
   const { data: attemptStats = [], isLoading: attemptsLoading } =
     useQuizAttemptStats();
 
+  const { data: monthlyStats = [], isLoading: monthlyLoading } = useQuery<
+    Array<[string, bigint]>
+  >({
+    queryKey: ["admin", "monthlyStats"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.adminGetMonthlyStats(ADMIN_PC);
+    },
+    enabled: !!actor && !isFetching,
+    staleTime: 60_000,
+  });
+
   const { data: dailyActive = [], isLoading: dailyLoading } = useQuery<
     Array<{ date: string; count: bigint }>
   >({
@@ -1602,6 +2389,61 @@ function StatsOverviewTab() {
             </div>
           )}
         </div>
+      </div>
+
+      {/* Monthly Challenge Stats */}
+      <div className="bg-card border border-border rounded-xl p-5">
+        <div className="flex items-center gap-2 mb-4">
+          <Sparkles className="w-4 h-4 text-primary" />
+          <p className="text-xs text-muted-foreground uppercase tracking-wider">
+            Monthly Challenge Stats
+          </p>
+        </div>
+        {monthlyLoading ? (
+          <Skeleton className="h-40 w-full rounded-md" />
+        ) : monthlyStats.length === 0 ? (
+          <div
+            data-ocid="admin.stats.monthly_empty_state"
+            className="h-20 flex items-center justify-center"
+          >
+            <p className="text-muted-foreground text-sm">
+              No monthly challenge data yet.
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {[...monthlyStats]
+              .sort((a, b) => b[0].localeCompare(a[0]))
+              .slice(0, 12)
+              .map(([month, count], idx) => {
+                const maxVal = monthlyStats.reduce(
+                  (m, [, c]) => Math.max(m, Number(c)),
+                  1,
+                );
+                const pct = (Number(count) / maxVal) * 100;
+                return (
+                  <div
+                    key={month}
+                    data-ocid={`admin.stats.monthly_item.${idx + 1}`}
+                    className="flex items-center gap-3 text-sm"
+                  >
+                    <span className="w-20 text-xs text-muted-foreground shrink-0">
+                      {month}
+                    </span>
+                    <div className="flex-1 h-4 rounded bg-muted/30 overflow-hidden relative">
+                      <div
+                        className="h-full rounded bg-primary transition-all duration-700"
+                        style={{ width: `${pct}%` }}
+                      />
+                      <span className="absolute right-2 top-0 bottom-0 flex items-center text-xs font-bold text-foreground">
+                        {Number(count)}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        )}
       </div>
 
       {/* Daily Active Users line chart */}
@@ -2926,6 +3768,9 @@ export function AdminDashboard() {
         {activeTab === "certificates" && <CertificatesTab />}
         {activeTab === "quiz-stats" && <QuizStatsTab />}
         {activeTab === "lesson-analytics" && <LessonAnalyticsTab />}
+        {activeTab === "engagement-heatmap" && <EngagementHeatmapTab />}
+        {activeTab === "lesson-of-week" && <LessonOfWeekTab />}
+        {activeTab === "ab-testing" && <ABTestingTab />}
         {activeTab === "academy-settings" && <AcademySettingsTab />}
         {activeTab === "stats-overview" && <StatsOverviewTab />}
         {activeTab === "cert-wall" && <CertWallAdminTab />}

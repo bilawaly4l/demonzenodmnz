@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Home-BwUtabDg.js","assets/input-BtQJcYzA.js","assets/button-CM5rLxPe.js","assets/dialog-CZlrs0oE.js","assets/star-BrTRvvX0.js","assets/lock-BYZzel-E.js","assets/external-link-j1Jn2SNC.js","assets/clock-BkTFrrpR.js","assets/AdminDashboard-aPJ2y7DK.js","assets/badge-BsFgkTBp.js","assets/skeleton-DuaaQ12_.js","assets/CertificateWall-BUbi8F3k.js","assets/CertificateGenerator-D-9YPRdj.js","assets/VerifyCertificate-CQZKpBX7.js","assets/NotFound-BYExQxQA.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Home-CXVJrdty.js","assets/button-BgkjFKKh.js","assets/dialog-C1QUKAnc.js","assets/input-D9I7p6UY.js","assets/star-CfMfmKn7.js","assets/sparkles-BxBW1QeJ.js","assets/external-link-Bg5l6Ni1.js","assets/clock-CH1st22h.js","assets/AdminDashboard-CnDg5s9p.js","assets/badge-pb8jetag.js","assets/skeleton-Dmyn2p53.js","assets/CertificateWall-_WJp8o5Y.js","assets/CertificateGenerator-bJWzY9tq.js","assets/VerifyCertificate-TsXUWJaF.js","assets/NotFound-syC7edGN.js"])))=>i.map(i=>d[i]);
 var __defProp = Object.defineProperty;
 var __typeError = (msg) => {
   throw TypeError(msg);
@@ -32661,18 +32661,18 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$a = [
+const __iconNode$8 = [
   ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
   ["path", { d: "M12 19V5", key: "x0mq9r" }]
 ];
-const ArrowUp = createLucideIcon("arrow-up", __iconNode$a);
+const ArrowUp = createLucideIcon("arrow-up", __iconNode$8);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$9 = [
+const __iconNode$7 = [
   [
     "path",
     {
@@ -32682,14 +32682,14 @@ const __iconNode$9 = [
   ],
   ["circle", { cx: "12", cy: "8", r: "6", key: "1vp47v" }]
 ];
-const Award = createLucideIcon("award", __iconNode$9);
+const Award = createLucideIcon("award", __iconNode$7);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$8 = [
+const __iconNode$6 = [
   ["path", { d: "M12 7v14", key: "1akyts" }],
   [
     "path",
@@ -32699,27 +32699,27 @@ const __iconNode$8 = [
     }
   ]
 ];
-const BookOpen = createLucideIcon("book-open", __iconNode$8);
+const BookOpen = createLucideIcon("book-open", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$7 = [
+const __iconNode$5 = [
   ["circle", { cx: "8", cy: "8", r: "6", key: "3yglwk" }],
   ["path", { d: "M18.09 10.37A6 6 0 1 1 10.34 18", key: "t5s6rm" }],
   ["path", { d: "M7 6h1v4", key: "1obek4" }],
   ["path", { d: "m16.71 13.88.7.71-2.82 2.82", key: "1rbuyh" }]
 ];
-const Coins = createLucideIcon("coins", __iconNode$7);
+const Coins = createLucideIcon("coins", __iconNode$5);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$6 = [
+const __iconNode$4 = [
   ["path", { d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8", key: "5wwlr5" }],
   [
     "path",
@@ -32729,29 +32729,7 @@ const __iconNode$6 = [
     }
   ]
 ];
-const House = createLucideIcon("house", __iconNode$6);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$5 = [
-  ["path", { d: "M4 12h16", key: "1lakjw" }],
-  ["path", { d: "M4 18h16", key: "19g7jn" }],
-  ["path", { d: "M4 6h16", key: "1o0s65" }]
-];
-const Menu = createLucideIcon("menu", __iconNode$5);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$4 = [
-  ["path", { d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z", key: "a7tn18" }]
-];
-const Moon = createLucideIcon("moon", __iconNode$4);
+const House = createLucideIcon("house", __iconNode$4);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -32759,17 +32737,11 @@ const Moon = createLucideIcon("moon", __iconNode$4);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$3 = [
-  ["circle", { cx: "12", cy: "12", r: "4", key: "4exip2" }],
-  ["path", { d: "M12 2v2", key: "tus03m" }],
-  ["path", { d: "M12 20v2", key: "1lh1kg" }],
-  ["path", { d: "m4.93 4.93 1.41 1.41", key: "149t6j" }],
-  ["path", { d: "m17.66 17.66 1.41 1.41", key: "ptbguv" }],
-  ["path", { d: "M2 12h2", key: "1t8f8n" }],
-  ["path", { d: "M20 12h2", key: "1q8mjw" }],
-  ["path", { d: "m6.34 17.66-1.41 1.41", key: "1m8zz5" }],
-  ["path", { d: "m19.07 4.93-1.41 1.41", key: "1shlcs" }]
+  ["path", { d: "M4 12h16", key: "1lakjw" }],
+  ["path", { d: "M4 18h16", key: "19g7jn" }],
+  ["path", { d: "M4 6h16", key: "1o0s65" }]
 ];
-const Sun = createLucideIcon("sun", __iconNode$3);
+const Menu = createLucideIcon("menu", __iconNode$3);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -32993,12 +32965,28 @@ const Certificate = Record({
   "isValid": Bool
 });
 const Result_1 = Variant({ "ok": Null, "err": Text });
+const ABTestRecord = Record({
+  "versionAPassCount": Nat,
+  "activeVersion": Text,
+  "versionBText": Text,
+  "versionBAttempts": Nat,
+  "versionAText": Text,
+  "questionId": Text,
+  "versionAAttempts": Nat,
+  "versionBPassCount": Nat
+});
 const QuizAttemptLog = Record({
   "tierId": Text,
   "score": Nat,
   "fingerprint": Text,
   "timestamp": Int,
   "passed": Bool
+});
+const LessonEngagement = Record({
+  "lessonId": Text,
+  "visitCount": Nat,
+  "tier": Text,
+  "totalTimeSeconds": Nat
 });
 const QuestionFailStat = Record({
   "tierId": Text,
@@ -33029,6 +33017,15 @@ const TierQuiz = Record({
   "tierName": Text,
   "questions": Vec(QuizQuestion)
 });
+const MasteryRecord = Record({
+  "lessonId": Text,
+  "quizScore": Float64,
+  "tier": Text,
+  "confidenceScore": Float64,
+  "updatedAt": Int,
+  "masteryPct": Float64,
+  "conceptCheckerScore": Float64
+});
 const AnnouncementBanner = Record({
   "text": Text,
   "updatedAt": Int,
@@ -33043,11 +33040,31 @@ const LessonCompletionLog = Record({
   "completedAt": Int,
   "tierId": Text
 });
+const LessonOfWeek = Record({
+  "lessonId": Text,
+  "expiresAt": Int,
+  "tier": Text,
+  "lessonTitle": Text,
+  "setAt": Int
+});
 const LessonRating = Record({
   "lessonId": Text,
   "tierId": Text,
   "timestamp": Int,
   "rating": Nat
+});
+const MonthlyChallenge = Record({
+  "month": Text,
+  "targetLessons": Nat,
+  "badgeEarned": Bool,
+  "lessonsCompleted": Nat
+});
+const ProgressSnapshot = Record({
+  "createdAt": Int,
+  "shareToken": Text,
+  "tiersCompleted": Vec(Text),
+  "masteryLevels": Vec(Tuple(Text, Float64)),
+  "certificatesEarned": Vec(Text)
 });
 const QuizAttemptStats = Record({
   "tierId": Text,
@@ -33099,15 +33116,31 @@ const TransformationOutput = Record({
   "headers": Vec(http_header)
 });
 Service({
+  "adminCreateABTest": Func(
+    [Text, Text, Text, Text],
+    [],
+    []
+  ),
   "adminExportCertificates": Func([], [Vec(Certificate)], ["query"]),
   "adminFeatureCertificate": Func([Text, Bool], [Result_1], []),
   "adminFlagQuestion": Func([Text, Bool], [], []),
+  "adminGetABTests": Func([Text], [Vec(ABTestRecord)], ["query"]),
   "adminGetAttemptLogs": Func(
     [Text],
     [Vec(QuizAttemptLog)],
     ["query"]
   ),
+  "adminGetEngagementData": Func(
+    [Text],
+    [Vec(LessonEngagement)],
+    ["query"]
+  ),
   "adminGetFlaggedQuestions": Func([], [Vec(Text)], ["query"]),
+  "adminGetMonthlyStats": Func(
+    [Text],
+    [Vec(Tuple(Text, Nat))],
+    ["query"]
+  ),
   "adminGetQuestionFailStats": Func(
     [Text],
     [Vec(QuestionFailStat)],
@@ -33125,9 +33158,24 @@ Service({
     []
   ),
   "adminSetAnnouncementBanner": Func([Text, Bool], [], []),
+  "adminSetLessonOfWeek": Func(
+    [Text, Text, Text, Text],
+    [],
+    []
+  ),
   "adminSetTierDisabled": Func([Text, Bool], [Result_1], []),
+  "adminToggleABVersion": Func([Text, Text], [], []),
   "adminUpdateMilestone": Func([Text, Bool], [Result_1], []),
   "askZenoAi": Func([Text], [ZenoAiResponse], []),
+  "generateProgressShareLink": Func(
+    [
+      Vec(Text),
+      Vec(Text),
+      Vec(Tuple(Text, Float64))
+    ],
+    [Text],
+    []
+  ),
   "getAcademyQuiz": Func(
     [Text, Int],
     [Opt(TierQuiz)],
@@ -33138,6 +33186,7 @@ Service({
     [Vec(Tuple(Text, Text, Float64))],
     ["query"]
   ),
+  "getAllMasteryRecords": Func([], [Vec(MasteryRecord)], ["query"]),
   "getAnnouncementBanner": Func(
     [],
     [Opt(AnnouncementBanner)],
@@ -33161,9 +33210,25 @@ Service({
     [Vec(LessonCompletionLog)],
     ["query"]
   ),
+  "getLessonMastery": Func(
+    [Text],
+    [Opt(MasteryRecord)],
+    ["query"]
+  ),
+  "getLessonOfWeek": Func([], [Opt(LessonOfWeek)], ["query"]),
   "getLessonRatings": Func(
     [Text, Text],
     [Vec(LessonRating)],
+    ["query"]
+  ),
+  "getMonthlyChallenge": Func(
+    [Text],
+    [Opt(MonthlyChallenge)],
+    ["query"]
+  ),
+  "getProgressSnapshot": Func(
+    [Text],
+    [Opt(ProgressSnapshot)],
     ["query"]
   ),
   "getQuizAttemptStats": Func([], [Vec(QuizAttemptStats)], ["query"]),
@@ -33178,6 +33243,9 @@ Service({
   "listAllCertificates": Func([], [Vec(Certificate)], ["query"]),
   "logDailyActive": Func([Text], [], []),
   "logLessonCompletion": Func([Text, Text, Int], [], []),
+  "recordABTestResult": Func([Text, Text, Bool], [], []),
+  "recordLessonCompleted": Func([Text], [MonthlyChallenge], []),
+  "recordLessonTime": Func([Text, Text, Nat], [], []),
   "searchCertificates": Func(
     [Text],
     [Vec(Certificate)],
@@ -33215,6 +33283,11 @@ Service({
     [Result],
     []
   ),
+  "updateLessonMastery": Func(
+    [Text, Text, Float64, Float64, Float64],
+    [],
+    []
+  ),
   "verifyCertificate": Func([Text], [Opt(Certificate)], ["query"]),
   "zenoAiTransform": Func(
     [TransformationInput],
@@ -33245,12 +33318,28 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "isValid": IDL2.Bool
   });
   const Result_12 = IDL2.Variant({ "ok": IDL2.Null, "err": IDL2.Text });
+  const ABTestRecord2 = IDL2.Record({
+    "versionAPassCount": IDL2.Nat,
+    "activeVersion": IDL2.Text,
+    "versionBText": IDL2.Text,
+    "versionBAttempts": IDL2.Nat,
+    "versionAText": IDL2.Text,
+    "questionId": IDL2.Text,
+    "versionAAttempts": IDL2.Nat,
+    "versionBPassCount": IDL2.Nat
+  });
   const QuizAttemptLog2 = IDL2.Record({
     "tierId": IDL2.Text,
     "score": IDL2.Nat,
     "fingerprint": IDL2.Text,
     "timestamp": IDL2.Int,
     "passed": IDL2.Bool
+  });
+  const LessonEngagement2 = IDL2.Record({
+    "lessonId": IDL2.Text,
+    "visitCount": IDL2.Nat,
+    "tier": IDL2.Text,
+    "totalTimeSeconds": IDL2.Nat
   });
   const QuestionFailStat2 = IDL2.Record({
     "tierId": IDL2.Text,
@@ -33281,6 +33370,15 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "tierName": IDL2.Text,
     "questions": IDL2.Vec(QuizQuestion2)
   });
+  const MasteryRecord2 = IDL2.Record({
+    "lessonId": IDL2.Text,
+    "quizScore": IDL2.Float64,
+    "tier": IDL2.Text,
+    "confidenceScore": IDL2.Float64,
+    "updatedAt": IDL2.Int,
+    "masteryPct": IDL2.Float64,
+    "conceptCheckerScore": IDL2.Float64
+  });
   const AnnouncementBanner2 = IDL2.Record({
     "text": IDL2.Text,
     "updatedAt": IDL2.Int,
@@ -33292,11 +33390,31 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "completedAt": IDL2.Int,
     "tierId": IDL2.Text
   });
+  const LessonOfWeek2 = IDL2.Record({
+    "lessonId": IDL2.Text,
+    "expiresAt": IDL2.Int,
+    "tier": IDL2.Text,
+    "lessonTitle": IDL2.Text,
+    "setAt": IDL2.Int
+  });
   const LessonRating2 = IDL2.Record({
     "lessonId": IDL2.Text,
     "tierId": IDL2.Text,
     "timestamp": IDL2.Int,
     "rating": IDL2.Nat
+  });
+  const MonthlyChallenge2 = IDL2.Record({
+    "month": IDL2.Text,
+    "targetLessons": IDL2.Nat,
+    "badgeEarned": IDL2.Bool,
+    "lessonsCompleted": IDL2.Nat
+  });
+  const ProgressSnapshot2 = IDL2.Record({
+    "createdAt": IDL2.Int,
+    "shareToken": IDL2.Text,
+    "tiersCompleted": IDL2.Vec(IDL2.Text),
+    "masteryLevels": IDL2.Vec(IDL2.Tuple(IDL2.Text, IDL2.Float64)),
+    "certificatesEarned": IDL2.Vec(IDL2.Text)
   });
   const QuizAttemptStats2 = IDL2.Record({
     "tierId": IDL2.Text,
@@ -33347,15 +33465,35 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "headers": IDL2.Vec(http_header2)
   });
   return IDL2.Service({
+    "adminCreateABTest": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
+      [],
+      []
+    ),
     "adminExportCertificates": IDL2.Func([], [IDL2.Vec(Certificate2)], ["query"]),
     "adminFeatureCertificate": IDL2.Func([IDL2.Text, IDL2.Bool], [Result_12], []),
     "adminFlagQuestion": IDL2.Func([IDL2.Text, IDL2.Bool], [], []),
+    "adminGetABTests": IDL2.Func(
+      [IDL2.Text],
+      [IDL2.Vec(ABTestRecord2)],
+      ["query"]
+    ),
     "adminGetAttemptLogs": IDL2.Func(
       [IDL2.Text],
       [IDL2.Vec(QuizAttemptLog2)],
       ["query"]
     ),
+    "adminGetEngagementData": IDL2.Func(
+      [IDL2.Text],
+      [IDL2.Vec(LessonEngagement2)],
+      ["query"]
+    ),
     "adminGetFlaggedQuestions": IDL2.Func([], [IDL2.Vec(IDL2.Text)], ["query"]),
+    "adminGetMonthlyStats": IDL2.Func(
+      [IDL2.Text],
+      [IDL2.Vec(IDL2.Tuple(IDL2.Text, IDL2.Nat))],
+      ["query"]
+    ),
     "adminGetQuestionFailStats": IDL2.Func(
       [IDL2.Text],
       [IDL2.Vec(QuestionFailStat2)],
@@ -33373,9 +33511,24 @@ const idlFactory = ({ IDL: IDL2 }) => {
       []
     ),
     "adminSetAnnouncementBanner": IDL2.Func([IDL2.Text, IDL2.Bool], [], []),
+    "adminSetLessonOfWeek": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
+      [],
+      []
+    ),
     "adminSetTierDisabled": IDL2.Func([IDL2.Text, IDL2.Bool], [Result_12], []),
+    "adminToggleABVersion": IDL2.Func([IDL2.Text, IDL2.Text], [], []),
     "adminUpdateMilestone": IDL2.Func([IDL2.Text, IDL2.Bool], [Result_12], []),
     "askZenoAi": IDL2.Func([IDL2.Text], [ZenoAiResponse2], []),
+    "generateProgressShareLink": IDL2.Func(
+      [
+        IDL2.Vec(IDL2.Text),
+        IDL2.Vec(IDL2.Text),
+        IDL2.Vec(IDL2.Tuple(IDL2.Text, IDL2.Float64))
+      ],
+      [IDL2.Text],
+      []
+    ),
     "getAcademyQuiz": IDL2.Func(
       [IDL2.Text, IDL2.Int],
       [IDL2.Opt(TierQuiz2)],
@@ -33386,6 +33539,7 @@ const idlFactory = ({ IDL: IDL2 }) => {
       [IDL2.Vec(IDL2.Tuple(IDL2.Text, IDL2.Text, IDL2.Float64))],
       ["query"]
     ),
+    "getAllMasteryRecords": IDL2.Func([], [IDL2.Vec(MasteryRecord2)], ["query"]),
     "getAnnouncementBanner": IDL2.Func(
       [],
       [IDL2.Opt(AnnouncementBanner2)],
@@ -33409,9 +33563,25 @@ const idlFactory = ({ IDL: IDL2 }) => {
       [IDL2.Vec(LessonCompletionLog2)],
       ["query"]
     ),
+    "getLessonMastery": IDL2.Func(
+      [IDL2.Text],
+      [IDL2.Opt(MasteryRecord2)],
+      ["query"]
+    ),
+    "getLessonOfWeek": IDL2.Func([], [IDL2.Opt(LessonOfWeek2)], ["query"]),
     "getLessonRatings": IDL2.Func(
       [IDL2.Text, IDL2.Text],
       [IDL2.Vec(LessonRating2)],
+      ["query"]
+    ),
+    "getMonthlyChallenge": IDL2.Func(
+      [IDL2.Text],
+      [IDL2.Opt(MonthlyChallenge2)],
+      ["query"]
+    ),
+    "getProgressSnapshot": IDL2.Func(
+      [IDL2.Text],
+      [IDL2.Opt(ProgressSnapshot2)],
       ["query"]
     ),
     "getQuizAttemptStats": IDL2.Func(
@@ -33430,6 +33600,9 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "listAllCertificates": IDL2.Func([], [IDL2.Vec(Certificate2)], ["query"]),
     "logDailyActive": IDL2.Func([IDL2.Text], [], []),
     "logLessonCompletion": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Int], [], []),
+    "recordABTestResult": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Bool], [], []),
+    "recordLessonCompleted": IDL2.Func([IDL2.Text], [MonthlyChallenge2], []),
+    "recordLessonTime": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Nat], [], []),
     "searchCertificates": IDL2.Func(
       [IDL2.Text],
       [IDL2.Vec(Certificate2)],
@@ -33467,6 +33640,11 @@ const idlFactory = ({ IDL: IDL2 }) => {
       [Result2],
       []
     ),
+    "updateLessonMastery": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Float64, IDL2.Float64, IDL2.Float64],
+      [],
+      []
+    ),
     "verifyCertificate": IDL2.Func(
       [IDL2.Text],
       [IDL2.Opt(Certificate2)],
@@ -33488,6 +33666,20 @@ class Backend {
     this._uploadFile = _uploadFile;
     this._downloadFile = _downloadFile;
     this.processError = processError2;
+  }
+  async adminCreateABTest(arg0, arg1, arg2, arg3) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.adminCreateABTest(arg0, arg1, arg2, arg3);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.adminCreateABTest(arg0, arg1, arg2, arg3);
+      return result;
+    }
   }
   async adminExportCertificates() {
     if (this.processError) {
@@ -33531,6 +33723,20 @@ class Backend {
       return result;
     }
   }
+  async adminGetABTests(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.adminGetABTests(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.adminGetABTests(arg0);
+      return result;
+    }
+  }
   async adminGetAttemptLogs(arg0) {
     if (this.processError) {
       try {
@@ -33545,6 +33751,20 @@ class Backend {
       return result;
     }
   }
+  async adminGetEngagementData(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.adminGetEngagementData(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.adminGetEngagementData(arg0);
+      return result;
+    }
+  }
   async adminGetFlaggedQuestions() {
     if (this.processError) {
       try {
@@ -33556,6 +33776,20 @@ class Backend {
       }
     } else {
       const result = await this.actor.adminGetFlaggedQuestions();
+      return result;
+    }
+  }
+  async adminGetMonthlyStats(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.adminGetMonthlyStats(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.adminGetMonthlyStats(arg0);
       return result;
     }
   }
@@ -33629,6 +33863,20 @@ class Backend {
       return result;
     }
   }
+  async adminSetLessonOfWeek(arg0, arg1, arg2, arg3) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.adminSetLessonOfWeek(arg0, arg1, arg2, arg3);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.adminSetLessonOfWeek(arg0, arg1, arg2, arg3);
+      return result;
+    }
+  }
   async adminSetTierDisabled(arg0, arg1) {
     if (this.processError) {
       try {
@@ -33641,6 +33889,20 @@ class Backend {
     } else {
       const result = await this.actor.adminSetTierDisabled(arg0, arg1);
       return from_candid_Result_1_n1(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async adminToggleABVersion(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.adminToggleABVersion(arg0, arg1);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.adminToggleABVersion(arg0, arg1);
+      return result;
     }
   }
   async adminUpdateMilestone(arg0, arg1) {
@@ -33671,6 +33933,20 @@ class Backend {
       return result;
     }
   }
+  async generateProgressShareLink(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.generateProgressShareLink(arg0, arg1, arg2);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.generateProgressShareLink(arg0, arg1, arg2);
+      return result;
+    }
+  }
   async getAcademyQuiz(arg0, arg1) {
     if (this.processError) {
       try {
@@ -33696,6 +33972,20 @@ class Backend {
       }
     } else {
       const result = await this.actor.getAdminLessonRatings();
+      return result;
+    }
+  }
+  async getAllMasteryRecords() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllMasteryRecords();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllMasteryRecords();
       return result;
     }
   }
@@ -33797,6 +34087,34 @@ class Backend {
       return result;
     }
   }
+  async getLessonMastery(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getLessonMastery(arg0);
+        return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getLessonMastery(arg0);
+      return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getLessonOfWeek() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getLessonOfWeek();
+        return from_candid_opt_n10(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getLessonOfWeek();
+      return from_candid_opt_n10(this._uploadFile, this._downloadFile, result);
+    }
+  }
   async getLessonRatings(arg0, arg1) {
     if (this.processError) {
       try {
@@ -33809,6 +34127,34 @@ class Backend {
     } else {
       const result = await this.actor.getLessonRatings(arg0, arg1);
       return result;
+    }
+  }
+  async getMonthlyChallenge(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getMonthlyChallenge(arg0);
+        return from_candid_opt_n11(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getMonthlyChallenge(arg0);
+      return from_candid_opt_n11(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getProgressSnapshot(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getProgressSnapshot(arg0);
+        return from_candid_opt_n12(this._uploadFile, this._downloadFile, result);
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getProgressSnapshot(arg0);
+      return from_candid_opt_n12(this._uploadFile, this._downloadFile, result);
     }
   }
   async getQuizAttemptStats() {
@@ -33843,14 +34189,14 @@ class Backend {
     if (this.processError) {
       try {
         const result = await this.actor.getRoadmap();
-        return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
+        return from_candid_vec_n13(this._uploadFile, this._downloadFile, result);
       } catch (e) {
         this.processError(e);
         throw new Error("unreachable");
       }
     } else {
       const result = await this.actor.getRoadmap();
-      return from_candid_vec_n9(this._uploadFile, this._downloadFile, result);
+      return from_candid_vec_n13(this._uploadFile, this._downloadFile, result);
     }
   }
   async getTierDisabledStates() {
@@ -33920,6 +34266,48 @@ class Backend {
       }
     } else {
       const result = await this.actor.logLessonCompletion(arg0, arg1, arg2);
+      return result;
+    }
+  }
+  async recordABTestResult(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.recordABTestResult(arg0, arg1, arg2);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.recordABTestResult(arg0, arg1, arg2);
+      return result;
+    }
+  }
+  async recordLessonCompleted(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.recordLessonCompleted(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.recordLessonCompleted(arg0);
+      return result;
+    }
+  }
+  async recordLessonTime(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.recordLessonTime(arg0, arg1, arg2);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.recordLessonTime(arg0, arg1, arg2);
       return result;
     }
   }
@@ -34007,6 +34395,20 @@ class Backend {
       return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
     }
   }
+  async updateLessonMastery(arg0, arg1, arg2, arg3, arg4) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.updateLessonMastery(arg0, arg1, arg2, arg3, arg4);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.updateLessonMastery(arg0, arg1, arg2, arg3, arg4);
+      return result;
+    }
+  }
   async verifyCertificate(arg0) {
     if (this.processError) {
       try {
@@ -34042,8 +34444,17 @@ function from_candid_Result_1_n1(_uploadFile, _downloadFile, value) {
 function from_candid_Result_n3(_uploadFile, _downloadFile, value) {
   return from_candid_variant_n4(_uploadFile, _downloadFile, value);
 }
-function from_candid_RoadmapMilestone_n10(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n11(_uploadFile, _downloadFile, value);
+function from_candid_RoadmapMilestone_n14(_uploadFile, _downloadFile, value) {
+  return from_candid_record_n15(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n10(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n11(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n12(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : value[0];
 }
 function from_candid_opt_n5(_uploadFile, _downloadFile, value) {
   return value.length === 0 ? null : value[0];
@@ -34057,7 +34468,10 @@ function from_candid_opt_n7(_uploadFile, _downloadFile, value) {
 function from_candid_opt_n8(_uploadFile, _downloadFile, value) {
   return value.length === 0 ? null : value[0];
 }
-function from_candid_record_n11(_uploadFile, _downloadFile, value) {
+function from_candid_opt_n9(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : value[0];
+}
+function from_candid_record_n15(_uploadFile, _downloadFile, value) {
   return {
     id: value.id,
     title: value.title,
@@ -34085,8 +34499,8 @@ function from_candid_variant_n4(_uploadFile, _downloadFile, value) {
     err: value.err
   } : value;
 }
-function from_candid_vec_n9(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => from_candid_RoadmapMilestone_n10(_uploadFile, _downloadFile, x2));
+function from_candid_vec_n13(_uploadFile, _downloadFile, value) {
+  return value.map((x2) => from_candid_RoadmapMilestone_n14(_uploadFile, _downloadFile, x2));
 }
 function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
   const agent = options.agent || HttpAgent.createSync({
@@ -34174,9 +34588,317 @@ function useTierDisabledStates() {
     staleTime: 3e4
   });
 }
+const NAV_LINKS = [
+  { label: "Home", href: "/", isRoute: true },
+  { label: "Academy", href: "#academy", isRoute: false, section: "academy" },
+  { label: "Certificate Wall", href: "/certificates", isRoute: true },
+  {
+    label: "DMNZ Token",
+    href: "#dmnz-token",
+    isRoute: false,
+    section: "dmnz-token"
+  }
+];
+const FOOTER_NAV = [
+  { label: "Academy", href: "#academy" },
+  { label: "Certificate Wall", href: "/certificates" },
+  { label: "DMNZ Token", href: "#dmnz-token" },
+  { label: "Roadmap", href: "#roadmap" }
+];
+const SOCIAL_LINKS = [
+  {
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SiBinance, { className: "w-4 h-4" }),
+    label: "Binance Square",
+    handle: "@DemonZeno",
+    url: "https://www.binance.com/en/square/profile/@DemonZeno"
+  },
+  {
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Twitter, { className: "w-4 h-4" }),
+    label: "Twitter / X",
+    handle: "@ZenoDemon",
+    url: "https://twitter.com/ZenoDemon"
+  }
+];
+function scrollToSection(href) {
+  const el = document.querySelector(href);
+  el == null ? void 0 : el.scrollIntoView({ behavior: "smooth" });
+}
+function AnnouncementBar() {
+  const { data: banner } = useAnnouncementBanner();
+  const [dismissed, setDismissed] = reactExports.useState(false);
+  if (!(banner == null ? void 0 : banner.isPinned) || dismissed) return null;
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      "data-ocid": "announcement.panel",
+      className: "bg-primary/10 border-b border-primary/20 text-foreground",
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto px-4 py-2 flex items-center justify-between gap-3", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-center flex-1 font-medium text-primary", children: banner.text }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            "data-ocid": "announcement.close_button",
+            onClick: () => setDismissed(true),
+            "aria-label": "Dismiss announcement",
+            className: "shrink-0 p-1 rounded hover:bg-primary/20 transition-smooth text-primary/70 hover:text-primary",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-3.5 h-3.5" })
+          }
+        )
+      ] })
+    }
+  );
+}
+function Navbar() {
+  const [mobileOpen, setMobileOpen] = reactExports.useState(false);
+  const [scrolled, setScrolled] = reactExports.useState(false);
+  const routerState = useRouterState();
+  const isHome = routerState.location.pathname === "/";
+  reactExports.useState(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 20);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  });
+  function handleNavClick(link) {
+    setMobileOpen(false);
+    if (!link.isRoute && link.href.startsWith("#")) {
+      if (!isHome) {
+        window.location.href = `/${link.href}`;
+      } else {
+        scrollToSection(link.href);
+      }
+    }
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "header",
+    {
+      "data-ocid": "navbar.panel",
+      className: `sticky top-0 z-40 w-full transition-all duration-300 ${scrolled ? "bg-card/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-card/80 backdrop-blur-sm border-b border-border/50"}`,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "container mx-auto px-4 h-16 flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Link,
+            {
+              to: "/",
+              "data-ocid": "navbar.home.link",
+              className: "flex items-center gap-2 group",
+              "aria-label": "DemonZeno home",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-lg bg-primary flex items-center justify-center group-hover:scale-105 transition-smooth", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Zap,
+                  {
+                    className: "w-4 h-4 text-primary-foreground",
+                    strokeWidth: 2.5
+                  }
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display font-bold text-lg text-foreground tracking-tight", children: [
+                  "Demon",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Zeno" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border hidden sm:inline", children: "DMNZ" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "hidden md:flex items-center gap-1", children: NAV_LINKS.map((link) => {
+            const isCurrent = link.isRoute ? routerState.location.pathname === link.href : false;
+            if (link.isRoute) {
+              return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Link,
+                {
+                  to: link.href,
+                  "data-ocid": `navbar.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
+                  className: `px-3 py-2 rounded-md text-sm font-medium transition-smooth flex items-center gap-1.5 ${isCurrent ? "nav-link-active" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`,
+                  children: [
+                    link.label === "Certificate Wall" && /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "w-3.5 h-3.5" }),
+                    link.label
+                  ]
+                }
+              ) }, link.href);
+            }
+            return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                "data-ocid": `navbar.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
+                onClick: () => handleNavClick(link),
+                className: "px-3 py-2 rounded-md text-sm font-medium transition-smooth flex items-center gap-1.5 text-muted-foreground hover:text-foreground hover:bg-muted",
+                children: [
+                  link.label === "Academy" && /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { className: "w-3.5 h-3.5" }),
+                  link.label === "DMNZ Token" && /* @__PURE__ */ jsxRuntimeExports.jsx(Coins, { className: "w-3.5 h-3.5" }),
+                  link.label
+                ]
+              }
+            ) }, link.href);
+          }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              "data-ocid": "navbar.mobile_menu.toggle",
+              className: "md:hidden p-2 rounded-md hover:bg-muted transition-smooth",
+              onClick: () => setMobileOpen((v2) => !v2),
+              "aria-label": mobileOpen ? "Close menu" : "Open menu",
+              "aria-expanded": mobileOpen,
+              children: mobileOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-5 h-5" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, { className: "w-5 h-5" })
+            }
+          ) })
+        ] }),
+        mobileOpen && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "md:hidden border-t border-border bg-card", children: /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "container mx-auto px-4 py-4 flex flex-col gap-1", children: NAV_LINKS.map((link) => {
+          if (link.isRoute) {
+            return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Link,
+              {
+                to: link.href,
+                "data-ocid": `navbar.mobile.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
+                onClick: () => setMobileOpen(false),
+                className: "flex items-center gap-2 w-full px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-muted-foreground hover:text-foreground hover:bg-muted",
+                children: [
+                  link.label === "Home" && /* @__PURE__ */ jsxRuntimeExports.jsx(House, { className: "w-4 h-4" }),
+                  link.label === "Certificate Wall" && /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "w-4 h-4" }),
+                  link.label
+                ]
+              }
+            ) }, link.href);
+          }
+          return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
+            {
+              type: "button",
+              "data-ocid": `navbar.mobile.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
+              onClick: () => handleNavClick(link),
+              className: "flex items-center gap-2 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-muted-foreground hover:text-foreground hover:bg-muted",
+              children: [
+                link.label === "Academy" && /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { className: "w-4 h-4" }),
+                link.label === "DMNZ Token" && /* @__PURE__ */ jsxRuntimeExports.jsx(Coins, { className: "w-4 h-4" }),
+                link.label
+              ]
+            }
+          ) }, link.href);
+        }) }) })
+      ]
+    }
+  );
+}
+function Footer() {
+  const year = (/* @__PURE__ */ new Date()).getFullYear();
+  const hostname = encodeURIComponent(window.location.hostname);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { "data-ocid": "footer.panel", className: "bg-card border-t border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto px-4 py-14", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-10 mb-10", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-4 md:col-span-1", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-lg bg-primary flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Zap,
+            {
+              className: "w-4 h-4 text-primary-foreground",
+              strokeWidth: 2.5
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display font-bold text-foreground text-lg", children: [
+            "Demon",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Zeno" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border", children: "DMNZ" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm italic font-medium leading-relaxed max-w-sm", children: '"Master the chart, master yourself. Born from darkness, forged in discipline."' }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs leading-relaxed max-w-sm", children: "Trading education for informational purposes only. Not financial advice." })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-semibold text-foreground text-sm uppercase tracking-wider", children: "Navigate" }),
+        FOOTER_NAV.map(({ label, href }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            "data-ocid": `footer.nav.${label.toLowerCase().replace(/\s+/g, "_")}.link`,
+            onClick: () => {
+              var _a3;
+              if (href.startsWith("#")) {
+                (_a3 = document.querySelector(href)) == null ? void 0 : _a3.scrollIntoView({ behavior: "smooth" });
+              } else {
+                window.location.href = href;
+              }
+            },
+            className: "text-muted-foreground text-sm hover:text-primary transition-smooth text-left w-fit",
+            children: label
+          },
+          href
+        ))
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-semibold text-foreground text-sm uppercase tracking-wider", children: "Follow" }),
+        SOCIAL_LINKS.map(({ icon, label, handle, url }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "a",
+          {
+            href: url,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            "data-ocid": `footer.social.${label.toLowerCase().replace(/\s+\/\s+|\s+/g, "_")}.link`,
+            className: "flex items-center gap-2 text-muted-foreground text-sm hover:text-primary transition-smooth w-fit",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary/70", children: icon }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: handle })
+            ]
+          },
+          label
+        ))
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground text-xs", children: [
+        "© ",
+        year,
+        ".",
+        " ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "a",
+          {
+            href: `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${hostname}`,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "hover:text-primary transition-smooth",
+            children: "Built with love using caffeine.ai"
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs", children: "DemonZeno Trading Academy — DMNZ Token" })
+    ] })
+  ] }) });
+}
+function Layout() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen flex flex-col bg-background", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AnnouncementBar, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {})
+  ] });
+}
+function ScrollProgress() {
+  const barRef = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    function onScroll() {
+      const el = barRef.current;
+      if (!el) return;
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? scrollTop / docHeight * 100 : 0;
+      el.style.width = `${pct}%`;
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      ref: barRef,
+      "data-ocid": "scroll_progress.panel",
+      className: "progress-bar",
+      "aria-hidden": "true"
+    }
+  );
+}
 const ADMIN_PASSCODE = "2420075112009BILAWALPRAKRITI";
 const CLICK_THRESHOLD = 5;
-const THEME_KEY = "dz_theme";
 const STREAK_KEY = "dz_streak_date";
 const STREAK_DAYS_KEY = "dz_streak_days";
 const CONFIDENCE_KEY = "dz_confidence";
@@ -34190,7 +34912,6 @@ const SOUND_KEY = "dz_sound";
 const AdminSessionContext = reactExports.createContext(
   null
 );
-const ThemeContext = reactExports.createContext(null);
 const LessonProgressContext = reactExports.createContext(
   null
 );
@@ -34204,14 +34925,6 @@ function getISOWeekStart() {
 }
 function isSameWeek(weekStart) {
   return weekStart === getISOWeekStart();
-}
-function getStoredTheme() {
-  try {
-    const stored = localStorage.getItem(THEME_KEY);
-    return stored !== "light";
-  } catch {
-    return true;
-  }
 }
 function progressKey(tierId) {
   return `dz_progress_${tierId}`;
@@ -34280,16 +34993,6 @@ function SessionProvider({ children }) {
     } catch {
     }
   }, []);
-  const [isDark, setIsDark] = reactExports.useState(getStoredTheme);
-  reactExports.useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.classList.toggle("light", !isDark);
-    try {
-      localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
-    } catch {
-    }
-  }, [isDark]);
-  const toggleTheme = reactExports.useCallback(() => setIsDark((v2) => !v2), []);
   const getLessonProgress = reactExports.useCallback((tierId) => {
     return readJson(progressKey(tierId), []);
   }, []);
@@ -34518,10 +35221,6 @@ function SessionProvider({ children }) {
       lockAdmin
     ]
   );
-  const themeValue = reactExports.useMemo(
-    () => ({ isDark, toggleTheme }),
-    [isDark, toggleTheme]
-  );
   const soundValue = reactExports.useMemo(
     () => ({
       soundEnabled,
@@ -34584,16 +35283,15 @@ function SessionProvider({ children }) {
       dismissComebackReminder
     ]
   );
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(AdminSessionContext.Provider, { value: adminValue, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeContext.Provider, { value: themeValue, children: /* @__PURE__ */ jsxRuntimeExports.jsx(SoundContext.Provider, { value: soundValue, children: /* @__PURE__ */ jsxRuntimeExports.jsx(LessonProgressContext.Provider, { value: lessonValue, children }) }) }) });
+  reactExports.useEffect(() => {
+    document.documentElement.classList.add("dark");
+    document.documentElement.classList.remove("light");
+  }, []);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(AdminSessionContext.Provider, { value: adminValue, children: /* @__PURE__ */ jsxRuntimeExports.jsx(SoundContext.Provider, { value: soundValue, children: /* @__PURE__ */ jsxRuntimeExports.jsx(LessonProgressContext.Provider, { value: lessonValue, children }) }) });
 }
 function useSession() {
   const ctx = reactExports.useContext(AdminSessionContext);
   if (!ctx) throw new Error("useSession must be used within SessionProvider");
-  return ctx;
-}
-function useTheme() {
-  const ctx = reactExports.useContext(ThemeContext);
-  if (!ctx) throw new Error("useTheme must be used within SessionProvider");
   return ctx;
 }
 function useLessonProgress() {
@@ -34602,353 +35300,27 @@ function useLessonProgress() {
     throw new Error("useLessonProgress must be used within SessionProvider");
   return ctx;
 }
-function ThemeToggle() {
-  const { isDark, toggleTheme } = useTheme();
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "button",
-    {
-      type: "button",
-      "data-ocid": "navbar.theme_toggle.toggle",
-      onClick: toggleTheme,
-      "aria-label": isDark ? "Switch to light mode" : "Switch to dark mode",
-      className: "w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-smooth",
-      children: isDark ? /* @__PURE__ */ jsxRuntimeExports.jsx(Sun, { className: "w-4 h-4" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Moon, { className: "w-4 h-4" })
-    }
-  );
-}
-const NAV_LINKS = [
-  { label: "Home", href: "/", isRoute: true },
-  { label: "Academy", href: "#academy", isRoute: false, section: "academy" },
-  { label: "Certificate Wall", href: "/certificates", isRoute: true },
-  {
-    label: "DMNZ Token",
-    href: "#dmnz-token",
-    isRoute: false,
-    section: "dmnz-token"
-  }
-];
-const FOOTER_NAV = [
-  { label: "Academy", href: "#academy" },
-  { label: "Certificate Wall", href: "/certificates" },
-  { label: "DMNZ Token", href: "#dmnz-token" },
-  { label: "Roadmap", href: "#roadmap" }
-];
-const SOCIAL_LINKS = [
-  {
-    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SiBinance, { className: "w-4 h-4" }),
-    label: "Binance Square",
-    handle: "@DemonZeno",
-    url: "https://www.binance.com/en/square/profile/@DemonZeno"
-  },
-  {
-    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Twitter, { className: "w-4 h-4" }),
-    label: "Twitter / X",
-    handle: "@ZenoDemon",
-    url: "https://twitter.com/ZenoDemon"
-  }
-];
-function scrollToSection(href) {
-  const el = document.querySelector(href);
-  el == null ? void 0 : el.scrollIntoView({ behavior: "smooth" });
-}
-function AnnouncementBar() {
-  const { data: banner } = useAnnouncementBanner();
-  const [dismissed, setDismissed] = reactExports.useState(false);
-  if (!(banner == null ? void 0 : banner.isPinned) || dismissed) return null;
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      "data-ocid": "announcement.panel",
-      className: "bg-primary/10 border-b border-primary/20 text-foreground",
-      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto px-4 py-2 flex items-center justify-between gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-center flex-1 font-medium text-primary", children: banner.text }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            "data-ocid": "announcement.close_button",
-            onClick: () => setDismissed(true),
-            "aria-label": "Dismiss announcement",
-            className: "shrink-0 p-1 rounded hover:bg-primary/20 transition-smooth text-primary/70 hover:text-primary",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-3.5 h-3.5" })
-          }
-        )
-      ] })
-    }
-  );
-}
-function Navbar({ themeToggle }) {
-  const [mobileOpen, setMobileOpen] = reactExports.useState(false);
-  const [scrolled, setScrolled] = reactExports.useState(false);
-  const routerState = useRouterState();
-  const isHome = routerState.location.pathname === "/";
-  reactExports.useState(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 20);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  });
-  function handleNavClick(link) {
-    setMobileOpen(false);
-    if (!link.isRoute && link.href.startsWith("#")) {
-      if (!isHome) {
-        window.location.href = `/${link.href}`;
-      } else {
-        scrollToSection(link.href);
-      }
-    }
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "header",
-    {
-      "data-ocid": "navbar.panel",
-      className: `sticky top-0 z-40 w-full transition-all duration-300 ${scrolled ? "bg-card/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-card/80 backdrop-blur-sm border-b border-border/50"}`,
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "container mx-auto px-4 h-16 flex items-center justify-between", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Link,
-            {
-              to: "/",
-              "data-ocid": "navbar.home.link",
-              className: "flex items-center gap-2 group",
-              "aria-label": "DemonZeno home",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-lg bg-primary flex items-center justify-center group-hover:scale-105 transition-smooth", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Zap,
-                  {
-                    className: "w-4 h-4 text-primary-foreground",
-                    strokeWidth: 2.5
-                  }
-                ) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display font-bold text-lg text-foreground tracking-tight", children: [
-                  "Demon",
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Zeno" })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border hidden sm:inline", children: "DMNZ" })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "hidden md:flex items-center gap-1", children: NAV_LINKS.map((link) => {
-            const isCurrent = link.isRoute ? routerState.location.pathname === link.href : false;
-            if (link.isRoute) {
-              return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                Link,
-                {
-                  to: link.href,
-                  "data-ocid": `navbar.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
-                  className: `px-3 py-2 rounded-md text-sm font-medium transition-smooth flex items-center gap-1.5 ${isCurrent ? "nav-link-active" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`,
-                  children: [
-                    link.label === "Certificate Wall" && /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "w-3.5 h-3.5" }),
-                    link.label
-                  ]
-                }
-              ) }, link.href);
-            }
-            return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "button",
-              {
-                type: "button",
-                "data-ocid": `navbar.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
-                onClick: () => handleNavClick(link),
-                className: "px-3 py-2 rounded-md text-sm font-medium transition-smooth flex items-center gap-1.5 text-muted-foreground hover:text-foreground hover:bg-muted",
-                children: [
-                  link.label === "Academy" && /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { className: "w-3.5 h-3.5" }),
-                  link.label === "DMNZ Token" && /* @__PURE__ */ jsxRuntimeExports.jsx(Coins, { className: "w-3.5 h-3.5" }),
-                  link.label
-                ]
-              }
-            ) }, link.href);
-          }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1", children: [
-            themeToggle,
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                "data-ocid": "navbar.mobile_menu.toggle",
-                className: "md:hidden p-2 rounded-md hover:bg-muted transition-smooth",
-                onClick: () => setMobileOpen((v2) => !v2),
-                "aria-label": mobileOpen ? "Close menu" : "Open menu",
-                "aria-expanded": mobileOpen,
-                children: mobileOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-5 h-5" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, { className: "w-5 h-5" })
-              }
-            )
-          ] })
-        ] }),
-        mobileOpen && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "md:hidden border-t border-border bg-card", children: /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "container mx-auto px-4 py-4 flex flex-col gap-1", children: NAV_LINKS.map((link) => {
-          if (link.isRoute) {
-            return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Link,
-              {
-                to: link.href,
-                "data-ocid": `navbar.mobile.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
-                onClick: () => setMobileOpen(false),
-                className: "flex items-center gap-2 w-full px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-muted-foreground hover:text-foreground hover:bg-muted",
-                children: [
-                  link.label === "Home" && /* @__PURE__ */ jsxRuntimeExports.jsx(House, { className: "w-4 h-4" }),
-                  link.label === "Certificate Wall" && /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "w-4 h-4" }),
-                  link.label
-                ]
-              }
-            ) }, link.href);
-          }
-          return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              "data-ocid": `navbar.mobile.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
-              onClick: () => handleNavClick(link),
-              className: "flex items-center gap-2 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-muted-foreground hover:text-foreground hover:bg-muted",
-              children: [
-                link.label === "Academy" && /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { className: "w-4 h-4" }),
-                link.label === "DMNZ Token" && /* @__PURE__ */ jsxRuntimeExports.jsx(Coins, { className: "w-4 h-4" }),
-                link.label
-              ]
-            }
-          ) }, link.href);
-        }) }) })
-      ]
-    }
-  );
-}
-function Footer() {
-  const year = (/* @__PURE__ */ new Date()).getFullYear();
-  const hostname = encodeURIComponent(window.location.hostname);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { "data-ocid": "footer.panel", className: "bg-card border-t border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto px-4 py-14", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-10 mb-10", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-4 md:col-span-1", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-lg bg-primary flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Zap,
-            {
-              className: "w-4 h-4 text-primary-foreground",
-              strokeWidth: 2.5
-            }
-          ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display font-bold text-foreground text-lg", children: [
-            "Demon",
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Zeno" })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border", children: "DMNZ" })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm italic font-medium leading-relaxed max-w-sm", children: '"Master the chart, master yourself. Born from darkness, forged in discipline."' }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs leading-relaxed max-w-sm", children: "Trading education for informational purposes only. Not financial advice." })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-semibold text-foreground text-sm uppercase tracking-wider", children: "Navigate" }),
-        FOOTER_NAV.map(({ label, href }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            "data-ocid": `footer.nav.${label.toLowerCase().replace(/\s+/g, "_")}.link`,
-            onClick: () => {
-              var _a3;
-              if (href.startsWith("#")) {
-                (_a3 = document.querySelector(href)) == null ? void 0 : _a3.scrollIntoView({ behavior: "smooth" });
-              } else {
-                window.location.href = href;
-              }
-            },
-            className: "text-muted-foreground text-sm hover:text-primary transition-smooth text-left w-fit",
-            children: label
-          },
-          href
-        ))
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-semibold text-foreground text-sm uppercase tracking-wider", children: "Follow" }),
-        SOCIAL_LINKS.map(({ icon, label, handle, url }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "a",
-          {
-            href: url,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            "data-ocid": `footer.social.${label.toLowerCase().replace(/\s+\/\s+|\s+/g, "_")}.link`,
-            className: "flex items-center gap-2 text-muted-foreground text-sm hover:text-primary transition-smooth w-fit",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary/70", children: icon }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: handle })
-            ]
-          },
-          label
-        ))
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground text-xs", children: [
-        "© ",
-        year,
-        ".",
-        " ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "a",
-          {
-            href: `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${hostname}`,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "hover:text-primary transition-smooth",
-            children: "Built with love using caffeine.ai"
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs", children: "DemonZeno Trading Academy — DMNZ Token" })
-    ] })
-  ] }) });
-}
-function Layout() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen flex flex-col bg-background", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, { themeToggle: /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeToggle, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(AnnouncementBar, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {})
-  ] });
-}
-function ScrollProgress() {
-  const barRef = reactExports.useRef(null);
-  reactExports.useEffect(() => {
-    function onScroll() {
-      const el = barRef.current;
-      if (!el) return;
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? scrollTop / docHeight * 100 : 0;
-      el.style.width = `${pct}%`;
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      ref: barRef,
-      "data-ocid": "scroll_progress.panel",
-      className: "progress-bar",
-      "aria-hidden": "true"
-    }
-  );
-}
 const queryClient$1 = new QueryClient({
   defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } }
 });
 const Home = reactExports.lazy(
-  () => __vitePreload(() => import("./Home-BwUtabDg.js"), true ? __vite__mapDeps([0,1,2,3,4,5,6,7]) : void 0).then((m2) => ({ default: m2.Home }))
+  () => __vitePreload(() => import("./Home-CXVJrdty.js").then((n) => n.H), true ? __vite__mapDeps([0,1,2,3,4,5,6,7]) : void 0).then((m2) => ({ default: m2.Home }))
 );
 const AdminDashboard = reactExports.lazy(
-  () => __vitePreload(() => import("./AdminDashboard-aPJ2y7DK.js"), true ? __vite__mapDeps([8,9,2,1,10,4,5]) : void 0).then((m2) => ({ default: m2.AdminDashboard }))
+  () => __vitePreload(() => import("./AdminDashboard-CnDg5s9p.js"), true ? __vite__mapDeps([8,9,1,3,10,4,5]) : void 0).then((m2) => ({ default: m2.AdminDashboard }))
 );
 const CertificateWall = reactExports.lazy(
-  () => __vitePreload(() => import("./CertificateWall-BUbi8F3k.js"), true ? __vite__mapDeps([11,9,2,1,3,12,4,6]) : void 0).then((m2) => ({
+  () => __vitePreload(() => import("./CertificateWall-_WJp8o5Y.js"), true ? __vite__mapDeps([11,9,1,3,2,12,4,6]) : void 0).then((m2) => ({
     default: m2.CertificateWall
   }))
 );
 const VerifyCertificate = reactExports.lazy(
-  () => __vitePreload(() => import("./VerifyCertificate-CQZKpBX7.js"), true ? __vite__mapDeps([13,2,10,12,4,6,7]) : void 0).then((m2) => ({
+  () => __vitePreload(() => import("./VerifyCertificate-TsXUWJaF.js"), true ? __vite__mapDeps([13,1,10,12,4,6,7]) : void 0).then((m2) => ({
     default: m2.VerifyCertificate
   }))
 );
 const NotFound = reactExports.lazy(
-  () => __vitePreload(() => import("./NotFound-BYExQxQA.js"), true ? __vite__mapDeps([14,2]) : void 0).then((m2) => ({ default: m2.NotFound }))
+  () => __vitePreload(() => import("./NotFound-syC7edGN.js"), true ? __vite__mapDeps([14,1]) : void 0).then((m2) => ({ default: m2.NotFound }))
 );
 function PageLoader() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "min-h-screen bg-background flex flex-col items-center justify-center gap-6", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-4", children: [
@@ -35024,12 +35396,7 @@ function App() {
 BigInt.prototype.toJSON = function() {
   return this.toString();
 };
-(function initTheme() {
-  const stored = localStorage.getItem("dz-theme");
-  const isDark = stored !== "light";
-  document.documentElement.classList.toggle("dark", isDark);
-  document.documentElement.classList.toggle("light", !isDark);
-})();
+document.documentElement.classList.add("dark");
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(InternetIdentityProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) }) })

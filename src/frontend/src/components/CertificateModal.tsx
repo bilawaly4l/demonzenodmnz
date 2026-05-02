@@ -248,12 +248,12 @@ export function CertificateModal({
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent
         data-ocid="cert_wall.verify.dialog"
-        className="max-w-2xl w-full p-0 overflow-hidden"
+        className="max-w-4xl w-full p-0 overflow-hidden"
         style={{
-          background: "oklch(0.16 0.01 260)",
+          background: "#0a0612",
           border: `1.5px solid ${GOLD_BORDER}`,
-          boxShadow: `0 0 60px ${GOLD_BG}, 0 24px 64px rgba(0,0,0,0.5)`,
-          maxHeight: "92vh",
+          boxShadow: "0 0 80px #FFD70018, 0 24px 64px rgba(0,0,0,0.7)",
+          maxHeight: "95vh",
           overflowY: "auto",
         }}
       >
