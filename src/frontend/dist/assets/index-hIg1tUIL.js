@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Home-CXVJrdty.js","assets/button-BgkjFKKh.js","assets/dialog-C1QUKAnc.js","assets/input-D9I7p6UY.js","assets/star-CfMfmKn7.js","assets/sparkles-BxBW1QeJ.js","assets/external-link-Bg5l6Ni1.js","assets/clock-CH1st22h.js","assets/AdminDashboard-CnDg5s9p.js","assets/badge-pb8jetag.js","assets/skeleton-Dmyn2p53.js","assets/CertificateWall-_WJp8o5Y.js","assets/CertificateGenerator-bJWzY9tq.js","assets/VerifyCertificate-TsXUWJaF.js","assets/NotFound-syC7edGN.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Home-DtjxMNcm.js","assets/button-CgHQK2cC.js","assets/NotFound-Bqvyhnzz.js"])))=>i.map(i=>d[i]);
 var __defProp = Object.defineProperty;
 var __typeError = (msg) => {
   throw TypeError(msg);
@@ -18,7 +18,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
     return __privateGet(obj, member, getter);
   }
 });
-var _disableTimeVerification, _agent, _a, _inner, _expirationTime, _rawKey, _derKey, _b2, _currentInterval, _randomizationFactor, _multiplier, _maxInterval, _startTime, _maxElapsedTime, _maxIterations, _date, _count, _rootKeyPromise, _shouldFetchRootKey, _timeDiffMsecs, _hasSyncedTime, _syncTimePromise, _shouldSyncTime, _identity, _fetch, _fetchOptions, _callOptions, _credentials, _retryTimes, _backoffStrategy, _maxIngressExpiryInMinutes, _HttpAgent_instances, maxIngressExpiryInMs_get, _queryPipeline, _updatePipeline, _subnetKeys, _verifyQuerySignatures, requestAndRetryQuery_fn, requestAndRetry_fn, _verifyQueryResponse, asyncGuard_fn, rootKeyGuard_fn, syncTimeGuard_fn, _focused, _cleanup, _setup, _c, _provider, _providerCalled, _d, _online, _cleanup2, _setup2, _e, _gcTimeout, _f, _initialState, _revertState, _cache, _client, _retryer, _defaultOptions, _abortSignalConsumed, _Query_instances, isInitialPausedFetch_fn, dispatch_fn, _g, _client2, _currentQuery, _currentQueryInitialState, _currentResult, _currentResultState, _currentResultOptions, _currentThenable, _selectError, _selectFn, _selectResult, _lastQueryWithDefinedData, _staleTimeoutId, _refetchIntervalId, _currentRefetchInterval, _trackedProps, _QueryObserver_instances, executeFetch_fn, updateStaleTimeout_fn, computeRefetchInterval_fn, updateRefetchInterval_fn, updateTimers_fn, clearStaleTimeout_fn, clearRefetchInterval_fn, updateQuery_fn, notify_fn, _h, _client3, _observers, _mutationCache, _retryer2, _Mutation_instances, dispatch_fn2, _i, _mutations, _scopes, _mutationId, _j, _queries, _k, _queryCache, _mutationCache2, _defaultOptions2, _queryDefaults, _mutationDefaults, _mountCount, _unsubscribeFocus, _unsubscribeOnline, _l, _rawKey2, _derKey2, _publicKey, _privateKey, _inner2, _delegation, _options;
+var _disableTimeVerification, _agent, _inner, _expirationTime, _rawKey, _derKey, _a2, _currentInterval, _randomizationFactor, _multiplier, _maxInterval, _startTime, _maxElapsedTime, _maxIterations, _date, _count, _rootKeyPromise, _shouldFetchRootKey, _timeDiffMsecs, _hasSyncedTime, _syncTimePromise, _shouldSyncTime, _identity, _fetch, _fetchOptions, _callOptions, _credentials, _retryTimes, _backoffStrategy, _maxIngressExpiryInMinutes, _HttpAgent_instances, maxIngressExpiryInMs_get, _queryPipeline, _updatePipeline, _subnetKeys, _verifyQuerySignatures, requestAndRetryQuery_fn, requestAndRetry_fn, _verifyQueryResponse, asyncGuard_fn, rootKeyGuard_fn, syncTimeGuard_fn, _focused, _cleanup, _setup, _b2, _provider, _providerCalled, _c, _online, _cleanup2, _setup2, _d, _gcTimeout, _e, _initialState, _revertState, _cache, _client, _retryer, _defaultOptions, _abortSignalConsumed, _Query_instances, isInitialPausedFetch_fn, dispatch_fn, _f, _client2, _observers, _mutationCache, _retryer2, _Mutation_instances, dispatch_fn2, _g, _mutations, _scopes, _mutationId, _h, _queries, _i, _queryCache, _mutationCache2, _defaultOptions2, _queryDefaults, _mutationDefaults, _mountCount, _unsubscribeFocus, _unsubscribeOnline, _j, _rawKey2, _derKey2, _publicKey, _privateKey, _inner2, _delegation, _options;
 function _mergeNamespaces(n, m2) {
   for (var i = 0; i < m2.length; i++) {
     const e = m2[i];
@@ -75,7 +75,6 @@ function _mergeNamespaces(n, m2) {
     fetch(link.href, fetchOpts);
   }
 })();
-var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
 function getDefaultExportFromCjs(x2) {
   return x2 && x2.__esModule && Object.prototype.hasOwnProperty.call(x2, "default") ? x2["default"] : x2;
 }
@@ -791,7 +790,7 @@ function split(lst, le = false) {
   }
   return [Ah, Al];
 }
-const shrSH = (h2, _l2, s2) => h2 >>> s2;
+const shrSH = (h2, _l, s2) => h2 >>> s2;
 const shrSL = (h2, l, s2) => h2 << 32 - s2 | l >>> s2;
 const rotrSH = (h2, l, s2) => h2 >>> s2 | l << 32 - s2;
 const rotrSL = (h2, l, s2) => h2 << 32 - s2 | l >>> s2;
@@ -7907,7 +7906,7 @@ function isBufferGreaterThan(a2, b2) {
   }
   return false;
 }
-let Certificate$1 = (_a = class {
+const _Certificate = class _Certificate {
   constructor(certificate, _rootKey, _canisterId, _blsVerify, _maxAgeInMinutes = DEFAULT_CERTIFICATE_MAX_AGE_IN_MINUTES, disableTimeVerification = false, agent) {
     __privateAdd(this, _disableTimeVerification, false);
     __privateAdd(this, _agent);
@@ -7927,12 +7926,12 @@ let Certificate$1 = (_a = class {
    * @throws if the verification of the certificate fails
    */
   static async create(options) {
-    const cert = _a.createUnverified(options);
+    const cert = _Certificate.createUnverified(options);
     await cert.verify();
     return cert;
   }
   static createUnverified(options) {
-    return new _a(options.certificate, options.rootKey, options.canisterId, options.blsVerify ?? blsVerify, options.maxAgeInMinutes, options.disableTimeVerification, options.agent);
+    return new _Certificate(options.certificate, options.rootKey, options.canisterId, options.blsVerify ?? blsVerify, options.maxAgeInMinutes, options.disableTimeVerification, options.agent);
   }
   /**
    * Lookup a path in the certificate tree, using {@link lookup_path}.
@@ -7997,7 +7996,7 @@ let Certificate$1 = (_a = class {
     if (!d2) {
       return this._rootKey;
     }
-    const cert = _a.createUnverified({
+    const cert = _Certificate.createUnverified({
       certificate: d2.certificate,
       rootKey: this._rootKey,
       canisterId: this._canisterId,
@@ -8026,7 +8025,10 @@ let Certificate$1 = (_a = class {
     }
     return publicKeyLookup;
   }
-}, _disableTimeVerification = new WeakMap(), _agent = new WeakMap(), _a);
+};
+_disableTimeVerification = new WeakMap();
+_agent = new WeakMap();
+let Certificate = _Certificate;
 const DER_PREFIX = hexToBytes("308182301d060d2b0601040182dc7c0503010201060c2b0601040182dc7c05030201036100");
 const KEY_LENGTH = 96;
 function extractDER(buf) {
@@ -8279,7 +8281,7 @@ const request = async (options) => {
         const response = await agent.readState(canisterId, {
           paths: [encodedPath]
         });
-        const certificate = await Certificate$1.create({
+        const certificate = await Certificate.create({
           certificate: response.certificate,
           rootKey,
           canisterId,
@@ -9017,7 +9019,7 @@ const ed25519Defaults = /* @__PURE__ */ (() => ({
   uvRatio
 }))();
 const ed25519 = /* @__PURE__ */ (() => twistedEdwards(ed25519Defaults))();
-var _a2, _b;
+var _a, _b;
 class ExpirableMap {
   /**
    * Create a new ExpirableMap.
@@ -9029,7 +9031,7 @@ class ExpirableMap {
     // Internals
     __privateAdd(this, _inner);
     __privateAdd(this, _expirationTime);
-    this[_a2] = this.entries.bind(this);
+    this[_a] = this.entries.bind(this);
     this[_b] = "ExpirableMap";
     const { source = [], expirationTime = 10 * 60 * 1e3 } = options;
     const currentTime = Date.now();
@@ -9157,7 +9159,7 @@ class ExpirableMap {
 }
 _inner = new WeakMap();
 _expirationTime = new WeakMap();
-_a2 = Symbol.iterator, _b = Symbol.toStringTag;
+_a = Symbol.iterator, _b = Symbol.toStringTag;
 const encodeLenBytes = (len) => {
   if (len <= 127) {
     return 1;
@@ -9296,25 +9298,25 @@ const unwrapDER = (derEncoded, oid) => {
   }
   return result;
 };
-let Ed25519PublicKey$1 = (_b2 = class {
+let Ed25519PublicKey$1 = (_a2 = class {
   // `fromRaw` and `fromDer` should be used for instantiation, not this constructor.
   constructor(key) {
     __privateAdd(this, _rawKey);
     __privateAdd(this, _derKey);
-    if (key.byteLength !== _b2.RAW_KEY_LENGTH) {
+    if (key.byteLength !== _a2.RAW_KEY_LENGTH) {
       throw InputError.fromCode(new DerDecodeErrorCode("An Ed25519 public key must be exactly 32 bytes long"));
     }
     __privateSet(this, _rawKey, key);
-    __privateSet(this, _derKey, _b2.derEncode(key));
+    __privateSet(this, _derKey, _a2.derEncode(key));
   }
   static from(key) {
     return this.fromDer(key.toDer());
   }
   static fromRaw(rawKey) {
-    return new _b2(rawKey);
+    return new _a2(rawKey);
   }
   static fromDer(derKey) {
-    return new _b2(this.derDecode(derKey));
+    return new _a2(this.derDecode(derKey));
   }
   static derEncode(publicKey) {
     return wrapDER(publicKey, ED25519_OID);
@@ -9338,7 +9340,7 @@ let Ed25519PublicKey$1 = (_b2 = class {
   toRaw() {
     return this.rawKey;
   }
-}, _rawKey = new WeakMap(), _derKey = new WeakMap(), _b2.RAW_KEY_LENGTH = 32, _b2);
+}, _rawKey = new WeakMap(), _derKey = new WeakMap(), _a2.RAW_KEY_LENGTH = 32, _a2);
 class Observable {
   constructor() {
     this.observers = [];
@@ -9768,7 +9770,7 @@ const _HttpAgent = class _HttpAgent {
     }
     transformedRequest = await id.transformRequest(transformedRequest);
     const body = encode$1(transformedRequest.body);
-    const backoff2 = __privateGet(this, _backoffStrategy).call(this);
+    const backoff = __privateGet(this, _backoffStrategy).call(this);
     const requestId = requestIdOf(submit);
     try {
       const requestSync = () => {
@@ -9790,7 +9792,7 @@ const _HttpAgent = class _HttpAgent {
       const requestFn = callSync ? requestSync : requestAsync;
       const { responseBodyBytes, ...response } = await __privateMethod(this, _HttpAgent_instances, requestAndRetry_fn).call(this, {
         requestFn,
-        backoff: backoff2,
+        backoff,
         tries: 0
       });
       const responseBody = responseBodyBytes.byteLength > 0 ? decode$1(responseBodyBytes) : null;
@@ -9832,7 +9834,7 @@ const _HttpAgent = class _HttpAgent {
     }
   }
   async query(canisterId, fields, identity) {
-    const backoff2 = __privateGet(this, _backoffStrategy).call(this);
+    const backoff = __privateGet(this, _backoffStrategy).call(this);
     const ecid = fields.effectiveCanisterId ? Principal$1.from(fields.effectiveCanisterId) : Principal$1.from(canisterId);
     await __privateMethod(this, _HttpAgent_instances, asyncGuard_fn).call(this, ecid);
     this.log.print(`ecid ${ecid.toString()}`);
@@ -9873,7 +9875,7 @@ const _HttpAgent = class _HttpAgent {
       transformedRequest,
       body,
       requestId,
-      backoff: backoff2,
+      backoff,
       tries: 0
     };
     const makeQuery = async () => {
@@ -9976,7 +9978,7 @@ const _HttpAgent = class _HttpAgent {
       transformedRequest = await this.createReadStateRequest(fields, identity);
     }
     this.log.print(`fetching "/api/v2/canister/${canister}/read_state" with request:`, transformedRequest);
-    const backoff2 = __privateGet(this, _backoffStrategy).call(this);
+    const backoff = __privateGet(this, _backoffStrategy).call(this);
     try {
       const { responseBodyBytes } = await __privateMethod(this, _HttpAgent_instances, requestAndRetry_fn).call(this, {
         requestFn: () => __privateGet(this, _fetch).call(this, "" + new URL(`/api/v2/canister/${canister.toString()}/read_state`, this.host), {
@@ -9984,7 +9986,7 @@ const _HttpAgent = class _HttpAgent {
           ...transformedRequest.request,
           body: encode$1(transformedRequest.body)
         }),
-        backoff: backoff2,
+        backoff,
         tries: 0
       });
       const decodedResponse = decode$1(responseBodyBytes);
@@ -10092,9 +10094,9 @@ const _HttpAgent = class _HttpAgent {
       Authorization: "Basic " + btoa(__privateGet(this, _credentials))
     } : {};
     this.log.print(`fetching "/api/v2/status"`);
-    const backoff2 = __privateGet(this, _backoffStrategy).call(this);
+    const backoff = __privateGet(this, _backoffStrategy).call(this);
     const { responseBodyBytes } = await __privateMethod(this, _HttpAgent_instances, requestAndRetry_fn).call(this, {
-      backoff: backoff2,
+      backoff,
       requestFn: () => __privateGet(this, _fetch).call(this, "" + new URL(`/api/v2/status`, this.host), { headers, ...__privateGet(this, _fetchOptions) }),
       tries: 0
     });
@@ -10184,11 +10186,11 @@ _subnetKeys = new WeakMap();
 _verifyQuerySignatures = new WeakMap();
 requestAndRetryQuery_fn = async function(args) {
   var _a3, _b3;
-  const { ecid, transformedRequest, body, requestId, backoff: backoff2, tries } = args;
-  const delay = tries === 0 ? 0 : backoff2.next();
+  const { ecid, transformedRequest, body, requestId, backoff, tries } = args;
+  const delay = tries === 0 ? 0 : backoff.next();
   this.log.print(`fetching "/api/v2/canister/${ecid.toString()}/query" with tries:`, {
     tries,
-    backoff: backoff2,
+    backoff,
     delay
   });
   if (delay === null) {
@@ -10254,8 +10256,8 @@ requestAndRetryQuery_fn = async function(args) {
   return response;
 };
 requestAndRetry_fn = async function(args) {
-  const { requestFn, backoff: backoff2, tries } = args;
-  const delay = tries === 0 ? 0 : backoff2.next();
+  const { requestFn, backoff, tries } = args;
+  const delay = tries === 0 ? 0 : backoff.next();
   if (delay === null) {
     throw ProtocolError.fromCode(new TimeoutWaitingForResponseErrorCode(`Retry strategy exhausted after ${tries} attempts.`));
   }
@@ -10274,7 +10276,7 @@ requestAndRetry_fn = async function(args) {
       this.log.warn(`Caught exception while attempting to make request:
   ${error}
   Retrying request.`);
-      return await __privateMethod(this, _HttpAgent_instances, requestAndRetry_fn).call(this, { requestFn, backoff: backoff2, tries: tries + 1 });
+      return await __privateMethod(this, _HttpAgent_instances, requestAndRetry_fn).call(this, { requestFn, backoff, tries: tries + 1 });
     }
     throw TransportError.fromCode(new HttpFetchErrorCode(error));
   }
@@ -10297,7 +10299,7 @@ requestAndRetry_fn = async function(args) {
     throw InputError.fromCode(new IngressExpiryInvalidErrorCode(responseText, __privateGet(this, _maxIngressExpiryInMinutes)));
   }
   if (tries < __privateGet(this, _retryTimes)) {
-    return await __privateMethod(this, _HttpAgent_instances, requestAndRetry_fn).call(this, { requestFn, backoff: backoff2, tries: tries + 1 });
+    return await __privateMethod(this, _HttpAgent_instances, requestAndRetry_fn).call(this, { requestFn, backoff, tries: tries + 1 });
   }
   throw ProtocolError.fromCode(new HttpErrorCode(response.status, response.statusText, headers, responseText));
 };
@@ -10323,442 +10325,6 @@ let HttpAgent = _HttpAgent;
 function calculateIngressExpiry(maxIngressExpiryInMinutes, timeDiffMsecs) {
   const ingressExpiryMs = maxIngressExpiryInMinutes * MINUTE_TO_MSECS;
   return Expiry.fromDeltaInMilliseconds(ingressExpiryMs, timeDiffMsecs);
-}
-const FIVE_MINUTES_IN_MSEC = 5 * 60 * 1e3;
-function defaultStrategy() {
-  return chain(conditionalDelay(once(), 1e3), backoff(1e3, 1.2), timeout(FIVE_MINUTES_IN_MSEC));
-}
-function once() {
-  let first = true;
-  return async () => {
-    if (first) {
-      first = false;
-      return true;
-    }
-    return false;
-  };
-}
-function conditionalDelay(condition, timeInMsec) {
-  return async (canisterId, requestId, status) => {
-    if (await condition(canisterId, requestId, status)) {
-      return new Promise((resolve) => setTimeout(resolve, timeInMsec));
-    }
-  };
-}
-function timeout(timeInMsec) {
-  const end = Date.now() + timeInMsec;
-  return async (_canisterId, requestId, status) => {
-    if (Date.now() > end) {
-      throw ProtocolError.fromCode(new TimeoutWaitingForResponseErrorCode(`Request timed out after ${timeInMsec} msec`, requestId, status));
-    }
-  };
-}
-function backoff(startingThrottleInMsec, backoffFactor) {
-  let currentThrottling = startingThrottleInMsec;
-  return () => new Promise((resolve) => setTimeout(() => {
-    currentThrottling *= backoffFactor;
-    resolve();
-  }, currentThrottling));
-}
-function chain(...strategies) {
-  return async (canisterId, requestId, status) => {
-    for (const a2 of strategies) {
-      await a2(canisterId, requestId, status);
-    }
-  };
-}
-const DEFAULT_POLLING_OPTIONS = {
-  preSignReadStateRequest: false
-};
-function hasProperty(value, property) {
-  return Object.prototype.hasOwnProperty.call(value, property);
-}
-function isObjectWithProperty(value, property) {
-  return value !== null && typeof value === "object" && hasProperty(value, property);
-}
-function hasFunction(value, property) {
-  return hasProperty(value, property) && typeof value[property] === "function";
-}
-function isSignedReadStateRequestWithExpiry(value) {
-  return isObjectWithProperty(value, "body") && isObjectWithProperty(value.body, "content") && value.body.content.request_type === ReadRequestType.ReadState && isObjectWithProperty(value.body.content, "ingress_expiry") && typeof value.body.content.ingress_expiry === "object" && value.body.content.ingress_expiry !== null && hasFunction(value.body.content.ingress_expiry, "toHash");
-}
-async function pollForResponse(agent, canisterId, requestId, options = {}) {
-  const path = [utf8ToBytes("request_status"), requestId];
-  let state;
-  let currentRequest;
-  const preSignReadStateRequest = options.preSignReadStateRequest ?? false;
-  if (preSignReadStateRequest) {
-    currentRequest = await constructRequest({
-      paths: [path],
-      agent,
-      pollingOptions: options
-    });
-    state = await agent.readState(canisterId, { paths: [path] }, void 0, currentRequest);
-  } else {
-    state = await agent.readState(canisterId, { paths: [path] });
-  }
-  if (agent.rootKey == null) {
-    throw ExternalError.fromCode(new MissingRootKeyErrorCode());
-  }
-  const cert = await Certificate$1.create({
-    certificate: state.certificate,
-    rootKey: agent.rootKey,
-    canisterId,
-    blsVerify: options.blsVerify,
-    agent
-  });
-  const maybeBuf = lookupResultToBuffer(cert.lookup_path([...path, utf8ToBytes("status")]));
-  let status;
-  if (typeof maybeBuf === "undefined") {
-    status = RequestStatusResponseStatus.Unknown;
-  } else {
-    status = new TextDecoder().decode(maybeBuf);
-  }
-  switch (status) {
-    case RequestStatusResponseStatus.Replied: {
-      return {
-        reply: lookupResultToBuffer(cert.lookup_path([...path, "reply"])),
-        certificate: cert
-      };
-    }
-    case RequestStatusResponseStatus.Received:
-    case RequestStatusResponseStatus.Unknown:
-    case RequestStatusResponseStatus.Processing: {
-      const strategy = options.strategy ?? defaultStrategy();
-      await strategy(canisterId, requestId, status);
-      return pollForResponse(agent, canisterId, requestId, {
-        ...options,
-        // Pass over either the strategy already provided or the new one created above
-        strategy,
-        request: currentRequest
-      });
-    }
-    case RequestStatusResponseStatus.Rejected: {
-      const rejectCode = new Uint8Array(lookupResultToBuffer(cert.lookup_path([...path, "reject_code"])))[0];
-      const rejectMessage = new TextDecoder().decode(lookupResultToBuffer(cert.lookup_path([...path, "reject_message"])));
-      const errorCodeBuf = lookupResultToBuffer(cert.lookup_path([...path, "error_code"]));
-      const errorCode = errorCodeBuf ? new TextDecoder().decode(errorCodeBuf) : void 0;
-      throw RejectError.fromCode(new CertifiedRejectErrorCode(requestId, rejectCode, rejectMessage, errorCode));
-    }
-    case RequestStatusResponseStatus.Done:
-      throw UnknownError.fromCode(new RequestStatusDoneNoReplyErrorCode(requestId));
-  }
-  throw UNREACHABLE_ERROR;
-}
-async function constructRequest(options) {
-  var _a3;
-  const { paths, agent, pollingOptions } = options;
-  if (pollingOptions.request && isSignedReadStateRequestWithExpiry(pollingOptions.request)) {
-    return pollingOptions.request;
-  }
-  const request2 = await ((_a3 = agent.createReadStateRequest) == null ? void 0 : _a3.call(agent, {
-    paths
-  }, void 0));
-  if (!isSignedReadStateRequestWithExpiry(request2)) {
-    throw InputError.fromCode(new InvalidReadStateRequestErrorCode(request2));
-  }
-  return request2;
-}
-const metadataSymbol = Symbol.for("ic-agent-metadata");
-class Actor {
-  /**
-   * Get the Agent class this Actor would call, or undefined if the Actor would use
-   * the default agent (global.ic.agent).
-   * @param actor The actor to get the agent of.
-   */
-  static agentOf(actor) {
-    return actor[metadataSymbol].config.agent;
-  }
-  /**
-   * Get the interface of an actor, in the form of an instance of a Service.
-   * @param actor The actor to get the interface of.
-   */
-  static interfaceOf(actor) {
-    return actor[metadataSymbol].service;
-  }
-  static canisterIdOf(actor) {
-    return Principal$1.from(actor[metadataSymbol].config.canisterId);
-  }
-  static createActorClass(interfaceFactory, options) {
-    const service = interfaceFactory({ IDL });
-    class CanisterActor extends Actor {
-      constructor(config) {
-        if (!config.canisterId) {
-          throw InputError.fromCode(new MissingCanisterIdErrorCode(config.canisterId));
-        }
-        const canisterId = typeof config.canisterId === "string" ? Principal$1.fromText(config.canisterId) : config.canisterId;
-        super({
-          config: {
-            ...DEFAULT_ACTOR_CONFIG,
-            ...config,
-            canisterId
-          },
-          service
-        });
-        for (const [methodName, func] of service._fields) {
-          if (options == null ? void 0 : options.httpDetails) {
-            func.annotations.push(ACTOR_METHOD_WITH_HTTP_DETAILS);
-          }
-          if (options == null ? void 0 : options.certificate) {
-            func.annotations.push(ACTOR_METHOD_WITH_CERTIFICATE);
-          }
-          this[methodName] = _createActorMethod(this, methodName, func, config.blsVerify);
-        }
-      }
-    }
-    return CanisterActor;
-  }
-  /**
-   * Creates an actor with the given interface factory and configuration.
-   *
-   * The [`@icp-sdk/bindgen`](https://js.icp.build/bindgen/) package can be used to generate the interface factory for your canister.
-   * @param interfaceFactory - the interface factory for the actor, typically generated by the [`@icp-sdk/bindgen`](https://js.icp.build/bindgen/) package
-   * @param configuration - the configuration for the actor
-   * @returns an actor with the given interface factory and configuration
-   * @example
-   * Using the interface factory generated by the [`@icp-sdk/bindgen`](https://js.icp.build/bindgen/) package:
-   * ```ts
-   * import { Actor, HttpAgent } from '@icp-sdk/core/agent';
-   * import { Principal } from '@icp-sdk/core/principal';
-   * import { idlFactory } from './api/declarations/hello-world.did';
-   *
-   * const canisterId = Principal.fromText('rrkah-fqaaa-aaaaa-aaaaq-cai');
-   *
-   * const agent = await HttpAgent.create({
-   *   host: 'https://icp-api.io',
-   * });
-   *
-   * const actor = Actor.createActor(idlFactory, {
-   *   agent,
-   *   canisterId,
-   * });
-   *
-   * const response = await actor.greet('world');
-   * console.log(response);
-   * ```
-   * @example
-   * Using the `createActor` wrapper function generated by the [`@icp-sdk/bindgen`](https://js.icp.build/bindgen/) package:
-   * ```ts
-   * import { HttpAgent } from '@icp-sdk/core/agent';
-   * import { Principal } from '@icp-sdk/core/principal';
-   * import { createActor } from './api/hello-world';
-   *
-   * const canisterId = Principal.fromText('rrkah-fqaaa-aaaaa-aaaaq-cai');
-   *
-   * const agent = await HttpAgent.create({
-   *   host: 'https://icp-api.io',
-   * });
-   *
-   * const actor = createActor(canisterId, {
-   *   agent,
-   * });
-   *
-   * const response = await actor.greet('world');
-   * console.log(response);
-   * ```
-   */
-  static createActor(interfaceFactory, configuration) {
-    if (!configuration.canisterId) {
-      throw InputError.fromCode(new MissingCanisterIdErrorCode(configuration.canisterId));
-    }
-    return new (this.createActorClass(interfaceFactory))(configuration);
-  }
-  /**
-   * Returns an actor with methods that return the http response details along with the result
-   * @param interfaceFactory - the interface factory for the actor
-   * @param configuration - the configuration for the actor
-   * @deprecated - use createActor with actorClassOptions instead
-   */
-  static createActorWithHttpDetails(interfaceFactory, configuration) {
-    return new (this.createActorClass(interfaceFactory, { httpDetails: true }))(configuration);
-  }
-  /**
-   * Returns an actor with methods that return the http response details along with the result
-   * @param interfaceFactory - the interface factory for the actor
-   * @param configuration - the configuration for the actor
-   * @param actorClassOptions - options for the actor class extended details to return with the result
-   */
-  static createActorWithExtendedDetails(interfaceFactory, configuration, actorClassOptions = {
-    httpDetails: true,
-    certificate: true
-  }) {
-    return new (this.createActorClass(interfaceFactory, actorClassOptions))(configuration);
-  }
-  constructor(metadata) {
-    this[metadataSymbol] = Object.freeze(metadata);
-  }
-}
-function decodeReturnValue(types, msg) {
-  const returnValues = decode$2(types, msg);
-  switch (returnValues.length) {
-    case 0:
-      return void 0;
-    case 1:
-      return returnValues[0];
-    default:
-      return returnValues;
-  }
-}
-const DEFAULT_ACTOR_CONFIG = {
-  pollingOptions: DEFAULT_POLLING_OPTIONS
-};
-const ACTOR_METHOD_WITH_HTTP_DETAILS = "http-details";
-const ACTOR_METHOD_WITH_CERTIFICATE = "certificate";
-function _createActorMethod(actor, methodName, func, blsVerify2) {
-  let caller;
-  if (func.annotations.includes("query") || func.annotations.includes("composite_query")) {
-    caller = async (options, ...args) => {
-      var _a3, _b3;
-      options = {
-        ...options,
-        ...(_b3 = (_a3 = actor[metadataSymbol].config).queryTransform) == null ? void 0 : _b3.call(_a3, methodName, args, {
-          ...actor[metadataSymbol].config,
-          ...options
-        })
-      };
-      const agent = options.agent || actor[metadataSymbol].config.agent || new HttpAgent();
-      const cid = Principal$1.from(options.canisterId || actor[metadataSymbol].config.canisterId);
-      const arg = encode$2(func.argTypes, args);
-      const result = await agent.query(cid, {
-        methodName,
-        arg,
-        effectiveCanisterId: options.effectiveCanisterId
-      });
-      const httpDetails = {
-        ...result.httpDetails,
-        requestDetails: result.requestDetails
-      };
-      switch (result.status) {
-        case QueryResponseStatus.Rejected: {
-          const uncertifiedRejectErrorCode = new UncertifiedRejectErrorCode(result.requestId, result.reject_code, result.reject_message, result.error_code, result.signatures);
-          uncertifiedRejectErrorCode.callContext = {
-            canisterId: cid,
-            methodName,
-            httpDetails
-          };
-          throw RejectError.fromCode(uncertifiedRejectErrorCode);
-        }
-        case QueryResponseStatus.Replied:
-          return func.annotations.includes(ACTOR_METHOD_WITH_HTTP_DETAILS) ? {
-            httpDetails,
-            result: decodeReturnValue(func.retTypes, result.reply.arg)
-          } : decodeReturnValue(func.retTypes, result.reply.arg);
-      }
-    };
-  } else {
-    caller = async (options, ...args) => {
-      var _a3, _b3;
-      options = {
-        ...options,
-        ...(_b3 = (_a3 = actor[metadataSymbol].config).callTransform) == null ? void 0 : _b3.call(_a3, methodName, args, {
-          ...actor[metadataSymbol].config,
-          ...options
-        })
-      };
-      const agent = options.agent || actor[metadataSymbol].config.agent || HttpAgent.createSync();
-      const { canisterId, effectiveCanisterId, pollingOptions } = {
-        ...DEFAULT_ACTOR_CONFIG,
-        ...actor[metadataSymbol].config,
-        ...options
-      };
-      const cid = Principal$1.from(canisterId);
-      const ecid = effectiveCanisterId !== void 0 ? Principal$1.from(effectiveCanisterId) : cid;
-      const arg = encode$2(func.argTypes, args);
-      const { requestId, response, requestDetails } = await agent.call(cid, {
-        methodName,
-        arg,
-        effectiveCanisterId: ecid,
-        nonce: options.nonce
-      });
-      let reply;
-      let certificate;
-      if (isV3ResponseBody(response.body)) {
-        if (agent.rootKey == null) {
-          throw ExternalError.fromCode(new MissingRootKeyErrorCode());
-        }
-        const cert = response.body.certificate;
-        certificate = await Certificate$1.create({
-          certificate: cert,
-          rootKey: agent.rootKey,
-          canisterId: ecid,
-          blsVerify: blsVerify2,
-          agent
-        });
-        const path = [utf8ToBytes("request_status"), requestId];
-        const status = new TextDecoder().decode(lookupResultToBuffer(certificate.lookup_path([...path, "status"])));
-        switch (status) {
-          case "replied":
-            reply = lookupResultToBuffer(certificate.lookup_path([...path, "reply"]));
-            break;
-          case "rejected": {
-            const rejectCode = new Uint8Array(lookupResultToBuffer(certificate.lookup_path([...path, "reject_code"])))[0];
-            const rejectMessage = new TextDecoder().decode(lookupResultToBuffer(certificate.lookup_path([...path, "reject_message"])));
-            const error_code_buf = lookupResultToBuffer(certificate.lookup_path([...path, "error_code"]));
-            const error_code = error_code_buf ? new TextDecoder().decode(error_code_buf) : void 0;
-            const certifiedRejectErrorCode = new CertifiedRejectErrorCode(requestId, rejectCode, rejectMessage, error_code);
-            certifiedRejectErrorCode.callContext = {
-              canisterId: cid,
-              methodName,
-              httpDetails: response
-            };
-            throw RejectError.fromCode(certifiedRejectErrorCode);
-          }
-        }
-      } else if (isV2ResponseBody(response.body)) {
-        const { reject_code, reject_message, error_code } = response.body;
-        const errorCode = new UncertifiedRejectUpdateErrorCode(requestId, reject_code, reject_message, error_code);
-        errorCode.callContext = {
-          canisterId: cid,
-          methodName,
-          httpDetails: response
-        };
-        throw RejectError.fromCode(errorCode);
-      }
-      if (response.status === 202) {
-        const pollOptions = {
-          ...pollingOptions,
-          blsVerify: blsVerify2
-        };
-        const response2 = await pollForResponse(agent, ecid, requestId, pollOptions);
-        certificate = response2.certificate;
-        reply = response2.reply;
-      }
-      const shouldIncludeHttpDetails = func.annotations.includes(ACTOR_METHOD_WITH_HTTP_DETAILS);
-      const shouldIncludeCertificate = func.annotations.includes(ACTOR_METHOD_WITH_CERTIFICATE);
-      const httpDetails = { ...response, requestDetails };
-      if (reply !== void 0) {
-        if (shouldIncludeHttpDetails && shouldIncludeCertificate) {
-          return {
-            httpDetails,
-            certificate,
-            result: decodeReturnValue(func.retTypes, reply)
-          };
-        } else if (shouldIncludeCertificate) {
-          return {
-            certificate,
-            result: decodeReturnValue(func.retTypes, reply)
-          };
-        } else if (shouldIncludeHttpDetails) {
-          return {
-            httpDetails,
-            result: decodeReturnValue(func.retTypes, reply)
-          };
-        }
-        return decodeReturnValue(func.retTypes, reply);
-      } else {
-        const errorCode = new UnexpectedErrorCode(`Call was returned undefined. We cannot determine if the call was successful or not. Return types: [${func.retTypes.map((t) => t.display()).join(",")}].`);
-        errorCode.callContext = {
-          canisterId: cid,
-          methodName,
-          httpDetails
-        };
-        throw UnknownError.fromCode(errorCode);
-      }
-    };
-  }
-  const handler = (...args) => caller({}, ...args);
-  handler.withOptions = (options) => (...args) => caller(options, ...args);
-  return handler;
 }
 const MAXIMUM_CONCURRENT_UPLOADS = 10;
 const MAX_RETRIES = 3;
@@ -11200,7 +10766,7 @@ async function maybeLoadMockBackend() {
     return null;
   }
 }
-async function createActorWithConfig(createActor2, options) {
+async function createActorWithConfig(createActor, options) {
   var _a3;
   const mock = await maybeLoadMockBackend();
   if (mock) {
@@ -11235,7 +10801,7 @@ async function createActorWithConfig(createActor2, options) {
     const url = await storageClient.getDirectURL(hash);
     return ExternalBlob.fromURL(url);
   };
-  return createActor2(config.backend_canister_id, uploadFile, downloadFile, actorOptions);
+  return createActor(config.backend_canister_id, uploadFile, downloadFile, actorOptions);
 }
 var Subscribable = class {
   constructor() {
@@ -11258,7 +10824,7 @@ var Subscribable = class {
   onUnsubscribe() {
   }
 };
-var FocusManager = (_c = class extends Subscribable {
+var FocusManager = (_b2 = class extends Subscribable {
   constructor() {
     super();
     __privateAdd(this, _focused);
@@ -11319,7 +10885,7 @@ var FocusManager = (_c = class extends Subscribable {
     }
     return ((_a3 = globalThis.document) == null ? void 0 : _a3.visibilityState) !== "hidden";
   }
-}, _focused = new WeakMap(), _cleanup = new WeakMap(), _setup = new WeakMap(), _c);
+}, _focused = new WeakMap(), _cleanup = new WeakMap(), _setup = new WeakMap(), _b2);
 var focusManager = new FocusManager();
 var defaultTimeoutProvider = {
   // We need the wrapper function syntax below instead of direct references to
@@ -11337,7 +10903,7 @@ var defaultTimeoutProvider = {
   setInterval: (callback, delay) => setInterval(callback, delay),
   clearInterval: (intervalId) => clearInterval(intervalId)
 };
-var TimeoutManager = (_d = class {
+var TimeoutManager = (_c = class {
   constructor() {
     // We cannot have TimeoutManager<T> as we must instantiate it with a concrete
     // type at app boot; and if we leave that type, then any new timer provider
@@ -11364,7 +10930,7 @@ var TimeoutManager = (_d = class {
   clearInterval(intervalId) {
     __privateGet(this, _provider).clearInterval(intervalId);
   }
-}, _provider = new WeakMap(), _providerCalled = new WeakMap(), _d);
+}, _provider = new WeakMap(), _providerCalled = new WeakMap(), _c);
 var timeoutManager = new TimeoutManager();
 function systemSetTimeoutZero(callback) {
   setTimeout(callback, 0);
@@ -11542,9 +11108,9 @@ function isPlainObject$1(o2) {
 function hasObjectPrototype$1(o2) {
   return Object.prototype.toString.call(o2) === "[object Object]";
 }
-function sleep(timeout2) {
+function sleep(timeout) {
   return new Promise((resolve) => {
-    timeoutManager.setTimeout(resolve, timeout2);
+    timeoutManager.setTimeout(resolve, timeout);
   });
 }
 function replaceData(prevData, data, options) {
@@ -11726,7 +11292,7 @@ function createNotifyManager() {
   };
 }
 var notifyManager = createNotifyManager();
-var OnlineManager = (_e = class extends Subscribable {
+var OnlineManager = (_d = class extends Subscribable {
   constructor() {
     super();
     __privateAdd(this, _online, true);
@@ -11776,7 +11342,7 @@ var OnlineManager = (_e = class extends Subscribable {
   isOnline() {
     return __privateGet(this, _online);
   }
-}, _online = new WeakMap(), _cleanup2 = new WeakMap(), _setup2 = new WeakMap(), _e);
+}, _online = new WeakMap(), _cleanup2 = new WeakMap(), _setup2 = new WeakMap(), _d);
 var onlineManager = new OnlineManager();
 function defaultRetryDelay(failureCount) {
   return Math.min(1e3 * 2 ** failureCount, 3e4);
@@ -11900,7 +11466,7 @@ function createRetryer(config) {
     }
   };
 }
-var Removable = (_f = class {
+var Removable = (_e = class {
   constructor() {
     __privateAdd(this, _gcTimeout);
   }
@@ -11927,8 +11493,8 @@ var Removable = (_f = class {
       __privateSet(this, _gcTimeout, void 0);
     }
   }
-}, _gcTimeout = new WeakMap(), _f);
-var Query = (_g = class extends Removable {
+}, _gcTimeout = new WeakMap(), _e);
+var Query = (_f = class extends Removable {
   constructor(config) {
     super();
     __privateAdd(this, _Query_instances);
@@ -12092,7 +11658,7 @@ var Query = (_g = class extends Removable {
     }
   }
   async fetch(options, fetchOptions) {
-    var _a3, _b3, _c2, _d2, _e2, _f2, _g2, _h2, _i2, _j2, _k2, _l2;
+    var _a3, _b3, _c2, _d2, _e2, _f2, _g2, _h2, _i2, _j2, _k, _l;
     if (this.state.fetchStatus !== "idle" && // If the promise in the retryer is already rejected, we have to definitely
     // re-start the fetch; there is a chance that the query is still in a
     // pending state when that happens
@@ -12224,8 +11790,8 @@ var Query = (_g = class extends Removable {
         error,
         this
       );
-      (_l2 = (_k2 = __privateGet(this, _cache).config).onSettled) == null ? void 0 : _l2.call(
-        _k2,
+      (_l = (_k = __privateGet(this, _cache).config).onSettled) == null ? void 0 : _l.call(
+        _k,
         this.state.data,
         error,
         this
@@ -12309,7 +11875,7 @@ var Query = (_g = class extends Removable {
     });
     __privateGet(this, _cache).notify({ query: this, type: "updated", action });
   });
-}, _g);
+}, _f);
 function fetchState(data, options) {
   return {
     fetchFailureCount: 0,
@@ -12348,450 +11914,6 @@ function getDefaultState$1(options) {
     status: hasData ? "success" : "pending",
     fetchStatus: "idle"
   };
-}
-var QueryObserver = (_h = class extends Subscribable {
-  constructor(client2, options) {
-    super();
-    __privateAdd(this, _QueryObserver_instances);
-    __privateAdd(this, _client2);
-    __privateAdd(this, _currentQuery);
-    __privateAdd(this, _currentQueryInitialState);
-    __privateAdd(this, _currentResult);
-    __privateAdd(this, _currentResultState);
-    __privateAdd(this, _currentResultOptions);
-    __privateAdd(this, _currentThenable);
-    __privateAdd(this, _selectError);
-    __privateAdd(this, _selectFn);
-    __privateAdd(this, _selectResult);
-    // This property keeps track of the last query with defined data.
-    // It will be used to pass the previous data and query to the placeholder function between renders.
-    __privateAdd(this, _lastQueryWithDefinedData);
-    __privateAdd(this, _staleTimeoutId);
-    __privateAdd(this, _refetchIntervalId);
-    __privateAdd(this, _currentRefetchInterval);
-    __privateAdd(this, _trackedProps, /* @__PURE__ */ new Set());
-    this.options = options;
-    __privateSet(this, _client2, client2);
-    __privateSet(this, _selectError, null);
-    __privateSet(this, _currentThenable, pendingThenable());
-    this.bindMethods();
-    this.setOptions(options);
-  }
-  bindMethods() {
-    this.refetch = this.refetch.bind(this);
-  }
-  onSubscribe() {
-    if (this.listeners.size === 1) {
-      __privateGet(this, _currentQuery).addObserver(this);
-      if (shouldFetchOnMount(__privateGet(this, _currentQuery), this.options)) {
-        __privateMethod(this, _QueryObserver_instances, executeFetch_fn).call(this);
-      } else {
-        this.updateResult();
-      }
-      __privateMethod(this, _QueryObserver_instances, updateTimers_fn).call(this);
-    }
-  }
-  onUnsubscribe() {
-    if (!this.hasListeners()) {
-      this.destroy();
-    }
-  }
-  shouldFetchOnReconnect() {
-    return shouldFetchOn(
-      __privateGet(this, _currentQuery),
-      this.options,
-      this.options.refetchOnReconnect
-    );
-  }
-  shouldFetchOnWindowFocus() {
-    return shouldFetchOn(
-      __privateGet(this, _currentQuery),
-      this.options,
-      this.options.refetchOnWindowFocus
-    );
-  }
-  destroy() {
-    this.listeners = /* @__PURE__ */ new Set();
-    __privateMethod(this, _QueryObserver_instances, clearStaleTimeout_fn).call(this);
-    __privateMethod(this, _QueryObserver_instances, clearRefetchInterval_fn).call(this);
-    __privateGet(this, _currentQuery).removeObserver(this);
-  }
-  setOptions(options) {
-    const prevOptions = this.options;
-    const prevQuery = __privateGet(this, _currentQuery);
-    this.options = __privateGet(this, _client2).defaultQueryOptions(options);
-    if (this.options.enabled !== void 0 && typeof this.options.enabled !== "boolean" && typeof this.options.enabled !== "function" && typeof resolveEnabled(this.options.enabled, __privateGet(this, _currentQuery)) !== "boolean") {
-      throw new Error(
-        "Expected enabled to be a boolean or a callback that returns a boolean"
-      );
-    }
-    __privateMethod(this, _QueryObserver_instances, updateQuery_fn).call(this);
-    __privateGet(this, _currentQuery).setOptions(this.options);
-    if (prevOptions._defaulted && !shallowEqualObjects(this.options, prevOptions)) {
-      __privateGet(this, _client2).getQueryCache().notify({
-        type: "observerOptionsUpdated",
-        query: __privateGet(this, _currentQuery),
-        observer: this
-      });
-    }
-    const mounted = this.hasListeners();
-    if (mounted && shouldFetchOptionally(
-      __privateGet(this, _currentQuery),
-      prevQuery,
-      this.options,
-      prevOptions
-    )) {
-      __privateMethod(this, _QueryObserver_instances, executeFetch_fn).call(this);
-    }
-    this.updateResult();
-    if (mounted && (__privateGet(this, _currentQuery) !== prevQuery || resolveEnabled(this.options.enabled, __privateGet(this, _currentQuery)) !== resolveEnabled(prevOptions.enabled, __privateGet(this, _currentQuery)) || resolveStaleTime(this.options.staleTime, __privateGet(this, _currentQuery)) !== resolveStaleTime(prevOptions.staleTime, __privateGet(this, _currentQuery)))) {
-      __privateMethod(this, _QueryObserver_instances, updateStaleTimeout_fn).call(this);
-    }
-    const nextRefetchInterval = __privateMethod(this, _QueryObserver_instances, computeRefetchInterval_fn).call(this);
-    if (mounted && (__privateGet(this, _currentQuery) !== prevQuery || resolveEnabled(this.options.enabled, __privateGet(this, _currentQuery)) !== resolveEnabled(prevOptions.enabled, __privateGet(this, _currentQuery)) || nextRefetchInterval !== __privateGet(this, _currentRefetchInterval))) {
-      __privateMethod(this, _QueryObserver_instances, updateRefetchInterval_fn).call(this, nextRefetchInterval);
-    }
-  }
-  getOptimisticResult(options) {
-    const query = __privateGet(this, _client2).getQueryCache().build(__privateGet(this, _client2), options);
-    const result = this.createResult(query, options);
-    if (shouldAssignObserverCurrentProperties(this, result)) {
-      __privateSet(this, _currentResult, result);
-      __privateSet(this, _currentResultOptions, this.options);
-      __privateSet(this, _currentResultState, __privateGet(this, _currentQuery).state);
-    }
-    return result;
-  }
-  getCurrentResult() {
-    return __privateGet(this, _currentResult);
-  }
-  trackResult(result, onPropTracked) {
-    return new Proxy(result, {
-      get: (target, key) => {
-        this.trackProp(key);
-        onPropTracked == null ? void 0 : onPropTracked(key);
-        if (key === "promise") {
-          this.trackProp("data");
-          if (!this.options.experimental_prefetchInRender && __privateGet(this, _currentThenable).status === "pending") {
-            __privateGet(this, _currentThenable).reject(
-              new Error(
-                "experimental_prefetchInRender feature flag is not enabled"
-              )
-            );
-          }
-        }
-        return Reflect.get(target, key);
-      }
-    });
-  }
-  trackProp(key) {
-    __privateGet(this, _trackedProps).add(key);
-  }
-  getCurrentQuery() {
-    return __privateGet(this, _currentQuery);
-  }
-  refetch({ ...options } = {}) {
-    return this.fetch({
-      ...options
-    });
-  }
-  fetchOptimistic(options) {
-    const defaultedOptions = __privateGet(this, _client2).defaultQueryOptions(options);
-    const query = __privateGet(this, _client2).getQueryCache().build(__privateGet(this, _client2), defaultedOptions);
-    return query.fetch().then(() => this.createResult(query, defaultedOptions));
-  }
-  fetch(fetchOptions) {
-    return __privateMethod(this, _QueryObserver_instances, executeFetch_fn).call(this, {
-      ...fetchOptions,
-      cancelRefetch: fetchOptions.cancelRefetch ?? true
-    }).then(() => {
-      this.updateResult();
-      return __privateGet(this, _currentResult);
-    });
-  }
-  createResult(query, options) {
-    var _a3;
-    const prevQuery = __privateGet(this, _currentQuery);
-    const prevOptions = this.options;
-    const prevResult = __privateGet(this, _currentResult);
-    const prevResultState = __privateGet(this, _currentResultState);
-    const prevResultOptions = __privateGet(this, _currentResultOptions);
-    const queryChange = query !== prevQuery;
-    const queryInitialState = queryChange ? query.state : __privateGet(this, _currentQueryInitialState);
-    const { state } = query;
-    let newState = { ...state };
-    let isPlaceholderData = false;
-    let data;
-    if (options._optimisticResults) {
-      const mounted = this.hasListeners();
-      const fetchOnMount = !mounted && shouldFetchOnMount(query, options);
-      const fetchOptionally = mounted && shouldFetchOptionally(query, prevQuery, options, prevOptions);
-      if (fetchOnMount || fetchOptionally) {
-        newState = {
-          ...newState,
-          ...fetchState(state.data, query.options)
-        };
-      }
-      if (options._optimisticResults === "isRestoring") {
-        newState.fetchStatus = "idle";
-      }
-    }
-    let { error, errorUpdatedAt, status } = newState;
-    data = newState.data;
-    let skipSelect = false;
-    if (options.placeholderData !== void 0 && data === void 0 && status === "pending") {
-      let placeholderData;
-      if ((prevResult == null ? void 0 : prevResult.isPlaceholderData) && options.placeholderData === (prevResultOptions == null ? void 0 : prevResultOptions.placeholderData)) {
-        placeholderData = prevResult.data;
-        skipSelect = true;
-      } else {
-        placeholderData = typeof options.placeholderData === "function" ? options.placeholderData(
-          (_a3 = __privateGet(this, _lastQueryWithDefinedData)) == null ? void 0 : _a3.state.data,
-          __privateGet(this, _lastQueryWithDefinedData)
-        ) : options.placeholderData;
-      }
-      if (placeholderData !== void 0) {
-        status = "success";
-        data = replaceData(
-          prevResult == null ? void 0 : prevResult.data,
-          placeholderData,
-          options
-        );
-        isPlaceholderData = true;
-      }
-    }
-    if (options.select && data !== void 0 && !skipSelect) {
-      if (prevResult && data === (prevResultState == null ? void 0 : prevResultState.data) && options.select === __privateGet(this, _selectFn)) {
-        data = __privateGet(this, _selectResult);
-      } else {
-        try {
-          __privateSet(this, _selectFn, options.select);
-          data = options.select(data);
-          data = replaceData(prevResult == null ? void 0 : prevResult.data, data, options);
-          __privateSet(this, _selectResult, data);
-          __privateSet(this, _selectError, null);
-        } catch (selectError) {
-          __privateSet(this, _selectError, selectError);
-        }
-      }
-    }
-    if (__privateGet(this, _selectError)) {
-      error = __privateGet(this, _selectError);
-      data = __privateGet(this, _selectResult);
-      errorUpdatedAt = Date.now();
-      status = "error";
-    }
-    const isFetching = newState.fetchStatus === "fetching";
-    const isPending = status === "pending";
-    const isError = status === "error";
-    const isLoading = isPending && isFetching;
-    const hasData = data !== void 0;
-    const result = {
-      status,
-      fetchStatus: newState.fetchStatus,
-      isPending,
-      isSuccess: status === "success",
-      isError,
-      isInitialLoading: isLoading,
-      isLoading,
-      data,
-      dataUpdatedAt: newState.dataUpdatedAt,
-      error,
-      errorUpdatedAt,
-      failureCount: newState.fetchFailureCount,
-      failureReason: newState.fetchFailureReason,
-      errorUpdateCount: newState.errorUpdateCount,
-      isFetched: query.isFetched(),
-      isFetchedAfterMount: newState.dataUpdateCount > queryInitialState.dataUpdateCount || newState.errorUpdateCount > queryInitialState.errorUpdateCount,
-      isFetching,
-      isRefetching: isFetching && !isPending,
-      isLoadingError: isError && !hasData,
-      isPaused: newState.fetchStatus === "paused",
-      isPlaceholderData,
-      isRefetchError: isError && hasData,
-      isStale: isStale(query, options),
-      refetch: this.refetch,
-      promise: __privateGet(this, _currentThenable),
-      isEnabled: resolveEnabled(options.enabled, query) !== false
-    };
-    const nextResult = result;
-    if (this.options.experimental_prefetchInRender) {
-      const hasResultData = nextResult.data !== void 0;
-      const isErrorWithoutData = nextResult.status === "error" && !hasResultData;
-      const finalizeThenableIfPossible = (thenable) => {
-        if (isErrorWithoutData) {
-          thenable.reject(nextResult.error);
-        } else if (hasResultData) {
-          thenable.resolve(nextResult.data);
-        }
-      };
-      const recreateThenable = () => {
-        const pending = __privateSet(this, _currentThenable, nextResult.promise = pendingThenable());
-        finalizeThenableIfPossible(pending);
-      };
-      const prevThenable = __privateGet(this, _currentThenable);
-      switch (prevThenable.status) {
-        case "pending":
-          if (query.queryHash === prevQuery.queryHash) {
-            finalizeThenableIfPossible(prevThenable);
-          }
-          break;
-        case "fulfilled":
-          if (isErrorWithoutData || nextResult.data !== prevThenable.value) {
-            recreateThenable();
-          }
-          break;
-        case "rejected":
-          if (!isErrorWithoutData || nextResult.error !== prevThenable.reason) {
-            recreateThenable();
-          }
-          break;
-      }
-    }
-    return nextResult;
-  }
-  updateResult() {
-    const prevResult = __privateGet(this, _currentResult);
-    const nextResult = this.createResult(__privateGet(this, _currentQuery), this.options);
-    __privateSet(this, _currentResultState, __privateGet(this, _currentQuery).state);
-    __privateSet(this, _currentResultOptions, this.options);
-    if (__privateGet(this, _currentResultState).data !== void 0) {
-      __privateSet(this, _lastQueryWithDefinedData, __privateGet(this, _currentQuery));
-    }
-    if (shallowEqualObjects(nextResult, prevResult)) {
-      return;
-    }
-    __privateSet(this, _currentResult, nextResult);
-    const shouldNotifyListeners = () => {
-      if (!prevResult) {
-        return true;
-      }
-      const { notifyOnChangeProps } = this.options;
-      const notifyOnChangePropsValue = typeof notifyOnChangeProps === "function" ? notifyOnChangeProps() : notifyOnChangeProps;
-      if (notifyOnChangePropsValue === "all" || !notifyOnChangePropsValue && !__privateGet(this, _trackedProps).size) {
-        return true;
-      }
-      const includedProps = new Set(
-        notifyOnChangePropsValue ?? __privateGet(this, _trackedProps)
-      );
-      if (this.options.throwOnError) {
-        includedProps.add("error");
-      }
-      return Object.keys(__privateGet(this, _currentResult)).some((key) => {
-        const typedKey = key;
-        const changed = __privateGet(this, _currentResult)[typedKey] !== prevResult[typedKey];
-        return changed && includedProps.has(typedKey);
-      });
-    };
-    __privateMethod(this, _QueryObserver_instances, notify_fn).call(this, { listeners: shouldNotifyListeners() });
-  }
-  onQueryUpdate() {
-    this.updateResult();
-    if (this.hasListeners()) {
-      __privateMethod(this, _QueryObserver_instances, updateTimers_fn).call(this);
-    }
-  }
-}, _client2 = new WeakMap(), _currentQuery = new WeakMap(), _currentQueryInitialState = new WeakMap(), _currentResult = new WeakMap(), _currentResultState = new WeakMap(), _currentResultOptions = new WeakMap(), _currentThenable = new WeakMap(), _selectError = new WeakMap(), _selectFn = new WeakMap(), _selectResult = new WeakMap(), _lastQueryWithDefinedData = new WeakMap(), _staleTimeoutId = new WeakMap(), _refetchIntervalId = new WeakMap(), _currentRefetchInterval = new WeakMap(), _trackedProps = new WeakMap(), _QueryObserver_instances = new WeakSet(), executeFetch_fn = function(fetchOptions) {
-  __privateMethod(this, _QueryObserver_instances, updateQuery_fn).call(this);
-  let promise = __privateGet(this, _currentQuery).fetch(
-    this.options,
-    fetchOptions
-  );
-  if (!(fetchOptions == null ? void 0 : fetchOptions.throwOnError)) {
-    promise = promise.catch(noop$6);
-  }
-  return promise;
-}, updateStaleTimeout_fn = function() {
-  __privateMethod(this, _QueryObserver_instances, clearStaleTimeout_fn).call(this);
-  const staleTime = resolveStaleTime(
-    this.options.staleTime,
-    __privateGet(this, _currentQuery)
-  );
-  if (environmentManager.isServer() || __privateGet(this, _currentResult).isStale || !isValidTimeout(staleTime)) {
-    return;
-  }
-  const time = timeUntilStale(__privateGet(this, _currentResult).dataUpdatedAt, staleTime);
-  const timeout2 = time + 1;
-  __privateSet(this, _staleTimeoutId, timeoutManager.setTimeout(() => {
-    if (!__privateGet(this, _currentResult).isStale) {
-      this.updateResult();
-    }
-  }, timeout2));
-}, computeRefetchInterval_fn = function() {
-  return (typeof this.options.refetchInterval === "function" ? this.options.refetchInterval(__privateGet(this, _currentQuery)) : this.options.refetchInterval) ?? false;
-}, updateRefetchInterval_fn = function(nextInterval) {
-  __privateMethod(this, _QueryObserver_instances, clearRefetchInterval_fn).call(this);
-  __privateSet(this, _currentRefetchInterval, nextInterval);
-  if (environmentManager.isServer() || resolveEnabled(this.options.enabled, __privateGet(this, _currentQuery)) === false || !isValidTimeout(__privateGet(this, _currentRefetchInterval)) || __privateGet(this, _currentRefetchInterval) === 0) {
-    return;
-  }
-  __privateSet(this, _refetchIntervalId, timeoutManager.setInterval(() => {
-    if (this.options.refetchIntervalInBackground || focusManager.isFocused()) {
-      __privateMethod(this, _QueryObserver_instances, executeFetch_fn).call(this);
-    }
-  }, __privateGet(this, _currentRefetchInterval)));
-}, updateTimers_fn = function() {
-  __privateMethod(this, _QueryObserver_instances, updateStaleTimeout_fn).call(this);
-  __privateMethod(this, _QueryObserver_instances, updateRefetchInterval_fn).call(this, __privateMethod(this, _QueryObserver_instances, computeRefetchInterval_fn).call(this));
-}, clearStaleTimeout_fn = function() {
-  if (__privateGet(this, _staleTimeoutId)) {
-    timeoutManager.clearTimeout(__privateGet(this, _staleTimeoutId));
-    __privateSet(this, _staleTimeoutId, void 0);
-  }
-}, clearRefetchInterval_fn = function() {
-  if (__privateGet(this, _refetchIntervalId)) {
-    timeoutManager.clearInterval(__privateGet(this, _refetchIntervalId));
-    __privateSet(this, _refetchIntervalId, void 0);
-  }
-}, updateQuery_fn = function() {
-  const query = __privateGet(this, _client2).getQueryCache().build(__privateGet(this, _client2), this.options);
-  if (query === __privateGet(this, _currentQuery)) {
-    return;
-  }
-  const prevQuery = __privateGet(this, _currentQuery);
-  __privateSet(this, _currentQuery, query);
-  __privateSet(this, _currentQueryInitialState, query.state);
-  if (this.hasListeners()) {
-    prevQuery == null ? void 0 : prevQuery.removeObserver(this);
-    query.addObserver(this);
-  }
-}, notify_fn = function(notifyOptions) {
-  notifyManager.batch(() => {
-    if (notifyOptions.listeners) {
-      this.listeners.forEach((listener) => {
-        listener(__privateGet(this, _currentResult));
-      });
-    }
-    __privateGet(this, _client2).getQueryCache().notify({
-      query: __privateGet(this, _currentQuery),
-      type: "observerResultsUpdated"
-    });
-  });
-}, _h);
-function shouldLoadOnMount(query, options) {
-  return resolveEnabled(options.enabled, query) !== false && query.state.data === void 0 && !(query.state.status === "error" && options.retryOnMount === false);
-}
-function shouldFetchOnMount(query, options) {
-  return shouldLoadOnMount(query, options) || query.state.data !== void 0 && shouldFetchOn(query, options, options.refetchOnMount);
-}
-function shouldFetchOn(query, options, field) {
-  if (resolveEnabled(options.enabled, query) !== false && resolveStaleTime(options.staleTime, query) !== "static") {
-    const value = typeof field === "function" ? field(query) : field;
-    return value === "always" || value !== false && isStale(query, options);
-  }
-  return false;
-}
-function shouldFetchOptionally(query, prevQuery, options, prevOptions) {
-  return (query !== prevQuery || resolveEnabled(prevOptions.enabled, query) === false) && (!options.suspense || query.state.status !== "error") && isStale(query, options);
-}
-function isStale(query, options) {
-  return resolveEnabled(options.enabled, query) !== false && query.isStaleByTime(resolveStaleTime(options.staleTime, query));
-}
-function shouldAssignObserverCurrentProperties(observer, optimisticResult) {
-  if (!shallowEqualObjects(observer.getCurrentResult(), optimisticResult)) {
-    return true;
-  }
-  return false;
 }
 function infiniteQueryBehavior(pages) {
   return {
@@ -12896,15 +12018,15 @@ function getPreviousPageParam(options, { pages, pageParams }) {
   var _a3;
   return pages.length > 0 ? (_a3 = options.getPreviousPageParam) == null ? void 0 : _a3.call(options, pages[0], pages, pageParams[0], pageParams) : void 0;
 }
-var Mutation = (_i = class extends Removable {
+var Mutation = (_g = class extends Removable {
   constructor(config) {
     super();
     __privateAdd(this, _Mutation_instances);
-    __privateAdd(this, _client3);
+    __privateAdd(this, _client2);
     __privateAdd(this, _observers);
     __privateAdd(this, _mutationCache);
     __privateAdd(this, _retryer2);
-    __privateSet(this, _client3, config.client);
+    __privateSet(this, _client2, config.client);
     this.mutationId = config.mutationId;
     __privateSet(this, _mutationCache, config.mutationCache);
     __privateSet(this, _observers, []);
@@ -12954,12 +12076,12 @@ var Mutation = (_i = class extends Removable {
     this.execute(this.state.variables);
   }
   async execute(variables) {
-    var _a3, _b3, _c2, _d2, _e2, _f2, _g2, _h2, _i2, _j2, _k2, _l2, _m, _n, _o, _p, _q, _r;
+    var _a3, _b3, _c2, _d2, _e2, _f2, _g2, _h2, _i2, _j2, _k, _l, _m, _n, _o, _p, _q, _r;
     const onContinue = () => {
       __privateMethod(this, _Mutation_instances, dispatch_fn2).call(this, { type: "continue" });
     };
     const mutationFnContext = {
-      client: __privateGet(this, _client3),
+      client: __privateGet(this, _client2),
       meta: this.options.meta,
       mutationKey: this.options.mutationKey
     };
@@ -13047,8 +12169,8 @@ var Mutation = (_i = class extends Removable {
       return data;
     } catch (error) {
       try {
-        await ((_l2 = (_k2 = __privateGet(this, _mutationCache).config).onError) == null ? void 0 : _l2.call(
-          _k2,
+        await ((_l = (_k = __privateGet(this, _mutationCache).config).onError) == null ? void 0 : _l.call(
+          _k,
           error,
           variables,
           this.state.context,
@@ -13100,7 +12222,7 @@ var Mutation = (_i = class extends Removable {
       __privateGet(this, _mutationCache).runNext(this);
     }
   }
-}, _client3 = new WeakMap(), _observers = new WeakMap(), _mutationCache = new WeakMap(), _retryer2 = new WeakMap(), _Mutation_instances = new WeakSet(), dispatch_fn2 = function(action) {
+}, _client2 = new WeakMap(), _observers = new WeakMap(), _mutationCache = new WeakMap(), _retryer2 = new WeakMap(), _Mutation_instances = new WeakSet(), dispatch_fn2 = function(action) {
   const reducer = (state) => {
     switch (action.type) {
       case "failed":
@@ -13165,7 +12287,7 @@ var Mutation = (_i = class extends Removable {
       action
     });
   });
-}, _i);
+}, _g);
 function getDefaultState() {
   return {
     context: void 0,
@@ -13179,7 +12301,7 @@ function getDefaultState() {
     submittedAt: 0
   };
 }
-var MutationCache = (_j = class extends Subscribable {
+var MutationCache = (_h = class extends Subscribable {
   constructor(config = {}) {
     super();
     __privateAdd(this, _mutations);
@@ -13291,12 +12413,12 @@ var MutationCache = (_j = class extends Subscribable {
       )
     );
   }
-}, _mutations = new WeakMap(), _scopes = new WeakMap(), _mutationId = new WeakMap(), _j);
+}, _mutations = new WeakMap(), _scopes = new WeakMap(), _mutationId = new WeakMap(), _h);
 function scopeFor(mutation) {
   var _a3;
   return (_a3 = mutation.options.scope) == null ? void 0 : _a3.id;
 }
-var QueryCache = (_k = class extends Subscribable {
+var QueryCache = (_i = class extends Subscribable {
   constructor(config = {}) {
     super();
     __privateAdd(this, _queries);
@@ -13383,8 +12505,8 @@ var QueryCache = (_k = class extends Subscribable {
       });
     });
   }
-}, _queries = new WeakMap(), _k);
-var QueryClient = (_l = class {
+}, _queries = new WeakMap(), _i);
+var QueryClient = (_j = class {
   constructor(config = {}) {
     __privateAdd(this, _queryCache);
     __privateAdd(this, _mutationCache2);
@@ -13671,7 +12793,7 @@ var QueryClient = (_l = class {
     __privateGet(this, _queryCache).clear();
     __privateGet(this, _mutationCache2).clear();
   }
-}, _queryCache = new WeakMap(), _mutationCache2 = new WeakMap(), _defaultOptions2 = new WeakMap(), _queryDefaults = new WeakMap(), _mutationDefaults = new WeakMap(), _mountCount = new WeakMap(), _unsubscribeFocus = new WeakMap(), _unsubscribeOnline = new WeakMap(), _l);
+}, _queryCache = new WeakMap(), _mutationCache2 = new WeakMap(), _defaultOptions2 = new WeakMap(), _queryDefaults = new WeakMap(), _mutationDefaults = new WeakMap(), _mountCount = new WeakMap(), _unsubscribeFocus = new WeakMap(), _unsubscribeOnline = new WeakMap(), _j);
 var react = { exports: {} };
 var react_production = {};
 /**
@@ -14138,139 +13260,6 @@ var QueryClientProvider = ({
   }, [client2]);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientContext.Provider, { value: client2, children });
 };
-var IsRestoringContext = reactExports.createContext(false);
-var useIsRestoring = () => reactExports.useContext(IsRestoringContext);
-IsRestoringContext.Provider;
-function createValue() {
-  let isReset = false;
-  return {
-    clearReset: () => {
-      isReset = false;
-    },
-    reset: () => {
-      isReset = true;
-    },
-    isReset: () => {
-      return isReset;
-    }
-  };
-}
-var QueryErrorResetBoundaryContext = reactExports.createContext(createValue());
-var useQueryErrorResetBoundary = () => reactExports.useContext(QueryErrorResetBoundaryContext);
-var ensurePreventErrorBoundaryRetry = (options, errorResetBoundary, query) => {
-  const throwOnError = (query == null ? void 0 : query.state.error) && typeof options.throwOnError === "function" ? shouldThrowError(options.throwOnError, [query.state.error, query]) : options.throwOnError;
-  if (options.suspense || options.experimental_prefetchInRender || throwOnError) {
-    if (!errorResetBoundary.isReset()) {
-      options.retryOnMount = false;
-    }
-  }
-};
-var useClearResetErrorBoundary = (errorResetBoundary) => {
-  reactExports.useEffect(() => {
-    errorResetBoundary.clearReset();
-  }, [errorResetBoundary]);
-};
-var getHasError = ({
-  result,
-  errorResetBoundary,
-  throwOnError,
-  query,
-  suspense
-}) => {
-  return result.isError && !errorResetBoundary.isReset() && !result.isFetching && query && (suspense && result.data === void 0 || shouldThrowError(throwOnError, [result.error, query]));
-};
-var ensureSuspenseTimers = (defaultedOptions) => {
-  if (defaultedOptions.suspense) {
-    const MIN_SUSPENSE_TIME_MS = 1e3;
-    const clamp = (value) => value === "static" ? value : Math.max(value ?? MIN_SUSPENSE_TIME_MS, MIN_SUSPENSE_TIME_MS);
-    const originalStaleTime = defaultedOptions.staleTime;
-    defaultedOptions.staleTime = typeof originalStaleTime === "function" ? (...args) => clamp(originalStaleTime(...args)) : clamp(originalStaleTime);
-    if (typeof defaultedOptions.gcTime === "number") {
-      defaultedOptions.gcTime = Math.max(
-        defaultedOptions.gcTime,
-        MIN_SUSPENSE_TIME_MS
-      );
-    }
-  }
-};
-var willFetch = (result, isRestoring) => result.isLoading && result.isFetching && !isRestoring;
-var shouldSuspend = (defaultedOptions, result) => (defaultedOptions == null ? void 0 : defaultedOptions.suspense) && result.isPending;
-var fetchOptimistic = (defaultedOptions, observer, errorResetBoundary) => observer.fetchOptimistic(defaultedOptions).catch(() => {
-  errorResetBoundary.clearReset();
-});
-function useBaseQuery(options, Observer, queryClient2) {
-  var _a3, _b3, _c2, _d2;
-  const isRestoring = useIsRestoring();
-  const errorResetBoundary = useQueryErrorResetBoundary();
-  const client2 = useQueryClient();
-  const defaultedOptions = client2.defaultQueryOptions(options);
-  (_b3 = (_a3 = client2.getDefaultOptions().queries) == null ? void 0 : _a3._experimental_beforeQuery) == null ? void 0 : _b3.call(
-    _a3,
-    defaultedOptions
-  );
-  const query = client2.getQueryCache().get(defaultedOptions.queryHash);
-  defaultedOptions._optimisticResults = isRestoring ? "isRestoring" : "optimistic";
-  ensureSuspenseTimers(defaultedOptions);
-  ensurePreventErrorBoundaryRetry(defaultedOptions, errorResetBoundary, query);
-  useClearResetErrorBoundary(errorResetBoundary);
-  const isNewCacheEntry = !client2.getQueryCache().get(defaultedOptions.queryHash);
-  const [observer] = reactExports.useState(
-    () => new Observer(
-      client2,
-      defaultedOptions
-    )
-  );
-  const result = observer.getOptimisticResult(defaultedOptions);
-  const shouldSubscribe = !isRestoring && options.subscribed !== false;
-  reactExports.useSyncExternalStore(
-    reactExports.useCallback(
-      (onStoreChange) => {
-        const unsubscribe = shouldSubscribe ? observer.subscribe(notifyManager.batchCalls(onStoreChange)) : noop$6;
-        observer.updateResult();
-        return unsubscribe;
-      },
-      [observer, shouldSubscribe]
-    ),
-    () => observer.getCurrentResult(),
-    () => observer.getCurrentResult()
-  );
-  reactExports.useEffect(() => {
-    observer.setOptions(defaultedOptions);
-  }, [defaultedOptions, observer]);
-  if (shouldSuspend(defaultedOptions, result)) {
-    throw fetchOptimistic(defaultedOptions, observer, errorResetBoundary);
-  }
-  if (getHasError({
-    result,
-    errorResetBoundary,
-    throwOnError: defaultedOptions.throwOnError,
-    query,
-    suspense: defaultedOptions.suspense
-  })) {
-    throw result.error;
-  }
-  (_d2 = (_c2 = client2.getDefaultOptions().queries) == null ? void 0 : _c2._experimental_afterQuery) == null ? void 0 : _d2.call(
-    _c2,
-    defaultedOptions,
-    result
-  );
-  if (defaultedOptions.experimental_prefetchInRender && !environmentManager.isServer() && willFetch(result, isRestoring)) {
-    const promise = isNewCacheEntry ? (
-      // Fetch immediately on render in order to ensure `.promise` is resolved even if the component is unmounted
-      fetchOptimistic(defaultedOptions, observer, errorResetBoundary)
-    ) : (
-      // subscribe to the "cache promise" so that we can finalize the currentThenable once data comes in
-      query == null ? void 0 : query.promise
-    );
-    promise == null ? void 0 : promise.catch(noop$6).finally(() => {
-      observer.updateResult();
-    });
-  }
-  return !defaultedOptions.notifyOnChangeProps ? observer.trackResult(result) : result;
-}
-function useQuery(options, queryClient2) {
-  return useBaseQuery(options, QueryObserver);
-}
 function isObject(value) {
   return value !== null && typeof value === "object";
 }
@@ -14811,8 +13800,8 @@ const _PartialDelegationIdentity = class _PartialDelegationIdentity extends Part
 };
 _delegation = new WeakMap();
 let PartialDelegationIdentity = _PartialDelegationIdentity;
-function isDelegationValid(chain2, checks) {
-  for (const { delegation } of chain2.delegations) {
+function isDelegationValid(chain, checks) {
+  for (const { delegation } of chain.delegations) {
     if (+new Date(Number(delegation.expiration / BigInt(1e6))) <= +Date.now()) {
       return false;
     }
@@ -14820,7 +13809,7 @@ function isDelegationValid(chain2, checks) {
   const scopes = [];
   for (const s2 of scopes) {
     const scope = s2.toText();
-    for (const { delegation } of chain2.delegations) {
+    for (const { delegation } of chain.delegations) {
       if (delegation.targets === void 0) {
         continue;
       }
@@ -14857,15 +13846,15 @@ class IdleManager {
       document.addEventListener(name, _resetTimer, true);
     });
     const debounce = (func, wait) => {
-      let timeout2;
+      let timeout;
       return (...args) => {
         const context = this;
         const later = function() {
-          timeout2 = void 0;
+          timeout = void 0;
           func.apply(context, args);
         };
-        clearTimeout(timeout2);
-        timeout2 = window.setTimeout(later, wait);
+        clearTimeout(timeout);
+        timeout = window.setTimeout(later, wait);
       };
     };
     if (options == null ? void 0 : options.captureScroll) {
@@ -15359,7 +14348,7 @@ class AuthClient {
       }
     }
     let identity = new AnonymousIdentity();
-    let chain2 = null;
+    let chain = null;
     if (key) {
       try {
         const chainStorage = await storage.get(KEY_STORAGE_DELEGATION);
@@ -15369,15 +14358,15 @@ class AuthClient {
         if (options.identity) {
           identity = options.identity;
         } else if (chainStorage) {
-          chain2 = DelegationChain.fromJSON(chainStorage);
-          if (!isDelegationValid(chain2)) {
+          chain = DelegationChain.fromJSON(chainStorage);
+          if (!isDelegationValid(chain)) {
             await _deleteStorage(storage);
             key = null;
           } else {
             if ("toDer" in key) {
-              identity = PartialDelegationIdentity.fromDelegation(key, chain2);
+              identity = PartialDelegationIdentity.fromDelegation(key, chain);
             } else {
-              identity = DelegationIdentity.fromDelegation(key, chain2);
+              identity = DelegationIdentity.fromDelegation(key, chain);
             }
           }
         }
@@ -15390,7 +14379,7 @@ class AuthClient {
     let idleManager;
     if ((_a3 = options.idleOptions) == null ? void 0 : _a3.disableIdle) {
       idleManager = void 0;
-    } else if (chain2 || options.identity) {
+    } else if (chain || options.identity) {
       idleManager = IdleManager.create(options.idleOptions);
     }
     if (!key) {
@@ -15405,7 +14394,7 @@ class AuthClient {
         await storage.set(KEY_STORAGE_KEY, key.getKeyPair());
       }
     }
-    return new this(identity, key, chain2, storage, idleManager, options);
+    return new this(identity, key, chain, storage, idleManager, options);
   }
   _registerDefaultIdleCallback() {
     var _a3, _b3;
@@ -15723,54 +14712,6 @@ function InternetIdentityProvider({ children, createOptions }) {
     children
   });
 }
-function hasAccessControl(actor) {
-  return typeof actor === "object" && actor !== null && "_initializeAccessControl" in actor;
-}
-const ACTOR_QUERY_KEY = "actor";
-function useActor(createActor2) {
-  const { identity, isAuthenticated } = useInternetIdentity();
-  const queryClient2 = useQueryClient();
-  const actorQuery = useQuery({
-    queryKey: [ACTOR_QUERY_KEY, identity == null ? void 0 : identity.getPrincipal().toString()],
-    queryFn: async () => {
-      if (!isAuthenticated) {
-        return await createActorWithConfig(createActor2);
-      }
-      const actorOptions = {
-        agentOptions: {
-          identity
-        }
-      };
-      const actor = await createActorWithConfig(createActor2, actorOptions);
-      if (hasAccessControl(actor)) {
-        await actor._initializeAccessControl();
-      }
-      return actor;
-    },
-    // Only refetch when identity changes
-    staleTime: Number.POSITIVE_INFINITY,
-    // This will cause the actor to be recreated when the identity changes
-    enabled: true
-  });
-  reactExports.useEffect(() => {
-    if (actorQuery.data) {
-      queryClient2.invalidateQueries({
-        predicate: (query) => {
-          return !query.queryKey.includes(ACTOR_QUERY_KEY);
-        }
-      });
-      queryClient2.refetchQueries({
-        predicate: (query) => {
-          return !query.queryKey.includes(ACTOR_QUERY_KEY);
-        }
-      });
-    }
-  }, [actorQuery.data, queryClient2]);
-  return {
-    actor: actorQuery.data || null,
-    isFetching: actorQuery.isFetching
-  };
-}
 var client = { exports: {} };
 var reactDomClient_production = {};
 var scheduler = { exports: {} };
@@ -15993,30 +14934,30 @@ var scheduler_production = {};
     "object" === typeof options && null !== options ? (options = options.delay, options = "number" === typeof options && 0 < options ? currentTime + options : currentTime) : options = currentTime;
     switch (priorityLevel) {
       case 1:
-        var timeout2 = -1;
+        var timeout = -1;
         break;
       case 2:
-        timeout2 = 250;
+        timeout = 250;
         break;
       case 5:
-        timeout2 = 1073741823;
+        timeout = 1073741823;
         break;
       case 4:
-        timeout2 = 1e4;
+        timeout = 1e4;
         break;
       default:
-        timeout2 = 5e3;
+        timeout = 5e3;
     }
-    timeout2 = options + timeout2;
+    timeout = options + timeout;
     priorityLevel = {
       id: taskIdCounter++,
       callback,
       priorityLevel,
       startTime: options,
-      expirationTime: timeout2,
+      expirationTime: timeout,
       sortIndex: -1
     };
-    options > currentTime ? (priorityLevel.sortIndex = options, push2(timerQueue, priorityLevel), null === peek(taskQueue) && priorityLevel === peek(timerQueue) && (isHostTimeoutScheduled ? (localClearTimeout(taskTimeoutID), taskTimeoutID = -1) : isHostTimeoutScheduled = true, requestHostTimeout(handleTimeout, options - currentTime))) : (priorityLevel.sortIndex = timeout2, push2(taskQueue, priorityLevel), isHostCallbackScheduled || isPerformingWork || (isHostCallbackScheduled = true, isMessageLoopRunning || (isMessageLoopRunning = true, schedulePerformWorkUntilDeadline())));
+    options > currentTime ? (priorityLevel.sortIndex = options, push2(timerQueue, priorityLevel), null === peek(taskQueue) && priorityLevel === peek(timerQueue) && (isHostTimeoutScheduled ? (localClearTimeout(taskTimeoutID), taskTimeoutID = -1) : isHostTimeoutScheduled = true, requestHostTimeout(handleTimeout, options - currentTime))) : (priorityLevel.sortIndex = timeout, push2(taskQueue, priorityLevel), isHostCallbackScheduled || isPerformingWork || (isHostCallbackScheduled = true, isMessageLoopRunning || (isMessageLoopRunning = true, schedulePerformWorkUntilDeadline())));
     return priorityLevel;
   };
   exports$1.unstable_shouldYield = shouldYieldToHost;
@@ -28854,12 +27795,12 @@ function getSafeSessionStorage() {
 }
 const storageKey = "tsr-scroll-restoration-v1_3";
 const throttle = (fn, wait) => {
-  let timeout2;
+  let timeout;
   return (...args) => {
-    if (!timeout2) {
-      timeout2 = setTimeout(() => {
+    if (!timeout) {
+      timeout = setTimeout(() => {
         fn(...args);
-        timeout2 = null;
+        timeout = null;
       }, wait);
     }
   };
@@ -32661,45 +31602,11 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$8 = [
+const __iconNode$6 = [
   ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
   ["path", { d: "M12 19V5", key: "x0mq9r" }]
 ];
-const ArrowUp = createLucideIcon("arrow-up", __iconNode$8);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$7 = [
-  [
-    "path",
-    {
-      d: "m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526",
-      key: "1yiouv"
-    }
-  ],
-  ["circle", { cx: "12", cy: "8", r: "6", key: "1vp47v" }]
-];
-const Award = createLucideIcon("award", __iconNode$7);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$6 = [
-  ["path", { d: "M12 7v14", key: "1akyts" }],
-  [
-    "path",
-    {
-      d: "M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
-      key: "ruj8y"
-    }
-  ]
-];
-const BookOpen = createLucideIcon("book-open", __iconNode$6);
+const ArrowUp = createLucideIcon("arrow-up", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -32943,1674 +31850,33 @@ function IconBase(props) {
 function SiBinance(props) {
   return GenIcon({ "attr": { "role": "img", "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "d": "M16.624 13.9202l2.7175 2.7154-7.353 7.353-7.353-7.352 2.7175-2.7164 4.6355 4.6595 4.6356-4.6595zm4.6366-4.6366L24 12l-2.7154 2.7164L18.5682 12l2.6924-2.7164zm-9.272.001l2.7163 2.6914-2.7164 2.7174v-.001L9.2721 12l2.7164-2.7154zm-9.2722-.001L5.4088 12l-2.6914 2.6924L0 12l2.7164-2.7164zM11.9885.0115l7.353 7.329-2.7174 2.7154-4.6356-4.6356-4.6355 4.6595-2.7174-2.7154 7.353-7.353z" }, "child": [] }] })(props);
 }
-const CertificateInfo = Record({
-  "country": Text,
-  "dateOfBirth": Text,
-  "city": Text,
-  "fullName": Text,
-  "fathersName": Text,
-  "email": Text
-});
-const TierId = Text;
-const Certificate = Record({
-  "certId": Text,
-  "featured": Bool,
-  "certInfo": CertificateInfo,
-  "tierId": TierId,
-  "tierName": Text,
-  "shareToken": Text,
-  "score": Nat,
-  "totalQuestions": Nat,
-  "issuedAt": Int,
-  "isValid": Bool
-});
-const Result_1 = Variant({ "ok": Null, "err": Text });
-const ABTestRecord = Record({
-  "versionAPassCount": Nat,
-  "activeVersion": Text,
-  "versionBText": Text,
-  "versionBAttempts": Nat,
-  "versionAText": Text,
-  "questionId": Text,
-  "versionAAttempts": Nat,
-  "versionBPassCount": Nat
-});
-const QuizAttemptLog = Record({
-  "tierId": Text,
-  "score": Nat,
-  "fingerprint": Text,
-  "timestamp": Int,
-  "passed": Bool
-});
-const LessonEngagement = Record({
-  "lessonId": Text,
-  "visitCount": Nat,
-  "tier": Text,
-  "totalTimeSeconds": Nat
-});
-const QuestionFailStat = Record({
-  "tierId": Text,
-  "totalSeen": Nat,
-  "questionId": Text,
-  "failCount": Nat
-});
-const AdminStats = Record({
-  "certsByTier": Vec(Tuple(Text, Nat)),
-  "totalCertificates": Nat
-});
-const Result = Variant({ "ok": Certificate, "err": Text });
-const ZenoAiResponse = Record({
-  "answer": Text,
-  "success": Bool
-});
-const QuizOption = Record({ "id": Text, "text": Text });
-const QuizQuestion = Record({
-  "id": Text,
-  "correctOption": Text,
-  "question": Text,
-  "explanation": Text,
-  "isReviewFlagged": Bool,
-  "options": Vec(QuizOption)
-});
-const TierQuiz = Record({
-  "tierId": TierId,
-  "tierName": Text,
-  "questions": Vec(QuizQuestion)
-});
-const MasteryRecord = Record({
-  "lessonId": Text,
-  "quizScore": Float64,
-  "tier": Text,
-  "confidenceScore": Float64,
-  "updatedAt": Int,
-  "masteryPct": Float64,
-  "conceptCheckerScore": Float64
-});
-const AnnouncementBanner = Record({
-  "text": Text,
-  "updatedAt": Int,
-  "isPinned": Bool
-});
-const DailyActiveLog = Record({
-  "date": Text,
-  "count": Nat
-});
-const LessonCompletionLog = Record({
-  "lessonId": Text,
-  "completedAt": Int,
-  "tierId": Text
-});
-const LessonOfWeek = Record({
-  "lessonId": Text,
-  "expiresAt": Int,
-  "tier": Text,
-  "lessonTitle": Text,
-  "setAt": Int
-});
-const LessonRating = Record({
-  "lessonId": Text,
-  "tierId": Text,
-  "timestamp": Int,
-  "rating": Nat
-});
-const MonthlyChallenge = Record({
-  "month": Text,
-  "targetLessons": Nat,
-  "badgeEarned": Bool,
-  "lessonsCompleted": Nat
-});
-const ProgressSnapshot = Record({
-  "createdAt": Int,
-  "shareToken": Text,
-  "tiersCompleted": Vec(Text),
-  "masteryLevels": Vec(Tuple(Text, Float64)),
-  "certificatesEarned": Vec(Text)
-});
-const QuizAttemptStats = Record({
-  "tierId": Text,
-  "passCount": Nat,
-  "totalAttempts": Nat
-});
-const RoadmapMilestone = Record({
-  "id": Text,
-  "title": Text,
-  "date": Opt(Text),
-  "completed": Bool,
-  "year": Text,
-  "description": Text
-});
-const TierDisabledEntry = Record({
-  "tierId": Text,
-  "disabled": Bool
-});
-const TokenInfo = Record({
-  "ticker": Text,
-  "socialLinks": Vec(Record({ "url": Text, "name": Text })),
-  "name": Text,
-  "launchPlatform": Text,
-  "description": Text,
-  "totalSupply": Text,
-  "slogan": Text,
-  "distribution": Text
-});
-const QuizAnswer = Record({
-  "questionId": Text,
-  "selectedOption": Text
-});
-const http_header = Record({
-  "value": Text,
-  "name": Text
-});
-const http_request_result = Record({
-  "status": Nat,
-  "body": Vec(Nat8),
-  "headers": Vec(http_header)
-});
-const TransformationInput = Record({
-  "context": Vec(Nat8),
-  "response": http_request_result
-});
-const TransformationOutput = Record({
-  "status": Nat,
-  "body": Vec(Nat8),
-  "headers": Vec(http_header)
-});
-Service({
-  "adminCreateABTest": Func(
-    [Text, Text, Text, Text],
-    [],
-    []
-  ),
-  "adminExportCertificates": Func([], [Vec(Certificate)], ["query"]),
-  "adminFeatureCertificate": Func([Text, Bool], [Result_1], []),
-  "adminFlagQuestion": Func([Text, Bool], [], []),
-  "adminGetABTests": Func([Text], [Vec(ABTestRecord)], ["query"]),
-  "adminGetAttemptLogs": Func(
-    [Text],
-    [Vec(QuizAttemptLog)],
-    ["query"]
-  ),
-  "adminGetEngagementData": Func(
-    [Text],
-    [Vec(LessonEngagement)],
-    ["query"]
-  ),
-  "adminGetFlaggedQuestions": Func([], [Vec(Text)], ["query"]),
-  "adminGetMonthlyStats": Func(
-    [Text],
-    [Vec(Tuple(Text, Nat))],
-    ["query"]
-  ),
-  "adminGetQuestionFailStats": Func(
-    [Text],
-    [Vec(QuestionFailStat)],
-    ["query"]
-  ),
-  "adminGetStats": Func([], [AdminStats], ["query"]),
-  "adminManualIssueCertificate": Func(
-    [Text, CertificateInfo],
-    [Result],
-    []
-  ),
-  "adminRevokeOrReinstateCertificate": Func(
-    [Text, Bool],
-    [Result_1],
-    []
-  ),
-  "adminSetAnnouncementBanner": Func([Text, Bool], [], []),
-  "adminSetLessonOfWeek": Func(
-    [Text, Text, Text, Text],
-    [],
-    []
-  ),
-  "adminSetTierDisabled": Func([Text, Bool], [Result_1], []),
-  "adminToggleABVersion": Func([Text, Text], [], []),
-  "adminUpdateMilestone": Func([Text, Bool], [Result_1], []),
-  "askZenoAi": Func([Text], [ZenoAiResponse], []),
-  "generateProgressShareLink": Func(
-    [
-      Vec(Text),
-      Vec(Text),
-      Vec(Tuple(Text, Float64))
-    ],
-    [Text],
-    []
-  ),
-  "getAcademyQuiz": Func(
-    [Text, Int],
-    [Opt(TierQuiz)],
-    ["query"]
-  ),
-  "getAdminLessonRatings": Func(
-    [],
-    [Vec(Tuple(Text, Text, Float64))],
-    ["query"]
-  ),
-  "getAllMasteryRecords": Func([], [Vec(MasteryRecord)], ["query"]),
-  "getAnnouncementBanner": Func(
-    [],
-    [Opt(AnnouncementBanner)],
-    ["query"]
-  ),
-  "getCertificateByShareToken": Func(
-    [Text],
-    [Opt(Certificate)],
-    ["query"]
-  ),
-  "getCertificatesByTier": Func(
-    [Text],
-    [Vec(Certificate)],
-    ["query"]
-  ),
-  "getDailyActiveCounts": Func([], [Vec(DailyActiveLog)], ["query"]),
-  "getFeaturedCertificates": Func([], [Vec(Certificate)], ["query"]),
-  "getFeaturedLesson": Func([Text], [Opt(Text)], ["query"]),
-  "getLessonCompletionTrends": Func(
-    [],
-    [Vec(LessonCompletionLog)],
-    ["query"]
-  ),
-  "getLessonMastery": Func(
-    [Text],
-    [Opt(MasteryRecord)],
-    ["query"]
-  ),
-  "getLessonOfWeek": Func([], [Opt(LessonOfWeek)], ["query"]),
-  "getLessonRatings": Func(
-    [Text, Text],
-    [Vec(LessonRating)],
-    ["query"]
-  ),
-  "getMonthlyChallenge": Func(
-    [Text],
-    [Opt(MonthlyChallenge)],
-    ["query"]
-  ),
-  "getProgressSnapshot": Func(
-    [Text],
-    [Opt(ProgressSnapshot)],
-    ["query"]
-  ),
-  "getQuizAttemptStats": Func([], [Vec(QuizAttemptStats)], ["query"]),
-  "getQuizFailMessage": Func([Text], [Opt(Text)], ["query"]),
-  "getRoadmap": Func([], [Vec(RoadmapMilestone)], ["query"]),
-  "getTierDisabledStates": Func(
-    [],
-    [Vec(TierDisabledEntry)],
-    ["query"]
-  ),
-  "getTokenInfo": Func([], [TokenInfo], ["query"]),
-  "listAllCertificates": Func([], [Vec(Certificate)], ["query"]),
-  "logDailyActive": Func([Text], [], []),
-  "logLessonCompletion": Func([Text, Text, Int], [], []),
-  "recordABTestResult": Func([Text, Text, Bool], [], []),
-  "recordLessonCompleted": Func([Text], [MonthlyChallenge], []),
-  "recordLessonTime": Func([Text, Text, Nat], [], []),
-  "searchCertificates": Func(
-    [Text],
-    [Vec(Certificate)],
-    ["query"]
-  ),
-  "setFeaturedLesson": Func(
-    [Text, Text, Text],
-    [Bool],
-    []
-  ),
-  "setQuizFailMessage": Func(
-    [Text, Text, Text],
-    [Bool],
-    []
-  ),
-  "submitCheckpointQuiz": Func([Text, Nat], [Bool], []),
-  "submitLessonRating": Func(
-    [Text, Text, Nat],
-    [Bool],
-    []
-  ),
-  "submitQuizAndIssueCertificate": Func(
-    [
-      Text,
-      Vec(QuizAnswer),
-      Text,
-      Text,
-      Text,
-      Text,
-      Text,
-      Text,
-      Int,
-      Text
-    ],
-    [Result],
-    []
-  ),
-  "updateLessonMastery": Func(
-    [Text, Text, Float64, Float64, Float64],
-    [],
-    []
-  ),
-  "verifyCertificate": Func([Text], [Opt(Certificate)], ["query"]),
-  "zenoAiTransform": Func(
-    [TransformationInput],
-    [TransformationOutput],
-    ["query"]
-  )
-});
-const idlFactory = ({ IDL: IDL2 }) => {
-  const CertificateInfo2 = IDL2.Record({
-    "country": IDL2.Text,
-    "dateOfBirth": IDL2.Text,
-    "city": IDL2.Text,
-    "fullName": IDL2.Text,
-    "fathersName": IDL2.Text,
-    "email": IDL2.Text
-  });
-  const TierId2 = IDL2.Text;
-  const Certificate2 = IDL2.Record({
-    "certId": IDL2.Text,
-    "featured": IDL2.Bool,
-    "certInfo": CertificateInfo2,
-    "tierId": TierId2,
-    "tierName": IDL2.Text,
-    "shareToken": IDL2.Text,
-    "score": IDL2.Nat,
-    "totalQuestions": IDL2.Nat,
-    "issuedAt": IDL2.Int,
-    "isValid": IDL2.Bool
-  });
-  const Result_12 = IDL2.Variant({ "ok": IDL2.Null, "err": IDL2.Text });
-  const ABTestRecord2 = IDL2.Record({
-    "versionAPassCount": IDL2.Nat,
-    "activeVersion": IDL2.Text,
-    "versionBText": IDL2.Text,
-    "versionBAttempts": IDL2.Nat,
-    "versionAText": IDL2.Text,
-    "questionId": IDL2.Text,
-    "versionAAttempts": IDL2.Nat,
-    "versionBPassCount": IDL2.Nat
-  });
-  const QuizAttemptLog2 = IDL2.Record({
-    "tierId": IDL2.Text,
-    "score": IDL2.Nat,
-    "fingerprint": IDL2.Text,
-    "timestamp": IDL2.Int,
-    "passed": IDL2.Bool
-  });
-  const LessonEngagement2 = IDL2.Record({
-    "lessonId": IDL2.Text,
-    "visitCount": IDL2.Nat,
-    "tier": IDL2.Text,
-    "totalTimeSeconds": IDL2.Nat
-  });
-  const QuestionFailStat2 = IDL2.Record({
-    "tierId": IDL2.Text,
-    "totalSeen": IDL2.Nat,
-    "questionId": IDL2.Text,
-    "failCount": IDL2.Nat
-  });
-  const AdminStats2 = IDL2.Record({
-    "certsByTier": IDL2.Vec(IDL2.Tuple(IDL2.Text, IDL2.Nat)),
-    "totalCertificates": IDL2.Nat
-  });
-  const Result2 = IDL2.Variant({ "ok": Certificate2, "err": IDL2.Text });
-  const ZenoAiResponse2 = IDL2.Record({
-    "answer": IDL2.Text,
-    "success": IDL2.Bool
-  });
-  const QuizOption2 = IDL2.Record({ "id": IDL2.Text, "text": IDL2.Text });
-  const QuizQuestion2 = IDL2.Record({
-    "id": IDL2.Text,
-    "correctOption": IDL2.Text,
-    "question": IDL2.Text,
-    "explanation": IDL2.Text,
-    "isReviewFlagged": IDL2.Bool,
-    "options": IDL2.Vec(QuizOption2)
-  });
-  const TierQuiz2 = IDL2.Record({
-    "tierId": TierId2,
-    "tierName": IDL2.Text,
-    "questions": IDL2.Vec(QuizQuestion2)
-  });
-  const MasteryRecord2 = IDL2.Record({
-    "lessonId": IDL2.Text,
-    "quizScore": IDL2.Float64,
-    "tier": IDL2.Text,
-    "confidenceScore": IDL2.Float64,
-    "updatedAt": IDL2.Int,
-    "masteryPct": IDL2.Float64,
-    "conceptCheckerScore": IDL2.Float64
-  });
-  const AnnouncementBanner2 = IDL2.Record({
-    "text": IDL2.Text,
-    "updatedAt": IDL2.Int,
-    "isPinned": IDL2.Bool
-  });
-  const DailyActiveLog2 = IDL2.Record({ "date": IDL2.Text, "count": IDL2.Nat });
-  const LessonCompletionLog2 = IDL2.Record({
-    "lessonId": IDL2.Text,
-    "completedAt": IDL2.Int,
-    "tierId": IDL2.Text
-  });
-  const LessonOfWeek2 = IDL2.Record({
-    "lessonId": IDL2.Text,
-    "expiresAt": IDL2.Int,
-    "tier": IDL2.Text,
-    "lessonTitle": IDL2.Text,
-    "setAt": IDL2.Int
-  });
-  const LessonRating2 = IDL2.Record({
-    "lessonId": IDL2.Text,
-    "tierId": IDL2.Text,
-    "timestamp": IDL2.Int,
-    "rating": IDL2.Nat
-  });
-  const MonthlyChallenge2 = IDL2.Record({
-    "month": IDL2.Text,
-    "targetLessons": IDL2.Nat,
-    "badgeEarned": IDL2.Bool,
-    "lessonsCompleted": IDL2.Nat
-  });
-  const ProgressSnapshot2 = IDL2.Record({
-    "createdAt": IDL2.Int,
-    "shareToken": IDL2.Text,
-    "tiersCompleted": IDL2.Vec(IDL2.Text),
-    "masteryLevels": IDL2.Vec(IDL2.Tuple(IDL2.Text, IDL2.Float64)),
-    "certificatesEarned": IDL2.Vec(IDL2.Text)
-  });
-  const QuizAttemptStats2 = IDL2.Record({
-    "tierId": IDL2.Text,
-    "passCount": IDL2.Nat,
-    "totalAttempts": IDL2.Nat
-  });
-  const RoadmapMilestone2 = IDL2.Record({
-    "id": IDL2.Text,
-    "title": IDL2.Text,
-    "date": IDL2.Opt(IDL2.Text),
-    "completed": IDL2.Bool,
-    "year": IDL2.Text,
-    "description": IDL2.Text
-  });
-  const TierDisabledEntry2 = IDL2.Record({
-    "tierId": IDL2.Text,
-    "disabled": IDL2.Bool
-  });
-  const TokenInfo2 = IDL2.Record({
-    "ticker": IDL2.Text,
-    "socialLinks": IDL2.Vec(
-      IDL2.Record({ "url": IDL2.Text, "name": IDL2.Text })
-    ),
-    "name": IDL2.Text,
-    "launchPlatform": IDL2.Text,
-    "description": IDL2.Text,
-    "totalSupply": IDL2.Text,
-    "slogan": IDL2.Text,
-    "distribution": IDL2.Text
-  });
-  const QuizAnswer2 = IDL2.Record({
-    "questionId": IDL2.Text,
-    "selectedOption": IDL2.Text
-  });
-  const http_header2 = IDL2.Record({ "value": IDL2.Text, "name": IDL2.Text });
-  const http_request_result2 = IDL2.Record({
-    "status": IDL2.Nat,
-    "body": IDL2.Vec(IDL2.Nat8),
-    "headers": IDL2.Vec(http_header2)
-  });
-  const TransformationInput2 = IDL2.Record({
-    "context": IDL2.Vec(IDL2.Nat8),
-    "response": http_request_result2
-  });
-  const TransformationOutput2 = IDL2.Record({
-    "status": IDL2.Nat,
-    "body": IDL2.Vec(IDL2.Nat8),
-    "headers": IDL2.Vec(http_header2)
-  });
-  return IDL2.Service({
-    "adminCreateABTest": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [],
-      []
-    ),
-    "adminExportCertificates": IDL2.Func([], [IDL2.Vec(Certificate2)], ["query"]),
-    "adminFeatureCertificate": IDL2.Func([IDL2.Text, IDL2.Bool], [Result_12], []),
-    "adminFlagQuestion": IDL2.Func([IDL2.Text, IDL2.Bool], [], []),
-    "adminGetABTests": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Vec(ABTestRecord2)],
-      ["query"]
-    ),
-    "adminGetAttemptLogs": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Vec(QuizAttemptLog2)],
-      ["query"]
-    ),
-    "adminGetEngagementData": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Vec(LessonEngagement2)],
-      ["query"]
-    ),
-    "adminGetFlaggedQuestions": IDL2.Func([], [IDL2.Vec(IDL2.Text)], ["query"]),
-    "adminGetMonthlyStats": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Vec(IDL2.Tuple(IDL2.Text, IDL2.Nat))],
-      ["query"]
-    ),
-    "adminGetQuestionFailStats": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Vec(QuestionFailStat2)],
-      ["query"]
-    ),
-    "adminGetStats": IDL2.Func([], [AdminStats2], ["query"]),
-    "adminManualIssueCertificate": IDL2.Func(
-      [IDL2.Text, CertificateInfo2],
-      [Result2],
-      []
-    ),
-    "adminRevokeOrReinstateCertificate": IDL2.Func(
-      [IDL2.Text, IDL2.Bool],
-      [Result_12],
-      []
-    ),
-    "adminSetAnnouncementBanner": IDL2.Func([IDL2.Text, IDL2.Bool], [], []),
-    "adminSetLessonOfWeek": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [],
-      []
-    ),
-    "adminSetTierDisabled": IDL2.Func([IDL2.Text, IDL2.Bool], [Result_12], []),
-    "adminToggleABVersion": IDL2.Func([IDL2.Text, IDL2.Text], [], []),
-    "adminUpdateMilestone": IDL2.Func([IDL2.Text, IDL2.Bool], [Result_12], []),
-    "askZenoAi": IDL2.Func([IDL2.Text], [ZenoAiResponse2], []),
-    "generateProgressShareLink": IDL2.Func(
-      [
-        IDL2.Vec(IDL2.Text),
-        IDL2.Vec(IDL2.Text),
-        IDL2.Vec(IDL2.Tuple(IDL2.Text, IDL2.Float64))
-      ],
-      [IDL2.Text],
-      []
-    ),
-    "getAcademyQuiz": IDL2.Func(
-      [IDL2.Text, IDL2.Int],
-      [IDL2.Opt(TierQuiz2)],
-      ["query"]
-    ),
-    "getAdminLessonRatings": IDL2.Func(
-      [],
-      [IDL2.Vec(IDL2.Tuple(IDL2.Text, IDL2.Text, IDL2.Float64))],
-      ["query"]
-    ),
-    "getAllMasteryRecords": IDL2.Func([], [IDL2.Vec(MasteryRecord2)], ["query"]),
-    "getAnnouncementBanner": IDL2.Func(
-      [],
-      [IDL2.Opt(AnnouncementBanner2)],
-      ["query"]
-    ),
-    "getCertificateByShareToken": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Opt(Certificate2)],
-      ["query"]
-    ),
-    "getCertificatesByTier": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Vec(Certificate2)],
-      ["query"]
-    ),
-    "getDailyActiveCounts": IDL2.Func([], [IDL2.Vec(DailyActiveLog2)], ["query"]),
-    "getFeaturedCertificates": IDL2.Func([], [IDL2.Vec(Certificate2)], ["query"]),
-    "getFeaturedLesson": IDL2.Func([IDL2.Text], [IDL2.Opt(IDL2.Text)], ["query"]),
-    "getLessonCompletionTrends": IDL2.Func(
-      [],
-      [IDL2.Vec(LessonCompletionLog2)],
-      ["query"]
-    ),
-    "getLessonMastery": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Opt(MasteryRecord2)],
-      ["query"]
-    ),
-    "getLessonOfWeek": IDL2.Func([], [IDL2.Opt(LessonOfWeek2)], ["query"]),
-    "getLessonRatings": IDL2.Func(
-      [IDL2.Text, IDL2.Text],
-      [IDL2.Vec(LessonRating2)],
-      ["query"]
-    ),
-    "getMonthlyChallenge": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Opt(MonthlyChallenge2)],
-      ["query"]
-    ),
-    "getProgressSnapshot": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Opt(ProgressSnapshot2)],
-      ["query"]
-    ),
-    "getQuizAttemptStats": IDL2.Func(
-      [],
-      [IDL2.Vec(QuizAttemptStats2)],
-      ["query"]
-    ),
-    "getQuizFailMessage": IDL2.Func([IDL2.Text], [IDL2.Opt(IDL2.Text)], ["query"]),
-    "getRoadmap": IDL2.Func([], [IDL2.Vec(RoadmapMilestone2)], ["query"]),
-    "getTierDisabledStates": IDL2.Func(
-      [],
-      [IDL2.Vec(TierDisabledEntry2)],
-      ["query"]
-    ),
-    "getTokenInfo": IDL2.Func([], [TokenInfo2], ["query"]),
-    "listAllCertificates": IDL2.Func([], [IDL2.Vec(Certificate2)], ["query"]),
-    "logDailyActive": IDL2.Func([IDL2.Text], [], []),
-    "logLessonCompletion": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Int], [], []),
-    "recordABTestResult": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Bool], [], []),
-    "recordLessonCompleted": IDL2.Func([IDL2.Text], [MonthlyChallenge2], []),
-    "recordLessonTime": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Nat], [], []),
-    "searchCertificates": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Vec(Certificate2)],
-      ["query"]
-    ),
-    "setFeaturedLesson": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text],
-      [IDL2.Bool],
-      []
-    ),
-    "setQuizFailMessage": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text],
-      [IDL2.Bool],
-      []
-    ),
-    "submitCheckpointQuiz": IDL2.Func([IDL2.Text, IDL2.Nat], [IDL2.Bool], []),
-    "submitLessonRating": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Nat],
-      [IDL2.Bool],
-      []
-    ),
-    "submitQuizAndIssueCertificate": IDL2.Func(
-      [
-        IDL2.Text,
-        IDL2.Vec(QuizAnswer2),
-        IDL2.Text,
-        IDL2.Text,
-        IDL2.Text,
-        IDL2.Text,
-        IDL2.Text,
-        IDL2.Text,
-        IDL2.Int,
-        IDL2.Text
-      ],
-      [Result2],
-      []
-    ),
-    "updateLessonMastery": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Float64, IDL2.Float64, IDL2.Float64],
-      [],
-      []
-    ),
-    "verifyCertificate": IDL2.Func(
-      [IDL2.Text],
-      [IDL2.Opt(Certificate2)],
-      ["query"]
-    ),
-    "zenoAiTransform": IDL2.Func(
-      [TransformationInput2],
-      [TransformationOutput2],
-      ["query"]
-    )
-  });
-};
-function record_opt_to_undefined(arg) {
-  return arg == null ? void 0 : arg;
-}
-class Backend {
-  constructor(actor, _uploadFile, _downloadFile, processError2) {
-    this.actor = actor;
-    this._uploadFile = _uploadFile;
-    this._downloadFile = _downloadFile;
-    this.processError = processError2;
-  }
-  async adminCreateABTest(arg0, arg1, arg2, arg3) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminCreateABTest(arg0, arg1, arg2, arg3);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminCreateABTest(arg0, arg1, arg2, arg3);
-      return result;
-    }
-  }
-  async adminExportCertificates() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminExportCertificates();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminExportCertificates();
-      return result;
-    }
-  }
-  async adminFeatureCertificate(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminFeatureCertificate(arg0, arg1);
-        return from_candid_Result_1_n1(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminFeatureCertificate(arg0, arg1);
-      return from_candid_Result_1_n1(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async adminFlagQuestion(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminFlagQuestion(arg0, arg1);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminFlagQuestion(arg0, arg1);
-      return result;
-    }
-  }
-  async adminGetABTests(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminGetABTests(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminGetABTests(arg0);
-      return result;
-    }
-  }
-  async adminGetAttemptLogs(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminGetAttemptLogs(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminGetAttemptLogs(arg0);
-      return result;
-    }
-  }
-  async adminGetEngagementData(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminGetEngagementData(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminGetEngagementData(arg0);
-      return result;
-    }
-  }
-  async adminGetFlaggedQuestions() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminGetFlaggedQuestions();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminGetFlaggedQuestions();
-      return result;
-    }
-  }
-  async adminGetMonthlyStats(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminGetMonthlyStats(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminGetMonthlyStats(arg0);
-      return result;
-    }
-  }
-  async adminGetQuestionFailStats(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminGetQuestionFailStats(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminGetQuestionFailStats(arg0);
-      return result;
-    }
-  }
-  async adminGetStats() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminGetStats();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminGetStats();
-      return result;
-    }
-  }
-  async adminManualIssueCertificate(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminManualIssueCertificate(arg0, arg1);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminManualIssueCertificate(arg0, arg1);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async adminRevokeOrReinstateCertificate(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminRevokeOrReinstateCertificate(arg0, arg1);
-        return from_candid_Result_1_n1(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminRevokeOrReinstateCertificate(arg0, arg1);
-      return from_candid_Result_1_n1(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async adminSetAnnouncementBanner(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminSetAnnouncementBanner(arg0, arg1);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminSetAnnouncementBanner(arg0, arg1);
-      return result;
-    }
-  }
-  async adminSetLessonOfWeek(arg0, arg1, arg2, arg3) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminSetLessonOfWeek(arg0, arg1, arg2, arg3);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminSetLessonOfWeek(arg0, arg1, arg2, arg3);
-      return result;
-    }
-  }
-  async adminSetTierDisabled(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminSetTierDisabled(arg0, arg1);
-        return from_candid_Result_1_n1(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminSetTierDisabled(arg0, arg1);
-      return from_candid_Result_1_n1(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async adminToggleABVersion(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminToggleABVersion(arg0, arg1);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminToggleABVersion(arg0, arg1);
-      return result;
-    }
-  }
-  async adminUpdateMilestone(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.adminUpdateMilestone(arg0, arg1);
-        return from_candid_Result_1_n1(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.adminUpdateMilestone(arg0, arg1);
-      return from_candid_Result_1_n1(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async askZenoAi(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.askZenoAi(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.askZenoAi(arg0);
-      return result;
-    }
-  }
-  async generateProgressShareLink(arg0, arg1, arg2) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.generateProgressShareLink(arg0, arg1, arg2);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.generateProgressShareLink(arg0, arg1, arg2);
-      return result;
-    }
-  }
-  async getAcademyQuiz(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getAcademyQuiz(arg0, arg1);
-        return from_candid_opt_n5(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getAcademyQuiz(arg0, arg1);
-      return from_candid_opt_n5(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async getAdminLessonRatings() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getAdminLessonRatings();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getAdminLessonRatings();
-      return result;
-    }
-  }
-  async getAllMasteryRecords() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getAllMasteryRecords();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getAllMasteryRecords();
-      return result;
-    }
-  }
-  async getAnnouncementBanner() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getAnnouncementBanner();
-        return from_candid_opt_n6(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getAnnouncementBanner();
-      return from_candid_opt_n6(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async getCertificateByShareToken(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getCertificateByShareToken(arg0);
-        return from_candid_opt_n7(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getCertificateByShareToken(arg0);
-      return from_candid_opt_n7(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async getCertificatesByTier(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getCertificatesByTier(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getCertificatesByTier(arg0);
-      return result;
-    }
-  }
-  async getDailyActiveCounts() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getDailyActiveCounts();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getDailyActiveCounts();
-      return result;
-    }
-  }
-  async getFeaturedCertificates() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getFeaturedCertificates();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getFeaturedCertificates();
-      return result;
-    }
-  }
-  async getFeaturedLesson(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getFeaturedLesson(arg0);
-        return from_candid_opt_n8(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getFeaturedLesson(arg0);
-      return from_candid_opt_n8(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async getLessonCompletionTrends() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getLessonCompletionTrends();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getLessonCompletionTrends();
-      return result;
-    }
-  }
-  async getLessonMastery(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getLessonMastery(arg0);
-        return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getLessonMastery(arg0);
-      return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async getLessonOfWeek() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getLessonOfWeek();
-        return from_candid_opt_n10(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getLessonOfWeek();
-      return from_candid_opt_n10(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async getLessonRatings(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getLessonRatings(arg0, arg1);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getLessonRatings(arg0, arg1);
-      return result;
-    }
-  }
-  async getMonthlyChallenge(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getMonthlyChallenge(arg0);
-        return from_candid_opt_n11(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getMonthlyChallenge(arg0);
-      return from_candid_opt_n11(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async getProgressSnapshot(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getProgressSnapshot(arg0);
-        return from_candid_opt_n12(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getProgressSnapshot(arg0);
-      return from_candid_opt_n12(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async getQuizAttemptStats() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getQuizAttemptStats();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getQuizAttemptStats();
-      return result;
-    }
-  }
-  async getQuizFailMessage(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getQuizFailMessage(arg0);
-        return from_candid_opt_n8(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getQuizFailMessage(arg0);
-      return from_candid_opt_n8(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async getRoadmap() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getRoadmap();
-        return from_candid_vec_n13(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getRoadmap();
-      return from_candid_vec_n13(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async getTierDisabledStates() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getTierDisabledStates();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getTierDisabledStates();
-      return result;
-    }
-  }
-  async getTokenInfo() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getTokenInfo();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getTokenInfo();
-      return result;
-    }
-  }
-  async listAllCertificates() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.listAllCertificates();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.listAllCertificates();
-      return result;
-    }
-  }
-  async logDailyActive(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.logDailyActive(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.logDailyActive(arg0);
-      return result;
-    }
-  }
-  async logLessonCompletion(arg0, arg1, arg2) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.logLessonCompletion(arg0, arg1, arg2);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.logLessonCompletion(arg0, arg1, arg2);
-      return result;
-    }
-  }
-  async recordABTestResult(arg0, arg1, arg2) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.recordABTestResult(arg0, arg1, arg2);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.recordABTestResult(arg0, arg1, arg2);
-      return result;
-    }
-  }
-  async recordLessonCompleted(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.recordLessonCompleted(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.recordLessonCompleted(arg0);
-      return result;
-    }
-  }
-  async recordLessonTime(arg0, arg1, arg2) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.recordLessonTime(arg0, arg1, arg2);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.recordLessonTime(arg0, arg1, arg2);
-      return result;
-    }
-  }
-  async searchCertificates(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.searchCertificates(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.searchCertificates(arg0);
-      return result;
-    }
-  }
-  async setFeaturedLesson(arg0, arg1, arg2) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.setFeaturedLesson(arg0, arg1, arg2);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.setFeaturedLesson(arg0, arg1, arg2);
-      return result;
-    }
-  }
-  async setQuizFailMessage(arg0, arg1, arg2) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.setQuizFailMessage(arg0, arg1, arg2);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.setQuizFailMessage(arg0, arg1, arg2);
-      return result;
-    }
-  }
-  async submitCheckpointQuiz(arg0, arg1) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.submitCheckpointQuiz(arg0, arg1);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.submitCheckpointQuiz(arg0, arg1);
-      return result;
-    }
-  }
-  async submitLessonRating(arg0, arg1, arg2) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.submitLessonRating(arg0, arg1, arg2);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.submitLessonRating(arg0, arg1, arg2);
-      return result;
-    }
-  }
-  async submitQuizAndIssueCertificate(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.submitQuizAndIssueCertificate(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
-        return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.submitQuizAndIssueCertificate(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
-      return from_candid_Result_n3(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async updateLessonMastery(arg0, arg1, arg2, arg3, arg4) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.updateLessonMastery(arg0, arg1, arg2, arg3, arg4);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.updateLessonMastery(arg0, arg1, arg2, arg3, arg4);
-      return result;
-    }
-  }
-  async verifyCertificate(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.verifyCertificate(arg0);
-        return from_candid_opt_n7(this._uploadFile, this._downloadFile, result);
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.verifyCertificate(arg0);
-      return from_candid_opt_n7(this._uploadFile, this._downloadFile, result);
-    }
-  }
-  async zenoAiTransform(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.zenoAiTransform(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.zenoAiTransform(arg0);
-      return result;
-    }
-  }
-}
-function from_candid_Result_1_n1(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n2(_uploadFile, _downloadFile, value);
-}
-function from_candid_Result_n3(_uploadFile, _downloadFile, value) {
-  return from_candid_variant_n4(_uploadFile, _downloadFile, value);
-}
-function from_candid_RoadmapMilestone_n14(_uploadFile, _downloadFile, value) {
-  return from_candid_record_n15(_uploadFile, _downloadFile, value);
-}
-function from_candid_opt_n10(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : value[0];
-}
-function from_candid_opt_n11(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : value[0];
-}
-function from_candid_opt_n12(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : value[0];
-}
-function from_candid_opt_n5(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : value[0];
-}
-function from_candid_opt_n6(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : value[0];
-}
-function from_candid_opt_n7(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : value[0];
-}
-function from_candid_opt_n8(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : value[0];
-}
-function from_candid_opt_n9(_uploadFile, _downloadFile, value) {
-  return value.length === 0 ? null : value[0];
-}
-function from_candid_record_n15(_uploadFile, _downloadFile, value) {
-  return {
-    id: value.id,
-    title: value.title,
-    date: record_opt_to_undefined(from_candid_opt_n8(_uploadFile, _downloadFile, value.date)),
-    completed: value.completed,
-    year: value.year,
-    description: value.description
-  };
-}
-function from_candid_variant_n2(_uploadFile, _downloadFile, value) {
-  return "ok" in value ? {
-    __kind__: "ok",
-    ok: value.ok
-  } : "err" in value ? {
-    __kind__: "err",
-    err: value.err
-  } : value;
-}
-function from_candid_variant_n4(_uploadFile, _downloadFile, value) {
-  return "ok" in value ? {
-    __kind__: "ok",
-    ok: value.ok
-  } : "err" in value ? {
-    __kind__: "err",
-    err: value.err
-  } : value;
-}
-function from_candid_vec_n13(_uploadFile, _downloadFile, value) {
-  return value.map((x2) => from_candid_RoadmapMilestone_n14(_uploadFile, _downloadFile, x2));
-}
-function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
-  const agent = options.agent || HttpAgent.createSync({
-    ...options.agentOptions
-  });
-  if (options.agent && options.agentOptions) {
-    console.warn("Detected both agent and agentOptions passed to createActor. Ignoring agentOptions and proceeding with the provided agent.");
-  }
-  const actor = Actor.createActor(idlFactory, {
-    agent,
-    canisterId,
-    ...options.actorOptions
-  });
-  return new Backend(actor, _uploadFile, _downloadFile, options.processError);
-}
-function useQuizAttemptStats() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["quizAttemptStats"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getQuizAttemptStats();
-    },
-    enabled: !!actor && !isFetching,
-    staleTime: 6e4
-  });
-}
-function useAnnouncementBanner() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["announcementBanner"],
-    queryFn: async () => {
-      if (!actor) return null;
-      return actor.getAnnouncementBanner();
-    },
-    enabled: !!actor && !isFetching,
-    staleTime: 3e4
-  });
-}
-function useVerifyCertificate(certId) {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["verifyCertificate", certId],
-    queryFn: async () => {
-      if (!actor || !certId) return null;
-      return actor.verifyCertificate(certId);
-    },
-    enabled: !!actor && !isFetching && !!certId,
-    staleTime: 3e4
-  });
-}
-function useListAllCertificates() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["listAllCertificates"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.listAllCertificates();
-    },
-    enabled: !!actor && !isFetching,
-    staleTime: 15e3
-  });
-}
-function useFeaturedCertificates() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["featuredCertificates"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getFeaturedCertificates();
-    },
-    enabled: !!actor && !isFetching,
-    staleTime: 3e4
-  });
-}
-function useTierDisabledStates() {
-  const { actor, isFetching } = useActor(createActor);
-  return useQuery({
-    queryKey: ["tierDisabledStates"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getTierDisabledStates();
-    },
-    enabled: !!actor && !isFetching,
-    staleTime: 3e4
-  });
-}
 const NAV_LINKS = [
   { label: "Home", href: "/", isRoute: true },
-  { label: "Academy", href: "#academy", isRoute: false, section: "academy" },
-  { label: "Certificate Wall", href: "/certificates", isRoute: true },
   {
     label: "DMNZ Token",
     href: "#dmnz-token",
     isRoute: false,
     section: "dmnz-token"
+  },
+  {
+    label: "Roadmap",
+    href: "#roadmap",
+    isRoute: false,
+    section: "roadmap"
   }
 ];
 const FOOTER_NAV = [
-  { label: "Academy", href: "#academy" },
-  { label: "Certificate Wall", href: "/certificates" },
   { label: "DMNZ Token", href: "#dmnz-token" },
-  { label: "Roadmap", href: "#roadmap" }
+  { label: "Roadmap", href: "#roadmap" },
+  { label: "How to Buy", href: "#dmnz-token" },
+  { label: "FAQ", href: "#dmnz-token" }
 ];
 const SOCIAL_LINKS = [
   {
     icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SiBinance, { className: "w-4 h-4" }),
     label: "Binance Square",
-    handle: "@DemonZeno",
-    url: "https://www.binance.com/en/square/profile/@DemonZeno"
+    handle: "@Demon_Zeno",
+    url: "https://www.binance.com/en/square/profile/@Demon_Zeno"
   },
   {
     icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Twitter, { className: "w-4 h-4" }),
@@ -34622,32 +31888,6 @@ const SOCIAL_LINKS = [
 function scrollToSection(href) {
   const el = document.querySelector(href);
   el == null ? void 0 : el.scrollIntoView({ behavior: "smooth" });
-}
-function AnnouncementBar() {
-  const { data: banner } = useAnnouncementBanner();
-  const [dismissed, setDismissed] = reactExports.useState(false);
-  if (!(banner == null ? void 0 : banner.isPinned) || dismissed) return null;
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      "data-ocid": "announcement.panel",
-      className: "bg-primary/10 border-b border-primary/20 text-foreground",
-      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto px-4 py-2 flex items-center justify-between gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-center flex-1 font-medium text-primary", children: banner.text }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            "data-ocid": "announcement.close_button",
-            onClick: () => setDismissed(true),
-            "aria-label": "Dismiss announcement",
-            className: "shrink-0 p-1 rounded hover:bg-primary/20 transition-smooth text-primary/70 hover:text-primary",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-3.5 h-3.5" })
-          }
-        )
-      ] })
-    }
-  );
 }
 function Navbar() {
   const [mobileOpen, setMobileOpen] = reactExports.useState(false);
@@ -34704,16 +31944,13 @@ function Navbar() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "hidden md:flex items-center gap-1", children: NAV_LINKS.map((link) => {
             const isCurrent = link.isRoute ? routerState.location.pathname === link.href : false;
             if (link.isRoute) {
-              return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Link,
                 {
                   to: link.href,
                   "data-ocid": `navbar.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
                   className: `px-3 py-2 rounded-md text-sm font-medium transition-smooth flex items-center gap-1.5 ${isCurrent ? "nav-link-active" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`,
-                  children: [
-                    link.label === "Certificate Wall" && /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "w-3.5 h-3.5" }),
-                    link.label
-                  ]
+                  children: link.label
                 }
               ) }, link.href);
             }
@@ -34725,7 +31962,6 @@ function Navbar() {
                 onClick: () => handleNavClick(link),
                 className: "px-3 py-2 rounded-md text-sm font-medium transition-smooth flex items-center gap-1.5 text-muted-foreground hover:text-foreground hover:bg-muted",
                 children: [
-                  link.label === "Academy" && /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { className: "w-3.5 h-3.5" }),
                   link.label === "DMNZ Token" && /* @__PURE__ */ jsxRuntimeExports.jsx(Coins, { className: "w-3.5 h-3.5" }),
                   link.label
                 ]
@@ -34756,7 +31992,6 @@ function Navbar() {
                 className: "flex items-center gap-2 w-full px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-muted-foreground hover:text-foreground hover:bg-muted",
                 children: [
                   link.label === "Home" && /* @__PURE__ */ jsxRuntimeExports.jsx(House, { className: "w-4 h-4" }),
-                  link.label === "Certificate Wall" && /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "w-4 h-4" }),
                   link.label
                 ]
               }
@@ -34770,7 +32005,6 @@ function Navbar() {
               onClick: () => handleNavClick(link),
               className: "flex items-center gap-2 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-muted-foreground hover:text-foreground hover:bg-muted",
               children: [
-                link.label === "Academy" && /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { className: "w-4 h-4" }),
                 link.label === "DMNZ Token" && /* @__PURE__ */ jsxRuntimeExports.jsx(Coins, { className: "w-4 h-4" }),
                 link.label
               ]
@@ -34801,8 +32035,8 @@ function Footer() {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border", children: "DMNZ" })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm italic font-medium leading-relaxed max-w-sm", children: '"Master the chart, master yourself. Born from darkness, forged in discipline."' }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs leading-relaxed max-w-sm", children: "Trading education for informational purposes only. Not financial advice." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm italic font-medium leading-relaxed max-w-sm", children: "“Master the chart, master yourself. Born from darkness, forged in discipline.”" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs leading-relaxed max-w-sm", children: "DMNZ token information for community purposes only. Not financial advice." })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-semibold text-foreground text-sm uppercase tracking-wider", children: "Navigate" }),
@@ -34822,7 +32056,7 @@ function Footer() {
             className: "text-muted-foreground text-sm hover:text-primary transition-smooth text-left w-fit",
             children: label
           },
-          href
+          `${label}-${href}`
         ))
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
@@ -34861,14 +32095,13 @@ function Footer() {
           }
         )
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs", children: "DemonZeno Trading Academy — DMNZ Token" })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs", children: "DemonZeno — DMNZ Token" })
     ] })
   ] }) });
 }
 function Layout() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen flex flex-col bg-background", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(AnnouncementBar, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {})
   ] });
@@ -34899,54 +32132,9 @@ function ScrollProgress() {
 }
 const ADMIN_PASSCODE = "2420075112009BILAWALPRAKRITI";
 const CLICK_THRESHOLD = 5;
-const STREAK_KEY = "dz_streak_date";
-const STREAK_DAYS_KEY = "dz_streak_days";
-const CONFIDENCE_KEY = "dz_confidence";
-const SPACED_REP_KEY = "dz_spaced_rep";
-const NOTES_KEY = "dz_lesson_notes";
-const STAR_RATINGS_KEY = "dz_star_ratings";
-const LESSONS_LOG_KEY = "dz_lessons_log";
-const WEEKLY_GOAL_KEY = "dz_weekly_goal";
-const COMEBACK_KEY = "dz_last_study";
-const SOUND_KEY = "dz_sound";
 const AdminSessionContext = reactExports.createContext(
   null
 );
-const LessonProgressContext = reactExports.createContext(
-  null
-);
-const SoundContext = reactExports.createContext(null);
-function getISOWeekStart() {
-  const now2 = /* @__PURE__ */ new Date();
-  const day = now2.getDay();
-  const diff = now2.getDate() - day + (day === 0 ? -6 : 1);
-  const monday = new Date(now2.setDate(diff));
-  return monday.toISOString().slice(0, 10);
-}
-function isSameWeek(weekStart) {
-  return weekStart === getISOWeekStart();
-}
-function progressKey(tierId) {
-  return `dz_progress_${tierId}`;
-}
-function lastKey(tierId) {
-  return `dz_last_${tierId}`;
-}
-const BOOKMARKS_KEY = "dz_bookmarks";
-function readJson(key, fallback) {
-  try {
-    const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : fallback;
-  } catch {
-    return fallback;
-  }
-}
-function writeJson(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch {
-  }
-}
 function SessionProvider({ children }) {
   const [isAdminUnlocked, setIsAdminUnlocked] = reactExports.useState(() => {
     try {
@@ -34993,214 +32181,6 @@ function SessionProvider({ children }) {
     } catch {
     }
   }, []);
-  const getLessonProgress = reactExports.useCallback((tierId) => {
-    return readJson(progressKey(tierId), []);
-  }, []);
-  const [soundEnabled, setSoundEnabled] = reactExports.useState(() => {
-    try {
-      return localStorage.getItem(SOUND_KEY) === "on";
-    } catch {
-      return false;
-    }
-  });
-  const toggleSound = reactExports.useCallback(() => {
-    setSoundEnabled((v2) => {
-      const next = !v2;
-      try {
-        localStorage.setItem(SOUND_KEY, next ? "on" : "off");
-      } catch {
-      }
-      return next;
-    });
-  }, []);
-  const playTone = reactExports.useCallback(
-    (freq, dur, gain = 0.15) => {
-      if (!soundEnabled) return;
-      try {
-        const ctx = new AudioContext();
-        const osc = ctx.createOscillator();
-        const gainNode = ctx.createGain();
-        osc.connect(gainNode);
-        gainNode.connect(ctx.destination);
-        osc.frequency.value = freq;
-        gainNode.gain.setValueAtTime(gain, ctx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(
-          1e-3,
-          ctx.currentTime + dur
-        );
-        osc.start();
-        osc.stop(ctx.currentTime + dur);
-      } catch {
-      }
-    },
-    [soundEnabled]
-  );
-  const playComplete = reactExports.useCallback(() => playTone(880, 0.3, 0.1), [playTone]);
-  const playCorrect = reactExports.useCallback(() => playTone(660, 0.2, 0.1), [playTone]);
-  const playWrong = reactExports.useCallback(() => playTone(220, 0.3, 0.1), [playTone]);
-  const markLessonComplete = reactExports.useCallback((tierId, lessonId) => {
-    const current = readJson(progressKey(tierId), []);
-    if (!current.includes(lessonId)) {
-      writeJson(progressKey(tierId), [...current, lessonId]);
-    }
-    try {
-      localStorage.setItem(COMEBACK_KEY, Date.now().toString());
-    } catch {
-    }
-  }, []);
-  const getLessonBookmarks = reactExports.useCallback(
-    () => readJson(BOOKMARKS_KEY, {}),
-    []
-  );
-  const toggleBookmark = reactExports.useCallback((tierId, lessonId) => {
-    const key = `${tierId}_${lessonId}`;
-    const current = readJson(BOOKMARKS_KEY, {});
-    writeJson(BOOKMARKS_KEY, { ...current, [key]: !current[key] });
-  }, []);
-  const getLastLesson = reactExports.useCallback((tierId) => {
-    try {
-      return localStorage.getItem(lastKey(tierId));
-    } catch {
-      return null;
-    }
-  }, []);
-  const setLastLesson = reactExports.useCallback((tierId, lessonId) => {
-    try {
-      localStorage.setItem(lastKey(tierId), lessonId);
-    } catch {
-    }
-  }, []);
-  const getConfidenceRating = reactExports.useCallback(
-    (tierId, lessonId) => {
-      const all = readJson(CONFIDENCE_KEY, {});
-      return all[`${tierId}_${lessonId}`] ?? 0;
-    },
-    []
-  );
-  const setConfidenceRating = reactExports.useCallback(
-    (tierId, lessonId, rating) => {
-      const all = readJson(CONFIDENCE_KEY, {});
-      writeJson(CONFIDENCE_KEY, { ...all, [`${tierId}_${lessonId}`]: rating });
-    },
-    []
-  );
-  const getStreakDays = reactExports.useCallback(() => {
-    return readJson(STREAK_DAYS_KEY, 0);
-  }, []);
-  const updateStreak = reactExports.useCallback(() => {
-    const today = (/* @__PURE__ */ new Date()).toDateString();
-    const lastDate = localStorage.getItem(STREAK_KEY);
-    if (lastDate === today) return;
-    const yesterday = new Date(Date.now() - 864e5).toDateString();
-    const current = readJson(STREAK_DAYS_KEY, 0);
-    const newStreak = lastDate === yesterday ? current + 1 : 1;
-    writeJson(STREAK_DAYS_KEY, newStreak);
-    try {
-      localStorage.setItem(STREAK_KEY, today);
-    } catch {
-    }
-  }, []);
-  const getSpacedRepetitionReminder = reactExports.useCallback(
-    (tierId, lessonId) => {
-      const all = readJson(SPACED_REP_KEY, {});
-      return all[`${tierId}_${lessonId}`] ?? null;
-    },
-    []
-  );
-  const setSpacedRepetitionReminder = reactExports.useCallback(
-    (tierId, lessonId) => {
-      const all = readJson(SPACED_REP_KEY, {});
-      const nextReview = Date.now() + 3 * 24 * 60 * 60 * 1e3;
-      writeJson(SPACED_REP_KEY, {
-        ...all,
-        [`${tierId}_${lessonId}`]: nextReview
-      });
-    },
-    []
-  );
-  const getLessonNote = reactExports.useCallback(
-    (tierId, lessonId) => {
-      const all = readJson(NOTES_KEY, {});
-      return all[`${tierId}_${lessonId}`] ?? "";
-    },
-    []
-  );
-  const setLessonNote = reactExports.useCallback(
-    (tierId, lessonId, note) => {
-      const all = readJson(NOTES_KEY, {});
-      writeJson(NOTES_KEY, { ...all, [`${tierId}_${lessonId}`]: note });
-    },
-    []
-  );
-  const getLessonStarRating = reactExports.useCallback(
-    (tierId, lessonId) => {
-      const all = readJson(STAR_RATINGS_KEY, {});
-      return all[`${tierId}_${lessonId}`] ?? 0;
-    },
-    []
-  );
-  const setLessonStarRating = reactExports.useCallback(
-    (tierId, lessonId, rating) => {
-      const all = readJson(STAR_RATINGS_KEY, {});
-      writeJson(STAR_RATINGS_KEY, {
-        ...all,
-        [`${tierId}_${lessonId}`]: rating
-      });
-    },
-    []
-  );
-  const getLessonsLearnedLog = reactExports.useCallback(
-    () => readJson(LESSONS_LOG_KEY, []),
-    []
-  );
-  const addToLessonsLearnedLog = reactExports.useCallback(
-    (entry) => {
-      const current = readJson(LESSONS_LOG_KEY, []);
-      const newEntry = {
-        ...entry,
-        id: `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`
-      };
-      writeJson(LESSONS_LOG_KEY, [newEntry, ...current].slice(0, 200));
-    },
-    []
-  );
-  const getWeeklyGoal = reactExports.useCallback(() => {
-    const stored = readJson(WEEKLY_GOAL_KEY, null);
-    const weekStart = getISOWeekStart();
-    if (!stored || !isSameWeek(stored.weekStart)) {
-      return { target: 3, weekStart, completed: 0 };
-    }
-    return stored;
-  }, []);
-  const setWeeklyGoalTarget = reactExports.useCallback((target) => {
-    const current = readJson(WEEKLY_GOAL_KEY, null);
-    const weekStart = getISOWeekStart();
-    const completed = current && isSameWeek(current.weekStart) ? current.completed : 0;
-    writeJson(WEEKLY_GOAL_KEY, { target, weekStart, completed });
-  }, []);
-  const incrementWeeklyProgress = reactExports.useCallback(() => {
-    const current = getWeeklyGoal();
-    writeJson(WEEKLY_GOAL_KEY, {
-      ...current,
-      completed: current.completed + 1
-    });
-  }, [getWeeklyGoal]);
-  const getComebackReminder = reactExports.useCallback(() => {
-    try {
-      const last2 = localStorage.getItem(COMEBACK_KEY);
-      if (!last2) return false;
-      const diff = Date.now() - Number(last2);
-      return diff > 3 * 24 * 60 * 60 * 1e3;
-    } catch {
-      return false;
-    }
-  }, []);
-  const dismissComebackReminder = reactExports.useCallback(() => {
-    try {
-      localStorage.setItem(COMEBACK_KEY, Date.now().toString());
-    } catch {
-    }
-  }, []);
   const adminValue = reactExports.useMemo(
     () => ({
       isAdminUnlocked,
@@ -35221,106 +32201,25 @@ function SessionProvider({ children }) {
       lockAdmin
     ]
   );
-  const soundValue = reactExports.useMemo(
-    () => ({
-      soundEnabled,
-      toggleSound,
-      playComplete,
-      playCorrect,
-      playWrong
-    }),
-    [soundEnabled, toggleSound, playComplete, playCorrect, playWrong]
-  );
-  const lessonValue = reactExports.useMemo(
-    () => ({
-      getLessonProgress,
-      markLessonComplete,
-      getLessonBookmarks,
-      toggleBookmark,
-      getLastLesson,
-      setLastLesson,
-      getConfidenceRating,
-      setConfidenceRating,
-      getStreakDays,
-      updateStreak,
-      getSpacedRepetitionReminder,
-      setSpacedRepetitionReminder,
-      getLessonNote,
-      setLessonNote,
-      getLessonStarRating,
-      setLessonStarRating,
-      getLessonsLearnedLog,
-      addToLessonsLearnedLog,
-      getWeeklyGoal,
-      setWeeklyGoalTarget,
-      incrementWeeklyProgress,
-      getComebackReminder,
-      dismissComebackReminder
-    }),
-    [
-      getLessonProgress,
-      markLessonComplete,
-      getLessonBookmarks,
-      toggleBookmark,
-      getLastLesson,
-      setLastLesson,
-      getConfidenceRating,
-      setConfidenceRating,
-      getStreakDays,
-      updateStreak,
-      getSpacedRepetitionReminder,
-      setSpacedRepetitionReminder,
-      getLessonNote,
-      setLessonNote,
-      getLessonStarRating,
-      setLessonStarRating,
-      getLessonsLearnedLog,
-      addToLessonsLearnedLog,
-      getWeeklyGoal,
-      setWeeklyGoalTarget,
-      incrementWeeklyProgress,
-      getComebackReminder,
-      dismissComebackReminder
-    ]
-  );
   reactExports.useEffect(() => {
     document.documentElement.classList.add("dark");
     document.documentElement.classList.remove("light");
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(AdminSessionContext.Provider, { value: adminValue, children: /* @__PURE__ */ jsxRuntimeExports.jsx(SoundContext.Provider, { value: soundValue, children: /* @__PURE__ */ jsxRuntimeExports.jsx(LessonProgressContext.Provider, { value: lessonValue, children }) }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(AdminSessionContext.Provider, { value: adminValue, children });
 }
 function useSession() {
   const ctx = reactExports.useContext(AdminSessionContext);
   if (!ctx) throw new Error("useSession must be used within SessionProvider");
   return ctx;
 }
-function useLessonProgress() {
-  const ctx = reactExports.useContext(LessonProgressContext);
-  if (!ctx)
-    throw new Error("useLessonProgress must be used within SessionProvider");
-  return ctx;
-}
 const queryClient$1 = new QueryClient({
   defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } }
 });
 const Home = reactExports.lazy(
-  () => __vitePreload(() => import("./Home-CXVJrdty.js").then((n) => n.H), true ? __vite__mapDeps([0,1,2,3,4,5,6,7]) : void 0).then((m2) => ({ default: m2.Home }))
-);
-const AdminDashboard = reactExports.lazy(
-  () => __vitePreload(() => import("./AdminDashboard-CnDg5s9p.js"), true ? __vite__mapDeps([8,9,1,3,10,4,5]) : void 0).then((m2) => ({ default: m2.AdminDashboard }))
-);
-const CertificateWall = reactExports.lazy(
-  () => __vitePreload(() => import("./CertificateWall-_WJp8o5Y.js"), true ? __vite__mapDeps([11,9,1,3,2,12,4,6]) : void 0).then((m2) => ({
-    default: m2.CertificateWall
-  }))
-);
-const VerifyCertificate = reactExports.lazy(
-  () => __vitePreload(() => import("./VerifyCertificate-TsXUWJaF.js"), true ? __vite__mapDeps([13,1,10,12,4,6,7]) : void 0).then((m2) => ({
-    default: m2.VerifyCertificate
-  }))
+  () => __vitePreload(() => import("./Home-DtjxMNcm.js"), true ? __vite__mapDeps([0,1]) : void 0).then((m2) => ({ default: m2.Home }))
 );
 const NotFound = reactExports.lazy(
-  () => __vitePreload(() => import("./NotFound-syC7edGN.js"), true ? __vite__mapDeps([14,1]) : void 0).then((m2) => ({ default: m2.NotFound }))
+  () => __vitePreload(() => import("./NotFound-Bqvyhnzz.js"), true ? __vite__mapDeps([2,1]) : void 0).then((m2) => ({ default: m2.NotFound }))
 );
 function PageLoader() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "min-h-screen bg-background flex flex-col items-center justify-center gap-6", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-4", children: [
@@ -35351,42 +32250,21 @@ const indexRoute = createRoute({
   path: "/",
   component: Home
 });
-const certificatesRoute = createRoute({
-  getParentRoute: () => layoutRoute,
-  path: "/certificates",
-  component: CertificateWall
-});
-const verifyRoute = createRoute({
-  getParentRoute: () => layoutRoute,
-  path: "/verify/$certId",
-  component: VerifyCertificate
-});
 const notFoundRoute = createRoute({
   getParentRoute: () => layoutRoute,
   path: "/404",
   component: NotFound
 });
-const adminRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/admin",
-  component: AdminDashboard
-});
 const catchAllRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "$",
   beforeLoad: () => {
-    throw redirect({ to: "/404" });
+    window.location.replace("/");
   },
   component: () => null
 });
 const routeTree = rootRoute.addChildren([
-  layoutRoute.addChildren([
-    indexRoute,
-    certificatesRoute,
-    verifyRoute,
-    notFoundRoute
-  ]),
-  adminRoute,
+  layoutRoute.addChildren([indexRoute, notFoundRoute]),
   catchAllRoute
 ]);
 const router = createRouter({ routeTree });
@@ -35402,41 +32280,70 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(InternetIdentityProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) }) })
 );
 export {
-  Award as A,
-  BookOpen as B,
-  getDefaultExportFromCjs as C,
-  House as H,
-  Link as L,
-  React$5 as R,
-  SiBinance as S,
-  Twitter as T,
-  X,
-  Zap as Z,
-  __vitePreload as _,
-  useActor as a,
-  useQuery as b,
-  createLucideIcon as c,
-  createActor as d,
-  useLessonProgress as e,
-  Subscribable as f,
-  getDefaultState as g,
-  hashKey as h,
-  useQueryClient as i,
-  jsxRuntimeExports as j,
-  noop$6 as k,
-  shouldThrowError as l,
-  useQuizAttemptStats as m,
-  notifyManager as n,
-  useAnnouncementBanner as o,
-  useTierDisabledStates as p,
-  useFeaturedCertificates as q,
-  reactExports as r,
-  shallowEqualObjects as s,
-  useListAllCertificates as t,
-  useSession as u,
-  useVerifyCertificate as v,
-  reactDomExports as w,
-  ReactDOM$2 as x,
-  useParams as y,
-  commonjsGlobal as z
+  useSession as $,
+  timeoutManager as A,
+  focusManager as B,
+  Certificate as C,
+  fetchState as D,
+  ExternalError as E,
+  replaceData as F,
+  notifyManager as G,
+  HttpAgent as H,
+  InputError as I,
+  reactExports as J,
+  shouldThrowError as K,
+  useQueryClient as L,
+  MissingRootKeyErrorCode as M,
+  useInternetIdentity as N,
+  createActorWithConfig as O,
+  ProtocolError as P,
+  QueryResponseStatus as Q,
+  RequestStatusResponseStatus as R,
+  Subscribable as S,
+  TimeoutWaitingForResponseErrorCode as T,
+  UnknownError as U,
+  createLucideIcon as V,
+  jsxRuntimeExports as W,
+  React$5 as X,
+  reactDomExports as Y,
+  ReactDOM$2 as Z,
+  X as _,
+  RequestStatusDoneNoReplyErrorCode as a,
+  Zap as a0,
+  Variant as a1,
+  Record as a2,
+  Opt as a3,
+  Vec as a4,
+  Text as a5,
+  Service as a6,
+  Func as a7,
+  Null as a8,
+  Bool as a9,
+  SiBinance as aa,
+  Link as ab,
+  RejectError as b,
+  CertifiedRejectErrorCode as c,
+  UNREACHABLE_ERROR as d,
+  InvalidReadStateRequestErrorCode as e,
+  ReadRequestType as f,
+  Principal$1 as g,
+  IDL as h,
+  MissingCanisterIdErrorCode as i,
+  encode$2 as j,
+  UncertifiedRejectErrorCode as k,
+  lookupResultToBuffer as l,
+  isV3ResponseBody as m,
+  isV2ResponseBody as n,
+  UncertifiedRejectUpdateErrorCode as o,
+  UnexpectedErrorCode as p,
+  decode$2 as q,
+  pendingThenable as r,
+  resolveEnabled as s,
+  shallowEqualObjects as t,
+  utf8ToBytes as u,
+  resolveStaleTime as v,
+  noop$6 as w,
+  environmentManager as x,
+  isValidTimeout as y,
+  timeUntilStale as z
 };

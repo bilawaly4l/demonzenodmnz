@@ -1,5 +1,13 @@
-import { BookOpen, Search } from "lucide-react";
-import { useMemo, useState } from "react";
+import {
+  BookOpen,
+  CheckCircle,
+  ChevronDown,
+  GraduationCap,
+  RotateCcw,
+  Search,
+  XCircle,
+} from "lucide-react";
+import { useCallback, useMemo, useState } from "react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -7,6 +15,315 @@ export interface GlossaryTerm {
   term: string;
   definition: string;
   category: string;
+}
+
+interface QuizQuestion {
+  term: string;
+  correctDefinition: string;
+  options: string[];
+  correctIndex: number;
+}
+
+// ─── Quiz Mode Helpers ────────────────────────────────────────────────────────
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j]!, a[i]!];
+  }
+  return a;
+}
+
+function buildQuiz(terms: GlossaryTerm[], count = 10): QuizQuestion[] {
+  const pool = shuffle(terms).slice(0, Math.min(count, terms.length));
+  return pool.map((t) => {
+    const distractors = shuffle(
+      terms.filter((g) => g.term !== t.term).map((g) => g.definition),
+    ).slice(0, 3);
+    const options = shuffle([t.definition, ...distractors]);
+    return {
+      term: t.term,
+      correctDefinition: t.definition,
+      options,
+      correctIndex: options.indexOf(t.definition),
+    };
+  });
+}
+
+// ─── Glossary Quiz Component ──────────────────────────────────────────────────
+
+function GlossaryQuiz({
+  terms,
+  onClose,
+}: {
+  terms: GlossaryTerm[];
+  onClose: () => void;
+}) {
+  const [questions] = useState<QuizQuestion[]>(() => buildQuiz(terms));
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<number | null>(null);
+  const [revealed, setRevealed] = useState(false);
+  const [score, setScore] = useState(0);
+  const [done, setDone] = useState(false);
+
+  const q = questions[current];
+
+  const handleSelect = useCallback(
+    (i: number) => {
+      if (revealed) return;
+      setSelected(i);
+    },
+    [revealed],
+  );
+
+  const handleConfirm = useCallback(() => {
+    if (selected === null || !q) return;
+    setRevealed(true);
+    if (selected === q.correctIndex) setScore((s) => s + 1);
+  }, [selected, q]);
+
+  const handleNext = useCallback(() => {
+    if (current + 1 >= questions.length) {
+      setDone(true);
+    } else {
+      setCurrent((c) => c + 1);
+      setSelected(null);
+      setRevealed(false);
+    }
+  }, [current, questions.length]);
+
+  if (!q) return null;
+
+  if (done) {
+    return (
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        style={{ background: "rgba(0,0,0,0.85)" }}
+        role="presentation"
+      >
+        <div
+          className="rounded-2xl p-7 text-center max-w-sm w-full"
+          style={{
+            background: "oklch(0.15 0.01 260)",
+            border: "1px solid oklch(0.65 0.18 145 / 0.35)",
+          }}
+          data-ocid="glossary_quiz.completed_state"
+        >
+          <div className="text-4xl mb-3">
+            {score >= 8 ? "🏆" : score >= 5 ? "🎯" : "📚"}
+          </div>
+          <h3 className="font-display font-bold text-xl text-foreground mb-1">
+            Quiz Complete!
+          </h3>
+          <p
+            className="text-3xl font-black mb-2"
+            style={{ color: "oklch(0.70 0.16 145)" }}
+          >
+            {score}/{questions.length}
+          </p>
+          <p className="text-sm text-muted-foreground mb-4">
+            {score === questions.length
+              ? "Perfect! Your trading vocabulary is sharp."
+              : score >= 7
+                ? "Strong performance. Almost there!"
+                : "Keep learning — vocabulary is the foundation."}
+          </p>
+          <p
+            className="text-xs italic mb-5"
+            style={{ color: "oklch(0.65 0.18 145)" }}
+          >
+            &ldquo;Master the language of the market first.&rdquo; — DemonZeno
+          </p>
+          <div className="flex gap-3 justify-center">
+            <button
+              type="button"
+              onClick={onClose}
+              data-ocid="glossary_quiz.close_button"
+              className="px-4 py-2 rounded-xl text-sm font-semibold transition-smooth"
+              style={{
+                background: "oklch(0.22 0.01 260)",
+                color: "oklch(0.60 0.01 260)",
+                border: "1px solid oklch(0.30 0.01 260)",
+              }}
+            >
+              Back to Glossary
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
+      style={{ background: "rgba(0,0,0,0.85)" }}
+    >
+      <div
+        className="rounded-2xl overflow-hidden w-full max-w-lg"
+        style={{
+          background: "oklch(0.15 0.01 260)",
+          border: "1px solid oklch(0.65 0.18 145 / 0.30)",
+        }}
+        data-ocid="glossary_quiz.dialog"
+      >
+        {/* Header */}
+        <div
+          className="px-5 py-3 flex items-center justify-between"
+          style={{
+            background: "oklch(0.65 0.18 145 / 0.10)",
+            borderBottom: "1px solid oklch(0.65 0.18 145 / 0.20)",
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <GraduationCap
+              className="w-4 h-4"
+              style={{ color: "oklch(0.70 0.16 145)" }}
+            />
+            <span
+              className="font-display font-bold text-sm"
+              style={{ color: "oklch(0.70 0.16 145)" }}
+            >
+              Glossary Quiz — Q{current + 1}/{questions.length}
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <span
+              className="text-xs font-semibold"
+              style={{ color: "oklch(0.70 0.16 145)" }}
+            >
+              Score: {score}
+            </span>
+            <button
+              type="button"
+              onClick={onClose}
+              data-ocid="glossary_quiz.close_button"
+              className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors text-muted-foreground"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="h-1" style={{ background: "oklch(0.22 0.01 260)" }}>
+          <div
+            className="h-full transition-all duration-300"
+            style={{
+              width: `${((current + 1) / questions.length) * 100}%`,
+              background: "oklch(0.65 0.18 145)",
+            }}
+          />
+        </div>
+
+        <div className="p-5 space-y-4">
+          <div>
+            <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wider">
+              What is...
+            </p>
+            <h4
+              className="font-display font-bold text-xl"
+              style={{ color: "oklch(0.70 0.16 145)" }}
+            >
+              {q.term}
+            </h4>
+          </div>
+
+          <div className="space-y-2" data-ocid="glossary_quiz.options_list">
+            {q.options.map((opt, i) => {
+              let bg = "oklch(0.20 0.01 260)";
+              let border = "1px solid oklch(0.28 0.01 260)";
+              let color = "oklch(0.70 0.01 260)";
+
+              if (revealed) {
+                if (i === q.correctIndex) {
+                  bg = "oklch(0.65 0.18 145 / 0.12)";
+                  border = "1px solid oklch(0.65 0.18 145 / 0.6)";
+                  color = "oklch(0.75 0.15 145)";
+                } else if (i === selected) {
+                  bg = "oklch(0.55 0.22 25 / 0.10)";
+                  border = "1px solid oklch(0.55 0.22 25 / 0.6)";
+                  color = "oklch(0.65 0.18 25)";
+                }
+              } else if (i === selected) {
+                bg = "oklch(0.65 0.18 145 / 0.12)";
+                border = "1px solid oklch(0.65 0.18 145)";
+                color = "oklch(0.70 0.16 145)";
+              }
+
+              return (
+                <button
+                  key={opt.slice(0, 30)}
+                  type="button"
+                  data-ocid={`glossary_quiz.option.${i + 1}`}
+                  onClick={() => handleSelect(i)}
+                  disabled={revealed}
+                  className="w-full text-left px-4 py-3 rounded-xl text-sm transition-smooth flex items-start gap-2"
+                  style={{
+                    background: bg,
+                    border,
+                    color,
+                    cursor: revealed ? "default" : "pointer",
+                  }}
+                >
+                  <span className="font-bold shrink-0">
+                    {String.fromCharCode(65 + i)}.
+                  </span>
+                  <span className="leading-relaxed line-clamp-3">{opt}</span>
+                  {revealed && i === q.correctIndex && (
+                    <CheckCircle
+                      className="w-4 h-4 shrink-0 ml-auto mt-0.5"
+                      style={{ color: "oklch(0.65 0.18 145)" }}
+                    />
+                  )}
+                  {revealed && i === selected && i !== q.correctIndex && (
+                    <XCircle
+                      className="w-4 h-4 shrink-0 ml-auto mt-0.5"
+                      style={{ color: "oklch(0.55 0.22 25)" }}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {!revealed && selected !== null && (
+            <button
+              type="button"
+              data-ocid="glossary_quiz.confirm_button"
+              onClick={handleConfirm}
+              className="w-full py-2.5 rounded-xl text-sm font-bold transition-smooth"
+              style={{
+                background: "oklch(0.65 0.18 145)",
+                color: "oklch(0.10 0.01 260)",
+              }}
+            >
+              Confirm Answer
+            </button>
+          )}
+
+          {revealed && (
+            <button
+              type="button"
+              data-ocid="glossary_quiz.next_button"
+              onClick={handleNext}
+              className="w-full py-2.5 rounded-xl text-sm font-bold transition-smooth"
+              style={{
+                background: "oklch(0.65 0.18 145 / 0.20)",
+                color: "oklch(0.70 0.16 145)",
+                border: "1px solid oklch(0.65 0.18 145 / 0.40)",
+              }}
+            >
+              {current + 1 < questions.length
+                ? "Next Question →"
+                : "View Results"}
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 // ─── Glossary Data ────────────────────────────────────────────────────────────
@@ -375,6 +692,14 @@ const CATEGORIES = Array.from(new Set(GLOSSARY.map((g) => g.category))).sort();
 export function GlossarySection() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
+  const [quizOpen, setQuizOpen] = useState(false);
+  const [browsing, setBrowsing] = useState(false);
+
+  // Auto-expand when user types in search
+  const handleSearch = (val: string) => {
+    setSearch(val);
+    if (val.trim()) setBrowsing(true);
+  };
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
@@ -407,7 +732,7 @@ export function GlossarySection() {
 
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <div
             className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full"
             style={{
@@ -431,136 +756,187 @@ export function GlossarySection() {
             <span style={{ color: "oklch(0.70 0.16 145)" }}>Dictionary</span>
           </h2>
           <p className="text-muted-foreground text-sm mt-3 max-w-xl mx-auto">
-            Every term you need to master the markets. Search any concept,
-            filter by category. Referenced throughout the Academy.
+            Every term you need to master the markets. Search any concept or
+            browse all {GLOSSARY.length} terms by category.
           </p>
         </div>
 
-        {/* Search + Filter Row */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-6">
-          {/* Search */}
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input
-              type="text"
-              data-ocid="glossary.search_input"
-              placeholder="Search terms or definitions…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 rounded-xl text-sm text-foreground focus:outline-none focus:ring-1 transition-smooth"
-              style={{
-                background: "oklch(0.20 0.01 260)",
-                border: "1px solid oklch(0.28 0.01 260)",
-              }}
-            />
-          </div>
-          {/* Category chips */}
-          <div className="flex gap-2 overflow-x-auto pb-0.5 shrink-0">
-            {["All", ...CATEGORIES].map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                data-ocid={`glossary.category.${cat.toLowerCase().replace(/\s+/g, "_")}`}
-                onClick={() => setActiveCategory(cat)}
-                className="shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-smooth"
-                style={
-                  activeCategory === cat
-                    ? {
-                        background: "oklch(0.70 0.16 145)",
-                        color: "oklch(0.10 0.01 260)",
-                      }
-                    : {
-                        background: "oklch(0.22 0.01 260)",
-                        border: "1px solid oklch(0.30 0.01 260)",
-                        color: "oklch(0.60 0.01 260)",
-                      }
-                }
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+        {/* Search bar — always visible */}
+        <div className="relative mb-4">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <input
+            type="text"
+            data-ocid="glossary.search_input"
+            placeholder="Search trading terms…"
+            value={search}
+            onChange={(e) => handleSearch(e.target.value)}
+            className="w-full pl-9 pr-4 py-2.5 rounded-xl text-sm text-foreground focus:outline-none focus:ring-1 transition-smooth"
+            style={{
+              background: "oklch(0.20 0.01 260)",
+              border: "1px solid oklch(0.28 0.01 260)",
+            }}
+          />
         </div>
 
-        {/* Results count */}
-        <p className="text-xs text-muted-foreground mb-4">
-          Showing{" "}
-          <span
-            className="font-semibold"
-            style={{ color: "oklch(0.70 0.16 145)" }}
+        {/* Action row — browse toggle + quiz */}
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <button
+            type="button"
+            data-ocid="glossary.browse_toggle"
+            onClick={() => setBrowsing((v) => !v)}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-smooth"
+            style={{
+              background: browsing
+                ? "oklch(0.65 0.18 145 / 0.18)"
+                : "oklch(0.22 0.01 260)",
+              border: browsing
+                ? "1px solid oklch(0.65 0.18 145 / 0.45)"
+                : "1px solid oklch(0.30 0.01 260)",
+              color: browsing ? "oklch(0.70 0.16 145)" : "oklch(0.60 0.01 260)",
+            }}
           >
-            {filtered.length}
-          </span>{" "}
-          of {GLOSSARY.length} terms
-        </p>
+            <BookOpen className="w-3.5 h-3.5" />
+            Browse {GLOSSARY.length} Terms
+            <ChevronDown
+              className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                browsing ? "rotate-180" : ""
+              }`}
+            />
+          </button>
 
-        {/* Terms Grid */}
-        {filtered.length > 0 ? (
-          <div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
-            data-ocid="glossary.terms_list"
+          <button
+            type="button"
+            data-ocid="glossary.quiz_button"
+            onClick={() => setQuizOpen(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-smooth"
+            style={{
+              background: "oklch(0.65 0.18 145 / 0.12)",
+              border: "1px solid oklch(0.65 0.18 145 / 0.35)",
+              color: "oklch(0.70 0.16 145)",
+            }}
           >
-            {filtered.map((g, i) => (
+            <GraduationCap className="w-3.5 h-3.5" />
+            Quiz Mode
+          </button>
+        </div>
+
+        {/* Expanded content — only when browsing or searching */}
+        {(browsing || search.trim()) && (
+          <div data-ocid="glossary.expanded_panel">
+            {/* Category chips */}
+            <div className="flex gap-2 overflow-x-auto pb-1 mb-4">
+              {["All", ...CATEGORIES].map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  data-ocid={`glossary.category.${cat.toLowerCase().replace(/\s+/g, "_")}`}
+                  onClick={() => setActiveCategory(cat)}
+                  className="shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-smooth"
+                  style={
+                    activeCategory === cat
+                      ? {
+                          background: "oklch(0.70 0.16 145)",
+                          color: "oklch(0.10 0.01 260)",
+                        }
+                      : {
+                          background: "oklch(0.22 0.01 260)",
+                          border: "1px solid oklch(0.30 0.01 260)",
+                          color: "oklch(0.60 0.01 260)",
+                        }
+                  }
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Results count */}
+            <p className="text-xs text-muted-foreground mb-4">
+              Showing{" "}
+              <span
+                className="font-semibold"
+                style={{ color: "oklch(0.70 0.16 145)" }}
+              >
+                {filtered.length}
+              </span>{" "}
+              of {GLOSSARY.length} terms
+            </p>
+
+            {/* Terms Grid */}
+            {filtered.length > 0 ? (
               <div
-                key={g.term}
-                data-ocid={`glossary.term.${i + 1}`}
-                className="rounded-xl p-4 flex flex-col gap-2 transition-smooth"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+                data-ocid="glossary.terms_list"
+              >
+                {filtered.map((g, i) => (
+                  <div
+                    key={g.term}
+                    data-ocid={`glossary.term.${i + 1}`}
+                    className="rounded-xl p-4 flex flex-col gap-2 transition-smooth"
+                    style={{
+                      background: "oklch(0.18 0.01 260)",
+                      border: "1px solid oklch(0.26 0.01 260)",
+                    }}
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <p
+                        className="font-display font-bold text-sm"
+                        style={{ color: "oklch(0.70 0.16 145)" }}
+                      >
+                        {g.term}
+                      </p>
+                      <span
+                        className="shrink-0 text-xs px-2 py-0.5 rounded-full"
+                        style={{
+                          background: "oklch(0.24 0.01 260)",
+                          color: "oklch(0.55 0.01 260)",
+                        }}
+                      >
+                        {g.category}
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {g.definition}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div
+                className="text-center py-12 rounded-xl"
+                data-ocid="glossary.empty_state"
                 style={{
                   background: "oklch(0.18 0.01 260)",
                   border: "1px solid oklch(0.26 0.01 260)",
                 }}
               >
-                <div className="flex items-start justify-between gap-2">
-                  <p
-                    className="font-display font-bold text-sm"
-                    style={{ color: "oklch(0.70 0.16 145)" }}
-                  >
-                    {g.term}
-                  </p>
-                  <span
-                    className="shrink-0 text-xs px-2 py-0.5 rounded-full"
-                    style={{
-                      background: "oklch(0.24 0.01 260)",
-                      color: "oklch(0.55 0.01 260)",
-                    }}
-                  >
-                    {g.category}
-                  </span>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {g.definition}
+                <BookOpen
+                  className="w-10 h-10 mx-auto mb-3"
+                  style={{ color: "oklch(0.40 0.01 260)" }}
+                />
+                <p className="text-muted-foreground text-sm">
+                  No terms found for &quot;{search}&quot;
                 </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearch("");
+                    setActiveCategory("All");
+                  }}
+                  className="mt-3 text-xs font-semibold transition-smooth"
+                  style={{ color: "oklch(0.70 0.16 145)" }}
+                >
+                  <RotateCcw className="w-3 h-3 inline mr-1" />
+                  Clear filters
+                </button>
               </div>
-            ))}
+            )}
           </div>
-        ) : (
-          <div
-            className="text-center py-12 rounded-xl"
-            data-ocid="glossary.empty_state"
-            style={{
-              background: "oklch(0.18 0.01 260)",
-              border: "1px solid oklch(0.26 0.01 260)",
-            }}
-          >
-            <BookOpen
-              className="w-10 h-10 mx-auto mb-3"
-              style={{ color: "oklch(0.40 0.01 260)" }}
-            />
-            <p className="text-muted-foreground text-sm">
-              No terms found for &quot;{search}&quot;
-            </p>
-            <button
-              type="button"
-              onClick={() => {
-                setSearch("");
-                setActiveCategory("All");
-              }}
-              className="mt-3 text-xs font-semibold transition-smooth"
-              style={{ color: "oklch(0.70 0.16 145)" }}
-            >
-              Clear filters
-            </button>
-          </div>
+        )}
+
+        {/* Quiz Modal */}
+        {quizOpen && (
+          <GlossaryQuiz terms={GLOSSARY} onClose={() => setQuizOpen(false)} />
         )}
 
         {/* DZ Quote */}

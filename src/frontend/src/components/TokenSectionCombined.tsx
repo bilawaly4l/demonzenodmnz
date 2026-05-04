@@ -7,11 +7,12 @@ import {
   HelpCircle,
   Rocket,
   Send,
+  Shield,
   Sword,
   Users,
   Zap,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SiBinance } from "react-icons/si";
 import { useGetTokenInfo, useRoadmap } from "../hooks/useRoadmap";
 import type { RoadmapMilestone, TokenInfo } from "../types";
@@ -31,7 +32,7 @@ const FALLBACK_TOKEN: TokenInfo = {
   socialLinks: [
     {
       name: "Binance Square",
-      url: "https://www.binance.com/en/square/profile/@DemonZeno",
+      url: "https://www.binance.com/en/square/profile/@Demon_Zeno",
     },
     { name: "Twitter", url: "https://twitter.com/ZenoDemon" },
   ],
@@ -74,7 +75,7 @@ const DEFAULT_MILESTONES = [
 
 const MILESTONE_DELIVERABLES: Record<string, string[]> = {
   "2026": [
-    "Daily free trading education on Binance Square @DemonZeno",
+    "Daily free trading education on Binance Square @Demon_Zeno",
     "Build a loyal global community of crypto, forex, and stock traders",
     "Grow following across Binance Square and Twitter @ZenoDemon",
     "Establish credibility and foundation for the DMNZ token launch",
@@ -128,7 +129,7 @@ const HOW_TO_BUY_STEPS = [
     step: 1,
     icon: Send,
     title: "Follow on Binance Square",
-    desc: "Follow @DemonZeno on Binance Square for launch updates and daily trading content.",
+    desc: "Follow @Demon_Zeno on Binance Square for launch updates and daily trading content.",
   },
   {
     step: 2,
@@ -156,7 +157,7 @@ const FAQ_ITEMS = [
   {
     id: "what-is-dmnz",
     q: "What is DMNZ?",
-    a: "DMNZ (DemonZeno) is a meme token born from trading discipline and sacrifice. It launched via Blum Mini App on Telegram — 100% fair, community-driven, with no presale and no team allocation. The DemonZeno Trading Academy accompanies every holder.",
+    a: "DMNZ (DemonZeno) is a meme token born from trading discipline and sacrifice. Launched via Blum Mini App on Telegram — 100% fair, community-driven, with no presale and no team allocation.",
   },
   {
     id: "what-is-blum",
@@ -171,7 +172,7 @@ const FAQ_ITEMS = [
   {
     id: "how-to-buy",
     q: "How do I buy DMNZ?",
-    a: "Follow @DemonZeno on Binance Square → Open the Blum mini app on Telegram → Find DemonZeno DMNZ → Buy. All you need is a Telegram account. The launch is April 2, 2027.",
+    a: "Follow @Demon_Zeno on Binance Square → Open the Blum mini app on Telegram → Find DemonZeno DMNZ → Buy. All you need is a Telegram account. The launch is April 2, 2027.",
   },
   {
     id: "presale",
@@ -186,7 +187,7 @@ const FAQ_ITEMS = [
   {
     id: "when-launch",
     q: "When does DMNZ launch?",
-    a: "DMNZ officially launches on April 2, 2027 on the Blum Mini App via Telegram. Follow @DemonZeno on Binance Square and @ZenoDemon on Twitter to stay updated.",
+    a: "DMNZ officially launches on April 2, 2027 on the Blum Mini App via Telegram. Follow @Demon_Zeno on Binance Square and @ZenoDemon on Twitter to stay updated.",
   },
 ];
 
@@ -268,6 +269,279 @@ function CountdownTimer() {
   );
 }
 
+// ─── Animated Brand Narrative ────────────────────────────────────────────────
+
+const BRAND_FLOW_STEPS = [
+  {
+    emoji: "📚",
+    label: "Learn",
+    desc: "Master trading through discipline and the DemonZeno philosophy.",
+    color: "text-primary",
+    border: "border-primary/30",
+    bg: "bg-primary/10",
+  },
+  {
+    emoji: "📈",
+    label: "Trade",
+    desc: "Apply real strategies, manage risk, and trade like a disciplined demon.",
+    color: "text-[oklch(0.7_0.18_145)]",
+    border: "border-[oklch(0.7_0.18_145_/_0.3)]",
+    bg: "bg-[oklch(0.7_0.18_145_/_0.1)]",
+  },
+  {
+    emoji: "🚀",
+    label: "Grow",
+    desc: "Join the DMNZ movement — fair launch, community-first, built on discipline.",
+    color: "text-[oklch(0.65_0.15_70)]",
+    border: "border-[oklch(0.65_0.15_70_/_0.3)]",
+    bg: "bg-[oklch(0.65_0.15_70_/_0.1)]",
+  },
+];
+
+function AnimatedBrandNarrative() {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      data-ocid="token.brand_narrative.section"
+      className="bg-card rounded-2xl p-8 border border-primary/20"
+    >
+      {/* Headline */}
+      <div className="text-center mb-8">
+        <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-4">
+          <Flame className="w-3.5 h-3.5 text-primary" />
+          <span className="text-primary text-xs font-semibold tracking-wide uppercase">
+            The DMNZ Movement
+          </span>
+        </div>
+        <h3 className="font-display font-black text-2xl md:text-3xl text-foreground leading-tight mb-3">
+          DemonZeno is not a coin.
+          <br />
+          <span className="text-primary">It&apos;s a movement.</span>
+        </h3>
+        <p className="text-muted-foreground text-sm max-w-lg mx-auto leading-relaxed">
+          Built on discipline, born from trading mastery, and launched
+          completely fair — DMNZ belongs to those who earned it through
+          knowledge, not capital.
+        </p>
+      </div>
+
+      {/* 3-step flow */}
+      <div className="grid sm:grid-cols-3 gap-4 mb-8 relative">
+        {/* connector lines (desktop) */}
+        <div
+          className="hidden sm:block absolute top-1/2 left-1/3 right-1/3 h-px bg-border/60 -translate-y-1/2 z-0"
+          aria-hidden="true"
+        />
+        {BRAND_FLOW_STEPS.map((step, i) => (
+          <div
+            key={step.label}
+            className={`relative z-10 flex flex-col items-center gap-3 rounded-2xl border ${step.border} ${step.bg} p-6 text-center transition-all duration-500`}
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(20px)",
+              transitionDelay: `${i * 120}ms`,
+            }}
+          >
+            <span
+              className="text-4xl leading-none"
+              role="img"
+              aria-label={step.label}
+            >
+              {step.emoji}
+            </span>
+            <p className={`font-display font-black text-xl ${step.color}`}>
+              {step.label}
+            </p>
+            <p className="text-muted-foreground text-xs leading-relaxed">
+              {step.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Fair launch badge */}
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        {[
+          { icon: "🚫", text: "No Pre-Sale" },
+          { icon: "🚫", text: "No VC Backing" },
+          { icon: "🚫", text: "No Team Tokens" },
+          { icon: "✅", text: "100% Fair Launch" },
+        ].map(({ icon, text }) => (
+          <span
+            key={text}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted/40 border border-border text-xs font-semibold text-foreground"
+          >
+            <span>{icon}</span> {text}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Why DMNZ Section ─────────────────────────────────────────────────────────
+
+const WHY_DMNZ_CARDS = [
+  {
+    icon: Shield,
+    title: "Fair Launch",
+    desc: "No insider allocations, no presale, no VC advantage. Every participant enters at the exact same price on launch day.",
+    accent: "text-primary",
+    border: "border-primary/25",
+    bg: "bg-primary/8",
+  },
+  {
+    icon: Users,
+    title: "Community First",
+    desc: "Launched on Blum so everyone is equal. No whitelist. No early-bird advantage. The community IS the token.",
+    accent: "text-[oklch(0.7_0.18_145)]",
+    border: "border-[oklch(0.7_0.18_145_/_0.25)]",
+    bg: "bg-[oklch(0.7_0.18_145_/_0.08)]",
+  },
+  {
+    icon: Sword,
+    title: "DemonZeno Brand",
+    desc: "Backed by a trusted trading education platform reaching thousands of traders worldwide. Knowledge is the edge.",
+    accent: "text-[oklch(0.65_0.15_70)]",
+    border: "border-[oklch(0.65_0.15_70_/_0.25)]",
+    bg: "bg-[oklch(0.65_0.15_70_/_0.08)]",
+  },
+  {
+    icon: CheckCircle,
+    title: "Built on Trust",
+    desc: "No empty promises. No roadmap padding. Just community, discipline, and the January 2028 buyback & burn commitment.",
+    accent: "text-[oklch(0.6_0.15_290)]",
+    border: "border-[oklch(0.6_0.15_290_/_0.25)]",
+    bg: "bg-[oklch(0.6_0.15_290_/_0.08)]",
+  },
+];
+
+function WhyDMNZSection() {
+  return (
+    <div
+      data-ocid="token.why_dmnz.section"
+      className="bg-card rounded-2xl p-8 border border-border"
+    >
+      <div className="text-center mb-6">
+        <h3 className="font-display font-bold text-2xl text-foreground mb-2">
+          Why <span className="text-primary">DMNZ</span>?
+        </h3>
+        <p className="text-muted-foreground text-sm max-w-md mx-auto">
+          Four reasons DMNZ is different from every other meme token out there.
+        </p>
+      </div>
+      <div className="grid sm:grid-cols-2 gap-4">
+        {WHY_DMNZ_CARDS.map(
+          ({ icon: Icon, title, desc, accent, border, bg }) => (
+            <div
+              key={title}
+              className={`flex gap-4 rounded-xl border ${border} ${bg} p-5`}
+            >
+              <div
+                className={`w-9 h-9 rounded-lg bg-card border ${border} flex items-center justify-center shrink-0 mt-0.5`}
+              >
+                <Icon className={`w-4 h-4 ${accent}`} />
+              </div>
+              <div className="min-w-0">
+                <p className={`font-display font-bold text-sm ${accent} mb-1`}>
+                  {title}
+                </p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {desc}
+                </p>
+              </div>
+            </div>
+          ),
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── Price Tracker Placeholder ────────────────────────────────────────────────
+
+function PriceTrackerPlaceholder() {
+  return (
+    <div
+      data-ocid="token.price_tracker.section"
+      className="bg-card rounded-xl p-6 border border-border"
+    >
+      <div className="flex items-center justify-between gap-3 mb-4">
+        <div className="flex items-center gap-2">
+          <Zap className="w-5 h-5 text-primary shrink-0" />
+          <h3 className="font-display font-bold text-foreground text-lg">
+            DMNZ Price
+          </h3>
+        </div>
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[oklch(0.65_0.15_70_/_0.15)] text-[oklch(0.7_0.18_70)] border border-[oklch(0.65_0.15_70_/_0.35)]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.7_0.18_70)] animate-pulse" />
+          Launch Pending
+        </span>
+      </div>
+
+      <div className="grid sm:grid-cols-3 gap-4 mb-5">
+        <div className="bg-muted/30 rounded-xl p-4 border border-border text-center">
+          <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wider">
+            Price
+          </p>
+          <p className="font-display font-black text-xl text-foreground">TBA</p>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Live on Blum at launch
+          </p>
+        </div>
+        <div className="bg-muted/30 rounded-xl p-4 border border-border text-center">
+          <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wider">
+            Launch Date
+          </p>
+          <p className="font-display font-black text-base text-[oklch(0.7_0.18_70)]">
+            Apr 2, 2027
+          </p>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Blum Telegram Mini App
+          </p>
+        </div>
+        <div className="bg-muted/30 rounded-xl p-4 border border-border text-center">
+          <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wider">
+            Where to Buy
+          </p>
+          <p className="font-display font-black text-base text-primary">Blum</p>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            via Telegram Mini App
+          </p>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-3 bg-[oklch(0.65_0.15_70_/_0.08)] border border-[oklch(0.65_0.15_70_/_0.25)] rounded-xl p-4">
+        <Rocket className="w-4 h-4 text-[oklch(0.7_0.18_70)] shrink-0 mt-0.5" />
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          <span className="font-semibold text-[oklch(0.7_0.18_70)]">
+            Price goes live on April 2, 2027.
+          </span>{" "}
+          Follow @Demon_Zeno on Binance Square and open the Blum Mini App on
+          Telegram to participate in the fair launch. Everyone enters at the
+          same price — no presale, no advantage.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 // ─── Full Fair Launch Section ─────────────────────────────────────────────────
 
 function FullFairLaunchSection() {
@@ -285,7 +559,7 @@ function FullFairLaunchSection() {
     {
       icon: "🤝",
       title: "Community First",
-      desc: "DMNZ belongs to its community. The Trading Academy is your edge — not a presale slot.",
+      desc: "DMNZ belongs to its community. Discipline and knowledge is your edge — not a presale slot.",
     },
   ];
 
@@ -373,14 +647,14 @@ function HowToBuySection() {
       </div>
       <div className="flex flex-col sm:flex-row gap-3">
         <a
-          href="https://www.binance.com/en/square/profile/@DemonZeno"
+          href="https://www.binance.com/en/square/profile/@Demon_Zeno"
           target="_blank"
           rel="noopener noreferrer"
           data-ocid="token.how_to_buy.binance_button"
           className="inline-flex items-center justify-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold text-sm transition-smooth border-2 bg-[oklch(0.65_0.15_70_/_0.12)] text-[oklch(0.7_0.18_70)] border-[oklch(0.65_0.15_70_/_0.4)] hover:bg-[oklch(0.65_0.15_70_/_0.22)] hover:scale-[1.02]"
         >
           <SiBinance className="w-4 h-4 shrink-0" />
-          Follow @DemonZeno on Binance Square
+          Follow @Demon_Zeno on Binance Square
           <ExternalLink className="w-3.5 h-3.5 shrink-0 opacity-70" />
         </a>
         <a
@@ -585,7 +859,7 @@ function FaqAccordion() {
 function CommunityCTA({ info }: { info: TokenInfo }) {
   const binanceUrl =
     info.socialLinks.find((l) => l.name.toLowerCase().includes("binance"))
-      ?.url ?? "https://www.binance.com/en/square/profile/@DemonZeno";
+      ?.url ?? "https://www.binance.com/en/square/profile/@Demon_Zeno";
   const twitterUrl =
     info.socialLinks.find(
       (l) =>
@@ -617,7 +891,7 @@ function CommunityCTA({ info }: { info: TokenInfo }) {
           className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-xl font-semibold text-sm transition-smooth border-2 bg-[oklch(0.65_0.15_70_/_0.12)] text-[oklch(0.7_0.18_70)] border-[oklch(0.65_0.15_70_/_0.4)] hover:bg-[oklch(0.65_0.15_70_/_0.22)] hover:scale-[1.02]"
         >
           <SiBinance className="w-4 h-4 shrink-0" />
-          Follow @DemonZeno on Binance Square
+          Follow @Demon_Zeno on Binance Square
           <ExternalLink className="w-3.5 h-3.5 shrink-0 opacity-70" />
         </a>
         <a
@@ -641,7 +915,7 @@ function CommunityCTA({ info }: { info: TokenInfo }) {
 function SocialLinks({ info }: { info: TokenInfo }) {
   const binanceLink =
     info.socialLinks.find((l) => l.name.toLowerCase().includes("binance"))
-      ?.url ?? "https://www.binance.com/en/square/profile/@DemonZeno";
+      ?.url ?? "https://www.binance.com/en/square/profile/@Demon_Zeno";
   const twitterLink =
     info.socialLinks.find(
       (l) =>
@@ -675,7 +949,7 @@ function SocialLinks({ info }: { info: TokenInfo }) {
             <p className="font-semibold text-foreground text-sm">
               Binance Square
             </p>
-            <p className="text-xs text-muted-foreground">@DemonZeno</p>
+            <p className="text-xs text-muted-foreground">@Demon_Zeno</p>
           </div>
           <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-smooth shrink-0" />
         </a>
@@ -803,8 +1077,9 @@ function BrandLoreSection() {
         <p className="text-muted-foreground text-sm leading-relaxed">
           DMNZ is the token of that philosophy. It belongs to those who earn it
           — not through a presale, not through insider connections, but through
-          the same discipline that defines every lesson in the DemonZeno Trading
-          Academy. You study. You learn. You earn. That's the DemonZeno way.
+          — not through a presale, not through insider connections, but through
+          the same discipline, patience, and persistence. That’s the DemonZeno
+          way.
         </p>
       </div>
 
@@ -911,7 +1186,7 @@ export function TokenSectionCombined() {
             <p className="text-muted-foreground text-sm leading-relaxed mb-5">
               DMNZ launches on Blum via the Telegram Mini App on April 2, 2027.
               100% fair. Everyone buys at the same price. The edge isn't a
-              presale slot — it's the DemonZeno Trading Academy.
+              presale slot — it's your knowledge and community.
             </p>
             <div className="flex flex-wrap gap-2">
               {[
@@ -919,7 +1194,7 @@ export function TokenSectionCombined() {
                 "Full Fair Launch",
                 "No Presale",
                 "No Team Tokens",
-                "Trading Academy",
+                "DMNZ Community",
               ].map((tag) => (
                 <span
                   key={tag}
@@ -932,10 +1207,31 @@ export function TokenSectionCombined() {
           </div>
         </ScrollAnimation>
 
+        {/* ── Animated Brand Narrative ── */}
+        <ScrollAnimation delay={20}>
+          <div className="mb-5">
+            <AnimatedBrandNarrative />
+          </div>
+        </ScrollAnimation>
+
+        {/* ── Why DMNZ ── */}
+        <ScrollAnimation delay={30}>
+          <div className="mb-5">
+            <WhyDMNZSection />
+          </div>
+        </ScrollAnimation>
+
         {/* ── Full Fair Launch ── */}
         <ScrollAnimation delay={40}>
           <div className="mb-5">
             <FullFairLaunchSection />
+          </div>
+        </ScrollAnimation>
+
+        {/* ── Price Tracker Placeholder ── */}
+        <ScrollAnimation delay={50}>
+          <div className="mb-5">
+            <PriceTrackerPlaceholder />
           </div>
         </ScrollAnimation>
 

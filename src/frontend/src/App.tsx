@@ -5,7 +5,6 @@ import {
   createRootRoute,
   createRoute,
   createRouter,
-  redirect,
 } from "@tanstack/react-router";
 import { Zap } from "lucide-react";
 import { Suspense, lazy } from "react";
@@ -20,19 +19,6 @@ const queryClient = new QueryClient({
 
 const Home = lazy(() =>
   import("./pages/Home").then((m) => ({ default: m.Home })),
-);
-const AdminDashboard = lazy(() =>
-  import("./pages/AdminDashboard").then((m) => ({ default: m.AdminDashboard })),
-);
-const CertificateWall = lazy(() =>
-  import("./pages/CertificateWall").then((m) => ({
-    default: m.CertificateWall,
-  })),
-);
-const VerifyCertificate = lazy(() =>
-  import("./pages/VerifyCertificate").then((m) => ({
-    default: m.VerifyCertificate,
-  })),
 );
 const NotFound = lazy(() =>
   import("./pages/NotFound").then((m) => ({ default: m.NotFound })),
@@ -94,47 +80,23 @@ const indexRoute = createRoute({
   component: Home,
 });
 
-const certificatesRoute = createRoute({
-  getParentRoute: () => layoutRoute,
-  path: "/certificates",
-  component: CertificateWall,
-});
-
-const verifyRoute = createRoute({
-  getParentRoute: () => layoutRoute,
-  path: "/verify/$certId",
-  component: VerifyCertificate,
-});
-
 const notFoundRoute = createRoute({
   getParentRoute: () => layoutRoute,
   path: "/404",
   component: NotFound,
 });
 
-const adminRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/admin",
-  component: AdminDashboard,
-});
-
 const catchAllRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "$",
   beforeLoad: () => {
-    throw redirect({ to: "/404" });
+    window.location.replace("/");
   },
   component: () => null,
 });
 
 const routeTree = rootRoute.addChildren([
-  layoutRoute.addChildren([
-    indexRoute,
-    certificatesRoute,
-    verifyRoute,
-    notFoundRoute,
-  ]),
-  adminRoute,
+  layoutRoute.addChildren([indexRoute, notFoundRoute]),
   catchAllRoute,
 ]);
 

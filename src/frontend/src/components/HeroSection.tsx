@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "@tanstack/react-router";
-import { ArrowRight, Award, BookOpen, TrendingUp } from "lucide-react";
+import { ArrowDown, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSession } from "../contexts/SessionContext";
 import { AdminPasscodeModal } from "./AdminPasscodeModal";
@@ -22,6 +21,8 @@ const SLOGANS = [
   "Trading is 80% psychology, 20% strategy.",
   "Cut losses fast, let winners run.",
   "The trend is your only friend.",
+  "DMNZ: Born from darkness, forged in discipline.",
+  "Trade Like a God. Hold Like a Demon.",
 ];
 
 function scrollToSection(id: string) {
@@ -37,7 +38,6 @@ export function HeroSection() {
   const [fadingOut, setFadingOut] = useState(false);
   const [adminSuccess, setAdminSuccess] = useState(false);
 
-  // Rotate slogans every 4.5s with fade transition
   useEffect(() => {
     const interval = setInterval(() => {
       setFadingOut(true);
@@ -73,15 +73,17 @@ export function HeroSection() {
         {/* Left: text content */}
         <div className="flex flex-col gap-6 max-w-xl fade-in-up">
           <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-1.5 w-fit">
-            <BookOpen className="w-3.5 h-3.5 text-primary" />
+            <TrendingUp className="w-3.5 h-3.5 text-primary" />
             <span className="text-primary text-xs font-semibold tracking-wide uppercase">
-              Premium Trading Academy
+              DMNZ Meme Token
             </span>
           </div>
 
           <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight text-glow">
             Demon<span className="text-primary">Zeno</span>{" "}
-            <span className="block">Trading Academy</span>
+            <span className="block text-3xl md:text-4xl lg:text-5xl mt-1">
+              <span className="font-mono text-primary/80">(DMNZ)</span>
+            </span>
           </h1>
 
           {/* Rotating DemonZeno slogan */}
@@ -96,18 +98,19 @@ export function HeroSection() {
           </blockquote>
 
           <p className="text-muted-foreground leading-relaxed">
-            Master the markets from zero to expert — step by step. Earn
-            prestigious certificates. Trade like a demon. Think like a god.
+            Born from discipline, forged in sacrifice. A 100% fair launch meme
+            token for the trading community — no presale, no insiders, no
+            allocation. Everyone enters at the same price.
           </p>
 
           <div className="flex items-center gap-6 py-2">
             {[
-              { value: "5", label: "Tiers" },
-              { value: "30/30", label: "Pass Score" },
-              { value: "DMNZ", label: "Token" },
+              { value: "100%", label: "Fair Launch" },
+              { value: "Apr 2, 2027", label: "Launch Date" },
+              { value: "BLUM", label: "Platform" },
             ].map(({ value, label }) => (
               <div key={label} className="flex flex-col">
-                <span className="font-display font-bold text-2xl text-primary">
+                <span className="font-display font-bold text-xl text-primary">
                   {value}
                 </span>
                 <span className="text-xs text-muted-foreground uppercase tracking-wider">
@@ -119,41 +122,30 @@ export function HeroSection() {
 
           <div className="flex flex-wrap gap-3">
             <Button
-              data-ocid="hero.start_learning.primary_button"
-              onClick={() => scrollToSection("academy")}
+              data-ocid="hero.dmnz_token.primary_button"
+              onClick={() => scrollToSection("dmnz-token")}
               className="btn-primary btn-micro px-6 h-11 text-base"
             >
               <TrendingUp className="w-4 h-4 mr-1.5" />
-              Start Learning (Free)
+              Explore DMNZ
             </Button>
             <Button
               variant="outline"
-              data-ocid="hero.dmnz_token.secondary_button"
+              data-ocid="hero.how_to_buy.secondary_button"
               onClick={() => scrollToSection("dmnz-token")}
               className="border-primary/40 text-primary hover:bg-primary/10 h-11 text-base"
             >
-              DMNZ Token
-            </Button>
-            <Button
-              variant="outline"
-              data-ocid="hero.certificates.secondary_button"
-              asChild
-              className="border-border text-muted-foreground hover:text-foreground hover:bg-muted h-11 text-base"
-            >
-              <Link to="/certificates">
-                <Award className="w-4 h-4 mr-1.5" />
-                Certificate Wall
-              </Link>
+              How to Buy
             </Button>
           </div>
 
           {/* Feature pills */}
           <div className="flex flex-wrap gap-2">
             {[
-              "Free Forever",
-              "No Account Needed",
-              "Anti-Cheat Quizzes",
-              "Prestige Certificates",
+              "No Presale",
+              "No Team Tokens",
+              "Full Fair Launch",
+              "Community First",
             ].map((f) => (
               <span
                 key={f}
@@ -211,11 +203,10 @@ export function HeroSection() {
       </div>
 
       <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce pointer-events-none"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none"
         aria-hidden="true"
       >
-        <div className="w-px h-8 bg-primary/30 rounded-full" />
-        <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
+        <ArrowDown className="w-5 h-5 text-primary/40 animate-bounce" />
       </div>
 
       <AdminPasscodeModal

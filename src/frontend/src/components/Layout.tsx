@@ -1,44 +1,38 @@
 import { Outlet } from "@tanstack/react-router";
 import { Link, useRouterState } from "@tanstack/react-router";
-import {
-  Award,
-  BookOpen,
-  Coins,
-  Home,
-  Menu,
-  Twitter,
-  X,
-  Zap,
-} from "lucide-react";
+import { Coins, Home, Menu, Twitter, X, Zap } from "lucide-react";
 import { useState } from "react";
 import { SiBinance } from "react-icons/si";
-import { useAnnouncementBanner } from "../hooks/useAcademy";
 
 const NAV_LINKS = [
   { label: "Home", href: "/", isRoute: true },
-  { label: "Academy", href: "#academy", isRoute: false, section: "academy" },
-  { label: "Certificate Wall", href: "/certificates", isRoute: true },
   {
     label: "DMNZ Token",
     href: "#dmnz-token",
     isRoute: false,
     section: "dmnz-token",
   },
+  {
+    label: "Roadmap",
+    href: "#roadmap",
+    isRoute: false,
+    section: "roadmap",
+  },
 ];
 
 const FOOTER_NAV = [
-  { label: "Academy", href: "#academy" },
-  { label: "Certificate Wall", href: "/certificates" },
   { label: "DMNZ Token", href: "#dmnz-token" },
   { label: "Roadmap", href: "#roadmap" },
+  { label: "How to Buy", href: "#dmnz-token" },
+  { label: "FAQ", href: "#dmnz-token" },
 ];
 
 const SOCIAL_LINKS = [
   {
     icon: <SiBinance className="w-4 h-4" />,
     label: "Binance Square",
-    handle: "@DemonZeno",
-    url: "https://www.binance.com/en/square/profile/@DemonZeno",
+    handle: "@Demon_Zeno",
+    url: "https://www.binance.com/en/square/profile/@Demon_Zeno",
   },
   {
     icon: <Twitter className="w-4 h-4" />,
@@ -53,42 +47,12 @@ function scrollToSection(href: string) {
   el?.scrollIntoView({ behavior: "smooth" });
 }
 
-function AnnouncementBar() {
-  const { data: banner } = useAnnouncementBanner();
-  const [dismissed, setDismissed] = useState(false);
-
-  if (!banner?.isPinned || dismissed) return null;
-
-  return (
-    <div
-      data-ocid="announcement.panel"
-      className="bg-primary/10 border-b border-primary/20 text-foreground"
-    >
-      <div className="container mx-auto px-4 py-2 flex items-center justify-between gap-3">
-        <p className="text-sm text-center flex-1 font-medium text-primary">
-          {banner.text}
-        </p>
-        <button
-          type="button"
-          data-ocid="announcement.close_button"
-          onClick={() => setDismissed(true)}
-          aria-label="Dismiss announcement"
-          className="shrink-0 p-1 rounded hover:bg-primary/20 transition-smooth text-primary/70 hover:text-primary"
-        >
-          <X className="w-3.5 h-3.5" />
-        </button>
-      </div>
-    </div>
-  );
-}
-
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const routerState = useRouterState();
   const isHome = routerState.location.pathname === "/";
 
-  // scroll listener
   useState(() => {
     function onScroll() {
       setScrolled(window.scrollY > 20);
@@ -156,9 +120,6 @@ function Navbar() {
                         : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     }`}
                   >
-                    {link.label === "Certificate Wall" && (
-                      <Award className="w-3.5 h-3.5" />
-                    )}
                     {link.label}
                   </Link>
                 </li>
@@ -173,9 +134,6 @@ function Navbar() {
                   onClick={() => handleNavClick(link)}
                   className="px-3 py-2 rounded-md text-sm font-medium transition-smooth flex items-center gap-1.5 text-muted-foreground hover:text-foreground hover:bg-muted"
                 >
-                  {link.label === "Academy" && (
-                    <BookOpen className="w-3.5 h-3.5" />
-                  )}
                   {link.label === "DMNZ Token" && (
                     <Coins className="w-3.5 h-3.5" />
                   )}
@@ -218,9 +176,6 @@ function Navbar() {
                       className="flex items-center gap-2 w-full px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-muted-foreground hover:text-foreground hover:bg-muted"
                     >
                       {link.label === "Home" && <Home className="w-4 h-4" />}
-                      {link.label === "Certificate Wall" && (
-                        <Award className="w-4 h-4" />
-                      )}
                       {link.label}
                     </Link>
                   </li>
@@ -234,9 +189,6 @@ function Navbar() {
                     onClick={() => handleNavClick(link)}
                     className="flex items-center gap-2 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-muted-foreground hover:text-foreground hover:bg-muted"
                   >
-                    {link.label === "Academy" && (
-                      <BookOpen className="w-4 h-4" />
-                    )}
                     {link.label === "DMNZ Token" && (
                       <Coins className="w-4 h-4" />
                     )}
@@ -276,11 +228,11 @@ function Footer() {
               </span>
             </div>
             <p className="text-muted-foreground text-sm italic font-medium leading-relaxed max-w-sm">
-              "Master the chart, master yourself. Born from darkness, forged in
-              discipline."
+              &ldquo;Master the chart, master yourself. Born from darkness,
+              forged in discipline.&rdquo;
             </p>
             <p className="text-muted-foreground text-xs leading-relaxed max-w-sm">
-              Trading education for informational purposes only. Not financial
+              DMNZ token information for community purposes only. Not financial
               advice.
             </p>
           </div>
@@ -291,7 +243,7 @@ function Footer() {
             </p>
             {FOOTER_NAV.map(({ label, href }) => (
               <button
-                key={href}
+                key={`${label}-${href}`}
                 type="button"
                 data-ocid={`footer.nav.${label.toLowerCase().replace(/\s+/g, "_")}.link`}
                 onClick={() => {
@@ -343,7 +295,7 @@ function Footer() {
             </a>
           </p>
           <p className="text-muted-foreground text-xs">
-            DemonZeno Trading Academy — DMNZ Token
+            DemonZeno — DMNZ Token
           </p>
         </div>
       </div>
@@ -355,7 +307,6 @@ export function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
-      <AnnouncementBar />
       <main className="flex-1">
         <Outlet />
       </main>

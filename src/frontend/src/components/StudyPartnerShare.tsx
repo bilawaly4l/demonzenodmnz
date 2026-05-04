@@ -43,7 +43,7 @@ export function StudyPartnerShare({
       toast.success("Link copied to clipboard!");
       setTimeout(() => setCopied(false), 2500);
     } catch {
-      toast.error("Failed to copy \u2014 please copy manually.");
+      toast.error("Failed to copy — please copy manually.");
     }
   }
 
@@ -54,36 +54,36 @@ export function StudyPartnerShare({
       aria-modal="true"
       aria-label="Share your progress"
     >
-      <div className="relative w-full max-w-md rounded-2xl border border-yellow-500/30 bg-gray-900 shadow-2xl p-6 flex flex-col gap-5">
+      <div className="relative w-full max-w-md rounded-2xl border border-primary/30 bg-card shadow-2xl p-6 flex flex-col gap-5">
         {/* Close */}
         <button
           type="button"
           aria-label="Close share panel"
           data-ocid="study-share.close_button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-yellow-400 transition-colors"
+          className="absolute top-4 right-4 text-muted-foreground hover:text-primary transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Header */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-yellow-500/15 flex items-center justify-center">
-            <Share2 className="w-5 h-5 text-yellow-400" />
+          <div className="w-10 h-10 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center">
+            <Share2 className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h2 className="text-white font-bold text-base">
+            <h2 className="text-foreground font-bold text-base">
               Share Your Progress
             </h2>
-            <p className="text-gray-400 text-xs">
-              Generate a read-only link \u2014 no personal info shared
+            <p className="text-muted-foreground text-xs">
+              Generate a read-only link — no personal info shared
             </p>
           </div>
         </div>
 
         {/* Progress preview */}
-        <div className="rounded-xl border border-gray-700/60 bg-gray-800/60 p-4 flex flex-col gap-3">
-          <p className="text-gray-400 text-xs uppercase tracking-wide font-semibold">
+        <div className="rounded-xl border border-border bg-muted/40 p-4 flex flex-col gap-3">
+          <p className="text-muted-foreground text-xs uppercase tracking-wide font-semibold">
             What recipients will see
           </p>
 
@@ -92,9 +92,9 @@ export function StudyPartnerShare({
               {tiersCompleted.map((tier) => (
                 <span
                   key={tier}
-                  className="rounded-full bg-yellow-500/15 border border-yellow-500/30 text-yellow-300 text-xs px-2.5 py-0.5 font-semibold"
+                  className="rounded-full bg-primary/15 border border-primary/30 text-primary text-xs px-2.5 py-0.5 font-semibold"
                 >
-                  \u2713 {tier}
+                  ✓ {tier}
                 </span>
               ))}
             </div>
@@ -112,7 +112,7 @@ export function StudyPartnerShare({
                     size="sm"
                     showLabel={false}
                   />
-                  <span className="text-[10px] text-gray-500 max-w-[60px] truncate text-center">
+                  <span className="text-[10px] text-muted-foreground max-w-[60px] truncate text-center">
                     {lesson}
                   </span>
                 </div>
@@ -121,12 +121,27 @@ export function StudyPartnerShare({
           )}
 
           {certificatesEarned.length > 0 && (
-            <p className="text-yellow-400/70 text-xs">
-              \ud83c\udfc5 {certificatesEarned.length} certificate
+            <p className="text-primary/70 text-xs">
+              🏅 {certificatesEarned.length} certificate
               {certificatesEarned.length !== 1 ? "s" : ""} earned
             </p>
           )}
+
+          {tiersCompleted.length === 0 &&
+            masteryLevels.length === 0 &&
+            certificatesEarned.length === 0 && (
+              <p className="text-muted-foreground text-xs italic">
+                Complete some lessons to share your progress.
+              </p>
+            )}
         </div>
+
+        {/* Privacy note */}
+        <p className="text-xs text-muted-foreground leading-relaxed border-l-2 border-primary/30 pl-3">
+          <span className="font-semibold text-foreground">Privacy:</span> Your
+          name, certificate details, and personal information are never shared —
+          only your tier badges, mastery scores, and lesson streak.
+        </p>
 
         {shareUrl && (
           <div
@@ -136,7 +151,7 @@ export function StudyPartnerShare({
             <input
               readOnly
               value={shareUrl}
-              className="flex-1 min-w-0 rounded-lg border border-gray-700 bg-gray-800 text-gray-200 text-xs px-3 py-2 font-mono focus:outline-none focus:border-yellow-500/50"
+              className="flex-1 min-w-0 rounded-lg border border-border bg-muted/40 text-foreground text-xs px-3 py-2 font-mono focus:outline-none focus:border-primary/50"
               aria-label="Shareable progress URL"
               data-ocid="study-share.input"
               onFocus={(e) => e.target.select()}
@@ -146,10 +161,10 @@ export function StudyPartnerShare({
               data-ocid="study-share.copy_button"
               onClick={handleCopy}
               aria-label="Copy link"
-              className="shrink-0 rounded-lg bg-yellow-500/15 border border-yellow-500/30 hover:bg-yellow-500/25 text-yellow-400 p-2 transition-colors"
+              className="shrink-0 rounded-lg bg-primary/15 border border-primary/30 hover:bg-primary/25 text-primary p-2 transition-colors"
             >
               {copied ? (
-                <Check className="w-4 h-4 text-green-400" />
+                <Check className="w-4 h-4 text-[oklch(0.7_0.18_145)]" />
               ) : (
                 <Copy className="w-4 h-4" />
               )}
@@ -160,7 +175,7 @@ export function StudyPartnerShare({
         {isError && !shareUrl && (
           <p
             data-ocid="study-share.error_state"
-            className="text-red-400 text-xs"
+            className="text-destructive text-xs"
           >
             Failed to generate link. Please try again.
           </p>
@@ -172,7 +187,7 @@ export function StudyPartnerShare({
             data-ocid="study-share.primary_button"
             onClick={handleGenerate}
             disabled={isPending}
-            className="w-full rounded-xl bg-yellow-500 hover:bg-yellow-400 disabled:opacity-60 text-gray-900 font-bold text-sm py-2.5 transition-colors flex items-center justify-center gap-2"
+            className="w-full rounded-xl bg-primary hover:opacity-90 disabled:opacity-60 text-primary-foreground font-bold text-sm py-2.5 transition-all flex items-center justify-center gap-2"
           >
             {isPending ? (
               <>
@@ -196,7 +211,7 @@ export function StudyPartnerShare({
                     d="M4 12a8 8 0 018-8v8z"
                   />
                 </svg>
-                Generating\u2026
+                Generating…
               </>
             ) : (
               <>
@@ -212,7 +227,7 @@ export function StudyPartnerShare({
             type="button"
             data-ocid="study-share.secondary_button"
             onClick={onClose}
-            className="w-full rounded-xl border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500 font-semibold text-sm py-2.5 transition-colors"
+            className="w-full rounded-xl border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 font-semibold text-sm py-2.5 transition-colors"
           >
             Done
           </button>

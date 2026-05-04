@@ -1,5 +1,16 @@
-import { c as createLucideIcon, j as jsxRuntimeExports, Z as Zap, L as Link, B as BookOpen } from "./index-DhDL5MF6.js";
-import { B as Button } from "./button-BgkjFKKh.js";
+import { V as createLucideIcon, W as jsxRuntimeExports, a0 as Zap, ab as Link } from "./index-hIg1tUIL.js";
+import { B as Button } from "./button-CgHQK2cC.js";
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$1 = [
+  ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
+  ["path", { d: "M19 12H5", key: "x3x0zl" }]
+];
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$1);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -7,10 +18,16 @@ import { B as Button } from "./button-BgkjFKKh.js";
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode = [
-  ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
-  ["path", { d: "M19 12H5", key: "x3x0zl" }]
+  ["path", { d: "M12 7v14", key: "1akyts" }],
+  [
+    "path",
+    {
+      d: "M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
+      key: "ruj8y"
+    }
+  ]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode);
+const BookOpen = createLucideIcon("book-open", __iconNode);
 function NotFound() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     "section",

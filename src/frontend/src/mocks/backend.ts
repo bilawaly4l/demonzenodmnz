@@ -1,5 +1,6 @@
 import { 
   ABTestRecord,
+  AdminActivityEntry,
   DailyActiveLog,
   LessonEngagement,
   LessonOfWeek,
@@ -19,6 +20,8 @@ import type {
   QuizQuestion,
   Result,
   Result_1,
+  Result_2,
+  Result_3,
   RoadmapMilestone,
   TierQuiz,
   TokenInfo,
@@ -121,7 +124,7 @@ const MOCK_TOKEN_INFO: TokenInfo = {
   socialLinks: [
     {
       name: "Binance Square",
-      url: "https://www.binance.com/en/square/profile/@DemonZeno",
+      url: "https://www.binance.com/en/square/profile/@Demon_Zeno",
     },
     { name: "Twitter", url: "https://twitter.com/ZenoDemon" },
   ],
@@ -163,7 +166,7 @@ export const mockBackend: backendInterface = {
     return MOCK_CERTIFICATES;
   },
 
-  async adminFeatureCertificate(_certId: string, _featured: boolean): Promise<Result_1> {
+  async adminFeatureCertificate(_certId: string, _featured: boolean): Promise<Result> {
     return { __kind__: "ok", ok: null };
   },
 
@@ -183,7 +186,7 @@ export const mockBackend: backendInterface = {
     return [];
   },
 
-  async adminSetTierDisabled(_tierId: string, _disabled: boolean): Promise<Result_1> {
+  async adminSetTierDisabled(_tierId: string, _disabled: boolean): Promise<Result> {
     return { __kind__: "ok", ok: null };
   },
 
@@ -212,7 +215,7 @@ export const mockBackend: backendInterface = {
   async adminManualIssueCertificate(
     tierId: string,
     info: CertificateInfo,
-  ): Promise<Result> {
+  ): Promise<Result_1> {
     const cert: Certificate = {
       certId: generateCertId(),
       certInfo: info,
@@ -231,7 +234,7 @@ export const mockBackend: backendInterface = {
   async adminRevokeOrReinstateCertificate(
     _certId: string,
     _isValid: boolean,
-  ): Promise<Result_1> {
+  ): Promise<Result> {
     return { __kind__: "ok", ok: null };
   },
 
@@ -245,7 +248,7 @@ export const mockBackend: backendInterface = {
   async adminUpdateMilestone(
     _id: string,
     _completed: boolean,
-  ): Promise<Result_1> {
+  ): Promise<Result> {
     return { __kind__: "ok", ok: null };
   },
 
@@ -321,7 +324,7 @@ export const mockBackend: backendInterface = {
     city: string,
     _seed: bigint,
     _fingerprint: string,
-  ): Promise<Result> {
+  ): Promise<Result_1> {
     const id = generateCertId();
     const cert: Certificate = {
       certId: id,
@@ -511,6 +514,63 @@ export const mockBackend: backendInterface = {
     return [];
   },
 
+
+
+  async bulkRevokeCertificates(_certIds: string[]): Promise<Result_3> {
+    return { __kind__: "ok", ok: BigInt(_certIds.length) };
+  },
+
+  async checkCertificateDuplicate(
+    _fullName: string,
+    _email: string,
+    _tier: string,
+  ): Promise<boolean> {
+    return false;
+  },
+
+  async clearAdminLog(): Promise<void> {
+    return;
+  },
+
+  async createReferralLink(_referrerName: string): Promise<Result_2> {
+    return { __kind__: "ok", ok: `DMNZ-${generateCertId().slice(0, 6)}` };
+  },
+
+  async getAdminActivityLog(_limit: bigint) {
+    return [] as AdminActivityEntry[];
+  },
+
+  async getMyReferrals(_code: string): Promise<string[]> {
+    return [];
+  },
+
+  async getReferralStats(): Promise<Array<{ referrerName: string; code: string; createdAt: bigint; referralCount: bigint }>> {
+    return [];
+  },
+
+  async getLessonGoLiveDates(_tierId: bigint): Promise<Array<[bigint, bigint]>> {
+    return [];
+  },
+
+  async setLessonGoLiveDate(
+    _tierId: bigint,
+    _lessonId: bigint,
+    _goLiveDate: bigint,
+  ): Promise<Result> {
+    return { __kind__: "ok", ok: null };
+  },
+
+  async removeLessonGoLiveDate(_tierId: bigint, _lessonId: bigint): Promise<Result> {
+    return { __kind__: "ok", ok: null };
+  },
+
+  async trackReferral(_code: string, _refereeName: string): Promise<Result> {
+    return { __kind__: "ok", ok: null };
+  },
+
+  async getHallOfChampions(): Promise<Array<{ fullName: string; tiers: string[]; country: string; dateCompleted: bigint }>> {
+    return [];
+  },
   async adminSetLessonOfWeek(
     _passcode: string,
     _lessonId: string,

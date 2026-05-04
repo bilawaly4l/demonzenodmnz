@@ -172,11 +172,11 @@
   }
 
   .badge-danger {
-    @apply bg-destructive/20 text-destructive dark:text-red-400 px-2 py-1 rounded-md text-xs font-semibold;
+    @apply bg-destructive/20 text-destructive px-2 py-1 rounded-md text-xs font-semibold;
   }
 
   .badge-info {
-    @apply bg-primary/20 text-primary dark:text-primary px-2 py-1 rounded-md text-xs font-semibold;
+    @apply bg-primary/20 text-primary px-2 py-1 rounded-md text-xs font-semibold;
   }
 
   /* Confidence Badges */

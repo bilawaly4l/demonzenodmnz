@@ -10,123 +10,7 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export interface ABTestRecord {
-  'versionAPassCount' : bigint,
-  'activeVersion' : string,
-  'versionBText' : string,
-  'versionBAttempts' : bigint,
-  'versionAText' : string,
-  'questionId' : string,
-  'versionAAttempts' : bigint,
-  'versionBPassCount' : bigint,
-}
-export interface AdminStats {
-  'certsByTier' : Array<[string, bigint]>,
-  'totalCertificates' : bigint,
-}
-export interface AnnouncementBanner {
-  'text' : string,
-  'updatedAt' : bigint,
-  'isPinned' : boolean,
-}
-export interface Certificate {
-  'certId' : string,
-  'featured' : boolean,
-  'certInfo' : CertificateInfo,
-  'tierId' : TierId,
-  'tierName' : string,
-  'shareToken' : string,
-  'score' : bigint,
-  'totalQuestions' : bigint,
-  'issuedAt' : bigint,
-  'isValid' : boolean,
-}
-export interface CertificateInfo {
-  'country' : string,
-  'dateOfBirth' : string,
-  'city' : string,
-  'fullName' : string,
-  'fathersName' : string,
-  'email' : string,
-}
-export interface DailyActiveLog { 'date' : string, 'count' : bigint }
-export interface LessonCompletionLog {
-  'lessonId' : string,
-  'completedAt' : bigint,
-  'tierId' : string,
-}
-export interface LessonEngagement {
-  'lessonId' : string,
-  'visitCount' : bigint,
-  'tier' : string,
-  'totalTimeSeconds' : bigint,
-}
-export interface LessonOfWeek {
-  'lessonId' : string,
-  'expiresAt' : bigint,
-  'tier' : string,
-  'lessonTitle' : string,
-  'setAt' : bigint,
-}
-export interface LessonRating {
-  'lessonId' : string,
-  'tierId' : string,
-  'timestamp' : bigint,
-  'rating' : bigint,
-}
-export interface MasteryRecord {
-  'lessonId' : string,
-  'quizScore' : number,
-  'tier' : string,
-  'confidenceScore' : number,
-  'updatedAt' : bigint,
-  'masteryPct' : number,
-  'conceptCheckerScore' : number,
-}
-export interface MonthlyChallenge {
-  'month' : string,
-  'targetLessons' : bigint,
-  'badgeEarned' : boolean,
-  'lessonsCompleted' : bigint,
-}
-export interface ProgressSnapshot {
-  'createdAt' : bigint,
-  'shareToken' : string,
-  'tiersCompleted' : Array<string>,
-  'masteryLevels' : Array<[string, number]>,
-  'certificatesEarned' : Array<string>,
-}
-export interface QuestionFailStat {
-  'tierId' : string,
-  'totalSeen' : bigint,
-  'questionId' : string,
-  'failCount' : bigint,
-}
-export interface QuizAnswer { 'questionId' : string, 'selectedOption' : string }
-export interface QuizAttemptLog {
-  'tierId' : string,
-  'score' : bigint,
-  'fingerprint' : string,
-  'timestamp' : bigint,
-  'passed' : boolean,
-}
-export interface QuizAttemptStats {
-  'tierId' : string,
-  'passCount' : bigint,
-  'totalAttempts' : bigint,
-}
-export interface QuizOption { 'id' : string, 'text' : string }
-export interface QuizQuestion {
-  'id' : string,
-  'correctOption' : string,
-  'question' : string,
-  'explanation' : string,
-  'isReviewFlagged' : boolean,
-  'options' : Array<QuizOption>,
-}
-export type Result = { 'ok' : Certificate } |
-  { 'err' : string };
-export type Result_1 = { 'ok' : null } |
+export type Result = { 'ok' : null } |
   { 'err' : string };
 export interface RoadmapMilestone {
   'id' : string,
@@ -135,13 +19,6 @@ export interface RoadmapMilestone {
   'completed' : boolean,
   'year' : string,
   'description' : string,
-}
-export interface TierDisabledEntry { 'tierId' : string, 'disabled' : boolean }
-export type TierId = string;
-export interface TierQuiz {
-  'tierId' : TierId,
-  'tierName' : string,
-  'questions' : Array<QuizQuestion>,
 }
 export interface TokenInfo {
   'ticker' : string,
@@ -153,110 +30,10 @@ export interface TokenInfo {
   'slogan' : string,
   'distribution' : string,
 }
-export interface TransformationInput {
-  'context' : Uint8Array,
-  'response' : http_request_result,
-}
-export interface TransformationOutput {
-  'status' : bigint,
-  'body' : Uint8Array,
-  'headers' : Array<http_header>,
-}
-export interface ZenoAiResponse { 'answer' : string, 'success' : boolean }
-export interface http_header { 'value' : string, 'name' : string }
-export interface http_request_result {
-  'status' : bigint,
-  'body' : Uint8Array,
-  'headers' : Array<http_header>,
-}
 export interface _SERVICE {
-  'adminCreateABTest' : ActorMethod<
-    [string, string, string, string],
-    undefined
-  >,
-  'adminExportCertificates' : ActorMethod<[], Array<Certificate>>,
-  'adminFeatureCertificate' : ActorMethod<[string, boolean], Result_1>,
-  'adminFlagQuestion' : ActorMethod<[string, boolean], undefined>,
-  'adminGetABTests' : ActorMethod<[string], Array<ABTestRecord>>,
-  'adminGetAttemptLogs' : ActorMethod<[string], Array<QuizAttemptLog>>,
-  'adminGetEngagementData' : ActorMethod<[string], Array<LessonEngagement>>,
-  'adminGetFlaggedQuestions' : ActorMethod<[], Array<string>>,
-  'adminGetMonthlyStats' : ActorMethod<[string], Array<[string, bigint]>>,
-  'adminGetQuestionFailStats' : ActorMethod<[string], Array<QuestionFailStat>>,
-  'adminGetStats' : ActorMethod<[], AdminStats>,
-  'adminManualIssueCertificate' : ActorMethod<
-    [string, CertificateInfo],
-    Result
-  >,
-  'adminRevokeOrReinstateCertificate' : ActorMethod<
-    [string, boolean],
-    Result_1
-  >,
-  'adminSetAnnouncementBanner' : ActorMethod<[string, boolean], undefined>,
-  'adminSetLessonOfWeek' : ActorMethod<
-    [string, string, string, string],
-    undefined
-  >,
-  'adminSetTierDisabled' : ActorMethod<[string, boolean], Result_1>,
-  'adminToggleABVersion' : ActorMethod<[string, string], undefined>,
-  'adminUpdateMilestone' : ActorMethod<[string, boolean], Result_1>,
-  'askZenoAi' : ActorMethod<[string], ZenoAiResponse>,
-  'generateProgressShareLink' : ActorMethod<
-    [Array<string>, Array<string>, Array<[string, number]>],
-    string
-  >,
-  'getAcademyQuiz' : ActorMethod<[string, bigint], [] | [TierQuiz]>,
-  'getAdminLessonRatings' : ActorMethod<[], Array<[string, string, number]>>,
-  'getAllMasteryRecords' : ActorMethod<[], Array<MasteryRecord>>,
-  'getAnnouncementBanner' : ActorMethod<[], [] | [AnnouncementBanner]>,
-  'getCertificateByShareToken' : ActorMethod<[string], [] | [Certificate]>,
-  'getCertificatesByTier' : ActorMethod<[string], Array<Certificate>>,
-  'getDailyActiveCounts' : ActorMethod<[], Array<DailyActiveLog>>,
-  'getFeaturedCertificates' : ActorMethod<[], Array<Certificate>>,
-  'getFeaturedLesson' : ActorMethod<[string], [] | [string]>,
-  'getLessonCompletionTrends' : ActorMethod<[], Array<LessonCompletionLog>>,
-  'getLessonMastery' : ActorMethod<[string], [] | [MasteryRecord]>,
-  'getLessonOfWeek' : ActorMethod<[], [] | [LessonOfWeek]>,
-  'getLessonRatings' : ActorMethod<[string, string], Array<LessonRating>>,
-  'getMonthlyChallenge' : ActorMethod<[string], [] | [MonthlyChallenge]>,
-  'getProgressSnapshot' : ActorMethod<[string], [] | [ProgressSnapshot]>,
-  'getQuizAttemptStats' : ActorMethod<[], Array<QuizAttemptStats>>,
-  'getQuizFailMessage' : ActorMethod<[string], [] | [string]>,
+  'adminUpdateMilestone' : ActorMethod<[string, boolean], Result>,
   'getRoadmap' : ActorMethod<[], Array<RoadmapMilestone>>,
-  'getTierDisabledStates' : ActorMethod<[], Array<TierDisabledEntry>>,
   'getTokenInfo' : ActorMethod<[], TokenInfo>,
-  'listAllCertificates' : ActorMethod<[], Array<Certificate>>,
-  'logDailyActive' : ActorMethod<[string], undefined>,
-  'logLessonCompletion' : ActorMethod<[string, string, bigint], undefined>,
-  'recordABTestResult' : ActorMethod<[string, string, boolean], undefined>,
-  'recordLessonCompleted' : ActorMethod<[string], MonthlyChallenge>,
-  'recordLessonTime' : ActorMethod<[string, string, bigint], undefined>,
-  'searchCertificates' : ActorMethod<[string], Array<Certificate>>,
-  'setFeaturedLesson' : ActorMethod<[string, string, string], boolean>,
-  'setQuizFailMessage' : ActorMethod<[string, string, string], boolean>,
-  'submitCheckpointQuiz' : ActorMethod<[string, bigint], boolean>,
-  'submitLessonRating' : ActorMethod<[string, string, bigint], boolean>,
-  'submitQuizAndIssueCertificate' : ActorMethod<
-    [
-      string,
-      Array<QuizAnswer>,
-      string,
-      string,
-      string,
-      string,
-      string,
-      string,
-      bigint,
-      string,
-    ],
-    Result
-  >,
-  'updateLessonMastery' : ActorMethod<
-    [string, string, number, number, number],
-    undefined
-  >,
-  'verifyCertificate' : ActorMethod<[string], [] | [Certificate]>,
-  'zenoAiTransform' : ActorMethod<[TransformationInput], TransformationOutput>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];
