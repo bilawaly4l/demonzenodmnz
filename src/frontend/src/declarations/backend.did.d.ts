@@ -10,7 +10,44 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export type Result = { 'ok' : null } |
+export interface CommunityStats {
+  'earlyBelieverCount' : bigint,
+  'pledgeCount' : bigint,
+  'hypeCount' : bigint,
+  'interestCount' : bigint,
+  'first100Count' : bigint,
+  'submissionCount' : bigint,
+}
+export interface CommunitySubmission {
+  'id' : bigint,
+  'submitterHandle' : string,
+  'description' : string,
+  'timestamp' : Timestamp,
+}
+export interface EarlyBeliever {
+  'timestamp' : Timestamp,
+  'handle' : string,
+  'index' : bigint,
+}
+export interface First100Entry {
+  'isOG' : boolean,
+  'timestamp' : Timestamp,
+  'handle' : string,
+  'position' : bigint,
+}
+export interface HypeMessage {
+  'message' : string,
+  'timestamp' : Timestamp,
+  'handle' : string,
+}
+export interface InterestEntry { 'timestamp' : Timestamp, 'handle' : string }
+export type Result = { 'ok' : InterestEntry } |
+  { 'err' : string };
+export type Result_1 = { 'ok' : HypeMessage } |
+  { 'err' : string };
+export type Result_2 = { 'ok' : First100Entry } |
+  { 'err' : string };
+export type Result_3 = { 'ok' : EarlyBeliever } |
   { 'err' : string };
 export interface RoadmapMilestone {
   'id' : string,
@@ -20,6 +57,7 @@ export interface RoadmapMilestone {
   'year' : string,
   'description' : string,
 }
+export type Timestamp = bigint;
 export interface TokenInfo {
   'ticker' : string,
   'socialLinks' : Array<{ 'url' : string, 'name' : string }>,
@@ -31,9 +69,21 @@ export interface TokenInfo {
   'distribution' : string,
 }
 export interface _SERVICE {
-  'adminUpdateMilestone' : ActorMethod<[string, boolean], Result>,
+  'getCommunityPosts' : ActorMethod<[], Array<CommunitySubmission>>,
+  'getCommunityStats' : ActorMethod<[], CommunityStats>,
+  'getEarlyBelievers' : ActorMethod<[], Array<EarlyBeliever>>,
+  'getFirst100' : ActorMethod<[], Array<First100Entry>>,
+  'getHypeMessages' : ActorMethod<[], Array<HypeMessage>>,
+  'getInterestSubmissions' : ActorMethod<[], Array<InterestEntry>>,
+  'getPledgeCount' : ActorMethod<[], bigint>,
   'getRoadmap' : ActorMethod<[], Array<RoadmapMilestone>>,
   'getTokenInfo' : ActorMethod<[], TokenInfo>,
+  'submitCommunityPost' : ActorMethod<[string, string], boolean>,
+  'submitEarlyBeliever' : ActorMethod<[string], Result_3>,
+  'submitFirst100' : ActorMethod<[string], Result_2>,
+  'submitHypeMessage' : ActorMethod<[string, string], Result_1>,
+  'submitInterest' : ActorMethod<[string], Result>,
+  'submitPledge' : ActorMethod<[string], bigint>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

@@ -48,7 +48,7 @@ const DEFAULT_MILESTONES = [
     title: "Community Building Year",
     description:
       "Growing the DemonZeno presence on Binance Square with free daily trading education, building a global community of disciplined traders.",
-    icon: "🌐",
+    Icon: Globe,
     completed: false,
   },
   {
@@ -58,7 +58,7 @@ const DEFAULT_MILESTONES = [
     title: "DMNZ Created on Blum",
     description:
       "DMNZ token fair launch via Telegram Mini App on Blum — 100% fair, no presale, no insiders, no allocation. Everyone enters at the same price.",
-    icon: "🚀",
+    Icon: Rocket,
     completed: false,
   },
   {
@@ -68,7 +68,7 @@ const DEFAULT_MILESTONES = [
     title: "Huge Buyback & Burn",
     description:
       "Massive token buyback and permanent burn to reduce circulating supply, create deflationary pressure, increase token value, and push toward the bonding curve.",
-    icon: "🔥",
+    Icon: Flame,
     completed: false,
   },
 ];
@@ -109,7 +109,7 @@ const MILESTONE_STATUS_STYLES = {
     glow: "shadow-[0_0_12px_oklch(0.65_0.15_70_/_0.12)]",
     badge:
       "bg-[oklch(0.65_0.15_70_/_0.12)] text-[oklch(0.7_0.18_70)] border border-[oklch(0.65_0.15_70_/_0.3)]",
-    label: "⏳ UPCOMING",
+    label: "UPCOMING",
     checkColor: "text-[oklch(0.7_0.18_70)]",
   },
   2: {
@@ -117,7 +117,7 @@ const MILESTONE_STATUS_STYLES = {
     yearColor: "text-muted-foreground",
     glow: "",
     badge: "bg-muted text-muted-foreground border border-border",
-    label: "🔮 FUTURE",
+    label: "FUTURE",
     checkColor: "text-muted-foreground",
   },
 };
@@ -240,7 +240,7 @@ function CountdownTimer() {
       </p>
       {timeLeft === null ? (
         <div className="text-3xl font-display font-black text-primary">
-          🚀 DMNZ IS LIVE!
+          DMNZ IS LIVE!
         </div>
       ) : (
         <div className="grid grid-cols-4 gap-3 max-w-sm mx-auto">
@@ -273,7 +273,6 @@ function CountdownTimer() {
 
 const BRAND_FLOW_STEPS = [
   {
-    emoji: "📚",
     label: "Learn",
     desc: "Master trading through discipline and the DemonZeno philosophy.",
     color: "text-primary",
@@ -281,7 +280,6 @@ const BRAND_FLOW_STEPS = [
     bg: "bg-primary/10",
   },
   {
-    emoji: "📈",
     label: "Trade",
     desc: "Apply real strategies, manage risk, and trade like a disciplined demon.",
     color: "text-[oklch(0.7_0.18_145)]",
@@ -289,7 +287,6 @@ const BRAND_FLOW_STEPS = [
     bg: "bg-[oklch(0.7_0.18_145_/_0.1)]",
   },
   {
-    emoji: "🚀",
     label: "Grow",
     desc: "Join the DMNZ movement — fair launch, community-first, built on discipline.",
     color: "text-[oklch(0.65_0.15_70)]",
@@ -362,9 +359,7 @@ function AnimatedBrandNarrative() {
               className="text-4xl leading-none"
               role="img"
               aria-label={step.label}
-            >
-              {step.emoji}
-            </span>
+            />
             <p className={`font-display font-black text-xl ${step.color}`}>
               {step.label}
             </p>
@@ -378,16 +373,16 @@ function AnimatedBrandNarrative() {
       {/* Fair launch badge */}
       <div className="flex flex-wrap items-center justify-center gap-3">
         {[
-          { icon: "🚫", text: "No Pre-Sale" },
-          { icon: "🚫", text: "No VC Backing" },
-          { icon: "🚫", text: "No Team Tokens" },
-          { icon: "✅", text: "100% Fair Launch" },
-        ].map(({ icon, text }) => (
+          { text: "No Pre-Sale" },
+          { text: "No VC Backing" },
+          { text: "No Team Tokens" },
+          { text: "100% Fair Launch" },
+        ].map(({ text }) => (
           <span
             key={text}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted/40 border border-border text-xs font-semibold text-foreground"
           >
-            <span>{icon}</span> {text}
+            {text}
           </span>
         ))}
       </div>
@@ -547,17 +542,14 @@ function PriceTrackerPlaceholder() {
 function FullFairLaunchSection() {
   const pillars = [
     {
-      icon: "🚫",
       title: "No Presale",
       desc: "Zero presale rounds. Zero early-bird advantage. Every participant enters at the same price.",
     },
     {
-      icon: "🚫",
       title: "No Team Tokens",
       desc: "No team allocation, no VC reserve, no insider wallets. The entire supply is public.",
     },
     {
-      icon: "🤝",
       title: "Community First",
       desc: "DMNZ belongs to its community. Discipline and knowledge is your edge — not a presale slot.",
     },
@@ -588,12 +580,11 @@ function FullFairLaunchSection() {
         exceptions.
       </p>
       <div className="grid sm:grid-cols-3 gap-4">
-        {pillars.map(({ icon, title, desc }) => (
+        {pillars.map(({ title, desc }) => (
           <div
             key={title}
             className="bg-muted/30 rounded-xl p-5 border border-border flex flex-col gap-2"
           >
-            <span className="text-2xl">{icon}</span>
             <p className="font-display font-bold text-foreground text-sm">
               {title}
             </p>
@@ -701,7 +692,9 @@ function MilestoneCard({
     >
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-3">
-          <span className="text-2xl leading-none">{milestone.icon}</span>
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-muted/40">
+            <milestone.Icon className="w-4 h-4 text-muted-foreground" />
+          </div>
           <div>
             <span
               className={`font-display font-black text-2xl ${style.yearColor}`}
@@ -774,7 +767,7 @@ function RoadmapSubSection({
           date: m.date ?? undefined,
           title: m.title,
           description: m.description,
-          icon: (["🌐", "🚀", "🔥"] as const)[i] ?? "⭐",
+          Icon: ([Globe, Rocket, Flame] as const)[i] ?? Globe,
           completed: m.completed,
         }))
       : DEFAULT_MILESTONES;

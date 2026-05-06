@@ -89,6 +89,11 @@ export class ExternalBlob {
         return this;
     }
 }
+export interface HypeMessage {
+    message: string;
+    timestamp: Timestamp;
+    handle: string;
+}
 export interface RoadmapMilestone {
     id: string;
     title: string;
@@ -99,7 +104,22 @@ export interface RoadmapMilestone {
 }
 export type Result = {
     __kind__: "ok";
-    ok: null;
+    ok: InterestEntry;
+} | {
+    __kind__: "err";
+    err: string;
+};
+export type Timestamp = bigint;
+export type Result_3 = {
+    __kind__: "ok";
+    ok: EarlyBeliever;
+} | {
+    __kind__: "err";
+    err: string;
+};
+export type Result_2 = {
+    __kind__: "ok";
+    ok: First100Entry;
 } | {
     __kind__: "err";
     err: string;
@@ -117,40 +137,172 @@ export interface TokenInfo {
     slogan: string;
     distribution: string;
 }
+export interface CommunitySubmission {
+    id: bigint;
+    submitterHandle: string;
+    description: string;
+    timestamp: Timestamp;
+}
+export interface CommunityStats {
+    earlyBelieverCount: bigint;
+    pledgeCount: bigint;
+    hypeCount: bigint;
+    interestCount: bigint;
+    first100Count: bigint;
+    submissionCount: bigint;
+}
+export interface InterestEntry {
+    timestamp: Timestamp;
+    handle: string;
+}
+export type Result_1 = {
+    __kind__: "ok";
+    ok: HypeMessage;
+} | {
+    __kind__: "err";
+    err: string;
+};
+export interface First100Entry {
+    isOG: boolean;
+    timestamp: Timestamp;
+    handle: string;
+    position: bigint;
+}
+export interface EarlyBeliever {
+    timestamp: Timestamp;
+    handle: string;
+    index: bigint;
+}
 export interface backendInterface {
-    adminUpdateMilestone(id: string, completed: boolean): Promise<Result>;
+    getCommunityPosts(): Promise<Array<CommunitySubmission>>;
+    getCommunityStats(): Promise<CommunityStats>;
+    getEarlyBelievers(): Promise<Array<EarlyBeliever>>;
+    getFirst100(): Promise<Array<First100Entry>>;
+    getHypeMessages(): Promise<Array<HypeMessage>>;
+    getInterestSubmissions(): Promise<Array<InterestEntry>>;
+    getPledgeCount(): Promise<bigint>;
     getRoadmap(): Promise<Array<RoadmapMilestone>>;
     getTokenInfo(): Promise<TokenInfo>;
+    submitCommunityPost(description: string, handle: string): Promise<boolean>;
+    submitEarlyBeliever(handle: string): Promise<Result_3>;
+    submitFirst100(handle: string): Promise<Result_2>;
+    submitHypeMessage(handle: string, message: string): Promise<Result_1>;
+    submitInterest(handle: string): Promise<Result>;
+    submitPledge(name: string): Promise<bigint>;
 }
-import type { Result as _Result, RoadmapMilestone as _RoadmapMilestone } from "./declarations/backend.did.d.ts";
+import type { EarlyBeliever as _EarlyBeliever, First100Entry as _First100Entry, HypeMessage as _HypeMessage, InterestEntry as _InterestEntry, Result as _Result, Result_1 as _Result_1, Result_2 as _Result_2, Result_3 as _Result_3, RoadmapMilestone as _RoadmapMilestone } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
-    async adminUpdateMilestone(arg0: string, arg1: boolean): Promise<Result> {
+    async getCommunityPosts(): Promise<Array<CommunitySubmission>> {
         if (this.processError) {
             try {
-                const result = await this.actor.adminUpdateMilestone(arg0, arg1);
-                return from_candid_Result_n1(this._uploadFile, this._downloadFile, result);
+                const result = await this.actor.getCommunityPosts();
+                return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.adminUpdateMilestone(arg0, arg1);
-            return from_candid_Result_n1(this._uploadFile, this._downloadFile, result);
+            const result = await this.actor.getCommunityPosts();
+            return result;
+        }
+    }
+    async getCommunityStats(): Promise<CommunityStats> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getCommunityStats();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getCommunityStats();
+            return result;
+        }
+    }
+    async getEarlyBelievers(): Promise<Array<EarlyBeliever>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getEarlyBelievers();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getEarlyBelievers();
+            return result;
+        }
+    }
+    async getFirst100(): Promise<Array<First100Entry>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getFirst100();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getFirst100();
+            return result;
+        }
+    }
+    async getHypeMessages(): Promise<Array<HypeMessage>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getHypeMessages();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getHypeMessages();
+            return result;
+        }
+    }
+    async getInterestSubmissions(): Promise<Array<InterestEntry>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getInterestSubmissions();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getInterestSubmissions();
+            return result;
+        }
+    }
+    async getPledgeCount(): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getPledgeCount();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getPledgeCount();
+            return result;
         }
     }
     async getRoadmap(): Promise<Array<RoadmapMilestone>> {
         if (this.processError) {
             try {
                 const result = await this.actor.getRoadmap();
-                return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+                return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getRoadmap();
-            return from_candid_vec_n3(this._uploadFile, this._downloadFile, result);
+            return from_candid_vec_n1(this._uploadFile, this._downloadFile, result);
         }
     }
     async getTokenInfo(): Promise<TokenInfo> {
@@ -167,17 +319,110 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async submitCommunityPost(arg0: string, arg1: string): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitCommunityPost(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitCommunityPost(arg0, arg1);
+            return result;
+        }
+    }
+    async submitEarlyBeliever(arg0: string): Promise<Result_3> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitEarlyBeliever(arg0);
+                return from_candid_Result_3_n5(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitEarlyBeliever(arg0);
+            return from_candid_Result_3_n5(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async submitFirst100(arg0: string): Promise<Result_2> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitFirst100(arg0);
+                return from_candid_Result_2_n7(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitFirst100(arg0);
+            return from_candid_Result_2_n7(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async submitHypeMessage(arg0: string, arg1: string): Promise<Result_1> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitHypeMessage(arg0, arg1);
+                return from_candid_Result_1_n9(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitHypeMessage(arg0, arg1);
+            return from_candid_Result_1_n9(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async submitInterest(arg0: string): Promise<Result> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitInterest(arg0);
+                return from_candid_Result_n11(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitInterest(arg0);
+            return from_candid_Result_n11(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async submitPledge(arg0: string): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitPledge(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitPledge(arg0);
+            return result;
+        }
+    }
 }
-function from_candid_Result_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result): Result {
-    return from_candid_variant_n2(_uploadFile, _downloadFile, value);
+function from_candid_Result_1_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_1): Result_1 {
+    return from_candid_variant_n10(_uploadFile, _downloadFile, value);
 }
-function from_candid_RoadmapMilestone_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _RoadmapMilestone): RoadmapMilestone {
-    return from_candid_record_n5(_uploadFile, _downloadFile, value);
+function from_candid_Result_2_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_2): Result_2 {
+    return from_candid_variant_n8(_uploadFile, _downloadFile, value);
 }
-function from_candid_opt_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [string]): string | null {
+function from_candid_Result_3_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result_3): Result_3 {
+    return from_candid_variant_n6(_uploadFile, _downloadFile, value);
+}
+function from_candid_Result_n11(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Result): Result {
+    return from_candid_variant_n12(_uploadFile, _downloadFile, value);
+}
+function from_candid_RoadmapMilestone_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _RoadmapMilestone): RoadmapMilestone {
+    return from_candid_record_n3(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [string]): string | null {
     return value.length === 0 ? null : value[0];
 }
-function from_candid_record_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+function from_candid_record_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
     id: string;
     title: string;
     date: [] | [string];
@@ -195,19 +440,19 @@ function from_candid_record_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint
     return {
         id: value.id,
         title: value.title,
-        date: record_opt_to_undefined(from_candid_opt_n6(_uploadFile, _downloadFile, value.date)),
+        date: record_opt_to_undefined(from_candid_opt_n4(_uploadFile, _downloadFile, value.date)),
         completed: value.completed,
         year: value.year,
         description: value.description
     };
 }
-function from_candid_variant_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
-    ok: null;
+function from_candid_variant_n10(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    ok: _HypeMessage;
 } | {
     err: string;
 }): {
     __kind__: "ok";
-    ok: null;
+    ok: HypeMessage;
 } | {
     __kind__: "err";
     err: string;
@@ -220,8 +465,65 @@ function from_candid_variant_n2(_uploadFile: (file: ExternalBlob) => Promise<Uin
         err: value.err
     } : value;
 }
-function from_candid_vec_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_RoadmapMilestone>): Array<RoadmapMilestone> {
-    return value.map((x)=>from_candid_RoadmapMilestone_n4(_uploadFile, _downloadFile, x));
+function from_candid_variant_n12(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    ok: _InterestEntry;
+} | {
+    err: string;
+}): {
+    __kind__: "ok";
+    ok: InterestEntry;
+} | {
+    __kind__: "err";
+    err: string;
+} {
+    return "ok" in value ? {
+        __kind__: "ok",
+        ok: value.ok
+    } : "err" in value ? {
+        __kind__: "err",
+        err: value.err
+    } : value;
+}
+function from_candid_variant_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    ok: _EarlyBeliever;
+} | {
+    err: string;
+}): {
+    __kind__: "ok";
+    ok: EarlyBeliever;
+} | {
+    __kind__: "err";
+    err: string;
+} {
+    return "ok" in value ? {
+        __kind__: "ok",
+        ok: value.ok
+    } : "err" in value ? {
+        __kind__: "err",
+        err: value.err
+    } : value;
+}
+function from_candid_variant_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    ok: _First100Entry;
+} | {
+    err: string;
+}): {
+    __kind__: "ok";
+    ok: First100Entry;
+} | {
+    __kind__: "err";
+    err: string;
+} {
+    return "ok" in value ? {
+        __kind__: "ok",
+        ok: value.ok
+    } : "err" in value ? {
+        __kind__: "err",
+        err: value.err
+    } : value;
+}
+function from_candid_vec_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_RoadmapMilestone>): Array<RoadmapMilestone> {
+    return value.map((x)=>from_candid_RoadmapMilestone_n2(_uploadFile, _downloadFile, x));
 }
 export interface CreateActorOptions {
     agent?: Agent;

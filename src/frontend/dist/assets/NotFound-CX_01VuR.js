@@ -1,4 +1,5 @@
-import { J as reactExports, W as jsxRuntimeExports, X as React } from "./index-hIg1tUIL.js";
+import { L as reactExports, Y as jsxRuntimeExports, ae as React, af as Zap, ag as Link } from "./index-CAY1Sq3U.js";
+import { A as ArrowLeft } from "./arrow-left-UQKB3RPw.js";
 function setRef(ref, value) {
   if (typeof ref === "function") {
     return ref(value);
@@ -29,9 +30,6 @@ function composeRefs(...refs) {
       };
     }
   };
-}
-function useComposedRefs(...refs) {
-  return reactExports.useCallback(composeRefs(...refs), refs);
 }
 var REACT_LAZY_TYPE = Symbol.for("react.lazy");
 var use = React[" use ".trim().toString()];
@@ -2688,9 +2686,70 @@ function Button({
     }
   );
 }
+function NotFound() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "section",
+    {
+      "data-ocid": "not_found.page",
+      className: "min-h-[calc(100vh-8rem)] flex items-center justify-center bg-background py-20",
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto px-4 flex flex-col items-center gap-8 text-center max-w-xl", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-primary/10 rounded-full blur-3xl scale-75 pointer-events-none" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "img",
+            {
+              src: "/assets/demonzeno-character.png",
+              alt: "DemonZeno character",
+              className: "relative z-10 w-48 md:w-64 object-contain drop-shadow-2xl",
+              style: { clipPath: "inset(0 0 18% 0)", marginBottom: "-18%" }
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 bg-destructive/10 border border-destructive/30 rounded-full px-4 py-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-3.5 h-3.5 text-destructive" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-destructive text-xs font-semibold tracking-wide uppercase", children: "404 — Not Found" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("h1", { className: "font-display font-bold text-4xl md:text-5xl text-foreground text-glow leading-tight", children: [
+            "Lost on the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Open Road" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-lg leading-relaxed", children: "This page doesn't exist. DemonZeno has already moved on — you should too." })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col sm:flex-row gap-3 w-full sm:w-auto", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              asChild: true,
+              "data-ocid": "not_found.home.primary_button",
+              className: "btn-primary px-6 h-11",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Link, { to: "/", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { className: "w-4 h-4 mr-2" }),
+                "Back to Home"
+              ] })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              variant: "outline",
+              "data-ocid": "not_found.token.secondary_button",
+              onClick: () => {
+                window.location.href = "/#dmnz-token";
+              },
+              className: "border-primary/40 text-primary hover:bg-primary/10 h-11",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-4 h-4 mr-2" }),
+                "DMNZ Token"
+              ]
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs max-w-sm", children: "If you think this is a mistake, check the URL or head back to the homepage." })
+      ] })
+    }
+  );
+}
 export {
-  Button as B,
-  cn as a,
-  composeRefs as c,
-  useComposedRefs as u
+  NotFound
 };

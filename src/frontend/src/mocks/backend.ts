@@ -1,582 +1,117 @@
-import { 
-  ABTestRecord,
-  AdminActivityEntry,
-  DailyActiveLog,
-  LessonEngagement,
-  LessonOfWeek,
-  MasteryRecord,
-  MonthlyChallenge,
-  ProgressSnapshot,
-  TransformationInput,
-  TransformationOutput,
- } from "../backend";
-import type { 
-  AdminStats,
-  AnnouncementBanner,
-  Certificate,
-  CertificateInfo,
-  QuizAnswer,
-  QuizAttemptStats,
-  QuizQuestion,
+// Mock backend — stub for development builds only
+// All dead academy/admin types removed; only current backend interface used
+import type {
+  CommunityStats,
+  EarlyBeliever,
+  First100Entry,
+  HypeMessage,
+  InterestEntry,
   Result,
-  Result_1,
   Result_2,
+  Result_1,
   Result_3,
   RoadmapMilestone,
-  TierQuiz,
   TokenInfo,
-  ZenoAiResponse,
   backendInterface,
- } from "../backend";
+} from "../backend";
 
-// ─── Mock certificate data ────────────────────────────────────────────────────
-
-const MOCK_CERT_INFO: CertificateInfo = {
-  fullName: "Bilal Ahmed",
-  fathersName: "Ahmed Khan",
-  country: "Pakistan",
-  dateOfBirth: "1998-04-02",
-  email: "bilal@example.com",
-  city: "Lahore",
-};
-
-const MOCK_CERTIFICATES: Certificate[] = [
+const MOCK_MILESTONES: RoadmapMilestone[] = [
   {
-    certId: "A7K2X9P1Q",
-    certInfo: { ...MOCK_CERT_INFO, fullName: "Bilal Ahmed" },
-    tierId: "beginner",
-    tierName: "Beginner",
-    score: BigInt(30),
-    totalQuestions: BigInt(30),
-    issuedAt: BigInt(Date.now() * 1_000_000),
-    isValid: true,
-    featured: false,
-    shareToken: "share_A7K2X9P1Q",
-  },
-  {
-    certId: "B3M5Z8W2R",
-    certInfo: { ...MOCK_CERT_INFO, fullName: "Zara Hassan", country: "UAE" },
-    tierId: "intermediate",
-    tierName: "Intermediate",
-    score: BigInt(30),
-    totalQuestions: BigInt(30),
-    issuedAt: BigInt((Date.now() - 86400000) * 1_000_000),
-    isValid: true,
-    featured: false,
-    shareToken: "share_B3M5Z8W2R",
-  },
-  {
-    certId: "C9N4Y7U6T",
-    certInfo: {
-      ...MOCK_CERT_INFO,
-      fullName: "Omar Siddiqui",
-      country: "Saudi Arabia",
-    },
-    tierId: "advanced",
-    tierName: "Advanced",
-    score: BigInt(30),
-    totalQuestions: BigInt(30),
-    issuedAt: BigInt((Date.now() - 172800000) * 1_000_000),
-    isValid: true,
-    featured: true,
-    shareToken: "share_C9N4Y7U6T",
-  },
-];
-
-const MOCK_ROADMAP: RoadmapMilestone[] = [
-  {
-    id: "2026",
+    id: "2026-community",
     year: "2026",
     title: "Community Building Year",
-    description:
-      "Build DemonZeno's presence and community of traders across Binance Square and Twitter.",
-    completed: true,
+    description: "Growing the DemonZeno community, spreading awareness, and building the foundation for DMNZ launch.",
+    completed: false,
+    date: "2026",
   },
   {
-    id: "2027",
+    id: "2027-launch",
     year: "2027",
-    date: "April 2, 2027",
-    title: "DMNZ Token Launch on Blum",
-    description:
-      "Fair launch of DMNZ token via Telegram Mini App on Blum. 100% community owned.",
+    title: "DMNZ Launches on Blum",
+    description: "April 2, 2027 — DMNZ token goes live on the Blum Mini App. Full fair launch, no presale.",
     completed: false,
+    date: "April 2, 2027",
   },
   {
-    id: "2028",
+    id: "2028-burn",
     year: "2028",
-    date: "January 1, 2028",
-    title: "Buyback & Burn Program",
-    description:
-      "Massive buyback and burn to reduce DMNZ supply, increase value, and trigger bonding curve.",
+    title: "Huge Buyback & Burn",
+    description: "January 1, 2028 — Massive buyback and burn event to reduce circulating supply and hit the bonding curve.",
     completed: false,
+    date: "January 1, 2028",
   },
 ];
 
 const MOCK_TOKEN_INFO: TokenInfo = {
   name: "DemonZeno",
   ticker: "DMNZ",
-  description:
-    "DemonZeno (DMNZ) is a meme token built for the trading community. Fair launch, no presale, no insiders. 100% community owned.",
-  launchPlatform: "Blum Mini App",
+  description: "A 100% fair launch meme token born from discipline and sacrifice. No presale, no team allocation — everyone enters at the same price.",
   slogan: "Trade Like a God. Hold Like a Demon.",
   totalSupply: "1,000,000,000 DMNZ",
-  distribution: "100% fair launch — no presale, no allocation",
+  distribution: "100% Fair Launch — No presale, no team tokens, no allocation. Everyone buys at the same price.",
+  launchPlatform: "Blum Mini App",
   socialLinks: [
-    {
-      name: "Binance Square",
-      url: "https://www.binance.com/en/square/profile/@Demon_Zeno",
-    },
+    { name: "Binance Square", url: "https://www.binance.com/en/square/profile/@Demon_Zeno" },
     { name: "Twitter", url: "https://twitter.com/ZenoDemon" },
   ],
 };
 
-const MOCK_QUESTIONS: QuizQuestion[] = [
-  {
-    id: "q1",
-    question:
-      "A trader sees price break above a key resistance with high volume. What should they consider?",
-    options: [
-      {
-        id: "a",
-        text: "This may be a breakout — watch for confirmation before entering",
-      },
-      { id: "b", text: "Immediately sell, high volume is bearish" },
-      { id: "c", text: "Ignore volume and trade based on news only" },
-      { id: "d", text: "Wait 3 days before any decision" },
-    ],
-    correctOption: "a",
-    explanation:
-      "High volume breakouts above resistance are potential bullish setups but confirmation (like a retest) strengthens the signal.",
-    isReviewFlagged: false,
-  },
-];
-
-function generateCertId(): string {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  return Array.from(
-    { length: 9 },
-    () => chars[Math.floor(Math.random() * chars.length)],
-  ).join("");
-}
-
-// ─── Mock backend implementation ──────────────────────────────────────────────
+const makeOk = <T,>(ok: T): { __kind__: "ok"; ok: T } => ({ __kind__: "ok", ok });
+const makeErr = (err: string): { __kind__: "err"; err: string } => ({ __kind__: "err", err });
 
 export const mockBackend: backendInterface = {
-  async adminExportCertificates(): Promise<Certificate[]> {
-    return MOCK_CERTIFICATES;
-  },
+  getRoadmap: async () => MOCK_MILESTONES,
+  getTokenInfo: async () => MOCK_TOKEN_INFO,
 
-  async adminFeatureCertificate(_certId: string, _featured: boolean): Promise<Result> {
-    return { __kind__: "ok", ok: null };
-  },
-
-  async adminFlagQuestion(_questionId: string, _flagged: boolean): Promise<void> {
-    return;
-  },
-
-  async adminGetAttemptLogs(_tierId: string) {
-    return [];
-  },
-
-  async adminGetFlaggedQuestions() {
-    return [];
-  },
-
-  async adminGetQuestionFailStats(_tierId: string) {
-    return [];
-  },
-
-  async adminSetTierDisabled(_tierId: string, _disabled: boolean): Promise<Result> {
-    return { __kind__: "ok", ok: null };
-  },
-
-  async getCertificateByShareToken(_shareToken: string): Promise<Certificate | null> {
-    return null;
-  },
-
-  async getFeaturedCertificates(): Promise<Certificate[]> {
-    return MOCK_CERTIFICATES.filter((c) => c.featured);
-  },
-
-  async getTierDisabledStates() {
-    return [];
-  },
-  async adminGetStats(): Promise<AdminStats> {
-    return {
-      totalCertificates: BigInt(MOCK_CERTIFICATES.length),
-      certsByTier: [
-        ["beginner", BigInt(1)],
-        ["intermediate", BigInt(1)],
-        ["advanced", BigInt(1)],
-      ],
-    };
-  },
-
-  async adminManualIssueCertificate(
-    tierId: string,
-    info: CertificateInfo,
-  ): Promise<Result_1> {
-    const cert: Certificate = {
-      certId: generateCertId(),
-      certInfo: info,
-      tierId,
-      tierName: tierId.charAt(0).toUpperCase() + tierId.slice(1),
-      score: BigInt(30),
-      totalQuestions: BigInt(30),
-      issuedAt: BigInt(Date.now() * 1_000_000),
-      isValid: true,
-      featured: false,
-      shareToken: generateCertId(),
-    };
-    return { __kind__: "ok", ok: cert };
-  },
-
-  async adminRevokeOrReinstateCertificate(
-    _certId: string,
-    _isValid: boolean,
-  ): Promise<Result> {
-    return { __kind__: "ok", ok: null };
-  },
-
-  async adminSetAnnouncementBanner(
-    _text: string,
-    _isPinned: boolean,
-  ): Promise<void> {
-    return;
-  },
-
-  async adminUpdateMilestone(
-    _id: string,
-    _completed: boolean,
-  ): Promise<Result> {
-    return { __kind__: "ok", ok: null };
-  },
-
-  async askZenoAi(question: string): Promise<ZenoAiResponse> {
-    return {
-      success: true,
-      answer: `Great question about "${question}". In trading, knowledge is your edge — keep learning and stay disciplined. — DemonZeno`,
-    };
-  },
-
-  async getAcademyQuiz(
-    tierId: string,
-    _seed: bigint,
-  ): Promise<TierQuiz | null> {
-    return {
-      tierId,
-      tierName: tierId.charAt(0).toUpperCase() + tierId.slice(1),
-      questions: MOCK_QUESTIONS,
-    };
-  },
-
-  async getAnnouncementBanner(): Promise<AnnouncementBanner | null> {
-    return null;
-  },
-
-  async getCertificatesByTier(tierId: string): Promise<Certificate[]> {
-    return MOCK_CERTIFICATES.filter((c) => c.tierId === tierId);
-  },
-
-  async getQuizAttemptStats(): Promise<QuizAttemptStats[]> {
-    return [
-      { tierId: "beginner", totalAttempts: BigInt(42), passCount: BigInt(8) },
-      {
-        tierId: "intermediate",
-        totalAttempts: BigInt(21),
-        passCount: BigInt(3),
-      },
-      { tierId: "advanced", totalAttempts: BigInt(10), passCount: BigInt(1) },
-    ];
-  },
-
-  async getRoadmap(): Promise<RoadmapMilestone[]> {
-    return MOCK_ROADMAP;
-  },
-
-  async getTokenInfo(): Promise<TokenInfo> {
-    return MOCK_TOKEN_INFO;
-  },
-
-  async listAllCertificates(): Promise<Certificate[]> {
-    return MOCK_CERTIFICATES;
-  },
-
-  async searchCertificates(searchTerm: string): Promise<Certificate[]> {
-    const q = searchTerm.toLowerCase();
-    return MOCK_CERTIFICATES.filter(
-      (c) =>
-        c.certId.toLowerCase().includes(q) ||
-        c.certInfo.fullName.toLowerCase().includes(q) ||
-        c.certInfo.country.toLowerCase().includes(q) ||
-        c.tierName.toLowerCase().includes(q),
-    );
-  },
-
-  async submitQuizAndIssueCertificate(
-    tierId: string,
-    _answers: QuizAnswer[],
-    fullName: string,
-    fathersName: string,
-    country: string,
-    dateOfBirth: string,
-    email: string,
-    city: string,
-    _seed: bigint,
-    _fingerprint: string,
-  ): Promise<Result_1> {
-    const id = generateCertId();
-    const cert: Certificate = {
-      certId: id,
-      certInfo: { fullName, fathersName, country, dateOfBirth, email, city },
-      tierId,
-      tierName: tierId.charAt(0).toUpperCase() + tierId.slice(1),
-      score: BigInt(30),
-      totalQuestions: BigInt(30),
-      issuedAt: BigInt(Date.now() * 1_000_000),
-      isValid: true,
-      featured: false,
-      shareToken: generateCertId(),
-    };
-    return { __kind__: "ok", ok: cert };
-  },
-
-  async verifyCertificate(certId: string): Promise<Certificate | null> {
-    return MOCK_CERTIFICATES.find((c) => c.certId === certId) ?? null;
-  },
-
-  zenoAiTransform: async (input) => ({
-    status: input.response.status,
-    body: input.response.body,
-    headers: input.response.headers,
+  getCommunityStats: async (): Promise<CommunityStats> => ({
+    earlyBelieverCount: BigInt(42),
+    hypeCount: BigInt(17),
+    first100Count: BigInt(8),
+    interestCount: BigInt(93),
+    pledgeCount: BigInt(24),
+    submissionCount: BigInt(5),
   }),
 
-  async getAdminLessonRatings() {
-    return [];
-  },
+  getEarlyBelievers: async (): Promise<EarlyBeliever[]> => [
+    { handle: "@crypto_believer", timestamp: BigInt(Date.now()), index: BigInt(1) },
+    { handle: "@moon_hunter", timestamp: BigInt(Date.now()), index: BigInt(2) },
+    { handle: "@dmnz_fan", timestamp: BigInt(Date.now()), index: BigInt(3) },
+  ],
 
-  async getDailyActiveCounts() {
-    return [];
-  },
+  getHypeMessages: async (): Promise<HypeMessage[]> => [
+    { handle: "@zeno_fan", message: "DMNZ is the next 100x. Fair launch, real community!", timestamp: BigInt(Date.now()) },
+    { handle: "@believer99", message: "Following DemonZeno since day one. This is the real deal.", timestamp: BigInt(Date.now()) },
+  ],
 
-  async getFeaturedLesson(_tierId: string): Promise<string | null> {
-    return null;
-  },
+  getFirst100: async (): Promise<First100Entry[]> => [
+    { handle: "@og_holder_1", timestamp: BigInt(Date.now()), position: BigInt(1), isOG: true },
+    { handle: "@og_holder_2", timestamp: BigInt(Date.now()), position: BigInt(2), isOG: true },
+  ],
 
-  async getLessonCompletionTrends() {
-    return [];
-  },
+  getInterestSubmissions: async (): Promise<InterestEntry[]> => [
+    { handle: "@interested_1", timestamp: BigInt(Date.now()) },
+    { handle: "@interested_2", timestamp: BigInt(Date.now()) },
+  ],
 
-  async getLessonRatings(_tierId: string, _lessonId: string) {
-    return [];
-  },
+  submitEarlyBeliever: async (handle: string): Promise<Result_3> =>
+    makeOk({ handle, timestamp: BigInt(Date.now()), index: BigInt(99) }),
 
-  async getQuizFailMessage(_tierId: string): Promise<string | null> {
-    return null;
-  },
+  submitHypeMessage: async (handle: string, message: string): Promise<Result_1> =>
+    makeOk({ handle, message, timestamp: BigInt(Date.now()) }),
 
-  async logDailyActive(_date: string): Promise<void> {
-    return;
-  },
+  submitFirst100: async (handle: string): Promise<Result_2> =>
+    makeOk({ handle, timestamp: BigInt(Date.now()), position: BigInt(10), isOG: false }),
 
-  async logLessonCompletion(
-    _tierId: string,
-    _lessonId: string,
-    _timestamp: bigint,
-  ): Promise<void> {
-    return;
-  },
+  submitInterest: async (handle: string): Promise<Result> =>
+    makeOk({ handle, timestamp: BigInt(Date.now()) }),
 
-  async setFeaturedLesson(
-    _tierId: string,
-    _lessonId: string,
-    _passcode: string,
-  ): Promise<boolean> {
-    return true;
-  },
+  getPledgeCount: async (): Promise<bigint> => BigInt(24),
 
-  async setQuizFailMessage(
-    _tierId: string,
-    _message: string,
-    _passcode: string,
-  ): Promise<boolean> {
-    return true;
-  },
+  submitPledge: async (_name: string): Promise<bigint> => BigInt(25),
 
-  async submitCheckpointQuiz(
-    _tierId: string,
-    _score: bigint,
-  ): Promise<boolean> {
-    return true;
-  },
+  getCommunityPosts: async () => [
+    { id: BigInt(1), submitterHandle: "@dmnz_fan", description: "DMNZ to the moon!", timestamp: BigInt(Date.now()) },
+  ],
 
-  async submitLessonRating(
-    _tierId: string,
-    _lessonId: string,
-    _rating: bigint,
-  ): Promise<boolean> {
-    return true;
-  },
-
-  // ─── Learning Science APIs ─────────────────────────────────────────────────
-
-  async updateLessonMastery(
-    _lessonId: string,
-    _tier: string,
-    _confidenceScore: number,
-    _conceptCheckerScore: number,
-    _quizScore: number,
-  ): Promise<void> {
-    return;
-  },
-
-  async getLessonMastery(_lessonId: string): Promise<MasteryRecord | null> {
-    return null;
-  },
-
-  async getAllMasteryRecords(): Promise<MasteryRecord[]> {
-    return [];
-  },
-
-  async recordLessonCompleted(_lessonId: string): Promise<MonthlyChallenge> {
-    const month = new Date().toISOString().slice(0, 7);
-    return {
-      month,
-      lessonsCompleted: BigInt(1),
-      targetLessons: BigInt(10),
-      badgeEarned: false,
-    };
-  },
-
-  async getMonthlyChallenge(_month: string): Promise<MonthlyChallenge | null> {
-    return null;
-  },
-
-  async generateProgressShareLink(
-    _tiersCompleted: string[],
-    _certificatesEarned: string[],
-    _masteryLevels: [string, number][],
-  ): Promise<string> {
-    return `mock_share_${generateCertId()}`;
-  },
-
-  async getProgressSnapshot(_shareToken: string): Promise<ProgressSnapshot | null> {
-    return null;
-  },
-
-  async recordLessonTime(
-    _lessonId: string,
-    _tier: string,
-    _timeSeconds: bigint,
-  ): Promise<void> {
-    return;
-  },
-
-  async getLessonOfWeek(): Promise<LessonOfWeek | null> {
-    return null;
-  },
-
-  // ─── Admin A/B & Analytics APIs ───────────────────────────────────────────
-
-  async adminCreateABTest(
-    _passcode: string,
-    _questionId: string,
-    _versionAText: string,
-    _versionBText: string,
-  ): Promise<void> {
-    return;
-  },
-
-  async adminGetABTests(_passcode: string): Promise<ABTestRecord[]> {
-    return [];
-  },
-
-  async adminToggleABVersion(
-    _passcode: string,
-    _questionId: string,
-  ): Promise<void> {
-    return;
-  },
-
-  async recordABTestResult(
-    _questionId: string,
-    _version: string,
-    _passed: boolean,
-  ): Promise<void> {
-    return;
-  },
-
-  async adminGetEngagementData(_passcode: string): Promise<LessonEngagement[]> {
-    return [];
-  },
-
-  async adminGetMonthlyStats(_passcode: string): Promise<[string, bigint][]> {
-    return [];
-  },
-
-
-
-  async bulkRevokeCertificates(_certIds: string[]): Promise<Result_3> {
-    return { __kind__: "ok", ok: BigInt(_certIds.length) };
-  },
-
-  async checkCertificateDuplicate(
-    _fullName: string,
-    _email: string,
-    _tier: string,
-  ): Promise<boolean> {
-    return false;
-  },
-
-  async clearAdminLog(): Promise<void> {
-    return;
-  },
-
-  async createReferralLink(_referrerName: string): Promise<Result_2> {
-    return { __kind__: "ok", ok: `DMNZ-${generateCertId().slice(0, 6)}` };
-  },
-
-  async getAdminActivityLog(_limit: bigint) {
-    return [] as AdminActivityEntry[];
-  },
-
-  async getMyReferrals(_code: string): Promise<string[]> {
-    return [];
-  },
-
-  async getReferralStats(): Promise<Array<{ referrerName: string; code: string; createdAt: bigint; referralCount: bigint }>> {
-    return [];
-  },
-
-  async getLessonGoLiveDates(_tierId: bigint): Promise<Array<[bigint, bigint]>> {
-    return [];
-  },
-
-  async setLessonGoLiveDate(
-    _tierId: bigint,
-    _lessonId: bigint,
-    _goLiveDate: bigint,
-  ): Promise<Result> {
-    return { __kind__: "ok", ok: null };
-  },
-
-  async removeLessonGoLiveDate(_tierId: bigint, _lessonId: bigint): Promise<Result> {
-    return { __kind__: "ok", ok: null };
-  },
-
-  async trackReferral(_code: string, _refereeName: string): Promise<Result> {
-    return { __kind__: "ok", ok: null };
-  },
-
-  async getHallOfChampions(): Promise<Array<{ fullName: string; tiers: string[]; country: string; dateCompleted: bigint }>> {
-    return [];
-  },
-  async adminSetLessonOfWeek(
-    _passcode: string,
-    _lessonId: string,
-    _lessonTitle: string,
-    _tier: string,
-  ): Promise<void> {
-    return;
-  },
+  submitCommunityPost: async (_description: string, _handle: string): Promise<boolean> => true,
 };

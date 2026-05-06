@@ -12,6 +12,7 @@ type TokenInfo =
    ticker: text;
    totalSupply: text;
  };
+type Timestamp = int;
 type RoadmapMilestone = 
  record {
    completed: bool;
@@ -21,13 +22,80 @@ type RoadmapMilestone =
    title: text;
    year: text;
  };
+type Result_3 = 
+ variant {
+   err: text;
+   ok: EarlyBeliever;
+ };
+type Result_2 = 
+ variant {
+   err: text;
+   ok: First100Entry;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: HypeMessage;
+ };
 type Result = 
  variant {
    err: text;
-   ok;
+   ok: InterestEntry;
+ };
+type InterestEntry = 
+ record {
+   handle: text;
+   timestamp: Timestamp;
+ };
+type HypeMessage = 
+ record {
+   handle: text;
+   message: text;
+   timestamp: Timestamp;
+ };
+type First100Entry = 
+ record {
+   handle: text;
+   isOG: bool;
+   position: nat;
+   timestamp: Timestamp;
+ };
+type EarlyBeliever = 
+ record {
+   handle: text;
+   index: nat;
+   timestamp: Timestamp;
+ };
+type CommunitySubmission = 
+ record {
+   description: text;
+   id: nat;
+   submitterHandle: text;
+   timestamp: Timestamp;
+ };
+type CommunityStats = 
+ record {
+   earlyBelieverCount: nat;
+   first100Count: nat;
+   hypeCount: nat;
+   interestCount: nat;
+   pledgeCount: nat;
+   submissionCount: nat;
  };
 service : {
-  adminUpdateMilestone: (id: text, completed: bool) -> (Result);
+  getCommunityPosts: () -> (vec CommunitySubmission) query;
+  getCommunityStats: () -> (CommunityStats) query;
+  getEarlyBelievers: () -> (vec EarlyBeliever) query;
+  getFirst100: () -> (vec First100Entry) query;
+  getHypeMessages: () -> (vec HypeMessage) query;
+  getInterestSubmissions: () -> (vec InterestEntry) query;
+  getPledgeCount: () -> (nat) query;
   getRoadmap: () -> (vec RoadmapMilestone) query;
   getTokenInfo: () -> (TokenInfo) query;
+  submitCommunityPost: (description: text, handle: text) -> (bool);
+  submitEarlyBeliever: (handle: text) -> (Result_3);
+  submitFirst100: (handle: text) -> (Result_2);
+  submitHypeMessage: (handle: text, message: text) -> (Result_1);
+  submitInterest: (handle: text) -> (Result);
+  submitPledge: (name: text) -> (nat);
 }

@@ -8,7 +8,41 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const Result = IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text });
+export const Timestamp = IDL.Int;
+export const CommunitySubmission = IDL.Record({
+  'id' : IDL.Nat,
+  'submitterHandle' : IDL.Text,
+  'description' : IDL.Text,
+  'timestamp' : Timestamp,
+});
+export const CommunityStats = IDL.Record({
+  'earlyBelieverCount' : IDL.Nat,
+  'pledgeCount' : IDL.Nat,
+  'hypeCount' : IDL.Nat,
+  'interestCount' : IDL.Nat,
+  'first100Count' : IDL.Nat,
+  'submissionCount' : IDL.Nat,
+});
+export const EarlyBeliever = IDL.Record({
+  'timestamp' : Timestamp,
+  'handle' : IDL.Text,
+  'index' : IDL.Nat,
+});
+export const First100Entry = IDL.Record({
+  'isOG' : IDL.Bool,
+  'timestamp' : Timestamp,
+  'handle' : IDL.Text,
+  'position' : IDL.Nat,
+});
+export const HypeMessage = IDL.Record({
+  'message' : IDL.Text,
+  'timestamp' : Timestamp,
+  'handle' : IDL.Text,
+});
+export const InterestEntry = IDL.Record({
+  'timestamp' : Timestamp,
+  'handle' : IDL.Text,
+});
 export const RoadmapMilestone = IDL.Record({
   'id' : IDL.Text,
   'title' : IDL.Text,
@@ -27,17 +61,67 @@ export const TokenInfo = IDL.Record({
   'slogan' : IDL.Text,
   'distribution' : IDL.Text,
 });
+export const Result_3 = IDL.Variant({ 'ok' : EarlyBeliever, 'err' : IDL.Text });
+export const Result_2 = IDL.Variant({ 'ok' : First100Entry, 'err' : IDL.Text });
+export const Result_1 = IDL.Variant({ 'ok' : HypeMessage, 'err' : IDL.Text });
+export const Result = IDL.Variant({ 'ok' : InterestEntry, 'err' : IDL.Text });
 
 export const idlService = IDL.Service({
-  'adminUpdateMilestone' : IDL.Func([IDL.Text, IDL.Bool], [Result], []),
+  'getCommunityPosts' : IDL.Func([], [IDL.Vec(CommunitySubmission)], ['query']),
+  'getCommunityStats' : IDL.Func([], [CommunityStats], ['query']),
+  'getEarlyBelievers' : IDL.Func([], [IDL.Vec(EarlyBeliever)], ['query']),
+  'getFirst100' : IDL.Func([], [IDL.Vec(First100Entry)], ['query']),
+  'getHypeMessages' : IDL.Func([], [IDL.Vec(HypeMessage)], ['query']),
+  'getInterestSubmissions' : IDL.Func([], [IDL.Vec(InterestEntry)], ['query']),
+  'getPledgeCount' : IDL.Func([], [IDL.Nat], ['query']),
   'getRoadmap' : IDL.Func([], [IDL.Vec(RoadmapMilestone)], ['query']),
   'getTokenInfo' : IDL.Func([], [TokenInfo], ['query']),
+  'submitCommunityPost' : IDL.Func([IDL.Text, IDL.Text], [IDL.Bool], []),
+  'submitEarlyBeliever' : IDL.Func([IDL.Text], [Result_3], []),
+  'submitFirst100' : IDL.Func([IDL.Text], [Result_2], []),
+  'submitHypeMessage' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
+  'submitInterest' : IDL.Func([IDL.Text], [Result], []),
+  'submitPledge' : IDL.Func([IDL.Text], [IDL.Nat], []),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
-  const Result = IDL.Variant({ 'ok' : IDL.Null, 'err' : IDL.Text });
+  const Timestamp = IDL.Int;
+  const CommunitySubmission = IDL.Record({
+    'id' : IDL.Nat,
+    'submitterHandle' : IDL.Text,
+    'description' : IDL.Text,
+    'timestamp' : Timestamp,
+  });
+  const CommunityStats = IDL.Record({
+    'earlyBelieverCount' : IDL.Nat,
+    'pledgeCount' : IDL.Nat,
+    'hypeCount' : IDL.Nat,
+    'interestCount' : IDL.Nat,
+    'first100Count' : IDL.Nat,
+    'submissionCount' : IDL.Nat,
+  });
+  const EarlyBeliever = IDL.Record({
+    'timestamp' : Timestamp,
+    'handle' : IDL.Text,
+    'index' : IDL.Nat,
+  });
+  const First100Entry = IDL.Record({
+    'isOG' : IDL.Bool,
+    'timestamp' : Timestamp,
+    'handle' : IDL.Text,
+    'position' : IDL.Nat,
+  });
+  const HypeMessage = IDL.Record({
+    'message' : IDL.Text,
+    'timestamp' : Timestamp,
+    'handle' : IDL.Text,
+  });
+  const InterestEntry = IDL.Record({
+    'timestamp' : Timestamp,
+    'handle' : IDL.Text,
+  });
   const RoadmapMilestone = IDL.Record({
     'id' : IDL.Text,
     'title' : IDL.Text,
@@ -58,11 +142,35 @@ export const idlFactory = ({ IDL }) => {
     'slogan' : IDL.Text,
     'distribution' : IDL.Text,
   });
+  const Result_3 = IDL.Variant({ 'ok' : EarlyBeliever, 'err' : IDL.Text });
+  const Result_2 = IDL.Variant({ 'ok' : First100Entry, 'err' : IDL.Text });
+  const Result_1 = IDL.Variant({ 'ok' : HypeMessage, 'err' : IDL.Text });
+  const Result = IDL.Variant({ 'ok' : InterestEntry, 'err' : IDL.Text });
   
   return IDL.Service({
-    'adminUpdateMilestone' : IDL.Func([IDL.Text, IDL.Bool], [Result], []),
+    'getCommunityPosts' : IDL.Func(
+        [],
+        [IDL.Vec(CommunitySubmission)],
+        ['query'],
+      ),
+    'getCommunityStats' : IDL.Func([], [CommunityStats], ['query']),
+    'getEarlyBelievers' : IDL.Func([], [IDL.Vec(EarlyBeliever)], ['query']),
+    'getFirst100' : IDL.Func([], [IDL.Vec(First100Entry)], ['query']),
+    'getHypeMessages' : IDL.Func([], [IDL.Vec(HypeMessage)], ['query']),
+    'getInterestSubmissions' : IDL.Func(
+        [],
+        [IDL.Vec(InterestEntry)],
+        ['query'],
+      ),
+    'getPledgeCount' : IDL.Func([], [IDL.Nat], ['query']),
     'getRoadmap' : IDL.Func([], [IDL.Vec(RoadmapMilestone)], ['query']),
     'getTokenInfo' : IDL.Func([], [TokenInfo], ['query']),
+    'submitCommunityPost' : IDL.Func([IDL.Text, IDL.Text], [IDL.Bool], []),
+    'submitEarlyBeliever' : IDL.Func([IDL.Text], [Result_3], []),
+    'submitFirst100' : IDL.Func([IDL.Text], [Result_2], []),
+    'submitHypeMessage' : IDL.Func([IDL.Text, IDL.Text], [Result_1], []),
+    'submitInterest' : IDL.Func([IDL.Text], [Result], []),
+    'submitPledge' : IDL.Func([IDL.Text], [IDL.Nat], []),
   });
 };
 

@@ -1,121 +1,34 @@
-// Version: 3.0.0
-type ListInternal__219671756<T> = List__415060402<T>;
-type List__415060402<T> = List__790383201<T>;
-type List__790383201<T> =
+// Version: 1.0.0
+type CommunityPledge__153095779 =
+  {id : Nat; name : Text; timestamp : Timestamp__301639476};
+type CommunitySubmission__790638738 =
   {
-    var blockIndex : Nat__490723111;
-    var blocks : [var [var ?T]];
-    var elementIndex : Nat__490723111
+    description : Text;
+    id : Nat;
+    submitterHandle : Text;
+    timestamp : Timestamp__301639476
   };
+type Data__159895909<T> = {var count : Nat__490723111; elements : [var ?T]};
+type EarlyBeliever__326313195 =
+  {handle : Text; index : Nat; timestamp : Timestamp__301639476};
+type First100Entry__4684403 =
+  {
+    handle : Text;
+    isOG : Bool;
+    position : Nat;
+    timestamp : Timestamp__301639476
+  };
+type HypeMessage__561541474 =
+  {handle : Text; message : Text; timestamp : Timestamp__301639476};
+type InterestEntry__818514177 =
+  {handle : Text; timestamp : Timestamp__301639476};
+type Internal__667636161<T> =
+  {children : [var ?Node__92254746<T>]; data : Data__159895909<T>};
+type Leaf__520550824<T> = {data : Data__159895909<T>};
 type Nat__490723111 = Nat__920180692;
 type Nat__920180692 = Nat;
-type OldABTestRecord__26726611 =
-  {
-    activeVersion : Text;
-    questionId : Text;
-    versionAAttempts : Nat;
-    versionAPassCount : Nat;
-    versionAText : Text;
-    versionBAttempts : Nat;
-    versionBPassCount : Nat;
-    versionBText : Text
-  };
-type OldAdminAction__600603996 =
-  {
-    #bulkRevoked : {count : Nat};
-    #clearedLog : {};
-    #disabledTier : {tierId : Text};
-    #editedLesson : {lessonId : Text; tierId : Text};
-    #enabledTier : {tierId : Text};
-    #featuredCertificate : {certId : Text; featured : Bool};
-    #flaggedQuestion : {questionId : Text; tierId : Text};
-    #issuedCertificate :
-      {certId : Text; recipientName : Text; tierName : Text};
-    #removedSchedule : {lessonId : Nat; tierId : Nat};
-    #revokedCertificate : {certId : Text};
-    #scheduledLesson : {goLiveDate : Int; lessonId : Nat; tierId : Nat};
-    #setAnnouncement : {text : Text}
-  };
-type OldAdminActivityEntry__379237052 =
-  {action : OldAdminAction__600603996; id : Nat; timestamp : Int};
-type OldAnnouncementBanner__247768079 =
-  {isPinned : Bool; text : Text; updatedAt : Int};
-type OldCertificateInfo__313663563 =
-  {
-    city : Text;
-    country : Text;
-    dateOfBirth : Text;
-    email : Text;
-    fathersName : Text;
-    fullName : Text
-  };
-type OldCertificate__546286892 =
-  {
-    certId : Text;
-    certInfo : OldCertificateInfo__313663563;
-    featured : Bool;
-    isValid : Bool;
-    issuedAt : Int;
-    score : Nat;
-    shareToken : Text;
-    tierId : Text;
-    tierName : Text;
-    totalQuestions : Nat
-  };
-type OldDailyActiveLog__347096028 = {count : Nat; date : Text};
-type OldDripSchedule__733964500 =
-  {goLiveDate : Int; lessonId : Nat; tierId : Nat};
-type OldLessonCompletionLog__950957121 =
-  {completedAt : Int; lessonId : Text; tierId : Text};
-type OldLessonEngagement__131655877 =
-  {lessonId : Text; tier : Text; totalTimeSeconds : Nat; visitCount : Nat};
-type OldLessonOfWeek__311761605 =
-  {
-    expiresAt : Int;
-    lessonId : Text;
-    lessonTitle : Text;
-    setAt : Int;
-    tier : Text
-  };
-type OldLessonRating__313843391 =
-  {lessonId : Text; rating : Nat; tierId : Text; timestamp : Int};
-type OldMasteryRecord__190010446 =
-  {
-    conceptCheckerScore : Float;
-    confidenceScore : Float;
-    lessonId : Text;
-    masteryPct : Float;
-    quizScore : Float;
-    tier : Text;
-    updatedAt : Int
-  };
-type OldMonthlyLessonEvent__131788500 = {lessonId : Text; month : Text};
-type OldProgressSnapshot__257211620 =
-  {
-    certificatesEarned : [Text];
-    createdAt : Int;
-    masteryLevels : [(Text, Float)];
-    shareToken : Text;
-    tiersCompleted : [Text]
-  };
-type OldQuestionFailStat__167375174 =
-  {failCount : Nat; questionId : Text; tierId : Text; totalSeen : Nat};
-type OldQuizAttemptLog__990963410 =
-  {
-    fingerprint : Text;
-    passed : Bool;
-    score : Nat;
-    tierId : Text;
-    timestamp : Int
-  };
-type OldQuizAttemptStats__934441435 =
-  {passCount : Nat; tierId : Text; totalAttempts : Nat};
-type OldReferralRecord__465039703 =
-  {code : Text; createdAt : Int; referees : [Text]; referrerName : Text};
-type OldRoadmapMilestone__84282954 = RoadmapMilestone__956576536;
-type OldTierDisabledEntry__933119405 = {disabled : Bool; tierId : Text};
-type OldTierFailMessage__361878001 = {message : Text; tierId : Text};
-type OldTierFeaturedLesson__69852237 = {lessonId : Text; tierId : Text};
+type Node__92254746<T> =
+  {#internal : Internal__667636161<T>; #leaf : Leaf__520550824<T>};
 type RoadmapMilestone__956576536 =
   {
     completed : Bool;
@@ -125,45 +38,54 @@ type RoadmapMilestone__956576536 =
     title : Text;
     year : Text
   };
-actor ({
-  in ADMIN_PASSCODE : Text;
-  in abTests : ListInternal__219671756<OldABTestRecord__26726611>;
-  in adminLog : ListInternal__219671756<OldAdminActivityEntry__379237052>;
-  in adminLogIdCounter : {var value : Nat};
-  in announcementBanner : {var banner : ?OldAnnouncementBanner__247768079};
-  in attemptLogs : ListInternal__219671756<OldQuizAttemptLog__990963410>;
-  in attemptStats : ListInternal__219671756<OldQuizAttemptStats__934441435>;
-  in certIdCounter : {var value : Nat};
-  in certificates : ListInternal__219671756<OldCertificate__546286892>;
-  in dailyActiveLogs : ListInternal__219671756<OldDailyActiveLog__347096028>;
-  in disabledTiers : ListInternal__219671756<OldTierDisabledEntry__933119405>;
-  in dripSchedules : ListInternal__219671756<OldDripSchedule__733964500>;
-  in engagements : ListInternal__219671756<OldLessonEngagement__131655877>;
-  in flaggedQuestions : ListInternal__219671756<Text>;
-  in lessonCompletionLogs :
-    ListInternal__219671756<OldLessonCompletionLog__950957121>;
-  in lessonOfWeekHolder : {var item : ?OldLessonOfWeek__311761605};
-  in lessonRatings : ListInternal__219671756<OldLessonRating__313843391>;
-  in masteryRecords : ListInternal__219671756<OldMasteryRecord__190010446>;
-  in monthlyEvents :
-    ListInternal__219671756<OldMonthlyLessonEvent__131788500>;
-  in progressSnapshots :
-    ListInternal__219671756<OldProgressSnapshot__257211620>;
-  in questionFailStats :
-    ListInternal__219671756<OldQuestionFailStat__167375174>;
-  in referralRecords : ListInternal__219671756<OldReferralRecord__465039703>;
-  in roadmapMilestones :
-    ListInternal__219671756<OldRoadmapMilestone__84282954>;
-  in shareSnapshotCounter : {var value : Nat};
-  in tierFailMessages :
-    ListInternal__219671756<OldTierFailMessage__361878001>;
-  in tierFeaturedLessons :
-    ListInternal__219671756<OldTierFeaturedLesson__69852237>
-}, {
+type Timestamp__301639476 = Int;
+actor {
+  stable communityPledges :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CommunityPledge__153095779]];
+      var elementIndex : Nat__490723111
+    };
+  stable communitySubmissions :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CommunitySubmission__790638738]];
+      var elementIndex : Nat__490723111
+    };
+  stable earlyBelievers :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?EarlyBeliever__326313195]];
+      var elementIndex : Nat__490723111
+    };
+  stable earlyBelieversHandles :
+    {var root : Node__92254746<Text>; var size : Nat__490723111};
+  stable first100Handles :
+    {var root : Node__92254746<Text>; var size : Nat__490723111};
+  stable first100Pledges :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?First100Entry__4684403]];
+      var elementIndex : Nat__490723111
+    };
+  stable hypeMessages :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?HypeMessage__561541474]];
+      var elementIndex : Nat__490723111
+    };
+  stable interestHandles :
+    {var root : Node__92254746<Text>; var size : Nat__490723111};
+  stable interestSubmissions :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?InterestEntry__818514177]];
+      var elementIndex : Nat__490723111
+    };
   stable roadmapMilestones :
     {
       var blockIndex : Nat__490723111;
       var blocks : [var [var ?RoadmapMilestone__956576536]];
       var elementIndex : Nat__490723111
     }
-}) ;
+};

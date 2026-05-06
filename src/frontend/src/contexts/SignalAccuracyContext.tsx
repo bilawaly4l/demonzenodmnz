@@ -1,2 +1,2 @@
-// Removed — no longer used
+// Removed — signal features deleted
 export {};

@@ -1,22 +1,24 @@
 {
-  "overview": "DemonZeno (DMNZ) is the official token hub for the DemonZeno meme token launching on Blum. The site features the DMNZ brand story, roadmap, FAQ, and a guide for how to buy via the Blum Mini App.",
+  "overview": "DemonZeno (DMNZ) is a professional meme token information hub — a serious, dark-themed site covering the DMNZ fair launch, roadmap, DemonZeno brand and lore, credibility proof, community pledge wall, and buying guide. No academy, no admin, no AI — pure token info with a manifesto-grade design.",
   "features": [
-    "DMNZ token info and brand story",
-    "Roadmap with milestone cards",
-    "How to buy via Blum Mini App",
-    "FAQ accordion",
-    "Countdown timer to April 2, 2027 launch",
-    "Social links (Binance Square, Twitter)",
-    "Dark theme only premium design"
+    "DMNZ token info hub — fair launch, roadmap, tokenomics-free explainer",
+    "DemonZeno brand and lore — origin story, villain arc, character traits, quotes wall",
+    "Credibility and trust sections — whitepaper, transparency page, verified project badge, No Rugs banner",
+    "Community pledge wall and early believer submissions",
+    "Launch countdown and D-Day section for April 2, 2027 Blum launch",
+    "Post-launch communication plan and burn event preview for January 1, 2028",
+    "Professional dark glassmorphism design — uppercase bold condensed headings, cinematic animations",
+    "Full dead-code cleanup — 25 deleted backend stubs and 6 orphaned frontend pages removed"
   ],
-  "category": "crypto-web3",
+  "category": "crypto-token-info",
   "tags": [
     "dmnz",
-    "meme-token",
-    "blum",
-    "trading",
+    "meme-coin",
     "crypto",
-    "token-launch"
+    "blum",
+    "token-info",
+    "fair-launch",
+    "demonzeno"
   ],
-  "last_updated": "2026-05-04T12:19:00.286Z"
+  "last_updated": "2026-05-05T17:19:21.571Z"
 }

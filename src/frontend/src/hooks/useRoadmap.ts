@@ -1,7 +1,7 @@
+import { createActor } from "@/backend";
+import type { RoadmapMilestone, TokenInfo } from "@/backend";
 import { useActor } from "@caffeineai/core-infrastructure";
 import { useQuery } from "@tanstack/react-query";
-import { createActor } from "../backend";
-import type { RoadmapMilestone, TokenInfo } from "../types";
 
 export function useRoadmap() {
   const { actor, isFetching } = useActor(createActor);

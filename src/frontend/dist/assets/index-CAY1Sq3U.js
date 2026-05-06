@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Home-DtjxMNcm.js","assets/button-CgHQK2cC.js","assets/NotFound-Bqvyhnzz.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Home-CD_uka7U.js","assets/eye-DhjFN5IQ.js","assets/triangle-alert-BcdbMM-q.js","assets/circle-check-big-DwIltcMs.js","assets/circle-x-b-NvWDtT.js","assets/ban-LT8flrl5.js","assets/NotFound-CX_01VuR.js","assets/arrow-left-UQKB3RPw.js","assets/Transparency-BdY2bR04.js","assets/OfficialLinks-DvGFF54I.js","assets/CommunityGuidelines-D1cXg1Sa.js","assets/LaunchAnnouncement-HGCd_G79.js","assets/PostLaunchPlan-Chkfid7c.js","assets/trending-down-DO7ioWxh.js","assets/LegalDisclaimer-DVT1AdyF.js","assets/WhyDemonZeno-DYXwScbE.js","assets/Changelog-BytD-YI0.js","assets/RiskDisclosure-B5Jw1BQW.js","assets/LessonsFromFailures-BMsvxwG_.js"])))=>i.map(i=>d[i]);
 var __defProp = Object.defineProperty;
 var __typeError = (msg) => {
   throw TypeError(msg);
@@ -601,10 +601,10 @@ function concatBytes(...arrays) {
     sum += a2.length;
   }
   const res = new Uint8Array(sum);
-  for (let i = 0, pad = 0; i < arrays.length; i++) {
+  for (let i = 0, pad2 = 0; i < arrays.length; i++) {
     const a2 = arrays[i];
-    res.set(a2, pad);
-    pad += a2.length;
+    res.set(a2, pad2);
+    pad2 += a2.length;
   }
   return res;
 }
@@ -15145,7 +15145,6 @@ function checkDCE$1() {
   reactDom.exports = reactDom_production;
 }
 var reactDomExports = reactDom.exports;
-const ReactDOM$2 = /* @__PURE__ */ getDefaultExportFromCjs(reactDomExports);
 /**
  * @license React
  * react-dom-client.production.js
@@ -31602,11 +31601,89 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$6 = [
+const __iconNode$c = [
   ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
   ["path", { d: "M12 19V5", key: "x0mq9r" }]
 ];
-const ArrowUp = createLucideIcon("arrow-up", __iconNode$6);
+const ArrowUp = createLucideIcon("arrow-up", __iconNode$c);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$b = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$b);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$a = [
+  ["circle", { cx: "8", cy: "8", r: "6", key: "3yglwk" }],
+  ["path", { d: "M18.09 10.37A6 6 0 1 1 10.34 18", key: "t5s6rm" }],
+  ["path", { d: "M7 6h1v4", key: "1obek4" }],
+  ["path", { d: "m16.71 13.88.7.71-2.82 2.82", key: "1rbuyh" }]
+];
+const Coins = createLucideIcon("coins", __iconNode$a);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$9 = [
+  [
+    "path",
+    {
+      d: "M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z",
+      key: "1vdc57"
+    }
+  ],
+  ["path", { d: "M5 21h14", key: "11awu3" }]
+];
+const Crown = createLucideIcon("crown", __iconNode$9);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$8 = [
+  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
+  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
+  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+];
+const ExternalLink = createLucideIcon("external-link", __iconNode$8);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$7 = [
+  [
+    "path",
+    {
+      d: "M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z",
+      key: "96xj49"
+    }
+  ]
+];
+const Flame = createLucideIcon("flame", __iconNode$7);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$6 = [
+  ["path", { d: "M4 12h16", key: "1lakjw" }],
+  ["path", { d: "M4 18h16", key: "19g7jn" }],
+  ["path", { d: "M4 6h16", key: "1o0s65" }]
+];
+const Menu = createLucideIcon("menu", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -31614,12 +31691,24 @@ const ArrowUp = createLucideIcon("arrow-up", __iconNode$6);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$5 = [
-  ["circle", { cx: "8", cy: "8", r: "6", key: "3yglwk" }],
-  ["path", { d: "M18.09 10.37A6 6 0 1 1 10.34 18", key: "t5s6rm" }],
-  ["path", { d: "M7 6h1v4", key: "1obek4" }],
-  ["path", { d: "m16.71 13.88.7.71-2.82 2.82", key: "1rbuyh" }]
+  [
+    "path",
+    {
+      d: "M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z",
+      key: "m3kijz"
+    }
+  ],
+  [
+    "path",
+    {
+      d: "m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z",
+      key: "1fmvmk"
+    }
+  ],
+  ["path", { d: "M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0", key: "1f8sc4" }],
+  ["path", { d: "M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5", key: "qeys4" }]
 ];
-const Coins = createLucideIcon("coins", __iconNode$5);
+const Rocket = createLucideIcon("rocket", __iconNode$5);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -31627,16 +31716,15 @@ const Coins = createLucideIcon("coins", __iconNode$5);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$4 = [
-  ["path", { d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8", key: "5wwlr5" }],
   [
     "path",
     {
-      d: "M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
-      key: "1d0kgt"
+      d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
+      key: "oel41y"
     }
   ]
 ];
-const House = createLucideIcon("house", __iconNode$4);
+const Shield = createLucideIcon("shield", __iconNode$4);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -31644,18 +31732,6 @@ const House = createLucideIcon("house", __iconNode$4);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$3 = [
-  ["path", { d: "M4 12h16", key: "1lakjw" }],
-  ["path", { d: "M4 18h16", key: "19g7jn" }],
-  ["path", { d: "M4 6h16", key: "1o0s65" }]
-];
-const Menu = createLucideIcon("menu", __iconNode$3);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$2 = [
   [
     "path",
     {
@@ -31664,7 +31740,20 @@ const __iconNode$2 = [
     }
   ]
 ];
-const Twitter = createLucideIcon("twitter", __iconNode$2);
+const Twitter = createLucideIcon("twitter", __iconNode$3);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$2 = [
+  ["path", { d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", key: "1yyitq" }],
+  ["path", { d: "M16 3.128a4 4 0 0 1 0 7.744", key: "16gr8j" }],
+  ["path", { d: "M22 21v-2a4 4 0 0 0-3-3.87", key: "kshegd" }],
+  ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }]
+];
+const Users = createLucideIcon("users", __iconNode$2);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -31701,38 +31790,40 @@ function BackToTop() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
   if (!visible) return null;
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
     "button",
     {
       type: "button",
       "data-ocid": "back_to_top.button",
-      onClick: scrollToTop,
+      onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }),
       "aria-label": "Back to top",
-      className: "btn-back-to-top btn-micro group",
-      title: "Back to top",
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          ArrowUp,
-          {
-            className: "w-5 h-5 transition-transform duration-200 group-hover:-translate-y-0.5",
-            strokeWidth: 2.5
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "span",
-          {
-            "aria-hidden": "true",
-            className: "absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300",
-            style: {
-              boxShadow: "0 0 16px oklch(0.65 0.15 190 / 0.5)"
-            }
-          }
-        )
-      ]
+      style: {
+        position: "fixed",
+        bottom: "2rem",
+        right: "2rem",
+        width: "2.75rem",
+        height: "2.75rem",
+        background: "#DC143C",
+        color: "#ffffff",
+        border: "none",
+        borderRadius: "2px",
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 40,
+        transition: "background-color 0.25s ease-out, transform 0.2s ease-out"
+      },
+      onMouseEnter: (e) => {
+        e.currentTarget.style.backgroundColor = "#c01234";
+        e.currentTarget.style.transform = "translateY(-2px)";
+      },
+      onMouseLeave: (e) => {
+        e.currentTarget.style.backgroundColor = "#DC143C";
+        e.currentTarget.style.transform = "translateY(0)";
+      },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUp, { className: "w-5 h-5", strokeWidth: 2.5 })
     }
   );
 }
@@ -31850,261 +31941,143 @@ function IconBase(props) {
 function SiBinance(props) {
   return GenIcon({ "attr": { "role": "img", "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "d": "M16.624 13.9202l2.7175 2.7154-7.353 7.353-7.353-7.352 2.7175-2.7164 4.6355 4.6595 4.6356-4.6595zm4.6366-4.6366L24 12l-2.7154 2.7164L18.5682 12l2.6924-2.7164zm-9.272.001l2.7163 2.6914-2.7164 2.7174v-.001L9.2721 12l2.7164-2.7154zm-9.2722-.001L5.4088 12l-2.6914 2.6924L0 12l2.7164-2.7164zM11.9885.0115l7.353 7.329-2.7174 2.7154-4.6356-4.6356-4.6355 4.6595-2.7174-2.7154 7.353-7.353z" }, "child": [] }] })(props);
 }
-const NAV_LINKS = [
-  { label: "Home", href: "/", isRoute: true },
-  {
-    label: "DMNZ Token",
-    href: "#dmnz-token",
-    isRoute: false,
-    section: "dmnz-token"
-  },
-  {
-    label: "Roadmap",
-    href: "#roadmap",
-    isRoute: false,
-    section: "roadmap"
-  }
-];
-const FOOTER_NAV = [
-  { label: "DMNZ Token", href: "#dmnz-token" },
-  { label: "Roadmap", href: "#roadmap" },
-  { label: "How to Buy", href: "#dmnz-token" },
-  { label: "FAQ", href: "#dmnz-token" }
-];
-const SOCIAL_LINKS = [
-  {
-    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SiBinance, { className: "w-4 h-4" }),
-    label: "Binance Square",
-    handle: "@Demon_Zeno",
-    url: "https://www.binance.com/en/square/profile/@Demon_Zeno"
-  },
-  {
-    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Twitter, { className: "w-4 h-4" }),
-    label: "Twitter / X",
-    handle: "@ZenoDemon",
-    url: "https://twitter.com/ZenoDemon"
-  }
-];
-function scrollToSection(href) {
-  const el = document.querySelector(href);
-  el == null ? void 0 : el.scrollIntoView({ behavior: "smooth" });
+const LAUNCH_DATE = /* @__PURE__ */ new Date("2027-04-02T00:00:00Z");
+function getTimeLeft() {
+  const now2 = Date.now();
+  const diff = LAUNCH_DATE.getTime() - now2;
+  if (diff <= 0) return null;
+  const days = Math.floor(diff / (1e3 * 60 * 60 * 24));
+  const hours = Math.floor(diff % (1e3 * 60 * 60 * 24) / (1e3 * 60 * 60));
+  const minutes = Math.floor(diff % (1e3 * 60 * 60) / (1e3 * 60));
+  const seconds = Math.floor(diff % (1e3 * 60) / 1e3);
+  return { days, hours, minutes, seconds };
 }
-function Navbar() {
-  const [mobileOpen, setMobileOpen] = reactExports.useState(false);
-  const [scrolled, setScrolled] = reactExports.useState(false);
-  const routerState = useRouterState();
-  const isHome = routerState.location.pathname === "/";
-  reactExports.useState(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 20);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  });
-  function handleNavClick(link) {
-    setMobileOpen(false);
-    if (!link.isRoute && link.href.startsWith("#")) {
-      if (!isHome) {
-        window.location.href = `/${link.href}`;
-      } else {
-        scrollToSection(link.href);
-      }
-    }
-  }
+function pad(n) {
+  return String(n).padStart(2, "0");
+}
+function CountdownBar() {
+  const [timeLeft, setTimeLeft] = reactExports.useState(getTimeLeft);
+  reactExports.useEffect(() => {
+    const id = setInterval(() => setTimeLeft(getTimeLeft()), 1e3);
+    return () => clearInterval(id);
+  }, []);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "header",
+    "div",
     {
-      "data-ocid": "navbar.panel",
-      className: `sticky top-0 z-40 w-full transition-all duration-300 ${scrolled ? "bg-card/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-card/80 backdrop-blur-sm border-b border-border/50"}`,
+      "data-ocid": "countdown_bar.panel",
+      className: "w-full flex items-center justify-between px-4",
+      style: {
+        height: "38px",
+        background: "#0a0a0a",
+        borderBottom: "1px solid var(--primary)",
+        flexShrink: 0,
+        zIndex: 50
+      },
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "container mx-auto px-4 h-16 flex items-center justify-between", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Link,
-            {
-              to: "/",
-              "data-ocid": "navbar.home.link",
-              className: "flex items-center gap-2 group",
-              "aria-label": "DemonZeno home",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-lg bg-primary flex items-center justify-center group-hover:scale-105 transition-smooth", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Zap,
-                  {
-                    className: "w-4 h-4 text-primary-foreground",
-                    strokeWidth: 2.5
-                  }
-                ) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display font-bold text-lg text-foreground tracking-tight", children: [
-                  "Demon",
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Zeno" })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border hidden sm:inline", children: "DMNZ" })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "hidden md:flex items-center gap-1", children: NAV_LINKS.map((link) => {
-            const isCurrent = link.isRoute ? routerState.location.pathname === link.href : false;
-            if (link.isRoute) {
-              return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Link,
-                {
-                  to: link.href,
-                  "data-ocid": `navbar.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
-                  className: `px-3 py-2 rounded-md text-sm font-medium transition-smooth flex items-center gap-1.5 ${isCurrent ? "nav-link-active" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`,
-                  children: link.label
-                }
-              ) }, link.href);
-            }
-            return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "button",
-              {
-                type: "button",
-                "data-ocid": `navbar.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
-                onClick: () => handleNavClick(link),
-                className: "px-3 py-2 rounded-md text-sm font-medium transition-smooth flex items-center gap-1.5 text-muted-foreground hover:text-foreground hover:bg-muted",
-                children: [
-                  link.label === "DMNZ Token" && /* @__PURE__ */ jsxRuntimeExports.jsx(Coins, { className: "w-3.5 h-3.5" }),
-                  link.label
-                ]
-              }
-            ) }, link.href);
-          }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              "data-ocid": "navbar.mobile_menu.toggle",
-              className: "md:hidden p-2 rounded-md hover:bg-muted transition-smooth",
-              onClick: () => setMobileOpen((v2) => !v2),
-              "aria-label": mobileOpen ? "Close menu" : "Open menu",
-              "aria-expanded": mobileOpen,
-              children: mobileOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-5 h-5" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, { className: "w-5 h-5" })
-            }
-          ) })
-        ] }),
-        mobileOpen && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "md:hidden border-t border-border bg-card", children: /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "container mx-auto px-4 py-4 flex flex-col gap-1", children: NAV_LINKS.map((link) => {
-          if (link.isRoute) {
-            return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Link,
-              {
-                to: link.href,
-                "data-ocid": `navbar.mobile.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
-                onClick: () => setMobileOpen(false),
-                className: "flex items-center gap-2 w-full px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-muted-foreground hover:text-foreground hover:bg-muted",
-                children: [
-                  link.label === "Home" && /* @__PURE__ */ jsxRuntimeExports.jsx(House, { className: "w-4 h-4" }),
-                  link.label
-                ]
-              }
-            ) }, link.href);
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "span",
+          {
+            className: "hidden sm:block text-xs font-bold uppercase tracking-widest",
+            style: {
+              color: "var(--primary)",
+              letterSpacing: "0.14em",
+              whiteSpace: "nowrap"
+            },
+            children: "DMNZ LAUNCHES ON BLUM"
           }
-          return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              "data-ocid": `navbar.mobile.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
-              onClick: () => handleNavClick(link),
-              className: "flex items-center gap-2 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-smooth text-muted-foreground hover:text-foreground hover:bg-muted",
-              children: [
-                link.label === "DMNZ Token" && /* @__PURE__ */ jsxRuntimeExports.jsx(Coins, { className: "w-4 h-4" }),
-                link.label
-              ]
-            }
-          ) }, link.href);
-        }) }) })
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "span",
+          {
+            className: "sm:hidden text-xs font-bold uppercase tracking-widest",
+            style: { color: "var(--primary)", letterSpacing: "0.12em" },
+            children: "DMNZ"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1.5 font-mono text-xs font-bold", children: timeLeft ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-0.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: "tabular-nums",
+                style: { color: "var(--foreground)" },
+                children: pad(timeLeft.days)
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--muted-foreground)" }, children: "D" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--muted-foreground)" }, children: ":" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-0.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: "tabular-nums",
+                style: { color: "var(--foreground)" },
+                children: pad(timeLeft.hours)
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--muted-foreground)" }, children: "H" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--muted-foreground)" }, children: ":" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-0.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: "tabular-nums",
+                style: { color: "var(--foreground)" },
+                children: pad(timeLeft.minutes)
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--muted-foreground)" }, children: "M" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--muted-foreground)" }, children: ":" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-0.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: "tabular-nums",
+                style: { color: "var(--primary)" },
+                children: pad(timeLeft.seconds)
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--muted-foreground)" }, children: "S" })
+          ] })
+        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "span",
+          {
+            className: "uppercase tracking-widest font-bold",
+            style: { color: "var(--primary)" },
+            children: "DMNZ IS LIVE ON BLUM"
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "a",
+          {
+            href: "https://app.binance.com/uni-qr/cpro/Demon_Zeno?l=en&r=KGTBUDHQ&uc=app_square_share_link&us=copylink",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            "data-ocid": "countdown_bar.follow.link",
+            className: "hidden sm:flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-smooth",
+            style: {
+              color: "var(--muted-foreground)",
+              letterSpacing: "0.1em",
+              whiteSpace: "nowrap"
+            },
+            onMouseEnter: (e) => {
+              e.currentTarget.style.color = "var(--primary)";
+            },
+            onMouseLeave: (e) => {
+              e.currentTarget.style.color = "var(--muted-foreground)";
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(SiBinance, { className: "w-3 h-3" }),
+              "FOLLOW @Demon_Zeno"
+            ]
+          }
+        )
       ]
     }
   );
-}
-function Footer() {
-  const year = (/* @__PURE__ */ new Date()).getFullYear();
-  const hostname = encodeURIComponent(window.location.hostname);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { "data-ocid": "footer.panel", className: "bg-card border-t border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto px-4 py-14", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-10 mb-10", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-4 md:col-span-1", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-lg bg-primary flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Zap,
-            {
-              className: "w-4 h-4 text-primary-foreground",
-              strokeWidth: 2.5
-            }
-          ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display font-bold text-foreground text-lg", children: [
-            "Demon",
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "Zeno" })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border", children: "DMNZ" })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm italic font-medium leading-relaxed max-w-sm", children: "“Master the chart, master yourself. Born from darkness, forged in discipline.”" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs leading-relaxed max-w-sm", children: "DMNZ token information for community purposes only. Not financial advice." })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-semibold text-foreground text-sm uppercase tracking-wider", children: "Navigate" }),
-        FOOTER_NAV.map(({ label, href }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            "data-ocid": `footer.nav.${label.toLowerCase().replace(/\s+/g, "_")}.link`,
-            onClick: () => {
-              var _a3;
-              if (href.startsWith("#")) {
-                (_a3 = document.querySelector(href)) == null ? void 0 : _a3.scrollIntoView({ behavior: "smooth" });
-              } else {
-                window.location.href = href;
-              }
-            },
-            className: "text-muted-foreground text-sm hover:text-primary transition-smooth text-left w-fit",
-            children: label
-          },
-          `${label}-${href}`
-        ))
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-semibold text-foreground text-sm uppercase tracking-wider", children: "Follow" }),
-        SOCIAL_LINKS.map(({ icon, label, handle, url }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "a",
-          {
-            href: url,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            "data-ocid": `footer.social.${label.toLowerCase().replace(/\s+\/\s+|\s+/g, "_")}.link`,
-            className: "flex items-center gap-2 text-muted-foreground text-sm hover:text-primary transition-smooth w-fit",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary/70", children: icon }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: handle })
-            ]
-          },
-          label
-        ))
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground text-xs", children: [
-        "© ",
-        year,
-        ".",
-        " ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "a",
-          {
-            href: `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${hostname}`,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "hover:text-primary transition-smooth",
-            children: "Built with love using caffeine.ai"
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs", children: "DemonZeno — DMNZ Token" })
-    ] })
-  ] }) });
-}
-function Layout() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen flex flex-col bg-background", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {})
-  ] });
 }
 function ScrollProgress() {
   const barRef = reactExports.useRef(null);
@@ -32125,120 +32098,870 @@ function ScrollProgress() {
     {
       ref: barRef,
       "data-ocid": "scroll_progress.panel",
-      className: "progress-bar",
-      "aria-hidden": "true"
+      "aria-hidden": "true",
+      style: {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        height: "2px",
+        width: "0%",
+        backgroundColor: "#DC143C",
+        zIndex: 9999,
+        transition: "width 0.1s ease"
+      }
     }
   );
 }
-const ADMIN_PASSCODE = "2420075112009BILAWALPRAKRITI";
-const CLICK_THRESHOLD = 5;
-const AdminSessionContext = reactExports.createContext(
-  null
-);
-function SessionProvider({ children }) {
-  const [isAdminUnlocked, setIsAdminUnlocked] = reactExports.useState(() => {
-    try {
-      return sessionStorage.getItem("dz_admin_unlocked") === "1";
-    } catch {
-      return false;
-    }
-  });
-  const [adminClickCount, setAdminClickCount] = reactExports.useState(0);
-  const [showPasscodeModal, setShowPasscodeModal] = reactExports.useState(false);
-  const clickResetTimer = reactExports.useRef(null);
-  const onHeroImageClick = reactExports.useCallback(() => {
-    if (clickResetTimer.current) clearTimeout(clickResetTimer.current);
-    setAdminClickCount((prev) => {
-      const newCount = prev + 1;
-      if (newCount >= CLICK_THRESHOLD) {
-        setShowPasscodeModal(true);
-        return 0;
-      }
-      clickResetTimer.current = setTimeout(() => setAdminClickCount(0), 3e4);
-      return newCount;
-    });
-  }, []);
-  const submitPasscode = reactExports.useCallback((passcode) => {
-    if (passcode === ADMIN_PASSCODE) {
-      setIsAdminUnlocked(true);
-      setShowPasscodeModal(false);
-      try {
-        sessionStorage.setItem("dz_admin_unlocked", "1");
-      } catch {
-      }
-      return true;
-    }
-    return false;
-  }, []);
-  const dismissModal = reactExports.useCallback(() => {
-    setShowPasscodeModal(false);
-    setAdminClickCount(0);
-  }, []);
-  const lockAdmin = reactExports.useCallback(() => {
-    setIsAdminUnlocked(false);
-    try {
-      sessionStorage.removeItem("dz_admin_unlocked");
-    } catch {
-    }
-  }, []);
-  const adminValue = reactExports.useMemo(
-    () => ({
-      isAdminUnlocked,
-      adminClickCount,
-      showPasscodeModal,
-      onHeroImageClick,
-      submitPasscode,
-      dismissModal,
-      lockAdmin
-    }),
-    [
-      isAdminUnlocked,
-      adminClickCount,
-      showPasscodeModal,
-      onHeroImageClick,
-      submitPasscode,
-      dismissModal,
-      lockAdmin
-    ]
-  );
+const NAV_LINKS = [
+  {
+    label: "Token",
+    href: "#token",
+    isRoute: false,
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Coins, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Story",
+    href: "#story",
+    isRoute: false,
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Community",
+    href: "#community",
+    isRoute: false,
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Users, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "D-Day",
+    href: "#dday",
+    isRoute: false,
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Flame, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Roadmap",
+    href: "#roadmap",
+    isRoute: false,
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Rocket, { className: "w-3.5 h-3.5" })
+  }
+];
+const MORE_LINKS = [
+  {
+    label: "Transparency",
+    href: "/transparency",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Shield, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Why DemonZeno",
+    href: "/why-demonzeno",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Official Links",
+    href: "/official-links",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ExternalLink, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Launch April 2, 2027",
+    href: "/launch",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Flame, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Post-Launch & Burn",
+    href: "/post-launch",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Rocket, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Community Guidelines",
+    href: "/community-guidelines",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Users, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Risk Disclosure",
+    href: "/risk-disclosure",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Shield, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Legal Disclaimer",
+    href: "/legal",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Shield, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Lessons from Failures",
+    href: "/lessons-from-failures",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Coins, { className: "w-3.5 h-3.5" })
+  },
+  {
+    label: "Changelog",
+    href: "/changelog",
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Coins, { className: "w-3.5 h-3.5" })
+  }
+];
+const FOOTER_OFFICIAL = [
+  { label: "Official Links", href: "/official-links", external: false },
+  { label: "Launch Announcement", href: "/launch", external: false },
+  { label: "Post-Launch & Burn Plan", href: "/post-launch", external: false },
+  {
+    label: "Binance Square @Demon_Zeno",
+    href: "https://app.binance.com/uni-qr/cpro/Demon_Zeno?l=en&r=KGTBUDHQ&uc=app_square_share_link&us=copylink",
+    external: true
+  }
+];
+const FOOTER_LEGAL = [
+  { label: "Legal Disclaimer", href: "/legal" },
+  { label: "Risk Disclosure", href: "/risk-disclosure" },
+  { label: "Community Guidelines", href: "/community-guidelines" },
+  { label: "Changelog", href: "/changelog" }
+];
+const FOOTER_ABOUT = [
+  { label: "Transparency", href: "/transparency" },
+  { label: "Why DemonZeno?", href: "/why-demonzeno" },
+  { label: "Lessons from Failures", href: "/lessons-from-failures" }
+];
+const SOCIAL_LINKS = [
+  {
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SiBinance, { className: "w-4 h-4" }),
+    label: "@Demon_Zeno on Binance Square",
+    href: "https://app.binance.com/uni-qr/cpro/Demon_Zeno?l=en&r=KGTBUDHQ&uc=app_square_share_link&us=copylink"
+  },
+  {
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Twitter, { className: "w-4 h-4" }),
+    label: "@ZenoDemon on Twitter",
+    href: "https://twitter.com/ZenoDemon"
+  }
+];
+function scrollToSection(href) {
+  var _a3;
+  (_a3 = document.querySelector(href)) == null ? void 0 : _a3.scrollIntoView({ behavior: "smooth" });
+}
+function useScrollAnimations() {
+  const observerRef = reactExports.useRef(null);
   reactExports.useEffect(() => {
-    document.documentElement.classList.add("dark");
-    document.documentElement.classList.remove("light");
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        var _a3;
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            (_a3 = observerRef.current) == null ? void 0 : _a3.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -48px 0px" }
+    );
+    const targets = document.querySelectorAll(
+      ".scroll-anim, .scroll-anim-left, .scroll-anim-right"
+    );
+    for (const el of targets) {
+      observerRef.current.observe(el);
+    }
+    return () => {
+      var _a3;
+      return (_a3 = observerRef.current) == null ? void 0 : _a3.disconnect();
+    };
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(AdminSessionContext.Provider, { value: adminValue, children });
 }
-function useSession() {
-  const ctx = reactExports.useContext(AdminSessionContext);
-  if (!ctx) throw new Error("useSession must be used within SessionProvider");
-  return ctx;
+function Navbar() {
+  const [mobileOpen, setMobileOpen] = reactExports.useState(false);
+  const [moreOpen, setMoreOpen] = reactExports.useState(false);
+  const [scrolled, setScrolled] = reactExports.useState(false);
+  const moreRef = reactExports.useRef(null);
+  const routerState = useRouterState();
+  const isHome = routerState.location.pathname === "/";
+  reactExports.useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 20);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  reactExports.useEffect(() => {
+    function onClickOutside(e) {
+      if (moreRef.current && !moreRef.current.contains(e.target)) {
+        setMoreOpen(false);
+      }
+    }
+    if (moreOpen) document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, [moreOpen]);
+  function handleNavClick(link) {
+    setMobileOpen(false);
+    if (!link.isRoute && link.href.startsWith("#")) {
+      if (!isHome) {
+        window.location.href = `/${link.href}`;
+      } else {
+        scrollToSection(link.href);
+      }
+    }
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "header",
+    {
+      "data-ocid": "navbar.panel",
+      className: `sticky top-0 z-40 w-full transition-smooth ${scrolled ? "bg-card/95 backdrop-blur-md border-b border-[var(--border)]" : "bg-card/80 backdrop-blur-sm border-b border-[rgba(255,255,255,0.04)]"}`,
+      style: scrolled ? { boxShadow: "0 1px 0 rgba(220,20,60,0.12)" } : void 0,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "container mx-auto px-4 h-14 flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Link,
+            {
+              to: "/",
+              "data-ocid": "navbar.home.link",
+              className: "flex items-center gap-2 group",
+              "aria-label": "DemonZeno home",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    className: "w-7 h-7 flex items-center justify-center",
+                    style: { background: "var(--primary)", borderRadius: "2px" },
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-3.5 h-3.5 text-white", strokeWidth: 3 })
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "span",
+                  {
+                    className: "font-display font-black text-base tracking-tight",
+                    style: { letterSpacing: "-0.02em" },
+                    children: [
+                      "DEMON",
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--primary)" }, children: "ZENO" })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    className: "text-xs font-mono hidden sm:inline px-1.5 py-0.5",
+                    style: {
+                      color: "var(--muted-foreground)",
+                      background: "var(--muted)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "2px",
+                      letterSpacing: "0.08em"
+                    },
+                    children: "DMNZ"
+                  }
+                )
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "hidden md:flex items-center gap-0.5", children: [
+            NAV_LINKS.map((link) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                "data-ocid": `navbar.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
+                onClick: () => handleNavClick(link),
+                className: "flex items-center gap-1.5 px-3 py-2 text-xs font-bold uppercase tracking-wider transition-smooth",
+                style: {
+                  color: "var(--muted-foreground)",
+                  letterSpacing: "0.1em",
+                  borderRadius: "2px"
+                },
+                onMouseEnter: (e) => {
+                  e.currentTarget.style.color = "var(--foreground)";
+                  e.currentTarget.style.background = "var(--muted)";
+                },
+                onMouseLeave: (e) => {
+                  e.currentTarget.style.color = "var(--muted-foreground)";
+                  e.currentTarget.style.background = "transparent";
+                },
+                children: [
+                  link.icon,
+                  link.label
+                ]
+              }
+            ) }, link.href)),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { ref: moreRef, className: "relative", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "button",
+                {
+                  type: "button",
+                  "data-ocid": "navbar.more.toggle",
+                  onClick: () => setMoreOpen((v2) => !v2),
+                  className: "flex items-center gap-1.5 px-3 py-2 text-xs font-bold uppercase tracking-wider transition-smooth",
+                  style: {
+                    color: moreOpen ? "var(--primary)" : "var(--muted-foreground)",
+                    letterSpacing: "0.1em",
+                    borderRadius: "2px"
+                  },
+                  children: [
+                    "More",
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      ChevronDown,
+                      {
+                        className: "w-3 h-3 transition-smooth",
+                        style: {
+                          transform: moreOpen ? "rotate(180deg)" : "rotate(0deg)"
+                        }
+                      }
+                    )
+                  ]
+                }
+              ),
+              moreOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  "data-ocid": "navbar.more.dropdown",
+                  className: "absolute top-full right-0 mt-1 min-w-[220px] py-1 z-50",
+                  style: {
+                    background: "var(--card)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "4px",
+                    boxShadow: "var(--shadow-elevated)"
+                  },
+                  children: MORE_LINKS.map((link) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Link,
+                    {
+                      to: link.href,
+                      onClick: () => setMoreOpen(false),
+                      "data-ocid": `navbar.more.${link.label.toLowerCase().replace(/[^a-z0-9]/g, "_")}.link`,
+                      className: "flex items-center gap-2.5 px-3 py-2 text-xs font-bold uppercase tracking-wider transition-smooth w-full",
+                      style: {
+                        color: "var(--muted-foreground)",
+                        letterSpacing: "0.08em"
+                      },
+                      onMouseEnter: (e) => {
+                        e.currentTarget.style.color = "var(--foreground)";
+                        e.currentTarget.style.background = "var(--muted)";
+                      },
+                      onMouseLeave: (e) => {
+                        e.currentTarget.style.color = "var(--muted-foreground)";
+                        e.currentTarget.style.background = "transparent";
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--primary)" }, children: link.icon }),
+                        link.label
+                      ]
+                    },
+                    link.href
+                  ))
+                }
+              )
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "a",
+              {
+                href: "https://app.binance.com/uni-qr/cpro/Demon_Zeno?l=en&r=KGTBUDHQ&uc=app_square_share_link&us=copylink",
+                target: "_blank",
+                rel: "noopener noreferrer",
+                "data-ocid": "navbar.follow.link",
+                className: "hidden md:flex items-center gap-1.5 btn-primary text-xs py-1.5 px-3",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SiBinance, { className: "w-3.5 h-3.5" }),
+                  "Follow"
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                "data-ocid": "navbar.mobile_menu.toggle",
+                className: "md:hidden p-2 transition-smooth",
+                style: { borderRadius: "2px" },
+                onClick: () => setMobileOpen((v2) => !v2),
+                "aria-label": mobileOpen ? "Close menu" : "Open menu",
+                "aria-expanded": mobileOpen,
+                onMouseEnter: (e) => {
+                  e.currentTarget.style.background = "var(--muted)";
+                },
+                onMouseLeave: (e) => {
+                  e.currentTarget.style.background = "transparent";
+                },
+                children: mobileOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "w-5 h-5" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, { className: "w-5 h-5" })
+              }
+            )
+          ] })
+        ] }),
+        mobileOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "md:hidden animate-slideDown",
+            style: {
+              borderTop: "1px solid var(--border)",
+              background: "var(--card)"
+            },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "container mx-auto px-4 py-3 flex flex-col gap-0.5", children: [
+              NAV_LINKS.map((link) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "button",
+                {
+                  type: "button",
+                  "data-ocid": `navbar.mobile.${link.label.toLowerCase().replace(/\s+/g, "_")}.link`,
+                  onClick: () => handleNavClick(link),
+                  className: "flex items-center gap-2 w-full text-left px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-smooth",
+                  style: {
+                    color: "var(--muted-foreground)",
+                    letterSpacing: "0.1em",
+                    borderRadius: "2px"
+                  },
+                  onMouseEnter: (e) => {
+                    e.currentTarget.style.color = "var(--foreground)";
+                    e.currentTarget.style.background = "var(--muted)";
+                  },
+                  onMouseLeave: (e) => {
+                    e.currentTarget.style.color = "var(--muted-foreground)";
+                    e.currentTarget.style.background = "transparent";
+                  },
+                  children: [
+                    link.icon,
+                    link.label
+                  ]
+                }
+              ) }, link.href)),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "li",
+                {
+                  className: "pt-1",
+                  style: {
+                    borderTop: "1px solid var(--border)",
+                    marginTop: "0.25rem"
+                  },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "px-3 py-1.5 text-xs uppercase tracking-widest",
+                      style: { color: "#444444", letterSpacing: "0.14em" },
+                      children: "More Pages"
+                    }
+                  )
+                }
+              ),
+              MORE_LINKS.slice(0, 6).map((link) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Link,
+                {
+                  to: link.href,
+                  onClick: () => setMobileOpen(false),
+                  className: "flex items-center gap-2 w-full text-left px-3 py-2 text-xs font-bold uppercase tracking-wider transition-smooth",
+                  style: {
+                    color: "var(--muted-foreground)",
+                    letterSpacing: "0.08em",
+                    borderRadius: "2px"
+                  },
+                  onMouseEnter: (e) => {
+                    e.currentTarget.style.color = "var(--foreground)";
+                    e.currentTarget.style.background = "var(--muted)";
+                  },
+                  onMouseLeave: (e) => {
+                    e.currentTarget.style.color = "var(--muted-foreground)";
+                    e.currentTarget.style.background = "transparent";
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--primary)" }, children: link.icon }),
+                    link.label
+                  ]
+                }
+              ) }, link.href)),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "li",
+                {
+                  className: "mt-2 pt-2",
+                  style: { borderTop: "1px solid var(--border)" },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "a",
+                    {
+                      href: "https://app.binance.com/uni-qr/cpro/Demon_Zeno?l=en&r=KGTBUDHQ&uc=app_square_share_link&us=copylink",
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      className: "btn-primary w-full text-center py-2.5",
+                      children: "Follow @Demon_Zeno"
+                    }
+                  )
+                }
+              )
+            ] })
+          }
+        )
+      ]
+    }
+  );
+}
+function FooterNavLink({
+  href,
+  label,
+  external
+}) {
+  const base = {
+    color: "var(--muted-foreground)",
+    fontSize: "0.8125rem",
+    fontWeight: 500,
+    display: "block",
+    width: "fit-content",
+    transition: "color 0.25s ease-out"
+  };
+  if (external) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "a",
+      {
+        href,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        style: base,
+        onMouseEnter: (e) => {
+          e.currentTarget.style.color = "var(--primary)";
+        },
+        onMouseLeave: (e) => {
+          e.currentTarget.style.color = "var(--muted-foreground)";
+        },
+        children: label
+      }
+    );
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Link,
+    {
+      to: href,
+      style: base,
+      onMouseEnter: (e) => {
+        e.currentTarget.style.color = "var(--primary)";
+      },
+      onMouseLeave: (e) => {
+        e.currentTarget.style.color = "var(--muted-foreground)";
+      },
+      children: label
+    }
+  );
+}
+function Footer() {
+  const year = (/* @__PURE__ */ new Date()).getFullYear();
+  const hostname = encodeURIComponent(
+    typeof window !== "undefined" ? window.location.hostname : ""
+  );
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "footer",
+    {
+      "data-ocid": "footer.panel",
+      style: {
+        background: "var(--card)",
+        borderTop: "1px solid var(--border)"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            style: {
+              height: "1px",
+              background: "linear-gradient(90deg, var(--primary) 0%, transparent 60%)"
+            }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container mx-auto px-4 py-12", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    className: "w-7 h-7 flex items-center justify-center",
+                    style: { background: "var(--primary)", borderRadius: "2px" },
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-3.5 h-3.5 text-white", strokeWidth: 3 })
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display font-black text-sm tracking-tight", children: [
+                  "DEMON",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--primary)" }, children: "ZENO" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    className: "text-xs font-mono px-1.5 py-0.5",
+                    style: {
+                      color: "var(--muted-foreground)",
+                      background: "var(--muted)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "2px"
+                    },
+                    children: "DMNZ"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "text-xs leading-relaxed max-w-xs",
+                  style: { color: "var(--muted-foreground)" },
+                  children: "A fair-launch meme token on Blum Mini App. No presale. No team allocation. Launching April 2, 2027."
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  className: "text-xs px-2.5 py-1.5",
+                  style: {
+                    background: "rgba(220,20,60,0.06)",
+                    border: "1px solid rgba(220,20,60,0.2)",
+                    borderRadius: "2px",
+                    color: "var(--muted-foreground)"
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--primary)", fontWeight: 700 }, children: "WARNING — FAKES EXIST:" }),
+                    " ",
+                    "Only @Demon_Zeno on Binance Square is real."
+                  ]
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "label-uppercase mb-1",
+                  style: { color: "var(--foreground)" },
+                  children: "Official Links"
+                }
+              ),
+              FOOTER_OFFICIAL.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                FooterNavLink,
+                {
+                  href: item.href,
+                  label: item.label,
+                  external: item.external
+                },
+                item.label
+              ))
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "label-uppercase mb-1",
+                  style: { color: "var(--foreground)" },
+                  children: "Legal & Trust"
+                }
+              ),
+              FOOTER_LEGAL.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                FooterNavLink,
+                {
+                  href: item.href,
+                  label: item.label
+                },
+                item.label
+              )),
+              FOOTER_ABOUT.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                FooterNavLink,
+                {
+                  href: item.href,
+                  label: item.label
+                },
+                item.label
+              ))
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "label-uppercase mb-1",
+                  style: { color: "var(--foreground)" },
+                  children: "Connect"
+                }
+              ),
+              SOCIAL_LINKS.map(({ icon, label, href }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "a",
+                {
+                  href,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  "data-ocid": `footer.social.${label.toLowerCase().replace(/[^a-z0-9]/g, "_")}.link`,
+                  className: "flex items-center gap-2 text-sm font-medium transition-smooth w-fit",
+                  style: { color: "var(--muted-foreground)" },
+                  onMouseEnter: (e) => {
+                    e.currentTarget.style.color = "var(--primary)";
+                  },
+                  onMouseLeave: (e) => {
+                    e.currentTarget.style.color = "var(--muted-foreground)";
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--primary)" }, children: icon }),
+                    label
+                  ]
+                },
+                label
+              )),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "text-xs mt-2 leading-relaxed",
+                  style: { color: "#555555" },
+                  children: "DMNZ is a meme coin — not financial advice."
+                }
+              )
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 text-xs",
+              style: { borderTop: "1px solid var(--border)", color: "#555555" },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col sm:flex-row items-center gap-3", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+                    "© ",
+                    year,
+                    " DemonZeno. DMNZ is a meme coin — not financial advice."
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      className: "hidden sm:inline",
+                      style: { color: "rgba(255,255,255,0.1)" },
+                      children: "|"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "@Demon_Zeno on Binance Square" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      className: "hidden sm:inline",
+                      style: { color: "rgba(255,255,255,0.1)" },
+                      children: "|"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Launching April 2, 2027" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "span",
+                    {
+                      className: "hidden sm:inline",
+                      style: { color: "rgba(255,255,255,0.1)" },
+                      children: "|"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { color: "var(--gold)", fontWeight: 600, opacity: 0.7 }, children: "Site last audited: May 2026" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "a",
+                  {
+                    href: `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${hostname}`,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    className: "transition-smooth",
+                    style: { color: "#555555" },
+                    onMouseEnter: (e) => {
+                      e.currentTarget.style.color = "var(--primary)";
+                    },
+                    onMouseLeave: (e) => {
+                      e.currentTarget.style.color = "#555555";
+                    },
+                    children: "Built with love using caffeine.ai"
+                  }
+                )
+              ]
+            }
+          )
+        ] })
+      ]
+    }
+  );
+}
+function Layout() {
+  useScrollAnimations();
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "min-h-screen flex flex-col",
+      style: { background: "var(--background)" },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CountdownBar, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollProgress, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(BackToTop, {})
+      ]
+    }
+  );
 }
 const queryClient$1 = new QueryClient({
   defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } }
 });
 const Home = reactExports.lazy(
-  () => __vitePreload(() => import("./Home-DtjxMNcm.js"), true ? __vite__mapDeps([0,1]) : void 0).then((m2) => ({ default: m2.Home }))
+  () => __vitePreload(() => import("./Home-CD_uka7U.js"), true ? __vite__mapDeps([0,1,2,3,4,5]) : void 0).then((m2) => ({ default: m2.Home }))
 );
 const NotFound = reactExports.lazy(
-  () => __vitePreload(() => import("./NotFound-Bqvyhnzz.js"), true ? __vite__mapDeps([2,1]) : void 0).then((m2) => ({ default: m2.NotFound }))
+  () => __vitePreload(() => import("./NotFound-CX_01VuR.js"), true ? __vite__mapDeps([6,7]) : void 0).then((m2) => ({ default: m2.NotFound }))
+);
+const Transparency = reactExports.lazy(
+  () => __vitePreload(() => import("./Transparency-BdY2bR04.js"), true ? __vite__mapDeps([8,7,3,4,1]) : void 0).then((m2) => ({ default: m2.Transparency }))
+);
+const OfficialLinks = reactExports.lazy(
+  () => __vitePreload(() => import("./OfficialLinks-DvGFF54I.js"), true ? __vite__mapDeps([9,7]) : void 0).then((m2) => ({ default: m2.OfficialLinks }))
+);
+const CommunityGuidelines = reactExports.lazy(
+  () => __vitePreload(() => import("./CommunityGuidelines-D1cXg1Sa.js"), true ? __vite__mapDeps([10,7,3,5]) : void 0).then((m2) => ({
+    default: m2.CommunityGuidelines
+  }))
+);
+const LaunchAnnouncement = reactExports.lazy(
+  () => __vitePreload(() => import("./LaunchAnnouncement-HGCd_G79.js"), true ? __vite__mapDeps([11,7]) : void 0).then((m2) => ({
+    default: m2.LaunchAnnouncement
+  }))
+);
+const PostLaunchPlan = reactExports.lazy(
+  () => __vitePreload(() => import("./PostLaunchPlan-Chkfid7c.js"), true ? __vite__mapDeps([12,7,3,4,13]) : void 0).then((m2) => ({ default: m2.PostLaunchPlan }))
+);
+const LegalDisclaimer = reactExports.lazy(
+  () => __vitePreload(() => import("./LegalDisclaimer-DVT1AdyF.js"), true ? __vite__mapDeps([14,7,2]) : void 0).then((m2) => ({
+    default: m2.LegalDisclaimer
+  }))
+);
+const WhyDemonZeno = reactExports.lazy(
+  () => __vitePreload(() => import("./WhyDemonZeno-DYXwScbE.js"), true ? __vite__mapDeps([15,7]) : void 0).then((m2) => ({ default: m2.WhyDemonZeno }))
+);
+const Changelog = reactExports.lazy(
+  () => __vitePreload(() => import("./Changelog-BytD-YI0.js"), true ? __vite__mapDeps([16,7]) : void 0).then((m2) => ({ default: m2.Changelog }))
+);
+const RiskDisclosure = reactExports.lazy(
+  () => __vitePreload(() => import("./RiskDisclosure-B5Jw1BQW.js"), true ? __vite__mapDeps([17,7,2]) : void 0).then((m2) => ({
+    default: m2.RiskDisclosure
+  }))
+);
+const LessonsFromFailures = reactExports.lazy(
+  () => __vitePreload(() => import("./LessonsFromFailures-BMsvxwG_.js"), true ? __vite__mapDeps([18,7,13]) : void 0).then((m2) => ({
+    default: m2.LessonsFromFailures
+  }))
 );
 function PageLoader() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "min-h-screen bg-background flex flex-col items-center justify-center gap-6", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-4", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-16 h-16 rounded-2xl bg-primary flex items-center justify-center shadow-elevated", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-8 h-8 text-primary-foreground", strokeWidth: 2.5 }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "w-16 h-16 bg-primary flex items-center justify-center",
+        style: { borderRadius: "2px" },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-8 h-8 text-white", strokeWidth: 2.5 })
+      }
+    ),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-1", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-display font-bold text-2xl text-foreground text-glow", children: "DemonZeno" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-muted-foreground text-sm font-mono", children: "Loading…" })
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "span",
+        {
+          className: "font-display font-black text-2xl",
+          style: { color: "var(--foreground)" },
+          children: [
+            "DEMON",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--primary)" }, children: "ZENO" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "span",
+        {
+          className: "text-sm font-mono",
+          style: { color: "var(--muted-foreground)" },
+          children: "Loading…"
+        }
+      )
     ] })
   ] }) });
 }
 function AppShell({ children }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollProgress, {}),
     children,
     /* @__PURE__ */ jsxRuntimeExports.jsx(BackToTop, {})
   ] });
 }
 const rootRoute = createRootRoute({
-  component: () => /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient$1, children: /* @__PURE__ */ jsxRuntimeExports.jsx(SessionProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(AppShell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Suspense, { fallback: /* @__PURE__ */ jsxRuntimeExports.jsx(PageLoader, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }) }) }) })
+  component: () => /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient$1, children: /* @__PURE__ */ jsxRuntimeExports.jsx(AppShell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.Suspense, { fallback: /* @__PURE__ */ jsxRuntimeExports.jsx(PageLoader, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) }) }) })
 });
 const layoutRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -32255,6 +32978,66 @@ const notFoundRoute = createRoute({
   path: "/404",
   component: NotFound
 });
+const transparencyRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/transparency",
+  component: Transparency
+});
+const officialLinksRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/official-links",
+  component: OfficialLinks
+});
+const communityGuidelinesRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/community-guidelines",
+  component: CommunityGuidelines
+});
+const launchRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/launch",
+  component: LaunchAnnouncement
+});
+const postLaunchRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/post-launch",
+  component: PostLaunchPlan
+});
+const burnEventRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/burn-event-preview",
+  component: PostLaunchPlan
+});
+const legalRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/legal",
+  component: LegalDisclaimer
+});
+const notAScamRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/not-a-scam",
+  component: Transparency
+});
+const whyDemonZenoRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/why-demonzeno",
+  component: WhyDemonZeno
+});
+const changelogRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/changelog",
+  component: Changelog
+});
+const riskRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/risk-disclosure",
+  component: RiskDisclosure
+});
+const lessonsRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: "/lessons-from-failures",
+  component: LessonsFromFailures
+});
 const catchAllRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "$",
@@ -32264,7 +33047,22 @@ const catchAllRoute = createRoute({
   component: () => null
 });
 const routeTree = rootRoute.addChildren([
-  layoutRoute.addChildren([indexRoute, notFoundRoute]),
+  layoutRoute.addChildren([
+    indexRoute,
+    notFoundRoute,
+    transparencyRoute,
+    officialLinksRoute,
+    communityGuidelinesRoute,
+    launchRoute,
+    postLaunchRoute,
+    burnEventRoute,
+    legalRoute,
+    notAScamRoute,
+    whyDemonZenoRoute,
+    changelogRoute,
+    riskRoute,
+    lessonsRoute
+  ]),
   catchAllRoute
 ]);
 const router = createRouter({ routeTree });
@@ -32280,7 +33078,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(InternetIdentityProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) }) })
 );
 export {
-  useSession as $,
+  Opt as $,
   timeoutManager as A,
   focusManager as B,
   Certificate as C,
@@ -32290,37 +33088,43 @@ export {
   notifyManager as G,
   HttpAgent as H,
   InputError as I,
-  reactExports as J,
-  shouldThrowError as K,
-  useQueryClient as L,
+  hashKey as J,
+  getDefaultState as K,
+  reactExports as L,
   MissingRootKeyErrorCode as M,
-  useInternetIdentity as N,
-  createActorWithConfig as O,
+  shouldThrowError as N,
+  useQueryClient as O,
   ProtocolError as P,
   QueryResponseStatus as Q,
   RequestStatusResponseStatus as R,
   Subscribable as S,
   TimeoutWaitingForResponseErrorCode as T,
   UnknownError as U,
-  createLucideIcon as V,
-  jsxRuntimeExports as W,
-  React$5 as X,
-  reactDomExports as Y,
-  ReactDOM$2 as Z,
-  X as _,
+  useInternetIdentity as V,
+  createActorWithConfig as W,
+  createLucideIcon as X,
+  jsxRuntimeExports as Y,
+  ChevronDown as Z,
+  Record as _,
   RequestStatusDoneNoReplyErrorCode as a,
-  Zap as a0,
-  Variant as a1,
-  Record as a2,
-  Opt as a3,
-  Vec as a4,
-  Text as a5,
-  Service as a6,
-  Func as a7,
-  Null as a8,
-  Bool as a9,
-  SiBinance as aa,
-  Link as ab,
+  Vec as a0,
+  Text as a1,
+  Variant as a2,
+  Service as a3,
+  Func as a4,
+  Int as a5,
+  Nat as a6,
+  Bool as a7,
+  SiBinance as a8,
+  Flame as a9,
+  Users as aa,
+  Rocket as ab,
+  ExternalLink as ac,
+  Shield as ad,
+  React$5 as ae,
+  Zap as af,
+  Link as ag,
+  useScrollAnimations as ah,
   RejectError as b,
   CertifiedRejectErrorCode as c,
   UNREACHABLE_ERROR as d,

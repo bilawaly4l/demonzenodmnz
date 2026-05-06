@@ -1,2 +1,2 @@
-// Removed
+// deleted
 export {};

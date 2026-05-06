@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, BookOpen, Zap } from "lucide-react";
+import { ArrowLeft, Zap } from "lucide-react";
 
 export function NotFound() {
   return (
@@ -53,14 +53,14 @@ export function NotFound() {
           </Button>
           <Button
             variant="outline"
-            data-ocid="not_found.academy.secondary_button"
-            asChild
+            data-ocid="not_found.token.secondary_button"
+            onClick={() => {
+              window.location.href = "/#dmnz-token";
+            }}
             className="border-primary/40 text-primary hover:bg-primary/10 h-11"
           >
-            <Link to="/">
-              <BookOpen className="w-4 h-4 mr-2" />
-              Start Academy
-            </Link>
+            <Zap className="w-4 h-4 mr-2" />
+            DMNZ Token
           </Button>
         </div>
 

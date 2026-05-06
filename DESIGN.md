@@ -1,131 +1,95 @@
-# Design System — DemonZeno Trading Academy & DMNZ Token
+# Design System — DemonZeno DMNZ Professional Dark Crypto Token Hub
 
 ## Direction
-Premium, dark-only trading education platform with anime-inspired character design. Dark charcoal (0.145 0.01 260) foundation for focus. Teal (0.65 0.15 190) drives primary actions. Gold (0.7 0.18 70) celebrates achievement. Mint (0.7 0.18 145) indicates success. Minimal animations: smooth expand/collapse, gentle hover scales, fade-in-up entrance effects only. Real DemonZeno character image (green jacket) used throughout with ImagineArt watermark cropped.
+Professional, premium dark crypto aesthetic with manifesto/military energy. Deep black foundations (#0a0a0a), sharp geometric layouts, glassmorphism cards (backdrop-filter blur 12px, rgba(17,17,17,0.8), 1px border rgba(255,255,255,0.08)), crimson CTAs (#dc143c), gold accents (#d4af37). Uppercase bold condensed headers with thin 2px crimson accent lines underneath. Cinematic fade-in animations only — no glow, no bounce, no particles. Sharp 2px corners. Authoritative, legitimate, zero childish vibes.
 
 ## Tone
-Educational excellence + anime character authenticity. Master trading zero→expert across 5 locked tiers. Certificates are **hard-earned awards** (30/30 required, 9-char unique ID). Full Fair Launch messaging. Clear, readable, professional. All DemonZeno slogans woven throughout. New premium pages: Hall of Champions, Top 5 Traders Wall, Referral Wall.
+Professional, credible, premium. Serious crypto project aesthetic. DMNZ token info hub with fair launch messaging. All DemonZeno quotes woven throughout. Clear, high-contrast readability. Confident visual language. Manifesto-like energy.
 
-## Palette (OKLCH, Dark Mode)
+## Palette (Dark Mode Only)
 
-| Token               | OKLCH           | Usage                         |
-|---------------------|-----------------|-------------------------------|
-| primary/teal        | 0.65 0.15 190   | CTAs, progress, active states |
-| certificate-gold    | 0.7 0.18 70     | Certificates, awards, badges  |
-| chart-3/mint        | 0.7 0.18 145    | Success, achievement badges   |
-| sky-blue            | 0.58 0.16 258   | Atmospheric accents           |
-| destructive/red     | 0.55 0.22 25    | Warnings, failures            |
-| background          | 0.145 0.01 260  | Primary surface               |
-| card                | 0.18 0.01 260   | Elevated cards                |
-| foreground          | 0.95 0.005 260  | Text (AA+ contrast)           |
-| muted               | 0.25 0.02 260   | Secondary text                |
-| border              | 0.28 0.01 260   | Dividers, borders             |
+| Token               | Value                      | Usage                              |
+|---------------------|----------------------------|------------------------------------|
+| background          | #0a0a0a                   | Primary surface                    |
+| card                | #111111                   | Card base                         |
+| card-glass          | rgba(17, 17, 17, 0.8)     | Glassmorphism cards               |
+| foreground          | #ffffff                   | Primary text (AA+ contrast)       |
+| primary (crimson)   | #dc143c                   | CTAs, buttons, accents            |
+| primary-dark        | #8b0000                   | Hover states                      |
+| gold                | #d4af37                   | Premium, verified, trust          |
+| border              | rgba(255,255,255,0.08)    | Subtle dividers                   |
+| muted-foreground    | #a0a0a0                   | Secondary text                    |
+| shadow-glass        | 0 8px 32px rgba(0,0,0,0.3)| Glassmorphism hover depth         |
 
 ## Typography
-- **Display**: Space Grotesk, h1 `text-6xl md:text-7xl font-bold`, h2 `text-4xl font-bold`
-- **Body**: DM Sans, `text-base` body, `text-sm` annotations, `text-xs` labels
-- **Mono**: JetBrains Mono, IDs, counters, code snippets
+- **Display**: Space Grotesk, 800 weight, UPPERCASE, letter-spacing -0.03em, line-height 1.05–1.15
+- **Body**: Inter, 400–700 weights, regular case, AA+ dark-on-white contrast
+- **Mono**: JetBrains Mono, 400–600 weights, fixed-width for data/IDs/code
 
 ## Structural Zones
 
-| Zone                | Background      | Notes                                      |
-|---------------------|-----------------|--------------------------------------------|
-| Header              | card            | Sticky nav to Academy/Certs/Token/Traders  |
-| Hero                | bg + sky-blue   | DemonZeno character (cropped watermark)    |
-| Academy             | background      | 5 tier cards, expandable lessons            |
-| Lesson Cards        | card + teal     | Smooth expand/collapse, readable           |
-| Quick Review        | card + mint     | 5-min recap with existing card structure   |
-| Ask the Chart       | card + primary  | Pattern drill with existing difficulty     |
-| Quiz Interface      | card            | 30 MCQ, 45s countdown, mobile opt.         |
-| Difficulty Badges   | semantic colors | Beginner/Intermediate/Advanced/Expert/Master |
-| Certificate         | card + gold     | Premium, 9-char ID, QR, watermark          |
-| Glossary Quiz       | background      | Glossary + quiz hybrid, searchable         |
-| Zeno AI Widget      | primary         | Bottom-right chat, minimal design          |
-| Progress Tracking   | card            | Tier bar, stats, completion %              |
-| Certificate Wall    | background      | Grid, searchable by ID, leaderboard        |
-| Hall of Champions   | card + mint     | 5-tier holders, gold badges                |
-| Top 5 Traders       | card + primary  | Profile cards with achievement badges      |
-| Referral Wall       | card + teal     | Community referrer display                 |
-| DMNZ Infographic    | gradient        | Fair launch animation, mint-to-teal        |
-| Why DMNZ            | background      | Punchy CTA section                         |
-| Price Tracker       | card            | Launch Pending placeholder                 |
-| Admin Dashboard     | card            | Session-local unlock, globals              |
-| Footer              | card            | Links, admin hint                          |
-| Language Toggle     | primary         | Urdu + English in Academy only             |
+| Zone              | Background      | Treatment                              |
+|-------------------|-----------------|----------------------------------------|
+| Header/Nav        | #111111 +glass  | Sticky, 1px border, crimson accent     |
+| Hero              | #0a0a0a         | DemonZeno character, fade-in anim      |
+| Content Sections  | #0a0a0a         | Card + glass depth, minimal overlap    |
+| Cards             | glass+blur      | Hover blur 16px, shadow-glass effect   |
+| Buttons (CTA)     | #dc143c         | UPPERCASE, 0.12em tracking, 2px corner |
+| Countdown         | #111111 +glass  | Sticky top or pinned, prominent        |
+| Footer            | #0d0d0d         | Border-top, professional links         |
 
 ## Components
 
-**Lesson Card**: Dark card, teal left-border-4, smooth expand/collapse (0.4s), glassmorphism on hover, shadow-elevated.
+**Cards (glassmorphism)**: Background rgba(17,17,17,0.8), backdrop-filter blur(12px), border 1px rgba(255,255,255,0.08), 2px corners, padding 1.5rem. Hover: blur 16px, box-shadow 0 8px 32px rgba(0,0,0,0.3). Transition 0.3s ease-out.
 
-**Quick Review**: Mint accent, compact summary, existing lesson card structure, readable in 5 minutes.
+**Headings**: All UPPERCASE, bold 800, letter-spacing -0.03em, line-height 1.05–1.15. Each heading uses ::after pseudo-element: 2px crimson line, width 2–3rem, margin-top 0.4–0.5rem.
 
-**Ask the Chart**: Primary accent, SVG chart display, pattern recognition drill, existing difficulty badges.
+**Buttons**: UPPERCASE text, letter-spacing 0.12em, padding 0.75rem 1.75rem, 2px corners. CTA buttons: crimson fill (#dc143c), hover #c01234 + shadow-crimson. Ghost buttons: transparent, 1px border, hover adds rgba(220,20,60,0.05) background. All 0.3s ease-out transitions.
 
-**Glossary Quiz**: Search input grid, term cards linked from lessons, quiz mode with MCQ pairs.
+**Progress bar**: 2px fixed top, tracks scroll %. Background crimson.
 
-**Hall of Champions**: Luxury tier showcase, mint badge border-glow, 5-tier certificate filters, achievement dates.
-
-**Top 5 Traders**: Profile cards (Waqar Zaka, Jesse Livermore, Paul Tudor Jones, George Soros, Stanley Druckenmiller), teal hover, gold badges for wins.
-
-**Referral Wall**: Referrer cards, teal accents, count indicators, shareable links.
-
-**DMNZ Infographic**: Animated fair-launch visual, mint-to-teal gradient background, 2027 milestones, smooth transitions.
-
-**Price Tracker**: "Launch Pending" placeholder, primary teal button for Blum app link, countdown timer.
-
-**Quiz Interface**: 30 randomized questions, one per screen, 45s countdown timer (urgent red if <10s), large tap targets (py-4 md:py-5), progress bar top.
-
-**Progress Bar**: Teal-to-mint gradient, tracks scroll position (fixed top) and tier completion (inline).
-
-**Zeno AI Widget**: Fixed bottom-right, teal circle button, slide-up panel, user messages in teal, AI responses in muted.
+**Animations**: All fade-in-up (opacity 0–1, translateY 20px–0) on scroll, 0.5s ease-out. No bounces, glow, or particles.
 
 ## Motion
-- **Entrance**: Fade-in-up (0.6s ease-out) on scroll, staggered
-- **Hover**: Scale 1.02, shadow-elevated, smooth (0.3s)
-- **Lesson expand**: Max-height (0.4s cubic-bezier)
-- **Quiz slide**: Fade-out → fade-in (0.6s)
-- **Certificate unlock**: Confetti burst (0.8s)
-- **Infographic animate**: Gentle scale-up + opacity (1.2s)
-- **Loading**: Skeleton pulse (2s infinite)
+- **Entrance**: Fade-in-up (0.5s ease-out) on scroll, translateY 20px drop
+- **Hover**: Backdrop-filter blur increase + shadow, smooth 0.3s (no scale)
+- **Transitions**: All 0.25–0.3s ease-out, no spring curves
+- **Loading**: Skeleton pulse 1.8s infinite
+- **Disabled**: opacity 0.5, cursor not-allowed
 
 ## Constraints
-- Dark mode only — no light mode
-- Token-only colors — no raw hex/rgb
-- Mobile-first responsive: sm/md/lg breakpoints
-- Single-page smooth scroll, no page reloads
-- Minimal animations: only smooth transitions, no auto-play
-- Education first: clarity over decoration
-- Real DemonZeno image used throughout (green jacket, watermark cropped)
+- Dark mode only — absolutely no light mode anywhere
+- Token-only colors — no raw hex/rgb in components
+- Glassmorphism on cards only (blur 12px, rgba(17,17,17,0.8))
+- Sharp 2px border-radius everywhere
+- Cinematic animations only — no glow, no bounce, no particles
+- All buttons UPPERCASE with 0.12em letter-spacing
+- All headings UPPERCASE with 2px crimson underline via ::after
+- Mobile-first responsive design
+- No scale/pop transforms on hover (smooth blur/shadow only)
 
-## Signature Details
-1. **Open Academy**: No gatekeeping. 5 tiers fully readable. Urdu language toggle.
-2. **Hard-Earned Certs**: 30/30 pass. 9-char unique ID. Gold + watermark.
-3. **Global Backend**: Stored globally. Searchable public wall + Hall of Champions.
-4. **Top 5 Traders**: Waqar Zaka + 4 global legends with detailed profiles.
-5. **Referral System**: Shareable links, community engagement tracker.
-6. **Glassmorphism**: Soft cards, blur/saturate on hover.
-7. **Admin Unlock**: DemonZeno image 5+ clicks + passcode → session-local access.
-8. **Progress Indicator**: Fixed top teal-to-mint bar tracks scroll %.
-9. **Zeno AI**: Lightweight chat widget, bottom-right corner, trading Q&A only.
-10. **DMNZ Fair Launch**: Clear "Full Fair Launch" messaging, animated infographic, price tracker placeholder.
+## Signature Details (Professional Dark Crypto Manifesto)
+1. **Glassmorphism cards** — backdrop-filter blur(12px), rgba(17,17,17,0.8), 1px rgba(255,255,255,0.08) border, hover blur 16px + shadow-glass
+2. **Uppercase everything** — all h1–h6, buttons, labels; letter-spacing -0.03em headings, 0.12em buttons
+3. **Crimson accent lines** — every section header has ::after pseudo-element: 2px solid #dc143c underneath
+4. **Cinematic motion only** — fade-in-up 0.5s ease-out, zero glow/bounce/particles
+5. **Professional CTA buttons** — crimson #dc143c, UPPERCASE, 0.12em tracking, 0.75rem 1.75rem padding, 2px corners
+6. **Dark authority** — #0a0a0a base, #111111 cards, white #ffffff text, crimson + gold sparingly
+7. **Real DemonZeno** — character image featured on hero, watermark cropped, authentic presence
+8. **Zero childish vibes** — serious, legitimate, manifesto/military aesthetic throughout
+9. **Scroll animations only** — all entrance animations tied to scroll visibility, 0.5s ease-out, no auto-play
+10. **Professional spacing** — consistent 1.5rem padding in cards, tight typography, high information density
 
-## Roadmap Tokens (DMNZ)
-| Milestone      | OKLCH/Role                    |
-|----------------|-------------------------------|
-| 2026 Community | Teal badge, community focus  |
-| 2 Apr 2027     | Gold badge, DMNZ launch Blum |
-| 1 Jan 2028     | Red accent, burn + curve      |
+## Animations Explicitly NOT Used
+- ❌ Glow effects (box-shadow: 0 0 20px rgba(220,20,60,1))
+- ❌ Bounce keyframes (@keyframes bounce with overshoot)
+- ❌ Particle systems or confetti bursts
+- ❌ Scale/pop transforms on hover (transform: scale(1.05))
+- ❌ Floating/levitating elements
+- ❌ Multi-color gradient animations
+- ❌ Skew or rotate effects
+- ❌ Blur-in from color (#ff00ff type effects)
 
-## New Features (30+)
-- Hall of Champions page (5-tier showcase)
-- Top 5 Traders Wall (Waqar Zaka + 4 legends)
-- Referral Wall (community tracking)
-- Animated DMNZ infographic (fair launch)
-- Why DMNZ section (CTA)
-- Price tracker placeholder (Launch Pending)
-- Urdu language toggle (Academy only)
-- Quick Review mode (5-min recap)
-- Ask the Chart drill (pattern recognition)
-- Glossary quiz mode (term tests)
-- Trader Mindset module (dedicated lessons)
-- And 19+ other premium enhancements
+## Quality Bar
+Benchmark: Linear, Stripe, Notion, Vercel (dark modes). Tight visual system: 1 display font (Space Grotesk) + 1 body font (Inter), 4 core colors (dark, card, crimson, gold), 3–4 typography tiers, unified interaction pattern. Every visual element serves the professional, authoritative manifesto aesthetic. Zero decoration for decoration's sake.
+
